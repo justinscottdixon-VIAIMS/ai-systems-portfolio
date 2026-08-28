@@ -5,64 +5,64 @@ import AudioPlayer from '../components/AudioPlayer.astro';
 ---
 
 <Layout>
-	<header class="mb-20 border-b border-zinc-800 pb-12">
+	<header class="mb-16 border-b border-zinc-800 pb-10">
 		<h1 class="text-4xl md:text-6xl font-bold tracking-tighter text-white mb-4 uppercase">
 			Justin Scott Dixon
 		</h1>
-		<h2 class="text-xl text-zinc-400 max-w-3xl font-light leading-relaxed">
+		<h2 class="text-lg md:text-xl text-zinc-400 max-w-3xl font-light leading-relaxed">
 			Principal AI Systems Architect & Creative Technologist. 30-year veteran bridging spatial audio engineering (Dolby Atmos 7.1.4), multi-engine AI video curation (Sora / Luma / Grok), and enterprise AV infrastructure design.
 		</h2>
 	</header>
 
-	<section class="grid grid-cols-1 md:grid-cols-3 gap-8">
+	<section class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
 		<!-- Module 1: AI Visual Worldbuilding -->
-		<div class="border border-zinc-900 p-6 hover:border-zinc-700 transition-colors flex flex-col justify-between bg-zinc-950/40">
-			<div>
-				<h3 class="text-white text-base font-bold mb-1 uppercase tracking-wide">AI Visual Worldbuilding</h3>
-				<p class="text-zinc-500 text-xs mb-6 font-mono">Sora / Luma / Grok • 3I | ATLAS • PROXIMITY</p>
+		<div class="border border-zinc-900 p-6 bg-zinc-950/40 hover:border-zinc-700 transition-colors">
+			<div class="mb-4">
+				<h3 class="text-white text-base font-bold uppercase tracking-wide">AI Visual Worldbuilding</h3>
+				<p class="text-zinc-500 text-xs font-mono">Sora / Luma / Grok • 3I | ATLAS</p>
 			</div>
-			<VideoPlayer 
-				src="/media/video/reel.mp4" 
-				title="3I | ATLAS - Pipeline Render" 
-				subtext="4K • Multi-Engine Scene Sequencing" 
-			/>
+			<VideoPlayer />
 		</div>
 
-		<!-- Module 2: Spatial Audio & Stem Separation -->
-		<div class="border border-zinc-900 p-6 hover:border-zinc-700 transition-colors flex flex-col justify-between bg-zinc-950/40">
-			<div>
-				<h3 class="text-white text-base font-bold mb-1 uppercase tracking-wide">Spatial Audio & DSP</h3>
-				<p class="text-zinc-500 text-xs mb-6 font-mono">Dolby Atmos 7.1.4 • Suno VIP • UVR5/Demucs</p>
+		<!-- Module 2: Spatial Audio & Stem DSP -->
+		<div class="border border-zinc-900 p-6 bg-zinc-950/40 hover:border-zinc-700 transition-colors">
+			<div class="mb-4">
+				<h3 class="text-white text-base font-bold uppercase tracking-wide">Spatial Audio & DSP</h3>
+				<p class="text-zinc-500 text-xs font-mono">Dolby Atmos 7.1.4 • 24-bit PCM Masters</p>
 			</div>
-			<AudioPlayer 
-				src="/media/audio/master.wav" 
-				title="Spatial Downmix Master" 
-				specs="24-bit / 48kHz • Multiband Limit" 
-			/>
+			<AudioPlayer />
 		</div>
 
 		<!-- Module 3: Enterprise AV Architecture -->
-		<div class="border border-zinc-900 p-6 hover:border-zinc-700 transition-colors flex flex-col justify-between bg-zinc-950/40">
+		<div class="border border-zinc-900 p-6 bg-zinc-950/40 hover:border-zinc-700 transition-colors flex flex-col justify-between h-full">
 			<div>
-				<h3 class="text-white text-base font-bold mb-1 uppercase tracking-wide">Enterprise Infrastructure</h3>
-				<p class="text-zinc-500 text-xs mb-6 font-mono">Dante Networks • FOH Command Booths • PMC/Grace</p>
-			</div>
-			<div class="w-full h-44 bg-zinc-950 border border-zinc-800 p-4 flex flex-col justify-between">
-				<div class="space-y-2">
-					<div class="flex justify-between text-xs font-mono text-zinc-400">
-						<span>DANTE ROUTING MATRIX</span>
-						<span class="text-emerald-500">OPTIMAL</span>
+				<div class="mb-4">
+					<h3 class="text-white text-base font-bold uppercase tracking-wide">Enterprise Infrastructure</h3>
+					<p class="text-zinc-500 text-xs font-mono">Dante Networks • FOH Booths • PMC/Grace</p>
+				</div>
+				<div class="w-full h-[480px] bg-zinc-950 border border-zinc-800 p-5 flex flex-col justify-between font-mono">
+					<div class="space-y-4">
+						<div class="border-b border-zinc-900 pb-3">
+							<span class="text-[10px] text-zinc-600 block uppercase">Network Audio Fabric</span>
+							<span class="text-xs text-zinc-300">Dante / AES67 Layer-3 Multicast</span>
+							<span class="text-[10px] text-emerald-400 block mt-1">● 512x512 PRIMARY CLOCK LOCKED</span>
+						</div>
+						<div class="border-b border-zinc-900 pb-3">
+							<span class="text-[10px] text-zinc-600 block uppercase">Monitoring Standard</span>
+							<span class="text-xs text-zinc-300">Dolby Atmos 7.1.4 Reference Array</span>
+							<span class="text-[10px] text-emerald-400 block mt-1">● PMC MB2S + Grace m908 CALIBRATED</span>
+						</div>
+						<div class="border-b border-zinc-900 pb-3">
+							<span class="text-[10px] text-zinc-600 block uppercase">FOH Command Deployments</span>
+							<span class="text-xs text-zinc-300">4-Person Mobile Hybrid Command</span>
+							<span class="text-[10px] text-zinc-500 block mt-1">○ SPEC ARCHITECTURE READY</span>
+						</div>
 					</div>
-					<div class="flex justify-between text-xs font-mono text-zinc-400">
-						<span>SYSTEM COMMISSIONING</span>
-						<span class="text-zinc-500">STANDBY</span>
-					</div>
-					<div class="flex justify-between text-xs font-mono text-zinc-400">
-						<span>ATMOS 7.1.4 CALIBRATION</span>
-						<span class="text-emerald-500">LOCKED</span>
+					<div class="pt-3 border-t border-zinc-900 flex justify-between items-center text-[11px] text-zinc-500">
+						<span>SYSTEM SPEC V4.2</span>
+						<span class="text-zinc-400">ENTERPRISE AV</span>
 					</div>
 				</div>
-				<span class="text-[10px] font-mono text-zinc-600 uppercase border-t border-zinc-900 pt-2">System Specs / Blueprints</span>
 			</div>
 		</div>
 	</section>

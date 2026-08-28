@@ -1,24 +1,151 @@
 ---
-interface Props {
+interface AudioItem {
 	src: string;
 	title: string;
 	specs: string;
 }
 
-const { src, title, specs } = Astro.props;
+const playlist: AudioItem[] = [
+	{ src: '/media/audio/track-01.wav', title: 'V_edges fade (v001.1.2 Master)', specs: '24-bit / 48kHz PCM • Atmos Downmix' },
+	{ src: '/media/audio/track-02.wav', title: 'V_edges fade (AAP Master)', specs: '24-bit / 48kHz PCM • Reference Limit' },
+	{ src: '/media/audio/track-03.wav', title: 'V_manic_manIA (Master)', specs: '24-bit / 48kHz PCM • Spatial Dynamic Range' }
+];
 ---
 
-<div class="w-full bg-zinc-950 border border-zinc-800 p-4 flex flex-col justify-between group hover:border-zinc-700 transition-colors">
-	<div class="flex justify-between items-start mb-4">
-		<div>
-			<h4 class="text-white text-sm font-mono uppercase tracking-wider">{title}</h4>
-			<p class="text-zinc-500 text-xs font-mono">{specs}</p>
+<div id="audio-engine" class="w-full bg-zinc-950 border border-zinc-800 p-5 flex flex-col justify-between h-[480px]">
+	<!-- Track Header -->
+	<div>
+		<div class="flex justify-between items-start mb-2">
+			<div>
+				<h4 id="audio-title" class="text-white text-sm font-mono uppercase tracking-wider">{playlist[0].title}</h4>
+				<p id="audio-specs" class="text-zinc-500 text-xs font-mono">{playlist[0].specs}</p>
+			</div>
+			<span class="text-[10px] font-mono text-emerald-400 border border-emerald-950/80 bg-emerald-950/20 px-2 py-0.5 uppercase">Lossless WAV</span>
 		</div>
-		<span class="text-xs font-mono text-zinc-600 border border-zinc-800 px-2 py-0.5 uppercase">Lossless</span>
+
+		<!-- Scrubber & Time -->
+		<div class="space-y-1 my-6">
+			<input 
+				type="range" 
+				id="audio-seek" 
+				value="0" 
+				min="0" 
+				max="100" 
+				class="w-full h-1 bg-zinc-800 rounded-none appearance-none cursor-pointer accent-zinc-200"
+			/>
+			<div class="flex justify-between text-[11px] font-mono text-zinc-500">
+				<span id="time-current">00:00</span>
+				<span id="time-duration">--:--</span>
+			</div>
+		</div>
+
+		<!-- Main Transport Controls -->
+		<div class="flex items-center justify-between border-y border-zinc-900 py-3 mb-4">
+			<div class="flex gap-2">
+				<button id="aud-prev" class="px-3 py-1 text-xs font-mono bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border border-zinc-800">⏮ PREV</button>
+				<button id="aud-play" class="px-4 py-1 text-xs font-mono bg-zinc-100 hover:bg-white text-black font-bold">PLAY</button>
+				<button id="aud-next" class="px-3 py-1 text-xs font-mono bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border border-zinc-800">NEXT ⏭</button>
+			</div>
+			<span id="cue-state" class="text-[10px] font-mono text-zinc-500">BUFFERED</span>
+		</div>
 	</div>
-	<audio controls class="w-full h-8 accent-zinc-200">
-		<source src={src} type="audio/wav" />
-		<source src={src} type="audio/mpeg" />
-		Your browser does not support the audio element.
-	</audio>
+
+	<!-- Playlist Cue Selector -->
+	<div class="flex flex-col gap-1">
+		<span class="text-[10px] font-mono text-zinc-600 uppercase tracking-widest mb-1">Queue Stack</span>
+		<div class="flex flex-col gap-1 overflow-y-auto max-h-36">
+			{playlist.map((item, idx) => (
+				<button 
+					data-idx={idx}
+					class="audio-track-item text-left px-3 py-2 text-xs font-mono border border-zinc-900 bg-zinc-900/40 hover:border-zinc-700 transition-colors flex justify-between text-zinc-400"
+				>
+					<span class="truncate pr-2">{item.title}</span>
+					<span class="text-[10px] text-zinc-600">PCM</span>
+				</button>
+			))}
+		</div>
+	</div>
+
+	<audio id="core-audio" src={playlist[0].src} preload="metadata"></audio>
 </div>
+
+<script define:vars={{ playlist }}>
+	const audio = document.getElementById('core-audio');
+	const playBtn = document.getElementById('aud-play');
+	const prevBtn = document.getElementById('aud-prev');
+	const nextBtn = document.getElementById('aud-next');
+	const seek = document.getElementById('audio-seek');
+	const timeCur = document.getElementById('time-current');
+	const timeDur = document.getElementById('time-duration');
+	const titleEl = document.getElementById('audio-title');
+	const specsEl = document.getElementById('audio-specs');
+	const trackItems = document.querySelectorAll('.audio-track-item');
+
+	let currentIndex = 0;
+
+	function formatTime(s) {
+		if (isNaN(s)) return '00:00';
+		const m = Math.floor(s / 60);
+		const sec = Math.floor(s % 60);
+		return `${m.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`;
+	}
+
+	function loadTrack(idx) {
+		currentIndex = (idx + playlist.length) % playlist.length;
+		const track = playlist[currentIndex];
+		audio.src = track.src;
+		titleEl.textContent = track.title;
+		specsEl.textContent = track.specs;
+		audio.play();
+		playBtn.textContent = 'PAUSE';
+		updateQueueUI();
+	}
+
+	function updateQueueUI() {
+		trackItems.forEach((btn, i) => {
+			if (i === currentIndex) {
+				btn.classList.add('border-zinc-500', 'text-white', 'bg-zinc-800/60');
+			} else {
+				btn.classList.remove('border-zinc-500', 'text-white', 'bg-zinc-800/60');
+			}
+		});
+	}
+
+	playBtn.addEventListener('click', () => {
+		if (audio.paused) {
+			audio.play();
+			playBtn.textContent = 'PAUSE';
+		} else {
+			audio.pause();
+			playBtn.textContent = 'PLAY';
+		}
+	});
+
+	prevBtn.addEventListener('click', () => loadTrack(currentIndex - 1));
+	nextBtn.addEventListener('click', () => loadTrack(currentIndex + 1));
+
+	trackItems.forEach(btn => {
+		btn.addEventListener('click', () => {
+			loadTrack(parseInt(btn.getAttribute('data-idx'), 10));
+		});
+	});
+
+	audio.addEventListener('timeupdate', () => {
+		if (!isNaN(audio.duration)) {
+			seek.value = (audio.currentTime / audio.duration) * 100;
+			timeCur.textContent = formatTime(audio.currentTime);
+		}
+	});
+
+	audio.addEventListener('loadedmetadata', () => {
+		timeDur.textContent = formatTime(audio.duration);
+	});
+
+	seek.addEventListener('input', () => {
+		if (!isNaN(audio.duration)) {
+			audio.currentTime = (seek.value / 100) * audio.duration;
+		}
+	});
+
+	updateQueueUI();
+</script>

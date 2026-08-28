@@ -1,24 +1,97 @@
 ---
-interface Props {
+interface VideoItem {
 	src: string;
 	title: string;
-	subtext: string;
+	engine: string;
+	aspectHint: string;
 }
 
-const { src, title, subtext } = Astro.props;
+const playlist: VideoItem[] = [
+	{ src: '/media/video/atlas-01.mp4', title: '3I | ATLAS — Sequence 01', engine: 'Sora / Luma', aspectHint: '9:16 Vertical' },
+	{ src: '/media/video/atlas-02.mp4', title: '3I | ATLAS — Sequence 02', engine: 'Sora Pro', aspectHint: '9:16 Vertical' },
+	{ src: '/media/video/atlas-03.mp4', title: '3I | ATLAS — Sequence 03', engine: 'Luma Dream Machine', aspectHint: '9:16 Vertical' },
+	{ src: '/media/video/atlas-04.mp4', title: '3I | ATLAS — Sequence 04', engine: 'Sora / Grok', aspectHint: '9:16 Vertical' },
+	{ src: '/media/video/atlas-05.mp4', title: '3I | ATLAS — Sequence 05', engine: 'Sora Pro', aspectHint: '9:16 Vertical' },
+	{ src: '/media/video/atlas-06.mp4', title: '3I | ATLAS — Sequence 06', engine: 'Grok Flux / Sora', aspectHint: '9:16 Vertical' },
+	{ src: '/media/video/atlas-07.mp4', title: '3I | ATLAS — Sequence 07', engine: 'Sora Pro', aspectHint: '9:16 Vertical' },
+	{ src: '/media/video/atlas-08.mp4', title: '3I | ATLAS — Sequence 08', engine: 'Sora Pro', aspectHint: '9:16 Vertical' },
+	{ src: '/media/video/atlas-09.mp4', title: '3I | ATLAS — Sequence 09', engine: 'Sora Pro', aspectHint: '9:16 Vertical' },
+	{ src: '/media/video/atlas-10.mp4', title: '3I | ATLAS — Sequence 10', engine: 'Sora / Luma', aspectHint: '9:16 Vertical' },
+	{ src: '/media/video/atlas-11.mp4', title: '3I | ATLAS — Sequence 11', engine: 'Sora Pro', aspectHint: '9:16 Vertical' }
+];
 ---
 
-<div class="relative w-full aspect-video bg-zinc-950 border border-zinc-800 overflow-hidden group">
-	<video 
-		src={src} 
-		autoplay 
-		loop 
-		muted 
-		playsinline 
-		class="w-full h-full object-cover grayscale contrast-125 group-hover:grayscale-0 transition-all duration-500"
-	></video>
-	<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4 flex flex-col justify-end">
-		<span class="text-white text-xs uppercase font-mono tracking-widest">{title}</span>
-		<span class="text-zinc-400 text-xs font-mono">{subtext}</span>
+<div id="video-engine" class="flex flex-col gap-4">
+	<!-- Stage -->
+	<div id="viewport-stage" class="relative w-full h-[480px] bg-black border border-zinc-800 flex items-center justify-center overflow-hidden transition-all duration-300">
+		<video 
+			id="active-video"
+			src={playlist[0].src} 
+			autoplay 
+			loop 
+			muted 
+			playsinline 
+			class="max-w-full max-h-full object-contain"
+		></video>
+		<div class="absolute top-3 left-3 bg-black/70 backdrop-blur-sm border border-zinc-800 px-2 py-1 flex gap-2 items-center">
+			<span id="active-ratio-tag" class="text-[10px] font-mono uppercase text-emerald-400">9:16 AUTO</span>
+			<span class="text-zinc-600">|</span>
+			<span id="active-engine-tag" class="text-[10px] font-mono text-zinc-400">{playlist[0].engine}</span>
+		</div>
+	</div>
+
+	<!-- Transport & Selector -->
+	<div class="flex items-center justify-between gap-3 border border-zinc-800 bg-zinc-950 p-2">
+		<div class="flex items-center gap-1">
+			<button id="vid-prev" class="px-2 py-1 text-xs font-mono bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border border-zinc-800">◀ PREV</button>
+			<button id="vid-play" class="px-3 py-1 text-xs font-mono bg-zinc-800 hover:bg-zinc-700 text-white font-bold border border-zinc-700">PAUSE</button>
+			<button id="vid-next" class="px-2 py-1 text-xs font-mono bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border border-zinc-800">NEXT ▶</button>
+		</div>
+		<select id="vid-selector" class="bg-zinc-900 border border-zinc-800 text-zinc-300 text-xs font-mono py-1 px-2 focus:outline-none focus:border-zinc-500 w-48">
+			{playlist.map((item, idx) => (
+				<option value={idx}>{item.title}</option>
+			))}
+		</select>
 	</div>
 </div>
+
+<script define:vars={{ playlist }}>
+	const video = document.getElementById('active-video');
+	const prevBtn = document.getElementById('vid-prev');
+	const nextBtn = document.getElementById('vid-next');
+	const playBtn = document.getElementById('vid-play');
+	const selector = document.getElementById('vid-selector');
+	const ratioTag = document.getElementById('active-ratio-tag');
+	const engineTag = document.getElementById('active-engine-tag');
+
+	let currentIndex = 0;
+
+	function loadVideo(index) {
+		currentIndex = (index + playlist.length) % playlist.length;
+		const track = playlist[currentIndex];
+		video.src = track.src;
+		video.play();
+		playBtn.textContent = 'PAUSE';
+		selector.value = currentIndex;
+		engineTag.textContent = track.engine;
+	}
+
+	video.addEventListener('loadedmetadata', () => {
+		const isVertical = video.videoHeight > video.videoWidth;
+		ratioTag.textContent = isVertical ? `${video.videoWidth}:${video.videoHeight} (PORTRAIT)` : `${video.videoWidth}:${video.videoHeight} (LANDSCAPE)`;
+	});
+
+	prevBtn.addEventListener('click', () => loadVideo(currentIndex - 1));
+	nextBtn.addEventListener('click', () => loadVideo(currentIndex + 1));
+	selector.addEventListener('change', (e) => loadVideo(parseInt(e.target.value, 10)));
+
+	playBtn.addEventListener('click', () => {
+		if (video.paused) {
+			video.play();
+			playBtn.textContent = 'PAUSE';
+		} else {
+			video.pause();
+			playBtn.textContent = 'PLAY';
+		}
+	});
+</script>
