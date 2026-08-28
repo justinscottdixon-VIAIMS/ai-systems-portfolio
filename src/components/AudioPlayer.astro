@@ -1,0 +1,24 @@
+---
+interface Props {
+	src: string;
+	title: string;
+	specs: string;
+}
+
+const { src, title, specs } = Astro.props;
+---
+
+<div class="w-full bg-zinc-950 border border-zinc-800 p-4 flex flex-col justify-between group hover:border-zinc-700 transition-colors">
+	<div class="flex justify-between items-start mb-4">
+		<div>
+			<h4 class="text-white text-sm font-mono uppercase tracking-wider">{title}</h4>
+			<p class="text-zinc-500 text-xs font-mono">{specs}</p>
+		</div>
+		<span class="text-xs font-mono text-zinc-600 border border-zinc-800 px-2 py-0.5 uppercase">Lossless</span>
+	</div>
+	<audio controls class="w-full h-8 accent-zinc-200">
+		<source src={src} type="audio/wav" />
+		<source src={src} type="audio/mpeg" />
+		Your browser does not support the audio element.
+	</audio>
+</div>

@@ -1,0 +1,24 @@
+---
+interface Props {
+	src: string;
+	title: string;
+	subtext: string;
+}
+
+const { src, title, subtext } = Astro.props;
+---
+
+<div class="relative w-full aspect-video bg-zinc-950 border border-zinc-800 overflow-hidden group">
+	<video 
+		src={src} 
+		autoplay 
+		loop 
+		muted 
+		playsinline 
+		class="w-full h-full object-cover grayscale contrast-125 group-hover:grayscale-0 transition-all duration-500"
+	></video>
+	<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4 flex flex-col justify-end">
+		<span class="text-white text-xs uppercase font-mono tracking-widest">{title}</span>
+		<span class="text-zinc-400 text-xs font-mono">{subtext}</span>
+	</div>
+</div>

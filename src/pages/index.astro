@@ -1,31 +1,68 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import VideoPlayer from '../components/VideoPlayer.astro';
+import AudioPlayer from '../components/AudioPlayer.astro';
 ---
 
 <Layout>
-	<header class="mb-24 border-b border-zinc-800 pb-12">
+	<header class="mb-20 border-b border-zinc-800 pb-12">
 		<h1 class="text-4xl md:text-6xl font-bold tracking-tighter text-white mb-4 uppercase">
 			Justin Scott Dixon
 		</h1>
-		<h2 class="text-xl text-zinc-400 max-w-2xl font-light">
-			Principal AI Systems Architect & Spatial Audio Engineer. Designing immersive Dolby Atmos workflows, zero-artifact stem separation pipelines, and AI-native visual worldbuilding.
+		<h2 class="text-xl text-zinc-400 max-w-3xl font-light leading-relaxed">
+			Principal AI Systems Architect & Creative Technologist. 30-year veteran bridging spatial audio engineering (Dolby Atmos 7.1.4), multi-engine AI video curation (Sora / Luma / Grok), and enterprise AV infrastructure design.
 		</h2>
 	</header>
 
-	<section class="grid grid-cols-1 md:grid-cols-2 gap-12">
-		<div class="border border-zinc-900 p-8 hover:border-zinc-700 transition-colors">
-			<h3 class="text-white text-lg font-bold mb-2 uppercase tracking-wide">AI-Native Visual Worldbuilding</h3>
-			<p class="text-zinc-500 text-sm mb-4">Sora / Luma / Grok Pipelines • 3I | ATLAS • PROXIMITY</p>
-			<div class="w-full aspect-video bg-zinc-950 flex items-center justify-center text-zinc-800 text-sm border border-zinc-900">
-				4K Uncompressed CDN Target
+	<section class="grid grid-cols-1 md:grid-cols-3 gap-8">
+		<!-- Module 1: AI Visual Worldbuilding -->
+		<div class="border border-zinc-900 p-6 hover:border-zinc-700 transition-colors flex flex-col justify-between bg-zinc-950/40">
+			<div>
+				<h3 class="text-white text-base font-bold mb-1 uppercase tracking-wide">AI Visual Worldbuilding</h3>
+				<p class="text-zinc-500 text-xs mb-6 font-mono">Sora / Luma / Grok • 3I | ATLAS • PROXIMITY</p>
 			</div>
+			<VideoPlayer 
+				src="/media/video/reel.mp4" 
+				title="3I | ATLAS - Pipeline Render" 
+				subtext="4K • Multi-Engine Scene Sequencing" 
+			/>
 		</div>
 
-		<div class="border border-zinc-900 p-8 hover:border-zinc-700 transition-colors">
-			<h3 class="text-white text-lg font-bold mb-2 uppercase tracking-wide">Spatial Audio & Stem Architectures</h3>
-			<p class="text-zinc-500 text-sm mb-4">Dolby Atmos 7.1.4 • Suno VIP Methodologies • UVR5/Demucs</p>
-			<div class="w-full h-32 bg-zinc-950 flex items-center justify-center text-zinc-800 text-sm border border-zinc-900 mt-auto">
-				Lossless Audio CDN Target
+		<!-- Module 2: Spatial Audio & Stem Separation -->
+		<div class="border border-zinc-900 p-6 hover:border-zinc-700 transition-colors flex flex-col justify-between bg-zinc-950/40">
+			<div>
+				<h3 class="text-white text-base font-bold mb-1 uppercase tracking-wide">Spatial Audio & DSP</h3>
+				<p class="text-zinc-500 text-xs mb-6 font-mono">Dolby Atmos 7.1.4 • Suno VIP • UVR5/Demucs</p>
+			</div>
+			<AudioPlayer 
+				src="/media/audio/master.wav" 
+				title="Spatial Downmix Master" 
+				specs="24-bit / 48kHz • Multiband Limit" 
+			/>
+		</div>
+
+		<!-- Module 3: Enterprise AV Architecture -->
+		<div class="border border-zinc-900 p-6 hover:border-zinc-700 transition-colors flex flex-col justify-between bg-zinc-950/40">
+			<div>
+				<h3 class="text-white text-base font-bold mb-1 uppercase tracking-wide">Enterprise Infrastructure</h3>
+				<p class="text-zinc-500 text-xs mb-6 font-mono">Dante Networks • FOH Command Booths • PMC/Grace</p>
+			</div>
+			<div class="w-full h-44 bg-zinc-950 border border-zinc-800 p-4 flex flex-col justify-between">
+				<div class="space-y-2">
+					<div class="flex justify-between text-xs font-mono text-zinc-400">
+						<span>DANTE ROUTING MATRIX</span>
+						<span class="text-emerald-500">OPTIMAL</span>
+					</div>
+					<div class="flex justify-between text-xs font-mono text-zinc-400">
+						<span>SYSTEM COMMISSIONING</span>
+						<span class="text-zinc-500">STANDBY</span>
+					</div>
+					<div class="flex justify-between text-xs font-mono text-zinc-400">
+						<span>ATMOS 7.1.4 CALIBRATION</span>
+						<span class="text-emerald-500">LOCKED</span>
+					</div>
+				</div>
+				<span class="text-[10px] font-mono text-zinc-600 uppercase border-t border-zinc-900 pt-2">System Specs / Blueprints</span>
 			</div>
 		</div>
 	</section>
