@@ -22,7 +22,7 @@ const playlist: VideoItem[] = [
 ---
 
 <div id="video-engine" class="flex flex-col gap-4">
-	<!-- Stage -->
+	<!-- Viewport Stage -->
 	<div id="viewport-stage" class="relative w-full h-[480px] bg-black border border-zinc-800 flex items-center justify-center overflow-hidden transition-all duration-300">
 		<video 
 			id="active-video"
@@ -33,14 +33,22 @@ const playlist: VideoItem[] = [
 			playsinline 
 			class="max-w-full max-h-full object-contain"
 		></video>
+		
+		<!-- Overlay Badges -->
 		<div class="absolute top-3 left-3 bg-black/70 backdrop-blur-sm border border-zinc-800 px-2 py-1 flex gap-2 items-center">
 			<span id="active-ratio-tag" class="text-[10px] font-mono uppercase text-emerald-400">9:16 AUTO</span>
 			<span class="text-zinc-600">|</span>
 			<span id="active-engine-tag" class="text-[10px] font-mono text-zinc-400">{playlist[0].engine}</span>
 		</div>
+
+		<!-- Audio Monitor Toggle -->
+		<button id="vid-mute-btn" class="absolute bottom-3 right-3 bg-black/80 hover:bg-zinc-900 border border-zinc-700 text-zinc-300 text-[11px] font-mono px-3 py-1 flex items-center gap-2 transition-colors">
+			<span id="mute-indicator" class="text-red-400">✕</span>
+			<span id="mute-text">AUDIO MUTED</span>
+		</button>
 	</div>
 
-	<!-- Transport & Selector -->
+	<!-- Transport & Track Selector -->
 	<div class="flex items-center justify-between gap-3 border border-zinc-800 bg-zinc-950 p-2">
 		<div class="flex items-center gap-1">
 			<button id="vid-prev" class="px-2 py-1 text-xs font-mono bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border border-zinc-800">◀ PREV</button>
@@ -60,6 +68,9 @@ const playlist: VideoItem[] = [
 	const prevBtn = document.getElementById('vid-prev');
 	const nextBtn = document.getElementById('vid-next');
 	const playBtn = document.getElementById('vid-play');
+	const muteBtn = document.getElementById('vid-mute-btn');
+	const muteText = document.getElementById('mute-text');
+	const muteInd = document.getElementById('mute-indicator');
 	const selector = document.getElementById('vid-selector');
 	const ratioTag = document.getElementById('active-ratio-tag');
 	const engineTag = document.getElementById('active-engine-tag');
@@ -79,6 +90,28 @@ const playlist: VideoItem[] = [
 	video.addEventListener('loadedmetadata', () => {
 		const isVertical = video.videoHeight > video.videoWidth;
 		ratioTag.textContent = isVertical ? `${video.videoWidth}:${video.videoHeight} (PORTRAIT)` : `${video.videoWidth}:${video.videoHeight} (LANDSCAPE)`;
+	});
+
+	// Audio Mute/Unmute Management
+	muteBtn.addEventListener('click', () => {
+		video.muted = !video.muted;
+		if (video.muted) {
+			muteInd.textContent = '✕';
+			muteInd.className = 'text-red-400';
+			muteText.textContent = 'AUDIO MUTED';
+		} else {
+			muteInd.textContent = '●';
+			muteInd.className = 'text-emerald-400';
+			muteText.textContent = 'AUDIO LIVE';
+			
+			// Pause standalone audio engine to prevent collision
+			const standaloneAudio = document.getElementById('core-audio');
+			const standPlayBtn = document.getElementById('aud-play');
+			if (standaloneAudio && !standaloneAudio.paused) {
+				standaloneAudio.pause();
+				if (standPlayBtn) standPlayBtn.textContent = 'PLAY';
+			}
+		}
 	});
 
 	prevBtn.addEventListener('click', () => loadVideo(currentIndex - 1));
