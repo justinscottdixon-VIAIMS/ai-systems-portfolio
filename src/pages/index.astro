@@ -1,11 +1,32 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
-	<Welcome />
+	<header class="mb-24 border-b border-zinc-800 pb-12">
+		<h1 class="text-4xl md:text-6xl font-bold tracking-tighter text-white mb-4 uppercase">
+			Justin Scott Dixon
+		</h1>
+		<h2 class="text-xl text-zinc-400 max-w-2xl font-light">
+			Principal AI Systems Architect & Spatial Audio Engineer. Designing immersive Dolby Atmos workflows, zero-artifact stem separation pipelines, and AI-native visual worldbuilding.
+		</h2>
+	</header>
+
+	<section class="grid grid-cols-1 md:grid-cols-2 gap-12">
+		<div class="border border-zinc-900 p-8 hover:border-zinc-700 transition-colors">
+			<h3 class="text-white text-lg font-bold mb-2 uppercase tracking-wide">AI-Native Visual Worldbuilding</h3>
+			<p class="text-zinc-500 text-sm mb-4">Sora / Luma / Grok Pipelines • 3I | ATLAS • PROXIMITY</p>
+			<div class="w-full aspect-video bg-zinc-950 flex items-center justify-center text-zinc-800 text-sm border border-zinc-900">
+				4K Uncompressed CDN Target
+			</div>
+		</div>
+
+		<div class="border border-zinc-900 p-8 hover:border-zinc-700 transition-colors">
+			<h3 class="text-white text-lg font-bold mb-2 uppercase tracking-wide">Spatial Audio & Stem Architectures</h3>
+			<p class="text-zinc-500 text-sm mb-4">Dolby Atmos 7.1.4 • Suno VIP Methodologies • UVR5/Demucs</p>
+			<div class="w-full h-32 bg-zinc-950 flex items-center justify-center text-zinc-800 text-sm border border-zinc-900 mt-auto">
+				Lossless Audio CDN Target
+			</div>
+		</div>
+	</section>
 </Layout>
