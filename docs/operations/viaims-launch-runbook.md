@@ -99,3 +99,42 @@ Require valid HTTPS, the approved Vercel deployment, and the preserved Resend TX
   - A deliberately absent Blob URL returned HTTP `404`.
   - The deployed page remained functional with the video/audio queue controls and Publications & Credits section intact.
 - No application defect was observed, so no source or test changes were required.
+
+### 2026-08-29 pre-cutover production state
+
+- GitHub pull request `#1` merged to `main` as `46cce6ce70b066d4e5f883ec59b74e377df422db` at `2026-08-29T21:45:22Z`; both Vercel checks passed.
+- New Vercel production deployment: `https://ai-systems-portfolio-a6wdt4gxg-justinscottdixon-5528s-projects.vercel.app` (`dpl_EpahpUFkXEea8JeY34iAgNscFrLm`, `Ready`). Stable production alias: `https://ai-systems-portfolio-beta.vercel.app`.
+- Public DNS and HTTPS snapshot at `2026-08-29T21:45:56Z`, before any domain or DNS edit:
+  - Apex `viaims.com A`: `76.76.21.21`.
+  - `www.viaims.com CNAME`: `cdn1.wixdns.net.`.
+  - Apex `viaims.com TXT`: no value returned.
+  - `resend._domainkey.viaims.com TXT`: `p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDfornh+x4G9f1afmlZHkofcSAHxOAJ7TlBB8ZrhfOD9J4ktlOeHV1/qB+ARxEoZhkESs6iXf4tEf53GkmmGAYyYOSVLa0Lwn/2gv9ooyCxzf9TCfQFadEPO/MQyhRVlkp+37rrXizq+TtZZzSK2HiHPuLRpolelFec6A2dEXFc+QIDAQAB`.
+  - Nameservers: `ns14.wixdns.net.` and `ns15.wixdns.net.`.
+  - `https://viaims.com` returned HTTP `200` from the existing Vercel/Next.js tenant (`x-tenant-slug: justin-scott-dixon`; deployment marker `dpl_wbv8Si5gMYBYuDyw9M7jwSLJEXwE`).
+  - `https://www.viaims.com` returned HTTP `404` from Wix/Pepyaka.
+- The authenticated new Vercel workspace cannot inspect or access the current `viaims.com` assignment. Treat the existing apex deployment and the Wix values above as the rollback target; do not remove or transfer the existing assignment without an explicit ownership handoff.
+
+### 2026-08-29 production cutover
+
+- Vercel attached `viaims.com` and `www.viaims.com` to the `ai-systems-portfolio` Production environment. Because both names were associated with another Vercel account, Vercel required two ownership TXT records at `_vercel.viaims.com`.
+- After action-time approval, Wix DNS was changed at approximately `2026-08-29T22:44Z`:
+  - Apex `A`: `76.76.21.21` → `216.150.1.1`.
+  - `www` `CNAME`: `cdn1.wixdns.net` → `4f2231cabe199601.vercel-dns-016.com`.
+  - Added TXT: `_vercel.viaims.com` = `vc-domain-verify=viaims.com,55f2e95c3791d994e45a`.
+  - Added TXT: `_vercel.viaims.com` = `vc-domain-verify=www.viaims.com,732d7da9cd7c85b5296b`.
+- Preserved without modification:
+  - `resend._domainkey.viaims.com` DKIM TXT value recorded above.
+  - Nameservers `ns14.wixdns.net.` and `ns15.wixdns.net.`.
+- Vercel reported **Valid Configuration** for both hostnames after the TXT records propagated.
+- Authoritative and public DNS verification at `2026-08-29T22:46:52Z`:
+  - Wix authoritative DNS, Cloudflare `1.1.1.1`, and Google `8.8.8.8` returned apex `216.150.1.1` and `www` CNAME `4f2231cabe199601.vercel-dns-016.com.`.
+  - Wix authoritative DNS returned both ownership TXT values and the unchanged Resend DKIM TXT value.
+- HTTPS and content verification:
+  - `https://viaims.com` returned HTTP `200`, valid TLS, `server: Vercel`, and the approved Astro portfolio; Chrome displayed the live `JUSTIN SCOTT DIXON` production page with all three operational modules and Publications & Credits.
+  - `https://www.viaims.com`, resolved to the new Vercel target, returned HTTP `200` with the same content length and ETag as the apex. The test host's normal resolver briefly retained the previous Wix edge response during TTL expiry; authoritative and public recursive DNS already returned the new target.
+  - Audio sample `audio-v-edges-fade-voo1-1-2-48k24b-mstr` returned `206`, `Content-Range: bytes 0-1023/77875244`, `Content-Type: audio/wav`.
+  - Video sample `video-3i-atlas-8` returned `206`, `Content-Range: bytes 0-1023/178146457`, `Content-Type: video/mp4`.
+- Rollback readiness:
+  - Restore apex `A` to `76.76.21.21` and `www` CNAME to `cdn1.wixdns.net`, then reassign both domains to the previous Vercel project with Keith if a rollback is required.
+  - The previous apex deployment marker was `dpl_wbv8Si5gMYBYuDyw9M7jwSLJEXwE`; the Blob store remains intact and must not be deleted during rollback.
+  - Pre- and post-cutover Wix screenshots are retained locally under `.superpowers/sdd/` and intentionally excluded from Git because the screenshots include account identity details.
