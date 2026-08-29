@@ -2,9 +2,20 @@
 import Layout from '../layouts/Layout.astro';
 import HybridMediaEngine from '../components/HybridMediaEngine.astro';
 import PublicationsAndCredits from '../components/PublicationsAndCredits.astro';
+import mediaData from '../data/media.json';
+import { getMediaOrigin, parseMediaManifest } from '../lib/media-manifest.mjs';
+
+const mediaManifest = parseMediaManifest(mediaData);
+const mediaOrigin = getMediaOrigin(mediaManifest);
 ---
 
 <Layout>
+	{mediaOrigin && (
+		<Fragment slot="head">
+			<link rel="preconnect" href={mediaOrigin} crossorigin="anonymous" />
+			<link rel="dns-prefetch" href={mediaOrigin} />
+		</Fragment>
+	)}
 	<header class="mb-10 border-b border-zinc-900 pb-8">
 		<div class="flex flex-wrap items-center justify-between gap-4 mb-6 border-b border-zinc-900/60 pb-3">
 			<div class="flex items-center gap-3 font-mono text-[11px] text-zinc-500 uppercase tracking-widest">
@@ -27,7 +38,7 @@ import PublicationsAndCredits from '../components/PublicationsAndCredits.astro';
 	</header>
 
 	<section>
-		<HybridMediaEngine />
+		<HybridMediaEngine manifest={mediaManifest} />
 	</section>
 
 	<PublicationsAndCredits />

@@ -1,59 +1,8 @@
 ---
-import fs from 'node:fs';
-import path from 'node:path';
+import { toPlaylists } from '../lib/media-manifest.mjs';
 
-const videoDir = path.resolve('./public/media/video');
-const audioDir = path.resolve('./public/media/audio');
-
-const validVideoExts = ['.mp4', '.mov', '.webm'];
-const validAudioExts = ['.wav', '.mp3', '.m4a', '.flac', '.aac'];
-
-// Auto-scan video directory
-let videoPlaylist: any[] = [];
-if (fs.existsSync(videoDir)) {
-	const files = fs.readdirSync(videoDir);
-	videoPlaylist = files
-		.filter(f => validVideoExts.includes(path.extname(f).toLowerCase()) && !f.startsWith('.'))
-		.sort()
-		.map((file, i) => {
-			const ext = path.extname(file);
-			const base = path.basename(file, ext);
-			return {
-				id: `v-${i}`,
-				title: base.replace(/_/g, ' '),
-				type: 'video',
-				src: `/media/video/${encodeURIComponent(file)}`,
-				engine: file.includes('3I') ? 'Sora Pro' : 'AI Render',
-				specs: `${ext.replace('.', '').toUpperCase()} Master`
-			};
-		});
-}
-
-// Auto-scan audio directory
-let audioPlaylist: any[] = [];
-if (fs.existsSync(audioDir)) {
-	const files = fs.readdirSync(audioDir);
-	audioPlaylist = files
-		.filter(f => validAudioExts.includes(path.extname(f).toLowerCase()) && !f.startsWith('.'))
-		.sort()
-		.map((file, i) => {
-			const ext = path.extname(file);
-			const base = path.basename(file, ext);
-			return {
-				id: `a-${i}`,
-				title: base.replace(/_/g, ' '),
-				src: `/media/audio/${encodeURIComponent(file)}`,
-				specs: `${ext.replace('.', '').toUpperCase()} • 24-bit / 48kHz Staging`
-			};
-		});
-}
-
-if (videoPlaylist.length === 0) {
-	videoPlaylist = [{ id: 'v-0', title: 'No Media Loaded', src: '', engine: 'Standby', specs: 'N/A' }];
-}
-if (audioPlaylist.length === 0) {
-	audioPlaylist = [{ id: 'a-0', title: 'No Masters Loaded', src: '', specs: 'Drop .WAV files in public/media/audio' }];
-}
+const { manifest } = Astro.props;
+const { videoPlaylist, audioPlaylist } = toPlaylists(manifest);
 ---
 
 <div class="space-y-8">
@@ -65,6 +14,7 @@ if (audioPlaylist.length === 0) {
 			loop 
 			muted 
 			playsinline 
+			preload="metadata"
 			class="absolute inset-0 w-full h-full object-cover blur-[64px] opacity-45 brightness-115 scale-110 pointer-events-none transition-all duration-500"
 		></video>
 
@@ -74,6 +24,7 @@ if (audioPlaylist.length === 0) {
 			autoplay 
 			muted 
 			playsinline 
+			preload="metadata"
 			class="relative z-10 max-h-full max-w-full h-full w-auto object-contain transition-all duration-300"
 		></video>
 

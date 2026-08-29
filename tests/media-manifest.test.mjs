@@ -51,6 +51,22 @@ test('toPlaylists splits video and audio without losing metadata', () => {
   assert.equal(playlists.audioPlaylist[0].id, 'audio-edges-fade');
 });
 
+test('toPlaylists preserves manifest order within each media kind', () => {
+  const manifest = structuredClone(valid);
+  manifest.items.push({
+    id: 'video-atlas-2',
+    kind: 'video',
+    title: '3I | ATLAS 2',
+    src: 'https://example.public.blob.vercel-storage.com/video/3i-atlas-2.mp4',
+    specs: 'MP4 Master',
+    engine: 'Sora Pro',
+  });
+  assert.deepEqual(toPlaylists(manifest).videoPlaylist.map((item) => item.id), [
+    'video-atlas-1',
+    'video-atlas-2',
+  ]);
+});
+
 test('toPlaylists supplies explicit standby entries for an empty manifest', () => {
   const playlists = toPlaylists({
     version: 1,
