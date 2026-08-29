@@ -1,4 +1,9 @@
-import { put } from '@vercel/blob';
+import {
+  BlobNotFoundError,
+  BlobPreconditionFailedError,
+  head,
+  put,
+} from '@vercel/blob';
 import { createReadStream } from 'node:fs';
 import { mkdir, readFile, rename, writeFile } from 'node:fs/promises';
 import path from 'node:path';
@@ -21,6 +26,15 @@ export function uploadOptions(file, token) {
     contentType: file.contentType,
     token,
   };
+}
+
+async function resolveExistingBlob(pathname, token) {
+  try {
+    return await head(pathname, { token });
+  } catch (error) {
+    if (error instanceof BlobNotFoundError) return null;
+    throw error;
+  }
 }
 
 async function publishedUrlsByObjectKey(manifestPath) {
@@ -48,6 +62,7 @@ export async function syncMedia({
   rootDirectory = process.cwd(),
   token = process.env.BLOB_READ_WRITE_TOKEN,
   uploader = put,
+  resolver = resolveExistingBlob,
   generatedAt = new Date().toISOString(),
 } = {}) {
   if (!token) throw new Error('BLOB_READ_WRITE_TOKEN is required');
@@ -64,13 +79,23 @@ export async function syncMedia({
       items.push(toManifestItem(file, publishedUrl));
       continue;
     }
+    const existingBlob = await resolver(file.objectKey, token);
+    if (existingBlob) {
+      items.push(toManifestItem(file, existingBlob.url));
+      continue;
+    }
     const stream = createReadStream(file.absolutePath);
+    let blob;
     try {
-      const blob = await uploader(file.objectKey, stream, uploadOptions(file, token));
-      items.push(toManifestItem(file, blob.url));
+      blob = await uploader(file.objectKey, stream, uploadOptions(file, token));
+    } catch (error) {
+      if (!(error instanceof BlobPreconditionFailedError)) throw error;
+      blob = await resolver(file.objectKey, token);
+      if (!blob) throw error;
     } finally {
       stream.destroy();
     }
+    items.push(toManifestItem(file, blob.url));
   }
 
   const manifest = { version: 1, generatedAt, items };
