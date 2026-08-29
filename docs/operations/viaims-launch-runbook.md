@@ -58,3 +58,35 @@ Require valid HTTPS, the approved Vercel deployment, and the preserved Resend TX
 2. Otherwise restore the recorded pre-cutover apex A and `www` CNAME values in Wix.
 3. Verify both hostnames and HTTPS externally.
 4. Do not delete the new Blob store during rollback.
+
+## Launch Evidence
+
+### 2026-08-29 preview verification
+
+- Preview URL: `https://ai-systems-portfolio-ps30hsy33-justinscottdixon-5528s-projects.vercel.app`
+- Preflight ran from `2026-08-29T20:21:58Z` to `2026-08-29T20:22:05Z`:
+  - `npm ci` completed successfully (234 packages installed; `fsevents` remained an unapproved optional install script).
+  - `npm test` passed: 23 tests, 23 passed, 0 failed, 0 skipped (194.39 ms).
+  - `npm run build` passed: Astro generated one static route and completed in 558 ms.
+  - `git status --short --branch` was clean on `codex/viaims-launch` tracking `origin/codex/viaims-launch` before this evidence update.
+- Media range validation ran at `2026-08-29T20:22:24Z` with `Range: bytes=0-1023`:
+  - Audio: `audio-v-edges-fade-voo1-1-2-48k24b-mstr` — `206`, `Content-Range: bytes 0-1023/77875244`, `Content-Type: audio/wav`; source `https://5vqpsktuycwubnaj.public.blob.vercel-storage.com/portfolio/audio/6e2a596866faeb135ec1ae5540fb741600d9e5681404b50c434ab9a54055c03e-v-edges-fade-voo1-1-2-48k24b-mstr.wav`.
+  - Video: `video-3i-atlas-8` — `206`, `Content-Range: bytes 0-1023/178146457`, `Content-Type: video/mp4`; source `https://5vqpsktuycwubnaj.public.blob.vercel-storage.com/portfolio/video/237896e8ac6de130432c1d587eb45444f86f82249d53417a1534250b4a1e8a5b-3i-atlas-8.mp4`.
+- Browser / preview access check:
+  - Direct preview request at `2026-08-29T21:06:22Z` returned `302` to Vercel SSO (`cache-control: no-store`; no preview HTML was served).
+  - Chrome was switched to the owning `justinscottdixon-5528` Pro workspace and authenticated without creating a shareable link. The branch alias `https://ai-systems-portfolio-git-7a3678-justinscottdixon-5528s-projects.vercel.app` then loaded the same launch-branch deployment successfully.
+- Responsive acceptance completed at `2026-08-29T21:21:35Z`:
+  - Chrome responsive mode reported exact widths of 1440, 1024, 768, 430, and 390 CSS pixels.
+  - `document.documentElement.scrollWidth === window.innerWidth` at every required width; no horizontal overflow was present.
+  - The operational modules remained three columns at 1440 and 1024, then stacked at 768, 430, and 390. Controls remained visible and operable.
+  - Portrait and widescreen video cues retained their aspect ratios without stretch or distortion; the ambient matte filled the stage around portrait footage.
+- Playback acceptance completed against the deployed Blob media:
+  - All 15 video cue buttons and both audio cue buttons loaded their matching cue title successfully.
+  - Video and DSP play/pause, scrub, -10/+10-second nudge, and previous/next controls responded; video auto-advance was observed during the cue sweep.
+  - Starting the DSP master changed video audio from `LIVE` to `MUTED`; enabling video audio changed the DSP transport from `PAUSE MASTER` to `PLAY MASTER`.
+  - Timecodes advanced for both buses, and the DSP scrubber seek moved playback to 02:28 of the 04:30 master.
+  - Chrome DevTools reported `No errors` after the responsive and transport checks.
+- Missing-media resilience:
+  - A deliberately absent Blob URL returned HTTP `404`.
+  - The deployed page remained functional with the video/audio queue controls and Publications & Credits section intact.
+- No application defect was observed, so no source or test changes were required.
