@@ -63,9 +63,9 @@ Require valid HTTPS, the approved Vercel deployment, and the preserved Resend TX
 
 ### 2026-08-29 preview verification
 
-- Final Ready preview URL: `https://ai-systems-portfolio-lg05po009-justinscottdixon-5528s-projects.vercel.app`
-- Stable launch-branch alias used for authenticated browser QA: `https://ai-systems-portfolio-git-7a3678-justinscottdixon-5528s-projects.vercel.app`
-- Vercel CLI inspection at `2026-08-29T21:38Z` confirmed deployment `dpl_33Xq8DHGSASHTkE4rirp6SsN1THY` is `Ready`, targets `preview`, and owns the launch-branch alias above.
+- Canonical launch-branch preview URL: `https://ai-systems-portfolio-git-7a3678-justinscottdixon-5528s-projects.vercel.app`
+- Browser-QA deployment: `https://ai-systems-portfolio-lg05po009-justinscottdixon-5528s-projects.vercel.app` (`dpl_33Xq8DHGSASHTkE4rirp6SsN1THY`, `Ready`, inspected at `2026-08-29T21:38Z`).
+- Post-evidence deployment: `https://ai-systems-portfolio-7iit2fthn-justinscottdixon-5528s-projects.vercel.app` (`dpl_DDDdFNCZdwmAcsMcvr9eUxEhE1Jj`, `Ready`, inspected after commit `27291d5`). That commit changed only this runbook, so the tested application bundle and media manifest were unchanged. Evidence-only commits create new immutable deployment URLs; the branch alias above is the stable verification target.
 - Preflight ran from `2026-08-29T20:21:58Z` to `2026-08-29T20:22:05Z`:
   - `npm ci` completed successfully (234 packages installed; `fsevents` remained an unapproved optional install script).
   - `npm test` passed: 23 tests, 23 passed, 0 failed, 0 skipped (194.39 ms).
