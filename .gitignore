@@ -9,3 +9,5 @@ public/media/video/*
 public/media/audio/*
 !public/media/video/.gitkeep
 !public/media/audio/.gitkeep
+**/.DS_Store
+.superpowers/

@@ -1,0 +1,195 @@
+---
+interface ExternalCredit {
+	title: string;
+	role: string;
+	platform: 'IMDb' | 'YouTube' | 'Vimeo' | 'Spotify' | 'Apple Music' | 'Whitepaper' | 'Press';
+	url: string;
+	year: string;
+	meta: string;
+	badgeColor?: string;
+}
+
+const filmAndScoring: ExternalCredit[] = [
+	{
+		title: "3I | ATLAS (Sci-Fi Worldbuilding Narrative)",
+		role: "Director / AI Systems Visuals & Sound Design",
+		platform: "YouTube",
+		url: "https://youtube.com",
+		year: "2026",
+		meta: "Sora Pro • Multi-Engine AI Pipeline • 4K",
+		badgeColor: "text-red-400 border-red-950 bg-red-950/20"
+	},
+	{
+		title: "Feature Film & Commercial Sound Portfolio",
+		role: "Re-Recording Mixer / Dolby Atmos Mastering",
+		platform: "IMDb",
+		url: "https://imdb.com",
+		year: "Archive",
+		meta: "Theatrical Post-Production • Broadcast Delivery",
+		badgeColor: "text-amber-400 border-amber-950 bg-amber-950/20"
+	}
+];
+
+const releasesAndMixes: ExternalCredit[] = [
+	{
+		title: "Spatial Immersion Series (7.1.4 Mixes)",
+		role: "Mixing & Mastering Engineer",
+		platform: "Apple Music",
+		url: "https://apple.com/apple-music",
+		year: "2025–2026",
+		meta: "Dolby Atmos Spatial Audio • Lossless 24/48",
+		badgeColor: "text-pink-400 border-pink-950 bg-pink-950/20"
+	},
+	{
+		title: "Electronic Music Catalog & Studio Masters",
+		role: "Producer / Sound Designer",
+		platform: "Spotify",
+		url: "https://spotify.com",
+		year: "Continuous",
+		meta: "Modular Synthesizers • Custom DSP Chains",
+		badgeColor: "text-emerald-400 border-emerald-950 bg-emerald-950/20"
+	}
+];
+
+const technicalPublications: ExternalCredit[] = [
+	{
+		title: "Deterministic PTPv2 Clocking in Enterprise AES67 Networks",
+		role: "Author / Systems Engineer",
+		platform: "Whitepaper",
+		url: "#",
+		year: "2025",
+		meta: "512x512 Dante Topology • Layer-3 QoS Guidelines",
+		badgeColor: "text-cyan-400 border-cyan-950 bg-cyan-950/20"
+	},
+	{
+		title: "Hybrid Human-AI Sound Design & UVR5 Stem Pipelines",
+		role: "Research / Workflow Automation",
+		platform: "Press",
+		url: "#",
+		year: "2026",
+		meta: "Automated Mastering Protocols • Zero-Artifact DSP",
+		badgeColor: "text-purple-400 border-purple-950 bg-purple-950/20"
+	}
+];
+---
+
+<section class="mt-16 border-t border-zinc-900 pt-12">
+	<div class="flex flex-wrap items-center justify-between gap-4 mb-8">
+		<div>
+			<h2 class="text-xs font-mono font-bold uppercase tracking-widest text-zinc-500 mb-1">External Nodes & Index</h2>
+			<h3 class="text-2xl font-bold uppercase tracking-tight text-white">Publications, Credits & Releases</h3>
+		</div>
+		<div class="font-mono text-[11px] text-zinc-500 border border-zinc-800 bg-zinc-950 px-3 py-1">
+			VERIFIED EXTERNAL LINKS
+		</div>
+	</div>
+
+	<div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+		
+		<div class="border border-zinc-800/80 bg-zinc-950/60 p-5 flex flex-col justify-between">
+			<div>
+				<div class="flex justify-between items-center mb-4 pb-2 border-b border-zinc-900">
+					<span class="text-xs font-mono font-bold uppercase text-white">Film & Visual Media</span>
+					<span class="text-[10px] font-mono text-zinc-500">IMDb / Video</span>
+				</div>
+				<div class="space-y-3">
+					{filmAndScoring.map((item) => (
+						<a 
+							href={item.url} 
+							target="_blank" 
+							rel="noopener noreferrer"
+							class="block p-3 border border-zinc-900 bg-black/50 hover:border-zinc-700 hover:bg-zinc-900/30 transition-all group"
+						>
+							<div class="flex items-center justify-between gap-2 mb-1.5">
+								<span class="text-xs font-bold text-zinc-200 group-hover:text-white transition-colors truncate">{item.title}</span>
+								<span class={`text-[9px] font-mono border px-1.5 py-0.5 uppercase ${item.badgeColor}`}>
+									{item.platform} ↗
+								</span>
+							</div>
+							<p class="text-[11px] text-zinc-400 font-mono mb-1">{item.role}</p>
+							<div class="flex justify-between text-[10px] font-mono text-zinc-600">
+								<span>{item.meta}</span>
+								<span>{item.year}</span>
+							</div>
+						</a>
+					))}
+				</div>
+			</div>
+			<div class="pt-3 border-t border-zinc-900 mt-4 flex justify-between text-[10px] font-mono text-zinc-600">
+				<span>THEATRICAL & AI MEDIA</span>
+				<span>ACTIVE INDEX</span>
+			</div>
+		</div>
+
+		<div class="border border-zinc-800/80 bg-zinc-950/60 p-5 flex flex-col justify-between">
+			<div>
+				<div class="flex justify-between items-center mb-4 pb-2 border-b border-zinc-900">
+					<span class="text-xs font-mono font-bold uppercase text-white">Discography & Audio</span>
+					<span class="text-[10px] font-mono text-zinc-500">Streaming Masters</span>
+				</div>
+				<div class="space-y-3">
+					{releasesAndMixes.map((item) => (
+						<a 
+							href={item.url} 
+							target="_blank" 
+							rel="noopener noreferrer"
+							class="block p-3 border border-zinc-900 bg-black/50 hover:border-zinc-700 hover:bg-zinc-900/30 transition-all group"
+						>
+							<div class="flex items-center justify-between gap-2 mb-1.5">
+								<span class="text-xs font-bold text-zinc-200 group-hover:text-white transition-colors truncate">{item.title}</span>
+								<span class={`text-[9px] font-mono border px-1.5 py-0.5 uppercase ${item.badgeColor}`}>
+									{item.platform} ↗
+								</span>
+							</div>
+							<p class="text-[11px] text-zinc-400 font-mono mb-1">{item.role}</p>
+							<div class="flex justify-between text-[10px] font-mono text-zinc-600">
+								<span>{item.meta}</span>
+								<span>{item.year}</span>
+							</div>
+						</a>
+					))}
+				</div>
+			</div>
+			<div class="pt-3 border-t border-zinc-900 mt-4 flex justify-between text-[10px] font-mono text-zinc-600">
+				<span>LOSSLESS / DOLBY ATMOS</span>
+				<span>VERIFIED</span>
+			</div>
+		</div>
+
+		<div class="border border-zinc-800/80 bg-zinc-950/60 p-5 flex flex-col justify-between">
+			<div>
+				<div class="flex justify-between items-center mb-4 pb-2 border-b border-zinc-900">
+					<span class="text-xs font-mono font-bold uppercase text-white">Technical Publications</span>
+					<span class="text-[10px] font-mono text-zinc-500">Systems & DSP</span>
+				</div>
+				<div class="space-y-3">
+					{technicalPublications.map((item) => (
+						<a 
+							href={item.url} 
+							target="_blank" 
+							rel="noopener noreferrer"
+							class="block p-3 border border-zinc-900 bg-black/50 hover:border-zinc-700 hover:bg-zinc-900/30 transition-all group"
+						>
+							<div class="flex items-center justify-between gap-2 mb-1.5">
+								<span class="text-xs font-bold text-zinc-200 group-hover:text-white transition-colors truncate">{item.title}</span>
+								<span class={`text-[9px] font-mono border px-1.5 py-0.5 uppercase ${item.badgeColor}`}>
+									{item.platform} ↗
+								</span>
+							</div>
+							<p class="text-[11px] text-zinc-400 font-mono mb-1">{item.role}</p>
+							<div class="flex justify-between text-[10px] font-mono text-zinc-600">
+								<span>{item.meta}</span>
+								<span>{item.year}</span>
+							</div>
+						</a>
+					))}
+				</div>
+			</div>
+			<div class="pt-3 border-t border-zinc-900 mt-4 flex justify-between text-[10px] font-mono text-zinc-600">
+				<span>ENTERPRISE ARCHITECTURE</span>
+				<span>DOCUMENTATION</span>
+			</div>
+		</div>
+
+	</div>
+</section>
