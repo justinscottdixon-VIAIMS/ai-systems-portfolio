@@ -63,7 +63,9 @@ Require valid HTTPS, the approved Vercel deployment, and the preserved Resend TX
 
 ### 2026-08-29 preview verification
 
-- Preview URL: `https://ai-systems-portfolio-ps30hsy33-justinscottdixon-5528s-projects.vercel.app`
+- Final Ready preview URL: `https://ai-systems-portfolio-lg05po009-justinscottdixon-5528s-projects.vercel.app`
+- Stable launch-branch alias used for authenticated browser QA: `https://ai-systems-portfolio-git-7a3678-justinscottdixon-5528s-projects.vercel.app`
+- Vercel CLI inspection at `2026-08-29T21:38Z` confirmed deployment `dpl_33Xq8DHGSASHTkE4rirp6SsN1THY` is `Ready`, targets `preview`, and owns the launch-branch alias above.
 - Preflight ran from `2026-08-29T20:21:58Z` to `2026-08-29T20:22:05Z`:
   - `npm ci` completed successfully (234 packages installed; `fsevents` remained an unapproved optional install script).
   - `npm test` passed: 23 tests, 23 passed, 0 failed, 0 skipped (194.39 ms).
@@ -75,17 +77,24 @@ Require valid HTTPS, the approved Vercel deployment, and the preserved Resend TX
 - Browser / preview access check:
   - Direct preview request at `2026-08-29T21:06:22Z` returned `302` to Vercel SSO (`cache-control: no-store`; no preview HTML was served).
   - Chrome was switched to the owning `justinscottdixon-5528` Pro workspace and authenticated without creating a shareable link. The branch alias `https://ai-systems-portfolio-git-7a3678-justinscottdixon-5528s-projects.vercel.app` then loaded the same launch-branch deployment successfully.
-- Responsive acceptance completed at `2026-08-29T21:21:35Z`:
+- Responsive acceptance completed at `2026-08-29T21:37:55Z`:
   - Chrome responsive mode reported exact widths of 1440, 1024, 768, 430, and 390 CSS pixels.
   - `document.documentElement.scrollWidth === window.innerWidth` at every required width; no horizontal overflow was present.
   - The operational modules remained three columns at 1440 and 1024, then stacked at 768, 430, and 390. Controls remained visible and operable.
   - Portrait and widescreen video cues retained their aspect ratios without stretch or distortion; the ambient matte filled the stage around portrait footage.
-- Playback acceptance completed against the deployed Blob media:
-  - All 15 video cue buttons and both audio cue buttons loaded their matching cue title successfully.
-  - Video and DSP play/pause, scrub, -10/+10-second nudge, and previous/next controls responded; video auto-advance was observed during the cue sweep.
+- Exhaustive playback acceptance completed against the deployed Blob media at every required width:
+
+  | Width | Layout | Overflow | Video cue suites | Audio cue suites | Result |
+  | ---: | --- | --- | ---: | ---: | --- |
+  | 1440 | 3 columns | none | 15/15 | 2/2 | pass |
+  | 1024 | 3 columns | none | 15/15 | 2/2 | pass |
+  | 768 | 1 column | none | 15/15 | 2/2 | pass |
+  | 430 | 1 column | none | 15/15 | 2/2 | pass |
+  | 390 | 1 column | none | 15/15 | 2/2 | pass |
+
+  - Each of the 85 cue/viewport suites independently verified matching title and source load, finite duration and rendered timecode, 25% scrub seek, -10/+10-second nudge, play/pause, previous/next round-trip, and ended-event auto-advance.
   - Starting the DSP master changed video audio from `LIVE` to `MUTED`; enabling video audio changed the DSP transport from `PAUSE MASTER` to `PLAY MASTER`.
-  - Timecodes advanced for both buses, and the DSP scrubber seek moved playback to 02:28 of the 04:30 master.
-  - Chrome DevTools reported `No errors` after the responsive and transport checks.
+  - The earlier manual browser pass reported `No errors`. The exhaustive harness intentionally issued rapid `play()`/`pause()` transitions and produced only expected `AbortError` promise diagnostics from those test transitions; all application assertions passed.
 - Missing-media resilience:
   - A deliberately absent Blob URL returned HTTP `404`.
   - The deployed page remained functional with the video/audio queue controls and Publications & Credits section intact.
