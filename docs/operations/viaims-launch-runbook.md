@@ -117,6 +117,7 @@ Require valid HTTPS, the approved Vercel deployment, and the preserved Resend TX
 ### 2026-08-29 production cutover
 
 - Vercel attached `viaims.com` and `www.viaims.com` to the `ai-systems-portfolio` Production environment. Because both names were associated with another Vercel account, Vercel required two ownership TXT records at `_vercel.viaims.com`.
+- Owner-handoff gate deviation: the implementation plan originally required stopping for the prior Vercel owner to release or transfer the assignment. Vercel instead offered its official DNS ownership-verification flow. Before that action, the user was told that adding the domains could immediately move the apex away from Keith's existing project; the user explicitly approved proceeding and said Keith would be notified. The two Vercel-provided TXT records were then used to verify ownership. No bypass or unsupported transfer mechanism was used.
 - After action-time approval, Wix DNS was changed at approximately `2026-08-29T22:44Z`:
   - Apex `A`: `76.76.21.21` → `216.150.1.1`.
   - `www` `CNAME`: `cdn1.wixdns.net` → `4f2231cabe199601.vercel-dns-016.com`.
@@ -137,4 +138,5 @@ Require valid HTTPS, the approved Vercel deployment, and the preserved Resend TX
 - Rollback readiness:
   - Restore apex `A` to `76.76.21.21` and `www` CNAME to `cdn1.wixdns.net`, then reassign both domains to the previous Vercel project with Keith if a rollback is required.
   - The previous apex deployment marker was `dpl_wbv8Si5gMYBYuDyw9M7jwSLJEXwE`; the Blob store remains intact and must not be deleted during rollback.
+  - External dependency: the previous deployment had no separately discoverable public URL and was not visible to Justin's new Vercel workspace. It was confirmed live through `viaims.com` immediately before cutover, but its post-transfer reachability cannot be independently verified. Restoring the previous application therefore requires Keith to provide the old project/deployment URL or reassign the domains from his Vercel account. DNS rollback values are complete; application rollback to Keith's project is conditional on that coordination.
   - Pre- and post-cutover Wix screenshots are retained locally under `.superpowers/sdd/` and intentionally excluded from Git because the screenshots include account identity details.
