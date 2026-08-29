@@ -1,0 +1,140 @@
+{
+  "version": 1,
+  "generatedAt": "2026-08-29T20:14:06.372Z",
+  "items": [
+    {
+      "id": "audio-v-edges-fade-voo1-1-2-48k24b-mstr",
+      "kind": "audio",
+      "title": "V edges fade voo1.1.2 48k24b mstr",
+      "src": "https://5vqpsktuycwubnaj.public.blob.vercel-storage.com/portfolio/audio/6e2a596866faeb135ec1ae5540fb741600d9e5681404b50c434ab9a54055c03e-v-edges-fade-voo1-1-2-48k24b-mstr.wav",
+      "specs": "WAV • 24-bit / 48kHz Staging"
+    },
+    {
+      "id": "audio-v-manic-mania-mstr",
+      "kind": "audio",
+      "title": "V manic manIA mstr",
+      "src": "https://5vqpsktuycwubnaj.public.blob.vercel-storage.com/portfolio/audio/cc662269884b70416439eeedaf5f6877561bfc1338c908181ace366a5c2cfab6-v-manic-mania-mstr.wav",
+      "specs": "WAV • 24-bit / 48kHz Staging"
+    },
+    {
+      "id": "video-3i-atlas-8",
+      "kind": "video",
+      "title": "3I | ATLAS 8",
+      "src": "https://5vqpsktuycwubnaj.public.blob.vercel-storage.com/portfolio/video/237896e8ac6de130432c1d587eb45444f86f82249d53417a1534250b4a1e8a5b-3i-atlas-8.mp4",
+      "specs": "MP4 Master",
+      "engine": "Sora Pro"
+    },
+    {
+      "id": "video-3i-atlas-12",
+      "kind": "video",
+      "title": "3I | ATLAS 12",
+      "src": "https://5vqpsktuycwubnaj.public.blob.vercel-storage.com/portfolio/video/2e868ab1471925d3f9e6c031ae9cf35d2a81da09fd2dfaa5ece503258d30a406-3i-atlas-12.mp4",
+      "specs": "MP4 Master",
+      "engine": "Sora Pro"
+    },
+    {
+      "id": "video-3i-atlas-2",
+      "kind": "video",
+      "title": "3I | ATLAS 2",
+      "src": "https://5vqpsktuycwubnaj.public.blob.vercel-storage.com/portfolio/video/352a12b95d585a2e956ac59652d1139ae23cb181deb4e89979163a5a78eb7a69-3i-atlas-2.mp4",
+      "specs": "MP4 Master",
+      "engine": "Sora Pro"
+    },
+    {
+      "id": "video-3i-atlas-1",
+      "kind": "video",
+      "title": "3I | ATLAS 1",
+      "src": "https://5vqpsktuycwubnaj.public.blob.vercel-storage.com/portfolio/video/5068d26076a467df2ab5fbc43e519fe12ee268e9bfde1d69c7f63731265e8522-3i-atlas-1.mp4",
+      "specs": "MP4 Master",
+      "engine": "Sora Pro"
+    },
+    {
+      "id": "video-3i-atlas-4",
+      "kind": "video",
+      "title": "3I | ATLAS 4",
+      "src": "https://5vqpsktuycwubnaj.public.blob.vercel-storage.com/portfolio/video/55c4094401079b20e399ad0b289e37d41e497f39efa987d12090a95ac8d0ade4-3i-atlas-4.mp4",
+      "specs": "MP4 Master",
+      "engine": "Sora Pro"
+    },
+    {
+      "id": "video-3i-atlas-5",
+      "kind": "video",
+      "title": "3I | ATLAS 5",
+      "src": "https://5vqpsktuycwubnaj.public.blob.vercel-storage.com/portfolio/video/5c625f69c17264289df66f15b982f752d4dc5e5ca54f50531962a0f4c7ef5755-3i-atlas-5.mp4",
+      "specs": "MP4 Master",
+      "engine": "Sora Pro"
+    },
+    {
+      "id": "video-3i-atlas-15",
+      "kind": "video",
+      "title": "3I | ATLAS 15",
+      "src": "https://5vqpsktuycwubnaj.public.blob.vercel-storage.com/portfolio/video/5f835317a1eb25104e1237b5a82a283dcc028191f6bbe711ca7406980c2f537e-3i-atlas-15.mp4",
+      "specs": "MP4 Master",
+      "engine": "Sora Pro"
+    },
+    {
+      "id": "video-3i-atlas-13",
+      "kind": "video",
+      "title": "3I | ATLAS 13",
+      "src": "https://5vqpsktuycwubnaj.public.blob.vercel-storage.com/portfolio/video/7a31f9e2d5345356db8a2e79fefc2bc22386c9f66ae5bb3edbd9eac36f426878-3i-atlas-13.mp4",
+      "specs": "MP4 Master",
+      "engine": "Sora Pro"
+    },
+    {
+      "id": "video-3i-atlas-10",
+      "kind": "video",
+      "title": "3I | ATLAS 10",
+      "src": "https://5vqpsktuycwubnaj.public.blob.vercel-storage.com/portfolio/video/9124d06e32a8e94456a147b327dca2afe0251017ca928728e345729366e13110-3i-atlas-10.mp4",
+      "specs": "MP4 Master",
+      "engine": "Sora Pro"
+    },
+    {
+      "id": "video-3i-atlas-7",
+      "kind": "video",
+      "title": "3I | ATLAS 7",
+      "src": "https://5vqpsktuycwubnaj.public.blob.vercel-storage.com/portfolio/video/b0b00a12d4e81e67a4dd5f36ba1d3c71bf977ba418ec1faf8f34c3c8847f0a4b-3i-atlas-7.mp4",
+      "specs": "MP4 Master",
+      "engine": "Sora Pro"
+    },
+    {
+      "id": "video-3i-atlas-11",
+      "kind": "video",
+      "title": "3I | ATLAS 11",
+      "src": "https://5vqpsktuycwubnaj.public.blob.vercel-storage.com/portfolio/video/bfbf6b6afee10871ffde93dc27857cd6e5973afd7ffd7caad62373c8a5b96e1a-3i-atlas-11.mp4",
+      "specs": "MP4 Master",
+      "engine": "Sora Pro"
+    },
+    {
+      "id": "video-3i-atlas-14",
+      "kind": "video",
+      "title": "3I | ATLAS 14",
+      "src": "https://5vqpsktuycwubnaj.public.blob.vercel-storage.com/portfolio/video/d3cb01c20ddeb78bd3b33fc445f76f2a40a8b4b923fd8da3e916376d886f8bfb-3i-atlas-14.mp4",
+      "specs": "MP4 Master",
+      "engine": "Sora Pro"
+    },
+    {
+      "id": "video-3i-atlas-9",
+      "kind": "video",
+      "title": "3I | ATLAS 9",
+      "src": "https://5vqpsktuycwubnaj.public.blob.vercel-storage.com/portfolio/video/dee03703d691024115d352f780243e7f6cc579e5aefc7c669e9db84690af747c-3i-atlas-9.mp4",
+      "specs": "MP4 Master",
+      "engine": "Sora Pro"
+    },
+    {
+      "id": "video-3i-atlas-3",
+      "kind": "video",
+      "title": "3I | ATLAS 3",
+      "src": "https://5vqpsktuycwubnaj.public.blob.vercel-storage.com/portfolio/video/f17fa6fd5eee89112e4b0092bd7e475ca27ccb9f543368adb0fc429affdc8cc0-3i-atlas-3.mp4",
+      "specs": "MP4 Master",
+      "engine": "Sora Pro"
+    },
+    {
+      "id": "video-3i-atlas-6",
+      "kind": "video",
+      "title": "3I | ATLAS 6",
+      "src": "https://5vqpsktuycwubnaj.public.blob.vercel-storage.com/portfolio/video/ff65b39c644311e7d1a8943645e68b9108c85ba42c79484f54c05e61cd009f1a-3i-atlas-6.mp4",
+      "specs": "MP4 Master",
+      "engine": "Sora Pro"
+    }
+  ]
+}

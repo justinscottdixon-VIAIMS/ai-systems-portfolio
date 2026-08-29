@@ -1,0 +1,394 @@
+---
+import { toPlaylists } from '../lib/media-manifest.mjs';
+
+const { manifest } = Astro.props;
+const { videoPlaylist, audioPlaylist } = toPlaylists(manifest);
+---
+
+<div class="space-y-8">
+	<div id="master-stage-container" class="relative w-full h-[540px] bg-black border border-zinc-800 overflow-hidden flex items-center justify-center group shadow-2xl transition-all duration-500">
+		<video 
+			id="bg-video-blur" 
+			src={videoPlaylist[0].src} 
+			autoplay 
+			loop 
+			muted 
+			playsinline 
+			preload="metadata"
+			class="absolute inset-0 w-full h-full object-cover blur-[64px] opacity-45 brightness-115 scale-110 pointer-events-none transition-all duration-500"
+		></video>
+
+		<video 
+			id="master-video" 
+			src={videoPlaylist[0].src} 
+			autoplay 
+			muted 
+			playsinline 
+			preload="metadata"
+			class="relative z-10 max-h-full max-w-full h-full w-auto object-contain transition-all duration-300"
+		></video>
+
+		<button id="master-mute-btn" class="absolute bottom-4 right-4 z-20 bg-black/80 hover:bg-zinc-900 border border-zinc-700 text-zinc-300 text-[11px] font-mono px-3 py-1.5 flex items-center gap-2 transition-colors">
+			<span id="mute-led" class="w-2 h-2 rounded-full bg-red-500"></span>
+			<span id="mute-label">VIDEO AUDIO MUTED</span>
+		</button>
+	</div>
+
+	<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
+		<div class="border border-zinc-800/80 bg-zinc-950/60 p-5 flex flex-col justify-between">
+			<div>
+				<div class="flex justify-between items-center mb-3 pb-2 border-b border-zinc-900">
+					<span class="text-xs font-mono font-bold uppercase text-white">01 / Visual Systems</span>
+					<span class="text-[10px] font-mono text-cyan-400">AUTO-SCANNED</span>
+				</div>
+
+				<div class="mb-3">
+					<h4 id="vid-title-display" class="text-xs font-mono uppercase text-white truncate">{videoPlaylist[0].title}</h4>
+					<p id="vid-specs-display" class="text-[11px] font-mono text-zinc-500 truncate">{videoPlaylist[0].specs}</p>
+				</div>
+
+				<div class="space-y-1 mb-3">
+					<input type="range" id="vid-seek" value="0" min="0" max="100" class="w-full h-1 bg-zinc-800 appearance-none cursor-pointer accent-zinc-200" />
+					<div class="flex justify-between text-[10px] font-mono text-zinc-500">
+						<span id="vid-current">00:00</span>
+						<span id="vid-duration">--:--</span>
+					</div>
+				</div>
+				
+				<div class="flex items-center gap-1.5 mb-4">
+					<button id="vid-prev" class="px-2 py-1 text-xs font-mono bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border border-zinc-800">⏮</button>
+					<button id="vid-rewind-10" class="px-2 py-1 text-xs font-mono bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border border-zinc-800">-10s</button>
+					<button id="vid-play" class="flex-1 py-1 text-xs font-mono bg-zinc-100 hover:bg-white text-black font-bold">PAUSE</button>
+					<button id="vid-forward-10" class="px-2 py-1 text-xs font-mono bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border border-zinc-800">+10s</button>
+					<button id="vid-next" class="px-2 py-1 text-xs font-mono bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border border-zinc-800">⏭</button>
+				</div>
+
+				<div class="flex flex-col gap-1 max-h-36 overflow-y-auto pr-1">
+					{videoPlaylist.map((v, i) => (
+						<button 
+							data-v-idx={i}
+							class="video-cue-btn text-left px-3 py-2 text-xs font-mono border border-zinc-900 bg-zinc-900/30 hover:border-zinc-700 flex justify-between items-center transition-colors"
+						>
+							<span class="text-zinc-300 truncate pr-2">{v.title}</span>
+							<span class="text-[10px] text-zinc-600 uppercase whitespace-nowrap">{v.specs}</span>
+						</button>
+					))}
+				</div>
+			</div>
+			<div class="pt-3 border-t border-zinc-900 mt-4 flex justify-between text-[10px] font-mono text-zinc-600">
+				<span>DETECTED: {videoPlaylist.length} FILES</span>
+				<span>AUTO-ADVANCE ON</span>
+			</div>
+		</div>
+
+		<div class="border border-zinc-800/80 bg-zinc-950/60 p-5 flex flex-col justify-between">
+			<div>
+				<div class="flex justify-between items-center mb-3 pb-2 border-b border-zinc-900">
+					<span class="text-xs font-mono font-bold uppercase text-white">02 / Spatial DSP Master</span>
+					<span class="text-[10px] font-mono text-emerald-400">DYNAMIC DSP</span>
+				</div>
+
+				<div class="mb-3">
+					<h4 id="audio-title-display" class="text-xs font-mono uppercase text-white truncate">{audioPlaylist[0].title}</h4>
+					<p id="audio-specs-display" class="text-[11px] font-mono text-zinc-500 truncate">{audioPlaylist[0].specs}</p>
+				</div>
+
+				<div class="space-y-1 mb-3">
+					<input type="range" id="dsp-seek" value="0" min="0" max="100" class="w-full h-1 bg-zinc-800 appearance-none cursor-pointer accent-zinc-200" />
+					<div class="flex justify-between text-[10px] font-mono text-zinc-500">
+						<span id="dsp-current">00:00</span>
+						<span id="dsp-duration">--:--</span>
+					</div>
+				</div>
+
+				<div class="flex items-center gap-1.5 mb-4">
+					<button id="dsp-prev" class="px-2 py-1 text-xs font-mono bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border border-zinc-800">⏮</button>
+					<button id="dsp-rewind-10" class="px-2 py-1 text-xs font-mono bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border border-zinc-800">-10s</button>
+					<button id="dsp-play" class="flex-1 py-1 text-xs font-mono bg-zinc-100 hover:bg-white text-black font-bold">PLAY MASTER</button>
+					<button id="dsp-forward-10" class="px-2 py-1 text-xs font-mono bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border border-zinc-800">+10s</button>
+					<button id="dsp-next" class="px-2 py-1 text-xs font-mono bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border border-zinc-800">⏭</button>
+				</div>
+
+				<div class="flex flex-col gap-1 max-h-36 overflow-y-auto pr-1">
+					{audioPlaylist.map((a, idx) => (
+						<button 
+							data-a-idx={idx}
+							class="audio-cue-btn text-left px-3 py-1.5 text-xs font-mono border border-zinc-900 bg-zinc-900/30 hover:border-zinc-700 flex justify-between items-center transition-colors"
+						>
+							<span class="text-zinc-400 truncate pr-2">{a.title}</span>
+							<span class="text-[10px] text-zinc-600">PCM</span>
+						</button>
+					))}
+				</div>
+			</div>
+
+			<audio id="dsp-audio" src={audioPlaylist[0].src} preload="metadata"></audio>
+			<div class="pt-3 border-t border-zinc-900 mt-4 flex justify-between text-[10px] font-mono text-zinc-600">
+				<span>DETECTED: {audioPlaylist.length} TRACKS</span>
+				<span>AUTO-ADVANCE ON</span>
+			</div>
+		</div>
+
+		<div class="border border-zinc-800/80 bg-zinc-950/60 p-5 flex flex-col justify-between">
+			<div>
+				<div class="flex justify-between items-center mb-3 pb-2 border-b border-zinc-900">
+					<span class="text-xs font-mono font-bold uppercase text-white">03 / Enterprise AV</span>
+					<span class="text-[10px] font-mono text-amber-400">NETWORKED FABRIC</span>
+				</div>
+
+				<div class="bg-black/80 border border-zinc-800 p-3.5 font-mono space-y-3">
+					<div class="border-b border-zinc-900 pb-2.5">
+						<div class="flex justify-between text-xs text-zinc-300 mb-0.5">
+							<span>DANTE MULTICAST FABRIC</span>
+							<span class="text-emerald-400 text-[10px]">● LOCKED</span>
+						</div>
+						<span class="text-[10px] text-zinc-500 block">512x512 PTPv2 Deterministic Clocking</span>
+					</div>
+
+					<div class="border-b border-zinc-900 pb-2.5">
+						<div class="flex justify-between text-xs text-zinc-300 mb-0.5">
+							<span>ATMOS 7.1.4 REFERENCE</span>
+							<span class="text-emerald-400 text-[10px]">● CALIBRATED</span>
+						</div>
+						<span class="text-[10px] text-zinc-500 block">PMC MB2S Active Array + Grace Design m908</span>
+					</div>
+
+					<div class="border-b border-zinc-900 pb-2.5">
+						<div class="flex justify-between text-xs text-zinc-300 mb-0.5">
+							<span>FOH COMMAND DEPLOYMENT</span>
+							<span class="text-amber-400 text-[10px]">○ HYBRID SPEC</span>
+						</div>
+						<span class="text-[10px] text-zinc-500 block">4-Person Mobile Command Matrix</span>
+					</div>
+
+					<div>
+						<div class="flex justify-between text-xs text-zinc-300 mb-0.5">
+							<span>SIGNAL TOPOLOGY & DSP</span>
+							<span class="text-emerald-400 text-[10px]">● 24b / 48kHz</span>
+						</div>
+						<span class="text-[10px] text-zinc-500 block">Bit-Perfect Native Audio Subsystem</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="pt-3 border-t border-zinc-900 mt-4 flex justify-between text-[10px] font-mono text-zinc-600">
+				<span>SYSTEM SPEC V4.2</span>
+				<span>PRODUCTION READY</span>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script define:vars={{ videoPlaylist, audioPlaylist }}>
+	// Video Elements
+	const mv = document.getElementById('master-video');
+	const bgv = document.getElementById('bg-video-blur');
+	const muteBtn = document.getElementById('master-mute-btn');
+	const muteLed = document.getElementById('mute-led');
+	const muteLabel = document.getElementById('mute-label');
+	const vidPlayBtn = document.getElementById('vid-play');
+	const vidPrevBtn = document.getElementById('vid-prev');
+	const vidNextBtn = document.getElementById('vid-next');
+	const vidRewind10 = document.getElementById('vid-rewind-10');
+	const vidForward10 = document.getElementById('vid-forward-10');
+	const vidSeek = document.getElementById('vid-seek');
+	const vidCur = document.getElementById('vid-current');
+	const vidDur = document.getElementById('vid-duration');
+	const vidTitle = document.getElementById('vid-title-display');
+	const vidSpecs = document.getElementById('vid-specs-display');
+	const videoCueBtns = document.querySelectorAll('.video-cue-btn');
+
+	// DSP Audio Elements
+	const dspAudio = document.getElementById('dsp-audio');
+	const dspPlayBtn = document.getElementById('dsp-play');
+	const dspPrevBtn = document.getElementById('dsp-prev');
+	const dspNextBtn = document.getElementById('dsp-next');
+	const dspRewind10 = document.getElementById('dsp-rewind-10');
+	const dspForward10 = document.getElementById('dsp-forward-10');
+	const dspSeek = document.getElementById('dsp-seek');
+	const dspCur = document.getElementById('dsp-current');
+	const dspDur = document.getElementById('dsp-duration');
+	const dspTitle = document.getElementById('audio-title-display');
+	const dspSpecs = document.getElementById('audio-specs-display');
+	const audioCueBtns = document.querySelectorAll('.audio-cue-btn');
+
+	let currentVidIdx = 0;
+	let currentAudIdx = 0;
+
+	function formatTime(s) {
+		if (isNaN(s)) return '00:00';
+		const m = Math.floor(s / 60);
+		const sec = Math.floor(s % 60);
+		return `${m.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`;
+	}
+
+	mv.addEventListener('loadedmetadata', () => {
+		vidDur.textContent = formatTime(mv.duration);
+	});
+
+	// Frame & Playback Sync between Master and Gaussian Backdrop
+	function syncBackdrop() {
+		if (Math.abs(bgv.currentTime - mv.currentTime) > 0.3) {
+			bgv.currentTime = mv.currentTime;
+		}
+	}
+
+	function switchVideo(idx, playImmediate = true) {
+		if (!videoPlaylist.length) return;
+		currentVidIdx = (idx + videoPlaylist.length) % videoPlaylist.length;
+		const track = videoPlaylist[currentVidIdx];
+		mv.src = track.src;
+		bgv.src = track.src;
+		vidTitle.textContent = track.title;
+		vidSpecs.textContent = track.specs;
+
+		if (playImmediate) {
+			mv.play();
+			bgv.play();
+			vidPlayBtn.textContent = 'PAUSE';
+		}
+
+		videoCueBtns.forEach((b, i) => {
+			if (i === currentVidIdx) {
+				b.classList.add('border-zinc-500', 'bg-zinc-800/60');
+			} else {
+				b.classList.remove('border-zinc-500', 'bg-zinc-800/60');
+			}
+		});
+	}
+
+	mv.addEventListener('ended', () => switchVideo(currentVidIdx + 1, true));
+
+	mv.addEventListener('timeupdate', () => {
+		if (!isNaN(mv.duration)) {
+			vidSeek.value = (mv.currentTime / mv.duration) * 100;
+			vidCur.textContent = formatTime(mv.currentTime);
+			syncBackdrop();
+		}
+	});
+
+	vidSeek.addEventListener('input', () => {
+		if (!isNaN(mv.duration)) {
+			const target = (vidSeek.value / 100) * mv.duration;
+			mv.currentTime = target;
+			bgv.currentTime = target;
+		}
+	});
+
+	vidPlayBtn.addEventListener('click', () => {
+		if (mv.paused) {
+			mv.play();
+			bgv.play();
+			vidPlayBtn.textContent = 'PAUSE';
+		} else {
+			mv.pause();
+			bgv.pause();
+			vidPlayBtn.textContent = 'PLAY';
+		}
+	});
+
+	vidPrevBtn.addEventListener('click', () => switchVideo(currentVidIdx - 1, true));
+	vidNextBtn.addEventListener('click', () => switchVideo(currentVidIdx + 1, true));
+	vidRewind10.addEventListener('click', () => { 
+		const t = Math.max(0, mv.currentTime - 10);
+		mv.currentTime = t;
+		bgv.currentTime = t;
+	});
+	vidForward10.addEventListener('click', () => { 
+		const t = Math.min(mv.duration, mv.currentTime + 10);
+		mv.currentTime = t;
+		bgv.currentTime = t;
+	});
+
+	videoCueBtns.forEach(b => {
+		b.addEventListener('click', () => switchVideo(parseInt(b.getAttribute('data-v-idx'), 10), true));
+	});
+
+	muteBtn.addEventListener('click', () => {
+		mv.muted = !mv.muted;
+		if (mv.muted) {
+			muteLed.className = 'w-2 h-2 rounded-full bg-red-500';
+			muteLabel.textContent = 'VIDEO AUDIO MUTED';
+		} else {
+			muteLed.className = 'w-2 h-2 rounded-full bg-emerald-400 animate-pulse';
+			muteLabel.textContent = 'VIDEO AUDIO LIVE';
+			if (!dspAudio.paused) {
+				dspAudio.pause();
+				dspPlayBtn.textContent = 'PLAY MASTER';
+			}
+		}
+	});
+
+	function switchAudio(idx, playImmediate = true) {
+		if (!audioPlaylist.length) return;
+		currentAudIdx = (idx + audioPlaylist.length) % audioPlaylist.length;
+		const trk = audioPlaylist[currentAudIdx];
+		dspAudio.src = trk.src;
+		dspTitle.textContent = trk.title;
+		dspSpecs.textContent = trk.specs;
+		
+		if (playImmediate) {
+			dspAudio.play();
+			dspPlayBtn.textContent = 'PAUSE MASTER';
+			if (!mv.muted) {
+				mv.muted = true;
+				muteLed.className = 'w-2 h-2 rounded-full bg-red-500';
+				muteLabel.textContent = 'VIDEO AUDIO MUTED';
+			}
+		}
+		
+		audioCueBtns.forEach((b, i) => {
+			if (i === currentAudIdx) {
+				b.classList.add('border-zinc-500', 'bg-zinc-800/60');
+			} else {
+				b.classList.remove('border-zinc-500', 'bg-zinc-800/60');
+			}
+		});
+	}
+
+	dspAudio.addEventListener('ended', () => switchAudio(currentAudIdx + 1, true));
+
+	dspPlayBtn.addEventListener('click', () => {
+		if (dspAudio.paused) {
+			dspAudio.play();
+			dspPlayBtn.textContent = 'PAUSE MASTER';
+			if (!mv.muted) {
+				mv.muted = true;
+				muteLed.className = 'w-2 h-2 rounded-full bg-red-500';
+				muteLabel.textContent = 'VIDEO AUDIO MUTED';
+			}
+		} else {
+			dspAudio.pause();
+			dspPlayBtn.textContent = 'PLAY MASTER';
+		}
+	});
+
+	dspPrevBtn.addEventListener('click', () => switchAudio(currentAudIdx - 1, true));
+	dspNextBtn.addEventListener('click', () => switchAudio(currentAudIdx + 1, true));
+	dspRewind10.addEventListener('click', () => { dspAudio.currentTime = Math.max(0, dspAudio.currentTime - 10); });
+	dspForward10.addEventListener('click', () => { dspAudio.currentTime = Math.min(dspAudio.duration, dspAudio.currentTime + 10); });
+
+	audioCueBtns.forEach(b => {
+		b.addEventListener('click', () => switchAudio(parseInt(b.getAttribute('data-a-idx'), 10), true));
+	});
+
+	dspAudio.addEventListener('timeupdate', () => {
+		if (!isNaN(dspAudio.duration)) {
+			dspSeek.value = (dspAudio.currentTime / dspAudio.duration) * 100;
+			dspCur.textContent = formatTime(dspAudio.currentTime);
+		}
+	});
+
+	dspAudio.addEventListener('loadedmetadata', () => {
+		dspDur.textContent = formatTime(dspAudio.duration);
+	});
+
+	dspSeek.addEventListener('input', () => {
+		if (!isNaN(dspAudio.duration)) {
+			dspAudio.currentTime = (dspSeek.value / 100) * dspAudio.duration;
+		}
+	});
+
+	if (videoPlaylist.length) switchVideo(0, false);
+	if (audioCueBtns.length) audioCueBtns[0].classList.add('border-zinc-500', 'bg-zinc-800/60');
+</script>
