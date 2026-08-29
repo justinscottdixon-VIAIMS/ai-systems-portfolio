@@ -52,6 +52,13 @@ new local files are uploaded by a repeatable sync command, then the manifest is
 updated and validated. Blob object keys should be URL-safe while display names
 remain human-readable.
 
+**Approved correction (2026-08-29):** Blob keys are immutable, content-addressed
+SHA-256 releases in the form `portfolio/<kind>/<hash>-<safe-name>`, not
+overwrite-in-place paths. Stable human-readable manifest IDs and titles derive
+from the normalized filename. A sync may publish a new manifest only after all
+uploads succeed, so a failed later upload leaves the current manifest and every
+URL it references unchanged.
+
 ### Domain and DNS
 
 Wix remains registrar and DNS authority during launch. The existing Resend TXT

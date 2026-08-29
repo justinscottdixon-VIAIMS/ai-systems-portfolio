@@ -1,4 +1,6 @@
+import { createReadStream } from 'node:fs';
 import { readdir, stat } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
 import path from 'node:path';
 
 const GROUPS = [
@@ -28,6 +30,16 @@ export function safeObjectName(filename) {
   return `${stem}${extension}`;
 }
 
+function hashFile(absolutePath) {
+  return new Promise((resolve, reject) => {
+    const hash = createHash('sha256');
+    const stream = createReadStream(absolutePath);
+    stream.on('data', (chunk) => hash.update(chunk));
+    stream.on('end', () => resolve(hash.digest('hex')));
+    stream.on('error', reject);
+  });
+}
+
 export async function discoverMedia(rootDirectory) {
   const discovered = [];
   for (const group of GROUPS) {
@@ -38,13 +50,14 @@ export async function discoverMedia(rootDirectory) {
       if (!entry.isFile() || entry.name.startsWith('.') || !group.extensions.has(extension)) continue;
       const absolutePath = path.join(absoluteDirectory, entry.name);
       const fileStat = await stat(absolutePath);
+      const contentHash = await hashFile(absolutePath);
       discovered.push({
         kind: group.kind,
         filename: entry.name,
         absolutePath,
         size: fileStat.size,
         contentType: group.contentTypes[extension],
-        objectKey: `portfolio/${group.kind}/${safeObjectName(entry.name)}`,
+        objectKey: `portfolio/${group.kind}/${contentHash}-${safeObjectName(entry.name)}`,
       });
     }
   }
@@ -59,12 +72,26 @@ export function assertUniqueObjectKeys(files) {
   }
 }
 
+export function manifestItemId(file) {
+  const safeName = safeObjectName(file.filename);
+  const idStem = path.basename(safeName, path.extname(safeName));
+  return `${file.kind}-${idStem}`;
+}
+
+export function assertUniqueManifestIds(files) {
+  const seen = new Set();
+  for (const file of files) {
+    const id = manifestItemId(file);
+    if (seen.has(id)) throw new Error(`duplicate media id: ${id}`);
+    seen.add(id);
+  }
+}
+
 export function toManifestItem(file, url) {
   const extension = path.extname(file.filename);
   const displayStem = path.basename(file.filename, extension).replace(/_/g, ' ').replace(/\s+/g, ' ').trim();
-  const idStem = path.basename(file.objectKey, path.extname(file.objectKey));
   const item = {
-    id: `${file.kind}-${idStem}`,
+    id: manifestItemId(file),
     kind: file.kind,
     title: displayStem,
     src: url,

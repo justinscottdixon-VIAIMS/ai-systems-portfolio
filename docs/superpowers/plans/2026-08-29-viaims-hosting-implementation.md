@@ -38,6 +38,16 @@
 - `vercel.json`: production security and immutable-asset cache headers.
 - `docs/operations/viaims-launch-runbook.md`: records preview, cutover, verification, and rollback commands.
 
+### Approved atomic-release correction (2026-08-29)
+
+This human-approved correction overrides the earlier deterministic overwrite
+example in Task 3. Each Blob key is an immutable SHA-256 content-addressed
+release in the form `portfolio/<kind>/<hash>-<safe-name>`, with
+`allowOverwrite: false`. Stable manifest IDs and titles remain filename-derived.
+All normalized-key and manifest-ID collisions are rejected before upload, and a
+failed later upload must leave the previously published manifest bytes and every
+referenced URL unchanged.
+
 ---
 
 ### Task 1: Preserve the Current Portfolio Baseline
@@ -332,7 +342,7 @@ git commit -m "feat: add validated media manifest"
 
 **Interfaces:**
 - Consumes: `public/media/video/*`, `public/media/audio/*`, and `BLOB_READ_WRITE_TOKEN`.
-- Produces: deterministic keys `portfolio/{video|audio}/<safe-name>`, uploaded Blob URLs, and an atomically replaced `src/data/media.json`.
+- Produces: immutable content-addressed keys `portfolio/{video|audio}/<sha256>-<safe-name>`, uploaded Blob URLs, and an atomically replaced `src/data/media.json`.
 
 - [ ] **Step 1: Write failing discovery tests**
 

@@ -1,15 +1,48 @@
 import { put } from '@vercel/blob';
 import { createReadStream } from 'node:fs';
-import { mkdir, rename, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, rename, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import {
+  assertUniqueManifestIds,
   assertUniqueObjectKeys,
   discoverMedia,
   toManifestItem,
 } from './media-catalog.mjs';
 
 const MULTIPART_THRESHOLD = 100 * 1024 * 1024;
+
+export function uploadOptions(file, token) {
+  return {
+    access: 'public',
+    addRandomSuffix: false,
+    allowOverwrite: false,
+    multipart: file.size > MULTIPART_THRESHOLD,
+    contentType: file.contentType,
+    token,
+  };
+}
+
+async function publishedUrlsByObjectKey(manifestPath) {
+  const urls = new Map();
+  let manifest;
+  try {
+    manifest = JSON.parse(await readFile(manifestPath, 'utf8'));
+  } catch (error) {
+    if (error.code === 'ENOENT' || error instanceof SyntaxError) return urls;
+    throw error;
+  }
+
+  for (const item of manifest.items ?? []) {
+    if (typeof item?.src !== 'string') continue;
+    try {
+      urls.set(new URL(item.src).pathname.replace(/^\/+/, ''), item.src);
+    } catch {
+      // A malformed prior entry cannot represent a reusable public release.
+    }
+  }
+  return urls;
+}
 
 export async function syncMedia({
   rootDirectory = process.cwd(),
@@ -20,22 +53,27 @@ export async function syncMedia({
   if (!token) throw new Error('BLOB_READ_WRITE_TOKEN is required');
   const files = await discoverMedia(rootDirectory);
   assertUniqueObjectKeys(files);
+  assertUniqueManifestIds(files);
+  const manifestPath = path.join(rootDirectory, 'src/data/media.json');
+  const publishedUrls = await publishedUrlsByObjectKey(manifestPath);
 
   const items = [];
   for (const file of files) {
-    const blob = await uploader(file.objectKey, createReadStream(file.absolutePath), {
-      access: 'public',
-      addRandomSuffix: false,
-      allowOverwrite: true,
-      multipart: file.size > MULTIPART_THRESHOLD,
-      contentType: file.contentType,
-      token,
-    });
-    items.push(toManifestItem(file, blob.url));
+    const publishedUrl = publishedUrls.get(file.objectKey);
+    if (publishedUrl) {
+      items.push(toManifestItem(file, publishedUrl));
+      continue;
+    }
+    const stream = createReadStream(file.absolutePath);
+    try {
+      const blob = await uploader(file.objectKey, stream, uploadOptions(file, token));
+      items.push(toManifestItem(file, blob.url));
+    } finally {
+      stream.destroy();
+    }
   }
 
   const manifest = { version: 1, generatedAt, items };
-  const manifestPath = path.join(rootDirectory, 'src/data/media.json');
   const temporaryPath = `${manifestPath}.tmp`;
   await mkdir(path.dirname(manifestPath), { recursive: true });
   await writeFile(temporaryPath, `${JSON.stringify(manifest, null, 2)}\n`, 'utf8');
