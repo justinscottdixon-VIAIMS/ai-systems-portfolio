@@ -11,3 +11,4 @@ public/media/audio/*
 !public/media/audio/.gitkeep
 **/.DS_Store
 .superpowers/
+.vercel
