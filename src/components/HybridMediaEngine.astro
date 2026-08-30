@@ -47,8 +47,43 @@ const { videoPlaylist, audioPlaylist } = toPlaylists(manifest);
 		</button>
 	</div>
 
-	<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
-		<div class="border border-zinc-800/80 bg-zinc-950/60 p-5 flex flex-col justify-between">
+	<section data-mastering-console class="mastering-console" aria-labelledby="mastering-console-title">
+		<div class="mastering-console__header">
+			<div>
+				<p class="mastering-console__eyebrow">02 / Spatial DSP Master</p>
+				<h2 id="mastering-console-title" class="mastering-console__title">
+					<span id="audio-title-display">{audioPlaylist[0].title}</span>
+				</h2>
+				<p id="audio-specs-display" class="mastering-console__specs">{audioPlaylist[0].specs}</p>
+			</div>
+			<span class="mastering-console__format">LOSSLESS · NATIVE PCM</span>
+		</div>
+
+		<div class="mastering-console__timeline">
+			<span id="dsp-current">00:00</span>
+			<input type="range" id="dsp-seek" value="0" min="0" max="100" aria-label="Audio master position" />
+			<span id="dsp-duration">--:--</span>
+		</div>
+
+		<div class="mastering-console__transport" aria-label="Audio master transport">
+			<button id="dsp-prev" aria-label="Previous audio master">⏮</button>
+			<button id="dsp-rewind-10" aria-label="Rewind audio master 10 seconds">−10s</button>
+			<button id="dsp-play" class="mastering-console__play">PLAY MASTER</button>
+			<button id="dsp-forward-10" aria-label="Advance audio master 10 seconds">+10s</button>
+			<button id="dsp-next" aria-label="Next audio master">⏭</button>
+		</div>
+
+		<div class="mastering-console__state">
+			<span id="audio-bus-status" aria-live="polite">AUDIO MASTER READY</span>
+			<span id="video-bus-status">VIDEO MOTION LIVE · VIDEO AUDIO MUTED</span>
+		</div>
+
+		<div id="audio-queue-preview" class="mastering-console__queue" aria-label="Audio queue preview"></div>
+		<audio id="dsp-audio" src={audioPlaylist[0].src} preload="metadata"></audio>
+	</section>
+
+	<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch" data-operational-deck>
+		<div class="border border-zinc-800/80 bg-zinc-950/60 p-5 flex flex-col justify-between" data-module="visual">
 			<div>
 				<div class="flex justify-between items-center mb-3 pb-2 border-b border-zinc-900">
 					<span class="text-xs font-mono font-bold uppercase text-white">01 / Visual Systems</span>
@@ -97,33 +132,14 @@ const { videoPlaylist, audioPlaylist } = toPlaylists(manifest);
 			</div>
 		</div>
 
-		<div class="border border-zinc-800/80 bg-zinc-950/60 p-5 flex flex-col justify-between">
+		<div class="border border-zinc-800/80 bg-zinc-950/60 p-5 flex flex-col justify-between" data-module="spatial">
 			<div>
 				<div class="flex justify-between items-center mb-3 pb-2 border-b border-zinc-900">
-					<span class="text-xs font-mono font-bold uppercase text-white">02 / Spatial DSP Master</span>
+					<span class="text-xs font-mono font-bold uppercase text-white">02 / Spatial DSP Library</span>
 					<span class="text-[10px] font-mono text-emerald-400">DYNAMIC DSP</span>
 				</div>
 
-				<div class="mb-3">
-					<h4 id="audio-title-display" class="text-xs font-mono uppercase text-white truncate">{audioPlaylist[0].title}</h4>
-					<p id="audio-specs-display" class="text-[11px] font-mono text-zinc-500 truncate">{audioPlaylist[0].specs}</p>
-				</div>
-
-				<div class="space-y-1 mb-3">
-					<input type="range" id="dsp-seek" value="0" min="0" max="100" class="w-full h-1 bg-zinc-800 appearance-none cursor-pointer accent-zinc-200" />
-					<div class="flex justify-between text-[10px] font-mono text-zinc-500">
-						<span id="dsp-current">00:00</span>
-						<span id="dsp-duration">--:--</span>
-					</div>
-				</div>
-
-				<div class="flex items-center gap-1.5 mb-4">
-					<button id="dsp-prev" class="px-2 py-1 text-xs font-mono bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border border-zinc-800">⏮</button>
-					<button id="dsp-rewind-10" class="px-2 py-1 text-xs font-mono bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border border-zinc-800">-10s</button>
-					<button id="dsp-play" class="flex-1 py-1 text-xs font-mono bg-zinc-100 hover:bg-white text-black font-bold">PLAY MASTER</button>
-					<button id="dsp-forward-10" class="px-2 py-1 text-xs font-mono bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border border-zinc-800">+10s</button>
-					<button id="dsp-next" class="px-2 py-1 text-xs font-mono bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border border-zinc-800">⏭</button>
-				</div>
+				<p class="mb-3 text-[10px] font-mono tracking-[0.12em] text-zinc-600">SELECT A MASTER TO LOAD THE CONSOLE</p>
 
 				<div class="flex flex-col gap-1 max-h-36 overflow-y-auto pr-1">
 					{audioPlaylist.map((a, idx) => (
@@ -141,14 +157,13 @@ const { videoPlaylist, audioPlaylist } = toPlaylists(manifest);
 				</div>
 			</div>
 
-			<audio id="dsp-audio" src={audioPlaylist[0].src} preload="metadata"></audio>
 			<div class="pt-3 border-t border-zinc-900 mt-4 flex justify-between text-[10px] font-mono text-zinc-600">
 				<span>DETECTED: {audioPlaylist.length} TRACKS</span>
 				<span>AUTO-ADVANCE ON</span>
 			</div>
 		</div>
 
-		<div class="border border-zinc-800/80 bg-zinc-950/60 p-5 flex flex-col justify-between">
+		<div class="border border-zinc-800/80 bg-zinc-950/60 p-5 flex flex-col justify-between" data-module="enterprise">
 			<div>
 				<div class="flex justify-between items-center mb-3 pb-2 border-b border-zinc-900">
 					<span class="text-xs font-mono font-bold uppercase text-white">03 / Enterprise AV</span>

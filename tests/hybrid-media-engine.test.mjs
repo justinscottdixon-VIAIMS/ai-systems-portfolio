@@ -45,3 +45,17 @@ test('master playback events propagate to active decorative wings', async () => 
   assert.match(component, /playMirrorWings\(\)/);
   assert.match(component, /pauseMirrorWings\(\)/);
 });
+
+test('hybrid engine renders a full mastering console before the operational deck', async () => {
+  const component = await source(componentPath);
+  const consoleIndex = component.indexOf('data-mastering-console');
+  const deckIndex = component.indexOf('data-operational-deck');
+  assert.equal(consoleIndex > -1, true);
+  assert.equal(deckIndex > consoleIndex, true);
+  assert.match(component, /id="audio-bus-status"[^>]+aria-live="polite"/s);
+  assert.match(component, /id="audio-queue-preview"/);
+  assert.match(component, /id="dsp-seek"/);
+  assert.match(component, /id="dsp-rewind-10"/);
+  assert.match(component, /id="dsp-forward-10"/);
+  assert.match(component, /id="dsp-audio"/);
+});

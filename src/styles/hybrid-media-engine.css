@@ -73,6 +73,132 @@
   pointer-events: none;
 }
 
+.mastering-console {
+  min-height: 8.75rem;
+  padding: 1.25rem;
+  border: 1px solid rgb(63 63 70);
+  background: rgb(9 9 11 / 0.96);
+  box-shadow: 0 16px 30px rgb(0 0 0 / 0.35);
+}
+
+.mastering-console__header,
+.mastering-console__state {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.mastering-console__eyebrow,
+.mastering-console__specs,
+.mastering-console__format,
+.mastering-console__timeline,
+.mastering-console__state {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.mastering-console__eyebrow {
+  color: rgb(113 113 122);
+  font-size: 0.625rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.mastering-console__title {
+  margin-top: 0.25rem;
+  color: #fff;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+}
+
+.mastering-console__specs {
+  margin-top: 0.25rem;
+  color: rgb(113 113 122);
+  font-size: 0.6875rem;
+}
+
+.mastering-console__format {
+  padding: 0.3rem 0.5rem;
+  border: 1px solid rgb(20 83 45);
+  background: rgb(5 46 22);
+  color: rgb(52 211 153);
+  font-size: 0.625rem;
+}
+
+.mastering-console__timeline {
+  display: grid;
+  grid-template-columns: 3rem 1fr 3rem;
+  gap: 0.75rem;
+  align-items: center;
+  margin-block: 1rem;
+  color: rgb(113 113 122);
+  font-size: 0.6875rem;
+}
+
+.mastering-console__timeline input {
+  width: 100%;
+  accent-color: rgb(244 244 245);
+}
+
+.mastering-console__transport {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.mastering-console__transport button {
+  min-height: 2rem;
+  padding-inline: 0.75rem;
+  border: 1px solid rgb(63 63 70);
+  background: rgb(24 24 27);
+  color: rgb(212 212 216);
+  font: 0.75rem ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.mastering-console__transport .mastering-console__play {
+  min-width: 8rem;
+  background: rgb(244 244 245);
+  color: #000;
+  font-weight: 700;
+}
+
+.mastering-console__state {
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgb(39 39 42);
+  color: rgb(113 113 122);
+  font-size: 0.625rem;
+}
+
+#audio-bus-status[data-live="true"] {
+  color: rgb(52 211 153);
+}
+
+.mastering-console__queue {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.mastering-console__queue button {
+  min-width: 0;
+  padding: 0.5rem;
+  border: 1px solid rgb(39 39 42);
+  background: rgb(16 16 20);
+  color: rgb(161 161 170);
+  font: 0.625rem ui-monospace, SFMono-Regular, Menlo, monospace;
+  text-align: left;
+}
+
+[data-operational-deck] {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-areas: "visual spatial enterprise";
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
 @media (min-width: 768px) and (max-width: 1279px) {
   .media-stage {
     height: clamp(28rem, 60vw, 36rem);
