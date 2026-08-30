@@ -1,12 +1,16 @@
 const TABS = new Set(['cinema', 'music', 'media', 'youtube']);
 
+function cinemaPlayback(id, muted) {
+  return {
+    provider: 'cinema', id, mode: 'video', stageOwner: 'cinema',
+    audibleOwner: muted ? null : 'cinema', meterSource: muted ? null : 'cinema', meterStatus: muted ? 'idle' : 'native',
+  };
+}
+
 export function createPlaybackSession({ cinemaId, cinemaMuted = true } = {}) {
   return {
     activeTab: 'cinema',
-    playback: {
-      provider: 'cinema', id: cinemaId ?? null, mode: 'video', stageOwner: 'cinema',
-      audibleOwner: cinemaMuted ? null : 'cinema', meterSource: cinemaMuted ? null : 'cinema', meterStatus: cinemaMuted ? 'idle' : 'native',
-    },
+    playback: cinemaPlayback(cinemaId ?? null, cinemaMuted),
     lease: null,
   };
 }
@@ -19,10 +23,11 @@ export function selectBrowseTab(session, activeTab) {
 export function activateSource(session, activation) {
   if (!TABS.has(activation.provider)) throw new TypeError(`unsupported provider: ${activation.provider}`);
   if (activation.provider === 'music' && activation.mode === 'audio') {
+    if (session.lease) throw new TypeError('releaseStageLease must be called before activating Music audio');
     return { ...session, playback: { provider: 'music', id: activation.id, mode: 'audio', stageOwner: 'cinema', audibleOwner: 'music', meterSource: 'music', meterStatus: 'native' } };
   }
   if (activation.provider === 'cinema') {
-    return { ...session, lease: null, playback: { provider: 'cinema', id: activation.id, mode: 'video', stageOwner: 'cinema', audibleOwner: activation.muted ? null : 'cinema', meterSource: activation.muted ? null : 'cinema', meterStatus: activation.muted ? 'idle' : 'native' } };
+    return { ...session, lease: null, playback: cinemaPlayback(activation.id, activation.muted) };
   }
   const lease = session.lease ?? { snapshot: activation.snapshot };
   if (!lease.snapshot) throw new TypeError('stage lease requires a Cinema snapshot');
@@ -39,6 +44,6 @@ export function releaseStageLease(session) {
   const snapshot = session.lease.snapshot;
   return {
     snapshot,
-    session: { ...session, lease: null, playback: { provider: 'cinema', id: snapshot.id ?? null, mode: 'video', stageOwner: 'cinema', audibleOwner: snapshot.muted ? null : 'cinema', meterSource: snapshot.muted ? null : 'cinema', meterStatus: snapshot.muted ? 'idle' : 'native' } },
+    session: { ...session, lease: null, playback: cinemaPlayback(snapshot.id ?? null, snapshot.muted) },
   };
 }

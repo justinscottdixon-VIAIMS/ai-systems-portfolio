@@ -23,6 +23,14 @@ test('Music audio owns the audible bus without taking the stage', () => {
   assert.equal(session.lease, null);
 });
 
+test('Music audio requires releasing an active stage lease first', () => {
+  const leased = activateSource(createPlaybackSession({ cinemaId: 'atlas' }), { provider: 'music', id: 'north', mode: 'video', snapshot });
+  assert.throws(
+    () => activateSource(leased, { provider: 'music', id: 'north', mode: 'audio' }),
+    /releaseStageLease/,
+  );
+});
+
 test('Music video and Media acquire a lease while direct switching retains the snapshot', () => {
   let session = activateSource(createPlaybackSession({ cinemaId: 'atlas' }), { provider: 'music', id: 'north', mode: 'video', snapshot });
   assert.equal(session.playback.stageOwner, 'music');

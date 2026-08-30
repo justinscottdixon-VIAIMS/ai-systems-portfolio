@@ -35,19 +35,24 @@ export function claimVideoBus(video, audio) {
 }
 
 export function captureCinemaSnapshot(video, stage, id = null) {
-  return { id, src: video.currentSrc || video.src, currentTime: video.currentTime, paused: video.paused, muted: video.muted, aspect: stage.dataset.mediaAspect };
+  return { id, src: video.currentSrc || video.src, currentTime: video.currentTime, paused: video.paused, muted: video.muted, aspect: stage.dataset.mediaAspect, hasMirrorFailure: Object.hasOwn(stage.dataset, 'mirrorFailure'), mirrorFailure: stage.dataset.mirrorFailure };
 }
 
 export async function restoreCinemaSnapshot(video, stage, snapshot) {
-  video.pause();
-  video.src = snapshot.src;
-  const metadataReady = typeof video.readyState === 'number' && video.readyState < 1
+  const sourceChanged = (video.currentSrc || video.src) !== snapshot.src;
+  const metadataReady = sourceChanged && typeof video.addEventListener === 'function'
     ? new Promise((resolve) => video.addEventListener('loadedmetadata', resolve, { once: true }))
     : Promise.resolve();
-  video.load?.();
+  video.pause();
+  if (sourceChanged) {
+    video.src = snapshot.src;
+    video.load?.();
+  }
   await metadataReady;
   video.currentTime = snapshot.currentTime;
   video.muted = snapshot.muted;
   stage.dataset.mediaAspect = snapshot.aspect;
+  if (snapshot.hasMirrorFailure) stage.dataset.mirrorFailure = snapshot.mirrorFailure;
+  else delete stage.dataset.mirrorFailure;
   if (!snapshot.paused) await video.play();
 }

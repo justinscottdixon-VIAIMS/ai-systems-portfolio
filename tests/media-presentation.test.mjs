@@ -45,6 +45,48 @@ function media(overrides = {}) {
   };
 }
 
+function eventCapableMedia(overrides = {}) {
+  const listeners = new Map();
+  let src = overrides.src ?? '';
+  let currentTime = overrides.currentTime ?? 0;
+  return {
+    readyState: overrides.readyState ?? 4,
+    paused: overrides.paused ?? true,
+    muted: overrides.muted ?? true,
+    metadataListenerRegisteredBeforeSourceChange: null,
+    get src() {
+      return src;
+    },
+    set src(value) {
+      this.metadataListenerRegisteredBeforeSourceChange = listeners.has('loadedmetadata');
+      src = value;
+      this.readyState = 0;
+    },
+    get currentTime() {
+      return currentTime;
+    },
+    set currentTime(value) {
+      currentTime = value;
+    },
+    addEventListener(event, listener, { once }) {
+      listeners.set(event, { listener, once });
+    },
+    emitLoadedMetadata() {
+      this.readyState = 1;
+      const registered = listeners.get('loadedmetadata');
+      registered?.listener();
+      if (registered?.once) listeners.delete('loadedmetadata');
+    },
+    load() {},
+    pause() {
+      this.paused = true;
+    },
+    async play() {
+      this.paused = false;
+    },
+  };
+}
+
 test('alignFollower corrects drift only beyond the threshold', () => {
   const master = media({ currentTime: 18 });
   const near = media({ currentTime: 17.8 });
@@ -98,4 +140,35 @@ test('captureCinemaSnapshot and restoreCinemaSnapshot preserve exact stage state
   assert.equal(video.muted, false);
   assert.equal(video.paused, false);
   assert.equal(stage.dataset.mediaAspect, 'portrait');
+});
+
+test('captureCinemaSnapshot and restoreCinemaSnapshot preserve a prior mirror failure', async () => {
+  const video = media({ src: 'cinema.mp4' });
+  const stage = { dataset: { mediaAspect: 'portrait', mirrorFailure: 'true' } };
+  const snapshot = captureCinemaSnapshot(video, stage);
+  delete stage.dataset.mirrorFailure;
+  await restoreCinemaSnapshot(video, stage, snapshot);
+  assert.equal(snapshot.mirrorFailure, 'true');
+  assert.equal(stage.dataset.mirrorFailure, 'true');
+});
+
+test('restoreCinemaSnapshot removes a lease-time mirror failure absent from the snapshot', async () => {
+  const video = media({ src: 'cinema.mp4' });
+  const stage = { dataset: { mediaAspect: 'portrait' } };
+  const snapshot = captureCinemaSnapshot(video, stage);
+  stage.dataset.mirrorFailure = 'true';
+  await restoreCinemaSnapshot(video, stage, snapshot);
+  assert.equal('mirrorFailure' in stage.dataset, false);
+});
+
+test('restoreCinemaSnapshot waits for changed-source metadata before seeking', async () => {
+  const video = eventCapableMedia({ src: 'lease-video.mp4', currentTime: 0, paused: true, muted: true });
+  const stage = { dataset: { mediaAspect: 'landscape' } };
+  const snapshot = { src: 'cinema.mp4', currentTime: 27.5, paused: true, muted: false, aspect: 'portrait', hasMirrorFailure: false };
+  const restoring = restoreCinemaSnapshot(video, stage, snapshot);
+  assert.equal(video.metadataListenerRegisteredBeforeSourceChange, true);
+  assert.equal(video.currentTime, 0);
+  video.emitLoadedMetadata();
+  await restoring;
+  assert.equal(video.currentTime, 27.5);
 });
