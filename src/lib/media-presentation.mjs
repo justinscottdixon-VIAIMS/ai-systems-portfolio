@@ -44,11 +44,65 @@ function captureFollowerSnapshot(follower) {
   };
 }
 
-async function restoreFollowerSnapshot(follower, snapshot) {
+const DEFAULT_FOLLOWER_METADATA_TIMEOUT_MS = 5_000;
+
+function waitForFollowerMetadata(follower, timeoutMs) {
+  let cancel;
+  const promise = new Promise((resolve) => {
+    let settled = false;
+    let timeoutId;
+    const finish = (result) => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timeoutId);
+      for (const [event, listener] of Object.entries(listeners)) {
+        follower.removeEventListener?.(event, listener);
+      }
+      resolve(result);
+    };
+    const listeners = {
+      loadedmetadata: () => finish('loadedmetadata'),
+      error: () => finish('error'),
+      abort: () => finish('abort'),
+    };
+    timeoutId = setTimeout(() => finish('timeout'), timeoutMs);
+    cancel = () => finish('cancelled');
+    for (const [event, listener] of Object.entries(listeners)) {
+      follower.addEventListener(event, listener);
+    }
+  });
+  return { promise, cancel };
+}
+
+function createFollowerRestoreContext() {
+  const cancellations = new Set();
+  return {
+    addCancellation(cancel) {
+      cancellations.add(cancel);
+    },
+    removeCancellation(cancel) {
+      cancellations.delete(cancel);
+    },
+    cancelPending() {
+      for (const cancel of cancellations) cancel();
+      cancellations.clear();
+    },
+  };
+}
+
+function clearFollowerSource(follower) {
+  follower.pause();
+  if (typeof follower.removeAttribute === 'function') follower.removeAttribute('src');
+  else follower.src = '';
+  follower.load?.();
+}
+
+async function restoreFollowerSnapshot(follower, snapshot, timeoutMs, context) {
   const sourceChanged = (follower.currentSrc || follower.src) !== snapshot.src;
-  const metadataReady = sourceChanged && snapshot.src && typeof follower.addEventListener === 'function'
-    ? new Promise((resolve) => follower.addEventListener('loadedmetadata', resolve, { once: true }))
-    : Promise.resolve();
+  const metadataWait = sourceChanged && snapshot.src && typeof follower.addEventListener === 'function'
+    ? waitForFollowerMetadata(follower, timeoutMs)
+    : null;
+  if (metadataWait) context.addCancellation(metadataWait.cancel);
   follower.pause();
   if (sourceChanged) {
     if (snapshot.src) follower.src = snapshot.src;
@@ -56,22 +110,27 @@ async function restoreFollowerSnapshot(follower, snapshot) {
     else follower.src = '';
     follower.load?.();
   }
-  await metadataReady;
+  const metadataResult = metadataWait ? await metadataWait.promise : 'loadedmetadata';
+  if (metadataWait) context.removeCancellation(metadataWait.cancel);
+  if (metadataResult !== 'loadedmetadata' && sourceChanged && snapshot.src) return false;
   follower.currentTime = snapshot.currentTime;
   follower.muted = snapshot.muted;
   follower.hidden = snapshot.hidden;
   if (!snapshot.paused) {
     try {
       await follower.play();
-    } catch {}
+    } catch {
+      return false;
+    }
   }
+  return true;
 }
 
 export function captureCinemaSnapshot(video, stage, id = null, followers = []) {
   return { id, src: video.currentSrc || video.src, currentTime: video.currentTime, paused: video.paused, muted: video.muted, aspect: stage.dataset.mediaAspect, hasMirrorFailure: Object.hasOwn(stage.dataset, 'mirrorFailure'), mirrorFailure: stage.dataset.mirrorFailure, followers: followers.map(captureFollowerSnapshot) };
 }
 
-export async function restoreCinemaSnapshot(video, stage, snapshot, followers = []) {
+export async function restoreCinemaSnapshot(video, stage, snapshot, followers = [], { followerMetadataTimeoutMs = DEFAULT_FOLLOWER_METADATA_TIMEOUT_MS } = {}) {
   const sourceChanged = (video.currentSrc || video.src) !== snapshot.src;
   const metadataReady = sourceChanged && typeof video.addEventListener === 'function'
     ? new Promise((resolve) => video.addEventListener('loadedmetadata', resolve, { once: true }))
@@ -85,8 +144,16 @@ export async function restoreCinemaSnapshot(video, stage, snapshot, followers = 
   video.currentTime = snapshot.currentTime;
   video.muted = snapshot.muted;
   stage.dataset.mediaAspect = snapshot.aspect;
-  await Promise.all(followers.map((follower, index) => restoreFollowerSnapshot(follower, snapshot.followers?.[index])));
-  if (snapshot.hasMirrorFailure) stage.dataset.mirrorFailure = snapshot.mirrorFailure;
+  const context = createFollowerRestoreContext();
+  const followerRestores = await Promise.all(followers.map(async (follower, index) => {
+    const restored = await restoreFollowerSnapshot(follower, snapshot.followers?.[index], followerMetadataTimeoutMs, context);
+    if (!restored) context.cancelPending();
+    return restored;
+  }));
+  if (followerRestores.some((restored) => !restored)) {
+    followers.forEach(clearFollowerSource);
+    stage.dataset.mirrorFailure = 'true';
+  } else if (snapshot.hasMirrorFailure) stage.dataset.mirrorFailure = snapshot.mirrorFailure;
   else delete stage.dataset.mirrorFailure;
   if (!snapshot.paused) await video.play();
 }
