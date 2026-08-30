@@ -118,6 +118,49 @@ function eventCapableFollower(overrides = {}) {
   return follower;
 }
 
+function sourceReplacingFollower(overrides = {}) {
+  const follower = eventCapableFollower(overrides);
+  let src = overrides.src ?? '';
+  let currentSrc = overrides.currentSrc ?? src;
+  Object.defineProperties(follower, {
+    src: {
+      configurable: true,
+      get() {
+        return src;
+      },
+      set(value) {
+        src = value;
+        this.emit('abort');
+      },
+    },
+    currentSrc: {
+      configurable: true,
+      get() {
+        return currentSrc;
+      },
+    },
+  });
+  follower.load = () => {
+    currentSrc = src;
+    follower.emit('loadedmetadata');
+  };
+  follower.useSource = (value) => {
+    src = value;
+    currentSrc = value;
+  };
+  return follower;
+}
+
+function synchronouslySettlingFollower(overrides = {}) {
+  const follower = eventCapableFollower(overrides);
+  const addEventListener = follower.addEventListener;
+  follower.addEventListener = (event, listener) => {
+    addEventListener(event, listener);
+    if (event === 'loadedmetadata') listener();
+  };
+  return follower;
+}
+
 async function settlesWithin(promise, timeoutMs) {
   return Promise.race([
     promise.then(() => true),
@@ -316,4 +359,36 @@ test('a follower metadata timeout isolates failed mirrors and resumes Cinema', a
   assert.equal(follower.listenerCount('loadedmetadata'), 0);
   assert.equal(follower.listenerCount('error'), 0);
   assert.equal(follower.listenerCount('abort'), 0);
+});
+
+test('an outgoing-source abort during follower replacement does not fail restored mirrors', async () => {
+  const video = media({ src: 'cinema.mp4', currentTime: 27.5, paused: false, muted: false });
+  const stage = { dataset: { mediaAspect: 'portrait' } };
+  const follower = sourceReplacingFollower({ src: 'cinema-wing.mp4', currentTime: 11.25, paused: false, muted: true, hidden: false });
+  const snapshot = captureCinemaSnapshot(video, stage, null, [follower]);
+  follower.useSource('lease-wing.mp4'); follower.currentTime = 0; follower.paused = true; follower.hidden = true;
+  await restoreCinemaSnapshot(video, stage, snapshot, [follower], { followerMetadataTimeoutMs: 20 });
+  assert.equal(video.paused, false);
+  assert.equal(follower.sourceRemoved, false);
+  assert.equal(follower.src, 'cinema-wing.mp4');
+  assert.equal(follower.currentSrc, 'cinema-wing.mp4');
+  assert.equal(follower.paused, false);
+  assert.equal('mirrorFailure' in stage.dataset, false);
+  assert.equal(follower.listenerCount('loadedmetadata'), 0);
+  assert.equal(follower.listenerCount('error'), 0);
+  assert.equal(follower.listenerCount('abort'), 0);
+});
+
+test('synchronous follower listener settlement leaves no later registrations behind', async () => {
+  const video = media({ src: 'cinema.mp4', currentTime: 27.5, paused: false, muted: false });
+  const stage = { dataset: { mediaAspect: 'portrait' } };
+  const follower = synchronouslySettlingFollower({ src: 'cinema-wing.mp4', currentTime: 11.25, paused: false, muted: true, hidden: false });
+  const snapshot = captureCinemaSnapshot(video, stage, null, [follower]);
+  follower.src = 'lease-wing.mp4'; follower.currentTime = 0; follower.paused = true; follower.hidden = true;
+  await restoreCinemaSnapshot(video, stage, snapshot, [follower], { followerMetadataTimeoutMs: 20 });
+  assert.equal(follower.listenerCount('loadedmetadata'), 0);
+  assert.equal(follower.listenerCount('error'), 0);
+  assert.equal(follower.listenerCount('abort'), 0);
+  assert.equal(video.paused, false);
+  assert.equal('mirrorFailure' in stage.dataset, false);
 });

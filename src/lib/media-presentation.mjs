@@ -46,16 +46,17 @@ function captureFollowerSnapshot(follower) {
 
 const DEFAULT_FOLLOWER_METADATA_TIMEOUT_MS = 5_000;
 
-function waitForFollowerMetadata(follower, timeoutMs) {
+function waitForFollowerMetadata(follower, restoredSrc, timeoutMs) {
   let cancel;
   const promise = new Promise((resolve) => {
     let settled = false;
     let timeoutId;
+    const registered = [];
     const finish = (result) => {
       if (settled) return;
       settled = true;
       clearTimeout(timeoutId);
-      for (const [event, listener] of Object.entries(listeners)) {
+      for (const [event, listener] of registered) {
         follower.removeEventListener?.(event, listener);
       }
       resolve(result);
@@ -63,13 +64,18 @@ function waitForFollowerMetadata(follower, timeoutMs) {
     const listeners = {
       loadedmetadata: () => finish('loadedmetadata'),
       error: () => finish('error'),
-      abort: () => finish('abort'),
+      abort: () => {
+        if (follower.currentSrc === restoredSrc) finish('abort');
+      },
     };
-    timeoutId = setTimeout(() => finish('timeout'), timeoutMs);
-    cancel = () => finish('cancelled');
     for (const [event, listener] of Object.entries(listeners)) {
+      if (settled) break;
       follower.addEventListener(event, listener);
+      registered.push([event, listener]);
+      if (settled) follower.removeEventListener?.(event, listener);
     }
+    if (!settled) timeoutId = setTimeout(() => finish('timeout'), timeoutMs);
+    cancel = () => finish('cancelled');
   });
   return { promise, cancel };
 }
@@ -100,7 +106,7 @@ function clearFollowerSource(follower) {
 async function restoreFollowerSnapshot(follower, snapshot, timeoutMs, context) {
   const sourceChanged = (follower.currentSrc || follower.src) !== snapshot.src;
   const metadataWait = sourceChanged && snapshot.src && typeof follower.addEventListener === 'function'
-    ? waitForFollowerMetadata(follower, timeoutMs)
+    ? waitForFollowerMetadata(follower, snapshot.src, timeoutMs)
     : null;
   if (metadataWait) context.addCancellation(metadataWait.cancel);
   follower.pause();
