@@ -497,10 +497,11 @@ export function captureCinemaSnapshot(video, stage, id = null) {
 export async function restoreCinemaSnapshot(video, stage, snapshot) {
   video.pause();
   video.src = snapshot.src;
+  const metadataReady = typeof video.readyState === 'number' && video.readyState < 1
+    ? new Promise((resolve) => video.addEventListener('loadedmetadata', resolve, { once: true }))
+    : Promise.resolve();
   video.load?.();
-  if (typeof video.readyState === 'number' && video.readyState < 1) {
-    await new Promise((resolve) => video.addEventListener('loadedmetadata', resolve, { once: true }));
-  }
+  await metadataReady;
   video.currentTime = snapshot.currentTime;
   video.muted = snapshot.muted;
   stage.dataset.mediaAspect = snapshot.aspect;
