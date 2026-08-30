@@ -36,6 +36,23 @@ test('shuffle preserves the current product and randomizes only upcoming items',
   assert.equal(shuffled.shuffle, true);
 });
 
+test('disabling shuffle restores natural order while preserving current product and cursor', () => {
+  const selected = selectMusicMode(createMusicQueue(tracks), 'b', 'audio');
+  const shuffled = toggleShuffle(selected, () => 0);
+  const natural = toggleShuffle(shuffled);
+  assert.equal(natural.shuffle, false);
+  assert.deepEqual(natural.order, ['a', 'b', 'c']);
+  assert.equal(natural.currentProductId, 'b');
+  assert.equal(natural.cursor, 1);
+});
+
+test('queue rejects duplicate Music product identities', () => {
+  assert.throws(
+    () => createMusicQueue([...tracks, { ...tracks[0] }]),
+    /duplicate Music product: a/,
+  );
+});
+
 test('Repeat Off ends, Repeat All wraps, and Repeat One retains the current product', () => {
   let queue = selectMusicMode(createMusicQueue(tracks), 'c', 'audio');
   assert.equal(advanceMusicQueue(queue, 1), null);

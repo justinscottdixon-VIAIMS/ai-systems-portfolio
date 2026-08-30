@@ -3,6 +3,11 @@ const REPEAT = new Set(['off', 'all', 'one']);
 function copy(queue, updates) { return { ...queue, ...updates, order: [...(updates.order ?? queue.order)] }; }
 
 export function createMusicQueue(items) {
+  const seen = new Set();
+  for (const item of items) {
+    if (seen.has(item.productId)) throw new TypeError(`duplicate Music product: ${item.productId}`);
+    seen.add(item.productId);
+  }
   const tracks = new Map(items.map((item) => [item.productId, item]));
   const order = items.map((item) => item.productId);
   return { tracks, order, cursor: 0, currentProductId: order[0] ?? null, mode: 'audio', shuffle: false, repeat: 'off' };
