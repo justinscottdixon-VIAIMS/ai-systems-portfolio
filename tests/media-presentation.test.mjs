@@ -2,9 +2,11 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
   alignFollower,
+  captureCinemaSnapshot,
   claimAudioBus,
   claimVideoBus,
   classifyMediaAspect,
+  restoreCinemaSnapshot,
   usesMirrorWings,
 } from '../src/lib/media-presentation.mjs';
 
@@ -83,4 +85,17 @@ test('claimVideoBus pauses audio before unmuting video', () => {
   assert.equal(audio.pauseCalls, 1);
   assert.equal(video.muted, false);
   assert.equal(video.paused, false);
+});
+
+test('captureCinemaSnapshot and restoreCinemaSnapshot preserve exact stage state', async () => {
+  const video = media({ src: 'cinema.mp4', currentTime: 27.5, paused: false, muted: false });
+  const stage = { dataset: { mediaAspect: 'portrait' } };
+  const snapshot = captureCinemaSnapshot(video, stage);
+  video.src = 'music-video.mp4'; video.currentTime = 0; video.paused = true; video.muted = true; stage.dataset.mediaAspect = 'landscape';
+  await restoreCinemaSnapshot(video, stage, snapshot);
+  assert.equal(video.src, 'cinema.mp4');
+  assert.equal(video.currentTime, 27.5);
+  assert.equal(video.muted, false);
+  assert.equal(video.paused, false);
+  assert.equal(stage.dataset.mediaAspect, 'portrait');
 });

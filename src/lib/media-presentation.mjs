@@ -33,3 +33,21 @@ export function claimVideoBus(video, audio) {
   if (!audio.paused) audio.pause();
   video.muted = false;
 }
+
+export function captureCinemaSnapshot(video, stage, id = null) {
+  return { id, src: video.currentSrc || video.src, currentTime: video.currentTime, paused: video.paused, muted: video.muted, aspect: stage.dataset.mediaAspect };
+}
+
+export async function restoreCinemaSnapshot(video, stage, snapshot) {
+  video.pause();
+  video.src = snapshot.src;
+  const metadataReady = typeof video.readyState === 'number' && video.readyState < 1
+    ? new Promise((resolve) => video.addEventListener('loadedmetadata', resolve, { once: true }))
+    : Promise.resolve();
+  video.load?.();
+  await metadataReady;
+  video.currentTime = snapshot.currentTime;
+  video.muted = snapshot.muted;
+  stage.dataset.mediaAspect = snapshot.aspect;
+  if (!snapshot.paused) await video.play();
+}
