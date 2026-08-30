@@ -34,11 +34,44 @@ export function claimVideoBus(video, audio) {
   video.muted = false;
 }
 
-export function captureCinemaSnapshot(video, stage, id = null) {
-  return { id, src: video.currentSrc || video.src, currentTime: video.currentTime, paused: video.paused, muted: video.muted, aspect: stage.dataset.mediaAspect, hasMirrorFailure: Object.hasOwn(stage.dataset, 'mirrorFailure'), mirrorFailure: stage.dataset.mirrorFailure };
+function captureFollowerSnapshot(follower) {
+  return {
+    src: follower.currentSrc || follower.src || null,
+    currentTime: follower.currentTime,
+    paused: follower.paused,
+    muted: follower.muted,
+    hidden: follower.hidden,
+  };
 }
 
-export async function restoreCinemaSnapshot(video, stage, snapshot) {
+async function restoreFollowerSnapshot(follower, snapshot) {
+  const sourceChanged = (follower.currentSrc || follower.src) !== snapshot.src;
+  const metadataReady = sourceChanged && snapshot.src && typeof follower.addEventListener === 'function'
+    ? new Promise((resolve) => follower.addEventListener('loadedmetadata', resolve, { once: true }))
+    : Promise.resolve();
+  follower.pause();
+  if (sourceChanged) {
+    if (snapshot.src) follower.src = snapshot.src;
+    else if (typeof follower.removeAttribute === 'function') follower.removeAttribute('src');
+    else follower.src = '';
+    follower.load?.();
+  }
+  await metadataReady;
+  follower.currentTime = snapshot.currentTime;
+  follower.muted = snapshot.muted;
+  follower.hidden = snapshot.hidden;
+  if (!snapshot.paused) {
+    try {
+      await follower.play();
+    } catch {}
+  }
+}
+
+export function captureCinemaSnapshot(video, stage, id = null, followers = []) {
+  return { id, src: video.currentSrc || video.src, currentTime: video.currentTime, paused: video.paused, muted: video.muted, aspect: stage.dataset.mediaAspect, hasMirrorFailure: Object.hasOwn(stage.dataset, 'mirrorFailure'), mirrorFailure: stage.dataset.mirrorFailure, followers: followers.map(captureFollowerSnapshot) };
+}
+
+export async function restoreCinemaSnapshot(video, stage, snapshot, followers = []) {
   const sourceChanged = (video.currentSrc || video.src) !== snapshot.src;
   const metadataReady = sourceChanged && typeof video.addEventListener === 'function'
     ? new Promise((resolve) => video.addEventListener('loadedmetadata', resolve, { once: true }))
@@ -52,6 +85,7 @@ export async function restoreCinemaSnapshot(video, stage, snapshot) {
   video.currentTime = snapshot.currentTime;
   video.muted = snapshot.muted;
   stage.dataset.mediaAspect = snapshot.aspect;
+  await Promise.all(followers.map((follower, index) => restoreFollowerSnapshot(follower, snapshot.followers?.[index])));
   if (snapshot.hasMirrorFailure) stage.dataset.mirrorFailure = snapshot.mirrorFailure;
   else delete stage.dataset.mirrorFailure;
   if (!snapshot.paused) await video.play();

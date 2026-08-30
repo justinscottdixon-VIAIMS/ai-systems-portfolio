@@ -87,6 +87,19 @@ function eventCapableMedia(overrides = {}) {
   };
 }
 
+function sourceManagedMedia(overrides = {}) {
+  return {
+    ...media(overrides),
+    sourceRemoved: false,
+    removeAttribute(attribute) {
+      if (attribute === 'src') {
+        this.sourceRemoved = true;
+        this.src = '';
+      }
+    },
+  };
+}
+
 test('alignFollower corrects drift only beyond the threshold', () => {
   const master = media({ currentTime: 18 });
   const near = media({ currentTime: 17.8 });
@@ -171,4 +184,66 @@ test('restoreCinemaSnapshot waits for changed-source metadata before seeking', a
   video.emitLoadedMetadata();
   await restoring;
   assert.equal(video.currentTime, 27.5);
+});
+
+test('captureCinemaSnapshot and restoreCinemaSnapshot preserve two active mirror followers', async () => {
+  const video = media({ src: 'cinema.mp4', currentTime: 27.5, paused: false, muted: false });
+  const stage = { dataset: { mediaAspect: 'portrait' } };
+  const followers = [
+    media({ src: 'left.mp4', currentTime: 11.25, paused: false, muted: true, hidden: false }),
+    media({ src: 'right.mp4', currentTime: 18.5, paused: false, muted: false, hidden: false }),
+  ];
+  const snapshot = captureCinemaSnapshot(video, stage, null, followers);
+  video.src = 'lease.mp4'; video.currentTime = 0; video.paused = true; video.muted = true;
+  for (const follower of followers) {
+    follower.src = 'lease-follower.mp4'; follower.currentTime = 0; follower.paused = true; follower.muted = true; follower.hidden = true;
+  }
+  await restoreCinemaSnapshot(video, stage, snapshot, followers);
+  assert.deepEqual(snapshot.followers, [
+    { src: 'left.mp4', currentTime: 11.25, paused: false, muted: true, hidden: false },
+    { src: 'right.mp4', currentTime: 18.5, paused: false, muted: false, hidden: false },
+  ]);
+  assert.deepEqual(followers.map(({ src, currentTime, paused, muted, hidden }) => ({ src, currentTime, paused, muted, hidden })), snapshot.followers);
+});
+
+test('restoreCinemaSnapshot returns failed hidden followers to their source-free snapshot', async () => {
+  const video = media({ src: 'cinema.mp4', currentTime: 27.5, paused: false, muted: false });
+  const stage = { dataset: { mediaAspect: 'portrait', mirrorFailure: 'true' } };
+  const followers = [
+    sourceManagedMedia({ src: '', currentTime: 0, paused: true, muted: true, hidden: true }),
+    sourceManagedMedia({ src: '', currentTime: 0, paused: true, muted: true, hidden: true }),
+  ];
+  const snapshot = captureCinemaSnapshot(video, stage, null, followers);
+  for (const follower of followers) {
+    follower.src = 'lease-follower.mp4'; follower.currentTime = 9; follower.paused = false; follower.muted = false; follower.hidden = false;
+  }
+  delete stage.dataset.mirrorFailure;
+  await restoreCinemaSnapshot(video, stage, snapshot, followers);
+  for (const follower of followers) {
+    assert.equal(follower.sourceRemoved, true);
+    assert.equal(follower.src, '');
+    assert.equal(follower.paused, true);
+    assert.equal(follower.hidden, true);
+  }
+  assert.equal(stage.dataset.mirrorFailure, 'true');
+});
+
+test('a follower play rejection does not prevent Cinema restoration', async () => {
+  const video = media({ src: 'cinema.mp4', currentTime: 27.5, paused: false, muted: false });
+  const stage = { dataset: { mediaAspect: 'portrait' } };
+  const follower = media({
+    src: 'left.mp4', currentTime: 11.25, paused: false, muted: true, hidden: false,
+    async play() {
+      this.playCalls += 1;
+      throw new Error('decorative autoplay denied');
+    },
+  });
+  const snapshot = captureCinemaSnapshot(video, stage, null, [follower]);
+  video.src = 'lease.mp4'; video.currentTime = 0; video.paused = true; video.muted = true;
+  follower.src = 'lease-follower.mp4'; follower.currentTime = 0; follower.paused = true; follower.muted = false; follower.hidden = true;
+  await assert.doesNotReject(() => restoreCinemaSnapshot(video, stage, snapshot, [follower]));
+  assert.equal(video.src, 'cinema.mp4');
+  assert.equal(video.currentTime, 27.5);
+  assert.equal(video.paused, false);
+  assert.equal(follower.playCalls, 1);
 });
