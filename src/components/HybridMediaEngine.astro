@@ -1,34 +1,47 @@
 ---
 import { toPlaylists } from '../lib/media-manifest.mjs';
+import '../styles/hybrid-media-engine.css';
 
 const { manifest } = Astro.props;
 const { videoPlaylist, audioPlaylist } = toPlaylists(manifest);
 ---
 
-<div class="space-y-8">
-	<div id="master-stage-container" class="relative w-full h-[540px] bg-black border border-zinc-800 overflow-hidden flex items-center justify-center group shadow-2xl transition-all duration-500">
-		<video 
-			id="bg-video-blur" 
-			src={videoPlaylist[0].src} 
-			autoplay 
-			loop 
-			muted 
-			playsinline 
+<div class="space-y-8" data-hybrid-media-engine>
+	<div id="master-stage-container" class="media-stage" data-media-aspect="unknown">
+		<div class="media-wing-shell media-wing-shell--left" aria-hidden="true">
+			<video
+				id="mirror-wing-left"
+				class="media-wing media-wing--left"
+				muted
+				playsinline
+				preload="none"
+				tabindex="-1"
+				aria-hidden="true"
+			></video>
+		</div>
+		<div class="media-wing-shell media-wing-shell--right" aria-hidden="true">
+			<video
+				id="mirror-wing-right"
+				class="media-wing media-wing--right"
+				muted
+				playsinline
+				preload="none"
+				tabindex="-1"
+				aria-hidden="true"
+			></video>
+		</div>
+		<div class="media-stage-vignette" aria-hidden="true"></div>
+		<video
+			id="master-video"
+			src={videoPlaylist[0].src}
+			autoplay
+			muted
+			playsinline
 			preload="metadata"
-			class="absolute inset-0 w-full h-full object-cover blur-[64px] opacity-45 brightness-115 scale-110 pointer-events-none transition-all duration-500"
+			class="media-master"
 		></video>
 
-		<video 
-			id="master-video" 
-			src={videoPlaylist[0].src} 
-			autoplay 
-			muted 
-			playsinline 
-			preload="metadata"
-			class="relative z-10 max-h-full max-w-full h-full w-auto object-contain transition-all duration-300"
-		></video>
-
-		<button id="master-mute-btn" class="absolute bottom-4 right-4 z-20 bg-black/80 hover:bg-zinc-900 border border-zinc-700 text-zinc-300 text-[11px] font-mono px-3 py-1.5 flex items-center gap-2 transition-colors">
+		<button id="master-mute-btn" class="media-mute-control absolute bottom-4 right-4 z-20 bg-black/80 hover:bg-zinc-900 border border-zinc-700 text-zinc-300 text-[11px] font-mono px-3 py-1.5 flex items-center gap-2 transition-colors">
 			<span id="mute-led" class="w-2 h-2 rounded-full bg-red-500"></span>
 			<span id="mute-label">VIDEO AUDIO MUTED</span>
 		</button>
@@ -67,6 +80,9 @@ const { videoPlaylist, audioPlaylist } = toPlaylists(manifest);
 					{videoPlaylist.map((v, i) => (
 						<button 
 							data-v-idx={i}
+							data-v-src={v.src}
+							data-v-title={v.title}
+							data-v-specs={v.specs}
 							class="video-cue-btn text-left px-3 py-2 text-xs font-mono border border-zinc-900 bg-zinc-900/30 hover:border-zinc-700 flex justify-between items-center transition-colors"
 						>
 							<span class="text-zinc-300 truncate pr-2">{v.title}</span>
@@ -113,6 +129,9 @@ const { videoPlaylist, audioPlaylist } = toPlaylists(manifest);
 					{audioPlaylist.map((a, idx) => (
 						<button 
 							data-a-idx={idx}
+							data-a-src={a.src}
+							data-a-title={a.title}
+							data-a-specs={a.specs}
 							class="audio-cue-btn text-left px-3 py-1.5 text-xs font-mono border border-zinc-900 bg-zinc-900/30 hover:border-zinc-700 flex justify-between items-center transition-colors"
 						>
 							<span class="text-zinc-400 truncate pr-2">{a.title}</span>
@@ -179,10 +198,33 @@ const { videoPlaylist, audioPlaylist } = toPlaylists(manifest);
 	</div>
 </div>
 
-<script define:vars={{ videoPlaylist, audioPlaylist }}>
+<script>
+	import {
+		alignFollower,
+		classifyMediaAspect,
+		usesMirrorWings,
+	} from '../lib/media-presentation.mjs';
+
+	const root = document.querySelector('[data-hybrid-media-engine]');
+	const stage = root.querySelector('#master-stage-container');
+	const mv = root.querySelector('#master-video');
+	const wingLeft = root.querySelector('#mirror-wing-left');
+	const wingRight = root.querySelector('#mirror-wing-right');
+	const wings = [wingLeft, wingRight];
+	const videoCueBtns = [...root.querySelectorAll('.video-cue-btn')];
+	const audioCueBtns = [...root.querySelectorAll('.audio-cue-btn')];
+	const videoPlaylist = videoCueBtns.map((button) => ({
+		src: button.dataset.vSrc,
+		title: button.dataset.vTitle,
+		specs: button.dataset.vSpecs,
+	}));
+	const audioPlaylist = audioCueBtns.map((button) => ({
+		src: button.dataset.aSrc,
+		title: button.dataset.aTitle,
+		specs: button.dataset.aSpecs,
+	}));
+
 	// Video Elements
-	const mv = document.getElementById('master-video');
-	const bgv = document.getElementById('bg-video-blur');
 	const muteBtn = document.getElementById('master-mute-btn');
 	const muteLed = document.getElementById('mute-led');
 	const muteLabel = document.getElementById('mute-label');
@@ -196,8 +238,6 @@ const { videoPlaylist, audioPlaylist } = toPlaylists(manifest);
 	const vidDur = document.getElementById('vid-duration');
 	const vidTitle = document.getElementById('vid-title-display');
 	const vidSpecs = document.getElementById('vid-specs-display');
-	const videoCueBtns = document.querySelectorAll('.video-cue-btn');
-
 	// DSP Audio Elements
 	const dspAudio = document.getElementById('dsp-audio');
 	const dspPlayBtn = document.getElementById('dsp-play');
@@ -210,8 +250,6 @@ const { videoPlaylist, audioPlaylist } = toPlaylists(manifest);
 	const dspDur = document.getElementById('dsp-duration');
 	const dspTitle = document.getElementById('audio-title-display');
 	const dspSpecs = document.getElementById('audio-specs-display');
-	const audioCueBtns = document.querySelectorAll('.audio-cue-btn');
-
 	let currentVidIdx = 0;
 	let currentAudIdx = 0;
 
@@ -224,27 +262,95 @@ const { videoPlaylist, audioPlaylist } = toPlaylists(manifest);
 
 	mv.addEventListener('loadedmetadata', () => {
 		vidDur.textContent = formatTime(mv.duration);
+		applyMediaAspect();
 	});
 
-	// Frame & Playback Sync between Master and Gaussian Backdrop
-	function syncBackdrop() {
-		if (Math.abs(bgv.currentTime - mv.currentTime) > 0.3) {
-			bgv.currentTime = mv.currentTime;
+	function hideMirrorWings() {
+		for (const wing of wings) {
+			wing.pause();
+			wing.removeAttribute('src');
+			wing.load();
 		}
 	}
+
+	async function activateMirrorWings() {
+		for (const wing of wings) {
+			wing.src = mv.currentSrc || mv.src;
+			wing.currentTime = mv.currentTime;
+		}
+		if (!mv.paused) await playMirrorWings();
+	}
+
+	async function playMirrorWings() {
+		try {
+			await Promise.all(activeMirrorWings().map((wing) => wing.play()));
+		} catch {
+			stage.dataset.mirrorFailure = 'true';
+			hideMirrorWings();
+		}
+	}
+
+	function pauseMirrorWings() {
+		for (const wing of activeMirrorWings()) wing.pause();
+	}
+
+	function applyMediaAspect() {
+		const aspect = classifyMediaAspect(mv.videoWidth, mv.videoHeight);
+		stage.dataset.mediaAspect = aspect;
+		delete stage.dataset.mirrorFailure;
+		if (usesMirrorWings(aspect) && !matchMedia('(max-width: 767px)').matches && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+			void activateMirrorWings();
+		} else {
+			hideMirrorWings();
+		}
+	}
+
+	function alignMirrorWings() {
+		for (const wing of wings) alignFollower(mv, wing, 0.3);
+	}
+
+	function activeMirrorWings() {
+		return usesMirrorWings(stage.dataset.mediaAspect)
+			? wings.filter((wing) => Boolean(wing.currentSrc || wing.src))
+			: [];
+	}
+
+	async function playVideoStack() {
+		const results = await Promise.allSettled([
+			mv.play(),
+			...activeMirrorWings().map((wing) => wing.play()),
+		]);
+		if (results[0].status === 'rejected') throw results[0].reason;
+	}
+
+	function pauseVideoStack() {
+		mv.pause();
+		for (const wing of activeMirrorWings()) wing.pause();
+	}
+
+	function setVideoTime(target) {
+		mv.currentTime = target;
+		for (const wing of activeMirrorWings()) wing.currentTime = target;
+	}
+
+	mv.addEventListener('play', () => {
+		void playMirrorWings();
+	});
+
+	mv.addEventListener('pause', () => {
+		pauseMirrorWings();
+	});
 
 	function switchVideo(idx, playImmediate = true) {
 		if (!videoPlaylist.length) return;
 		currentVidIdx = (idx + videoPlaylist.length) % videoPlaylist.length;
 		const track = videoPlaylist[currentVidIdx];
 		mv.src = track.src;
-		bgv.src = track.src;
 		vidTitle.textContent = track.title;
 		vidSpecs.textContent = track.specs;
 
 		if (playImmediate) {
-			mv.play();
-			bgv.play();
+			void playVideoStack();
 			vidPlayBtn.textContent = 'PAUSE';
 		}
 
@@ -263,26 +369,23 @@ const { videoPlaylist, audioPlaylist } = toPlaylists(manifest);
 		if (!isNaN(mv.duration)) {
 			vidSeek.value = (mv.currentTime / mv.duration) * 100;
 			vidCur.textContent = formatTime(mv.currentTime);
-			syncBackdrop();
+			alignMirrorWings();
 		}
 	});
 
 	vidSeek.addEventListener('input', () => {
 		if (!isNaN(mv.duration)) {
 			const target = (vidSeek.value / 100) * mv.duration;
-			mv.currentTime = target;
-			bgv.currentTime = target;
+			setVideoTime(target);
 		}
 	});
 
 	vidPlayBtn.addEventListener('click', () => {
 		if (mv.paused) {
-			mv.play();
-			bgv.play();
+			void playVideoStack();
 			vidPlayBtn.textContent = 'PAUSE';
 		} else {
-			mv.pause();
-			bgv.pause();
+			pauseVideoStack();
 			vidPlayBtn.textContent = 'PLAY';
 		}
 	});
@@ -291,13 +394,11 @@ const { videoPlaylist, audioPlaylist } = toPlaylists(manifest);
 	vidNextBtn.addEventListener('click', () => switchVideo(currentVidIdx + 1, true));
 	vidRewind10.addEventListener('click', () => { 
 		const t = Math.max(0, mv.currentTime - 10);
-		mv.currentTime = t;
-		bgv.currentTime = t;
+		setVideoTime(t);
 	});
 	vidForward10.addEventListener('click', () => { 
 		const t = Math.min(mv.duration, mv.currentTime + 10);
-		mv.currentTime = t;
-		bgv.currentTime = t;
+		setVideoTime(t);
 	});
 
 	videoCueBtns.forEach(b => {

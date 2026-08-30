@@ -1,0 +1,114 @@
+.media-stage {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: clamp(33.75rem, 42vw, 45rem);
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1px solid rgb(39 39 42);
+  background: #000;
+  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.75);
+  transition: height 500ms ease;
+}
+
+.media-master {
+  position: relative;
+  z-index: 10;
+  width: auto;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.media-wing-shell {
+  position: absolute;
+  inset-block: 0;
+  width: 50%;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 500ms ease;
+}
+
+.media-wing-shell--left {
+  left: 0;
+  mask-image: linear-gradient(to right, rgb(0 0 0 / 0.75), #000 65%, transparent 100%);
+}
+
+.media-wing-shell--right {
+  right: 0;
+  mask-image: linear-gradient(to left, rgb(0 0 0 / 0.75), #000 65%, transparent 100%);
+}
+
+.media-wing {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(8px) saturate(0.6) brightness(0.42);
+  transform: scale(1.08);
+  pointer-events: none;
+}
+
+.media-wing--left {
+  transform: scaleX(-1) scale(1.08);
+}
+
+.media-stage[data-media-aspect="portrait"] .media-wing-shell,
+.media-stage[data-media-aspect="square"] .media-wing-shell {
+  opacity: 1;
+}
+
+.media-stage[data-media-aspect="landscape"] .media-wing-shell,
+.media-stage[data-media-aspect="unknown"] .media-wing-shell {
+  opacity: 0;
+}
+
+.media-stage-vignette {
+  position: absolute;
+  z-index: 4;
+  inset: 0;
+  background: linear-gradient(90deg, rgb(0 0 0 / 0.55), transparent 25% 75%, rgb(0 0 0 / 0.55));
+  pointer-events: none;
+}
+
+@media (min-width: 768px) and (max-width: 1279px) {
+  .media-stage {
+    height: clamp(28rem, 60vw, 36rem);
+  }
+
+  .media-stage[data-media-aspect="portrait"] .media-wing-shell,
+  .media-stage[data-media-aspect="square"] .media-wing-shell {
+    opacity: 0.55;
+  }
+}
+
+@media (max-width: 767px) {
+  .media-stage[data-media-aspect="portrait"],
+  .media-stage[data-media-aspect="square"],
+  .media-stage[data-media-aspect="unknown"] {
+    height: min(70svh, 40rem);
+  }
+
+  .media-stage[data-media-aspect="landscape"] {
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
+
+  .media-wing-shell,
+  .media-stage-vignette {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .media-stage,
+  .media-wing-shell {
+    transition: none;
+  }
+
+  .media-wing {
+    visibility: hidden;
+  }
+}
