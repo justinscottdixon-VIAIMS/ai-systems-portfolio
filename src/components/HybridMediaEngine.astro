@@ -1,307 +1,692 @@
 ---
-import { toPlaylists } from '../lib/media-manifest.mjs';
+import { toMediaLibrary } from '../lib/media-library.mjs';
+import curatedMedia from '../data/curated-media.json';
 import '../styles/hybrid-media-engine.css';
 
 const { manifest } = Astro.props;
-const { videoPlaylist, audioPlaylist } = toPlaylists(manifest);
+const library = toMediaLibrary(manifest, curatedMedia);
+const [firstCinema] = library.cinema;
+const [firstMusic] = library.music;
 ---
 
-<div class="space-y-8" data-hybrid-media-engine>
-	<div id="master-stage-container" class="media-stage" data-media-aspect="unknown">
+<div class="space-y-8" data-hybrid-media-engine data-entry-enabled={String(library.experience.enabled)}>
+	<div class="fullscreen-shell" data-fullscreen-shell data-fullscreen-mode="inline" data-controls-visible="true">
+	<div
+		id="master-stage-container"
+		class="media-stage"
+		data-media-aspect="unknown"
+		data-stage-provider={library.experience.enabled ? 'welcome' : 'cinema'}
+		data-mirror-wings="off"
+		data-visual-owner="cinema"
+		data-visual-tag=""
+		data-visual-transition="none"
+	>
 		<div class="media-wing-shell media-wing-shell--left" aria-hidden="true">
-			<video
-				id="mirror-wing-left"
-				class="media-wing media-wing--left"
-				muted
-				playsinline
-				preload="none"
-				tabindex="-1"
-				aria-hidden="true"
-			></video>
+			<video id="mirror-wing-left" class="media-wing media-wing--left" muted playsinline preload="none" tabindex="-1" aria-hidden="true"></video>
 		</div>
 		<div class="media-wing-shell media-wing-shell--right" aria-hidden="true">
-			<video
-				id="mirror-wing-right"
-				class="media-wing media-wing--right"
-				muted
-				playsinline
-				preload="none"
-				tabindex="-1"
-				aria-hidden="true"
-			></video>
+			<video id="mirror-wing-right" class="media-wing media-wing--right" muted playsinline preload="none" tabindex="-1" aria-hidden="true"></video>
 		</div>
 		<div class="media-stage-vignette" aria-hidden="true"></div>
-		<video
-			id="master-video"
-			src={videoPlaylist[0].src}
-			autoplay
-			muted
-			playsinline
-			preload="metadata"
-			class="media-master"
-		></video>
-
-		<button id="master-mute-btn" class="media-mute-control absolute bottom-4 right-4 z-20 bg-black/80 hover:bg-zinc-900 border border-zinc-700 text-zinc-300 text-[11px] font-mono px-3 py-1.5 flex items-center gap-2 transition-colors">
-			<span id="mute-led" class="w-2 h-2 rounded-full bg-red-500"></span>
-			<span id="mute-label">VIDEO AUDIO MUTED</span>
+		{library.experience.enabled && (
+			<div id="experience-entry-gate" class="experience-entry-gate">
+				<button id="enter-viaims-experience" type="button">
+					CLICK TO ENTER THE VIAIMS EXPERIENCE
+				</button>
+			</div>
+		)}
+		<video id="master-video" src={library.experience.enabled ? library.experience.welcomeVideoSrc : firstCinema?.src ?? ''} autoplay={!library.experience.enabled} muted playsinline preload="metadata" class="media-master"></video>
+		<video id="music-visual-video" muted playsinline loop preload="metadata" aria-hidden="true" class="music-visual-video"></video>
+		<audio id="ambient-audio" src={library.experience.ambientAudioSrc ?? ''} loop preload="metadata"></audio>
+		<button id="cinema-audio-invitation" type="button" class="cinema-audio-invitation" data-cinema-audio-invitation disabled={library.experience.enabled || !firstCinema} aria-disabled={String(library.experience.enabled || !firstCinema)} aria-pressed="false">
+			<span aria-hidden="true" class="cinema-audio-invitation__wave"></span>
+			<span id="cinema-audio-label">HEAR CINEMA</span>
 		</button>
+		<button id="retry-cinema" type="button" class="cinema-retry" hidden disabled aria-disabled="true">RETRY CINEMA</button>
+	</div>
+		<div class="fullscreen-overlay" data-fullscreen-overlay aria-label="Fullscreen media transport">
+			<div class="fullscreen-overlay__header">
+				<strong id="fullscreen-title">{firstCinema?.title ?? 'No Media Loaded'}</strong>
+				<button id="exit-fullscreen" type="button" aria-label="Exit fullscreen">CLOSE</button>
+			</div>
+			<div class="fullscreen-overlay__transport">
+				<button id="fullscreen-prev" type="button" aria-label="Previous fullscreen item">⏮</button>
+				<button id="fullscreen-play" type="button" aria-label="Play fullscreen item">PLAY</button>
+				<button id="fullscreen-next" type="button" aria-label="Next fullscreen item">⏭</button>
+				<button id="fullscreen-mute" type="button" aria-label="Mute active item" aria-pressed="false">MUTE</button>
+				<span><output id="fullscreen-elapsed">--:--</output> / <output id="fullscreen-remaining">--:--</output></span>
+			</div>
+		</div>
 	</div>
 
-	<section data-mastering-console class="mastering-console" aria-labelledby="mastering-console-title">
-		<div class="mastering-console__header">
-			<div>
-				<p class="mastering-console__eyebrow">02 / Spatial DSP Master</p>
-				<h2 id="mastering-console-title" class="mastering-console__title">
-					<span id="audio-title-display">{audioPlaylist[0].title}</span>
-				</h2>
-				<p id="audio-specs-display" class="mastering-console__specs">{audioPlaylist[0].specs}</p>
+	<audio id="music-audio" src={firstMusic?.audioSrc ?? ''} preload="metadata"></audio>
+
+	<section data-player-dock class="player-dock" aria-label="VIAIMS media player">
+		<div class="media-library__tabs" role="tablist" aria-label="Media Library" data-player-tabs>
+			<button id="tab-cinema" type="button" role="tab" aria-selected="true" aria-controls="panel-cinema" tabindex="0" data-media-tab="cinema">CINEMA</button>
+			<button id="tab-music" type="button" role="tab" aria-selected="false" aria-controls="panel-music" tabindex="-1" data-media-tab="music">MUSIC</button>
+			<button id="tab-media" type="button" role="tab" aria-selected="false" aria-controls="panel-media" tabindex="-1" data-media-tab="media">MEDIA</button>
+			<button id="tab-youtube" type="button" role="tab" aria-selected="false" aria-controls="panel-youtube" tabindex="-1" data-media-tab="youtube">YOUTUBE</button>
+		</div>
+		<div class="player-dock__command" data-player-command-strip>
+			<div class="player-dock__identity">
+				<span id="active-source-kind">CINEMA</span>
+				<strong id="now-playing-title">{firstCinema?.title ?? 'No Media Loaded'}</strong>
+				<span id="now-playing-status" aria-live="polite">{library.experience.enabled ? 'AWAITING VISITOR ENTRY' : 'CINEMA READY'}</span>
 			</div>
-			<span class="mastering-console__format">LOSSLESS · NATIVE PCM</span>
+			<div class="player-dock__transport" aria-label="Active source transport">
+				<button id="active-prev" type="button" aria-label="Previous active item" disabled={library.experience.enabled || !firstCinema} aria-disabled={String(library.experience.enabled || !firstCinema)}>⏮</button>
+				<button id="active-play" type="button" aria-label="Play active item" disabled={library.experience.enabled || !firstCinema} aria-disabled={String(library.experience.enabled || !firstCinema)}>PLAY</button>
+				<button id="active-next" type="button" aria-label="Next active item" disabled={library.experience.enabled || !firstCinema} aria-disabled={String(library.experience.enabled || !firstCinema)}>⏭</button>
+				<button id="music-shuffle" type="button" aria-pressed="false" disabled aria-disabled="true">SHUFFLE</button>
+				<button id="music-repeat" type="button" data-repeat="off" disabled aria-disabled="true">REPEAT OFF</button>
+				<button id="return-to-cinema" type="button" hidden disabled={library.experience.enabled} aria-disabled={String(library.experience.enabled)}>RETURN TO CINEMA</button>
+				<label class="player-dock__seek"><output id="active-elapsed">--:--</output><input id="active-seek" type="range" min="0" max="0" step="0.01" value="0" aria-label="Seek active item" disabled /><output id="active-remaining">--:--</output></label>
+				<button id="enter-fullscreen" type="button" aria-label="Enter fullscreen player" disabled aria-disabled="true">FULLSCREEN</button>
+			</div>
 		</div>
-
-		<div class="mastering-console__timeline">
-			<span id="dsp-current">00:00</span>
-			<input type="range" id="dsp-seek" value="0" min="0" max="100" aria-label="Audio master position" />
-			<span id="dsp-duration">--:--</span>
+		<div class="player-dock__status" data-player-status-strip>
+			<div class="engineering-meters" data-meter-status="pending" aria-label="Stereo engineering meters">
+				<span id="meter-status">METERS PENDING</span>
+				<div data-meter-channel="left"><span>L</span><meter id="meter-l" aria-label="Left channel level" min="-60" max="0" value="-60"></meter><output id="meter-l-value">−∞</output><span id="clip-l">CLIP</span></div>
+				<div data-meter-channel="right"><span>R</span><meter id="meter-r" aria-label="Right channel level" min="-60" max="0" value="-60"></meter><output id="meter-r-value">−∞</output><span id="clip-r">CLIP</span></div>
+			</div>
+			<div class="player-dock__commerce"><span>CART</span><output id="cart-count">0</output></div>
 		</div>
-
-		<div class="mastering-console__transport" aria-label="Audio master transport">
-			<button id="dsp-prev" aria-label="Previous audio master">⏮</button>
-			<button id="dsp-rewind-10" aria-label="Rewind audio master 10 seconds">−10s</button>
-			<button id="dsp-play" class="mastering-console__play">PLAY MASTER</button>
-			<button id="dsp-forward-10" aria-label="Advance audio master 10 seconds">+10s</button>
-			<button id="dsp-next" aria-label="Next audio master">⏭</button>
+		<div class="player-dock__tray" data-provider-tray>
+			<div id="panel-cinema" role="tabpanel" aria-labelledby="tab-cinema" data-provider-panel="cinema">
+				<div class="media-library__scroll-shell">
+					<div id="playlist-cinema" class="media-library__items">
+						{library.cinema.map((item, index) => (
+							<button type="button" class="cinema-cue" data-media-aspect={item.aspect ?? 'unknown'} data-cinema-index={index} data-cinema-id={item.id} data-cinema-src={item.src} data-cinema-title={item.title} data-cinema-specs={item.specs} disabled={library.experience.enabled} aria-disabled={String(library.experience.enabled)} aria-current={index === 0 ? 'true' : 'false'}>
+								<span>{item.title}</span><span>{item.specs}</span>
+							</button>
+						))}
+					</div>
+					<div class="playlist-scroll-rail" data-playlist-scroll-rail role="scrollbar" aria-label="Scroll Cinema playlist" aria-controls="playlist-cinema" aria-orientation="vertical" aria-valuemin="0" aria-valuenow="0" aria-valuemax="0" aria-disabled="true" tabindex="-1"><span data-playlist-scroll-thumb></span></div>
+				</div>
+			</div>
+			<div id="panel-music" role="tabpanel" aria-labelledby="tab-music" data-provider-panel="music" hidden>
+				<div class="media-library__scroll-shell">
+					<div id="playlist-music" class="media-library__items">
+						{library.music.map((item) => (
+							<article class="music-product" data-product-id={item.productId} data-audio-src={item.audioSrc} data-video-src={item.videoSrc ?? ''} data-video-aspect={item.videoAspect ?? 'unknown'} data-visual-tag={item.visual?.tag ?? ''} data-visual-src={item.visual?.src ?? ''} data-visual-aspect={item.visual?.aspect ?? 'unknown'} data-title={item.title} data-specs={item.specs} data-store-href={item.storeHref} aria-current="false">
+								<div class="music-product__identity"><strong>{item.title}</strong><span>{item.specs}</span></div>
+								<div class="music-product__actions">
+									<button type="button" data-music-mode="audio" data-product-id={item.productId} aria-label={`Play ${item.title}`} disabled={library.experience.enabled} aria-disabled={String(library.experience.enabled)}>PLAY</button>
+									{item.videoSrc && <button type="button" data-music-mode="video" data-media-aspect={item.videoAspect ?? 'unknown'} data-product-id={item.productId} aria-label={`Play ${item.title} video`} disabled={library.experience.enabled} aria-disabled={String(library.experience.enabled)}>VIDEO</button>}
+								</div>
+							</article>
+						))}
+					</div>
+					<div class="playlist-scroll-rail" data-playlist-scroll-rail role="scrollbar" aria-label="Scroll Music playlist" aria-controls="playlist-music" aria-orientation="vertical" aria-valuemin="0" aria-valuenow="0" aria-valuemax="0" aria-disabled="true" tabindex="-1"><span data-playlist-scroll-thumb></span></div>
+				</div>
+				<button id="buy-license" type="button" data-product-id={firstMusic?.productId ?? ''} data-store-href={firstMusic?.storeHref ?? ''} disabled aria-disabled="true">BUY / LICENSE · STORE PENDING</button>
+			</div>
+			<div id="panel-media" role="tabpanel" aria-labelledby="tab-media" data-provider-panel="media" hidden>
+				{library.media.length === 0
+					? <p class="media-library__empty">No owned Media published</p>
+					: <div class="media-library__scroll-shell"><div id="playlist-media" class="media-library__items">{library.media.map((item) => <button type="button" class="media-cue" data-media-aspect={item.aspect} data-media-id={item.id} data-media-src={item.src} data-media-title={item.title} disabled={library.experience.enabled} aria-disabled={String(library.experience.enabled)} aria-current="false">{item.title}</button>)}</div><div class="playlist-scroll-rail" data-playlist-scroll-rail role="scrollbar" aria-label="Scroll Media playlist" aria-controls="playlist-media" aria-orientation="vertical" aria-valuemin="0" aria-valuenow="0" aria-valuemax="0" aria-disabled="true" tabindex="-1"><span data-playlist-scroll-thumb></span></div></div>}
+			</div>
+			<div id="panel-youtube" role="tabpanel" aria-labelledby="tab-youtube" data-provider-panel="youtube" hidden>
+				{library.youtubeChannel && (
+					<a
+						class="youtube-channel"
+						href={library.youtubeChannel.href}
+						target="_blank"
+						rel="noopener noreferrer"
+						aria-label={`Open ${library.youtubeChannel.title} on YouTube`}
+					>
+						<strong>{library.youtubeChannel.title}</strong>
+						<span>{library.youtubeChannel.handle} · OPEN CHANNEL ↗</span>
+					</a>
+				)}
+				{library.youtube.length === 0
+					? <p class="media-library__empty">No YouTube selections published</p>
+					: <div class="media-library__scroll-shell"><div id="playlist-youtube" class="media-library__items">{library.youtube.map((item) => <button type="button" class="youtube-cue" data-youtube-id={item.id} data-youtube-video-id={item.videoId} aria-current="false">{item.title}</button>)}</div><div class="playlist-scroll-rail" data-playlist-scroll-rail role="scrollbar" aria-label="Scroll YouTube playlist" aria-controls="playlist-youtube" aria-orientation="vertical" aria-valuemin="0" aria-valuenow="0" aria-valuemax="0" aria-disabled="true" tabindex="-1"><span data-playlist-scroll-thumb></span></div></div>}
+				<div id="youtube-source-card" hidden><span>YouTube Presentation</span><button id="present-youtube" type="button" disabled>PRESENT SELECTED VIDEO</button></div>
+				<div id="youtube-player-host" hidden></div>
+				<span class="media-library__external">External Source · Metering Unavailable</span>
+			</div>
 		</div>
-
-		<div class="mastering-console__state">
-			<span id="audio-bus-status" aria-live="polite">AUDIO MASTER READY</span>
-			<span id="video-bus-status">VIDEO MOTION LIVE · VIDEO AUDIO MUTED</span>
-		</div>
-
-		<div id="audio-queue-preview" class="mastering-console__queue" aria-label="Audio queue preview"></div>
-		<audio id="dsp-audio" src={audioPlaylist[0].src} preload="metadata"></audio>
 	</section>
 
-	<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch" data-operational-deck>
-		<div class="border border-zinc-800/80 bg-zinc-950/60 p-5 flex flex-col justify-between" data-module="visual">
-			<div>
-				<div class="flex justify-between items-center mb-3 pb-2 border-b border-zinc-900">
-					<span class="text-xs font-mono font-bold uppercase text-white">01 / Visual Systems</span>
-					<span class="text-[10px] font-mono text-cyan-400">AUTO-SCANNED</span>
-				</div>
-
-				<div class="mb-3">
-					<h4 id="vid-title-display" class="text-xs font-mono uppercase text-white truncate">{videoPlaylist[0].title}</h4>
-					<p id="vid-specs-display" class="text-[11px] font-mono text-zinc-500 truncate">{videoPlaylist[0].specs}</p>
-				</div>
-
-				<div class="space-y-1 mb-3">
-					<input type="range" id="vid-seek" value="0" min="0" max="100" class="w-full h-1 bg-zinc-800 appearance-none cursor-pointer accent-zinc-200" />
-					<div class="flex justify-between text-[10px] font-mono text-zinc-500">
-						<span id="vid-current">00:00</span>
-						<span id="vid-duration">--:--</span>
-					</div>
-				</div>
-				
-				<div class="flex items-center gap-1.5 mb-4">
-					<button id="vid-prev" class="px-2 py-1 text-xs font-mono bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border border-zinc-800">⏮</button>
-					<button id="vid-rewind-10" class="px-2 py-1 text-xs font-mono bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border border-zinc-800">-10s</button>
-					<button id="vid-play" class="flex-1 py-1 text-xs font-mono bg-zinc-100 hover:bg-white text-black font-bold">PAUSE</button>
-					<button id="vid-forward-10" class="px-2 py-1 text-xs font-mono bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border border-zinc-800">+10s</button>
-					<button id="vid-next" class="px-2 py-1 text-xs font-mono bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border border-zinc-800">⏭</button>
-				</div>
-
-				<div class="flex flex-col gap-1 max-h-36 overflow-y-auto pr-1">
-					{videoPlaylist.map((v, i) => (
-						<button 
-							data-v-idx={i}
-							data-v-src={v.src}
-							data-v-title={v.title}
-							data-v-specs={v.specs}
-							class="video-cue-btn text-left px-3 py-2 text-xs font-mono border border-zinc-900 bg-zinc-900/30 hover:border-zinc-700 flex justify-between items-center transition-colors"
-						>
-							<span class="text-zinc-300 truncate pr-2">{v.title}</span>
-							<span class="text-[10px] text-zinc-600 uppercase whitespace-nowrap">{v.specs}</span>
-						</button>
-					))}
-				</div>
-			</div>
-			<div class="pt-3 border-t border-zinc-900 mt-4 flex justify-between text-[10px] font-mono text-zinc-600">
-				<span>DETECTED: {videoPlaylist.length} FILES</span>
-				<span>AUTO-ADVANCE ON</span>
-			</div>
-		</div>
-
-		<div class="border border-zinc-800/80 bg-zinc-950/60 p-5 flex flex-col justify-between" data-module="spatial">
-			<div>
-				<div class="flex justify-between items-center mb-3 pb-2 border-b border-zinc-900">
-					<span class="text-xs font-mono font-bold uppercase text-white">02 / Spatial DSP Library</span>
-					<span class="text-[10px] font-mono text-emerald-400">DYNAMIC DSP</span>
-				</div>
-
-				<p class="mb-3 text-[10px] font-mono tracking-[0.12em] text-zinc-600">SELECT A MASTER TO LOAD THE CONSOLE</p>
-
-				<div class="flex flex-col gap-1 max-h-36 overflow-y-auto pr-1">
-					{audioPlaylist.map((a, idx) => (
-						<button 
-							data-a-idx={idx}
-							data-a-src={a.src}
-							data-a-title={a.title}
-							data-a-specs={a.specs}
-							class="audio-cue-btn text-left px-3 py-1.5 text-xs font-mono border border-zinc-900 bg-zinc-900/30 hover:border-zinc-700 flex justify-between items-center transition-colors"
-						>
-							<span class="text-zinc-400 truncate pr-2">{a.title}</span>
-							<span class="text-[10px] text-zinc-600">PCM</span>
-						</button>
-					))}
-				</div>
-			</div>
-
-			<div class="pt-3 border-t border-zinc-900 mt-4 flex justify-between text-[10px] font-mono text-zinc-600">
-				<span>DETECTED: {audioPlaylist.length} TRACKS</span>
-				<span>AUTO-ADVANCE ON</span>
-			</div>
-		</div>
-
+	<div class="grid grid-cols-1 gap-6 items-stretch" data-operational-deck>
 		<div class="border border-zinc-800/80 bg-zinc-950/60 p-5 flex flex-col justify-between" data-module="enterprise">
 			<div>
 				<div class="flex justify-between items-center mb-3 pb-2 border-b border-zinc-900">
 					<span class="text-xs font-mono font-bold uppercase text-white">03 / Enterprise AV</span>
 					<span class="text-[10px] font-mono text-amber-400">NETWORKED FABRIC</span>
 				</div>
-
 				<div class="bg-black/80 border border-zinc-800 p-3.5 font-mono space-y-3">
 					<div class="border-b border-zinc-900 pb-2.5">
-						<div class="flex justify-between text-xs text-zinc-300 mb-0.5">
-							<span>DANTE MULTICAST FABRIC</span>
-							<span class="text-emerald-400 text-[10px]">● LOCKED</span>
-						</div>
+						<div class="flex justify-between text-xs text-zinc-300 mb-0.5"><span>DANTE MULTICAST FABRIC</span><span class="text-emerald-400 text-[10px]">● LOCKED</span></div>
 						<span class="text-[10px] text-zinc-500 block">512x512 PTPv2 Deterministic Clocking</span>
 					</div>
-
 					<div class="border-b border-zinc-900 pb-2.5">
-						<div class="flex justify-between text-xs text-zinc-300 mb-0.5">
-							<span>ATMOS 7.1.4 REFERENCE</span>
-							<span class="text-emerald-400 text-[10px]">● CALIBRATED</span>
-						</div>
+						<div class="flex justify-between text-xs text-zinc-300 mb-0.5"><span>ATMOS 7.1.4 REFERENCE</span><span class="text-emerald-400 text-[10px]">● CALIBRATED</span></div>
 						<span class="text-[10px] text-zinc-500 block">PMC MB2S Active Array + Grace Design m908</span>
 					</div>
-
 					<div class="border-b border-zinc-900 pb-2.5">
-						<div class="flex justify-between text-xs text-zinc-300 mb-0.5">
-							<span>FOH COMMAND DEPLOYMENT</span>
-							<span class="text-amber-400 text-[10px]">○ HYBRID SPEC</span>
-						</div>
+						<div class="flex justify-between text-xs text-zinc-300 mb-0.5"><span>FOH COMMAND DEPLOYMENT</span><span class="text-amber-400 text-[10px]">○ HYBRID SPEC</span></div>
 						<span class="text-[10px] text-zinc-500 block">4-Person Mobile Command Matrix</span>
 					</div>
-
 					<div>
-						<div class="flex justify-between text-xs text-zinc-300 mb-0.5">
-							<span>SIGNAL TOPOLOGY & DSP</span>
-							<span class="text-emerald-400 text-[10px]">● 24b / 48kHz</span>
-						</div>
+						<div class="flex justify-between text-xs text-zinc-300 mb-0.5"><span>SIGNAL TOPOLOGY & DSP</span><span class="text-emerald-400 text-[10px]">● 24b / 48kHz</span></div>
 						<span class="text-[10px] text-zinc-500 block">Bit-Perfect Native Audio Subsystem</span>
 					</div>
 				</div>
 			</div>
-
-			<div class="pt-3 border-t border-zinc-900 mt-4 flex justify-between text-[10px] font-mono text-zinc-600">
-				<span>SYSTEM SPEC V4.2</span>
-				<span>PRODUCTION READY</span>
-			</div>
+			<div class="pt-3 border-t border-zinc-900 mt-4 flex justify-between text-[10px] font-mono text-zinc-600"><span>SYSTEM SPEC V4.2</span><span>PRODUCTION READY</span></div>
 		</div>
 	</div>
 </div>
 
-<script>
+	<script>
+	import { activePlayButtonState, activeTransportPolicy, createEndedEventToken, isCurrentEndedEventToken, runtimeVideoErrorAction, runCommittedPlayback, runActivePlaybackRetry } from '../lib/active-transport.mjs';
+	import { audibleElementKind, claimCinemaAudio, createAudibleSource, removeAudibleProvider, restorePriorAudio, selectAudibleTrack } from '../lib/audible-source.mjs';
+	import { advanceCinema, createCinemaContinuity, createCinemaEndedToken, isCurrentCinemaEndedToken, selectCinema } from '../lib/cinema-continuity.mjs';
+	import { advanceMusicQueue, createMusicQueue, selectMusicMode, setRepeatMode, toggleShuffle } from '../lib/music-queue.mjs';
+	import { beginExperience, completeWelcome, createIntroSession, failAmbient, failWelcome } from '../lib/intro-session.mjs';
+	import { playlistScrollTarget, playlistWheelTarget } from '../lib/playlist-scroll.mjs';
+	import { eligibleVideoItems, isMobileViewport } from '../lib/mobile-media.mjs';
+	import { formatTransportTime } from '../lib/transport-time.mjs';
+	import { createFullscreenSession } from '../lib/fullscreen-session.mjs';
+	import { createMusicVisualSession } from '../lib/music-visual-session.mjs';
+	import { supersedeMediaElement } from '../lib/media-event-generation.mjs';
+	import { activateSource, createPlaybackSession, releaseStageLease, selectBrowseTab } from '../lib/playback-session.mjs';
+	import { alignMirrorFollowers, bindMirrorFollowerFailures, captureCinemaSnapshot, classifyMediaAspect, commitMirrorFollowers, prepareMirrorFollowers, restoreCinemaSnapshot } from '../lib/media-presentation.mjs';
 	import {
-		alignFollower,
-		classifyMediaAspect,
-		usesMirrorWings,
-	} from '../lib/media-presentation.mjs';
+		calculateMirrorWingGeometry,
+		normalizeStageProvider,
+		resolveMirrorWingPresentation,
+	} from '../lib/mirror-wings.mjs';
 
 	const root = document.querySelector('[data-hybrid-media-engine]');
 	const stage = root.querySelector('#master-stage-container');
+	const fullscreenShell = root.querySelector('[data-fullscreen-shell]');
+	const fullscreenOverlay = root.querySelector('[data-fullscreen-overlay]');
 	const mv = root.querySelector('#master-video');
-	const wingLeft = root.querySelector('#mirror-wing-left');
-	const wingRight = root.querySelector('#mirror-wing-right');
-	const wings = [wingLeft, wingRight];
-	const videoCueBtns = [...root.querySelectorAll('.video-cue-btn')];
-	const audioCueBtns = [...root.querySelectorAll('.audio-cue-btn')];
-	const videoPlaylist = videoCueBtns.map((button) => ({
-		src: button.dataset.vSrc,
-		title: button.dataset.vTitle,
-		specs: button.dataset.vSpecs,
+	let musicVisualVideo = root.querySelector('#music-visual-video');
+	const ambientAudio = root.querySelector('#ambient-audio');
+	const entryGate = root.querySelector('#experience-entry-gate');
+	const entryButton = root.querySelector('#enter-viaims-experience');
+	const wings = [root.querySelector('#mirror-wing-left'), root.querySelector('#mirror-wing-right')];
+	const mobileMirrorQuery = matchMedia('(max-width: 767px)');
+	const reducedMotionQuery = matchMedia('(prefers-reduced-motion: reduce)');
+	const tabs = [...root.querySelectorAll('[role="tab"]')];
+	const panels = [...root.querySelectorAll('[role="tabpanel"]')];
+	const playlistRails = [...root.querySelectorAll('[data-playlist-scroll-rail]')];
+	const cinemaButtons = [...root.querySelectorAll('.cinema-cue')];
+	const allCinemaItems = cinemaButtons.map((button) => ({ id: button.dataset.cinemaId, src: button.dataset.cinemaSrc, title: button.dataset.cinemaTitle, specs: button.dataset.cinemaSpecs, aspect: button.dataset.mediaAspect }));
+	let videoPlaylist = eligibleVideoItems(allCinemaItems, window.innerWidth);
+	const allMediaItems = [...root.querySelectorAll('.media-cue')].map((button) => ({ id: button.dataset.mediaId, src: button.dataset.mediaSrc, title: button.dataset.mediaTitle, aspect: button.dataset.mediaAspect }));
+	let mediaItems = eligibleVideoItems(allMediaItems, window.innerWidth);
+	const musicProducts = [...root.querySelectorAll('.music-product')].map((row) => ({
+		productId: row.dataset.productId,
+		title: row.dataset.title,
+		specs: row.dataset.specs,
+		audioSrc: row.dataset.audioSrc,
+		videoSrc: row.dataset.videoSrc || null,
+		videoAspect: row.dataset.videoAspect,
+		visual: row.dataset.visualSrc ? { tag: row.dataset.visualTag, src: row.dataset.visualSrc, aspect: row.dataset.visualAspect } : null,
+		storeHref: row.dataset.storeHref,
 	}));
-	const audioPlaylist = audioCueBtns.map((button) => ({
-		src: button.dataset.aSrc,
-		title: button.dataset.aTitle,
-		specs: button.dataset.aSpecs,
-	}));
+	const productById = new Map(musicProducts.map((item) => [item.productId, item]));
+	const musicAudio = root.querySelector('#music-audio');
+	const nowPlayingTitle = root.querySelector('#now-playing-title');
+	const nowPlayingStatus = root.querySelector('#now-playing-status');
+	const activeSourceKind = root.querySelector('#active-source-kind');
+	const activePlay = root.querySelector('#active-play');
+	const activePrev = root.querySelector('#active-prev');
+	const activeNext = root.querySelector('#active-next');
+	const activeSeek = root.querySelector('#active-seek');
+	const activeElapsed = root.querySelector('#active-elapsed');
+	const activeRemaining = root.querySelector('#active-remaining');
+	const enterFullscreen = root.querySelector('#enter-fullscreen');
+	const exitFullscreen = root.querySelector('#exit-fullscreen');
+	const fullscreenPrev = root.querySelector('#fullscreen-prev');
+	const fullscreenPlay = root.querySelector('#fullscreen-play');
+	const fullscreenNext = root.querySelector('#fullscreen-next');
+	const fullscreenMute = root.querySelector('#fullscreen-mute');
+	const fullscreenElapsed = root.querySelector('#fullscreen-elapsed');
+	const fullscreenRemaining = root.querySelector('#fullscreen-remaining');
+	const fullscreenTitle = root.querySelector('#fullscreen-title');
+	const shuffleButton = root.querySelector('#music-shuffle');
+	const repeatButton = root.querySelector('#music-repeat');
+	const returnButton = root.querySelector('#return-to-cinema');
+	const cinemaAudioInvitation = root.querySelector('#cinema-audio-invitation');
+	const cinemaAudioLabel = root.querySelector('#cinema-audio-label');
+	const retryCinema = root.querySelector('#retry-cinema');
+	const entryCueControls = [
+		...cinemaButtons,
+		...root.querySelectorAll('[data-music-mode]'),
+		...root.querySelectorAll('.media-cue'),
+		returnButton,
+		retryCinema,
+	];
+	const transportControls = [
+		['playPause', activePlay],
+		['previous', activePrev],
+		['next', activeNext],
+		['shuffle', shuffleButton],
+		['repeat', repeatButton],
+	];
+	let cinema = createCinemaContinuity(videoPlaylist);
+	let fullscreenSession = createFullscreenSession();
+	let visualSession = createMusicVisualSession();
+	let visualFadeTimer = null;
+	let musicVisualActivationEvents = null;
+	let musicVisualFadeEvents = null;
+	let suppressMusicVisualMediaSync = false;
+	let fullscreenTimer = null;
+	let introSession = createIntroSession({
+		enabled: root.dataset.entryEnabled === 'true',
+		welcomeVideoSrc: mv.getAttribute('src') || '',
+		ambientAudioSrc: ambientAudio.getAttribute('src') || '',
+	});
+	let entryControlsLocked = introSession.phase !== 'cinema';
+	let session = createPlaybackSession({ cinemaId: cinema.currentId, cinemaMuted: mv.muted });
+	let musicQueue = createMusicQueue(musicProducts);
+	let audible = createAudibleSource(introSession.available
+		? { provider: 'ambient', id: 'viaims-ambient', mode: 'audio', currentTime: 0 }
+		: null);
+	let suspendedForStageLease = null;
+	let cinemaMutedBeforeMusicAudio = null;
+	let hasInvitedCinemaAudio = false;
+	let transitionQueue = Promise.resolve();
+	let hasReportedTransitionError = false;
+	let mirrorActivationGeneration = 0;
+	let pendingMirrorActivationToken = null;
+	let pendingMirrorSource = null;
+	let committedMirrorActivationToken = null;
 
-	// Video Elements
-	const muteBtn = document.getElementById('master-mute-btn');
-	const muteLed = document.getElementById('mute-led');
-	const muteLabel = document.getElementById('mute-label');
-	const vidPlayBtn = document.getElementById('vid-play');
-	const vidPrevBtn = document.getElementById('vid-prev');
-	const vidNextBtn = document.getElementById('vid-next');
-	const vidRewind10 = document.getElementById('vid-rewind-10');
-	const vidForward10 = document.getElementById('vid-forward-10');
-	const vidSeek = document.getElementById('vid-seek');
-	const vidCur = document.getElementById('vid-current');
-	const vidDur = document.getElementById('vid-duration');
-	const vidTitle = document.getElementById('vid-title-display');
-	const vidSpecs = document.getElementById('vid-specs-display');
-	// DSP Audio Elements
-	const dspAudio = document.getElementById('dsp-audio');
-	const dspPlayBtn = document.getElementById('dsp-play');
-	const dspPrevBtn = document.getElementById('dsp-prev');
-	const dspNextBtn = document.getElementById('dsp-next');
-	const dspRewind10 = document.getElementById('dsp-rewind-10');
-	const dspForward10 = document.getElementById('dsp-forward-10');
-	const dspSeek = document.getElementById('dsp-seek');
-	const dspCur = document.getElementById('dsp-current');
-	const dspDur = document.getElementById('dsp-duration');
-	const dspTitle = document.getElementById('audio-title-display');
-	const dspSpecs = document.getElementById('audio-specs-display');
-	let currentVidIdx = 0;
-	let currentAudIdx = 0;
-
-	function formatTime(s) {
-		if (isNaN(s)) return '00:00';
-		const m = Math.floor(s / 60);
-		const sec = Math.floor(s % 60);
-		return `${m.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`;
+	function enqueueTransition(action) {
+		transitionQueue = transitionQueue.then(action).catch((error) => {
+			if (!hasReportedTransitionError) nowPlayingStatus.textContent = `PLAYBACK ERROR · ${error instanceof Error ? error.message : 'UNKNOWN'}`;
+			hasReportedTransitionError = false;
+			console.error(error);
+		});
+		return transitionQueue;
 	}
 
-	mv.addEventListener('loadedmetadata', () => {
-		vidDur.textContent = formatTime(mv.duration);
-		applyMediaAspect();
+	function enqueueMediaControlTransition(action) {
+		if (entryControlsLocked) return;
+		void enqueueTransition(action);
+	}
+
+	function syncActivePlayButton() {
+		const media = session.playback.provider === 'music' && session.playback.mode === 'audio' ? musicAudio : mv;
+		const state = activePlayButtonState(media.paused);
+		activePlay.textContent = state.text;
+		activePlay.setAttribute('aria-label', state.ariaLabel);
+	}
+
+	function syncCinemaCueAvailability() {
+		for (const button of cinemaButtons) {
+			const eligible = videoPlaylist.some((item) => item.id === button.dataset.cinemaId);
+			const disabled = entryControlsLocked || Boolean(session.lease) || !eligible;
+			button.disabled = disabled;
+			button.setAttribute('aria-disabled', String(disabled));
+		}
+	}
+
+	function applyActiveTransportPolicy() {
+		const policy = activeTransportPolicy(session.playback);
+		for (const [action, control] of transportControls) {
+			const leaseBlocksNavigation = Boolean(session.lease) && (action === 'previous' || action === 'next');
+			const enabled = !entryControlsLocked && policy[action] && !leaseBlocksNavigation;
+			control.disabled = !enabled;
+			control.setAttribute('aria-disabled', String(!enabled));
+		}
+		syncCinemaCueAvailability();
+		syncActivePlayButton();
+		return policy;
+	}
+
+	function syncEntryControlAvailability() {
+		for (const control of entryCueControls) {
+			control.disabled = entryControlsLocked;
+			control.setAttribute('aria-disabled', String(entryControlsLocked));
+		}
+		renderCinemaAudioInvitation();
+		applyActiveTransportPolicy();
+	}
+
+	function currentAudibleElement(state = audible) {
+		switch (audibleElementKind(state)) {
+			case 'ambient': return ambientAudio;
+			case 'music': return musicAudio;
+			default: return null;
+		}
+	}
+
+	function captureControllerUi() {
+		return {
+			returnHidden: returnButton.hidden,
+			retryHidden: retryCinema.hidden,
+			retryDisabled: retryCinema.disabled,
+			sourceKind: activeSourceKind.textContent,
+			title: nowPlayingTitle.textContent,
+			status: nowPlayingStatus.textContent,
+		};
+	}
+
+	function restoreControllerUi(ui) {
+		returnButton.hidden = ui.returnHidden;
+		retryCinema.hidden = ui.retryHidden;
+		retryCinema.disabled = ui.retryDisabled;
+		retryCinema.setAttribute('aria-disabled', String(ui.retryDisabled));
+		activeSourceKind.textContent = ui.sourceKind;
+		nowPlayingTitle.textContent = ui.title;
+		nowPlayingStatus.textContent = ui.status;
+		applyActiveTransportPolicy();
+		renderCinemaAudioInvitation();
+	}
+
+	function captureControllerState({ audibleState = audible } = {}) {
+		const stageId = session.lease ? session.playback.id : currentCinema()?.id ?? null;
+		return {
+			session,
+			audible: audibleState,
+			suspendedForStageLease,
+			cinemaMutedBeforeMusicAudio,
+			musicQueue,
+			masterMuted: mv.muted,
+			stageSnapshot: captureCinemaSnapshot(mv, stage, stageId, wings),
+			ui: captureControllerUi(),
+		};
+	}
+
+	function renderCinemaAudioInvitation() {
+		const available = Boolean(currentCinema()) && session.playback.stageOwner === 'cinema';
+		const cinemaIsAudible = audible.current?.provider === 'cinema' && !mv.muted;
+		cinemaAudioInvitation.hidden = !available;
+		cinemaAudioInvitation.disabled = entryControlsLocked || !available;
+		cinemaAudioInvitation.setAttribute('aria-disabled', String(cinemaAudioInvitation.disabled));
+		cinemaAudioInvitation.setAttribute('aria-pressed', String(cinemaIsAudible));
+		cinemaAudioLabel.textContent = cinemaIsAudible ? 'CINEMA AUDIO LIVE' : 'HEAR CINEMA';
+		if (available && !entryControlsLocked && !hasInvitedCinemaAudio) {
+			hasInvitedCinemaAudio = true;
+			cinemaAudioInvitation.classList.add('is-inviting');
+		}
+	}
+
+	function renderTab(activeTab, moveFocus = false) {
+		session = selectBrowseTab(session, activeTab);
+		tabs.forEach((tab) => {
+			const selected = tab.dataset.mediaTab === activeTab;
+			tab.setAttribute('aria-selected', String(selected));
+			tab.tabIndex = selected ? 0 : -1;
+			if (selected && moveFocus) tab.focus();
+		});
+		panels.forEach((panel) => { panel.hidden = panel.dataset.providerPanel !== activeTab; });
+		requestAnimationFrame(syncPlaylistRails);
+	}
+
+	function syncPlaylistRail(rail) {
+		const items = root.querySelector(`#${rail.getAttribute('aria-controls')}`);
+		if (!items) return;
+		const maximum = Math.max(0, items.scrollHeight - items.clientHeight);
+		const active = maximum > 0;
+		rail.setAttribute('aria-valuemax', String(Math.round(maximum)));
+		rail.setAttribute('aria-valuenow', String(Math.round(Math.min(items.scrollTop, maximum))));
+		rail.setAttribute('aria-disabled', String(!active));
+		rail.tabIndex = active ? 0 : -1;
+		const thumb = rail.querySelector('[data-playlist-scroll-thumb]');
+		if (!thumb) return;
+		const railHeight = rail.clientHeight;
+		const thumbHeight = active ? Math.max(24, railHeight * (items.clientHeight / items.scrollHeight)) : railHeight;
+		const thumbTravel = Math.max(0, railHeight - thumbHeight);
+		const progress = active ? items.scrollTop / maximum : 0;
+		thumb.style.height = `${thumbHeight}px`;
+		thumb.style.transform = `translateY(${thumbTravel * progress}px)`;
+	}
+
+	function syncPlaylistRails() {
+		playlistRails.forEach(syncPlaylistRail);
+	}
+
+	function playlistRowStep(items) {
+		return items.children.length > 1
+			? items.children[1].offsetTop - items.children[0].offsetTop
+			: items.firstElementChild?.offsetHeight ?? 46;
+	}
+
+	playlistRails.forEach((rail) => {
+		const items = root.querySelector(`#${rail.getAttribute('aria-controls')}`);
+		if (!items) return;
+		rail.addEventListener('wheel', (event) => {
+			const target = playlistWheelTarget({
+				deltaY: event.deltaY,
+				deltaMode: event.deltaMode,
+				scrollTop: items.scrollTop,
+				rowStep: playlistRowStep(items),
+				viewportHeight: items.clientHeight,
+				scrollHeight: items.scrollHeight,
+			});
+			if (target === null) return;
+			event.preventDefault();
+			items.scrollTop = target;
+			syncPlaylistRail(rail);
+		}, { passive: false });
+		rail.addEventListener('keydown', (event) => {
+			const target = playlistScrollTarget({
+				key: event.key,
+				scrollTop: items.scrollTop,
+				rowStep: playlistRowStep(items),
+				viewportHeight: items.clientHeight,
+				scrollHeight: items.scrollHeight,
+			});
+			if (target === null) return;
+			event.preventDefault();
+			items.scrollTop = target;
+			syncPlaylistRail(rail);
+		});
+		items.addEventListener('scroll', () => syncPlaylistRail(rail), { passive: true });
+		new ResizeObserver(() => syncPlaylistRail(rail)).observe(items);
 	});
 
+	tabs.forEach((tab, index) => {
+		tab.addEventListener('click', () => renderTab(tab.dataset.mediaTab));
+		tab.addEventListener('keydown', (event) => {
+			if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+			event.preventDefault();
+			const delta = event.key === 'ArrowRight' ? 1 : -1;
+			const target = tabs[(index + delta + tabs.length) % tabs.length];
+			renderTab(target.dataset.mediaTab, true);
+		});
+	});
+
+	function setStageProvider(provider) {
+		stage.dataset.stageProvider = provider;
+		stage.dataset.mediaAspect = 'unknown';
+		stage.dataset.mirrorWings = 'off';
+	}
+
+	function activeAuthoritativeMedia() {
+		return session.playback.provider === 'music' && session.playback.mode === 'audio' ? musicAudio : mv;
+	}
+
+	function syncTransportTime() {
+		const media = activeAuthoritativeMedia();
+		const formatted = formatTransportTime({ currentTime: media.currentTime, duration: media.duration });
+		activeElapsed.textContent = formatted.elapsed;
+		activeRemaining.textContent = formatted.remaining;
+		fullscreenElapsed.textContent = formatted.elapsed;
+		fullscreenRemaining.textContent = formatted.remaining;
+		fullscreenTitle.textContent = nowPlayingTitle.textContent;
+		const hasDuration = Number.isFinite(media.duration) && media.duration >= 0;
+		activeSeek.max = hasDuration ? String(media.duration) : '0';
+		activeSeek.value = hasDuration ? String(Math.min(media.currentTime, media.duration)) : '0';
+		activeSeek.disabled = !hasDuration || entryControlsLocked;
+	}
+
+	function scheduleFullscreenHide(snapshot = fullscreenSession.snapshot()) {
+		if (fullscreenTimer !== null) clearTimeout(fullscreenTimer);
+		if (snapshot.mode !== 'fullscreen' || snapshot.paused || !snapshot.controlsVisible) return;
+		fullscreenTimer = window.setTimeout(() => {
+			fullscreenSession.onHideTimer(snapshot.token);
+			renderFullscreenSession();
+		}, snapshot.hideDelayMs);
+	}
+
+	function renderFullscreenSession() {
+		const snapshot = fullscreenSession.snapshot();
+		fullscreenShell.dataset.controlsVisible = String(snapshot.controlsVisible);
+		fullscreenTitle.textContent = nowPlayingTitle.textContent;
+		const media = activeAuthoritativeMedia();
+		fullscreenPlay.textContent = media.paused ? 'PLAY' : 'PAUSE';
+		fullscreenPlay.setAttribute('aria-label', media.paused ? 'Play fullscreen item' : 'Pause fullscreen item');
+		fullscreenMute.textContent = media.muted ? 'UNMUTE' : 'MUTE';
+		fullscreenMute.setAttribute('aria-label', media.muted ? 'Unmute active item' : 'Mute active item');
+		fullscreenMute.setAttribute('aria-pressed', String(media.muted));
+		scheduleFullscreenHide(snapshot);
+	}
+
+	async function enterFullscreenMode() {
+		fullscreenSession.enter();
+		fullscreenSession.setPaused(activeAuthoritativeMedia().paused);
+		try {
+			if (fullscreenShell.requestFullscreen) {
+				await fullscreenShell.requestFullscreen({ navigationUI: 'hide' });
+				fullscreenShell.dataset.fullscreenMode = 'native';
+			} else fullscreenShell.dataset.fullscreenMode = 'viewport';
+		} catch {
+			fullscreenShell.dataset.fullscreenMode = 'viewport';
+		}
+		renderFullscreenSession();
+		exitFullscreen.focus();
+	}
+
+	function completeFullscreenExit() {
+		fullscreenShell.dataset.fullscreenMode = 'inline';
+		fullscreenSession.exit();
+		if (fullscreenTimer !== null) clearTimeout(fullscreenTimer);
+		renderFullscreenSession();
+		enterFullscreen.focus();
+	}
+
+	async function exitFullscreenMode() {
+		if (document.fullscreenElement === fullscreenShell) await document.exitFullscreen();
+		else completeFullscreenExit();
+	}
+
+	function syncFullscreenEligibility() {
+		const eligible = !entryControlsLocked
+			&& isMobileViewport(window.innerWidth)
+			&& stage.dataset.mediaAspect === 'portrait';
+		enterFullscreen.disabled = !eligible;
+		enterFullscreen.setAttribute('aria-disabled', String(!eligible));
+	}
+
+	function rebuildEligibleVideoQueues() {
+		const currentId = currentCinema()?.id;
+		const preserveMusicVisualPresentation = stage.dataset.visualOwner === 'music-tag'
+			? { aspect: stage.dataset.mediaAspect, tag: stage.dataset.visualTag }
+			: null;
+		videoPlaylist = eligibleVideoItems(allCinemaItems, window.innerWidth);
+		mediaItems = eligibleVideoItems(allMediaItems, window.innerWidth);
+		cinema = createCinemaContinuity(videoPlaylist);
+		const nextIndex = videoPlaylist.findIndex((item) => item.id === currentId);
+		if (nextIndex > 0) cinema = selectCinema(cinema, nextIndex);
+		if (isMobileViewport(window.innerWidth) && currentId && nextIndex < 0 && currentCinema()) {
+			pauseVideoStack();
+			setStageProvider('cinema');
+			if (preserveMusicVisualPresentation) {
+				stage.dataset.visualOwner = 'music-tag';
+				stage.dataset.visualTag = preserveMusicVisualPresentation.tag;
+				stage.dataset.mediaAspect = preserveMusicVisualPresentation.aspect;
+			}
+			mv.src = currentCinema().src;
+			mv.load();
+			if (session.playback.provider === 'cinema') {
+				session = activateSource(session, { provider: 'cinema', id: currentCinema().id, mode: 'video', muted: mv.muted });
+				renderCinemaIdentity('CINEMA READY · MOBILE PORTRAIT SELECTION');
+			}
+		}
+		for (const button of [...root.querySelectorAll('[data-music-mode]')].filter((control) => control.dataset.musicMode === 'video')) {
+			const product = productById.get(button.dataset.productId);
+			const eligible = Boolean(product?.videoSrc) && eligibleVideoItems([{ ...product, aspect: product.videoAspect }], window.innerWidth).length === 1;
+			button.disabled = entryControlsLocked || !eligible;
+			button.setAttribute('aria-disabled', String(button.disabled));
+		}
+		for (const button of root.querySelectorAll('.media-cue')) {
+			const eligible = mediaItems.some((item) => item.id === button.dataset.mediaId);
+			button.disabled = entryControlsLocked || !eligible;
+			button.setAttribute('aria-disabled', String(button.disabled));
+		}
+		updateCinemaCueState();
+		syncCinemaCueAvailability();
+		syncFullscreenEligibility();
+	}
+
+	function applyMirrorWingGeometry(edgeScale) {
+		const stageWidth = stage.getBoundingClientRect().width;
+		const masterWidth = mv.getBoundingClientRect().width;
+		const geometry = calculateMirrorWingGeometry(stageWidth, masterWidth, 8);
+		stage.style.setProperty('--mirror-wing-inline-size', `${geometry.wingInlineSize}px`);
+		stage.style.setProperty('--mirror-master-inline-size', `${geometry.masterInlineSize}px`);
+		stage.style.setProperty('--mirror-edge-stretch', String(geometry.edgeStretch));
+		stage.style.setProperty('--mirror-edge-scale', String(edgeScale));
+	}
+
+	function handleMirrorWingFailure() {
+		stage.dataset.mirrorFailure = 'true';
+		stage.dataset.mirrorWings = 'off';
+		hideMirrorWings();
+	}
+
+	function handleMirrorWingRuntimeError() {
+		if (stage.dataset.mirrorWings === 'on' || pendingMirrorActivationToken !== null) {
+			handleMirrorWingFailure();
+		}
+	}
+
 	function hideMirrorWings() {
+		mirrorActivationGeneration += 1;
+		pendingMirrorActivationToken = null;
+		pendingMirrorSource = null;
+		committedMirrorActivationToken = null;
 		for (const wing of wings) {
+			wing.hidden = true;
 			wing.pause();
 			wing.removeAttribute('src');
 			wing.load();
 		}
 	}
 
-	async function activateMirrorWings() {
-		for (const wing of wings) {
-			wing.src = mv.currentSrc || mv.src;
-			wing.currentTime = mv.currentTime;
+	async function activateMirrorWings(token, source) {
+		const isCurrent = () => pendingMirrorActivationToken === token
+			&& mirrorActivationGeneration === token
+			&& pendingMirrorSource === source
+			&& (mv.currentSrc || mv.src) === source
+			&& !Object.hasOwn(stage.dataset, 'mirrorFailure');
+		const prepared = await prepareMirrorFollowers(mv, wings, { isCurrent });
+		if (!prepared) {
+			if (isCurrent()) handleMirrorWingFailure();
+			return;
 		}
-		if (!mv.paused) await playMirrorWings();
+		const committed = await commitMirrorFollowers(mv, wings, {
+			isCurrent,
+			shouldCleanupStale: () => pendingMirrorActivationToken === null
+				&& committedMirrorActivationToken === null,
+		});
+		if (!committed || !isCurrent()) {
+			if (isCurrent()) handleMirrorWingFailure();
+			return;
+		}
+		stage.dataset.mirrorWings = 'on';
+		pendingMirrorActivationToken = null;
+		pendingMirrorSource = null;
+		committedMirrorActivationToken = token;
 	}
 
 	async function playMirrorWings() {
 		try {
 			await Promise.all(activeMirrorWings().map((wing) => wing.play()));
 		} catch {
-			stage.dataset.mirrorFailure = 'true';
-			hideMirrorWings();
+			handleMirrorWingFailure();
 		}
 	}
 
@@ -311,30 +696,57 @@ const { videoPlaylist, audioPlaylist } = toPlaylists(manifest);
 
 	function applyMediaAspect() {
 		const aspect = classifyMediaAspect(mv.videoWidth, mv.videoHeight);
-		stage.dataset.mediaAspect = aspect;
+		if (stage.dataset.visualOwner !== 'music-tag') stage.dataset.mediaAspect = aspect;
 		delete stage.dataset.mirrorFailure;
-		if (usesMirrorWings(aspect) && !matchMedia('(max-width: 767px)').matches && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
-			void activateMirrorWings();
-		} else {
+		reconcileMirrorWings();
+		syncFullscreenEligibility();
+	}
+
+	function reconcileMirrorWings() {
+		const presentation = resolveMirrorWingPresentation({
+			provider: stage.dataset.stageProvider,
+			aspect: stage.dataset.mediaAspect,
+			isMobile: mobileMirrorQuery.matches,
+			prefersReducedMotion: reducedMotionQuery.matches,
+		});
+		if (!presentation.enabled || Object.hasOwn(stage.dataset, 'mirrorFailure')) {
+			stage.dataset.mirrorWings = 'off';
 			hideMirrorWings();
+			return;
 		}
+		applyMirrorWingGeometry(presentation.edgeScale);
+		const source = mv.currentSrc || mv.src;
+		if (stage.dataset.mirrorWings === 'on'
+			&& wings.every((wing) => (wing.currentSrc || wing.src) === source)) return;
+		if (pendingMirrorActivationToken !== null && pendingMirrorSource === source) return;
+		stage.dataset.mirrorWings = 'off';
+		const followersNeedSource = wings.some((wing) => (wing.currentSrc || wing.src) !== source);
+		if (!followersNeedSource) {
+			for (const wing of wings) wing.hidden = true;
+		}
+		const token = ++mirrorActivationGeneration;
+		pendingMirrorActivationToken = token;
+		pendingMirrorSource = source;
+		committedMirrorActivationToken = null;
+		void activateMirrorWings(token, source);
 	}
 
 	function alignMirrorWings() {
-		for (const wing of wings) alignFollower(mv, wing, 0.3);
+		alignMirrorFollowers(mv, wings, {
+			active: stage.dataset.mirrorWings === 'on',
+			threshold: 0.3,
+			onFailure: handleMirrorWingFailure,
+		});
 	}
 
 	function activeMirrorWings() {
-		return usesMirrorWings(stage.dataset.mediaAspect)
+		return stage.dataset.mirrorWings === 'on'
 			? wings.filter((wing) => Boolean(wing.currentSrc || wing.src))
 			: [];
 	}
 
 	async function playVideoStack() {
-		const results = await Promise.allSettled([
-			mv.play(),
-			...activeMirrorWings().map((wing) => wing.play()),
-		]);
+		const results = await Promise.allSettled([mv.play(), ...activeMirrorWings().map((wing) => wing.play())]);
 		if (results[0].status === 'rejected') throw results[0].reason;
 	}
 
@@ -343,168 +755,812 @@ const { videoPlaylist, audioPlaylist } = toPlaylists(manifest);
 		for (const wing of activeMirrorWings()) wing.pause();
 	}
 
-	function setVideoTime(target) {
-		mv.currentTime = target;
-		for (const wing of activeMirrorWings()) wing.currentTime = target;
+	function updateCinemaCueState() {
+		cinemaButtons.forEach((button, index) => {
+			const playlistIndex = videoPlaylist.findIndex((item) => item.id === button.dataset.cinemaId);
+			button.classList.toggle('is-active', playlistIndex === cinema.cursor);
+			button.setAttribute('aria-current', String(playlistIndex === cinema.cursor));
+		});
 	}
 
+	function updateProviderCueState(provider, id) {
+		const providers = {
+			music: { selector: '.music-product', dataKey: 'productId' },
+			media: { selector: '.media-cue', dataKey: 'mediaId' },
+			youtube: { selector: '.youtube-cue', dataKey: 'youtubeId' },
+		};
+		const config = providers[provider];
+		if (!config) return;
+		root.querySelectorAll(config.selector).forEach((row) => {
+			const selected = row.dataset[config.dataKey] === id;
+			row.classList.toggle('is-active', selected);
+			row.setAttribute('aria-current', String(selected));
+		});
+	}
+
+	async function switchVideo(index, playImmediate = true) {
+		if (!videoPlaylist.length) return;
+		if (index !== cinema.cursor) cinema = selectCinema(cinema, index);
+		setStageProvider('cinema');
+		hideMirrorWings();
+		mv.src = currentCinema().src;
+		updateCinemaCueState();
+		if (playImmediate) await playVideoStack();
+	}
+
+	function currentCinema() {
+		return videoPlaylist[cinema.cursor] ?? null;
+	}
+
+	function renderCinemaIdentity(status) {
+		activeSourceKind.textContent = 'CINEMA';
+		nowPlayingTitle.textContent = currentCinema()?.title ?? 'No Media Loaded';
+		if (status) nowPlayingStatus.textContent = status;
+		applyActiveTransportPolicy();
+		renderCinemaAudioInvitation();
+	}
+
+	function renderMusicAudioIdentity(productId, status = 'MUSIC AUDIO LIVE · CINEMA AUDIO MUTED') {
+		const product = productById.get(productId);
+		activeSourceKind.textContent = 'MUSIC · AUDIO';
+		nowPlayingTitle.textContent = product?.title ?? 'No Media Loaded';
+		nowPlayingStatus.textContent = status;
+		applyActiveTransportPolicy();
+		renderCinemaAudioInvitation();
+		syncMusicRowActions();
+	}
+
+	function syncMusicRowActions() {
+		for (const button of root.querySelectorAll('[data-music-mode="audio"]')) {
+			const product = productById.get(button.dataset.productId);
+			const active = session.playback.provider === 'music'
+				&& session.playback.mode === 'audio'
+				&& session.playback.id === button.dataset.productId;
+			const paused = !active || musicAudio.paused;
+			button.textContent = active && !paused ? 'PAUSE' : 'PLAY';
+			button.setAttribute('aria-label', `${active && !paused ? 'Pause' : 'Play'} ${product?.title ?? 'Music track'}`);
+		}
+	}
+
+	function restoreMusicSource(productId) {
+		const product = productById.get(productId);
+		if (!product) throw new RangeError(`unknown Music product: ${productId}`);
+		if (musicAudio.getAttribute('src') !== product.audioSrc) musicAudio.src = product.audioSrc;
+		return product;
+	}
+
+	async function resumeAudibleState(state) {
+		const element = currentAudibleElement(state);
+		if (!element || !state.current) return;
+		if (state.current.provider === 'music') restoreMusicSource(state.current.id);
+		element.currentTime = state.current.currentTime;
+		await element.play();
+	}
+
+	async function rollbackControllerState(prior, error, { attemptedAudibleState = null, statusPrefix = 'PLAYBACK/RESTORE ERROR' } = {}) {
+		currentAudibleElement(attemptedAudibleState)?.pause();
+		mv.muted = true;
+		session = prior.session;
+		audible = prior.audible;
+		suspendedForStageLease = prior.suspendedForStageLease;
+		cinemaMutedBeforeMusicAudio = prior.cinemaMutedBeforeMusicAudio;
+		musicQueue = prior.musicQueue;
+		let rollbackFailure = null;
+		try {
+			await restoreCinemaSnapshot(mv, stage, prior.stageSnapshot, wings);
+			reconcileMirrorWings();
+			await resumeAudibleState(prior.audible);
+		} catch (rollbackError) {
+			rollbackFailure = rollbackError;
+			mv.muted = true;
+		}
+		restoreControllerUi(prior.ui);
+		const primaryMessage = error instanceof Error ? error.message : 'UNKNOWN';
+		const status = rollbackFailure
+			? `${statusPrefix} · ${primaryMessage} · ROLLBACK FAILED · ${rollbackFailure instanceof Error ? rollbackFailure.message : 'UNKNOWN'}`
+			: `${statusPrefix} · ${primaryMessage}`;
+		nowPlayingStatus.textContent = status;
+		hasReportedTransitionError = true;
+		return rollbackFailure ? new AggregateError([error, rollbackFailure], status) : error;
+	}
+
+	async function restoreLeasedCinema({ resumeAudible = true } = {}) {
+		if (!session.lease) return;
+		const prior = captureControllerState();
+		const released = releaseStageLease(prior.session);
+		const restoredAudible = prior.suspendedForStageLease ?? createAudibleSource();
+		const restoreOptions = resumeAudible ? undefined : { masterMuted: true };
+		try {
+			if (released.snapshot) {
+				await restoreCinemaSnapshot(mv, stage, released.snapshot, wings, restoreOptions);
+				reconcileMirrorWings();
+			}
+			if (resumeAudible) await resumeAudibleState(restoredAudible);
+			let restoredSession = released.session;
+			if (restoredAudible.current?.provider === 'music') {
+				restoredSession = activateSource(restoredSession, { provider: 'music', id: restoredAudible.current.id, mode: 'audio' });
+			}
+			const restoredIndex = videoPlaylist.findIndex((item) => item.id === released.snapshot?.id);
+			session = restoredSession;
+			audible = restoredAudible;
+			suspendedForStageLease = null;
+			if (restoredIndex >= 0 && restoredIndex !== cinema.cursor) cinema = selectCinema(cinema, restoredIndex);
+			updateCinemaCueState();
+			returnButton.hidden = true;
+			if (audible.current?.provider === 'music') renderMusicAudioIdentity(audible.current.id, 'MUSIC AUDIO RESTORED · CINEMA VISUAL RESTORED');
+			else renderCinemaIdentity('CINEMA RESTORED');
+			return released;
+		} catch (error) {
+			throw await rollbackControllerState(prior, error, {
+				attemptedAudibleState: restoredAudible,
+				statusPrefix: 'PLAYBACK/RESTORE ERROR',
+			});
+		}
+	}
+
+	async function recoverMasterVideoFailure(action, failedPlayback) {
+		if (action === 'restore-lease') {
+			await restoreLeasedCinema();
+			const failedLabel = failedPlayback.provider === 'music' ? 'MUSIC VIDEO UNAVAILABLE' : 'MEDIA UNAVAILABLE';
+			if (audible.current?.provider === 'music') {
+				renderMusicAudioIdentity(audible.current.id, `${failedLabel} · MUSIC AUDIO RESTORED · CINEMA VISUAL RESTORED`);
+			} else renderCinemaIdentity(`${failedLabel} · CINEMA RESTORED`);
+			return;
+		}
+		if (action === 'cinema-retry') {
+			hideMirrorWings();
+			retryCinema.hidden = false;
+			retryCinema.disabled = false;
+			retryCinema.setAttribute('aria-disabled', 'false');
+			if (session.playback.provider === 'music' && session.playback.mode === 'audio') {
+				nowPlayingStatus.textContent = `CINEMA PLAYBACK ERROR · ${currentCinema()?.title ?? 'UNKNOWN CINEMA'} · RETRY AVAILABLE · MUSIC AUDIO CONTINUING`;
+				applyActiveTransportPolicy();
+				renderCinemaAudioInvitation();
+			} else renderCinemaIdentity('CINEMA PLAYBACK ERROR · MEDIA FAILURE · RETRY AVAILABLE');
+		}
+	}
+
+	function bindMusicVisualActivationEvents(token, source) {
+		musicVisualActivationEvents?.abort();
+		const controller = new AbortController();
+		musicVisualActivationEvents = controller;
+		musicVisualVideo.addEventListener('error', () => {
+			void failMusicVisual(token, source);
+		}, { signal: controller.signal });
+	}
+
+	function bindMusicVisualFadeCompletion(token) {
+		musicVisualFadeEvents?.abort();
+		const controller = new AbortController();
+		musicVisualFadeEvents = controller;
+		musicVisualVideo.addEventListener('transitionend', (event) => {
+			if (event.target !== musicVisualVideo || event.propertyName !== 'opacity') return;
+			completeMusicVisualFade(token);
+		}, { signal: controller.signal });
+	}
+
+	function replaceMusicVisualGenerationElement() {
+		musicVisualActivationEvents?.abort();
+		musicVisualActivationEvents = null;
+		musicVisualFadeEvents?.abort();
+		musicVisualFadeEvents = null;
+		musicVisualVideo = supersedeMediaElement(musicVisualVideo);
+	}
+
+	function clearMusicVisual() {
+		musicVisualActivationEvents?.abort();
+		musicVisualActivationEvents = null;
+		musicVisualFadeEvents?.abort();
+		musicVisualFadeEvents = null;
+		musicVisualVideo.pause();
+		musicVisualVideo.removeAttribute('src');
+		musicVisualVideo.load();
+		stage.dataset.visualOwner = 'cinema';
+		stage.dataset.visualTag = '';
+		stage.dataset.visualTransition = 'none';
+		delete musicVisualVideo.dataset.visualToken;
+		delete musicVisualVideo.dataset.visualSource;
+		delete musicVisualVideo.dataset.fadeToken;
+		stage.dataset.mediaAspect = classifyMediaAspect(mv.videoWidth, mv.videoHeight);
+		syncFullscreenEligibility();
+	}
+
+	function completeMusicVisualFade(token) {
+		const completed = visualSession.completeFade(token);
+		if (completed.owner !== 'cinema' || completed.token !== token) return;
+		if (visualFadeTimer !== null) clearTimeout(visualFadeTimer);
+		visualFadeTimer = null;
+		clearMusicVisual();
+	}
+
+	async function activateMusicVisual(product) {
+		if (!product.visual || eligibleVideoItems([product.visual], window.innerWidth).length === 0) return false;
+		const visualActivation = visualSession.activate(product.visual);
+		if (visualActivation.action === 'keep') return true;
+		if (visualFadeTimer !== null) clearTimeout(visualFadeTimer);
+		replaceMusicVisualGenerationElement();
+		stage.dataset.visualTransition = 'none';
+		stage.dataset.visualTag = product.visual.tag;
+		musicVisualVideo.dataset.visualToken = String(visualActivation.token);
+		musicVisualVideo.dataset.visualSource = product.visual.src;
+		delete musicVisualVideo.dataset.fadeToken;
+		musicVisualVideo.muted = true;
+		musicVisualVideo.src = product.visual.src;
+		bindMusicVisualActivationEvents(visualActivation.token, product.visual.src);
+		musicVisualVideo.load();
+		musicVisualVideo.currentTime = 0;
+		try {
+			await musicVisualVideo.play();
+			if (visualSession.snapshot().token !== visualActivation.token) return false;
+			if (musicAudio.paused) musicVisualVideo.pause();
+			stage.dataset.visualOwner = 'music-tag';
+			stage.dataset.mediaAspect = product.visual.aspect;
+			hideMirrorWings();
+			syncFullscreenEligibility();
+			return true;
+		} catch {
+			await failMusicVisual(visualActivation.token, product.visual.src);
+			return false;
+		}
+	}
+
+	async function recoverMusicVisualFailure() {
+		if (!currentCinema()) return;
+		await switchVideo(cinema.cursor, false);
+		mv.currentTime = 0;
+		mv.muted = true;
+		try {
+			await playVideoStack();
+		} catch (error) {
+			hasReportedTransitionError = true;
+			nowPlayingStatus.textContent = `CINEMA PLAYBACK ERROR · ${error instanceof Error ? error.message : 'UNKNOWN'} · RETRY AVAILABLE · MUSIC AUDIO CONTINUING`;
+			retryCinema.hidden = false;
+			retryCinema.disabled = false;
+			retryCinema.setAttribute('aria-disabled', 'false');
+		}
+	}
+
+	async function failMusicVisual(token, source) {
+		const current = visualSession.snapshot();
+		if (current.token !== token || current.visual?.src !== source) return false;
+		const failed = visualSession.fail(token);
+		if (failed.token !== token || failed.owner !== 'cinema') return false;
+		clearMusicVisual();
+		await recoverMusicVisualFailure();
+		return true;
+	}
+
+	async function releaseMusicVisualToCinema() {
+		if (visualSession.snapshot().owner !== 'music-tag') return;
+		cinema = advanceCinema(cinema, 1);
+		await switchVideo(cinema.cursor, false);
+		mv.currentTime = 0;
+		mv.muted = true;
+		try {
+			await playVideoStack();
+		} catch (error) {
+			hasReportedTransitionError = true;
+			nowPlayingStatus.textContent = `CINEMA AUTO-ADVANCE FAILED · ${error instanceof Error ? error.message : 'UNKNOWN'} · RETRY AVAILABLE · MUSIC AUDIO CONTINUING`;
+			retryCinema.hidden = false;
+			retryCinema.disabled = false;
+			retryCinema.setAttribute('aria-disabled', 'false');
+		}
+		const transition = visualSession.releaseToCinema(currentCinema()?.id ?? null);
+		stage.dataset.visualTransition = 'fade-out';
+		musicVisualVideo.dataset.fadeToken = String(transition.token);
+		bindMusicVisualFadeCompletion(transition.token);
+		visualFadeTimer = window.setTimeout(() => completeMusicVisualFade(transition.token), 1250);
+	}
+
+	async function activateMusicAudio(productId, { nextMusicQueue = null } = {}) {
+		const releasedLease = session.lease ? await restoreLeasedCinema({ resumeAudible: false }) : null;
+		const product = productById.get(productId);
+		if (!product) throw new RangeError(`unknown Music product: ${productId}`);
+		const cinemaMuteAuthority = releasedLease?.snapshot?.muted ?? mv.muted;
+		const priorCinemaMutedBeforeMusicAudio = cinemaMutedBeforeMusicAudio;
+		if (cinemaMutedBeforeMusicAudio === null) cinemaMutedBeforeMusicAudio = cinemaMuteAuthority;
+		const priorMusicQueue = musicQueue;
+		const visualBeforeHandoff = visualSession.snapshot();
+		const preserveSeamlessVisual = Boolean(product.visual
+			&& visualBeforeHandoff.owner === 'music-tag'
+			&& visualBeforeHandoff.visual?.tag === product.visual.tag
+			&& visualBeforeHandoff.visual?.src === product.visual.src);
+		suppressMusicVisualMediaSync = preserveSeamlessVisual;
+		musicQueue = nextMusicQueue ?? selectMusicMode(musicQueue, productId, 'audio');
+		const priorElement = currentAudibleElement(audible);
+		if (priorElement) {
+			audible = selectAudibleTrack(audible, { ...audible.current, currentTime: priorElement.currentTime });
+			priorElement.pause();
+		}
+		const priorAudible = audible;
+		const priorSession = session;
+		const priorCinemaMute = cinemaMuteAuthority;
+		audible = selectAudibleTrack(audible, { provider: 'music', id: productId, mode: 'audio', currentTime: 0 });
+		mv.muted = true;
+		if (musicAudio.getAttribute('src') !== product.audioSrc) musicAudio.src = product.audioSrc;
+		musicAudio.currentTime = 0;
+		session = activateSource(session, { provider: 'music', id: productId, mode: 'audio' });
+		renderMusicAudioIdentity(productId, 'MUSIC AUDIO LOADING · CINEMA MOTION LIVE');
+		try {
+			await musicAudio.play();
+			suppressMusicVisualMediaSync = false;
+		} catch (error) {
+			suppressMusicVisualMediaSync = false;
+			musicAudio.pause();
+			cinemaMutedBeforeMusicAudio = priorCinemaMutedBeforeMusicAudio;
+			musicQueue = priorMusicQueue;
+			audible = priorAudible;
+			session = priorSession;
+			mv.muted = priorCinemaMute;
+			const rollbackElement = currentAudibleElement(audible);
+			if (rollbackElement && audible.current) {
+				if (audible.current.provider === 'music') restoreMusicSource(audible.current.id);
+				rollbackElement.currentTime = audible.current.currentTime;
+				await rollbackElement.play();
+			}
+			if (session.playback.provider === 'music' && session.playback.mode === 'audio') renderMusicAudioIdentity(session.playback.id, 'MUSIC AUDIO RESTORED');
+			else renderCinemaIdentity('MUSIC AUDIO UNAVAILABLE · PRIOR AUDIO RESTORED');
+			throw error;
+		}
+		updateProviderCueState('music', productId);
+		renderMusicAudioIdentity(productId);
+		if (!await activateMusicVisual(product)) await releaseMusicVisualToCinema();
+	}
+
+	async function activateNativeLease(provider, id, src, title, { nextMusicQueue = null } = {}) {
+		const replacingLease = Boolean(session.lease);
+		const priorElement = replacingLease ? null : currentAudibleElement(audible);
+		const priorAudible = priorElement
+			? selectAudibleTrack(audible, { ...audible.current, currentTime: priorElement.currentTime })
+			: audible;
+		const prior = captureControllerState({ audibleState: priorAudible });
+		if (priorElement) priorElement.pause();
+		const retainedCinemaSnapshot = prior.session.lease?.snapshot ?? prior.stageSnapshot;
+		const nextSession = activateSource(prior.session, { provider, id, mode: 'video', snapshot: retainedCinemaSnapshot });
+		const nextAudible = selectAudibleTrack(prior.audible, { provider, id, mode: 'video', currentTime: 0 });
+		session = nextSession;
+		audible = nextAudible;
+		suspendedForStageLease = replacingLease ? prior.suspendedForStageLease : prior.audible;
+		musicQueue = nextMusicQueue ?? prior.musicQueue;
+		retryCinema.hidden = true;
+		retryCinema.disabled = true;
+		retryCinema.setAttribute('aria-disabled', 'true');
+		setStageProvider(normalizeStageProvider(provider, 'video'));
+		hideMirrorWings();
+		mv.src = src;
+		mv.muted = false;
+		applyActiveTransportPolicy();
+		renderCinemaAudioInvitation();
+		try {
+			await playVideoStack();
+		} catch (error) {
+			throw await rollbackControllerState(prior, error, {
+				attemptedAudibleState: nextAudible,
+				statusPrefix: 'PLAYBACK/RESTORE ERROR',
+			});
+		}
+		updateProviderCueState(provider, id);
+		returnButton.hidden = false;
+		activeSourceKind.textContent = provider === 'music' ? 'MUSIC · VIDEO' : 'MEDIA';
+		nowPlayingTitle.textContent = title;
+		nowPlayingStatus.textContent = `${activeSourceKind.textContent} LIVE`;
+	}
+
+	async function activateCinema(index, { preserveAudibleAuthority = false } = {}) {
+		if (session.lease) return;
+		const preserveMusicTransport = preserveAudibleAuthority
+			&& session.playback.provider === 'music'
+			&& session.playback.mode === 'audio';
+		await runCommittedPlayback({
+			commitSelection: async () => {
+				await switchVideo(index, false);
+				retryCinema.hidden = true;
+				retryCinema.disabled = true;
+				retryCinema.setAttribute('aria-disabled', 'true');
+				returnButton.hidden = true;
+				if (!preserveMusicTransport) {
+					session = activateSource(session, { provider: 'cinema', id: currentCinema()?.id ?? null, mode: 'video', muted: mv.muted });
+					renderCinemaIdentity('CINEMA LOADING');
+				} else renderCinemaAudioInvitation();
+				return currentCinema();
+			},
+			startPlayback: () => playVideoStack(),
+			onPlaying: async () => {
+				retryCinema.hidden = true;
+				retryCinema.disabled = true;
+				retryCinema.setAttribute('aria-disabled', 'true');
+				nowPlayingStatus.textContent = preserveMusicTransport
+					? 'MUSIC AUDIO LIVE · CINEMA MOTION RESTORED'
+					: 'CINEMA LIVE';
+			},
+			onRejected: async (error) => {
+				hasReportedTransitionError = true;
+				const failure = error instanceof Error ? error.message : 'UNKNOWN';
+				nowPlayingStatus.textContent = preserveMusicTransport
+					? `CINEMA AUTO-ADVANCE FAILED · ${currentCinema()?.title ?? 'UNKNOWN CINEMA'} · ${failure} · RETRY AVAILABLE`
+					: `CINEMA PLAYBACK ERROR · ${failure} · RETRY AVAILABLE`;
+				retryCinema.hidden = false;
+				retryCinema.disabled = false;
+				retryCinema.setAttribute('aria-disabled', 'false');
+			},
+		});
+	}
+
+	async function finishWelcome() {
+		if (introSession.phase !== 'welcome') return;
+		introSession = completeWelcome(introSession);
+		try {
+			await activateCinema(cinema.cursor, { preserveAudibleAuthority: true });
+			nowPlayingStatus.textContent = introSession.status;
+		} finally {
+			entryControlsLocked = false;
+			syncEntryControlAvailability();
+		}
+	}
+
+	async function continueFromWelcomeFailure() {
+		if (introSession.phase !== 'welcome') return;
+		introSession = failWelcome(introSession);
+		try {
+			await activateCinema(cinema.cursor, { preserveAudibleAuthority: true });
+			nowPlayingStatus.textContent = introSession.status;
+		} finally {
+			entryControlsLocked = false;
+			syncEntryControlAvailability();
+		}
+	}
+
+	async function returnMusicQueueToCinema() {
+		musicAudio.pause();
+		if (session.lease) await restoreLeasedCinema();
+		const restoreMuted = cinemaMutedBeforeMusicAudio ?? true;
+		mv.muted = restoreMuted;
+		audible = restoreMuted ? createAudibleSource() : createAudibleSource({
+			provider: 'cinema', id: currentCinema()?.id ?? null, mode: 'video', currentTime: mv.currentTime,
+		});
+		cinemaMutedBeforeMusicAudio = null;
+		session = activateSource(session, { provider: 'cinema', id: currentCinema()?.id ?? null, mode: 'video', muted: restoreMuted });
+		renderCinemaIdentity(restoreMuted
+			? 'MUSIC QUEUE COMPLETE · CINEMA AUDIO MUTED'
+			: 'MUSIC QUEUE COMPLETE · CINEMA AUDIO RESTORED');
+	}
+
+	async function advanceMusic(direction) {
+		const next = advanceMusicQueue(musicQueue, direction);
+		if (!next) return returnMusicQueueToCinema();
+		await activateMusicAudio(next.currentProductId, { nextMusicQueue: next });
+	}
+
+	async function toggleActivePlayback() {
+		const policy = activeTransportPolicy(session.playback);
+		if (!policy.playPause) return;
+		const audioIsActive = session.playback.provider === 'music' && session.playback.mode === 'audio';
+		const media = audioIsActive ? musicAudio : mv;
+		if (media.paused) {
+			if (audioIsActive) await media.play();
+			else {
+				const outcome = await runActivePlaybackRetry({
+					playback: session.playback,
+					currentStatus: nowPlayingStatus.textContent,
+					startPlayback: playVideoStack,
+					onStatus: (status) => { nowPlayingStatus.textContent = status; },
+				});
+				if (outcome.outcome === 'handled-error') console.error(outcome.error);
+			}
+		} else if (audioIsActive) media.pause();
+		else pauseVideoStack();
+	}
+
+	async function hearCinema() {
+		if (session.playback.stageOwner !== 'cinema') return;
+		if (audible.current?.provider === 'cinema') return;
+		const priorSession = session;
+		const priorElement = currentAudibleElement(audible);
+		if (priorElement) {
+			audible = selectAudibleTrack(audible, { ...audible.current, currentTime: priorElement.currentTime });
+			priorElement.pause();
+		}
+		const prior = audible;
+		audible = claimCinemaAudio(audible);
+		session = activateSource(session, {
+			provider: 'cinema', id: currentCinema()?.id ?? null, mode: 'video', muted: false,
+		});
+		mv.muted = false;
+		try {
+			await playVideoStack();
+		} catch (error) {
+			mv.muted = true;
+			audible = prior;
+			session = priorSession;
+			renderCinemaAudioInvitation();
+			if (priorElement && prior.current) {
+				priorElement.currentTime = prior.current.currentTime;
+				await priorElement.play();
+			}
+			throw error;
+		}
+		renderCinemaIdentity('CINEMA AUDIO LIVE');
+	}
+
+	async function restoreCinemaAudio() {
+		if (session.playback.stageOwner !== 'cinema' || audible.current?.provider !== 'cinema') return;
+		const priorAudible = audible;
+		const priorSession = session;
+		audible = restorePriorAudio(audible);
+		mv.muted = true;
+		const restoredElement = currentAudibleElement(audible);
+		try {
+			if (audible.current?.provider === 'music') {
+				restoreMusicSource(audible.current.id);
+				session = activateSource(session, { provider: 'music', id: audible.current.id, mode: 'audio' });
+			} else {
+				session = activateSource(session, { provider: 'cinema', id: currentCinema()?.id ?? null, mode: 'video', muted: true });
+			}
+			if (restoredElement && audible.current) {
+				restoredElement.currentTime = audible.current.currentTime;
+				await restoredElement.play();
+			}
+		} catch (error) {
+			audible = priorAudible;
+			session = priorSession;
+			mv.muted = false;
+			await playVideoStack();
+			renderCinemaIdentity('CINEMA AUDIO LIVE · PRIOR AUDIO UNAVAILABLE');
+			throw error;
+		}
+		if (audible.current?.provider === 'music') renderMusicAudioIdentity(audible.current.id, 'MUSIC AUDIO RESTORED · CINEMA MOTION LIVE');
+		else renderCinemaIdentity(audible.current?.provider === 'ambient' ? 'AMBIENT AUDIO RESTORED · CINEMA MOTION LIVE' : 'CINEMA AUDIO MUTED');
+	}
+
+	function handleAmbientFailure() {
+		if (introSession.phase === 'awaiting-entry') return;
+		const failed = failAmbient(introSession);
+		if (failed === introSession) return;
+		introSession = failed;
+		audible = removeAudibleProvider(audible, 'ambient');
+		suspendedForStageLease = removeAudibleProvider(suspendedForStageLease, 'ambient');
+		nowPlayingStatus.textContent = introSession.status;
+		renderCinemaAudioInvitation();
+	}
+
+	entryButton?.addEventListener('click', () => {
+		if (introSession.phase !== 'awaiting-entry') return;
+		introSession = beginExperience(introSession);
+		entryGate.hidden = true;
+		nowPlayingStatus.textContent = introSession.status;
+		const ambientAttempt = ambientAudio.play();
+		const welcomeAttempt = playVideoStack();
+		void ambientAttempt.catch(handleAmbientFailure);
+		void welcomeAttempt.catch(() => enqueueTransition(() => continueFromWelcomeFailure()));
+	});
+	ambientAudio.addEventListener('error', handleAmbientFailure);
+	cinemaButtons.forEach((button) => {
+		button.addEventListener('click', () => {
+			if (session.lease) return;
+			const index = videoPlaylist.findIndex((item) => item.id === button.dataset.cinemaId);
+			if (index < 0) return;
+			enqueueMediaControlTransition(() => activateCinema(index, { preserveAudibleAuthority: true }));
+		});
+	});
+	root.querySelectorAll('[data-music-mode="audio"]').forEach((button) => {
+		button.addEventListener('click', () => {
+			enqueueMediaControlTransition(() => session.playback.provider === 'music'
+				&& session.playback.mode === 'audio'
+				&& session.playback.id === button.dataset.productId
+				? toggleActivePlayback()
+				: activateMusicAudio(button.dataset.productId));
+		});
+	});
+	root.querySelectorAll('[data-music-mode="video"]').forEach((button) => {
+		button.addEventListener('click', () => {
+			enqueueMediaControlTransition(() => {
+				const product = productById.get(button.dataset.productId);
+				if (!product?.videoSrc || eligibleVideoItems([{ ...product, aspect: product.videoAspect }], window.innerWidth).length === 0) return;
+				const nextMusicQueue = selectMusicMode(musicQueue, product.productId, 'video');
+				return activateNativeLease('music', product.productId, product.videoSrc, product.title, { nextMusicQueue });
+			});
+		});
+	});
+	root.querySelectorAll('.media-cue').forEach((button) => {
+		button.addEventListener('click', () => {
+			if (!mediaItems.some((item) => item.id === button.dataset.mediaId)) return;
+			enqueueMediaControlTransition(() => activateNativeLease('media', button.dataset.mediaId, button.dataset.mediaSrc, button.dataset.mediaTitle));
+		});
+	});
+	root.querySelectorAll('.youtube-cue').forEach((button) => {
+		button.addEventListener('click', () => {
+			updateProviderCueState('youtube', button.dataset.youtubeId);
+		});
+	});
+	returnButton.addEventListener('click', () => {
+		enqueueMediaControlTransition(() => restoreLeasedCinema());
+	});
+	retryCinema.addEventListener('click', () => {
+		enqueueMediaControlTransition(() => activateCinema(cinema.cursor, {
+			preserveAudibleAuthority: session.playback.provider === 'music' && session.playback.mode === 'audio',
+		}));
+	});
+	musicAudio.addEventListener('ended', () => {
+		if (!(session.playback.provider === 'music' && session.playback.mode === 'audio')) return;
+		const endedToken = createEndedEventToken(session.playback, musicAudio.currentSrc || musicAudio.src);
+		void enqueueTransition(async () => {
+			if (!isCurrentEndedEventToken(endedToken, session.playback, musicAudio.currentSrc || musicAudio.src)) return;
+			if (session.playback.provider === 'music' && session.playback.mode === 'audio') await advanceMusic(1);
+		});
+	});
+	mv.addEventListener('ended', () => {
+		if (introSession.phase === 'welcome') {
+			void enqueueTransition(() => finishWelcome());
+			return;
+		}
+		if (session.lease) {
+			const leaseToken = createEndedEventToken(session.playback, mv.currentSrc || mv.src);
+			void enqueueTransition(async () => {
+				if (!isCurrentEndedEventToken(leaseToken, session.playback, mv.currentSrc || mv.src)) return;
+				await restoreLeasedCinema();
+			});
+			return;
+		}
+		const cinemaToken = createCinemaEndedToken(cinema, mv.currentSrc || mv.src);
+		void enqueueTransition(async () => {
+			if (!isCurrentCinemaEndedToken(cinemaToken, cinema, mv.currentSrc || mv.src)) return;
+			cinema = advanceCinema(cinema, 1);
+			await activateCinema(cinema.cursor, { preserveAudibleAuthority: true });
+		});
+	});
+	mv.addEventListener('error', () => {
+		const action = runtimeVideoErrorAction({
+			introPhase: introSession.phase,
+			playback: session.playback,
+			hasLease: Boolean(session.lease),
+		});
+		if (action === 'welcome-fallback') {
+			void enqueueTransition(() => continueFromWelcomeFailure());
+			return;
+		}
+		const failedPlayback = { ...session.playback };
+		if (action === 'restore-lease') {
+			const errorToken = createEndedEventToken(session.playback, mv.currentSrc || mv.src);
+			void enqueueTransition(async () => {
+				if (!isCurrentEndedEventToken(errorToken, session.playback, mv.currentSrc || mv.src)) return;
+				await recoverMasterVideoFailure(action, failedPlayback);
+			});
+			return;
+		}
+		if (action === 'cinema-retry') {
+			const errorToken = createCinemaEndedToken(cinema, mv.currentSrc || mv.src);
+			void enqueueTransition(async () => {
+				if (!isCurrentCinemaEndedToken(errorToken, cinema, mv.currentSrc || mv.src)) return;
+				await recoverMasterVideoFailure(action, failedPlayback);
+			});
+		}
+	});
+	activePlay.addEventListener('click', () => {
+		enqueueMediaControlTransition(() => toggleActivePlayback());
+	});
+	enterFullscreen.addEventListener('click', () => { void enterFullscreenMode(); });
+	exitFullscreen.addEventListener('click', () => { void exitFullscreenMode(); });
+	fullscreenPrev.addEventListener('click', () => activePrev.click());
+	fullscreenPlay.addEventListener('click', () => activePlay.click());
+	fullscreenNext.addEventListener('click', () => activeNext.click());
+	fullscreenMute.addEventListener('click', () => {
+		const media = activeAuthoritativeMedia();
+		media.muted = !media.muted;
+		renderFullscreenSession();
+	});
+	fullscreenShell.addEventListener('pointerdown', (event) => {
+		if (event.target.closest('[data-fullscreen-overlay]')) return;
+		fullscreenSession.interact();
+		renderFullscreenSession();
+	});
+	fullscreenOverlay.addEventListener('pointerdown', () => {
+		fullscreenSession.interact();
+		renderFullscreenSession();
+	});
+	document.addEventListener('fullscreenchange', () => {
+		if (document.fullscreenElement !== fullscreenShell && fullscreenSession.snapshot().mode === 'fullscreen'
+			&& fullscreenShell.dataset.fullscreenMode === 'native') completeFullscreenExit();
+	});
+	document.addEventListener('fullscreenerror', () => {
+		if (fullscreenSession.snapshot().mode !== 'fullscreen') return;
+		fullscreenShell.dataset.fullscreenMode = 'viewport';
+		renderFullscreenSession();
+	});
+	activeSeek.addEventListener('input', () => {
+		const media = activeAuthoritativeMedia();
+		if (Number.isFinite(media.duration)) media.currentTime = Math.min(Number(activeSeek.value), media.duration);
+		syncTransportTime();
+	});
+	activePrev.addEventListener('click', () => {
+		enqueueMediaControlTransition(async () => {
+			if (session.lease) return;
+			const policy = activeTransportPolicy(session.playback);
+			if (!policy.previous) return;
+			if (session.playback.provider === 'music') await advanceMusic(-1);
+			if (session.playback.provider === 'cinema') await activateCinema(cinema.cursor - 1);
+		});
+	});
+	activeNext.addEventListener('click', () => {
+		enqueueMediaControlTransition(async () => {
+			if (session.lease) return;
+			const policy = activeTransportPolicy(session.playback);
+			if (!policy.next) return;
+			if (session.playback.provider === 'music') await advanceMusic(1);
+			if (session.playback.provider === 'cinema') await activateCinema(cinema.cursor + 1);
+		});
+	});
+	shuffleButton.addEventListener('click', () => {
+		enqueueMediaControlTransition(() => {
+			const policy = activeTransportPolicy(session.playback);
+			if (!policy.shuffle) return;
+			musicQueue = toggleShuffle(musicQueue);
+			shuffleButton.setAttribute('aria-pressed', String(musicQueue.shuffle));
+		});
+	});
+	repeatButton.addEventListener('click', () => {
+		enqueueMediaControlTransition(() => {
+			const policy = activeTransportPolicy(session.playback);
+			if (!policy.repeat) return;
+			const next = musicQueue.repeat === 'off' ? 'all' : musicQueue.repeat === 'all' ? 'one' : 'off';
+			musicQueue = setRepeatMode(musicQueue, next);
+			repeatButton.dataset.repeat = next;
+			repeatButton.textContent = `REPEAT ${next.toUpperCase()}`;
+		});
+	});
+	cinemaAudioInvitation.addEventListener('click', () => {
+		enqueueMediaControlTransition(() => audible.current?.provider === 'cinema' ? restoreCinemaAudio() : hearCinema());
+	});
+	cinemaAudioInvitation.addEventListener('animationend', () => {
+		cinemaAudioInvitation.classList.remove('is-inviting');
+	});
+
+	mv.addEventListener('loadedmetadata', () => { applyMediaAspect(); syncTransportTime(); });
+	mv.addEventListener('durationchange', syncTransportTime);
+	bindMirrorFollowerFailures(wings, handleMirrorWingRuntimeError);
+	mv.addEventListener('timeupdate', () => { alignMirrorWings(); syncTransportTime(); });
 	mv.addEventListener('play', () => {
 		void playMirrorWings();
+		if (!(session.playback.provider === 'music' && session.playback.mode === 'audio')) syncActivePlayButton();
+		fullscreenSession.setPaused(false);
+		renderFullscreenSession();
 	});
-
 	mv.addEventListener('pause', () => {
 		pauseMirrorWings();
+		if (!(session.playback.provider === 'music' && session.playback.mode === 'audio')) syncActivePlayButton();
+		fullscreenSession.setPaused(true);
+		renderFullscreenSession();
 	});
-
-	function switchVideo(idx, playImmediate = true) {
-		if (!videoPlaylist.length) return;
-		currentVidIdx = (idx + videoPlaylist.length) % videoPlaylist.length;
-		const track = videoPlaylist[currentVidIdx];
-		mv.src = track.src;
-		vidTitle.textContent = track.title;
-		vidSpecs.textContent = track.specs;
-
-		if (playImmediate) {
-			void playVideoStack();
-			vidPlayBtn.textContent = 'PAUSE';
+	musicAudio.addEventListener('play', () => {
+		if (session.playback.provider === 'music' && session.playback.mode === 'audio') syncActivePlayButton();
+		syncMusicRowActions();
+		if (!suppressMusicVisualMediaSync && visualSession.snapshot().owner === 'music-tag' && musicVisualVideo.paused) {
+			const resumed = visualSession.snapshot();
+			void musicVisualVideo.play().catch(() => {
+				void failMusicVisual(resumed.token, resumed.visual?.src);
+			});
 		}
-
-		videoCueBtns.forEach((b, i) => {
-			if (i === currentVidIdx) {
-				b.classList.add('border-zinc-500', 'bg-zinc-800/60');
-			} else {
-				b.classList.remove('border-zinc-500', 'bg-zinc-800/60');
-			}
-		});
-	}
-
-	mv.addEventListener('ended', () => switchVideo(currentVidIdx + 1, true));
-
-	mv.addEventListener('timeupdate', () => {
-		if (!isNaN(mv.duration)) {
-			vidSeek.value = (mv.currentTime / mv.duration) * 100;
-			vidCur.textContent = formatTime(mv.currentTime);
-			alignMirrorWings();
-		}
+		fullscreenSession.setPaused(false);
+		renderFullscreenSession();
 	});
-
-	vidSeek.addEventListener('input', () => {
-		if (!isNaN(mv.duration)) {
-			const target = (vidSeek.value / 100) * mv.duration;
-			setVideoTime(target);
-		}
+	musicAudio.addEventListener('pause', () => {
+		if (session.playback.provider === 'music' && session.playback.mode === 'audio') syncActivePlayButton();
+		syncMusicRowActions();
+		if (!suppressMusicVisualMediaSync && visualSession.snapshot().owner === 'music-tag') musicVisualVideo.pause();
+		fullscreenSession.setPaused(true);
+		renderFullscreenSession();
 	});
+	musicAudio.addEventListener('loadedmetadata', syncTransportTime);
+	musicAudio.addEventListener('durationchange', syncTransportTime);
+	musicAudio.addEventListener('timeupdate', syncTransportTime);
+	const stageResizeObserver = new ResizeObserver(reconcileMirrorWings);
+	stageResizeObserver.observe(stage);
+	mobileMirrorQuery.addEventListener('change', reconcileMirrorWings);
+	mobileMirrorQuery.addEventListener('change', rebuildEligibleVideoQueues);
+	reducedMotionQuery.addEventListener('change', reconcileMirrorWings);
 
-	vidPlayBtn.addEventListener('click', () => {
-		if (mv.paused) {
-			void playVideoStack();
-			vidPlayBtn.textContent = 'PAUSE';
-		} else {
-			pauseVideoStack();
-			vidPlayBtn.textContent = 'PLAY';
-		}
-	});
-
-	vidPrevBtn.addEventListener('click', () => switchVideo(currentVidIdx - 1, true));
-	vidNextBtn.addEventListener('click', () => switchVideo(currentVidIdx + 1, true));
-	vidRewind10.addEventListener('click', () => { 
-		const t = Math.max(0, mv.currentTime - 10);
-		setVideoTime(t);
-	});
-	vidForward10.addEventListener('click', () => { 
-		const t = Math.min(mv.duration, mv.currentTime + 10);
-		setVideoTime(t);
-	});
-
-	videoCueBtns.forEach(b => {
-		b.addEventListener('click', () => switchVideo(parseInt(b.getAttribute('data-v-idx'), 10), true));
-	});
-
-	muteBtn.addEventListener('click', () => {
-		mv.muted = !mv.muted;
-		if (mv.muted) {
-			muteLed.className = 'w-2 h-2 rounded-full bg-red-500';
-			muteLabel.textContent = 'VIDEO AUDIO MUTED';
-		} else {
-			muteLed.className = 'w-2 h-2 rounded-full bg-emerald-400 animate-pulse';
-			muteLabel.textContent = 'VIDEO AUDIO LIVE';
-			if (!dspAudio.paused) {
-				dspAudio.pause();
-				dspPlayBtn.textContent = 'PLAY MASTER';
-			}
-		}
-	});
-
-	function switchAudio(idx, playImmediate = true) {
-		if (!audioPlaylist.length) return;
-		currentAudIdx = (idx + audioPlaylist.length) % audioPlaylist.length;
-		const trk = audioPlaylist[currentAudIdx];
-		dspAudio.src = trk.src;
-		dspTitle.textContent = trk.title;
-		dspSpecs.textContent = trk.specs;
-		
-		if (playImmediate) {
-			dspAudio.play();
-			dspPlayBtn.textContent = 'PAUSE MASTER';
-			if (!mv.muted) {
-				mv.muted = true;
-				muteLed.className = 'w-2 h-2 rounded-full bg-red-500';
-				muteLabel.textContent = 'VIDEO AUDIO MUTED';
-			}
-		}
-		
-		audioCueBtns.forEach((b, i) => {
-			if (i === currentAudIdx) {
-				b.classList.add('border-zinc-500', 'bg-zinc-800/60');
-			} else {
-				b.classList.remove('border-zinc-500', 'bg-zinc-800/60');
-			}
-		});
-	}
-
-	dspAudio.addEventListener('ended', () => switchAudio(currentAudIdx + 1, true));
-
-	dspPlayBtn.addEventListener('click', () => {
-		if (dspAudio.paused) {
-			dspAudio.play();
-			dspPlayBtn.textContent = 'PAUSE MASTER';
-			if (!mv.muted) {
-				mv.muted = true;
-				muteLed.className = 'w-2 h-2 rounded-full bg-red-500';
-				muteLabel.textContent = 'VIDEO AUDIO MUTED';
-			}
-		} else {
-			dspAudio.pause();
-			dspPlayBtn.textContent = 'PLAY MASTER';
-		}
-	});
-
-	dspPrevBtn.addEventListener('click', () => switchAudio(currentAudIdx - 1, true));
-	dspNextBtn.addEventListener('click', () => switchAudio(currentAudIdx + 1, true));
-	dspRewind10.addEventListener('click', () => { dspAudio.currentTime = Math.max(0, dspAudio.currentTime - 10); });
-	dspForward10.addEventListener('click', () => { dspAudio.currentTime = Math.min(dspAudio.duration, dspAudio.currentTime + 10); });
-
-	audioCueBtns.forEach(b => {
-		b.addEventListener('click', () => switchAudio(parseInt(b.getAttribute('data-a-idx'), 10), true));
-	});
-
-	dspAudio.addEventListener('timeupdate', () => {
-		if (!isNaN(dspAudio.duration)) {
-			dspSeek.value = (dspAudio.currentTime / dspAudio.duration) * 100;
-			dspCur.textContent = formatTime(dspAudio.currentTime);
-		}
-	});
-
-	dspAudio.addEventListener('loadedmetadata', () => {
-		dspDur.textContent = formatTime(dspAudio.duration);
-	});
-
-	dspSeek.addEventListener('input', () => {
-		if (!isNaN(dspAudio.duration)) {
-			dspAudio.currentTime = (dspSeek.value / 100) * dspAudio.duration;
-		}
-	});
-
-	if (videoPlaylist.length) switchVideo(0, false);
-	if (audioCueBtns.length) audioCueBtns[0].classList.add('border-zinc-500', 'bg-zinc-800/60');
+	rebuildEligibleVideoQueues();
+	syncTransportTime();
+		nowPlayingStatus.textContent = introSession.status;
+	syncEntryControlAvailability();
+	renderTab('cinema');
 </script>

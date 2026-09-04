@@ -1,9 +1,44 @@
 const HTTPS = 'https:';
 const KINDS = new Set(['video', 'audio']);
+const ASPECTS = new Set(['portrait', 'square', 'landscape']);
+const VISUAL_TAG = /^VIZ-[A-Z0-9]+(?:-[A-Z0-9]+)*$/;
 
 function requiredString(value, field, index) {
   if (typeof value !== 'string' || value.trim() === '') {
     throw new TypeError(`items[${index}].${field} must be a non-empty string`);
+  }
+  return value;
+}
+
+function classifyAspect(width, height) {
+  if (width === height) return 'square';
+  return width < height ? 'portrait' : 'landscape';
+}
+
+export function parseVideoDimensions(value, label, { optional = false } = {}) {
+  const fields = ['width', 'height', 'aspect'];
+  const present = fields.filter((field) => value?.[field] !== undefined);
+  if (present.length === 0 && optional) return null;
+  if (present.length !== fields.length) {
+    throw new TypeError(`${label} dimensions require width, height, and aspect together`);
+  }
+  if (!Number.isInteger(value.width) || value.width <= 0
+    || !Number.isInteger(value.height) || value.height <= 0
+    || !ASPECTS.has(value.aspect)) {
+    throw new TypeError(`${label} width and height must be positive integers and aspect must be portrait, square, or landscape`);
+  }
+  if (classifyAspect(value.width, value.height) !== value.aspect) {
+    throw new TypeError(`${label} aspect contradicts its dimensions`);
+  }
+  return { width: value.width, height: value.height, aspect: value.aspect };
+}
+
+function parseHttpsUrl(value, label) {
+  if (typeof value !== 'string' || value.trim() === '') throw new TypeError(`${label} must be an HTTPS URL`);
+  try {
+    if (new URL(value).protocol !== HTTPS) throw new Error();
+  } catch {
+    throw new TypeError(`${label} must be an HTTPS URL`);
   }
   return value;
 }
@@ -52,6 +87,22 @@ export function parseMediaManifest(input) {
     };
     if (item.engine !== undefined) {
       parsed.engine = requiredString(item.engine, 'engine', index);
+    }
+    const dimensions = parseVideoDimensions(item, `items[${index}]`, { optional: true });
+    if (dimensions) Object.assign(parsed, dimensions);
+    if (item.visual !== undefined) {
+      if (item.kind !== 'audio') throw new TypeError(`items[${index}].visual is only valid on audio items`);
+      if (!item.visual || typeof item.visual !== 'object' || Array.isArray(item.visual)) {
+        throw new TypeError(`items[${index}].visual must be an object`);
+      }
+      if (typeof item.visual.tag !== 'string' || !VISUAL_TAG.test(item.visual.tag)) {
+        throw new TypeError(`items[${index}].visual tag must use VIZ-<NAME>`);
+      }
+      parsed.visual = {
+        tag: item.visual.tag,
+        src: parseHttpsUrl(item.visual.src, `items[${index}].visual.src`),
+        ...parseVideoDimensions(item.visual, `items[${index}].visual`),
+      };
     }
     return parsed;
   });

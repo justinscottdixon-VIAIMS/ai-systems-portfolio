@@ -1,1 +1,112 @@
 @import "tailwindcss";
+
+.main--compact {
+  padding-block: 0.75rem 3rem;
+}
+
+.institutional-header {
+  display: grid;
+  gap: 0.25rem;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.45rem;
+  border-bottom: 1px solid rgb(39 39 42);
+}
+
+.institutional-status {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  color: rgb(113 113 122);
+  font: 0.625rem ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: 0.1em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.institutional-status__clock {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.institutional-status__reference {
+  flex: none;
+  color: rgb(82 82 91);
+}
+
+.institutional-nameplate {
+  display: grid;
+  grid-template-columns: minmax(17rem, auto) minmax(0, 1fr);
+  gap: 1rem;
+  align-items: center;
+  text-align: left;
+}
+
+.institutional-nameplate h1 {
+  color: white;
+  font-size: clamp(1.35rem, 3.5vw, 1.8rem);
+  font-weight: 800;
+  letter-spacing: 0.025em;
+  line-height: 1;
+}
+
+.institutional-nameplate__organization {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.65rem;
+  align-items: baseline;
+  color: rgb(212 212 216);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  line-height: 1.1;
+}
+
+.institutional-nameplate__organization p:last-child {
+  color: rgb(113 113 122);
+  letter-spacing: 0.18em;
+}
+
+.institutional-roles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.15rem 0.75rem;
+  color: rgb(161 161 170);
+  font: 0.5625rem ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: 0.045em;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.institutional-roles span:not(:last-child)::after {
+  margin-left: 0.75rem;
+  color: rgb(63 63 70);
+  content: "/";
+}
+
+@media (max-width: 767px) {
+  .main--compact {
+    padding-block: 0.75rem 2rem;
+  }
+
+  .institutional-status {
+    align-items: flex-start;
+    font-size: 0.5625rem;
+  }
+
+  .institutional-status__clock {
+    flex-wrap: wrap;
+  }
+
+  .institutional-nameplate {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.25rem;
+  }
+
+  .institutional-nameplate__organization,
+  .institutional-roles {
+    font-size: 0.5625rem;
+  }
+}

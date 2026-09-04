@@ -9,6 +9,21 @@ public/media/video/*
 public/media/audio/*
 !public/media/video/.gitkeep
 !public/media/audio/.gitkeep
+
+# Local ingestion payloads stay outside repository history.
+media-ingest/Cinema/*
+media-ingest/Music/*
+media-ingest/Media/*
+!media-ingest/Cinema/.gitkeep
+!media-ingest/Cinema/playlist-order.json
+!media-ingest/Music/.gitkeep
+!media-ingest/Music/playlist-order.json
+!media-ingest/Music/track-metadata.json
+!media-ingest/Media/.gitkeep
+!media-ingest/Media/playlist-order.json
+!media-ingest/Media/Music-Visuals/
+media-ingest/Media/Music-Visuals/*
+!media-ingest/Media/Music-Visuals/.gitkeep
 **/.DS_Store
 .superpowers/
 .worktrees/

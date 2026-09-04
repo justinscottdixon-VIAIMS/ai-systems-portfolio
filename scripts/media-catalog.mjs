@@ -40,6 +40,32 @@ function hashFile(absolutePath) {
   });
 }
 
+const APPROVED_METADATA_FIELDS = new Set([
+  'role', 'playlistOrder', 'width', 'height', 'aspect', 'visualTag', 'title',
+]);
+
+export async function describeMediaFile({ kind, filename, absolutePath, objectKeyPrefix = 'portfolio', metadata = {} }) {
+  const extension = path.extname(filename).toLowerCase();
+  const group = GROUPS.find((candidate) => candidate.kind === kind);
+  if (!group || !group.extensions.has(extension)) {
+    throw new TypeError(`unsupported ${kind} media file: ${filename}`);
+  }
+  const fileStat = await stat(absolutePath);
+  const contentHash = await hashFile(absolutePath);
+  const described = {
+    kind,
+    filename,
+    absolutePath,
+    size: fileStat.size,
+    contentType: group.contentTypes[extension],
+    objectKey: `${objectKeyPrefix}/${kind}/${contentHash}-${safeObjectName(filename)}`,
+  };
+  for (const [field, value] of Object.entries(metadata)) {
+    if (APPROVED_METADATA_FIELDS.has(field) && value !== undefined) described[field] = value;
+  }
+  return described;
+}
+
 export async function discoverMedia(rootDirectory) {
   const discovered = [];
   for (const group of GROUPS) {
@@ -49,16 +75,7 @@ export async function discoverMedia(rootDirectory) {
       const extension = path.extname(entry.name).toLowerCase();
       if (!entry.isFile() || entry.name.startsWith('.') || !group.extensions.has(extension)) continue;
       const absolutePath = path.join(absoluteDirectory, entry.name);
-      const fileStat = await stat(absolutePath);
-      const contentHash = await hashFile(absolutePath);
-      discovered.push({
-        kind: group.kind,
-        filename: entry.name,
-        absolutePath,
-        size: fileStat.size,
-        contentType: group.contentTypes[extension],
-        objectKey: `portfolio/${group.kind}/${contentHash}-${safeObjectName(entry.name)}`,
-      });
+      discovered.push(await describeMediaFile({ kind: group.kind, filename: entry.name, absolutePath }));
     }
   }
   return discovered.sort((left, right) => left.objectKey.localeCompare(right.objectKey));
@@ -93,12 +110,19 @@ export function toManifestItem(file, url) {
   const item = {
     id: manifestItemId(file),
     kind: file.kind,
-    title: displayStem,
+    title: file.title ?? displayStem,
     src: url,
     specs: file.kind === 'video'
       ? `${extension.slice(1).toUpperCase()} Master`
-      : `${extension.slice(1).toUpperCase()} • 24-bit / 48kHz Staging`,
+      : extension.toLowerCase() === '.mp3'
+        ? 'MP3 • Compressed Delivery'
+        : `${extension.slice(1).toUpperCase()} • 24-bit / 48kHz Staging`,
   };
   if (file.kind === 'video') item.engine = file.filename.includes('3I') ? 'Sora Pro' : 'AI Render';
+  if (file.width !== undefined || file.height !== undefined || file.aspect !== undefined) {
+    item.width = file.width;
+    item.height = file.height;
+    item.aspect = file.aspect;
+  }
   return item;
 }

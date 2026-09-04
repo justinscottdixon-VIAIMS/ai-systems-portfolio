@@ -16,7 +16,7 @@ test('changing tabs never changes active playback', () => {
   assert.deepEqual(browsed.playback, session.playback);
 });
 
-test('Music audio owns the audible bus without taking the stage', () => {
+test('Music audio records playback metadata without taking the stage', () => {
   const session = activateSource(createPlaybackSession({ cinemaId: 'atlas' }), { provider: 'music', id: 'north', mode: 'audio' });
   assert.equal(session.playback.audibleOwner, 'music');
   assert.equal(session.playback.stageOwner, 'cinema');

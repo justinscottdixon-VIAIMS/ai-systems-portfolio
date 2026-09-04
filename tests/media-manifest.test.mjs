@@ -80,3 +80,37 @@ test('toPlaylists supplies explicit standby entries for an empty manifest', () =
 test('getMediaOrigin returns the first shared Blob origin', () => {
   assert.equal(getMediaOrigin(valid), 'https://example.public.blob.vercel-storage.com');
 });
+
+test('manifest preserves validated video aspect and reusable Music visual metadata', () => {
+  const input = structuredClone(valid);
+  Object.assign(input.items[0], { width: 720, height: 1280, aspect: 'portrait' });
+  input.items[1].title = 'V_Edges Fade_';
+  input.items[1].visual = {
+    tag: 'VIZ-VOID',
+    src: 'https://example.public.blob.vercel-storage.com/visual/void.mp4',
+    width: 1080,
+    height: 1920,
+    aspect: 'portrait',
+  };
+  const parsed = parseMediaManifest(input);
+  assert.equal(parsed.items[0].aspect, 'portrait');
+  assert.deepEqual(parsed.items[1].visual, input.items[1].visual);
+});
+
+test('manifest rejects incomplete or contradictory dimension metadata', () => {
+  const incomplete = structuredClone(valid);
+  incomplete.items[0].width = 720;
+  assert.throws(() => parseMediaManifest(incomplete), /width.*height.*aspect/i);
+  const contradictory = structuredClone(valid);
+  Object.assign(contradictory.items[0], { width: 720, height: 1280, aspect: 'landscape' });
+  assert.throws(() => parseMediaManifest(contradictory), /aspect.*dimensions/i);
+});
+
+test('manifest rejects invalid Music visuals and visual metadata on video items', () => {
+  const badTag = structuredClone(valid);
+  badTag.items[1].visual = { tag: 'void', src: 'https://cdn.example/void.mp4', width: 1, height: 2, aspect: 'portrait' };
+  assert.throws(() => parseMediaManifest(badTag), /visual.*tag/i);
+  const onVideo = structuredClone(valid);
+  onVideo.items[0].visual = { tag: 'VIZ-VOID', src: 'https://cdn.example/void.mp4', width: 1, height: 2, aspect: 'portrait' };
+  assert.throws(() => parseMediaManifest(onVideo), /visual.*audio/i);
+});

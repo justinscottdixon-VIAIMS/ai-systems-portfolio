@@ -1,6 +1,12 @@
 {
   "version": 1,
+  "experience": null,
   "music": [],
   "media": [],
+  "youtubeChannel": {
+    "title": "Justin Scott Dixon / Voyager",
+    "handle": "@justinscottdixon_voyager",
+    "href": "https://www.youtube.com/@justinscottdixon_voyager"
+  },
   "youtube": []
 }

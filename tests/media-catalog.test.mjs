@@ -10,6 +10,7 @@ import {
   manifestItemId,
   safeObjectName,
   toManifestItem,
+  describeMediaFile,
 } from '../scripts/media-catalog.mjs';
 
 test('safeObjectName normalizes punctuation but preserves the extension', () => {
@@ -94,4 +95,24 @@ test('toManifestItem preserves the display name and derives media specs', () => 
   assert.equal(item.id, 'video-3i-atlas-14');
   assert.equal(item.engine, 'Sora Pro');
   assert.equal(item.specs, 'MP4 Master');
+});
+
+test('describeMediaFile preserves only approved publication metadata', async () => {
+  const root = await mkdtemp(path.join(os.tmpdir(), 'viaims-media-'));
+  const absolutePath = path.join(root, 'Portrait.mp4');
+  await writeFile(absolutePath, 'video');
+  const file = await describeMediaFile({
+    kind: 'video',
+    filename: 'Portrait.mp4',
+    absolutePath,
+    metadata: {
+      role: 'cinema', playlistOrder: 2, width: 720, height: 1280, aspect: 'portrait',
+      ignored: 'must not escape',
+    },
+  });
+  assert.deepEqual(
+    Object.fromEntries(['role', 'playlistOrder', 'width', 'height', 'aspect'].map((key) => [key, file[key]])),
+    { role: 'cinema', playlistOrder: 2, width: 720, height: 1280, aspect: 'portrait' },
+  );
+  assert.equal('ignored' in file, false);
 });

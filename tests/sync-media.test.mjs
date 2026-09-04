@@ -204,3 +204,68 @@ test('uploadOptions uses multipart only above 100 MiB and never overwrites relea
   });
   assert.equal(uploadOptions({ ...base, size: base.size + 1 }, 'test-token').multipart, true);
 });
+
+test('syncMedia can publish an explicit preview manifest without touching production', async () => {
+  const root = await fixture();
+  const productionPath = path.join(root, 'src/data/media.json');
+  const previewPath = path.join(root, 'src/data/media.preview.json');
+  const productionBytes = await readFile(productionPath, 'utf8');
+  const files = [{
+    kind: 'audio',
+    filename: 'Preview.mp3',
+    absolutePath: path.join(root, 'public/media/video', 'Atlas.MP4'),
+    size: 5,
+    contentType: 'audio/mpeg',
+    objectKey: 'portfolio-preview/audio/hash-preview.mp3',
+  }];
+
+  const manifest = await sync({
+    rootDirectory: root,
+    manifestPath: previewPath,
+    files,
+    token: 'test-token',
+    uploader: async (pathname) => ({ url: `https://example.public.blob.vercel-storage.com/${pathname}` }),
+  });
+
+  assert.equal(await readFile(productionPath, 'utf8'), productionBytes);
+  assert.deepEqual(JSON.parse(await readFile(previewPath, 'utf8')), manifest);
+  assert.equal(manifest.items[0].src.includes('/portfolio-preview/'), true);
+});
+
+test('syncMedia invokes a custom manifest builder only after every URL is published', async () => {
+  const root = await fixture();
+  const absolutePath = path.join(root, 'public/media/video', 'Atlas.MP4');
+  const files = [
+    { kind: 'video', filename: 'One.mp4', absolutePath, size: 5, contentType: 'video/mp4', objectKey: 'preview/one.mp4' },
+    { kind: 'video', filename: 'Two.mp4', absolutePath, size: 5, contentType: 'video/mp4', objectKey: 'preview/two.mp4' },
+  ];
+  const seen = [];
+  const manifest = await sync({
+    rootDirectory: root,
+    files,
+    token: 'test-token',
+    uploader: async (key) => ({ url: `https://blob.example/${key}` }),
+    generatedAt: '2026-09-03T00:00:00.000Z',
+    manifestBuilder: (published, { generatedAt }) => {
+      seen.push(...published);
+      return { version: 1, generatedAt, items: [] };
+    },
+  });
+  assert.equal(seen.length, 2);
+  assert.deepEqual(seen.map(({ file, url }) => [file.filename, url]), [
+    ['One.mp4', 'https://blob.example/preview/one.mp4'],
+    ['Two.mp4', 'https://blob.example/preview/two.mp4'],
+  ]);
+  assert.equal(manifest.items.length, 0);
+});
+
+test('syncMedia preserves the old manifest when a custom manifest builder rejects', async () => {
+  const root = await fixture();
+  await assert.rejects(() => sync({
+    rootDirectory: root,
+    token: 'test-token',
+    uploader: async (key) => ({ url: `https://blob.example/${key}` }),
+    manifestBuilder: () => { throw new Error('builder failed'); },
+  }), /builder failed/);
+  assert.equal(await readFile(path.join(root, 'src/data/media.json'), 'utf8'), '{"sentinel":true}\n');
+});

@@ -60,28 +60,31 @@ async function publishedUrlsByObjectKey(manifestPath) {
 
 export async function syncMedia({
   rootDirectory = process.cwd(),
+  files: suppliedFiles,
+  manifestPath: suppliedManifestPath,
   token = process.env.BLOB_READ_WRITE_TOKEN,
   uploader = put,
   resolver = resolveExistingBlob,
   generatedAt = new Date().toISOString(),
+  manifestBuilder,
 } = {}) {
   if (!token) throw new Error('BLOB_READ_WRITE_TOKEN is required');
-  const files = await discoverMedia(rootDirectory);
+  const files = suppliedFiles ?? await discoverMedia(rootDirectory);
   assertUniqueObjectKeys(files);
   assertUniqueManifestIds(files);
-  const manifestPath = path.join(rootDirectory, 'src/data/media.json');
+  const manifestPath = suppliedManifestPath ?? path.join(rootDirectory, 'src/data/media.json');
   const publishedUrls = await publishedUrlsByObjectKey(manifestPath);
 
-  const items = [];
+  const published = [];
   for (const file of files) {
     const publishedUrl = publishedUrls.get(file.objectKey);
     if (publishedUrl) {
-      items.push(toManifestItem(file, publishedUrl));
+      published.push({ file, url: publishedUrl });
       continue;
     }
     const existingBlob = await resolver(file.objectKey, token);
     if (existingBlob) {
-      items.push(toManifestItem(file, existingBlob.url));
+      published.push({ file, url: existingBlob.url });
       continue;
     }
     const stream = createReadStream(file.absolutePath);
@@ -95,10 +98,15 @@ export async function syncMedia({
     } finally {
       stream.destroy();
     }
-    items.push(toManifestItem(file, blob.url));
+    published.push({ file, url: blob.url });
   }
 
-  const manifest = { version: 1, generatedAt, items };
+  const manifest = manifestBuilder
+    ? await manifestBuilder(published, { generatedAt })
+    : { version: 1, generatedAt, items: published.map(({ file, url }) => toManifestItem(file, url)) };
+  if (!manifest || typeof manifest !== 'object' || !Array.isArray(manifest.items)) {
+    throw new TypeError('manifest builder must return a manifest with an items array');
+  }
   const temporaryPath = `${manifestPath}.tmp`;
   await mkdir(path.dirname(manifestPath), { recursive: true });
   await writeFile(temporaryPath, `${JSON.stringify(manifest, null, 2)}\n`, 'utf8');

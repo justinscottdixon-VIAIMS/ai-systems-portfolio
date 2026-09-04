@@ -1,0 +1,9 @@
+media-ingest/
+public/media/
+.env
+.env.*
+.git/
+.worktrees/
+dist/
+node_modules/
+.DS_Store

@@ -2,38 +2,47 @@
 import Layout from '../layouts/Layout.astro';
 import HybridMediaEngine from '../components/HybridMediaEngine.astro';
 import PublicationsAndCredits from '../components/PublicationsAndCredits.astro';
-import mediaData from '../data/media.json';
+import { loadBuildMediaData } from '../lib/build-media-manifest.mjs';
 import { getMediaOrigin, parseMediaManifest } from '../lib/media-manifest.mjs';
 
+const mediaData = await loadBuildMediaData({ manifestPath: process.env.VIAIMS_MEDIA_MANIFEST_PATH });
 const mediaManifest = parseMediaManifest(mediaData);
 const mediaOrigin = getMediaOrigin(mediaManifest);
 ---
 
-<Layout>
+<Layout compactMain>
 	{mediaOrigin && (
 		<Fragment slot="head">
 			<link rel="preconnect" href={mediaOrigin} crossorigin="anonymous" />
 			<link rel="dns-prefetch" href={mediaOrigin} />
 		</Fragment>
 	)}
-	<header class="mb-10 border-b border-zinc-900 pb-8">
-		<div class="flex flex-wrap items-center justify-between gap-4 mb-6 border-b border-zinc-900/60 pb-3">
-			<div class="flex items-center gap-3 font-mono text-[11px] text-zinc-500 uppercase tracking-widest">
+	<header class="institutional-header" data-institutional-header>
+		<div class="institutional-status">
+			<div class="institutional-status__clock">
 				<span class="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
 				<span>SYSTEM ARCHITECTURE ONLINE</span>
 				<span class="text-zinc-800">|</span>
 				<span>CLOCK: AES67 MASTER LOCKED</span>
 			</div>
-			<div class="font-mono text-[11px] text-zinc-600">
-				REF: JSD-2026.PROD
-			</div>
+			<span class="institutional-status__reference">REF: JSD-2026.PROD</span>
 		</div>
 
-		<h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-white mb-4 uppercase font-sans">
-			Justin Scott Dixon
-		</h1>
-		<p class="text-base md:text-lg text-zinc-400 max-w-4xl font-normal leading-relaxed">
-			Principal AI Systems Architect & Creative Technologist bridging <span class="text-zinc-200 font-medium">spatial audio engineering (Dolby Atmos 7.1.4)</span>, <span class="text-zinc-200 font-medium">multi-engine AI video curation (Sora / Luma / Grok)</span>, and <span class="text-zinc-200 font-medium">enterprise AV infrastructure</span>.
+		<div data-institutional-identity class="institutional-nameplate text-center uppercase">
+			<h1>
+				JUSTIN SCOTT DIXON
+			</h1>
+			<div class="institutional-nameplate__organization">
+				<p>VOYAGER INSTITUTE OF AI MUSIC SYSTEMS</p>
+				<p>(VIAIMS)</p>
+			</div>
+		</div>
+		<p class="institutional-roles">
+			<span>AI SYSTEMS ARCHITECT · CREATIVE TECHNOLOGIST</span>
+			<span>MUSIC / VIDEO PRODUCER</span>
+			<span>SPATIAL AUDIO ENGINEER · SONGWRITER</span>
+			<span>SOUND DESIGNER · VISUAL STORYTELLER</span>
+			<span>INNOVATOR · MOTIVATOR · CREATOR</span>
 		</p>
 	</header>
 
