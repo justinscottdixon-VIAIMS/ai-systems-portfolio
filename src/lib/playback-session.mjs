@@ -47,3 +47,17 @@ export function releaseStageLease(session) {
     session: { ...session, lease: null, playback: cinemaPlayback(snapshot.id ?? null, snapshot.muted) },
   };
 }
+
+export function setPlaybackMuted(session, muted) {
+  const isMuted = Boolean(muted);
+  const external = session.playback.provider === 'youtube';
+  return {
+    ...session,
+    playback: {
+      ...session.playback,
+      audibleOwner: isMuted ? null : session.playback.provider,
+      meterSource: isMuted || external ? null : session.playback.provider,
+      meterStatus: isMuted ? 'idle' : external ? 'external-unavailable' : 'native',
+    },
+  };
+}

@@ -4,6 +4,7 @@ import {
   activateSource,
   createPlaybackSession,
   releaseStageLease,
+  setPlaybackMuted,
   selectBrowseTab,
 } from '../src/lib/playback-session.mjs';
 
@@ -53,4 +54,23 @@ test('YouTube is audible but explicitly not meterable', () => {
   assert.equal(session.playback.audibleOwner, 'youtube');
   assert.equal(session.playback.meterSource, null);
   assert.equal(session.playback.meterStatus, 'external-unavailable');
+});
+
+test('muting an active Music or leased native source updates controller ownership', () => {
+  const music = activateSource(createPlaybackSession({ cinemaId: 'cinema-a' }), {
+    provider: 'music', id: 'music-a', mode: 'audio',
+  });
+  const mutedMusic = setPlaybackMuted(music, true);
+  assert.equal(mutedMusic.playback.audibleOwner, null);
+  assert.equal(mutedMusic.playback.meterSource, null);
+  assert.equal(mutedMusic.playback.meterStatus, 'idle');
+
+  const leased = activateSource(createPlaybackSession({ cinemaId: 'cinema-a' }), {
+    provider: 'media', id: 'media-a', mode: 'video', snapshot,
+  });
+  const mutedLease = setPlaybackMuted(leased, true);
+  assert.equal(mutedLease.playback.audibleOwner, null);
+  assert.equal(mutedLease.playback.meterSource, null);
+  assert.equal(mutedLease.lease, leased.lease);
+  assert.equal(setPlaybackMuted(mutedLease, false).playback.audibleOwner, 'media');
 });

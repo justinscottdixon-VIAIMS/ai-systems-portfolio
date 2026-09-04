@@ -258,6 +258,41 @@ test('branded fullscreen shell has a seek-free safe-area transport and viewport 
   assert.match(css, /min-(?:height|width):\s*44px/);
 });
 
+test('fullscreen transport uses shared commands and glass capsule icon groups', async () => {
+  const component = await source(componentPath);
+  const css = await source(stylePath);
+
+  assert.match(component, /class="fullscreen-overlay__capsule fullscreen-overlay__capsule--primary"/);
+  assert.match(component, /class="fullscreen-overlay__capsule fullscreen-overlay__capsule--utility"/);
+  assert.equal((component.match(/class="fullscreen-overlay__icon(?:\s|\")/g) ?? []).length >= 7, true);
+  assert.doesNotMatch(component, /fullscreenPrev\.addEventListener\('click', \(\) => activePrev\.click\(\)\)/);
+  assert.doesNotMatch(component, /fullscreenPlay\.addEventListener\('click', \(\) => activePlay\.click\(\)\)/);
+  assert.doesNotMatch(component, /fullscreenNext\.addEventListener\('click', \(\) => activeNext\.click\(\)\)/);
+  assert.match(component, /activePrev\.addEventListener\('click', requestPrevious\)/);
+  assert.match(component, /fullscreenPrev\.addEventListener\('click', requestPrevious\)/);
+  assert.match(component, /activePlay\.addEventListener\('click', requestPlayPause\)/);
+  assert.match(component, /fullscreenPlay\.addEventListener\('click', requestPlayPause\)/);
+  assert.match(component, /activeNext\.addEventListener\('click', requestNext\)/);
+  assert.match(component, /fullscreenNext\.addEventListener\('click', requestNext\)/);
+  assert.match(css, /\.fullscreen-overlay__capsule\s*\{[\s\S]*border-radius:\s*999px[\s\S]*backdrop-filter:\s*blur/s);
+  assert.match(css, /\.fullscreen-overlay__button\s*\{[\s\S]*border:\s*0/s);
+});
+
+test('fullscreen mute preserves single-source arbitration and controller ownership', async () => {
+  const component = await source(componentPath);
+  assert.match(component, /setPlaybackMuted/);
+  const start = component.indexOf('async function toggleFullscreenMute()');
+  const end = component.indexOf('\n\tfunction ', start + 1);
+  const toggle = component.slice(start, end);
+
+  assert.match(toggle, /session\.playback\.provider === 'cinema'/);
+  assert.match(toggle, /audible\.current\?\.provider === 'cinema'\s*\? restoreCinemaAudio\(\)\s*:\s*hearCinema\(\)/s);
+  assert.match(toggle, /session = setPlaybackMuted\(session, media\.muted\)/);
+  assert.equal(toggle.indexOf('await (audible.current?.provider') < toggle.indexOf('renderFullscreenSession()'), true);
+  assert.match(component, /function requestFullscreenMute\(\)[\s\S]+enqueueMediaControlTransition\(\(\) => toggleFullscreenMute\(\)\)/s);
+  assert.match(component, /fullscreenMute\.addEventListener\('click', requestFullscreenMute\)/);
+});
+
 test('tagged Music visuals are a separate muted layer with stale-safe continuity', async () => {
   const component = await source(componentPath);
   const css = await source(stylePath);
@@ -375,8 +410,8 @@ test('active transport applies provider policy and guards provider-specific muta
   assert.match(component, /control\.setAttribute\('aria-disabled', String\(!enabled\)\)/);
 
   const previousHandler = component.slice(
-    component.indexOf("activePrev.addEventListener('click'"),
-    component.indexOf("activeNext.addEventListener('click'"),
+    component.indexOf('function requestPrevious()'),
+    component.indexOf('function requestNext()'),
   );
   assert.match(previousHandler, /if \(!policy\.previous\) return/);
   assert.match(previousHandler, /session\.playback\.provider === 'music'/);
@@ -384,8 +419,8 @@ test('active transport applies provider policy and guards provider-specific muta
   assert.doesNotMatch(previousHandler, /else .*activateCinema/);
 
   const nextHandler = component.slice(
-    component.indexOf("activeNext.addEventListener('click'"),
-    component.indexOf("shuffleButton.addEventListener('click'"),
+    component.indexOf('function requestNext()'),
+    component.indexOf("activePlay.addEventListener('click'"),
   );
   assert.match(nextHandler, /if \(!policy\.next\) return/);
   assert.match(nextHandler, /session\.playback\.provider === 'music'/);
@@ -634,10 +669,16 @@ test('entry lock blocks playback controls until either welcome handoff restores 
     assert.equal(component.includes(literal), true, `entry cue controls must include ${literal}`);
   }
 
-  for (const listener of ['cinemaButtons.forEach((button) => {', 'activePlay.addEventListener', 'activePrev.addEventListener', 'activeNext.addEventListener', 'cinemaAudioInvitation.addEventListener']) {
+  for (const listener of ['cinemaButtons.forEach((button) => {', 'cinemaAudioInvitation.addEventListener']) {
     const start = component.indexOf(listener);
     const end = component.indexOf('\n\t});', start) + '\n\t});'.length;
     assert.equal(start > -1, true);
+    assert.match(component.slice(start, end), /enqueueMediaControlTransition\(/);
+  }
+
+  for (const functionName of ['requestPlayPause', 'requestPrevious', 'requestNext']) {
+    const start = component.indexOf(`function ${functionName}()`);
+    const end = component.indexOf('\n\tfunction ', start + 1);
     assert.match(component.slice(start, end), /enqueueMediaControlTransition\(/);
   }
 
@@ -981,11 +1022,11 @@ test('lease policy keeps explicit Audio release while guarding Cinema cues and P
   assert.match(activateCinema, /if \(session\.lease\) return/);
   assert.doesNotMatch(activateCinema, /if \(session\.lease\) await restoreLeasedCinema\(\)/);
 
-  const previousStart = component.indexOf("activePrev.addEventListener('click'");
-  const previousEnd = component.indexOf("activeNext.addEventListener('click'", previousStart);
+  const previousStart = component.indexOf('function requestPrevious()');
+  const previousEnd = component.indexOf('function requestNext()', previousStart);
   const previous = component.slice(previousStart, previousEnd);
   const nextStart = previousEnd;
-  const nextEnd = component.indexOf("shuffleButton.addEventListener('click'", nextStart);
+  const nextEnd = component.indexOf("activePlay.addEventListener('click'", nextStart);
   const next = component.slice(nextStart, nextEnd);
   assert.match(previous, /if \(session\.lease\) return/);
   assert.match(next, /if \(session\.lease\) return/);

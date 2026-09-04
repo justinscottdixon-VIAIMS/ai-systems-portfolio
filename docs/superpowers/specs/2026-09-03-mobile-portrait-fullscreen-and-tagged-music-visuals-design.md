@@ -82,6 +82,8 @@ The fullscreen overlay contains:
 - read-only remaining time;
 - the active formatted title.
 
+The bottom transport uses a soft, floating dark-glass visual language: a rounded primary capsule groups Previous, Play/Pause, and Next; a second rounded utility capsule groups Mute/Unmute with the read-only elapsed and remaining time. Controls use crisp white icons rather than boxed text labels, retain at least 44-by-44 CSS-pixel touch targets, and expose their state through accessible names. Exit Fullscreen is a separate circular glass icon at the upper-right. The translucent capsules may blur supported backdrops but must retain a legible opaque-dark fallback.
+
 Fullscreen never exposes a scrubber, swipe-to-seek gesture, or tap-to-seek surface. Tapping the image reveals controls without pausing or seeking.
 
 While playing, fullscreen controls remain visible for three seconds after the last relevant interaction and then fade. They remain visible while paused. The elapsed time, remaining time, and title are visible only while the fullscreen transport is visible.

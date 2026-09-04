@@ -47,14 +47,30 @@ const [firstMusic] = library.music;
 		<div class="fullscreen-overlay" data-fullscreen-overlay aria-label="Fullscreen media transport">
 			<div class="fullscreen-overlay__header">
 				<strong id="fullscreen-title">{firstCinema?.title ?? 'No Media Loaded'}</strong>
-				<button id="exit-fullscreen" type="button" aria-label="Exit fullscreen">CLOSE</button>
+				<button id="exit-fullscreen" class="fullscreen-overlay__button fullscreen-overlay__exit" type="button" aria-label="Exit fullscreen">
+					<svg class="fullscreen-overlay__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" /></svg>
+				</button>
 			</div>
 			<div class="fullscreen-overlay__transport">
-				<button id="fullscreen-prev" type="button" aria-label="Previous fullscreen item">⏮</button>
-				<button id="fullscreen-play" type="button" aria-label="Play fullscreen item">PLAY</button>
-				<button id="fullscreen-next" type="button" aria-label="Next fullscreen item">⏭</button>
-				<button id="fullscreen-mute" type="button" aria-label="Mute active item" aria-pressed="false">MUTE</button>
-				<span><output id="fullscreen-elapsed">--:--</output> / <output id="fullscreen-remaining">--:--</output></span>
+				<div class="fullscreen-overlay__capsule fullscreen-overlay__capsule--primary" role="group" aria-label="Playback controls">
+					<button id="fullscreen-prev" class="fullscreen-overlay__button" type="button" aria-label="Previous fullscreen item">
+						<svg class="fullscreen-overlay__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5v14M19 6l-9 6 9 6z" /></svg>
+					</button>
+					<button id="fullscreen-play" class="fullscreen-overlay__button fullscreen-overlay__button--primary" type="button" aria-label="Play fullscreen item" data-state="play">
+						<svg class="fullscreen-overlay__icon fullscreen-overlay__icon--play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l11 7-11 7z" /></svg>
+						<svg class="fullscreen-overlay__icon fullscreen-overlay__icon--pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5h3v14H8zM14 5h3v14h-3z" /></svg>
+					</button>
+					<button id="fullscreen-next" class="fullscreen-overlay__button" type="button" aria-label="Next fullscreen item">
+						<svg class="fullscreen-overlay__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 5v14M5 6l9 6-9 6z" /></svg>
+					</button>
+				</div>
+				<div class="fullscreen-overlay__capsule fullscreen-overlay__capsule--utility" role="group" aria-label="Audio and time">
+					<button id="fullscreen-mute" class="fullscreen-overlay__button" type="button" aria-label="Mute active item" aria-pressed="false" data-state="audible">
+						<svg class="fullscreen-overlay__icon fullscreen-overlay__icon--audible" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10v4h4l5 4V6L8 10zM16 9c1.4 1.7 1.4 4.3 0 6M18.5 6.5c3 3 3 8 0 11" /></svg>
+						<svg class="fullscreen-overlay__icon fullscreen-overlay__icon--muted" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10v4h4l5 4V6L8 10zM16 9l5 6M21 9l-5 6" /></svg>
+					</button>
+					<span class="fullscreen-overlay__time"><output id="fullscreen-elapsed">--:--</output><span aria-hidden="true">/</span><output id="fullscreen-remaining">--:--</output></span>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -194,7 +210,7 @@ const [firstMusic] = library.music;
 	import { createFullscreenSession } from '../lib/fullscreen-session.mjs';
 	import { createMusicVisualSession } from '../lib/music-visual-session.mjs';
 	import { supersedeMediaElement } from '../lib/media-event-generation.mjs';
-	import { activateSource, createPlaybackSession, releaseStageLease, selectBrowseTab } from '../lib/playback-session.mjs';
+	import { activateSource, createPlaybackSession, releaseStageLease, setPlaybackMuted, selectBrowseTab } from '../lib/playback-session.mjs';
 	import { alignMirrorFollowers, bindMirrorFollowerFailures, captureCinemaSnapshot, classifyMediaAspect, commitMirrorFollowers, prepareMirrorFollowers, restoreCinemaSnapshot } from '../lib/media-presentation.mjs';
 	import {
 		calculateMirrorWingGeometry,
@@ -536,9 +552,9 @@ const [firstMusic] = library.music;
 		fullscreenShell.dataset.controlsVisible = String(snapshot.controlsVisible);
 		fullscreenTitle.textContent = nowPlayingTitle.textContent;
 		const media = activeAuthoritativeMedia();
-		fullscreenPlay.textContent = media.paused ? 'PLAY' : 'PAUSE';
+		fullscreenPlay.dataset.state = media.paused ? 'play' : 'pause';
 		fullscreenPlay.setAttribute('aria-label', media.paused ? 'Play fullscreen item' : 'Pause fullscreen item');
-		fullscreenMute.textContent = media.muted ? 'UNMUTE' : 'MUTE';
+		fullscreenMute.dataset.state = media.muted ? 'muted' : 'audible';
 		fullscreenMute.setAttribute('aria-label', media.muted ? 'Unmute active item' : 'Mute active item');
 		fullscreenMute.setAttribute('aria-pressed', String(media.muted));
 		scheduleFullscreenHide(snapshot);
@@ -1435,19 +1451,53 @@ const [firstMusic] = library.music;
 			});
 		}
 	});
-	activePlay.addEventListener('click', () => {
+	function requestPlayPause() {
 		enqueueMediaControlTransition(() => toggleActivePlayback());
-	});
-	enterFullscreen.addEventListener('click', () => { void enterFullscreenMode(); });
-	exitFullscreen.addEventListener('click', () => { void exitFullscreenMode(); });
-	fullscreenPrev.addEventListener('click', () => activePrev.click());
-	fullscreenPlay.addEventListener('click', () => activePlay.click());
-	fullscreenNext.addEventListener('click', () => activeNext.click());
-	fullscreenMute.addEventListener('click', () => {
+	}
+
+	function requestPrevious() {
+		enqueueMediaControlTransition(async () => {
+			if (session.lease) return;
+			const policy = activeTransportPolicy(session.playback);
+			if (!policy.previous) return;
+			if (session.playback.provider === 'music') await advanceMusic(-1);
+			if (session.playback.provider === 'cinema') await activateCinema(cinema.cursor - 1);
+		});
+	}
+
+	function requestNext() {
+		enqueueMediaControlTransition(async () => {
+			if (session.lease) return;
+			const policy = activeTransportPolicy(session.playback);
+			if (!policy.next) return;
+			if (session.playback.provider === 'music') await advanceMusic(1);
+			if (session.playback.provider === 'cinema') await activateCinema(cinema.cursor + 1);
+		});
+	}
+
+	async function toggleFullscreenMute() {
+		if (session.playback.provider === 'cinema') {
+			await (audible.current?.provider === 'cinema' ? restoreCinemaAudio() : hearCinema());
+			renderFullscreenSession();
+			return;
+		}
 		const media = activeAuthoritativeMedia();
 		media.muted = !media.muted;
+		session = setPlaybackMuted(session, media.muted);
 		renderFullscreenSession();
-	});
+	}
+
+	function requestFullscreenMute() {
+		enqueueMediaControlTransition(() => toggleFullscreenMute());
+	}
+
+	activePlay.addEventListener('click', requestPlayPause);
+	enterFullscreen.addEventListener('click', () => { void enterFullscreenMode(); });
+	exitFullscreen.addEventListener('click', () => { void exitFullscreenMode(); });
+	fullscreenPrev.addEventListener('click', requestPrevious);
+	fullscreenPlay.addEventListener('click', requestPlayPause);
+	fullscreenNext.addEventListener('click', requestNext);
+	fullscreenMute.addEventListener('click', requestFullscreenMute);
 	fullscreenShell.addEventListener('pointerdown', (event) => {
 		if (event.target.closest('[data-fullscreen-overlay]')) return;
 		fullscreenSession.interact();
@@ -1471,24 +1521,8 @@ const [firstMusic] = library.music;
 		if (Number.isFinite(media.duration)) media.currentTime = Math.min(Number(activeSeek.value), media.duration);
 		syncTransportTime();
 	});
-	activePrev.addEventListener('click', () => {
-		enqueueMediaControlTransition(async () => {
-			if (session.lease) return;
-			const policy = activeTransportPolicy(session.playback);
-			if (!policy.previous) return;
-			if (session.playback.provider === 'music') await advanceMusic(-1);
-			if (session.playback.provider === 'cinema') await activateCinema(cinema.cursor - 1);
-		});
-	});
-	activeNext.addEventListener('click', () => {
-		enqueueMediaControlTransition(async () => {
-			if (session.lease) return;
-			const policy = activeTransportPolicy(session.playback);
-			if (!policy.next) return;
-			if (session.playback.provider === 'music') await advanceMusic(1);
-			if (session.playback.provider === 'cinema') await activateCinema(cinema.cursor + 1);
-		});
-	});
+	activePrev.addEventListener('click', requestPrevious);
+	activeNext.addEventListener('click', requestNext);
 	shuffleButton.addEventListener('click', () => {
 		enqueueMediaControlTransition(() => {
 			const policy = activeTransportPolicy(session.playback);

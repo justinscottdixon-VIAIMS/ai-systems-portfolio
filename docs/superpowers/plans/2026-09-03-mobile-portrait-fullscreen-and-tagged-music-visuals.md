@@ -752,6 +752,8 @@ Implement an incrementing token state machine in `src/lib/fullscreen-session.mjs
 
 Wrap the stage and overlay in `[data-fullscreen-shell]`. Render distinct fullscreen buttons but route them into the same existing transport actions used by the inline controls. Render the active formatted title and duplicate read-only time outputs; never duplicate the media element or seek range.
 
+Render the fullscreen controls as two safe-area-aware dark-glass capsules: Previous/Play-Pause/Next in the primary capsule, and Mute-Unmute/time in the utility capsule. Use inline SVG icons with accessible button names and a separate circular glass Exit button. Fullscreen controls must call shared controller commands directly; they must not proxy-click inline DOM controls whose disabled state can diverge from fullscreen presentation state.
+
 On `#enter-fullscreen` click:
 
 ```js
