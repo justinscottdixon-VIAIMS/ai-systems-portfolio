@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import {
   advanceMusicQueue,
   createMusicQueue,
+  selectMusicItem,
   selectMusicMode,
   setRepeatMode,
   toggleShuffle,
@@ -13,6 +14,65 @@ const tracks = [
   { productId: 'b', audioSrc: 'b.wav', videoSrc: null },
   { productId: 'c', audioSrc: 'c.wav', videoSrc: 'c.mp4' },
 ];
+
+const mixed = [
+  { productId: 'song.wav', kind: 'audio', src: 'song.wav' },
+  { productId: 'film.mov', kind: 'video', src: 'film.mov' },
+  { productId: 'clip.mp4', kind: 'video', src: 'clip.mp4' },
+];
+
+test('mixed Music starts in the first item mode and follows one combined order', () => {
+  let queue = createMusicQueue(mixed);
+  assert.equal(queue.currentProductId, 'song.wav');
+  assert.equal(queue.mode, 'audio');
+  assert.deepEqual(queue.order, ['song.wav', 'film.mov', 'clip.mp4']);
+
+  queue = advanceMusicQueue(queue, 1);
+  assert.equal(queue.currentProductId, 'film.mov');
+  assert.equal(queue.mode, 'video');
+  queue = advanceMusicQueue(queue, 1);
+  assert.equal(queue.currentProductId, 'clip.mp4');
+  assert.equal(queue.mode, 'video');
+  queue = advanceMusicQueue(queue, -1);
+  assert.equal(queue.currentProductId, 'film.mov');
+  assert.equal(queue.mode, 'video');
+  queue = advanceMusicQueue(queue, -1);
+  assert.equal(queue.currentProductId, 'song.wav');
+  assert.equal(queue.mode, 'audio');
+});
+
+test('direct mixed Music selection uses the selected item kind', () => {
+  const queue = createMusicQueue(mixed);
+  assert.equal(selectMusicItem(queue, 'film.mov').mode, 'video');
+  assert.equal(selectMusicItem(queue, 'song.wav').mode, 'audio');
+  assert.throws(
+    () => createMusicQueue([{ productId: 'notes.txt', kind: 'document', src: 'notes.txt' }]),
+    /unsupported Music kind: document/,
+  );
+});
+
+test('mixed Music repeat and shuffle retain the active item mode', () => {
+  let queue = selectMusicItem(createMusicQueue(mixed), 'clip.mp4');
+  queue = setRepeatMode(queue, 'all');
+  queue = advanceMusicQueue(queue, 1);
+  assert.equal(queue.currentProductId, 'song.wav');
+  assert.equal(queue.mode, 'audio');
+
+  queue = setRepeatMode(selectMusicItem(queue, 'film.mov'), 'one');
+  queue = advanceMusicQueue(queue, 1);
+  assert.equal(queue.currentProductId, 'film.mov');
+  assert.equal(queue.mode, 'video');
+
+  queue = toggleShuffle(setRepeatMode(queue, 'off'), () => 0);
+  assert.equal(queue.currentProductId, 'film.mov');
+  assert.equal(queue.mode, 'video');
+  queue = advanceMusicQueue(queue, 1);
+  assert.equal(queue.currentProductId, 'clip.mp4');
+  assert.equal(queue.mode, 'video');
+  queue = advanceMusicQueue(queue, 1);
+  assert.equal(queue.currentProductId, 'song.wav');
+  assert.equal(queue.mode, 'audio');
+});
 
 test('queue starts on one product identity in Audio mode', () => {
   const queue = createMusicQueue(tracks);
