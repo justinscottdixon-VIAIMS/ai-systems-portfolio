@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { toMediaLibrary } from '../src/lib/media-library.mjs';
 import { toRuntimeMediaLibrary } from '../src/lib/runtime-media-library.mjs';
 
 const video = (id, folder, playlistOrder, patch = {}) => ({
@@ -127,4 +128,40 @@ test('returns detached frozen provider data without mutating catalogue items', (
   assert.notEqual(library.cinema[0], items.at(-1));
   assert.notEqual(library.music[0].visual, library.musicVisuals[0]);
   assert.equal(Object.isFrozen(library.music[0].visual), true);
+});
+
+test('projects the actual bootstrap Media record shape as validated video', () => {
+  const bootstrap = toMediaLibrary({ items: [] }, {
+    version: 1,
+    music: [],
+    media: [{
+      id: 'bootstrap-reel',
+      title: 'Bootstrap Reel',
+      src: 'https://media.example.test/bootstrap-reel.mp4',
+      specs: 'MP4',
+      width: 1920,
+      height: 1080,
+      aspect: 'landscape',
+    }],
+    youtube: [],
+  });
+
+  assert.deepEqual(toRuntimeMediaLibrary(bootstrap.media).media, [{
+    id: 'bootstrap-reel',
+    kind: 'video',
+    title: 'Bootstrap Reel',
+    src: 'https://media.example.test/bootstrap-reel.mp4',
+    specs: 'MP4 • 1920×1080',
+    width: 1920,
+    height: 1080,
+    aspect: 'landscape',
+  }]);
+});
+
+test('does not infer a missing kind on remote Media catalogue records', () => {
+  const malformedRemote = {
+    ...items[1],
+    kind: undefined,
+  };
+  assert.deepEqual(toRuntimeMediaLibrary([malformedRemote]).media, []);
 });

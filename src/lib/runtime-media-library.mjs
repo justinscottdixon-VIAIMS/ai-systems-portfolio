@@ -7,6 +7,12 @@ function providerOf(item) {
 function kindOf(item) {
   if (item.kind === 'audio' || item.kind === 'video') return item.kind;
   if (providerOf(item) === 'music' && typeof item.audioSrc === 'string') return 'audio';
+  if (!('folder' in item)
+      && item.provider === 'media'
+      && item.kind === undefined
+      && [item.id, item.title, item.src, item.specs]
+        .every((value) => typeof value === 'string' && value.length > 0)
+      && dimensionsOf(item)) return 'video';
   return null;
 }
 
@@ -22,11 +28,15 @@ function identityOf(item, provider) {
 }
 
 function extensionOf(item, src) {
-  const candidate = item.pathname ?? item.id ?? item.productId ?? src;
-  const pathname = (() => {
-    try { return new URL(candidate).pathname; } catch { return candidate.split(/[?#]/, 1)[0]; }
-  })();
-  return pathname.match(/\.([^.\/]+)$/)?.[1]?.toUpperCase() ?? '';
+  for (const candidate of [item.pathname, item.id, item.productId, src]) {
+    if (typeof candidate !== 'string') continue;
+    const pathname = (() => {
+      try { return new URL(candidate).pathname; } catch { return candidate.split(/[?#]/, 1)[0]; }
+    })();
+    const extension = pathname.match(/\.([^.\/]+)$/)?.[1];
+    if (extension) return extension.toUpperCase();
+  }
+  return '';
 }
 
 function dimensionsOf(item) {
@@ -75,6 +85,7 @@ function projectVideo(item, provider) {
   const dimensions = dimensionsOf(item);
   return {
     id: identityOf(item, provider),
+    kind: 'video',
     title: item.title,
     src,
     specs: specsOf(item, src, dimensions),
