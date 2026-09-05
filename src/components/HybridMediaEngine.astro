@@ -1062,6 +1062,7 @@ const [firstMusic] = library.music;
 		setStageProvider('cinema');
 		hideMirrorWings();
 		mv.src = currentCinema().src;
+		runtimeSourceRecords.delete(mv);
 		updateCinemaCueState();
 		if (playImmediate) await playVideoStack();
 	}
@@ -1399,6 +1400,7 @@ const [firstMusic] = library.music;
 		renderMusicAudioIdentity(productId, 'MUSIC AUDIO LOADING · CINEMA MOTION LIVE');
 		try {
 			await musicAudio.play();
+			runtimeSourceRecords.delete(musicAudio);
 			suppressMusicVisualMediaSync = false;
 		} catch (error) {
 			suppressMusicVisualMediaSync = false;
@@ -1458,6 +1460,7 @@ const [firstMusic] = library.music;
 			});
 		}
 		updateProviderCueState(provider, id);
+		runtimeSourceRecords.delete(mv);
 		returnButton.hidden = false;
 		activeSourceKind.textContent = provider === 'music' ? 'MUSIC · VIDEO' : 'MEDIA';
 		nowPlayingTitle.textContent = title;

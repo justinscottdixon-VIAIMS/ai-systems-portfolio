@@ -183,7 +183,7 @@ test('active Mirror Wings follow resolved policy instead of aspect alone', async
 test('leased presentation restores the exact mirror state before Music Audio activation', async () => {
   const component = await source(componentPath);
   assert.match(component, /captureCinemaSnapshot\(mv, stage,[^\n]+wings\)/);
-  assert.match(component, /restoreCinemaSnapshot\(mv, stage, released\.snapshot, wings, restoreOptions\)/);
+  assert.match(component, /restoreCinemaSnapshot\(mv, stage, restoredSnapshot, wings, restoreOptions\)/);
   assert.match(component, /const releasedLease = session\.lease \? await restoreLeasedCinema\(\{ resumeAudible: false \}\) : null;[\s\S]+activateSource\(session, \{ provider: 'music', id: productId, mode: 'audio' \}\)/);
   assert.equal((component.match(/mv\.addEventListener\('ended'/g) ?? []).length, 1);
 });
@@ -229,7 +229,8 @@ test('empty Cinema fallback disables native controls and exposes programmatic se
     assert.match(component, new RegExp(`id="${id}"[^>]+disabled=\\{library\\.experience\\.enabled \\|\\| !firstCinema\\}`, 's'));
   }
   assert.match(component, /class="cinema-cue"[^>]+aria-current=\{index === 0 \? 'true' : 'false'\}/s);
-	assert.match(component, /button\.setAttribute\('aria-current', String\(playlistIndex === cinema\.cursor\)\)/);
+	assert.match(component, /const selected = playlistIndex >= 0 && playlistIndex === cinema\.cursor/);
+	assert.match(component, /button\.setAttribute\('aria-current', String\(selected\)\)/);
   assert.match(component, /id="meter-l"[^>]+aria-label="Left channel level"/s);
   assert.match(component, /id="meter-r"[^>]+aria-label="Right channel level"/s);
 });
@@ -373,7 +374,8 @@ test('reviewed fullscreen and visual races are generation and interaction safe',
   assert.match(component, /recoverMusicVisualFailure/);
   assert.match(component, /fullscreenOverlay\.addEventListener\('pointerdown'/);
   assert.match(component, /fullscreenPlay\.setAttribute\('aria-label'/);
-  assert.match(component, /fullscreenMute\.setAttribute\('aria-label'/);
+  assert.match(component, /for \(const control of \[fullscreenMute, activeMute\]\)/);
+  assert.match(component, /control\.setAttribute\('aria-label', media\.muted \? 'Unmute active item' : 'Mute active item'\)/);
   assert.match(component, /exitFullscreen\.focus\(\)/);
   assert.match(component, /mv\.load\(\)/);
   assert.match(css, /\.fullscreen-overlay\s*\{[\s\S]*transition:\s*opacity 1250ms/s);
@@ -999,8 +1001,8 @@ test('lease release commits logical and UI state only after stage and audible re
   const restore = component.slice(start, end);
 
   assert.match(restore, /const prior = captureControllerState\(\)/);
-  assert.match(restore, /const restoredAudible = prior\.suspendedForStageLease \?\? createAudibleSource\(\)/);
-  const restoreStage = restore.indexOf('await restoreCinemaSnapshot(mv, stage, released.snapshot, wings, restoreOptions)');
+  assert.match(restore, /let restoredAudible = prior\.suspendedForStageLease \?\? createAudibleSource\(\)/);
+  const restoreStage = restore.indexOf('await restoreCinemaSnapshot(mv, stage, restoredSnapshot, wings, restoreOptions)');
   const replayAudible = restore.indexOf('await resumeAudibleState(restoredAudible)');
   const commitSession = restore.indexOf('session = restoredSession');
   const commitAudible = restore.indexOf('audible = restoredAudible');
@@ -1147,13 +1149,13 @@ test('Music Audio replaces a stage lease without replaying the superseded audibl
   const restore = component.slice(restoreStart, restoreEnd);
   assert.match(restore, /if \(resumeAudible\) await resumeAudibleState\(restoredAudible\)/);
   assert.match(restore, /const restoreOptions = resumeAudible \? undefined : \{ masterMuted: true \}/);
-  assert.match(restore, /restoreCinemaSnapshot\(mv, stage, released\.snapshot, wings, restoreOptions\)/);
+  assert.match(restore, /restoreCinemaSnapshot\(mv, stage, restoredSnapshot, wings, restoreOptions\)/);
 
   const activateStart = component.indexOf('async function activateMusicAudio(');
   const activateEnd = component.indexOf('\n\tasync function ', activateStart + 1);
   const activate = component.slice(activateStart, activateEnd);
   assert.match(activate, /const releasedLease = session\.lease \? await restoreLeasedCinema\(\{ resumeAudible: false \}\) : null/);
-  assert.match(restore, /return released/);
+  assert.match(restore, /return \{ \.\.\.released, snapshot: restoredSnapshot, session: restoredSession \}/);
   assert.match(activate, /const cinemaMuteAuthority = releasedLease\?\.snapshot\?\.muted \?\? mv\.muted/);
   assert.match(activate, /if \(cinemaMutedBeforeMusicAudio === null\) cinemaMutedBeforeMusicAudio = cinemaMuteAuthority/);
   assert.match(activate, /const priorCinemaMute = cinemaMuteAuthority/);
