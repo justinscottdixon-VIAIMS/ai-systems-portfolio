@@ -120,10 +120,14 @@ These sections are blocked on approved copy and presentation design, not media f
 - [x] Implement complete Blob listing pagination, prefix allowlisting, deterministic fingerprints, and optional sidecar ordering in a server-only catalogue endpoint.
 - [x] Adapt runtime refresh to folder fingerprints and complete native media metadata probing.
 - [x] Remove the superseded local database implementation, unapplied SQL, obsolete contract tests, and foundation dispatch; preserve historical documents and current player tests.
+- [x] Complete fresh Task 8 automated verification: 353 full tests, 70 focused tests, both build modes, diff hygiene, and scoped secret/Supabase scans.
+- [x] Verify the local injected endpoint and synthetic-media player in in-app Chromium 152.0.7977.64: mixed Music order/navigation, responsive eligibility, fullscreen controls, periodic refresh, failure retention, current/inactive removal, and safe text rendering.
+- [x] Prepare the exact object names, target assumptions, conditional operations, and rollback for the still-unexecuted remote Preview gate.
+- [ ] Complete native focus/visibility browser acceptance, final fullscreen visual acceptance, Safari, and owner-phone/fidelity checks; local fixture evidence does not close these gates.
 - [ ] Verify through a preview that a Vercel dashboard upload, move, replacement, and deletion are discovered without rebuilding the website.
 - [ ] Obtain separate approval before any Blob mutation, preview deployment, production deployment, or publication. Local task commits are separately authorized.
 
-Local Blob cleanup checkpoint: 44 focused catalogue/runtime tests and all 353 tests pass; default and preview-manifest builds pass. These checks do not complete the preview, actual-phone, fidelity, or full website release gates.
+Fresh evidence and the exact unexecuted Preview procedure are recorded in [Task 8 Blob catalogue verification](2026-09-04-vercel-blob-folder-catalogue-verification.md). The required token-assignment scan has one intentional fake-token redaction fixture; no real token or Supabase/private-key reference was found in the scoped active-code scan. The local browser used a test-only source mapping to loopback and synthetic media. These checks do not complete public Blob/CDN delivery, preview, actual-phone, fidelity, or full website release gates.
 
 ## Final release
 
