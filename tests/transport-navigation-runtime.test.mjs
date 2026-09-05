@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { runInNewContext } from 'node:vm';
 import { activeTransportPolicy } from '../src/lib/active-transport.mjs';
-import { createMusicQueue, advanceMusicQueue, selectMusicItem } from '../src/lib/music-queue.mjs';
+import { createMusicQueue, advanceMusicQueue, selectMusicItem, selectMusicMode } from '../src/lib/music-queue.mjs';
 import { toRuntimeMediaLibrary } from '../src/lib/runtime-media-library.mjs';
 import { createCinemaContinuity, selectCinema } from '../src/lib/cinema-continuity.mjs';
 import { eligibleVideoItems, isMobileViewport } from '../src/lib/mobile-media.mjs';
@@ -27,7 +27,7 @@ function mediaElement(src) {
     getAttribute(name) { return this[name] ?? null; },
     removeAttribute(name) { delete this[name]; },
     load() { this.loads++; this.currentTime = 0; },
-    async play() { this.plays++; },
+    async play() { this.plays++; this.paused = false; },
   };
 }
 
@@ -76,6 +76,20 @@ function catalogueRuntime(items) {
   return context;
 }
 
+function enableLeaseRestoration(ctx) {
+  Object.assign(ctx, {
+    releaseStageLease, createAudibleSource, wings: [],
+    captureControllerState: () => ({ session: ctx.session, audible: ctx.audible, suspendedForStageLease: ctx.suspendedForStageLease }),
+    async restoreCinemaSnapshot(video, stage, snapshot) {
+      video.src = snapshot.src; video.currentTime = snapshot.currentTime; video.muted = snapshot.muted;
+    },
+    currentAudibleElement: (state) => state.current?.provider === 'music' && state.current.mode === 'audio' ? ctx.musicAudio : null,
+    reconcileMirrorWings() {}, renderMusicAudioIdentity() {},
+    async rollbackControllerState(prior, error) { throw error; },
+  });
+  runInNewContext(namedImplementation('resumeAudibleState') + namedImplementation('restoreLeasedCinema'), ctx);
+}
+
 test('accepted library renders literal titles, one action per Music row, and preserves loaded time', async () => {
   const film = catalogueItem('Cinema/film.mp4', 'cinema', 'video');
   const song = catalogueItem('Music/song.mp3', 'music', 'audio');
@@ -105,6 +119,44 @@ test('bootstrap identity migration includes suspended Music audio and keeps its 
   assert.equal(ctx.musicAudio.currentTime, 42); assert.equal(ctx.musicAudio.loads, 0);
 });
 
+for (const legacyIdentity of ['symbolic', 'audio-pathname', 'video-pathname']) test(`a shared bootstrap Music ID migrates its video lease and suspended audio to their own pathnames, old ID=${legacyIdentity}`, async () => {
+  const film = catalogueItem('Cinema/film.mp4', 'cinema', 'video');
+  const song = catalogueItem('Music/song.mp3', 'music', 'audio');
+  const clip = catalogueItem('Music/song.mov', 'music', 'video', { playlistOrder: 1 });
+  const ctx = catalogueRuntime([film, song, clip]);
+  const legacyId = legacyIdentity === 'audio-pathname' ? song.id : legacyIdentity === 'video-pathname' ? clip.id : 'bootstrap-song';
+  ctx.runtimeCatalogueItems = [];
+  ctx.musicProducts = [{ productId: legacyId, title: 'Song', audioSrc: song.src, videoSrc: clip.src, videoAspect: clip.aspect }];
+  ctx.productById = new Map([[legacyId, ctx.musicProducts[0]]]);
+  ctx.musicQueue = selectMusicMode(createMusicQueue(ctx.musicProducts), legacyId, 'video');
+  ctx.session = activateSource(ctx.session, { provider: 'music', id: legacyId, mode: 'video', snapshot: { id: film.id, src: film.src, currentTime: 11, muted: true } });
+  ctx.mv.src = clip.src;
+  ctx.musicAudio.paused = true;
+  ctx.audible = createAudibleSource({ provider: 'music', id: legacyId, mode: 'video', currentTime: 8 });
+  ctx.suspendedForStageLease = createAudibleSource({ provider: 'music', id: legacyId, mode: 'audio', currentTime: 42 });
+  enableLeaseRestoration(ctx);
+
+  await ctx.applyRuntimeLibrary(toRuntimeMediaLibrary([film, song, clip]), [film, song, clip]);
+
+  assert.equal(ctx.session.playback.id, clip.id);
+  assert.equal(ctx.musicQueue.currentProductId, clip.id);
+  assert.equal(ctx.musicQueue.mode, 'video');
+  assert.equal(ctx.audible.current.id, clip.id);
+  assert.equal(ctx.suspendedForStageLease.current.id, song.id);
+  assert.equal(ctx.suspendedForStageLease.current.mode, 'audio');
+  assert.equal(ctx.suspendedForStageLease.current.currentTime, 42);
+  assert.equal(ctx.mv.src, clip.src); assert.equal(ctx.mv.loads, 0);
+  assert.equal(ctx.musicAudio.src, song.src); assert.equal(ctx.musicAudio.loads, 0);
+
+  await ctx.restoreLeasedCinema();
+  assert.equal(ctx.session.playback.id, song.id);
+  assert.equal(ctx.session.playback.mode, 'audio');
+  assert.equal(ctx.musicAudio.src, song.src);
+  assert.equal(ctx.musicAudio.currentTime, 42);
+  assert.equal(ctx.musicAudio.paused, false);
+  assert.equal(ctx.mv.src, film.src);
+});
+
 for (const bootstrap of [false, true]) test(`removed loaded Music audio can resume without repopulating rows, bootstrap=${bootstrap}`, async () => {
   const song = catalogueItem('Music/song.mp3', 'music', 'audio');
   const ctx = catalogueRuntime([song]);
@@ -126,6 +178,81 @@ test('updated suspended Cinema lease snapshot restarts the accepted ETag at zero
   await ctx.applyRuntimeLibrary(toRuntimeMediaLibrary(items), items);
   assert.equal(ctx.session.lease.snapshot.currentTime, 0);
   assert.equal(ctx.mv.currentTime, 42); assert.equal(ctx.mv.loads, 0);
+});
+
+for (const initialSnapshotVersion of [undefined, 'etag-1']) {
+  test(`Cinema removal then changed re-add retains and compares the leased snapshot ETag, initially=${initialSnapshotVersion ?? 'unstamped'}`, async () => {
+    const film = catalogueItem('Cinema/film.mp4', 'cinema', 'video');
+    const clip = catalogueItem('Media/clip.mp4', 'media', 'video');
+    const ctx = catalogueRuntime([film, clip]);
+    ctx.session = activateSource(ctx.session, { provider: 'media', id: clip.id, mode: 'video', snapshot: {
+      id: film.id, src: film.src, versionId: initialSnapshotVersion, currentTime: 42, muted: true,
+    } });
+    ctx.mv.src = clip.src;
+    enableLeaseRestoration(ctx);
+
+    await ctx.applyRuntimeLibrary(toRuntimeMediaLibrary([clip]), [clip]);
+    assert.equal(ctx.session.lease.snapshot.id, film.id);
+    assert.equal(ctx.session.lease.snapshot.versionId, film.versionId);
+    assert.equal(ctx.session.lease.snapshot.currentTime, 42);
+
+    const revised = { ...film, src: `${film.src}?revision=2`, versionId: 'etag-2' };
+    await ctx.applyRuntimeLibrary(toRuntimeMediaLibrary([revised, clip]), [revised, clip]);
+    assert.equal(ctx.session.lease.snapshot.versionId, revised.versionId);
+    assert.equal(ctx.session.lease.snapshot.currentTime, 0);
+    assert.equal(ctx.session.lease.snapshot.src, revised.src);
+    assert.equal(ctx.mv.src, clip.src); assert.equal(ctx.mv.currentTime, 42);
+
+    await ctx.restoreLeasedCinema();
+    assert.equal(ctx.mv.src, revised.src);
+    assert.equal(ctx.mv.currentTime, 0);
+    assert.equal(ctx.currentCinema().id, film.id);
+  });
+}
+
+test('capturing a lease after Cinema removal retains the actually loaded version', async () => {
+  const film = catalogueItem('Cinema/film.mp4', 'cinema', 'video');
+  const ctx = catalogueRuntime([film]);
+  await ctx.applyRuntimeLibrary(toRuntimeMediaLibrary([]), []);
+  Object.assign(ctx, {
+    wings: [], cinemaMutedBeforeMusicAudio: null,
+    captureControllerUi: () => ({}),
+    captureCinemaSnapshot: (video, stage, id) => ({ id, src: video.src, currentTime: video.currentTime, muted: video.muted }),
+  });
+  runInNewContext(namedImplementation('captureControllerState'), ctx);
+  const { stageSnapshot } = ctx.captureControllerState();
+  assert.equal(stageSnapshot.id, film.id);
+  assert.equal(stageSnapshot.versionId, film.versionId);
+  assert.equal(stageSnapshot.src, film.src);
+  assert.equal(stageSnapshot.currentTime, 42);
+});
+
+test('URL-only Music changes preserve the retained source through lease restoration', async () => {
+  const film = catalogueItem('Cinema/film.mp4', 'cinema', 'video');
+  const song = catalogueItem('Music/song.mp3', 'music', 'audio');
+  const clip = catalogueItem('Media/clip.mp4', 'media', 'video');
+  const ctx = catalogueRuntime([film, song, clip]);
+  let loadedSrc = song.src, sourceAssignments = 0;
+  Object.defineProperty(ctx.musicAudio, 'src', {
+    get: () => loadedSrc,
+    set(value) { sourceAssignments++; loadedSrc = value; ctx.musicAudio.currentTime = 0; },
+  });
+  ctx.session = activateSource(ctx.session, { provider: 'media', id: clip.id, mode: 'video', snapshot: { id: film.id, src: film.src, currentTime: 11, muted: true } });
+  ctx.mv.src = clip.src;
+  ctx.musicAudio.paused = true;
+  ctx.suspendedForStageLease = createAudibleSource({ provider: 'music', id: song.id, mode: 'audio', currentTime: 42 });
+  enableLeaseRestoration(ctx);
+  const movedUrl = { ...song, src: 'https://other.example.test/Music/song.mp3' };
+  await ctx.applyRuntimeLibrary(toRuntimeMediaLibrary([film, movedUrl, clip]), [film, movedUrl, clip]);
+  assert.equal(ctx.productById.get(song.id).audioSrc, movedUrl.src);
+  assert.equal(sourceAssignments, 0);
+
+  await ctx.restoreLeasedCinema();
+  assert.equal(sourceAssignments, 0);
+  assert.equal(ctx.musicAudio.src, song.src);
+  assert.equal(ctx.musicAudio.currentTime, 42);
+  assert.equal(ctx.musicAudio.plays, 1);
+  assert.equal(ctx.session.playback.id, song.id);
 });
 
 test('returning from a lease after Cinema removal restores the current queue identity', async () => {
@@ -187,7 +314,7 @@ test('navigation after the final Cinema removal clears the source without attemp
 
 for (const change of ['same', 'removed', 'etag', 'url-only']) {
   test(`catalogue ${change} reconciles the actual loaded resource without unrelated audio mutation`, async () => {
-    const before = { id: 'Cinema/film.mp4', folder: 'cinema', src: 'https://media.example.test/Cinema/film.mp4', versionId: 'etag-1' };
+    const before = { id: 'Cinema/film.mp4', folder: 'cinema', kind: 'video', src: 'https://media.example.test/Cinema/film.mp4', versionId: 'etag-1' };
     const mv = mediaElement(before.src), musicAudio = mediaElement('/song.mp3');
     const next = change === 'removed' ? [] : [{
       ...before, title: 'Retitled',
@@ -196,7 +323,7 @@ for (const change of ['same', 'removed', 'etag', 'url-only']) {
     }];
     const context = { mv, runtimeSourceRecords: new Map(), hideMirrorWings() {}, console, document: { baseURI: 'https://viaims.test/' }, URL };
     runInNewContext(namedImplementation('sameMediaSource') + namedImplementation('reconcileRuntimeSources'), context);
-    await context.reconcileRuntimeSources([{ element: mv, provider: 'cinema', id: before.id, src: before.src, item: before }], next);
+    await context.reconcileRuntimeSources([{ element: mv, mode: 'video', provider: 'cinema', id: before.id, src: before.src, item: before }], next);
     assert.equal(mv.currentTime, change === 'etag' ? 0 : 42);
     assert.equal(mv.loads, change === 'etag' ? 1 : 0);
     assert.equal(mv.plays, change === 'etag' ? 1 : 0);

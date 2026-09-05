@@ -411,6 +411,7 @@ const [firstMusic] = library.music;
 
 	function captureControllerState({ audibleState = audible } = {}) {
 		const stageId = session.lease ? session.playback.id : currentCinema()?.id ?? null;
+		const stageSource = captureRuntimeSources().find((source) => source.element === mv);
 		return {
 			session,
 			audible: audibleState,
@@ -420,6 +421,7 @@ const [firstMusic] = library.music;
 			masterMuted: mv.muted,
 			stageSnapshot: {
 				...captureCinemaSnapshot(mv, stage, stageId, wings),
+				versionId: stageSource?.item?.versionId,
 				visualOwner: stage.dataset.visualOwner, visualTag: stage.dataset.visualTag,
 				visualAspect: stage.dataset.mediaAspect,
 			},
@@ -702,15 +704,15 @@ const [firstMusic] = library.music;
 
 	function captureRuntimeSources() {
 		const candidates = [
-			{ element: mv, provider: session.lease ? session.playback.provider : 'cinema', id: session.lease ? session.playback.id : currentCinema()?.id },
-			{ element: musicAudio, provider: 'music', id: musicProducts.find((item) => sameMediaSource(item.audioSrc, musicAudio.getAttribute('src')))?.productId },
-			{ element: musicVisualVideo, provider: 'music-visuals' },
+			{ element: mv, mode: 'video', provider: session.lease ? session.playback.provider : 'cinema', id: session.lease ? session.playback.id : currentCinema()?.id },
+			{ element: musicAudio, mode: 'audio', provider: 'music', id: musicProducts.find((item) => sameMediaSource(item.audioSrc, musicAudio.getAttribute('src')))?.productId },
+			{ element: musicVisualVideo, mode: 'video', provider: 'music-visuals' },
 		];
 		return candidates.filter(({ element, provider }) => element.getAttribute('src')
 			&& !(element === mv && entryControlsLocked) && provider !== 'youtube').map((source) => {
 			const src = source.element.getAttribute('src');
 			const remembered = runtimeSourceRecords.get(source.element);
-			const item = runtimeCatalogueItems.find((item) => item.folder === source.provider && sameMediaSource(item.src, src))
+			const item = runtimeCatalogueItems.find((item) => item.folder === source.provider && item.kind === source.mode && sameMediaSource(item.src, src))
 				?? (remembered && sameMediaSource(remembered.loadedSrc, src) ? remembered : null);
 			const title = source.provider === 'music' ? productById.get(source.id)?.title : currentCinema()?.title;
 			return { ...source, src, item, title, id: item?.id ?? source.id };
@@ -720,10 +722,10 @@ const [firstMusic] = library.music;
 	async function reconcileRuntimeSources(sources, nextItems) {
 		for (const source of sources) {
 			const { element, item } = source;
-			const next = nextItems.find((candidate) => candidate.folder === source.provider && candidate.id === source.id)
-				?? (!item?.versionId ? nextItems.find((candidate) => candidate.folder === source.provider && sameMediaSource(candidate.src, source.src)) : null);
+			const next = nextItems.find((candidate) => candidate.folder === source.provider && candidate.kind === source.mode && candidate.id === source.id)
+				?? (!item?.versionId ? nextItems.find((candidate) => candidate.folder === source.provider && candidate.kind === source.mode && sameMediaSource(candidate.src, source.src)) : null);
 			if (!next) {
-				runtimeSourceRecords.set(element, { ...(item ?? { id: source.id, folder: source.provider, title: source.title }), loadedSrc: source.src });
+				runtimeSourceRecords.set(element, { ...(item ?? { id: source.id, folder: source.provider, kind: source.mode, title: source.title }), loadedSrc: source.src });
 				continue;
 			}
 			source.next = next;
@@ -760,27 +762,36 @@ const [firstMusic] = library.music;
 	async function applyRuntimeLibrary(nextLibrary, nextItems = []) {
 		const sources = captureRuntimeSources();
 		await reconcileRuntimeSources(sources, nextItems);
-		const remapTrack = (track) => {
-			if (!track) return track;
-			const source = sources.find((source) => source.provider === track.provider && source.id === track.id && source.next);
-			if (!source) return track;
+		const remapSourceRecord = (record) => {
+			if (!record) return record;
+			// A bootstrap product may name both native elements. Its actual
+			// medium and loaded source distinguish the two server pathnames.
+			const source = sources.find((source) => source.provider === record.provider && source.id === record.id
+				&& source.mode === record.mode && (!record.src || sameMediaSource(source.src, record.src)) && source.next);
+			if (!source) return record;
 			const replaced = source.item?.versionId && source.item.versionId !== source.next.versionId;
-			return { ...track, id: source.next.id, currentTime: replaced ? 0 : track.currentTime };
+			return { ...record, id: source.next.id, ...('currentTime' in record ? { currentTime: replaced ? 0 : record.currentTime } : {}) };
 		};
-		const remapAudible = (state) => state ? { ...state, current: remapTrack(state.current), suspended: remapTrack(state.suspended) } : state;
+		const remapAudible = (state) => state ? { ...state, current: remapSourceRecord(state.current), suspended: remapSourceRecord(state.suspended) } : state;
 		audible = remapAudible(audible);
 		suspendedForStageLease = remapAudible(suspendedForStageLease);
+		session = { ...session, playback: remapSourceRecord(session.playback) };
+		const selectedMusic = remapSourceRecord({ provider: 'music', id: musicQueue.currentProductId, mode: musicQueue.mode });
+		musicQueue = { ...musicQueue, currentProductId: selectedMusic.id };
 		if (session.lease) {
 			const snapshot = session.lease.snapshot;
 			const previous = runtimeCatalogueItems.find((item) => item.id === snapshot.id);
+			const retainedVersion = snapshot.versionId ?? previous?.versionId;
 			const next = nextItems.find((item) => item.folder === 'cinema' && item.id === snapshot.id)
-				?? (!previous ? nextItems.find((item) => item.folder === 'cinema' && sameMediaSource(item.src, snapshot.src)) : null);
+				?? (!retainedVersion ? nextItems.find((item) => item.folder === 'cinema' && sameMediaSource(item.src, snapshot.src)) : null);
 			if (next) {
-				const replaced = previous && previous.versionId !== next.versionId;
+				const replaced = retainedVersion && retainedVersion !== next.versionId;
 				session = { ...session, lease: { ...session.lease, snapshot: {
 					...snapshot, id: next.id, versionId: next.versionId,
 					...(replaced ? { src: next.src, currentTime: 0, aspect: next.aspect, mirrorWings: 'off', followers: [] } : {}),
 				} } };
+			} else if (retainedVersion && !snapshot.versionId) {
+				session = { ...session, lease: { ...session.lease, snapshot: { ...snapshot, versionId: retainedVersion } } };
 			}
 		}
 		const current = currentCinema();
@@ -790,13 +801,6 @@ const [firstMusic] = library.music;
 			if (session.playback.provider === 'cinema' && session.playback.id !== retainedCinema.id) {
 				session = { ...session, playback: { ...session.playback, id: retainedCinema.id } };
 			}
-		}
-		const playingMusic = sources.find((source) => source.provider === 'music' && source.next);
-		if (playingMusic && musicQueue.currentProductId === playingMusic.id) {
-			musicQueue = { ...musicQueue, currentProductId: playingMusic.next.id };
-		}
-		if (playingMusic && session.playback.provider === 'music' && session.playback.id === playingMusic.id) {
-			session = { ...session, playback: { ...session.playback, id: playingMusic.next.id } };
 		}
 		runtimeCatalogueItems = nextItems;
 		allCinemaItems = nextLibrary.cinema.map((item) => ({ ...item, versionId: nextItems.find((candidate) => candidate.id === item.id)?.versionId }));
@@ -1085,13 +1089,13 @@ const [firstMusic] = library.music;
 
 	function restoreMusicSource(productId) {
 		const product = productById.get(productId);
-		if (!product) {
-			const loaded = runtimeSourceRecords.get(musicAudio);
-			if (loaded?.id === productId && sameMediaSource(loaded.loadedSrc, musicAudio.getAttribute('src'))) {
-				return { productId, title: loaded.title, audioSrc: loaded.loadedSrc };
-			}
-			throw new RangeError(`unknown Music product: ${productId}`);
+		const loaded = runtimeSourceRecords.get(musicAudio);
+		const currentVersion = runtimeCatalogueItems.find((item) => item.folder === 'music' && item.kind === 'audio' && item.id === productId)?.versionId;
+		if (loaded?.id === productId && sameMediaSource(loaded.loadedSrc, musicAudio.getAttribute('src'))
+			&& (!product || (loaded.versionId && loaded.versionId === currentVersion))) {
+			return { ...product, productId, title: product?.title ?? loaded.title, audioSrc: loaded.loadedSrc };
 		}
+		if (!product?.audioSrc) throw new RangeError(`unknown Music product: ${productId}`);
 		if (musicAudio.getAttribute('src') !== product.audioSrc) musicAudio.src = product.audioSrc;
 		return product;
 	}
