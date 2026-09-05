@@ -1,8 +1,10 @@
 # VIAIMS Portfolio Completion Checklist
 
-**Updated:** 2026-09-03  
+**Updated:** 2026-09-04
 **Working branch:** `codex/adaptive-media-shadow`  
 **Policy:** Local shadow work only until each named approval gate is cleared.
+
+Current-state release audit: [2026-09-04 release readiness](2026-09-04-release-readiness.md). Historical checked verification items below do not certify subsequent uncommitted changes or a production release.
 
 ## Completed in the adaptive-media shadow
 
@@ -108,11 +110,20 @@ These sections are blocked on approved copy and presentation design, not media f
 - [ ] Implement store/cart bridge without coupling commerce state to media playback identity.
 - [ ] Complete security, accessibility, and transaction testing.
 
-## Mobile ingestion project
+## Vercel Blob folder catalogue
 
-- [ ] Design authenticated phone-accessible intake separately from the local folder foundation.
-- [ ] Approve provider assignment, validation, failure recovery, audit history, and publication policy.
-- [ ] Implement preview-before-publication and rollback behavior.
+- [x] Confirm the FTP-style model: use the existing Vercel dashboard and named Blob folders, without Supabase, a database, custom login, or an owner administration page.
+- [x] Confirm the discoverable prefixes: `Cinema/`, `Music/`, `Media/`, and `Music-Visuals/`.
+- [x] Approve the corrected design in conversation; the written [Vercel Blob folder catalogue specification](../superpowers/specs/2026-09-04-vercel-blob-folder-catalog-design.md) awaits owner review.
+- [x] Mark the prior mobile-admin specification and backend/database setup documents as superseded before any remote setup occurred.
+- [ ] Review the corrected written specification and its implementation plan.
+- [x] Implement complete Blob listing pagination, prefix allowlisting, deterministic fingerprints, and optional sidecar ordering in a server-only catalogue endpoint.
+- [x] Adapt runtime refresh to folder fingerprints and complete native media metadata probing.
+- [x] Remove the superseded local database implementation, unapplied SQL, obsolete contract tests, and foundation dispatch; preserve historical documents and current player tests.
+- [ ] Verify through a preview that a Vercel dashboard upload, move, replacement, and deletion are discovered without rebuilding the website.
+- [ ] Obtain separate approval before any Blob mutation, preview deployment, production deployment, or publication. Local task commits are separately authorized.
+
+Local Blob cleanup checkpoint: 44 focused catalogue/runtime tests and all 353 tests pass; default and preview-manifest builds pass. These checks do not complete the preview, actual-phone, fidelity, or full website release gates.
 
 ## Final release
 

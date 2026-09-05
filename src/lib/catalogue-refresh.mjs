@@ -1,6 +1,5 @@
-import { toPublicCatalogueItem } from './public-catalogue.mjs';
-
 const FINGERPRINT = /^[a-f0-9]{64}$/;
+const BOOTSTRAP_ITEM_FIELDS = Object.freeze(['id', 'versionId', 'folder', 'kind', 'title', 'src']);
 const BLOB_ITEM_FIELDS = Object.freeze([
   'id',
   'versionId',
@@ -41,9 +40,24 @@ function projectBootstrapItems(rows) {
   const ids = new Set();
   const items = [];
   for (const row of rows) {
-    const item = row && typeof row === 'object' && !Array.isArray(row)
-      ? toPublicCatalogueItem({ ...row, status: 'published', validationPassed: true }) : null;
-    if (!item || ids.has(item.id)) return null;
+    if (!row || typeof row !== 'object' || Array.isArray(row)
+        || !BOOTSTRAP_ITEM_FIELDS.every((key) => text(row[key]))
+        || !BLOB_KINDS.get(row.folder)?.has(row.kind)
+        || !publicHttpsUrl(row.src)
+        || ids.has(row.id)) return null;
+    // Bootstrap records already have native metadata; keep their existing
+    // immutable-URL boundary and derive aspect instead of trusting input.
+    const url = new URL(row.src);
+    if (url.search || url.hash) return null;
+    const item = Object.fromEntries(BOOTSTRAP_ITEM_FIELDS.map((key) => [key, row[key]]));
+    if (row.kind === 'video') {
+      if (!Number.isSafeInteger(row.width) || row.width <= 0
+          || !Number.isSafeInteger(row.height) || row.height <= 0) return null;
+      item.width = row.width;
+      item.height = row.height;
+      item.aspect = row.height > row.width ? 'portrait'
+        : row.height < row.width ? 'landscape' : 'square';
+    }
     ids.add(item.id);
     items.push(Object.freeze(item));
   }

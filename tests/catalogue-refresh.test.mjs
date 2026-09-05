@@ -47,6 +47,50 @@ test('bootstrap survives failures only until the first authoritative response', 
   assert.equal(api.refreshCatalogue(accepted.state, live(fp('a'), [item()])).status, 'fingerprint-conflict');
 });
 
+test('bootstrap uses the Blob folder kinds and retains only public playback metadata', () => {
+  const rows = [
+    bootstrapItem('cinema', { ownerId: 'private', aspect: 'landscape' }),
+    bootstrapItem('song', { folder: 'music', kind: 'audio' }),
+    bootstrapItem('clip', { folder: 'music' }),
+    bootstrapItem('feature', { folder: 'media' }),
+    bootstrapItem('visual', { folder: 'music-visuals' }),
+  ];
+  const state = api.createCatalogueRefreshState(rows);
+  assert.equal(state.items.length, 5);
+  assert.deepEqual(state.items[0], {
+    id: 'cinema', versionId: 'v1', folder: 'cinema', kind: 'video', title: 'Film',
+    src: 'https://media.example.test/cinema/v1.mp4', width: 720, height: 1280, aspect: 'portrait',
+  });
+  assert.equal('width' in state.items[1], false);
+  rows[0].title = 'Outside change';
+  assert.equal(state.items[0].title, 'Film');
+  assert.ok(Object.isFrozen(state.items));
+  assert.ok(Object.isFrozen(state.items[0]));
+});
+
+test('bootstrap rejects invalid public playback records atomically', () => {
+  const invalid = [
+    null, [],
+    bootstrapItem('bad', { folder: 'media', kind: 'audio' }),
+    bootstrapItem('bad', { folder: 'media', kind: 'image', description: 'Image' }),
+    bootstrapItem('bad', { folder: 'media', kind: 'pdf' }),
+    bootstrapItem('bad', { id: ' bad ' }),
+    bootstrapItem('bad', { title: ' ' }),
+    bootstrapItem('bad', { versionId: '' }),
+    bootstrapItem('bad', { width: 0 }),
+    bootstrapItem('bad', { height: 1.5 }),
+    bootstrapItem('bad', { src: 'http://media.example.test/a.mp4' }),
+    bootstrapItem('bad', { src: 'https://owner:secret@media.example.test/a.mp4' }),
+    bootstrapItem('bad', { src: 'https://media.example.test/a.mp4?token=private' }),
+    bootstrapItem('bad', { src: 'https://media.example.test/a.mp4#fragment' }),
+  ];
+  for (const row of invalid) {
+    assert.throws(() => api.createCatalogueRefreshState([bootstrapItem(), row]), TypeError);
+  }
+  assert.throws(() => api.createCatalogueRefreshState([bootstrapItem(), bootstrapItem()]), TypeError);
+  assert.throws(() => api.createCatalogueRefreshState(null), TypeError);
+});
+
 test('rejects malformed envelopes and items atomically, retaining last accepted snapshot', () => {
   const state = api.refreshCatalogue(api.createCatalogueRefreshState(), live(fp('a'), [item()])).state;
   const bad = [
