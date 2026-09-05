@@ -36,6 +36,7 @@ function runtime({ items = [landscape], width = 390, initialWidth = width, music
     stage: { dataset: { stageProvider: locked ? 'welcome' : 'cinema', mediaAspect: 'landscape', visualOwner: music ? 'music-tag' : 'cinema', visualTag: music ? 'VIZ-A' : '' } },
     mv, cinemaButtons, videoPlaylist, cinema, session, allCinemaItems: items, allMediaItems: [], mediaItems: [], productById: new Map(),
     entryControlsLocked: locked, audible: createAudibleSource(music ? { provider: 'music', id: 'song', mode: 'audio' } : null),
+    retainedCinema: null, rebuildMusicQueue() {},
     nowPlayingTitle: { textContent: 'Wide' }, nowPlayingStatus: { textContent: 'CINEMA READY' }, activeSourceKind: {},
     retryCinema: { hidden: true, setAttribute() {} },
     eligibleVideoItems, isMobileViewport, createCinemaContinuity, selectCinema, activateSource, removeAudibleProvider,
@@ -43,7 +44,7 @@ function runtime({ items = [landscape], width = 390, initialWidth = width, music
     applyActiveTransportPolicy() {}, renderCinemaAudioInvitation() {}, syncCinemaCueAvailability() {}, syncFullscreenEligibility() {},
   };
   runInNewContext(
-    implementation('rebuildEligibleVideoQueues()', 'applyMirrorWingGeometry(')
+    implementation('rebuildEligibleVideoQueues(', 'applyMirrorWingGeometry(')
     + implementation('setStageProvider(', 'activeAuthoritativeMedia()')
     + implementation('currentCinema()', 'renderMusicAudioIdentity(')
     + implementation('updateCinemaCueState()', 'updateProviderCueState('), context);
@@ -116,3 +117,30 @@ for (const mode of ['lease', 'locked']) {
     assert.equal(ctx.mv.paused, false);
   });
 }
+
+test('accepted catalogue removal preserves loaded Cinema while navigation uses only the new queue', () => {
+  const ctx = runtime({ items: [landscape, portrait], width: 1000 });
+  const playback = ctx.session.playback;
+  ctx.mv.currentTime = 42;
+  ctx.allCinemaItems = [portrait];
+  ctx.rebuildEligibleVideoQueues({ preserveLoaded: true });
+  assert.equal(ctx.mv.src, landscape.src);
+  assert.equal(ctx.mv.currentTime, 42);
+  assert.equal(ctx.mv.loads, 0);
+  assert.equal(ctx.session.playback, playback);
+  assert.equal(ctx.currentCinema().id, landscape.id);
+  assert.deepEqual(Array.from(ctx.videoPlaylist, ({ id }) => id), ['tall']);
+  assert.equal(ctx.cinemaButtons[0]['aria-current'], 'false');
+});
+
+test('accepted empty catalogue retains independent Music audio and its tagged visual', () => {
+  const ctx = runtime({ items: [landscape], width: 1000, music: true });
+  const playback = ctx.session.playback;
+  ctx.allCinemaItems = [];
+  ctx.rebuildEligibleVideoQueues({ preserveLoaded: true });
+  assert.equal(ctx.mv.src, landscape.src);
+  assert.equal(ctx.session.playback, playback);
+  assert.equal(ctx.audible.current.id, 'song');
+  assert.equal(ctx.stage.dataset.visualOwner, 'music-tag');
+  assert.equal(ctx.videoPlaylist.length, 0);
+});

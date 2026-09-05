@@ -9,6 +9,58 @@ async function source(url) {
   return readFile(url, 'utf8');
 }
 
+test('runtime catalogue owns replaceable rows and one persistent delegated listener per list', async () => {
+  const component = await source(componentPath);
+  for (const module of ['runtime-catalogue-controller', 'runtime-media-library']) {
+    assert.match(component, new RegExp(`from '../lib/${module}\\.mjs'`));
+  }
+  for (const name of ['cinemaButtons', 'allCinemaItems', 'allMediaItems', 'musicProducts', 'productById', 'entryCueControls']) {
+    assert.match(component, new RegExp(`\\blet ${name} =`));
+  }
+  for (const provider of ['cinema', 'music', 'media']) {
+    assert.equal((component.match(new RegExp(`${provider}Playlist\\.addEventListener\\('click'`, 'g')) ?? []).length, 1);
+    assert.match(component, new RegExp(`function render${provider[0].toUpperCase() + provider.slice(1)}Rows\\(`));
+  }
+  assert.match(component, /event\.target\.closest\(/);
+  assert.doesNotMatch(component, /cinemaButtons\.forEach\(\(button\) => \{\s*button\.addEventListener\('click'/);
+  assert.doesNotMatch(component, /querySelectorAll\('(\.media-cue|\[data-music-mode[^']*)'\)\.forEach\(\(button\) => \{\s*button\.addEventListener\('click'/);
+  const mediaPanel = component.slice(component.indexOf('id="panel-media"'), component.indexOf('id="panel-youtube"'));
+  assert.match(mediaPanel, /id="playlist-media"/);
+  assert.doesNotMatch(mediaPanel, /library\.media\.length === 0\s*\?/);
+});
+
+test('runtime catalogue uses safe text rendering and one visible lifecycle', async () => {
+  const component = await source(componentPath);
+  assert.match(component, /document\.createElement\('button'\)/);
+  assert.match(component, /\.textContent = item\.title/);
+  assert.match(component, /\.dataset\.musicMode =/);
+  assert.doesNotMatch(component, /innerHTML|insertAdjacentHTML|createContextualFragment/);
+  for (const binding of [
+    "runtimeCatalogue.start()",
+    "window.addEventListener('focus', runtimeCatalogue.focus)",
+    "document.addEventListener('visibilitychange', runtimeCatalogue.visibilityChanged)",
+    "window.addEventListener('pagehide', runtimeCatalogue.stop, { once: true })",
+  ]) assert.equal(component.split(binding).length - 1, 1, binding);
+  assert.match(component, /applyRuntimeLibrary\(toRuntimeMediaLibrary\(items\), items\)/);
+  assert.match(component, /transitionQueue\.then\(\(\) => isCurrent\(\) && applyRuntimeLibrary/);
+});
+
+test('native video leases suspend tagged overlays and restore the saved visual owner transactionally', async () => {
+  const component = await source(componentPath);
+  const captureStart = component.indexOf('function captureControllerState(');
+  const capture = component.slice(captureStart, component.indexOf('\n\tfunction ', captureStart + 1));
+  assert.match(capture, /visualOwner: stage\.dataset\.visualOwner/);
+  const leaseStart = component.indexOf('async function activateNativeLease(');
+  const lease = component.slice(leaseStart, component.indexOf('\n\tasync function ', leaseStart + 1));
+  assert.match(lease, /stage\.dataset\.visualOwner = 'cinema'/);
+  const restoreStart = component.indexOf('async function restoreLeasedCinema(');
+  const restore = component.slice(restoreStart, component.indexOf('\n\tasync function ', restoreStart + 1));
+  assert.match(restore, /restoredSnapshot\?\.visualOwner === 'music-tag'/);
+  const rollbackStart = component.indexOf('async function rollbackControllerState(');
+  const rollback = component.slice(rollbackStart, component.indexOf('\n\tasync function ', rollbackStart + 1));
+  assert.match(rollback, /stage\.dataset\.visualOwner = prior\.stageSnapshot\.visualOwner/);
+});
+
 test('hybrid engine exposes an adaptive stage with two decorative wings', async () => {
   const component = await source(componentPath);
   assert.match(component, /data-hybrid-media-engine/);
@@ -335,7 +387,7 @@ test('reviewed fullscreen and visual races are generation and interaction safe',
 
 test('mobile queue rebuild preserves an eligible tagged visual presentation', async () => {
   const component = await source(componentPath);
-  const rebuildStart = component.indexOf('function rebuildEligibleVideoQueues()');
+  const rebuildStart = component.indexOf('function rebuildEligibleVideoQueues(');
   const rebuildEnd = component.indexOf('\n\tfunction ', rebuildStart + 1);
   const rebuild = component.slice(rebuildStart, rebuildEnd);
   assert.match(rebuild, /preserveMusicVisualPresentation/);
@@ -479,7 +531,7 @@ test('Cinema selection commits identity and loading state before playback orches
   const orchestrate = activateCinema.indexOf('runCommittedPlayback({');
   const commit = activateCinema.indexOf('commitSelection: async () =>');
   const select = activateCinema.indexOf('await switchVideo(index, false)');
-  const ownership = activateCinema.indexOf("session = activateSource(session, { provider: 'cinema'");
+  const ownership = activateCinema.indexOf("session = activateSource(session, { provider: 'cinema'", select);
   const loading = activateCinema.indexOf("renderCinemaIdentity('CINEMA LOADING')");
   const start = activateCinema.indexOf('startPlayback: () => playVideoStack()');
   const playing = activateCinema.indexOf('onPlaying: async () =>');
@@ -493,7 +545,7 @@ test('Cinema selection commits identity and loading state before playback orches
   assert.match(activateCinema, /hasReportedTransitionError = true/);
   assert.match(component, /if \(!hasReportedTransitionError\)[^\n]+PLAYBACK ERROR/);
 
-  assert.match(component, /cinemaButtons\.forEach\(\(button\) => \{[\s\S]+enqueueMediaControlTransition\(\(\) => activateCinema/);
+  assert.match(component, /cinemaPlaylist\.addEventListener\('click'[\s\S]+enqueueMediaControlTransition\(\(\) => \{[\s\S]+return activateCinema/);
   assert.match(component, /mv\.addEventListener\('ended'[\s\S]+enqueueTransition\(async \(\) =>/);
 });
 
@@ -669,7 +721,7 @@ test('entry lock blocks playback controls until either welcome handoff restores 
     assert.equal(component.includes(literal), true, `entry cue controls must include ${literal}`);
   }
 
-  for (const listener of ['cinemaButtons.forEach((button) => {', 'cinemaAudioInvitation.addEventListener']) {
+  for (const listener of ["cinemaPlaylist.addEventListener('click'", 'cinemaAudioInvitation.addEventListener']) {
     const start = component.indexOf(listener);
     const end = component.indexOf('\n\t});', start) + '\n\t});'.length;
     assert.equal(start > -1, true);
@@ -910,10 +962,10 @@ test('Cinema-audio invitation follows stage ownership and has a reduced-motion c
 
 test('a rejected Music Video lease rolls back its Music queue mode selection', async () => {
   const component = await source(componentPath);
-  const start = component.indexOf("root.querySelectorAll('[data-music-mode=\"video\"]')");
-  const end = component.indexOf("root.querySelectorAll('.media-cue')", start);
+  const start = component.indexOf("musicPlaylist.addEventListener('click'");
+  const end = component.indexOf("mediaPlaylist.addEventListener('click'", start);
   const listener = component.slice(start, end);
-  assert.match(listener, /const nextMusicQueue = selectMusicMode\(musicQueue, product\.productId, 'video'\)/);
+  assert.match(listener, /const nextMusicQueue = product\.kind === 'video' \? selectMusicItem\(musicQueue, product\.productId\) : selectMusicMode\(musicQueue, product\.productId, 'video'\)/);
   assert.match(listener, /activateNativeLease\('music', product\.productId, product\.videoSrc, product\.title, \{ nextMusicQueue \}\)/);
   assert.doesNotMatch(listener, /musicQueue = selectMusicMode/);
 
@@ -934,7 +986,7 @@ test('automatic Music advance rolls rejection back to the exact pre-advance queu
   const activateEnd = component.indexOf('\n\tasync function ', activateStart + 1);
   const activate = component.slice(activateStart, activateEnd);
 
-  assert.match(advance, /const next = advanceMusicQueue\(musicQueue, direction\)/);
+  assert.match(advance, /\? advanceMusicQueue\(musicQueue, direction\)/);
   assert.doesNotMatch(advance, /musicQueue = next/);
   assert.match(advance, /await activateMusicAudio\(next\.currentProductId, \{ nextMusicQueue: next \}\)/);
   assert.match(activate, /async function activateMusicAudio\(productId, \{ nextMusicQueue = null \} = \{\}\)/);
@@ -976,10 +1028,10 @@ test('direct lease replacement retains Cinema snapshot and restores the immediat
   assert.match(activate, /catch \(error\) \{[\s\S]+throw await rollbackControllerState\(prior, error, \{[\s\S]+attemptedAudibleState: nextAudible,[\s\S]+statusPrefix: 'PLAYBACK\/RESTORE ERROR'/s);
   assert.doesNotMatch(activate, /catch \(error\) \{[\s\S]+restoreLeasedCinema\(\)/s);
 
-  const listenerStart = component.indexOf("root.querySelectorAll('[data-music-mode=\"video\"]')");
-  const listenerEnd = component.indexOf("root.querySelectorAll('.media-cue')", listenerStart);
+  const listenerStart = component.indexOf("musicPlaylist.addEventListener('click'");
+  const listenerEnd = component.indexOf("mediaPlaylist.addEventListener('click'", listenerStart);
   const listener = component.slice(listenerStart, listenerEnd);
-  assert.match(listener, /const nextMusicQueue = selectMusicMode\(musicQueue, product\.productId, 'video'\)/);
+  assert.match(listener, /const nextMusicQueue = product\.kind === 'video' \? selectMusicItem\(musicQueue, product\.productId\) : selectMusicMode\(musicQueue, product\.productId, 'video'\)/);
   assert.match(listener, /activateNativeLease\('music', product\.productId, product\.videoSrc, product\.title, \{ nextMusicQueue \}\)/);
   assert.doesNotMatch(listener, /musicQueue = selectMusicMode/);
 });
@@ -1001,12 +1053,12 @@ test('rollback fallback keeps prior lease identity muted and surfaces a specific
   assert.match(rollback, /nowPlayingStatus\.textContent = status/);
 });
 
-test('lease policy keeps explicit Audio release while guarding Cinema cues and Previous or Next', async () => {
+test('lease policy keeps explicit Audio release and Cinema guards while Music retains queue navigation', async () => {
   const component = await source(componentPath);
   const policyStart = component.indexOf('function applyActiveTransportPolicy()');
   const policyEnd = component.indexOf('\n\tfunction ', policyStart + 1);
   const policy = component.slice(policyStart, policyEnd);
-  assert.match(policy, /const leaseBlocksNavigation = Boolean\(session\.lease\) && \(action === 'previous' \|\| action === 'next'\)/);
+  assert.match(policy, /const leaseBlocksNavigation = Boolean\(session\.lease\) && session\.playback\.provider !== 'music' && \(action === 'previous' \|\| action === 'next'\)/);
   assert.match(policy, /!leaseBlocksNavigation/);
 
   const availabilityStart = component.indexOf('function syncCinemaCueAvailability()');
@@ -1028,8 +1080,8 @@ test('lease policy keeps explicit Audio release while guarding Cinema cues and P
   const nextStart = previousEnd;
   const nextEnd = component.indexOf("activePlay.addEventListener('click'", nextStart);
   const next = component.slice(nextStart, nextEnd);
-  assert.match(previous, /if \(session\.lease\) return/);
-  assert.match(next, /if \(session\.lease\) return/);
+  assert.match(previous, /if \(session\.lease && session\.playback\.provider !== 'music'\) return/);
+  assert.match(next, /if \(session\.lease && session\.playback\.provider !== 'music'\) return/);
 
   const audioStart = component.indexOf('async function activateMusicAudio(');
   const audioEnd = component.indexOf('\n\tasync function ', audioStart + 1);

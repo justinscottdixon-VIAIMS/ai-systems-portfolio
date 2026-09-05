@@ -141,9 +141,7 @@ const [firstMusic] = library.music;
 				<button id="buy-license" type="button" data-product-id={firstMusic?.productId ?? ''} data-store-href={firstMusic?.storeHref ?? ''} disabled aria-disabled="true">BUY / LICENSE · STORE PENDING</button>
 			</div>
 			<div id="panel-media" role="tabpanel" aria-labelledby="tab-media" data-provider-panel="media" hidden>
-				{library.media.length === 0
-					? <p class="media-library__empty">No owned Media published</p>
-					: <div class="media-library__scroll-shell"><div id="playlist-media" class="media-library__items">{library.media.map((item) => <button type="button" class="media-cue" data-media-aspect={item.aspect} data-media-id={item.id} data-media-src={item.src} data-media-title={item.title} disabled={library.experience.enabled} aria-disabled={String(library.experience.enabled)} aria-current="false">{item.title}</button>)}</div><div class="playlist-scroll-rail" data-playlist-scroll-rail role="scrollbar" aria-label="Scroll Media playlist" aria-controls="playlist-media" aria-orientation="vertical" aria-valuemin="0" aria-valuenow="0" aria-valuemax="0" aria-disabled="true" tabindex="-1"><span data-playlist-scroll-thumb></span></div></div>}
+				<div class="media-library__scroll-shell"><div id="playlist-media" class="media-library__items">{library.media.length === 0 && <p class="media-library__empty">No owned Media published</p>}{library.media.map((item) => <button type="button" class="media-cue" data-media-aspect={item.aspect} data-media-id={item.id} data-media-src={item.src} data-media-title={item.title} disabled={library.experience.enabled} aria-disabled={String(library.experience.enabled)} aria-current="false">{item.title}</button>)}</div><div class="playlist-scroll-rail" data-playlist-scroll-rail role="scrollbar" aria-label="Scroll Media playlist" aria-controls="playlist-media" aria-orientation="vertical" aria-valuemin="0" aria-valuenow="0" aria-valuemax="0" aria-disabled="true" tabindex="-1"><span data-playlist-scroll-thumb></span></div></div>
 			</div>
 			<div id="panel-youtube" role="tabpanel" aria-labelledby="tab-youtube" data-provider-panel="youtube" hidden>
 				{library.youtubeChannel && (
@@ -203,7 +201,9 @@ const [firstMusic] = library.music;
 	import { activePlayButtonState, activeTransportPolicy, createEndedEventToken, isCurrentEndedEventToken, runtimeVideoErrorAction, runCommittedPlayback, runActivePlaybackRetry } from '../lib/active-transport.mjs';
 	import { audibleElementKind, claimCinemaAudio, createAudibleSource, removeAudibleProvider, restorePriorAudio, selectAudibleTrack } from '../lib/audible-source.mjs';
 	import { advanceCinema, createCinemaContinuity, createCinemaEndedToken, isCurrentCinemaEndedToken, selectCinema } from '../lib/cinema-continuity.mjs';
-	import { advanceMusicQueue, createMusicQueue, selectMusicMode, setRepeatMode, toggleShuffle } from '../lib/music-queue.mjs';
+	import { advanceMusicQueue, createMusicQueue, selectMusicItem, selectMusicMode, setRepeatMode, toggleShuffle } from '../lib/music-queue.mjs';
+	import { createRuntimeCatalogueController } from '../lib/runtime-catalogue-controller.mjs';
+	import { toRuntimeMediaLibrary } from '../lib/runtime-media-library.mjs';
 	import { beginExperience, completeWelcome, createIntroSession, failAmbient, failWelcome } from '../lib/intro-session.mjs';
 	import { playlistScrollTarget, playlistWheelTarget } from '../lib/playlist-scroll.mjs';
 	import { eligibleVideoItems, isMobileViewport } from '../lib/mobile-media.mjs';
@@ -234,12 +234,15 @@ const [firstMusic] = library.music;
 	const tabs = [...root.querySelectorAll('[role="tab"]')];
 	const panels = [...root.querySelectorAll('[role="tabpanel"]')];
 	const playlistRails = [...root.querySelectorAll('[data-playlist-scroll-rail]')];
-	const cinemaButtons = [...root.querySelectorAll('.cinema-cue')];
-	const allCinemaItems = cinemaButtons.map((button) => ({ id: button.dataset.cinemaId, src: button.dataset.cinemaSrc, title: button.dataset.cinemaTitle, specs: button.dataset.cinemaSpecs, aspect: button.dataset.mediaAspect }));
+	const cinemaPlaylist = root.querySelector('#playlist-cinema');
+	const musicPlaylist = root.querySelector('#playlist-music');
+	const mediaPlaylist = root.querySelector('#playlist-media');
+	let cinemaButtons = [...root.querySelectorAll('.cinema-cue')];
+	let allCinemaItems = cinemaButtons.map((button) => ({ id: button.dataset.cinemaId, src: button.dataset.cinemaSrc, title: button.dataset.cinemaTitle, specs: button.dataset.cinemaSpecs, aspect: button.dataset.mediaAspect }));
 	let videoPlaylist = eligibleVideoItems(allCinemaItems, window.innerWidth);
-	const allMediaItems = [...root.querySelectorAll('.media-cue')].map((button) => ({ id: button.dataset.mediaId, src: button.dataset.mediaSrc, title: button.dataset.mediaTitle, aspect: button.dataset.mediaAspect }));
+	let allMediaItems = [...root.querySelectorAll('.media-cue')].map((button) => ({ id: button.dataset.mediaId, src: button.dataset.mediaSrc, title: button.dataset.mediaTitle, aspect: button.dataset.mediaAspect }));
 	let mediaItems = eligibleVideoItems(allMediaItems, window.innerWidth);
-	const musicProducts = [...root.querySelectorAll('.music-product')].map((row) => ({
+	let musicProducts = [...root.querySelectorAll('.music-product')].map((row) => ({
 		productId: row.dataset.productId,
 		title: row.dataset.title,
 		specs: row.dataset.specs,
@@ -249,7 +252,10 @@ const [firstMusic] = library.music;
 		visual: row.dataset.visualSrc ? { tag: row.dataset.visualTag, src: row.dataset.visualSrc, aspect: row.dataset.visualAspect } : null,
 		storeHref: row.dataset.storeHref,
 	}));
-	const productById = new Map(musicProducts.map((item) => [item.productId, item]));
+	let productById = new Map(musicProducts.map((item) => [item.productId, item]));
+	let runtimeCatalogueItems = [];
+	const runtimeSourceRecords = new WeakMap();
+	let retainedCinema = null;
 	const musicAudio = root.querySelector('#music-audio');
 	const nowPlayingTitle = root.querySelector('#now-playing-title');
 	const nowPlayingStatus = root.querySelector('#now-playing-status');
@@ -276,7 +282,7 @@ const [firstMusic] = library.music;
 	const cinemaAudioInvitation = root.querySelector('#cinema-audio-invitation');
 	const cinemaAudioLabel = root.querySelector('#cinema-audio-label');
 	const retryCinema = root.querySelector('#retry-cinema');
-	const entryCueControls = [
+	let entryCueControls = [
 		...cinemaButtons,
 		...root.querySelectorAll('[data-music-mode]'),
 		...root.querySelectorAll('.media-cue'),
@@ -352,7 +358,7 @@ const [firstMusic] = library.music;
 	function applyActiveTransportPolicy() {
 		const policy = activeTransportPolicy(session.playback);
 		for (const [action, control] of transportControls) {
-			const leaseBlocksNavigation = Boolean(session.lease) && (action === 'previous' || action === 'next');
+			const leaseBlocksNavigation = Boolean(session.lease) && session.playback.provider !== 'music' && (action === 'previous' || action === 'next');
 			const enabled = !entryControlsLocked && policy[action] && !leaseBlocksNavigation;
 			control.disabled = !enabled;
 			control.setAttribute('aria-disabled', String(!enabled));
@@ -412,7 +418,11 @@ const [firstMusic] = library.music;
 			cinemaMutedBeforeMusicAudio,
 			musicQueue,
 			masterMuted: mv.muted,
-			stageSnapshot: captureCinemaSnapshot(mv, stage, stageId, wings),
+			stageSnapshot: {
+				...captureCinemaSnapshot(mv, stage, stageId, wings),
+				visualOwner: stage.dataset.visualOwner, visualTag: stage.dataset.visualTag,
+				visualAspect: stage.dataset.mediaAspect,
+			},
 			ui: captureControllerUi(),
 		};
 	}
@@ -557,7 +567,7 @@ const [firstMusic] = library.music;
 			['next', fullscreenNext], ['playPause', fullscreenMute],
 			['playPause', activeMute],
 		]) {
-			const leaseBlocksNavigation = Boolean(session.lease) && (action === 'previous' || action === 'next');
+			const leaseBlocksNavigation = Boolean(session.lease) && session.playback.provider !== 'music' && (action === 'previous' || action === 'next');
 			control.disabled = entryControlsLocked || !policy[action] || leaseBlocksNavigation;
 			control.setAttribute('aria-disabled', String(control.disabled));
 		}
@@ -612,8 +622,204 @@ const [firstMusic] = library.music;
 		enterFullscreen.setAttribute('aria-disabled', String(!eligible));
 	}
 
-	function rebuildEligibleVideoQueues() {
-		const currentId = currentCinema()?.id;
+	function createCatalogueButton(className) {
+		const button = document.createElement('button');
+		button.type = 'button';
+		button.className = className;
+		button.disabled = entryControlsLocked;
+		button.setAttribute('aria-disabled', String(entryControlsLocked));
+		button.setAttribute('aria-current', 'false');
+		return button;
+	}
+
+	function renderCinemaRows() {
+		cinemaButtons = allCinemaItems.map((item, index) => {
+			const button = createCatalogueButton('cinema-cue');
+			button.dataset.cinemaIndex = String(index);
+			button.dataset.cinemaId = item.id;
+			button.dataset.cinemaSrc = item.src;
+			button.dataset.cinemaTitle = item.title;
+			button.dataset.cinemaSpecs = item.specs;
+			button.dataset.mediaAspect = item.aspect ?? 'unknown';
+			const title = document.createElement('span');
+			title.textContent = item.title;
+			const specs = document.createElement('span');
+			specs.textContent = item.specs;
+			button.append(title, specs);
+			return button;
+		});
+		cinemaPlaylist.replaceChildren(...cinemaButtons);
+	}
+
+	function renderMusicRows() {
+		musicPlaylist.replaceChildren(...musicProducts.map((item) => {
+			const row = document.createElement('article');
+			row.className = 'music-product';
+			row.dataset.productId = item.productId;
+			row.setAttribute('aria-current', 'false');
+			const identity = document.createElement('div');
+			identity.className = 'music-product__identity';
+			const title = document.createElement('strong');
+			title.textContent = item.title;
+			const specs = document.createElement('span');
+			specs.textContent = item.specs;
+			identity.append(title, specs);
+			const actions = document.createElement('div');
+			actions.className = 'music-product__actions';
+			const button = createCatalogueButton('');
+			button.dataset.musicMode = item.kind === 'video' ? 'video' : 'audio';
+			button.dataset.productId = item.productId;
+			button.dataset.mediaAspect = item.aspect ?? 'unknown';
+			button.textContent = item.kind === 'video' ? 'VIDEO' : 'PLAY';
+			button.setAttribute('aria-label', `Play ${item.title}${item.kind === 'video' ? ' video' : ''}`);
+			actions.append(button);
+			row.append(identity, actions);
+			return row;
+		}));
+	}
+
+	function renderMediaRows() {
+		const rows = allMediaItems.map((item) => {
+			const button = createCatalogueButton('media-cue');
+			button.dataset.mediaId = item.id;
+			button.dataset.mediaSrc = item.src;
+			button.dataset.mediaTitle = item.title;
+			button.dataset.mediaAspect = item.aspect ?? 'unknown';
+			button.textContent = item.title;
+			return button;
+		});
+		if (!rows.length) {
+			const empty = document.createElement('p');
+			empty.className = 'media-library__empty';
+			empty.textContent = 'No owned Media published';
+			mediaPlaylist.replaceChildren(empty);
+		} else mediaPlaylist.replaceChildren(...rows);
+	}
+
+	function sameMediaSource(left, right) {
+		return Boolean(left && right) && new URL(left, document.baseURI).href === new URL(right, document.baseURI).href;
+	}
+
+	function captureRuntimeSources() {
+		const candidates = [
+			{ element: mv, provider: session.lease ? session.playback.provider : 'cinema', id: session.lease ? session.playback.id : currentCinema()?.id },
+			{ element: musicAudio, provider: 'music', id: musicProducts.find((item) => sameMediaSource(item.audioSrc, musicAudio.getAttribute('src')))?.productId },
+			{ element: musicVisualVideo, provider: 'music-visuals' },
+		];
+		return candidates.filter(({ element, provider }) => element.getAttribute('src')
+			&& !(element === mv && entryControlsLocked) && provider !== 'youtube').map((source) => {
+			const src = source.element.getAttribute('src');
+			const remembered = runtimeSourceRecords.get(source.element);
+			const item = runtimeCatalogueItems.find((item) => item.folder === source.provider && sameMediaSource(item.src, src))
+				?? (remembered && sameMediaSource(remembered.loadedSrc, src) ? remembered : null);
+			const title = source.provider === 'music' ? productById.get(source.id)?.title : currentCinema()?.title;
+			return { ...source, src, item, title, id: item?.id ?? source.id };
+		});
+	}
+
+	async function reconcileRuntimeSources(sources, nextItems) {
+		for (const source of sources) {
+			const { element, item } = source;
+			const next = nextItems.find((candidate) => candidate.folder === source.provider && candidate.id === source.id)
+				?? (!item?.versionId ? nextItems.find((candidate) => candidate.folder === source.provider && sameMediaSource(candidate.src, source.src)) : null);
+			if (!next) {
+				runtimeSourceRecords.set(element, { ...(item ?? { id: source.id, folder: source.provider, title: source.title }), loadedSrc: source.src });
+				continue;
+			}
+			source.next = next;
+			// ETag is the content authority. Title/order changes and a different
+			// public URL for the same pathname/version do not restart a resource.
+			if (item?.versionId && item.versionId !== next.versionId) {
+				const paused = element.paused;
+				if (element === mv) hideMirrorWings();
+				element.src = next.src;
+				element.load();
+				element.currentTime = 0;
+				if (!paused) await element.play().catch(() => {});
+			}
+			runtimeSourceRecords.set(element, { ...next, loadedSrc: element.getAttribute('src') });
+		}
+	}
+
+	function rebuildMusicQueue() {
+		const previous = musicQueue;
+		const eligible = musicProducts.filter((item) => item.kind !== 'video'
+			|| eligibleVideoItems([item], window.innerWidth).length === 1);
+		const next = createMusicQueue(eligible);
+		const order = previous.shuffle
+			? [...previous.order.filter((id) => next.tracks.has(id)), ...next.order.filter((id) => !previous.order.includes(id))]
+			: next.order;
+		const currentProductId = previous.currentProductId ?? next.currentProductId;
+		musicQueue = {
+			...next, order, currentProductId, cursor: order.indexOf(currentProductId),
+			mode: next.tracks.get(currentProductId)?.kind ?? previous.mode,
+			shuffle: previous.shuffle, repeat: previous.repeat,
+		};
+	}
+
+	async function applyRuntimeLibrary(nextLibrary, nextItems = []) {
+		const sources = captureRuntimeSources();
+		await reconcileRuntimeSources(sources, nextItems);
+		const remapTrack = (track) => {
+			if (!track) return track;
+			const source = sources.find((source) => source.provider === track.provider && source.id === track.id && source.next);
+			if (!source) return track;
+			const replaced = source.item?.versionId && source.item.versionId !== source.next.versionId;
+			return { ...track, id: source.next.id, currentTime: replaced ? 0 : track.currentTime };
+		};
+		const remapAudible = (state) => state ? { ...state, current: remapTrack(state.current), suspended: remapTrack(state.suspended) } : state;
+		audible = remapAudible(audible);
+		suspendedForStageLease = remapAudible(suspendedForStageLease);
+		if (session.lease) {
+			const snapshot = session.lease.snapshot;
+			const previous = runtimeCatalogueItems.find((item) => item.id === snapshot.id);
+			const next = nextItems.find((item) => item.folder === 'cinema' && item.id === snapshot.id)
+				?? (!previous ? nextItems.find((item) => item.folder === 'cinema' && sameMediaSource(item.src, snapshot.src)) : null);
+			if (next) {
+				const replaced = previous && previous.versionId !== next.versionId;
+				session = { ...session, lease: { ...session.lease, snapshot: {
+					...snapshot, id: next.id, versionId: next.versionId,
+					...(replaced ? { src: next.src, currentTime: 0, aspect: next.aspect, mirrorWings: 'off', followers: [] } : {}),
+				} } };
+			}
+		}
+		const current = currentCinema();
+		const playingCinema = sources.find((source) => source.provider === 'cinema');
+		if (current && playingCinema?.next) {
+			retainedCinema = nextLibrary.cinema.find((item) => item.id === playingCinema.next.id) ?? current;
+			if (session.playback.provider === 'cinema' && session.playback.id !== retainedCinema.id) {
+				session = { ...session, playback: { ...session.playback, id: retainedCinema.id } };
+			}
+		}
+		const playingMusic = sources.find((source) => source.provider === 'music' && source.next);
+		if (playingMusic && musicQueue.currentProductId === playingMusic.id) {
+			musicQueue = { ...musicQueue, currentProductId: playingMusic.next.id };
+		}
+		if (playingMusic && session.playback.provider === 'music' && session.playback.id === playingMusic.id) {
+			session = { ...session, playback: { ...session.playback, id: playingMusic.next.id } };
+		}
+		runtimeCatalogueItems = nextItems;
+		allCinemaItems = nextLibrary.cinema.map((item) => ({ ...item, versionId: nextItems.find((candidate) => candidate.id === item.id)?.versionId }));
+		allMediaItems = nextLibrary.media;
+		musicProducts = nextLibrary.music.map((item) => ({
+			...item, audioSrc: item.kind === 'audio' ? item.src : null,
+			videoSrc: item.kind === 'video' ? item.src : null, videoAspect: item.aspect,
+		}));
+		productById = new Map(musicProducts.map((item) => [item.productId, item]));
+		renderCinemaRows();
+		renderMusicRows();
+		renderMediaRows();
+		entryCueControls = [...cinemaButtons, ...root.querySelectorAll('[data-music-mode]'), ...root.querySelectorAll('.media-cue'), returnButton, retryCinema];
+		syncEntryControlAvailability();
+		rebuildEligibleVideoQueues({ preserveLoaded: true });
+		updateProviderCueState(session.playback.provider, session.playback.id);
+		syncMusicRowActions();
+		syncPlaylistRails();
+	}
+
+	function rebuildEligibleVideoQueues({ preserveLoaded = Boolean(retainedCinema) } = {}) {
+		const current = currentCinema();
+		const currentId = current?.id;
 		const preserveMusicVisualPresentation = stage.dataset.visualOwner === 'music-tag'
 			? { aspect: stage.dataset.mediaAspect, tag: stage.dataset.visualTag }
 			: null;
@@ -621,11 +827,14 @@ const [firstMusic] = library.music;
 		mediaItems = eligibleVideoItems(allMediaItems, window.innerWidth);
 		cinema = createCinemaContinuity(videoPlaylist);
 		const nextIndex = videoPlaylist.findIndex((item) => item.id === currentId);
-		if (nextIndex > 0) cinema = selectCinema(cinema, nextIndex);
+		const keepLoaded = preserveLoaded && !entryControlsLocked && Boolean(mv.getAttribute('src'));
+		retainedCinema = keepLoaded && nextIndex < 0 ? current : null;
+		if (nextIndex >= 0) cinema = selectCinema(cinema, nextIndex);
+		else if (retainedCinema) cinema = { ...cinema, cursor: -1, currentId };
 		const selected = currentCinema();
 		// Reconcile the actual element too: the server cannot know the viewport,
 		// and the initial client queue has already been filtered before this runs.
-		if (!entryControlsLocked && !session.lease && mv.getAttribute('src') !== (selected?.src ?? null)) {
+		if (!keepLoaded && !entryControlsLocked && !session.lease && mv.getAttribute('src') !== (selected?.src ?? null)) {
 			pauseVideoStack();
 			hideMirrorWings();
 			setStageProvider('cinema');
@@ -639,7 +848,7 @@ const [firstMusic] = library.music;
 			else mv.removeAttribute('src');
 			mv.load();
 		}
-		if (!entryControlsLocked && !session.lease) {
+		if (!keepLoaded && !entryControlsLocked && !session.lease) {
 			if (session.playback.provider === 'cinema') {
 				session = activateSource(session, { provider: 'cinema', id: selected?.id ?? null, mode: 'video', muted: selected ? mv.muted : true });
 				if (!selected) audible = removeAudibleProvider(audible, 'cinema');
@@ -648,6 +857,7 @@ const [firstMusic] = library.music;
 					: currentId !== selected.id || nowPlayingTitle.textContent !== selected.title ? 'CINEMA READY' : undefined);
 			}
 		}
+		rebuildMusicQueue();
 		for (const button of [...root.querySelectorAll('[data-music-mode]')].filter((control) => control.dataset.musicMode === 'video')) {
 			const product = productById.get(button.dataset.productId);
 			const eligible = Boolean(product?.videoSrc) && eligibleVideoItems([{ ...product, aspect: product.videoAspect }], window.innerWidth).length === 1;
@@ -823,7 +1033,14 @@ const [firstMusic] = library.music;
 	}
 
 	async function switchVideo(index, playImmediate = true) {
-		if (!videoPlaylist.length) return;
+		retainedCinema = null;
+		if (!videoPlaylist.length) {
+			pauseVideoStack();
+			hideMirrorWings();
+			mv.removeAttribute('src');
+			mv.load();
+			return;
+		}
 		if (index !== cinema.cursor) cinema = selectCinema(cinema, index);
 		setStageProvider('cinema');
 		hideMirrorWings();
@@ -833,7 +1050,7 @@ const [firstMusic] = library.music;
 	}
 
 	function currentCinema() {
-		return videoPlaylist[cinema.cursor] ?? null;
+		return retainedCinema ?? videoPlaylist[cinema.cursor] ?? null;
 	}
 
 	function renderCinemaIdentity(status) {
@@ -868,7 +1085,13 @@ const [firstMusic] = library.music;
 
 	function restoreMusicSource(productId) {
 		const product = productById.get(productId);
-		if (!product) throw new RangeError(`unknown Music product: ${productId}`);
+		if (!product) {
+			const loaded = runtimeSourceRecords.get(musicAudio);
+			if (loaded?.id === productId && sameMediaSource(loaded.loadedSrc, musicAudio.getAttribute('src'))) {
+				return { productId, title: loaded.title, audioSrc: loaded.loadedSrc };
+			}
+			throw new RangeError(`unknown Music product: ${productId}`);
+		}
 		if (musicAudio.getAttribute('src') !== product.audioSrc) musicAudio.src = product.audioSrc;
 		return product;
 	}
@@ -892,6 +1115,8 @@ const [firstMusic] = library.music;
 		let rollbackFailure = null;
 		try {
 			await restoreCinemaSnapshot(mv, stage, prior.stageSnapshot, wings);
+			stage.dataset.visualOwner = prior.stageSnapshot.visualOwner ?? 'cinema';
+			stage.dataset.visualTag = prior.stageSnapshot.visualTag ?? '';
 			reconcileMirrorWings();
 			await resumeAudibleState(prior.audible);
 		} catch (rollbackError) {
@@ -913,8 +1138,9 @@ const [firstMusic] = library.music;
 		const prior = captureControllerState();
 		const released = releaseStageLease(prior.session);
 		const eligibleSnapshot = videoPlaylist.some((item) => item.id === released.snapshot?.id
-			&& new URL(item.src, document.baseURI).href === new URL(released.snapshot.src, document.baseURI).href);
-		const fallback = currentCinema();
+			&& (released.snapshot.versionId ? item.versionId === released.snapshot.versionId
+				: new URL(item.src, document.baseURI).href === new URL(released.snapshot.src, document.baseURI).href));
+		const fallback = videoPlaylist[cinema.cursor] ?? videoPlaylist[0] ?? null;
 		const restoredSnapshot = eligibleSnapshot ? released.snapshot : fallback ? {
 			...released.snapshot, id: fallback.id, src: fallback.src, currentTime: 0,
 			aspect: fallback.aspect, stageProvider: 'cinema', mirrorWings: 'off',
@@ -949,6 +1175,11 @@ const [firstMusic] = library.music;
 			session = restoredSession;
 			audible = restoredAudible;
 			suspendedForStageLease = null;
+			retainedCinema = null;
+			const restoreTaggedVisual = restoredAudible.current?.provider === 'music' && restoredSnapshot?.visualOwner === 'music-tag';
+			stage.dataset.visualOwner = restoreTaggedVisual ? 'music-tag' : 'cinema';
+			stage.dataset.visualTag = restoreTaggedVisual ? restoredSnapshot.visualTag : '';
+			if (restoreTaggedVisual) stage.dataset.mediaAspect = restoredSnapshot.visualAspect;
 			if (restoredIndex >= 0 && restoredIndex !== cinema.cursor) cinema = selectCinema(cinema, restoredIndex);
 			updateCinemaCueState();
 			returnButton.hidden = true;
@@ -1194,6 +1425,8 @@ const [firstMusic] = library.music;
 		retryCinema.disabled = true;
 		retryCinema.setAttribute('aria-disabled', 'true');
 		setStageProvider(normalizeStageProvider(provider, 'video'));
+		stage.dataset.visualOwner = 'cinema';
+		stage.dataset.visualTag = '';
 		hideMirrorWings();
 		mv.src = src;
 		mv.muted = false;
@@ -1219,6 +1452,15 @@ const [firstMusic] = library.music;
 		const preserveMusicTransport = preserveAudibleAuthority
 			&& session.playback.provider === 'music'
 			&& session.playback.mode === 'audio';
+		if (!videoPlaylist.length) {
+			await switchVideo(-1, false);
+			if (!preserveMusicTransport) {
+				session = activateSource(session, { provider: 'cinema', id: null, mode: 'video', muted: true });
+				audible = removeAudibleProvider(audible, 'cinema');
+				renderCinemaIdentity('NO CINEMA AVAILABLE');
+			} else renderCinemaAudioInvitation();
+			return;
+		}
 		await runCommittedPlayback({
 			commitSelection: async () => {
 				await switchVideo(index, false);
@@ -1280,7 +1522,7 @@ const [firstMusic] = library.music;
 
 	async function returnMusicQueueToCinema() {
 		musicAudio.pause();
-		if (session.lease) await restoreLeasedCinema();
+		if (session.lease) await restoreLeasedCinema({ resumeAudible: false });
 		const restoreMuted = cinemaMutedBeforeMusicAudio ?? true;
 		mv.muted = restoreMuted;
 		audible = restoreMuted ? createAudibleSource() : createAudibleSource({
@@ -1294,8 +1536,12 @@ const [firstMusic] = library.music;
 	}
 
 	async function advanceMusic(direction) {
-		const next = advanceMusicQueue(musicQueue, direction);
+		const next = musicQueue.tracks.has(musicQueue.currentProductId)
+			? advanceMusicQueue(musicQueue, direction)
+			: musicQueue.order.length ? selectMusicItem(musicQueue, direction < 0 ? musicQueue.order.at(-1) : musicQueue.order[0]) : null;
 		if (!next) return returnMusicQueueToCinema();
+		const product = productById.get(next.currentProductId);
+		if (next.mode === 'video') return activateNativeLease('music', product.productId, product.videoSrc, product.title, { nextMusicQueue: next });
 		await activateMusicAudio(next.currentProductId, { nextMusicQueue: next });
 	}
 
@@ -1402,37 +1648,39 @@ const [firstMusic] = library.music;
 		void welcomeAttempt.catch(() => enqueueTransition(() => continueFromWelcomeFailure()));
 	});
 	ambientAudio.addEventListener('error', handleAmbientFailure);
-	cinemaButtons.forEach((button) => {
-		button.addEventListener('click', () => {
+	cinemaPlaylist.addEventListener('click', (event) => {
+		const button = event.target.closest('button.cinema-cue');
+		if (!button || !cinemaPlaylist.contains(button) || button.disabled) return;
+		enqueueMediaControlTransition(() => {
 			if (session.lease) return;
 			const index = videoPlaylist.findIndex((item) => item.id === button.dataset.cinemaId);
 			if (index < 0) return;
-			enqueueMediaControlTransition(() => activateCinema(index, { preserveAudibleAuthority: true }));
+			return activateCinema(index, { preserveAudibleAuthority: true });
 		});
 	});
-	root.querySelectorAll('[data-music-mode="audio"]').forEach((button) => {
-		button.addEventListener('click', () => {
-			enqueueMediaControlTransition(() => session.playback.provider === 'music'
-				&& session.playback.mode === 'audio'
-				&& session.playback.id === button.dataset.productId
-				? toggleActivePlayback()
-				: activateMusicAudio(button.dataset.productId));
-		});
-	});
-	root.querySelectorAll('[data-music-mode="video"]').forEach((button) => {
-		button.addEventListener('click', () => {
-			enqueueMediaControlTransition(() => {
-				const product = productById.get(button.dataset.productId);
+	musicPlaylist.addEventListener('click', (event) => {
+		const button = event.target.closest('button[data-music-mode]');
+		if (!button || !musicPlaylist.contains(button) || button.disabled) return;
+		enqueueMediaControlTransition(() => {
+			const product = productById.get(button.dataset.productId);
+			if (!product) return;
+			if (button.dataset.musicMode === 'audio' && product.audioSrc) {
+				return session.playback.provider === 'music' && session.playback.mode === 'audio' && session.playback.id === product.productId
+					? toggleActivePlayback() : activateMusicAudio(product.productId);
+			}
+			if (button.dataset.musicMode === 'video') {
 				if (!product?.videoSrc || eligibleVideoItems([{ ...product, aspect: product.videoAspect }], window.innerWidth).length === 0) return;
-				const nextMusicQueue = selectMusicMode(musicQueue, product.productId, 'video');
+				const nextMusicQueue = product.kind === 'video' ? selectMusicItem(musicQueue, product.productId) : selectMusicMode(musicQueue, product.productId, 'video');
 				return activateNativeLease('music', product.productId, product.videoSrc, product.title, { nextMusicQueue });
-			});
+			}
 		});
 	});
-	root.querySelectorAll('.media-cue').forEach((button) => {
-		button.addEventListener('click', () => {
-			if (!mediaItems.some((item) => item.id === button.dataset.mediaId)) return;
-			enqueueMediaControlTransition(() => activateNativeLease('media', button.dataset.mediaId, button.dataset.mediaSrc, button.dataset.mediaTitle));
+	mediaPlaylist.addEventListener('click', (event) => {
+		const button = event.target.closest('button.media-cue');
+		if (!button || !mediaPlaylist.contains(button) || button.disabled) return;
+		enqueueMediaControlTransition(() => {
+			const item = mediaItems.find((item) => item.id === button.dataset.mediaId);
+			if (item) return activateNativeLease('media', item.id, item.src, item.title);
 		});
 	});
 	root.querySelectorAll('.youtube-cue').forEach((button) => {
@@ -1465,6 +1713,7 @@ const [firstMusic] = library.music;
 			const leaseToken = createEndedEventToken(session.playback, mv.currentSrc || mv.src);
 			void enqueueTransition(async () => {
 				if (!isCurrentEndedEventToken(leaseToken, session.playback, mv.currentSrc || mv.src)) return;
+				if (session.playback.provider === 'music') return advanceMusic(1);
 				await restoreLeasedCinema();
 			});
 			return;
@@ -1509,17 +1758,17 @@ const [firstMusic] = library.music;
 
 	function requestPrevious() {
 		enqueueMediaControlTransition(async () => {
-			if (session.lease) return;
+			if (session.lease && session.playback.provider !== 'music') return;
 			const policy = activeTransportPolicy(session.playback);
 			if (!policy.previous) return;
 			if (session.playback.provider === 'music') return advanceMusic(-1);
-			if (session.playback.provider === 'cinema') await activateCinema(cinema.cursor - 1);
+			if (session.playback.provider === 'cinema') await activateCinema(cinema.cursor < 0 ? videoPlaylist.length - 1 : cinema.cursor - 1);
 		});
 	}
 
 	function requestNext() {
 		enqueueMediaControlTransition(async () => {
-			if (session.lease) return;
+			if (session.lease && session.playback.provider !== 'music') return;
 			const policy = activeTransportPolicy(session.playback);
 			if (!policy.next) return;
 			if (session.playback.provider === 'music') return advanceMusic(1);
@@ -1650,4 +1899,15 @@ const [firstMusic] = library.music;
 	syncTransportTime();
 	syncEntryControlAvailability();
 	renderTab('cinema');
+	const runtimeCatalogue = createRuntimeCatalogueController({
+		applyCatalogue: (items, { isCurrent }) => {
+			const applied = transitionQueue.then(() => isCurrent() && applyRuntimeLibrary(toRuntimeMediaLibrary(items), items));
+			transitionQueue = applied.catch(() => {});
+			return applied;
+		},
+	});
+	runtimeCatalogue.start();
+	window.addEventListener('focus', runtimeCatalogue.focus);
+	document.addEventListener('visibilitychange', runtimeCatalogue.visibilityChanged);
+	window.addEventListener('pagehide', runtimeCatalogue.stop, { once: true });
 </script>
