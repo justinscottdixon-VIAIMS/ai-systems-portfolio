@@ -35,14 +35,10 @@ test('runtime catalogue uses safe text rendering and one visible lifecycle', asy
   assert.match(component, /\.textContent = item\.title/);
   assert.match(component, /\.dataset\.musicMode =/);
   assert.doesNotMatch(component, /innerHTML|insertAdjacentHTML|createContextualFragment/);
-  for (const binding of [
-    "runtimeCatalogue.start()",
-    "window.addEventListener('focus', runtimeCatalogue.focus)",
-    "document.addEventListener('visibilitychange', runtimeCatalogue.visibilityChanged)",
-    "window.addEventListener('pagehide', runtimeCatalogue.stop, { once: true })",
-  ]) assert.equal(component.split(binding).length - 1, 1, binding);
-  assert.match(component, /applyRuntimeLibrary\(toRuntimeMediaLibrary\(items\), items\)/);
-  assert.match(component, /transitionQueue\.then\(\(\) => isCurrent\(\) && applyRuntimeLibrary/);
+  const binding = 'bindRuntimeCatalogueLifecycle(runtimeCatalogue, { windowTarget: window, documentTarget: document })';
+  assert.equal(component.split(binding).length - 1, 1);
+  assert.match(component, /applyRuntimeLibrary\(toRuntimeMediaLibrary\(items\), items, lifecycle\)/);
+  assert.match(component, /transitionQueue\.then\(\(\) => lifecycle\.isCurrent\(\) && applyRuntimeLibrary/);
 });
 
 test('native video leases suspend tagged overlays and restore the saved visual owner transactionally', async () => {

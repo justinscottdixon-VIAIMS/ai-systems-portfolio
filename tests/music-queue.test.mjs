@@ -21,6 +21,20 @@ const mixed = [
   { productId: 'clip.mp4', kind: 'video', src: 'clip.mp4' },
 ];
 
+for (const kind of ['audio', 'video']) {
+  test(`shuffle excludes a retained removed ${kind} identity from navigation`, () => {
+    const remaining = { productId: 'remaining', kind: 'audio', src: '/remaining.mp3' };
+    const retained = { ...createMusicQueue([remaining]), currentProductId: 'removed', mode: kind, cursor: -1 };
+    const shuffled = toggleShuffle(retained, () => 0);
+    assert.deepEqual(shuffled.order, ['remaining']);
+    assert.equal(shuffled.currentProductId, 'removed');
+    assert.equal(shuffled.cursor, -1);
+    assert.equal(advanceMusicQueue(shuffled).currentProductId, 'remaining');
+    assert.equal(advanceMusicQueue(setRepeatMode(shuffled, 'one')).currentProductId, 'remaining');
+    assert.deepEqual(toggleShuffle(shuffled).order, ['remaining']);
+  });
+}
+
 test('mixed Music starts in the first item mode and follows one combined order', () => {
   let queue = createMusicQueue(mixed);
   assert.equal(queue.currentProductId, 'song.wav');

@@ -17,6 +17,7 @@ export function createRuntimeCatalogueController({
   const cache = new Map();
   let running = false, inFlight = false, pending = null, timer = null;
   let lastStartedAt = null, generation = 0, reportedFailure = false;
+  let abortController = null;
 
   function cancelTimer() {
     if (timer !== null) clearTimer(timer);
@@ -38,20 +39,22 @@ export function createRuntimeCatalogueController({
     inFlight = true;
     lastStartedAt = now();
     const requestGeneration = generation;
+    abortController = new AbortController();
+    const { signal } = abortController;
     const current = () => running && requestGeneration === generation;
     pending = (async () => {
       try {
         const response = await fetchCatalogue('/api/media-catalog', {
-          headers: { accept: 'application/json' }, cache: 'no-cache',
+          headers: { accept: 'application/json' }, cache: 'no-cache', signal,
         });
         if (!response.ok) throw new Error('Catalogue HTTP failure');
         const result = refreshCatalogue(state, await response.json());
         if (!current()) return;
         if (result.status === 'unchanged') { reportedFailure = false; return; }
         if (result.status !== 'accepted') throw new Error('Invalid catalogue');
-        const probed = await probeItems(result.state.items, { cache });
+        const probed = await probeItems(result.state.items, { cache, signal });
         if (!current()) return;
-        await applyCatalogue(probed.accepted, { isCurrent: current });
+        await applyCatalogue(probed.accepted, { isCurrent: current, signal });
         if (!current()) return;
         state = result.state;
         reportedFailure = false;
@@ -61,9 +64,12 @@ export function createRuntimeCatalogueController({
           onDiagnostic('Media catalogue refresh unavailable; retaining the current library.');
         }
       } finally {
-        inFlight = false;
-        pending = null;
-        schedule();
+        if (requestGeneration === generation) {
+          inFlight = false;
+          pending = null;
+          abortController = null;
+          schedule();
+        }
       }
     })();
     return pending;
@@ -85,6 +91,31 @@ export function createRuntimeCatalogueController({
     running = false;
     generation += 1;
     cancelTimer();
+    abortController?.abort();
+    abortController = null;
+    inFlight = false;
+    pending = null;
   }
   return { start, focus, visibilityChanged, refresh, stop };
+}
+
+export function bindRuntimeCatalogueLifecycle(controller, { windowTarget, documentTarget }) {
+  const onPageShow = (event) => { if (event.persisted) controller.start(); };
+  const teardown = () => {
+    controller.stop();
+    windowTarget.removeEventListener('focus', controller.focus);
+    documentTarget.removeEventListener('visibilitychange', controller.visibilityChanged);
+    windowTarget.removeEventListener('pagehide', onPageHide);
+    windowTarget.removeEventListener('pageshow', onPageShow);
+  };
+  const onPageHide = (event) => {
+    if (event.persisted) controller.stop();
+    else teardown();
+  };
+  windowTarget.addEventListener('focus', controller.focus);
+  documentTarget.addEventListener('visibilitychange', controller.visibilityChanged);
+  windowTarget.addEventListener('pagehide', onPageHide);
+  windowTarget.addEventListener('pageshow', onPageShow);
+  controller.start();
+  return teardown;
 }

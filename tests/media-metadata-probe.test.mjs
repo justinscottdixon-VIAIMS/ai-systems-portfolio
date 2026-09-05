@@ -215,3 +215,23 @@ test('reuses settled acceptance and rejection only for the same id and version',
     assert.equal(timers.cleared.length, 3);
   });
 });
+
+test('aborting an awaiting metadata probe cleans its resources and leaves that version retryable', async () => {
+  await withTimers(async (timers) => {
+    const cache = new Map(), controller = new AbortController();
+    const pending = fakeMedia({ event: null });
+    const item = catalogueItem('Cinema/film.mp4', 'video');
+    const result = probeCatalogueItems([item], {
+      createMediaElement: () => pending.element, cache, signal: controller.signal, timeoutMs: 50,
+    });
+    controller.abort();
+    assert.equal(timers.pending.size, 0);
+    assertCleaned(pending, timers);
+    await result;
+    assert.equal(cache.size, 0);
+    const retry = fakeMedia({ width: 720, height: 1280 });
+    const accepted = await probeCatalogueItems([item], { createMediaElement: () => retry.element, cache });
+    assert.equal(accepted.accepted.length, 1);
+    assertCleaned(retry, timers);
+  });
+});

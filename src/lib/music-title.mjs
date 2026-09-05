@@ -32,7 +32,7 @@ export function formatMusicDisplayTitle(filename, { overrideTitle } = {}) {
       ? `${token[0].toLocaleUpperCase()}${token.slice(1)}`
       : token
   )).join(' ');
-  return frameTitle(title);
+  return frameTitle(title || path.basename(filename).trim());
 }
 
 export function parseMusicIdentity(filename, options) {

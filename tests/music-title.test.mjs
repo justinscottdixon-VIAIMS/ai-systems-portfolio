@@ -28,6 +28,13 @@ test('exact overrides retain creative case and receive one frame', () => {
   assert.equal(formatMusicDisplayTitle('source.mp3', { overrideTitle: 'V_eXAct intent_' }), 'V_eXAct intent_');
 });
 
+test('Music titles fall back to the filename when cleanup removes every title token', () => {
+  assert.equal(formatMusicDisplayTitle('master.wav'), 'V_master.wav_');
+  assert.equal(formatMusicDisplayTitle('_.mp4'), 'V__.mp4_');
+  assert.equal(formatMusicDisplayTitle('48k24b.wav'), 'V_48k24b.wav_');
+  assert.throws(() => formatMusicDisplayTitle('master.wav', { overrideTitle: '' }), /cannot be empty/i);
+});
+
 test('multiple visual tokens are rejected', () => {
   assert.throws(
     () => extractMusicVisualTag('song__VIZ-VOID__VIZ-NEON.mp3'),

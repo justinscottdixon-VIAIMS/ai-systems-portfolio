@@ -1,5 +1,5 @@
 import { list } from '@vercel/blob';
-import { buildBlobFolderCatalogue } from '../src/lib/blob-folder-catalogue.mjs';
+import { buildBlobFolderCatalogue, catalogueFailureDiagnostic } from '../src/lib/blob-folder-catalogue.mjs';
 
 const JSON_CONTENT_TYPE = 'application/json; charset=utf-8';
 
@@ -8,7 +8,7 @@ function json(response, statusCode, body) {
   return response.status(statusCode).json(body);
 }
 
-export function createMediaCatalogueHandler({ listPage, readText }) {
+export function createMediaCatalogueHandler({ listPage, readText, logger = console }) {
   return async function mediaCatalogue(request, response) {
     if (request.method !== 'GET') {
       response.setHeader('Allow', 'GET');
@@ -16,11 +16,15 @@ export function createMediaCatalogueHandler({ listPage, readText }) {
     }
 
     try {
-      const catalogue = await buildBlobFolderCatalogue({ listPage, readText });
+      const catalogue = await buildBlobFolderCatalogue({
+        listPage,
+        readText,
+        onDiagnostic: (details) => logger.warn('media catalogue omission', details),
+      });
       response.setHeader('Cache-Control', 'public, s-maxage=15, must-revalidate');
       return json(response, 200, catalogue);
-    } catch {
-      console.error('media catalogue unavailable');
+    } catch (error) {
+      logger.error('media catalogue unavailable', catalogueFailureDiagnostic(error));
       response.setHeader('Cache-Control', 'no-store');
       return json(response, 503, { error: 'Media catalogue unavailable' });
     }

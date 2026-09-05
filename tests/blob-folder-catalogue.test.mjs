@@ -4,6 +4,7 @@ import {
   buildBlobFolderCatalogue,
   listCompletePrefix,
 } from '../src/lib/blob-folder-catalogue.mjs';
+import { createCatalogueRefreshState, refreshCatalogue } from '../src/lib/catalogue-refresh.mjs';
 
 function blob(pathname, etag, overrides = {}) {
   return {
@@ -249,6 +250,74 @@ test('rejects invalid optional sidecars and preserves independent provider order
     ['music', 'Music/First.mp3', 0],
     ['music', 'Music/Second.mp3', 1],
   ]);
+});
+
+test('an existing playlist sidecar must decode to an array', async (t) => {
+  for (const source of ['null', '{}', '"One.mp4"', '42', 'true', 'false']) {
+    await t.test(source, async () => {
+      await assert.rejects(
+        () => buildBlobFolderCatalogue({
+          listPage: pagesByPrefix(acceptedPages({ cinema: [blob('Cinema/One.mp4', 'one'), blob('Cinema/playlist-order.json', 'order')] })),
+          readText: async () => source,
+        }),
+        /Cinema\/? .*playlist order must be an array/i,
+      );
+    });
+  }
+});
+
+test('only an absent sidecar or an empty array uses natural fallback order', async () => {
+  const cinema = [blob('Cinema/Clip 10.mp4', 'ten'), blob('Cinema/Clip 2.mp4', 'two')];
+  const absent = await buildBlobFolderCatalogue({
+    listPage: pagesByPrefix(acceptedPages({ cinema })),
+    readText: async () => { throw new Error('absent sidecars must not be read'); },
+  });
+  const empty = await buildBlobFolderCatalogue({
+    listPage: pagesByPrefix(acceptedPages({ cinema: [...cinema, blob('Cinema/playlist-order.json', 'order')] })),
+    readText: async () => '[]',
+  });
+  assert.deepEqual(absent.items.map(({ pathname }) => pathname), ['Cinema/Clip 2.mp4', 'Cinema/Clip 10.mp4']);
+  assert.deepEqual(empty, absent);
+});
+
+test('filename title fallbacks keep every supported file browser-valid', async (t) => {
+  for (const [provider, pathname, title] of [
+    ['music', 'Music/master.wav', 'V_master.wav_'],
+    ['music', 'Music/_.mp4', 'V__.mp4_'],
+    ['music', 'Music/48k24b.wav', 'V_48k24b.wav_'],
+    ['cinema', 'Cinema/_.mp4', '_.mp4'],
+    ['media', 'Media/   .mov', '.mov'],
+    ['visuals', 'Music-Visuals/_.webm', '_.webm'],
+  ]) {
+    await t.test(pathname, async () => {
+      const envelope = await buildBlobFolderCatalogue({
+        listPage: pagesByPrefix(acceptedPages({
+          [provider]: [blob(pathname, 'fallback'), blob(`${pathname.slice(0, pathname.indexOf('/') + 1)}Normal.mp4`, 'normal')],
+        })),
+        readText: async () => '[]',
+      });
+      assert.equal(envelope.items.length, 2);
+      assert.equal(envelope.items.find((item) => item.pathname === pathname).title, title);
+      const refreshed = refreshCatalogue(createCatalogueRefreshState(), envelope);
+      assert.equal(refreshed.status, 'accepted');
+      assert.deepEqual(refreshed.state.items, envelope.items);
+    });
+  }
+});
+
+test('eligibility diagnostics use an injected callback outside the catalogue envelope', async () => {
+  const diagnostics = [];
+  const envelope = await buildBlobFolderCatalogue({
+    listPage: pagesByPrefix(acceptedPages({ cinema: [blob('Cinema/Notes.txt', 'notes'), blob('Cinema/playlist-order.json', 'order')] })),
+    readText: async () => '[]',
+    onDiagnostic: (diagnostic) => diagnostics.push(diagnostic),
+  });
+  assert.deepEqual(diagnostics, [{
+    code: 'BLOB_EXTENSION_OMITTED', provider: 'cinema', prefix: 'Cinema/', pathname: 'Cinema/Notes.txt',
+    reason: 'file extension is not supported',
+  }]);
+  assert.deepEqual(Object.keys(envelope), ['authoritative', 'fingerprint', 'items']);
+  assert.deepEqual(envelope.items, []);
 });
 
 test('uses canonical visual tags and hashes identical normalized inputs identically across page boundaries', async () => {

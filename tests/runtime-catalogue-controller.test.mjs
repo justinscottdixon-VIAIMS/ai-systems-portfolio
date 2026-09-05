@@ -1,6 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { createRuntimeCatalogueController } from '../src/lib/runtime-catalogue-controller.mjs';
+import { readFile } from 'node:fs/promises';
+import { runInNewContext } from 'node:vm';
+import * as runtimeApi from '../src/lib/runtime-catalogue-controller.mjs';
+const { createRuntimeCatalogueController } = runtimeApi;
 
 const item = (id = 'Cinema/film.mp4', patch = {}) => ({
   id, pathname: id, versionId: 'etag-1', folder: 'cinema', kind: 'video', title: 'Film',
@@ -21,9 +24,9 @@ function harness(options = {}) {
   const timers = new Map(), requests = [], applied = [], diagnostics = [], caches = [];
   const controller = createRuntimeCatalogueController({
     fetchCatalogue: (...args) => { requests.push(args); return options.fetch?.(...args) ?? Promise.resolve(response()); },
-    probeItems: async (items, { cache }) => {
+    probeItems: async (items, { cache, signal }) => {
       caches.push(cache);
-      return options.probe ? options.probe(items, { cache }) : { accepted: items, rejected: [] };
+      return options.probe ? options.probe(items, { cache, signal }) : { accepted: items, rejected: [] };
     },
     applyCatalogue: async (items, lifecycle) => { applied.push(items); await options.apply?.(items, lifecycle); },
     now: () => clock, visible: () => visible,
@@ -48,7 +51,9 @@ test('starts once with an immediate visible JSON request and checks every 15 sec
   const h = harness();
   h.controller.start(); h.controller.start();
   assert.equal(h.requests.length, 1);
-  assert.deepEqual(h.requests[0], ['/api/media-catalog', { headers: { accept: 'application/json' }, cache: 'no-cache' }]);
+  const signal = h.requests[0][1].signal;
+  assert.equal(signal.aborted, false);
+  assert.deepEqual(h.requests[0], ['/api/media-catalog', { headers: { accept: 'application/json' }, cache: 'no-cache', signal }]);
   await settle();
   assert.equal(h.applied.length, 1);
   await h.tick(14_999); assert.equal(h.requests.length, 1);
@@ -160,4 +165,62 @@ test('a catalogue application queued behind playback can check teardown before m
   assert.equal(current(), false);
   gate.resolve(); await settle();
   assert.equal(h.timers.size, 0);
+});
+
+for (const phase of ['fetch', 'probe']) {
+  test(`stop aborts pending ${phase} and restart discovers without waiting for the stale operation`, async () => {
+    const gate = deferred();
+    let calls = 0, abortedSignal;
+    const h = harness(phase === 'fetch' ? {
+      fetch: (url, { signal }) => {
+        if (calls++ === 0) { abortedSignal = signal; return gate.promise; }
+        return Promise.resolve(response(envelope([item('Cinema/new.mp4')], 'b')));
+      },
+    } : {
+      probe: (items, { signal }) => {
+        if (calls++ === 0) { abortedSignal = signal; return gate.promise; }
+        return Promise.resolve({ accepted: items, rejected: [] });
+      },
+    });
+    h.controller.start(); await settle();
+    h.controller.stop();
+    assert.equal(abortedSignal?.aborted, true);
+    h.controller.start(); await settle();
+    assert.equal(h.requests.length, 2);
+    assert.equal(h.applied.length, 1);
+    gate.resolve(phase === 'fetch' ? response() : { accepted: [item()], rejected: [] });
+    await settle();
+    assert.equal(h.applied.length, 1);
+    assert.equal(h.timers.size, 1);
+    h.controller.stop();
+    assert.equal(h.timers.size, 0);
+  });
+}
+
+test('component resumes discovery across repeated cached navigation and removes listeners on unload', async () => {
+  const component = await readFile(new URL('../src/components/HybridMediaEngine.astro', import.meta.url), 'utf8');
+  const script = component.slice(component.indexOf('\tconst runtimeCatalogue ='), component.indexOf('</script>'));
+  const target = () => {
+    const listeners = new Map();
+    return {
+      listeners,
+      addEventListener(name, callback) { listeners.set(name, callback); },
+      removeEventListener(name, callback) { if (listeners.get(name) === callback) listeners.delete(name); },
+      fire(name, event = {}) { listeners.get(name)?.(event); },
+    };
+  };
+  const window = target(), document = target(), h = harness();
+  runInNewContext(script, { ...runtimeApi, createRuntimeCatalogueController: () => h.controller, window, document });
+  await settle();
+  for (let cycle = 1; cycle <= 3; cycle++) {
+    window.fire('pagehide', { persisted: true });
+    assert.equal(h.timers.size, 0);
+    window.fire('pageshow', { persisted: true }); await settle();
+    assert.equal(h.requests.length, cycle + 1);
+    assert.equal(h.timers.size, 1);
+  }
+  window.fire('pagehide', { persisted: false });
+  assert.equal(h.timers.size, 0);
+  assert.equal(window.listeners.size, 0);
+  assert.equal(document.listeners.size, 0);
 });

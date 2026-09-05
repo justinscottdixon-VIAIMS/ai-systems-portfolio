@@ -2,7 +2,8 @@ const aspectFor = (width, height) => height > width
   ? 'portrait'
   : height < width ? 'landscape' : 'square';
 
-function probeItem(item, { createMediaElement, timeoutMs }) {
+function probeItem(item, { createMediaElement, timeoutMs, signal }) {
+  if (signal?.aborted) return Promise.resolve({ accepted: false, reason: 'aborted' });
   return new Promise((resolve) => {
     const element = createMediaElement(item.kind);
     let settled = false;
@@ -12,6 +13,7 @@ function probeItem(item, { createMediaElement, timeoutMs }) {
       clearTimeout(timer);
       element.removeEventListener('loadedmetadata', onMetadata);
       element.removeEventListener('error', onError);
+      signal?.removeEventListener('abort', onAbort);
       element.removeAttribute('src');
       element.load();
     };
@@ -42,10 +44,12 @@ function probeItem(item, { createMediaElement, timeoutMs }) {
       finish({ accepted: true, metadata: null });
     };
     const onError = () => reject('metadata-error');
+    const onAbort = () => reject('aborted');
 
     element.preload = 'metadata';
     element.addEventListener('loadedmetadata', onMetadata, { once: true });
     element.addEventListener('error', onError, { once: true });
+    signal?.addEventListener('abort', onAbort, { once: true });
     timer = setTimeout(() => reject('metadata-timeout'), timeoutMs);
     element.src = item.src;
     element.load();
@@ -56,13 +60,14 @@ export async function probeCatalogueItems(items, {
   createMediaElement,
   cache = new Map(),
   timeoutMs = 10_000,
+  signal,
 } = {}) {
   const outcomes = await Promise.all(items.map(async (item) => {
     const cacheKey = `${item.id}\u0000${item.versionId}`;
     let outcome = cache.get(cacheKey);
     if (!cache.has(cacheKey)) {
-      outcome = await probeItem(item, { createMediaElement, timeoutMs });
-      cache.set(cacheKey, outcome);
+      outcome = await probeItem(item, { createMediaElement, timeoutMs, signal });
+      if (!signal?.aborted && outcome.reason !== 'aborted') cache.set(cacheKey, outcome);
     }
     return { item, outcome };
   }));

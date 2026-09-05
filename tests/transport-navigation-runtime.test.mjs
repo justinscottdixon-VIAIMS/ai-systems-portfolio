@@ -3,9 +3,9 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { runInNewContext } from 'node:vm';
 import { activeTransportPolicy } from '../src/lib/active-transport.mjs';
-import { createMusicQueue, advanceMusicQueue, selectMusicItem, selectMusicMode } from '../src/lib/music-queue.mjs';
+import { createMusicQueue, advanceMusicQueue, selectMusicItem, selectMusicMode, toggleShuffle } from '../src/lib/music-queue.mjs';
 import { toRuntimeMediaLibrary } from '../src/lib/runtime-media-library.mjs';
-import { createCinemaContinuity, selectCinema } from '../src/lib/cinema-continuity.mjs';
+import { advanceCinema, createCinemaContinuity, createCinemaEndedToken, isCurrentCinemaEndedToken, selectCinema } from '../src/lib/cinema-continuity.mjs';
 import { eligibleVideoItems, isMobileViewport } from '../src/lib/mobile-media.mjs';
 import { activateSource, createPlaybackSession, releaseStageLease } from '../src/lib/playback-session.mjs';
 import { createAudibleSource, removeAudibleProvider } from '../src/lib/audible-source.mjs';
@@ -103,6 +103,103 @@ test('accepted library renders literal titles, one action per Music row, and pre
   assert.deepEqual(ctx.musicPlaylist.children.map(row => row.children[1].children[0].textContent), ['PLAY', 'VIDEO']);
   assert.deepEqual(Array.from(ctx.musicQueue.order), [song.id, clip.id]);
   assert.equal(ctx.entryCueControls.length, 5);
+});
+
+for (const aspect of ['landscape', 'portrait']) {
+  test(`mobile Cinema ${aspect} replacement respects eligibility before loading the new ETag`, async () => {
+    const film = catalogueItem('Cinema/film.mp4', 'cinema', 'video');
+    const remaining = catalogueItem('Cinema/remaining.mp4', 'cinema', 'video', { playlistOrder: 1 });
+    const ctx = catalogueRuntime([film, remaining]);
+    ctx.window.innerWidth = 390;
+    const replacement = { ...film, versionId: 'etag-2', src: `${film.src}?v=2`, aspect,
+      width: aspect === 'landscape' ? 1280 : 720, height: aspect === 'landscape' ? 720 : 1280 };
+    await ctx.applyRuntimeLibrary(toRuntimeMediaLibrary([replacement, remaining]), [replacement, remaining]);
+    const eligible = aspect === 'portrait';
+    assert.equal(ctx.mv.loads, eligible ? 1 : 0);
+    assert.equal(ctx.mv.plays, eligible ? 1 : 0);
+    assert.equal(ctx.mv.src, eligible ? replacement.src : film.src);
+    assert.equal(ctx.mv.currentTime, eligible ? 0 : 42);
+    assert.equal(ctx.currentCinema().aspect, 'portrait');
+    assert.deepEqual(Array.from(ctx.videoPlaylist, ({ id }) => id), eligible ? [film.id, remaining.id] : [remaining.id]);
+    let pending;
+    const navigated = [];
+    Object.assign(ctx, {
+      activeTransportPolicy,
+      enqueueMediaControlTransition(fn) { pending = fn(); },
+      async activateCinema(index) { navigated.push(ctx.videoPlaylist[index]?.id); },
+    });
+    runInNewContext(handlers + '\nrequestNext();', ctx);
+    await pending;
+    assert.deepEqual(navigated, [remaining.id]);
+    navigated.length = 0;
+    Object.assign(ctx, {
+      introSession: { phase: 'ready' }, advanceCinema, createCinemaEndedToken, isCurrentCinemaEndedToken,
+      enqueueTransition(fn) { pending = fn(); return pending; },
+    });
+    let ended;
+    ctx.mv.addEventListener = (event, fn) => { if (event === 'ended') ended = fn; };
+    runInNewContext(source.slice(source.indexOf("\tmv.addEventListener('ended'"), source.indexOf("\tmv.addEventListener('error'")), ctx);
+    ended();
+    await pending;
+    assert.deepEqual(navigated, [remaining.id]);
+  });
+}
+
+test('teardown during replacement playback prevents subsequent source and row mutations', async () => {
+  const film = catalogueItem('Cinema/film.mp4', 'cinema', 'video');
+  const song = catalogueItem('Music/song.mp3', 'music', 'audio');
+  const ctx = catalogueRuntime([film, song]);
+  const nextItems = [film, song].map((item) => ({ ...item, versionId: 'etag-2', title: 'Replacement' }));
+  let release, current = true;
+  const gate = new Promise((resolve) => { release = resolve; });
+  ctx.mv.play = () => gate;
+  const previousRows = ctx.cinemaPlaylist.children;
+  const applying = ctx.applyRuntimeLibrary(toRuntimeMediaLibrary(nextItems), nextItems, { isCurrent: () => current });
+  assert.equal(ctx.mv.loads, 1);
+  current = false;
+  release();
+  await applying;
+  assert.equal(ctx.musicAudio.loads, 0);
+  assert.equal(ctx.runtimeCatalogueItems[0].versionId, 'etag-1');
+  assert.equal(ctx.cinemaPlaylist.children, previousRows);
+});
+
+test('mobile retention remembers loaded bytes when an ineligible replacement keeps the same public URL', async () => {
+  const film = catalogueItem('Cinema/film.mp4', 'cinema', 'video');
+  const ctx = catalogueRuntime([film]);
+  ctx.window.innerWidth = 390;
+  const replacement = { ...film, versionId: 'etag-2', aspect: 'landscape', width: 1280, height: 720 };
+  for (let refresh = 0; refresh < 2; refresh++) {
+    await ctx.applyRuntimeLibrary(toRuntimeMediaLibrary([replacement]), [replacement]);
+    assert.equal(ctx.mv.loads, 0);
+    assert.equal(ctx.runtimeSourceRecords.get(ctx.mv).versionId, 'etag-1');
+  }
+  ctx.window.innerWidth = 1000;
+  await ctx.applyRuntimeLibrary(toRuntimeMediaLibrary([replacement]), [replacement]);
+  assert.equal(ctx.mv.loads, 1);
+  assert.equal(ctx.mv.plays, 1);
+  assert.equal(ctx.runtimeSourceRecords.get(ctx.mv).versionId, 'etag-2');
+});
+
+test('aborting replacement playback releases the catalogue transition before play settles', async () => {
+  const film = catalogueItem('Cinema/film.mp4', 'cinema', 'video');
+  const ctx = catalogueRuntime([film]);
+  const replacement = { ...film, versionId: 'etag-2' };
+  const abortController = new AbortController();
+  let release, completed = false;
+  ctx.mv.play = () => new Promise((resolve) => { release = resolve; });
+  const applying = ctx.applyRuntimeLibrary(toRuntimeMediaLibrary([replacement]), [replacement], {
+    signal: abortController.signal, isCurrent: () => !abortController.signal.aborted,
+  }).then(() => { completed = true; });
+  abortController.abort();
+  for (let step = 0; step < 12; step++) await Promise.resolve();
+  try {
+    assert.equal(completed, true);
+    assert.equal(ctx.runtimeCatalogueItems[0].versionId, 'etag-1');
+  } finally {
+    release();
+    await applying;
+  }
 });
 
 test('bootstrap identity migration includes suspended Music audio and keeps its exact media element', async () => {
@@ -321,7 +418,7 @@ for (const change of ['same', 'removed', 'etag', 'url-only']) {
       ...(change === 'etag' ? { versionId: 'etag-2' } : {}),
       ...(change === 'url-only' ? { src: 'https://other.example.test/Cinema/film.mp4' } : {}),
     }];
-    const context = { mv, runtimeSourceRecords: new Map(), hideMirrorWings() {}, console, document: { baseURI: 'https://viaims.test/' }, URL };
+    const context = { mv, runtimeSourceRecords: new Map(), hideMirrorWings() {}, console, document: { baseURI: 'https://viaims.test/' }, window: { innerWidth: 1000 }, eligibleVideoItems, URL };
     runInNewContext(namedImplementation('sameMediaSource') + namedImplementation('reconcileRuntimeSources'), context);
     await context.reconcileRuntimeSources([{ element: mv, mode: 'video', provider: 'cinema', id: before.id, src: before.src, item: before }], next);
     assert.equal(mv.currentTime, change === 'etag' ? 0 : 42);
@@ -344,6 +441,33 @@ test('a removed Music selection advances into the current queue even in Repeat O
   await context.advanceMusic(1);
   assert.deepEqual(calls, ['Music/new.mp3']);
 });
+
+for (const kind of ['audio', 'video']) {
+  test(`removing active Music ${kind}, enabling Shuffle and pressing Next selects the remaining row`, async () => {
+    const removed = catalogueItem(`Music/removed.${kind === 'audio' ? 'mp3' : 'mp4'}`, 'music', kind);
+    const remaining = catalogueItem('Music/remaining.mp3', 'music', 'audio', { playlistOrder: 1 });
+    const ctx = catalogueRuntime([removed, remaining]);
+    if (kind === 'video') {
+      ctx.session = activateSource(ctx.session, { provider: 'music', id: removed.id, mode: 'video', snapshot: {} });
+      ctx.mv.src = removed.src;
+    }
+    const loaded = kind === 'video' ? ctx.mv : ctx.musicAudio;
+    await ctx.applyRuntimeLibrary(toRuntimeMediaLibrary([remaining]), [remaining]);
+    assert.equal(loaded.src, removed.src);
+    assert.equal(loaded.loads, 0);
+    const calls = [];
+    Object.assign(ctx, {
+      selectMusicItem, advanceMusicQueue,
+      async activateMusicAudio(id) { calls.push(id); },
+      async returnMusicQueueToCinema() { calls.push('return'); },
+    });
+    runInNewContext(namedImplementation('advanceMusic'), ctx);
+    ctx.musicQueue = toggleShuffle(ctx.musicQueue, () => 0);
+    await ctx.advanceMusic(1);
+    assert.deepEqual(calls, [remaining.id]);
+    assert.deepEqual(Array.from(ctx.musicQueue.order), [remaining.id]);
+  });
+}
 
 for (const [name, direction] of [['requestPrevious', -1], ['requestNext', 1]]) {
   for (const provider of ['music', 'cinema']) {

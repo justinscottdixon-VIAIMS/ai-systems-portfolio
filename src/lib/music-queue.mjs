@@ -67,11 +67,14 @@ export function toggleShuffle(queue, random = Math.random) {
     const target = Math.floor(random() * (index + 1));
     [upcoming[index], upcoming[target]] = [upcoming[target], upcoming[index]];
   }
-  return copy(queue, { shuffle: true, order: [queue.currentProductId, ...upcoming], cursor: 0 });
+  const keepCurrent = queue.tracks.has(queue.currentProductId) && queue.order.includes(queue.currentProductId);
+  return copy(queue, { shuffle: true, order: keepCurrent ? [queue.currentProductId, ...upcoming] : upcoming, cursor: keepCurrent ? 0 : -1 });
 }
 
 export function advanceMusicQueue(queue, direction = 1) {
-  if (!queue.currentProductId) return null;
+  if (queue.order.length === 0) return null;
+  const currentEligible = queue.tracks.has(queue.currentProductId) && queue.order.includes(queue.currentProductId);
+  if (!currentEligible) return selectMusicItem(queue, direction < 0 ? queue.order.at(-1) : queue.order[0]);
   if (queue.repeat === 'one' && direction > 0) return copy(queue, {});
   let cursor = queue.cursor + Math.sign(direction || 1);
   if (cursor < 0 || cursor >= queue.order.length) {

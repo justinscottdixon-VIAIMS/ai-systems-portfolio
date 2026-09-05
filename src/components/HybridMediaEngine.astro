@@ -202,7 +202,7 @@ const [firstMusic] = library.music;
 	import { audibleElementKind, claimCinemaAudio, createAudibleSource, removeAudibleProvider, restorePriorAudio, selectAudibleTrack } from '../lib/audible-source.mjs';
 	import { advanceCinema, createCinemaContinuity, createCinemaEndedToken, isCurrentCinemaEndedToken, selectCinema } from '../lib/cinema-continuity.mjs';
 	import { advanceMusicQueue, createMusicQueue, selectMusicItem, selectMusicMode, setRepeatMode, toggleShuffle } from '../lib/music-queue.mjs';
-	import { createRuntimeCatalogueController } from '../lib/runtime-catalogue-controller.mjs';
+	import { bindRuntimeCatalogueLifecycle, createRuntimeCatalogueController } from '../lib/runtime-catalogue-controller.mjs';
 	import { toRuntimeMediaLibrary } from '../lib/runtime-media-library.mjs';
 	import { beginExperience, completeWelcome, createIntroSession, failAmbient, failWelcome } from '../lib/intro-session.mjs';
 	import { playlistScrollTarget, playlistWheelTarget } from '../lib/playlist-scroll.mjs';
@@ -712,19 +712,20 @@ const [firstMusic] = library.music;
 			&& !(element === mv && entryControlsLocked) && provider !== 'youtube').map((source) => {
 			const src = source.element.getAttribute('src');
 			const remembered = runtimeSourceRecords.get(source.element);
-			const item = runtimeCatalogueItems.find((item) => item.folder === source.provider && item.kind === source.mode && sameMediaSource(item.src, src))
-				?? (remembered && sameMediaSource(remembered.loadedSrc, src) ? remembered : null);
+			const item = (remembered && sameMediaSource(remembered.loadedSrc, src) ? remembered : null)
+				?? runtimeCatalogueItems.find((item) => item.folder === source.provider && item.kind === source.mode && sameMediaSource(item.src, src));
 			const title = source.provider === 'music' ? productById.get(source.id)?.title : currentCinema()?.title;
 			return { ...source, src, item, title, id: item?.id ?? source.id };
 		});
 	}
 
-	async function reconcileRuntimeSources(sources, nextItems) {
+	async function reconcileRuntimeSources(sources, nextItems, { isCurrent = () => true, signal } = {}) {
 		for (const source of sources) {
+			if (!isCurrent()) return;
 			const { element, item } = source;
 			const next = nextItems.find((candidate) => candidate.folder === source.provider && candidate.kind === source.mode && candidate.id === source.id)
 				?? (!item?.versionId ? nextItems.find((candidate) => candidate.folder === source.provider && candidate.kind === source.mode && sameMediaSource(candidate.src, source.src)) : null);
-			if (!next) {
+			if (!next || (next.kind === 'video' && eligibleVideoItems([next], window.innerWidth).length === 0)) {
 				runtimeSourceRecords.set(element, { ...(item ?? { id: source.id, folder: source.provider, kind: source.mode, title: source.title }), loadedSrc: source.src });
 				continue;
 			}
@@ -737,8 +738,19 @@ const [firstMusic] = library.music;
 				element.src = next.src;
 				element.load();
 				element.currentTime = 0;
-				if (!paused) await element.play().catch(() => {});
+				runtimeSourceRecords.set(element, { ...next, loadedSrc: element.getAttribute('src') });
+				if (!paused) {
+					const playing = element.play().catch(() => {});
+					if (!signal) await playing;
+					else await new Promise((resolve) => {
+						const finish = () => { signal.removeEventListener('abort', finish); resolve(); };
+						signal.addEventListener('abort', finish, { once: true });
+						void playing.then(finish);
+						if (signal.aborted) finish();
+					});
+				}
 			}
+			if (!isCurrent()) return;
 			runtimeSourceRecords.set(element, { ...next, loadedSrc: element.getAttribute('src') });
 		}
 	}
@@ -759,9 +771,10 @@ const [firstMusic] = library.music;
 		};
 	}
 
-	async function applyRuntimeLibrary(nextLibrary, nextItems = []) {
+	async function applyRuntimeLibrary(nextLibrary, nextItems = [], lifecycle = {}) {
 		const sources = captureRuntimeSources();
-		await reconcileRuntimeSources(sources, nextItems);
+		await reconcileRuntimeSources(sources, nextItems, lifecycle);
+		if (lifecycle.isCurrent && !lifecycle.isCurrent()) return;
 		const remapSourceRecord = (record) => {
 			if (!record) return record;
 			// A bootstrap product may name both native elements. Its actual
@@ -784,7 +797,7 @@ const [firstMusic] = library.music;
 			const retainedVersion = snapshot.versionId ?? previous?.versionId;
 			const next = nextItems.find((item) => item.folder === 'cinema' && item.id === snapshot.id)
 				?? (!retainedVersion ? nextItems.find((item) => item.folder === 'cinema' && sameMediaSource(item.src, snapshot.src)) : null);
-			if (next) {
+			if (next && eligibleVideoItems([next], window.innerWidth).length === 1) {
 				const replaced = retainedVersion && retainedVersion !== next.versionId;
 				session = { ...session, lease: { ...session.lease, snapshot: {
 					...snapshot, id: next.id, versionId: next.versionId,
@@ -1904,14 +1917,11 @@ const [firstMusic] = library.music;
 	syncEntryControlAvailability();
 	renderTab('cinema');
 	const runtimeCatalogue = createRuntimeCatalogueController({
-		applyCatalogue: (items, { isCurrent }) => {
-			const applied = transitionQueue.then(() => isCurrent() && applyRuntimeLibrary(toRuntimeMediaLibrary(items), items));
+		applyCatalogue: (items, lifecycle) => {
+			const applied = transitionQueue.then(() => lifecycle.isCurrent() && applyRuntimeLibrary(toRuntimeMediaLibrary(items), items, lifecycle));
 			transitionQueue = applied.catch(() => {});
 			return applied;
 		},
 	});
-	runtimeCatalogue.start();
-	window.addEventListener('focus', runtimeCatalogue.focus);
-	document.addEventListener('visibilitychange', runtimeCatalogue.visibilityChanged);
-	window.addEventListener('pagehide', runtimeCatalogue.stop, { once: true });
+	bindRuntimeCatalogueLifecycle(runtimeCatalogue, { windowTarget: window, documentTarget: document });
 </script>
