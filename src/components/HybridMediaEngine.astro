@@ -94,6 +94,7 @@ const [firstMusic] = library.music;
 				<button id="active-prev" type="button" aria-label="Previous active item" disabled={library.experience.enabled || !firstCinema} aria-disabled={String(library.experience.enabled || !firstCinema)}>⏮</button>
 				<button id="active-play" type="button" aria-label="Play active item" disabled={library.experience.enabled || !firstCinema} aria-disabled={String(library.experience.enabled || !firstCinema)}>PLAY</button>
 				<button id="active-next" type="button" aria-label="Next active item" disabled={library.experience.enabled || !firstCinema} aria-disabled={String(library.experience.enabled || !firstCinema)}>⏭</button>
+				<button id="active-mute" type="button" aria-label="Unmute active item" aria-pressed="true" disabled aria-disabled="true">UNMUTE</button>
 				<button id="music-shuffle" type="button" aria-pressed="false" disabled aria-disabled="true">SHUFFLE</button>
 				<button id="music-repeat" type="button" data-repeat="off" disabled aria-disabled="true">REPEAT OFF</button>
 				<button id="return-to-cinema" type="button" hidden disabled={library.experience.enabled} aria-disabled={String(library.experience.enabled)}>RETURN TO CINEMA</button>
@@ -265,6 +266,7 @@ const [firstMusic] = library.music;
 	const fullscreenPlay = root.querySelector('#fullscreen-play');
 	const fullscreenNext = root.querySelector('#fullscreen-next');
 	const fullscreenMute = root.querySelector('#fullscreen-mute');
+	const activeMute = root.querySelector('#active-mute');
 	const fullscreenElapsed = root.querySelector('#fullscreen-elapsed');
 	const fullscreenRemaining = root.querySelector('#fullscreen-remaining');
 	const fullscreenTitle = root.querySelector('#fullscreen-title');
@@ -357,6 +359,7 @@ const [firstMusic] = library.music;
 		}
 		syncCinemaCueAvailability();
 		syncActivePlayButton();
+		renderFullscreenSession();
 		return policy;
 	}
 
@@ -548,15 +551,28 @@ const [firstMusic] = library.music;
 	}
 
 	function renderFullscreenSession() {
+		const policy = activeTransportPolicy(session.playback);
+		for (const [action, control] of [
+			['previous', fullscreenPrev], ['playPause', fullscreenPlay],
+			['next', fullscreenNext], ['playPause', fullscreenMute],
+			['playPause', activeMute],
+		]) {
+			const leaseBlocksNavigation = Boolean(session.lease) && (action === 'previous' || action === 'next');
+			control.disabled = entryControlsLocked || !policy[action] || leaseBlocksNavigation;
+			control.setAttribute('aria-disabled', String(control.disabled));
+		}
 		const snapshot = fullscreenSession.snapshot();
 		fullscreenShell.dataset.controlsVisible = String(snapshot.controlsVisible);
 		fullscreenTitle.textContent = nowPlayingTitle.textContent;
 		const media = activeAuthoritativeMedia();
 		fullscreenPlay.dataset.state = media.paused ? 'play' : 'pause';
 		fullscreenPlay.setAttribute('aria-label', media.paused ? 'Play fullscreen item' : 'Pause fullscreen item');
-		fullscreenMute.dataset.state = media.muted ? 'muted' : 'audible';
-		fullscreenMute.setAttribute('aria-label', media.muted ? 'Unmute active item' : 'Mute active item');
-		fullscreenMute.setAttribute('aria-pressed', String(media.muted));
+		for (const control of [fullscreenMute, activeMute]) {
+			control.dataset.state = media.muted ? 'muted' : 'audible';
+			control.setAttribute('aria-label', media.muted ? 'Unmute active item' : 'Mute active item');
+			control.setAttribute('aria-pressed', String(media.muted));
+		}
+		activeMute.textContent = media.muted ? 'UNMUTE' : 'MUTE';
 		scheduleFullscreenHide(snapshot);
 	}
 
@@ -606,19 +622,30 @@ const [firstMusic] = library.music;
 		cinema = createCinemaContinuity(videoPlaylist);
 		const nextIndex = videoPlaylist.findIndex((item) => item.id === currentId);
 		if (nextIndex > 0) cinema = selectCinema(cinema, nextIndex);
-		if (isMobileViewport(window.innerWidth) && currentId && nextIndex < 0 && currentCinema()) {
+		const selected = currentCinema();
+		// Reconcile the actual element too: the server cannot know the viewport,
+		// and the initial client queue has already been filtered before this runs.
+		if (!entryControlsLocked && !session.lease && mv.getAttribute('src') !== (selected?.src ?? null)) {
 			pauseVideoStack();
+			hideMirrorWings();
 			setStageProvider('cinema');
 			if (preserveMusicVisualPresentation) {
 				stage.dataset.visualOwner = 'music-tag';
 				stage.dataset.visualTag = preserveMusicVisualPresentation.tag;
 				stage.dataset.mediaAspect = preserveMusicVisualPresentation.aspect;
 			}
-			mv.src = currentCinema().src;
+			if (audible.current?.provider !== 'cinema') mv.muted = true;
+			if (selected) mv.src = selected.src;
+			else mv.removeAttribute('src');
 			mv.load();
+		}
+		if (!entryControlsLocked && !session.lease) {
 			if (session.playback.provider === 'cinema') {
-				session = activateSource(session, { provider: 'cinema', id: currentCinema().id, mode: 'video', muted: mv.muted });
-				renderCinemaIdentity('CINEMA READY · MOBILE PORTRAIT SELECTION');
+				session = activateSource(session, { provider: 'cinema', id: selected?.id ?? null, mode: 'video', muted: selected ? mv.muted : true });
+				if (!selected) audible = removeAudibleProvider(audible, 'cinema');
+				renderCinemaIdentity(!selected
+					? (isMobileViewport(window.innerWidth) ? 'NO PORTRAIT CINEMA AVAILABLE' : 'NO CINEMA AVAILABLE')
+					: currentId !== selected.id || nowPlayingTitle.textContent !== selected.title ? 'CINEMA READY' : undefined);
 			}
 		}
 		for (const button of [...root.querySelectorAll('[data-music-mode]')].filter((control) => control.dataset.musicMode === 'video')) {
@@ -774,8 +801,9 @@ const [firstMusic] = library.music;
 	function updateCinemaCueState() {
 		cinemaButtons.forEach((button, index) => {
 			const playlistIndex = videoPlaylist.findIndex((item) => item.id === button.dataset.cinemaId);
-			button.classList.toggle('is-active', playlistIndex === cinema.cursor);
-			button.setAttribute('aria-current', String(playlistIndex === cinema.cursor));
+			const selected = playlistIndex >= 0 && playlistIndex === cinema.cursor;
+			button.classList.toggle('is-active', selected);
+			button.setAttribute('aria-current', String(selected));
 		});
 	}
 
@@ -884,28 +912,49 @@ const [firstMusic] = library.music;
 		if (!session.lease) return;
 		const prior = captureControllerState();
 		const released = releaseStageLease(prior.session);
-		const restoredAudible = prior.suspendedForStageLease ?? createAudibleSource();
+		const eligibleSnapshot = videoPlaylist.some((item) => item.id === released.snapshot?.id
+			&& new URL(item.src, document.baseURI).href === new URL(released.snapshot.src, document.baseURI).href);
+		const fallback = currentCinema();
+		const restoredSnapshot = eligibleSnapshot ? released.snapshot : fallback ? {
+			...released.snapshot, id: fallback.id, src: fallback.src, currentTime: 0,
+			aspect: fallback.aspect, stageProvider: 'cinema', mirrorWings: 'off',
+			hasMirrorFailure: false, followers: [],
+		} : null;
+		let restoredAudible = prior.suspendedForStageLease ?? createAudibleSource();
+		if (!restoredSnapshot) restoredAudible = removeAudibleProvider(restoredAudible, 'cinema');
+		else if (restoredAudible.current?.provider === 'cinema') {
+			restoredAudible = { ...restoredAudible, current: { ...restoredAudible.current, id: restoredSnapshot.id, currentTime: restoredSnapshot.currentTime } };
+		}
 		const restoreOptions = resumeAudible ? undefined : { masterMuted: true };
 		try {
-			if (released.snapshot) {
-				await restoreCinemaSnapshot(mv, stage, released.snapshot, wings, restoreOptions);
+			if (restoredSnapshot) {
+				await restoreCinemaSnapshot(mv, stage, restoredSnapshot, wings, restoreOptions);
 				reconcileMirrorWings();
+			} else {
+				pauseVideoStack();
+				hideMirrorWings();
+				mv.removeAttribute('src');
+				mv.load();
+				mv.muted = true;
+				setStageProvider('cinema');
 			}
 			if (resumeAudible) await resumeAudibleState(restoredAudible);
-			let restoredSession = released.session;
+			let restoredSession = activateSource(released.session, {
+				provider: 'cinema', id: restoredSnapshot?.id ?? null, mode: 'video', muted: mv.muted,
+			});
 			if (restoredAudible.current?.provider === 'music') {
 				restoredSession = activateSource(restoredSession, { provider: 'music', id: restoredAudible.current.id, mode: 'audio' });
 			}
-			const restoredIndex = videoPlaylist.findIndex((item) => item.id === released.snapshot?.id);
+			const restoredIndex = videoPlaylist.findIndex((item) => item.id === restoredSnapshot?.id);
 			session = restoredSession;
 			audible = restoredAudible;
 			suspendedForStageLease = null;
 			if (restoredIndex >= 0 && restoredIndex !== cinema.cursor) cinema = selectCinema(cinema, restoredIndex);
 			updateCinemaCueState();
 			returnButton.hidden = true;
-			if (audible.current?.provider === 'music') renderMusicAudioIdentity(audible.current.id, 'MUSIC AUDIO RESTORED · CINEMA VISUAL RESTORED');
-			else renderCinemaIdentity('CINEMA RESTORED');
-			return released;
+			if (audible.current?.provider === 'music') renderMusicAudioIdentity(audible.current.id, restoredSnapshot ? 'MUSIC AUDIO RESTORED · CINEMA VISUAL RESTORED' : 'MUSIC AUDIO RESTORED · CINEMA UNAVAILABLE');
+			else renderCinemaIdentity(restoredSnapshot ? 'CINEMA RESTORED' : 'CINEMA UNAVAILABLE');
+			return { ...released, snapshot: restoredSnapshot, session: restoredSession };
 		} catch (error) {
 			throw await rollbackControllerState(prior, error, {
 				attemptedAudibleState: restoredAudible,
@@ -916,11 +965,14 @@ const [firstMusic] = library.music;
 
 	async function recoverMasterVideoFailure(action, failedPlayback) {
 		if (action === 'restore-lease') {
-			await restoreLeasedCinema();
+			const restored = await restoreLeasedCinema();
 			const failedLabel = failedPlayback.provider === 'music' ? 'MUSIC VIDEO UNAVAILABLE' : 'MEDIA UNAVAILABLE';
+			const cinemaLabel = restored.snapshot ? 'CINEMA VISUAL RESTORED' : 'CINEMA UNAVAILABLE';
 			if (audible.current?.provider === 'music') {
-				renderMusicAudioIdentity(audible.current.id, `${failedLabel} · MUSIC AUDIO RESTORED · CINEMA VISUAL RESTORED`);
-			} else renderCinemaIdentity(`${failedLabel} · CINEMA RESTORED`);
+				renderMusicAudioIdentity(audible.current.id, `${failedLabel} · MUSIC AUDIO RESTORED · ${cinemaLabel}`);
+			} else {
+				renderCinemaIdentity(`${failedLabel} · ${restored.snapshot ? 'CINEMA RESTORED' : 'CINEMA UNAVAILABLE'}`);
+			}
 			return;
 		}
 		if (action === 'cinema-retry') {
@@ -1460,7 +1512,7 @@ const [firstMusic] = library.music;
 			if (session.lease) return;
 			const policy = activeTransportPolicy(session.playback);
 			if (!policy.previous) return;
-			if (session.playback.provider === 'music') await advanceMusic(-1);
+			if (session.playback.provider === 'music') return advanceMusic(-1);
 			if (session.playback.provider === 'cinema') await activateCinema(cinema.cursor - 1);
 		});
 	}
@@ -1470,7 +1522,7 @@ const [firstMusic] = library.music;
 			if (session.lease) return;
 			const policy = activeTransportPolicy(session.playback);
 			if (!policy.next) return;
-			if (session.playback.provider === 'music') await advanceMusic(1);
+			if (session.playback.provider === 'music') return advanceMusic(1);
 			if (session.playback.provider === 'cinema') await activateCinema(cinema.cursor + 1);
 		});
 	}
@@ -1498,6 +1550,7 @@ const [firstMusic] = library.music;
 	fullscreenPlay.addEventListener('click', requestPlayPause);
 	fullscreenNext.addEventListener('click', requestNext);
 	fullscreenMute.addEventListener('click', requestFullscreenMute);
+	activeMute.addEventListener('click', requestFullscreenMute);
 	fullscreenShell.addEventListener('pointerdown', (event) => {
 		if (event.target.closest('[data-fullscreen-overlay]')) return;
 		fullscreenSession.interact();
@@ -1555,13 +1608,13 @@ const [firstMusic] = library.music;
 	mv.addEventListener('play', () => {
 		void playMirrorWings();
 		if (!(session.playback.provider === 'music' && session.playback.mode === 'audio')) syncActivePlayButton();
-		fullscreenSession.setPaused(false);
+		fullscreenSession.setPaused(activeAuthoritativeMedia().paused);
 		renderFullscreenSession();
 	});
 	mv.addEventListener('pause', () => {
 		pauseMirrorWings();
 		if (!(session.playback.provider === 'music' && session.playback.mode === 'audio')) syncActivePlayButton();
-		fullscreenSession.setPaused(true);
+		fullscreenSession.setPaused(activeAuthoritativeMedia().paused);
 		renderFullscreenSession();
 	});
 	musicAudio.addEventListener('play', () => {
@@ -1573,14 +1626,14 @@ const [firstMusic] = library.music;
 				void failMusicVisual(resumed.token, resumed.visual?.src);
 			});
 		}
-		fullscreenSession.setPaused(false);
+		fullscreenSession.setPaused(activeAuthoritativeMedia().paused);
 		renderFullscreenSession();
 	});
 	musicAudio.addEventListener('pause', () => {
 		if (session.playback.provider === 'music' && session.playback.mode === 'audio') syncActivePlayButton();
 		syncMusicRowActions();
 		if (!suppressMusicVisualMediaSync && visualSession.snapshot().owner === 'music-tag') musicVisualVideo.pause();
-		fullscreenSession.setPaused(true);
+		fullscreenSession.setPaused(activeAuthoritativeMedia().paused);
 		renderFullscreenSession();
 	});
 	musicAudio.addEventListener('loadedmetadata', syncTransportTime);
@@ -1592,9 +1645,9 @@ const [firstMusic] = library.music;
 	mobileMirrorQuery.addEventListener('change', rebuildEligibleVideoQueues);
 	reducedMotionQuery.addEventListener('change', reconcileMirrorWings);
 
+	nowPlayingStatus.textContent = introSession.status;
 	rebuildEligibleVideoQueues();
 	syncTransportTime();
-		nowPlayingStatus.textContent = introSession.status;
 	syncEntryControlAvailability();
 	renderTab('cinema');
 </script>
