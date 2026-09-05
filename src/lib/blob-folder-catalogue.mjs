@@ -10,6 +10,18 @@ export const BLOB_FOLDERS = Object.freeze([
   { prefix: 'Music-Visuals/', folder: 'music-visuals', extensions: new Map([['.mp4', 'video'], ['.mov', 'video'], ['.webm', 'video']]) },
 ]);
 
+const ISO_TIMESTAMP = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})(?:\.\d+)?(?:Z|[+-](?:[01]\d|2[0-3]):[0-5]\d)$/;
+
+function validIsoTimestamp(value) {
+  if (typeof value !== 'string' || value.length === 0 || value !== value.trim()) return false;
+  const match = value.match(ISO_TIMESTAMP);
+  if (!match) return false;
+  const [year, month, day, hour, minute, second] = match.slice(1).map(Number);
+  const daysInMonth = [31, (year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0)) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  if (month < 1 || month > 12 || day < 1 || day > daysInMonth[month - 1] || hour > 23 || minute > 59 || second > 59) return false;
+  return !Number.isNaN(new Date(value).getTime());
+}
+
 function directFilename(prefix, blob) {
   if (!blob || typeof blob !== 'object' || typeof blob.pathname !== 'string' || blob.pathname.length === 0) {
     throw new TypeError(`${prefix} returned a malformed Blob object`);
@@ -62,22 +74,16 @@ function publicMetadata(prefix, blob) {
   if (typeof blob.etag !== 'string' || blob.etag.length === 0) {
     throw new TypeError(`${prefix} media requires a non-empty ETag`);
   }
-  if (typeof blob.size !== 'number' || !Number.isFinite(blob.size) || blob.size <= 0) {
-    throw new TypeError(`${prefix} media requires a positive size`);
+  if (!Number.isSafeInteger(blob.size) || blob.size <= 0) {
+    throw new TypeError(`${prefix} media requires a positive safe integer size`);
   }
-  let url;
-  try {
-    url = new URL(blob.url);
-  } catch {
-    throw new TypeError(`${prefix} media requires a valid HTTPS URL`);
-  }
-  if (url.protocol !== 'https:' || !url.hostname) {
-    throw new TypeError(`${prefix} media requires a valid HTTPS URL`);
-  }
-  const uploadedAt = new Date(blob.uploadedAt);
-  if (Number.isNaN(uploadedAt.getTime())) {
+  const url = httpsUrl(prefix, blob.url, 'media');
+  const hasIsoTimestamp = validIsoTimestamp(blob.uploadedAt);
+  if (!(blob.uploadedAt instanceof Date) && !hasIsoTimestamp) {
     throw new TypeError(`${prefix} media requires a valid upload time`);
   }
+  const uploadedAt = new Date(blob.uploadedAt);
+  if (Number.isNaN(uploadedAt.getTime())) throw new TypeError(`${prefix} media requires a valid upload time`);
   return { url, uploadedAt };
 }
 
@@ -88,7 +94,7 @@ function httpsUrl(prefix, value, subject) {
   } catch {
     throw new TypeError(`${prefix} ${subject} requires a valid HTTPS URL`);
   }
-  if (url.protocol !== 'https:' || !url.hostname) {
+  if (url.protocol !== 'https:' || !url.hostname || url.username || url.password) {
     throw new TypeError(`${prefix} ${subject} requires a valid HTTPS URL`);
   }
   return url;

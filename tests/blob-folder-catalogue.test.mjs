@@ -99,9 +99,15 @@ test('rejects objects outside the prefix and duplicate direct pathnames before f
 
 test('ignores direct dotfiles and unsupported files while rejecting malformed eligible metadata', async () => {
   for (const [media, expectation] of [
-    [blob('Cinema/Zero.mp4', 'zero', { size: 0 }), /Cinema\/.*positive size/i],
+    [blob('Cinema/Zero.mp4', 'zero', { size: 0 }), /Cinema\/.*positive.*size/i],
+    [blob('Cinema/Fraction.mp4', 'fraction', { size: 1.5 }), /Cinema\/.*positive safe integer/i],
+    [blob('Cinema/UnsafeInteger.mp4', 'unsafe-integer', { size: Number.MAX_SAFE_INTEGER + 1 }), /Cinema\/.*positive safe integer/i],
     [blob('Cinema/Unsafe.mp4', 'unsafe', { url: 'http://store.example/unsafe.mp4' }), /Cinema\/.*HTTPS/i],
+    [blob('Cinema/Credentials.mp4', 'credentials', { url: 'https://user:password@store.example/credentials.mp4' }), /Cinema\/.*HTTPS/i],
     [blob('Cinema/NoEtag.mp4', undefined), /Cinema\/.*ETag/i],
+    [blob('Cinema/NullTime.mp4', 'null-time', { uploadedAt: null }), /Cinema\/.*upload time/i],
+    [blob('Cinema/InvalidTime.mp4', 'invalid-time', { uploadedAt: 'not-a-timestamp' }), /Cinema\/.*upload time/i],
+    [blob('Cinema/ImpossibleTime.mp4', 'impossible-time', { uploadedAt: '2026-02-30T12:00:00.000Z' }), /Cinema\/.*upload time/i],
   ]) {
     await assert.rejects(
       () => buildBlobFolderCatalogue({
@@ -122,29 +128,31 @@ test('ignores direct dotfiles and unsupported files while rejecting malformed el
 });
 
 test('rejects an unsafe playlist-order sidecar URL before reading it', async () => {
-  await assert.rejects(
-    () => buildBlobFolderCatalogue({
-      listPage: pagesByPrefix(acceptedPages({
-        cinema: [blob('Cinema/playlist-order.json', 'order', { url: 'http://store.example/order.json' })],
-      })),
-      readText: async () => {
-        throw new Error('must not read an unsafe URL');
-      },
-    }),
-    /Cinema\/.*playlist order.*HTTPS/i,
-  );
+  for (const url of ['http://store.example/order.json', 'https://user:password@store.example/order.json']) {
+    await assert.rejects(
+      () => buildBlobFolderCatalogue({
+        listPage: pagesByPrefix(acceptedPages({
+          cinema: [blob('Cinema/playlist-order.json', 'order', { url })],
+        })),
+        readText: async () => {
+          throw new Error('must not read an unsafe URL');
+        },
+      }),
+      /Cinema\/.*playlist order.*HTTPS/i,
+    );
+  }
 });
 
 test('projects every supported extension with independent Music audio and video items', async () => {
   const envelope = await buildBlobFolderCatalogue({
     listPage: pagesByPrefix(acceptedPages({
-      cinema: ['mp4', 'mov', 'webm'].map((extension) => blob(`Cinema/File${extension}`, `c-${extension}`)),
+      cinema: ['mp4', 'mov', 'webm'].map((extension) => blob(`Cinema/File.${extension}`, `c-${extension}`)),
       music: ['wav', 'mp3', 'm4a', 'flac', 'aac'].map((extension) => blob(`Music/File.${extension}`, `a-${extension}`)).concat([
         blob('Music/Song.wav', 'song'),
         blob('Music/Film.mov', 'film-mov'),
         blob('Music/Film.mp4', 'film-mp4'),
       ]),
-      media: ['mp4', 'mov', 'webm'].map((extension) => blob(`Media/File${extension}`, `m-${extension}`)),
+      media: ['mp4', 'mov', 'webm'].map((extension) => blob(`Media/File.${extension}`, `m-${extension}`)),
       visuals: ['mp4', 'mov', 'webm'].map((extension) => blob(`Music-Visuals/VIZ-VOID.${extension}`, `v-${extension}`)),
     })),
     readText: async () => '[]',
@@ -161,6 +169,30 @@ test('projects every supported extension with independent Music audio and video 
       ['Music/Film.mov', 'video'],
       ['Music/Film.mp4', 'video'],
       ['Music/Song.wav', 'audio'],
+    ],
+  );
+  assert.deepEqual(
+    envelope.items.filter((item) => item.folder === 'cinema').map((item) => [item.pathname, item.kind]),
+    [
+      ['Cinema/File.mov', 'video'],
+      ['Cinema/File.mp4', 'video'],
+      ['Cinema/File.webm', 'video'],
+    ],
+  );
+  assert.deepEqual(
+    envelope.items.filter((item) => item.folder === 'media').map((item) => [item.pathname, item.kind]),
+    [
+      ['Media/File.mov', 'video'],
+      ['Media/File.mp4', 'video'],
+      ['Media/File.webm', 'video'],
+    ],
+  );
+  assert.deepEqual(
+    envelope.items.filter((item) => item.folder === 'music-visuals').map((item) => [item.pathname, item.kind]),
+    [
+      ['Music-Visuals/VIZ-VOID.mov', 'video'],
+      ['Music-Visuals/VIZ-VOID.mp4', 'video'],
+      ['Music-Visuals/VIZ-VOID.webm', 'video'],
     ],
   );
   assert.equal(envelope.authoritative, true);
