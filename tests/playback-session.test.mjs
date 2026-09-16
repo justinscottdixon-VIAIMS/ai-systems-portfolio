@@ -12,8 +12,8 @@ const snapshot = { src: 'cinema.mp4', currentTime: 42, paused: false, muted: fal
 
 test('changing tabs never changes active playback', () => {
   const session = createPlaybackSession({ cinemaId: 'atlas' });
-  const browsed = selectBrowseTab(session, 'youtube');
-  assert.equal(browsed.activeTab, 'youtube');
+  const browsed = selectBrowseTab(session, 'credentials');
+  assert.equal(browsed.activeTab, 'credentials');
   assert.deepEqual(browsed.playback, session.playback);
 });
 

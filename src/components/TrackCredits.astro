@@ -1,0 +1,26 @@
+---
+const { credits } = Astro.props;
+---
+<div class="track-credits">
+  {credits.map(credit => <section class="track-credit">
+    <p class="track-credit__scope">{credit.scope}</p>
+    <h3>{credit.title}</h3>
+    <dl>
+      <div><dt>Justin Scott Dixon</dt><dd>{credit.roles.join(' · ')}</dd></div>
+      {credit.collaborators && <div><dt>Other contributors</dt><dd>{credit.collaborators}</dd></div>}
+    </dl>
+    {credit.note && <p>{credit.note}</p>}
+    <p class="track-credit__evidence">{credit.evidence}</p>
+  </section>)}
+</div>
+<style>
+.track-credits { display: grid; gap: 1.25rem; margin-block: 1.5rem; }
+.track-credit { border-top: 1px solid #46423a; padding-top: 1rem; }
+.track-credit h3 { font-size: 1.15rem; line-height: 1.35; margin: .45rem 0 1rem; }
+.track-credit__scope { color: #b59b66; font: .72rem/1.5 ui-monospace, monospace; text-transform: uppercase; letter-spacing: .06em; }
+.track-credit dl { display: grid; gap: .85rem; }
+.track-credit dt { color: #b59b66; font-size: .75rem; margin-bottom: .3rem; }
+.track-credit dd { margin: 0; font-size: .9rem; line-height: 1.5; }
+.track-credit p { line-height: 1.6; font-size: .9rem; }
+.track-credit .track-credit__evidence { color: #aaa8a3; font-size: .78rem; }
+</style>

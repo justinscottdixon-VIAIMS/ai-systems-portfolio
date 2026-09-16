@@ -1,0 +1,22 @@
+---
+import '../styles/archive.css';
+const { title, description } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title} — Justin Scott Dixon</title>
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <a class="skip-link" href="#archive-content">Skip to content</a>
+    <div class="archive-shell">
+      <nav class="archive-nav" aria-label="Main"><a href="/">VIAIMS / Portfolio</a><a href="/archive/">Career & release archive</a></nav>
+      <main id="archive-content"><slot /></main>
+      <footer class="archive-footer">Justin Scott Dixon · Artist, producer & audio engineer<br />Artist recollections and documented release facts retain their attribution. Reconstructed presentation artwork is identified separately from original photographs.</footer>
+    </div>
+  </body>
+</html>

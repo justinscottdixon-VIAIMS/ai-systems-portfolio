@@ -1,0 +1,67 @@
+---
+import ArchiveLayout from '../../layouts/ArchiveLayout.astro';
+import source from '../../data/portfolio-records.json';
+import { toPortfolioRecords } from '../../lib/portfolio-records.mjs';
+import { archiveEntries } from '../../lib/archive-index.mjs';
+const records = toPortfolioRecords(source);
+const entries = archiveEntries(records);
+const categories = [...new Set(entries.map(entry => entry.category))].sort();
+---
+<ArchiveLayout title="Career & release archive" description="Explore Justin Scott Dixon’s discography, creative history, production credits and studio evolution.">
+  <header class="archive-heading">
+    <p class="eyebrow">JUSTIN SCOTT DIXON / THE ARCHIVE</p>
+    <h1>Records. People.<br />A life in sound.</h1>
+    <p class="lead">From the first Cosmic releases to Voyager, music for picture and immersive composition. Explore the recordings alongside the stories and engineering decisions behind them.</p>
+    <p class="muted">Vinyl chronology begins January 1996. Earlier studio stories describe recording and career development.</p>
+  </header>
+  <form class="archive-search" role="search" hidden>
+    <label>Search the archive<input type="search" id="archive-query" placeholder="Title, artist, label, catalog, role or year" autocomplete="off" /></label>
+    <label>Category<select id="archive-category"><option value="">All categories</option>{categories.map(category => <option value={category}>{category.replaceAll('-', ' ')}</option>)}</select></label>
+    <button type="reset">Clear filters</button>
+  </form>
+  <p id="archive-count" role="status" aria-live="polite">{entries.length} entries across {records.length} dossiers</p>
+  <p id="archive-empty" hidden>No matching records. Try another title, artist or catalog number.</p>
+  <div class="archive-results">
+    {entries.map(entry => <article class="archive-result" data-archive-entry data-search={entry.searchText} data-category={entry.category}>
+      <p class="eyebrow">{entry.parent || entry.category.replaceAll('-', ' ')}{entry.catalogNumber && ` / ${entry.catalogNumber}`}</p>
+      <h2><a href={entry.href}>{entry.title}</a></h2>
+      <p class="artist">{entry.artist}</p>
+      <p>{entry.summary}</p>
+      <p class="muted">{entry.date} · {entry.format}</p>
+      <p class="role-line">{entry.roles.join(' · ')}</p>
+    </article>)}
+  </div>
+</ArchiveLayout>
+<script>
+  import { matchesArchiveQuery } from '../../lib/archive-index.mjs';
+  const form = document.querySelector<HTMLFormElement>('.archive-search')!;
+  const query = document.querySelector<HTMLInputElement>('#archive-query')!;
+  const category = document.querySelector<HTMLSelectElement>('#archive-category')!;
+  const rows = [...document.querySelectorAll<HTMLElement>('[data-archive-entry]')];
+  const count = document.querySelector('#archive-count')!;
+  const empty = document.querySelector<HTMLElement>('#archive-empty')!;
+  function filter() {
+    let visible = 0;
+    for (const row of rows) {
+      row.hidden = !matchesArchiveQuery({ searchText: row.dataset.search!, category: row.dataset.category! }, query.value, category.value);
+      if (!row.hidden) visible++;
+    }
+    count.textContent = `${visible} of ${rows.length} entries`;
+    empty.hidden = visible !== 0;
+    const url = new URL(location.href);
+    for (const [key, value] of [['q', query.value], ['category', category.value]]) {
+      if (value) url.searchParams.set(key, value); else url.searchParams.delete(key);
+    }
+    history.replaceState(null, '', url);
+  }
+  const params = new URLSearchParams(location.search);
+  query.value = params.get('q') ?? '';
+  category.value = params.get('category') ?? '';
+  form.hidden = false;
+  form.addEventListener('submit', event => event.preventDefault());
+  form.addEventListener('input', filter);
+  form.addEventListener('change', filter);
+  form.addEventListener('reset', () => { query.value = ''; category.value = ''; filter(); });
+  window.addEventListener('pageshow', filter);
+  filter();
+</script>

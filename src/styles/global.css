@@ -86,6 +86,197 @@
   content: "/";
 }
 
+.publications-module {
+  --module-accent: rgb(181 155 102);
+  margin-top: 4rem;
+  border: 1px solid rgb(39 39 42);
+  background: rgb(0 0 0 / 0.54);
+  color: rgb(212 212 216);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.publications-module__header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.15rem;
+  border-bottom: 1px solid rgb(39 39 42);
+}
+
+.publications-module__index {
+  margin-bottom: 0.35rem;
+  color: var(--module-accent);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.publications-module__header h2 {
+  color: rgb(244 244 245);
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.045em;
+  line-height: 1.15;
+}
+
+.publications-module__intro {
+  max-width: 65ch;
+  margin-top: 0.45rem;
+  color: rgb(113 113 122);
+  font-size: 0.625rem;
+  line-height: 1.45;
+}
+
+.publications-module__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding: 0.65rem 1rem;
+  border-bottom: 1px solid rgb(39 39 42);
+}
+
+.publications-module__filters span {
+  padding: 0.3rem 0.45rem;
+  border: 1px solid rgb(63 63 70);
+  color: rgb(161 161 170);
+  font-size: 0.5625rem;
+  letter-spacing: 0.05em;
+}
+
+.publications-module__status,
+.publications-module__badge {
+  border: 1px solid rgb(181 155 102 / 0.55);
+  color: var(--module-accent);
+  font-size: 0.5625rem;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.publications-module__status {
+  flex: none;
+  padding: 0.45rem 0.55rem;
+}
+
+.publications-module__grid {
+  display: grid;
+  gap: 1px;
+  background: rgb(39 39 42);
+}
+
+.publications-module__group {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  padding: 1rem;
+  background: rgb(5 5 6);
+}
+
+.publications-module__group-header,
+.publications-module__footer,
+.publications-module__entry-heading,
+.publications-module__meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.publications-module__group-header {
+  align-items: baseline;
+  padding-bottom: 0.65rem;
+  border-bottom: 1px solid rgb(39 39 42);
+  text-transform: uppercase;
+}
+
+.publications-module__group-header h3 {
+  color: rgb(228 228 231);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.publications-module__group-header span {
+  color: rgb(113 113 122);
+  font-size: 0.5625rem;
+}
+
+.publications-module__entries {
+  display: grid;
+  gap: 0.55rem;
+  margin-block: 0.75rem;
+}
+
+.publications-module__entry {
+  display: grid;
+  width: 100%;
+  gap: 0.35rem;
+  padding: 0.75rem;
+  border: 1px solid rgb(39 39 42);
+  background: rgb(9 9 11 / 0.72);
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 150ms ease, background-color 150ms ease;
+}
+
+.publications-module__entry:hover,
+.publications-module__entry:focus-visible,
+.publications-module__entry[aria-current="true"] {
+  border-color: rgb(181 155 102 / 0.72);
+  background: rgb(24 24 27 / 0.72);
+  outline: none;
+}
+
+.publications-module__entry-heading {
+  align-items: start;
+}
+
+.publications-module__entry-heading strong {
+  color: rgb(212 212 216);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.publications-module__badge {
+  flex: none;
+  padding: 0.3rem 0.35rem;
+}
+
+.publications-module__role {
+  color: rgb(161 161 170);
+  font-size: 0.625rem;
+}
+
+.publications-module__meta {
+  align-items: end;
+  color: rgb(82 82 91);
+  font-size: 0.5625rem;
+  line-height: 1.35;
+}
+
+.publications-module__meta time {
+  flex: none;
+}
+
+.publications-module__footer {
+  margin-top: auto;
+  padding-top: 0.65rem;
+  border-top: 1px solid rgb(39 39 42);
+  color: rgb(82 82 91);
+  font-size: 0.5625rem;
+  letter-spacing: 0.035em;
+  text-transform: uppercase;
+}
+
+@media (min-width: 1050px) {
+  .publications-module__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 767px) {
   .main--compact {
     padding-block: 0.75rem 2rem;
@@ -108,5 +299,14 @@
   .institutional-nameplate__organization,
   .institutional-roles {
     font-size: 0.5625rem;
+  }
+
+  .publications-module {
+    margin-top: 2.5rem;
+  }
+
+  .publications-module__header {
+    align-items: start;
+    flex-direction: column;
   }
 }

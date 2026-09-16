@@ -22,3 +22,17 @@ export function playlistWheelTarget({ deltaY, deltaMode, scrollTop, rowStep, vie
   const target = clamp(scrollTop + deltaY * unit, 0, maximum);
   return target === scrollTop ? null : target;
 }
+
+export function playlistDragTarget({
+  startScrollTop,
+  deltaY,
+  viewportHeight,
+  scrollHeight,
+  railHeight,
+  thumbHeight,
+}) {
+  const maximum = Math.max(0, scrollHeight - viewportHeight);
+  const thumbTravel = Math.max(0, railHeight - thumbHeight);
+  if (maximum === 0 || thumbTravel === 0) return 0;
+  return clamp(startScrollTop + deltaY * (maximum / thumbTravel), 0, maximum);
+}

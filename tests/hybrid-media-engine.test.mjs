@@ -57,6 +57,18 @@ test('native video leases suspend tagged overlays and restore the saved visual o
   assert.match(rollback, /stage\.dataset\.visualOwner = prior\.stageSnapshot\.visualOwner/);
 });
 
+test('both fullscreen modes remove inline stage audio and retry targets from hit testing', async () => {
+  const css = await source(stylePath);
+  for (const mode of [':fullscreen', '[data-fullscreen-mode="viewport"]']) {
+    for (const control of ['.cinema-audio-invitation', '.cinema-retry']) {
+      const selector = `.fullscreen-shell${mode} ${control}`;
+      const rule = css.slice(css.indexOf(selector)).split('}')[0];
+      assert.ok(css.includes(selector), `missing fullscreen rule for ${selector}`);
+      assert.match(rule, /display:\s*none\s*;/);
+    }
+  }
+});
+
 test('hybrid engine exposes an adaptive stage with two decorative wings', async () => {
   const component = await source(componentPath);
   assert.match(component, /data-hybrid-media-engine/);
@@ -235,14 +247,17 @@ test('empty Cinema fallback disables native controls and exposes programmatic se
   assert.match(component, /id="meter-r"[^>]+aria-label="Right channel level"/s);
 });
 
-test('Media Library exposes four accessible tabs and independent panels', async () => {
+test('Media Library exposes five accessible tabs and independent panels', async () => {
   const component = await source(componentPath);
   assert.match(component, /role="tablist"[^>]+aria-label="Media Library"/s);
-  for (const provider of ['cinema', 'music', 'media', 'youtube']) {
+  for (const provider of ['cinema', 'music', 'media', 'youtube', 'credentials']) {
     assert.match(component, new RegExp(`id="tab-${provider}"[^>]+role="tab"`, 's'));
     assert.match(component, new RegExp(`id="panel-${provider}"[^>]+role="tabpanel"`, 's'));
   }
   assert.match(component, /selectBrowseTab\(/);
+  assert.match(component, /<PublicationsAndCredits\s*\/>/);
+  assert.match(component, /activeSourceKind\.textContent = 'CREDENTIALS'/);
+  assert.match(component, /nowPlayingTitle\.textContent = 'Career & Release Index'/);
 });
 
 test('YouTube tab leads with the approved channel and keeps curated videos independent', async () => {
@@ -282,6 +297,18 @@ test('mobile portrait policy and inline transport are exposed through one contro
   assert.doesNotMatch(component, /data-music-mode="audio"[^>]*>AUDIO<\/button>/s);
   const mobile = css.slice(css.indexOf('@media (max-width:767px)'));
   assert.match(mobile, /\[data-media-aspect\]:not\(\[data-media-aspect="portrait"\]\)[^{]*\{[^}]*display:\s*none/s);
+});
+
+test('inline seek control uses the instrument-panel treatment and reports played progress', async () => {
+  const component = await source(componentPath);
+  const css = await source(stylePath);
+  assert.match(component, /activeSeek\.style\.setProperty\('--seek-progress',\s*`\$\{seekProgress\}%`\)/);
+  assert.match(css, /\.player-dock__seek\s*\{[^}]*font:[^}]*ui-monospace/s);
+  assert.match(css, /#active-seek\s*\{[^}]*appearance:\s*none[^}]*linear-gradient\([^}]*--seek-progress/s);
+  assert.match(css, /#active-seek::-webkit-slider-thumb\s*\{[^}]*appearance:\s*none[^}]*background:\s*rgb\(181 155 102\)/s);
+  assert.match(css, /#active-seek::-moz-range-thumb\s*\{[^}]*background:\s*rgb\(181 155 102\)/s);
+  assert.match(css, /#active-seek:focus-visible\s*\{[^}]*outline:\s*2px solid rgb\(181 155 102\)/s);
+  assert.match(css, /#active-seek:disabled\s*\{[^}]*opacity:/s);
 });
 
 test('branded fullscreen shell has a seek-free safe-area transport and viewport fallback', async () => {
@@ -334,9 +361,9 @@ test('fullscreen mute preserves single-source arbitration and controller ownersh
   const end = component.indexOf('\n\tfunction ', start + 1);
   const toggle = component.slice(start, end);
 
-  assert.match(toggle, /session\.playback\.provider === 'cinema'/);
+  assert.match(toggle, /controlledPlayback\.provider === 'cinema'/);
   assert.match(toggle, /audible\.current\?\.provider === 'cinema'\s*\? restoreCinemaAudio\(\)\s*:\s*hearCinema\(\)/s);
-  assert.match(toggle, /session = setPlaybackMuted\(session, media\.muted\)/);
+  assert.match(toggle, /transportTargetIsLoaded\(controlledPlayback\).*session = setPlaybackMuted\(session, media\.muted\)/s);
   assert.equal(toggle.indexOf('await (audible.current?.provider') < toggle.indexOf('renderFullscreenSession()'), true);
   assert.match(component, /function requestFullscreenMute\(\)[\s\S]+enqueueMediaControlTransition\(\(\) => toggleFullscreenMute\(\)\)/s);
   assert.match(component, /fullscreenMute\.addEventListener\('click', requestFullscreenMute\)/);
@@ -455,7 +482,13 @@ test('responsive dock keeps accessible scrollable tabs and compact Music rows', 
 test('active transport applies provider policy and guards provider-specific mutations', async () => {
   const component = await source(componentPath);
   assert.match(component, /activePlayButtonState, activeTransportPolicy/);
-  assert.match(component, /const policy = activeTransportPolicy\(session\.playback\)/);
+  assert.match(component, /transportPlaybackForTab/);
+  assert.match(component, /const policy = activeTransportPolicy\(controlledPlayback\)/);
+  const renderTabStart = component.indexOf('function renderTab(');
+  const renderTabEnd = component.indexOf('\n\tfunction ', renderTabStart + 1);
+  const renderTab = component.slice(renderTabStart, renderTabEnd);
+  assert.match(renderTab, /renderTransportDeckIdentity\(activeTab\)/);
+  assert.match(renderTab, /syncTransportTime\(\)/);
   assert.match(component, /control\.disabled = !enabled/);
   assert.match(component, /control\.setAttribute\('aria-disabled', String\(!enabled\)\)/);
 
@@ -464,8 +497,8 @@ test('active transport applies provider policy and guards provider-specific muta
     component.indexOf('function requestNext()'),
   );
   assert.match(previousHandler, /if \(!policy\.previous\) return/);
-  assert.match(previousHandler, /session\.playback\.provider === 'music'/);
-  assert.match(previousHandler, /session\.playback\.provider === 'cinema'/);
+  assert.match(previousHandler, /controlledPlayback\.provider === 'music'/);
+  assert.match(previousHandler, /controlledPlayback\.provider === 'cinema'/);
   assert.doesNotMatch(previousHandler, /else .*activateCinema/);
 
   const nextHandler = component.slice(
@@ -473,8 +506,8 @@ test('active transport applies provider policy and guards provider-specific muta
     component.indexOf("activePlay.addEventListener('click'"),
   );
   assert.match(nextHandler, /if \(!policy\.next\) return/);
-  assert.match(nextHandler, /session\.playback\.provider === 'music'/);
-  assert.match(nextHandler, /session\.playback\.provider === 'cinema'/);
+  assert.match(nextHandler, /controlledPlayback\.provider === 'music'/);
+  assert.match(nextHandler, /controlledPlayback\.provider === 'cinema'/);
   assert.doesNotMatch(nextHandler, /else .*activateCinema/);
 
   const musicControls = component.slice(
@@ -491,7 +524,7 @@ test('active Play/Pause text and aria-label synchronize from actual media events
   const syncEnd = component.indexOf('\n\tfunction ', syncStart + 1);
   const syncFunction = component.slice(syncStart, syncEnd);
   assert.equal(syncStart > -1, true);
-  assert.match(syncFunction, /activePlayButtonState\(media\.paused\)/);
+  assert.match(syncFunction, /activePlayButtonState\(transportTargetIsLoaded\(\) \? media\.paused : true\)/);
   assert.match(syncFunction, /activePlay\.textContent = state\.text/);
   assert.match(syncFunction, /activePlay\.setAttribute\('aria-label', state\.ariaLabel\)/);
   assert.equal((component.match(/syncActivePlayButton\(\)/g) ?? []).length >= 5, true);
@@ -539,6 +572,7 @@ test('Cinema selection commits identity and loading state before playback orches
   assert.equal(start > loading && playing > start && rejected > start, true);
   assert.match(activateCinema, /preserveMusicTransport\s*\? 'MUSIC AUDIO LIVE · CINEMA MOTION RESTORED'\s*:\s*'CINEMA LIVE'/s);
   assert.match(activateCinema, /const preserveMusicTransport = preserveAudibleAuthority/);
+  assert.match(activateCinema, /session\.activeTab === 'cinema'.*renderTransportDeckIdentity\('cinema'\)/s);
   assert.match(component, /function renderCinemaIdentity\(status\)[\s\S]+applyActiveTransportPolicy\(\)/);
   assert.match(activateCinema, /hasReportedTransitionError = true/);
   assert.match(component, /if \(!hasReportedTransitionError\)[^\n]+PLAYBACK ERROR/);
@@ -700,7 +734,7 @@ test('entry lock blocks playback controls until either welcome handoff restores 
   const policyStart = component.indexOf('function applyActiveTransportPolicy()');
   const policyEnd = component.indexOf('\n\tfunction ', policyStart + 1);
   const policy = component.slice(policyStart, policyEnd);
-  assert.match(policy, /const enabled = !entryControlsLocked && policy\[action\]/);
+  assert.match(policy, /const enabled = !referenceReturnState && !entryControlsLocked && policy\[action\]/);
 
   const availabilityStart = component.indexOf('function syncEntryControlAvailability()');
   const availabilityEnd = component.indexOf('\n\tfunction ', availabilityStart + 1);
@@ -1051,18 +1085,23 @@ test('rollback fallback keeps prior lease identity muted and surfaces a specific
   assert.match(rollback, /nowPlayingStatus\.textContent = status/);
 });
 
-test('lease policy keeps explicit Audio release and Cinema guards while Music retains queue navigation', async () => {
+test('lease policy lets the selected Cinema deck reclaim transport while direct Cinema cues stay guarded', async () => {
   const component = await source(componentPath);
   const policyStart = component.indexOf('function applyActiveTransportPolicy()');
   const policyEnd = component.indexOf('\n\tfunction ', policyStart + 1);
   const policy = component.slice(policyStart, policyEnd);
-  assert.match(policy, /const leaseBlocksNavigation = Boolean\(session\.lease\) && session\.playback\.provider !== 'music' && \(action === 'previous' \|\| action === 'next'\)/);
-  assert.match(policy, /!leaseBlocksNavigation/);
+  assert.doesNotMatch(policy, /leaseBlocksNavigation/);
+
+  const nextStart = component.indexOf('function requestNext()');
+  const nextEnd = component.indexOf('\n\tasync function ', nextStart + 1);
+  const next = component.slice(nextStart, nextEnd);
+  assert.match(next, /controlledPlayback\.provider === 'cinema'/);
+  assert.match(next, /if \(session\.lease\) await restoreLeasedCinema/);
 
   const availabilityStart = component.indexOf('function syncCinemaCueAvailability()');
   const availabilityEnd = component.indexOf('\n\tfunction ', availabilityStart + 1);
   const availability = component.slice(availabilityStart, availabilityEnd);
-  assert.match(availability, /const disabled = entryControlsLocked \|\| Boolean\(session\.lease\)/);
+  assert.match(availability, /const disabled = Boolean\(referenceReturnState\) \|\| entryControlsLocked \|\| Boolean\(session\.lease\)/);
   assert.match(availability, /button\.disabled = disabled/);
   assert.match(availability, /aria-disabled/);
 
@@ -1071,15 +1110,6 @@ test('lease policy keeps explicit Audio release and Cinema guards while Music re
   const activateCinema = component.slice(activateStart, activateEnd);
   assert.match(activateCinema, /if \(session\.lease\) return/);
   assert.doesNotMatch(activateCinema, /if \(session\.lease\) await restoreLeasedCinema\(\)/);
-
-  const previousStart = component.indexOf('function requestPrevious()');
-  const previousEnd = component.indexOf('function requestNext()', previousStart);
-  const previous = component.slice(previousStart, previousEnd);
-  const nextStart = previousEnd;
-  const nextEnd = component.indexOf("activePlay.addEventListener('click'", nextStart);
-  const next = component.slice(nextStart, nextEnd);
-  assert.match(previous, /if \(session\.lease && session\.playback\.provider !== 'music'\) return/);
-  assert.match(next, /if \(session\.lease && session\.playback\.provider !== 'music'\) return/);
 
   const audioStart = component.indexOf('async function activateMusicAudio(');
   const audioEnd = component.indexOf('\n\tasync function ', audioStart + 1);

@@ -1,4 +1,4 @@
-const TABS = new Set(['cinema', 'music', 'media', 'youtube']);
+const TABS = new Set(['cinema', 'music', 'media', 'youtube', 'credentials']);
 
 function cinemaPlayback(id, muted) {
   return {

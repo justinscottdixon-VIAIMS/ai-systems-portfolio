@@ -1,0 +1,56 @@
+---
+import ArchiveLayout from '../../layouts/ArchiveLayout.astro';
+import TrackCredits from '../../components/TrackCredits.astro';
+import source from '../../data/portfolio-records.json';
+import { toPortfolioRecords } from '../../lib/portfolio-records.mjs';
+import { archiveHref } from '../../lib/archive-index.mjs';
+export function getStaticPaths() {
+  return toPortfolioRecords(source).map(record => ({ params: { slug: record.slug }, props: { record } }));
+}
+const { record } = Astro.props;
+const recordsById = new Map(toPortfolioRecords(source).map(item => [item.id, item]));
+const evidenceLabels = {
+  'primary-public': 'Primary public source', 'corroborated-public': 'Corroborated public record',
+  'attributed-public': 'Attributed public record', 'owner-approved-archive': 'Artist-approved archive',
+};
+---
+<ArchiveLayout title={record.title} description={record.summary}>
+  <header class="archive-heading">
+    <p class="eyebrow">{record.era}</p><h1>{record.title}</h1>
+    <p class="artist">{record.displayArtistOrClient}</p><p class="lead">{record.summary}</p>
+    <dl class="archive-facts">
+      <div><dt>Period</dt><dd>{record.dateDisplay}</dd></div>
+      <div><dt>Contribution</dt><dd>{record.roles.join(' · ')}</dd></div>
+      <div><dt>Source status</dt><dd>{evidenceLabels[record.evidenceLevel]}</dd></div>
+      <div><dt>Record status</dt><dd>{record.status.replaceAll('-', ' ')}</dd></div>
+    </dl>
+  </header>
+  {record.gallery.filter(item => item.kind === 'image').map(item => <figure class="archive-art"><img src={item.src} alt={item.alt} loading="lazy" decoding="async" /><figcaption>{item.caption}</figcaption></figure>)}
+  <nav class="archive-contents" aria-label="Dossier contents"><h2>In this dossier</h2><ul>
+    {record.sections.map((section, index) => <li><a href={`#history-${index + 1}`}>{section.title}</a></li>)}
+    {record.children.map(child => <li><a href={`#${child.id}`}>{child.catalogNumber} · {child.title}</a></li>)}
+    <li><a href="#sources">Sources & attribution</a></li>
+  </ul></nav>
+  {record.sections.map((section, index) => <section class="archive-section" id={`history-${index + 1}`}>
+    <p class="eyebrow">HISTORY & CONTEXT</p><h2>{section.title}</h2>{section.intro && <p>{section.intro}</p>}
+    {section.items.map(item => <div class="history-item"><h3>{item.title}</h3>{item.date && <p class="muted">{item.date}</p>}<p>{item.detail}</p></div>)}
+  </section>)}
+  {record.children.map(child => <article class="archive-section release-record" id={child.id}>
+    <div>
+      {child.gallery.map(item => <figure class="archive-art">{item.kind === 'image' ? <img src={item.src} alt={item.alt} loading="lazy" decoding="async" /> : <div class="art-pending">Presentation artwork forthcoming</div>}<figcaption>{item.caption}</figcaption></figure>)}
+    </div>
+    <div><p class="eyebrow">{child.catalogNumber}</p><h2>{child.title}</h2><p class="artist">{child.artist}</p>
+      <dl class="archive-facts"><div><dt>Date evidence</dt><dd>{child.date}</dd></div><div><dt>Format</dt><dd>{child.format}</dd></div><div><dt>Contribution</dt><dd>{child.roles.join(' · ')}</dd></div></dl>
+      <p>{child.summary}</p>
+      {child.credits.length > 0 && <TrackCredits credits={child.credits} />}
+      {child.publicSources.length > 0 && <div class="edition-sources"><h3>Edition sources</h3><ul>{child.publicSources.map(source => <li><a href={source.href} target="_blank" rel="noopener noreferrer">{source.label} ↗</a><p class="muted">{source.supports}</p></li>)}</ul></div>}
+      {child.relatedRecordIds.length > 0 && <nav aria-label={`${child.title} related histories`}><h3>Related release histories</h3><ul>{child.relatedRecordIds.map(id => <li><a href={archiveHref(recordsById.get(id))}>{recordsById.get(id).title}</a></li>)}</ul></nav>}
+      <a class="permalink" href={archiveHref(record, child)}>Link to this release ↗</a>
+    </div>
+  </article>)}
+  {record.relatedRecordIds.length > 0 && <section class="archive-section"><h2>Related release histories</h2><ul>{record.relatedRecordIds.map(id => <li><a href={archiveHref(recordsById.get(id))}>{recordsById.get(id).title}</a></li>)}</ul></section>}
+  <section id="sources" class="archive-section"><p class="eyebrow">PUBLIC REFERENCES</p><h2>Sources & attribution</h2>
+    <p>Creative-history passages include Dixon’s recollections. Linked sources support the specific subjects described below.</p>
+    <ul class="source-list">{record.publicSources.map(item => <li><a href={item.href} target="_blank" rel="noopener noreferrer">{item.label} ↗</a><p>{item.supports}</p></li>)}</ul>
+  </section>
+</ArchiveLayout>

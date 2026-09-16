@@ -9,6 +9,7 @@ import {
   runtimeVideoErrorAction,
   runActivePlaybackRetry,
   runCommittedPlayback,
+  transportPlaybackForTab,
 } from '../src/lib/active-transport.mjs';
 
 test('runtime master-video failures route by intro phase, stage lease, and Cinema ownership', () => {
@@ -87,6 +88,20 @@ test('YouTube foundation and unsupported playback disable every active transport
   assert.deepEqual(activeTransportPolicy({ provider: 'youtube', mode: 'video' }), disabled);
   assert.deepEqual(activeTransportPolicy({ provider: 'music', mode: 'external' }), disabled);
   assert.deepEqual(activeTransportPolicy({ provider: 'unknown', mode: 'video' }), disabled);
+});
+
+test('the selected tab owns transport independently of the audible source', () => {
+  const decks = {
+    cinema: { provider: 'cinema', id: 'cinema-a', mode: 'video' },
+    music: { provider: 'music', id: 'music-a', mode: 'audio' },
+    media: { provider: 'media', id: 'media-a', mode: 'video' },
+  };
+
+  assert.deepEqual(transportPlaybackForTab('cinema', decks), decks.cinema);
+  assert.deepEqual(transportPlaybackForTab('music', decks), decks.music);
+  assert.deepEqual(transportPlaybackForTab('media', decks), decks.media);
+  assert.deepEqual(transportPlaybackForTab('youtube', decks), {});
+  assert.deepEqual(transportPlaybackForTab('credentials', decks), {});
 });
 
 test('active Play/Pause presentation derives visible text and accessible action from paused state', () => {

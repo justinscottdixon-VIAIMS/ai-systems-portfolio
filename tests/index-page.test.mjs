@@ -16,7 +16,6 @@ test('opening identity uses the approved centered institutional hierarchy', asyn
     'MUSIC / VIDEO PRODUCER',
     'SPATIAL AUDIO ENGINEER · SONGWRITER',
     'SOUND DESIGNER · VISUAL STORYTELLER',
-    'INNOVATOR · MOTIVATOR · CREATOR',
   ];
 
   for (const text of required) {
@@ -27,6 +26,7 @@ test('opening identity uses the approved centered institutional hierarchy', asyn
   assert.match(page, /text-center/);
   assert.doesNotMatch(page, /Principal AI Systems Architect & Creative Technologist bridging/);
   assert.doesNotMatch(page, /A\.K\.A\. VOYAGER/i);
+  assert.doesNotMatch(page, /INNOVATOR · MOTIVATOR · CREATOR/);
 
   const identity = page.indexOf('data-institutional-identity');
   const engine = page.indexOf('<HybridMediaEngine');
@@ -51,4 +51,10 @@ test('opening identity uses the compact institutional nameplate contract', async
   assert.match(css, /\.main--compact\s*\{/);
   assert.match(css, /\.institutional-header\s*\{/);
   assert.match(css, /\.institutional-roles\s*\{/);
+});
+
+test('credentials content has one canonical home inside the player', async () => {
+  const page = await readFile(pagePath, 'utf8');
+  assert.doesNotMatch(page, /import PublicationsAndCredits/);
+  assert.doesNotMatch(page, /<PublicationsAndCredits\s*\/>/);
 });

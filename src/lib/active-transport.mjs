@@ -30,6 +30,13 @@ const MEDIA = Object.freeze({
   repeat: false,
 });
 
+export function transportPlaybackForTab(activeTab, decks = {}) {
+  if (activeTab === 'cinema') return decks.cinema ? { ...decks.cinema } : {};
+  if (activeTab === 'music') return decks.music ? { ...decks.music } : {};
+  if (activeTab === 'media') return decks.media ? { ...decks.media } : {};
+  return {};
+}
+
 export function activeTransportPolicy(playback = {}) {
   if (!playback.id) return { ...DISABLED };
   if (playback.provider === 'cinema' && playback.mode === 'video') return { ...CINEMA };

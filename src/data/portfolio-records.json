@@ -1,0 +1,3687 @@
+{
+  "version": 1,
+  "records": [
+    {
+      "id": "cosmic-records-history",
+      "slug": "cosmic-records-history",
+      "title": "Cosmic Records — Catalogue History",
+      "displayArtistOrClient": "DJ’s Friction & Spice / Voyager / The Beat Brothers",
+      "category": "career",
+      "format": "Label and release dossier",
+      "dateDisplay": "Vinyl chronology begins January 1996",
+      "sortDate": "1996-01-01",
+      "era": "VINYL FOUNDATIONS",
+      "roles": [
+        "Artist",
+        "Composer",
+        "Producer",
+        "Catalogue Participant"
+      ],
+      "summary": "Seventeen Cosmic releases connect the early Friction & Spice recordings with the emergence of Voyager. Artists and titles follow Dixon’s corrected archive. Individual release dates remain qualified where unresolved.",
+      "status": "verification-pending",
+      "evidenceLevel": "owner-approved-archive",
+      "catalog": {
+        "label": "Cosmic Records archive"
+      },
+      "presentation": {
+        "kind": "none"
+      },
+      "gallery": [
+        {
+          "kind": "image",
+          "src": "/reference/cosmic-002-approved.png",
+          "alt": "DJ’s Friction & Spice — Pure / Journees: approved vinyl presentation",
+          "caption": "Artist-approved reconstructed presentation; original label photograph is the archival source."
+        }
+      ],
+      "sections": [
+        {
+          "title": "Groove Me: the first studio",
+          "items": [
+            {
+              "title": "October 1995",
+              "detail": "Dixon recalls building Groove Me while testing newly arrived equipment in Merritt Island."
+            },
+            {
+              "title": "A hardware ensemble",
+              "detail": "The Bass Station Rack supplied the lead voice; Cakewalk sequenced external instruments through the Mackie 1604."
+            },
+            {
+              "title": "Firestone",
+              "detail": "Hearing the promo pressing in the club gave Dixon confidence in the mix’s translation and more freedom to focus on writing."
+            }
+          ]
+        },
+        {
+          "title": "The sound of Voyager",
+          "items": [
+            {
+              "title": "COSMIC 009",
+              "detail": "Dixon identifies the You Make Me Feel So Good remix as a turning point in sound design and composition."
+            },
+            {
+              "title": "COSMIC 012",
+              "detail": "The extended Ah Yeah remix used the larger console as a visual framework for an emotional arrangement."
+            },
+            {
+              "title": "COSMIC 017",
+              "detail": "Time Travel marks his first entirely Logic-sequenced release, in his account, alongside a move to digital mixing."
+            }
+          ]
+        },
+        {
+          "title": "Credits belong to tracks",
+          "items": [
+            {
+              "title": "The E.P.",
+              "detail": "Explorations pairs Dixon with Jason Morgan; Go With The Flow with Jeff Alderson; Dark Knight with Chris Hand."
+            },
+            {
+              "title": "Get Jazzed Up",
+              "detail": "The label credits J.S. Dixon for producing and mixing In The Mind. The licensed Alright versions carry different production credits."
+            },
+            {
+              "title": "Release chronology",
+              "detail": "January 1996 begins the artist-confirmed vinyl chronology. Copyright dates and provisional catalog years are not exact release dates."
+            }
+          ]
+        }
+      ],
+      "publicSources": [
+        {
+          "label": "Artist source photographs",
+          "href": "https://drive.google.com/drive/folders/1mVnF4skqn2V0ox57tQXu8UrTVVV-iVpi",
+          "supports": "Label and pressing references supplied by the artist."
+        }
+      ],
+      "public": true,
+      "children": [
+        {
+          "id": "groove-me",
+          "title": "Groove Me",
+          "artist": "DJ’s Friction & Spice",
+          "date": "Exact date unresolved",
+          "catalogNumber": "COSMIC 001",
+          "format": "12-inch vinyl",
+          "roles": [
+            "Co-writer",
+            "Co-producer",
+            "Co-arranger"
+          ],
+          "summary": "Groove Me (Dub); Groove Me (Original).",
+          "gallery": [
+            {
+              "kind": "image",
+              "src": "/reference/cosmic-001-approved.png",
+              "alt": "DJ’s Friction & Spice — Groove Me: approved vinyl presentation",
+              "caption": "Artist-approved reconstructed presentation; original label photograph is the archival source."
+            }
+          ]
+        },
+        {
+          "id": "cosmic-002",
+          "title": "Pure / Journees",
+          "artist": "DJ’s Friction & Spice",
+          "date": "Exact date unresolved",
+          "catalogNumber": "COSMIC 002",
+          "format": "12-inch vinyl",
+          "roles": [
+            "Writer",
+            "Arranger",
+            "Co-producer"
+          ],
+          "summary": "Pure; Journees; Cosmic Beats.",
+          "gallery": [
+            {
+              "kind": "image",
+              "src": "/reference/cosmic-002-approved.png",
+              "alt": "DJ’s Friction & Spice — Pure / Journees: approved vinyl presentation",
+              "caption": "Artist-approved reconstructed presentation; original label photograph is the archival source."
+            }
+          ]
+        },
+        {
+          "id": "cosmic-003",
+          "title": "You Make Me Feel So Good",
+          "artist": "DJ’s Friction & Spice",
+          "date": "©1996 label",
+          "catalogNumber": "COSMIC 003",
+          "format": "12-inch vinyl",
+          "roles": [
+            "Co-writer",
+            "Co-producer",
+            "Co-arranger"
+          ],
+          "summary": "You Make Me Feel So Good (Friction’s Original Concept); You Make Me Feel So Good (Spice’s Progressive Mix).",
+          "gallery": [
+            {
+              "kind": "image",
+              "src": "/reference/cosmic-003-approved.png",
+              "alt": "DJ’s Friction & Spice — You Make Me Feel So Good: approved vinyl presentation",
+              "caption": "Artist-approved reconstructed presentation; original label photograph is the archival source."
+            }
+          ]
+        },
+        {
+          "id": "cosmic-004",
+          "title": "Ah Yeah",
+          "artist": "The Beat Brothers",
+          "date": "©1996 label",
+          "catalogNumber": "COSMIC 004",
+          "format": "12-inch vinyl",
+          "roles": [
+            "Co-writer",
+            "Co-producer",
+            "Co-arranger"
+          ],
+          "summary": "Ah Yeah; Give Me the Music.",
+          "gallery": [
+            {
+              "kind": "image",
+              "src": "/reference/cosmic-004-approved.png",
+              "alt": "The Beat Brothers — Ah Yeah: approved vinyl presentation",
+              "caption": "Artist-approved reconstructed presentation; original label photograph is the archival source."
+            }
+          ]
+        },
+        {
+          "id": "cosmic-005",
+          "title": "Trixta / Friction",
+          "artist": "Voyager",
+          "date": "1996 — public listing",
+          "catalogNumber": "COSMIC 005",
+          "format": "12-inch vinyl",
+          "roles": [
+            "Artist"
+          ],
+          "summary": "Trixta; Friction.",
+          "gallery": [
+            {
+              "kind": "pending",
+              "alt": "Trixta / Friction",
+              "caption": "Original artwork awaiting source reconciliation."
+            }
+          ]
+        },
+        {
+          "id": "cosmic-006",
+          "title": "Funkee Ass Breaks Vol. 1",
+          "artist": "DJ’s Friction & Spice",
+          "date": "©1996 label",
+          "catalogNumber": "COSMIC 006",
+          "format": "12-inch vinyl",
+          "roles": [
+            "Co-writer",
+            "Co-producer",
+            "Co-arranger"
+          ],
+          "summary": "Electronic Energy; Digital Overload; Get Down To The Funky Beat.",
+          "gallery": [
+            {
+              "kind": "image",
+              "src": "/reference/cosmic-006-approved.png",
+              "alt": "DJ’s Friction & Spice — Funkee Ass Breaks Vol. 1, Cosmic 006, with a white sleeve lying behind the vinyl record",
+              "caption": "Artist-approved reconstructed presentation, flat-sleeve treatment. Original label photograph remains the archival source."
+            }
+          ]
+        },
+        {
+          "id": "cosmic-007",
+          "title": "The Beat / Relax — also includes Slider",
+          "artist": "Voyager",
+          "date": "©1996 label",
+          "catalogNumber": "COSMIC 007",
+          "format": "12-inch vinyl",
+          "roles": [
+            "Artist"
+          ],
+          "summary": "The Beat; Relax; Slider.",
+          "gallery": [
+            {
+              "kind": "pending",
+              "alt": "The Beat / Relax — also includes Slider",
+              "caption": "Original artwork awaiting source reconciliation."
+            }
+          ]
+        },
+        {
+          "id": "cosmic-008",
+          "title": "The Rhythm",
+          "artist": "DJ’s Friction & Spice",
+          "date": "©1996 label",
+          "catalogNumber": "COSMIC 008",
+          "format": "12-inch vinyl",
+          "roles": [
+            "Co-writer / original",
+            "Co-producer / original"
+          ],
+          "summary": "The Rhythm (Cosmic’s Funky Mix); The Rhythm (DJ Who’s Progressive Mix).",
+          "gallery": [
+            {
+              "kind": "pending",
+              "alt": "The Rhythm",
+              "caption": "Original artwork awaiting source reconciliation."
+            }
+          ]
+        },
+        {
+          "id": "cosmic-009",
+          "title": "Remix LP",
+          "artist": "DJ’s Friction & Spice",
+          "date": "1996 — public listing",
+          "catalogNumber": "COSMIC 009",
+          "format": "12-inch vinyl",
+          "roles": [
+            "Artist"
+          ],
+          "summary": "Groove Me (Remix); You Make Me Feel So Good (Remix).",
+          "gallery": [
+            {
+              "kind": "pending",
+              "alt": "Remix LP",
+              "caption": "Original artwork awaiting source reconciliation."
+            }
+          ]
+        },
+        {
+          "id": "cosmic-010",
+          "title": "Lost Worlds / Ultra Intense",
+          "artist": "Voyager",
+          "date": "©1997 label",
+          "catalogNumber": "COSMIC 010",
+          "format": "12-inch vinyl",
+          "roles": [
+            "Co-writer",
+            "Co-producer"
+          ],
+          "summary": "Lost Worlds; Ultra Intense.",
+          "gallery": [
+            {
+              "kind": "pending",
+              "alt": "Lost Worlds / Ultra Intense",
+              "caption": "Original artwork awaiting source reconciliation."
+            }
+          ]
+        },
+        {
+          "id": "cosmic-011",
+          "title": "Rhythm Rockin’ / Future Funk",
+          "artist": "DJ’s Friction & Spice",
+          "date": "1997 — public listing",
+          "catalogNumber": "COSMIC 011",
+          "format": "12-inch vinyl",
+          "roles": [
+            "Artist"
+          ],
+          "summary": "Rhythm Rockin’; Future Funk.",
+          "gallery": [
+            {
+              "kind": "pending",
+              "alt": "Rhythm Rockin’ / Future Funk",
+              "caption": "Original artwork awaiting source reconciliation."
+            }
+          ]
+        },
+        {
+          "id": "cosmic-012",
+          "title": "Acid Drop / Ah Yeah (RMX)",
+          "artist": "The Beat Brothers",
+          "date": "1997 label",
+          "catalogNumber": "COSMIC 012",
+          "format": "12-inch vinyl",
+          "roles": [
+            "Duo writing / production credit"
+          ],
+          "summary": "Acid Drop; Ah Yeah (RMX).",
+          "gallery": [
+            {
+              "kind": "pending",
+              "alt": "Acid Drop / Ah Yeah (RMX)",
+              "caption": "Original artwork awaiting source reconciliation."
+            }
+          ]
+        },
+        {
+          "id": "cosmic-013",
+          "title": "Work 4 Love",
+          "artist": "Three Wise Monkeys Meet DJ’s Friction & Spice",
+          "date": "1997 — public listing",
+          "catalogNumber": "COSMIC 013",
+          "format": "12-inch vinyl",
+          "roles": [
+            "Collaborator"
+          ],
+          "summary": "Work 4 Love (The Orlando Breaks Mix); Work 4 Love (Back To The Old School Mix).",
+          "gallery": [
+            {
+              "kind": "pending",
+              "alt": "Work 4 Love",
+              "caption": "Original artwork awaiting source reconciliation."
+            }
+          ]
+        },
+        {
+          "id": "cosmic-014",
+          "title": "The E.P.",
+          "artist": "DJ’s Friction & Spice",
+          "date": "©1998 label",
+          "catalogNumber": "COSMIC 014",
+          "format": "12-inch vinyl",
+          "roles": [
+            "Co-writer",
+            "Co-arranger",
+            "Production credited to Friction & Spice"
+          ],
+          "summary": "Go With The Flow; Explorations; Dark Knight.",
+          "gallery": [
+            {
+              "kind": "pending",
+              "alt": "The E.P.",
+              "caption": "Original artwork awaiting source reconciliation."
+            }
+          ],
+          "credits": [
+            {
+              "title": "Go With The Flow",
+              "scope": "Logo side",
+              "roles": [
+                "Co-writer",
+                "Co-arranger"
+              ],
+              "evidence": "Artist-supplied label photograph transcribed in the master.",
+              "collaborators": "Jeff Alderson — co-writer and co-arranger",
+              "note": "Release-wide production credit: Friction & Spice."
+            },
+            {
+              "title": "Explorations",
+              "scope": "Logo side",
+              "roles": [
+                "Co-writer",
+                "Co-arranger"
+              ],
+              "evidence": "Artist-supplied label photograph transcribed in the master.",
+              "collaborators": "Jason Morgan — co-writer and co-arranger",
+              "note": "Release-wide production credit: Friction & Spice."
+            },
+            {
+              "title": "Dark Knight",
+              "scope": "This side",
+              "roles": [
+                "Co-writer",
+                "Co-arranger"
+              ],
+              "evidence": "Artist-supplied label photograph transcribed in the master.",
+              "collaborators": "Chris Hand — co-writer and co-arranger",
+              "note": "Release-wide production credit: Friction & Spice."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Discogs edition record",
+              "href": "https://www.discogs.com/release/64237",
+              "supports": "Edition and credit transcription retained in the master; database evidence."
+            }
+          ]
+        },
+        {
+          "id": "cosmic-015",
+          "title": "Pure Frictions Groove",
+          "artist": "Voyager",
+          "date": "1998 — public listing",
+          "catalogNumber": "COSMIC 015",
+          "format": "12-inch vinyl",
+          "roles": [
+            "Artist"
+          ],
+          "summary": "Original Mix; Thorn’s Break; Friction’s Groove.",
+          "gallery": [
+            {
+              "kind": "pending",
+              "alt": "Pure Frictions Groove",
+              "caption": "Original artwork awaiting source reconciliation."
+            }
+          ]
+        },
+        {
+          "id": "cosmic-016",
+          "title": "Get Jazzed Up",
+          "artist": "DJ’s Friction & Spice",
+          "date": "1998 — public listing",
+          "catalogNumber": "COSMIC 016",
+          "format": "12-inch vinyl",
+          "roles": [
+            "Producer / mixer: In The Mind"
+          ],
+          "summary": "In The Mind; Alright (Breakbeat Mix); Alright (Hybrid Analogue Mix).",
+          "gallery": [
+            {
+              "kind": "pending",
+              "alt": "Get Jazzed Up",
+              "caption": "Original artwork awaiting source reconciliation."
+            }
+          ],
+          "credits": [
+            {
+              "title": "In The Mind",
+              "scope": "A1",
+              "roles": [
+                "Producer",
+                "Mixer"
+              ],
+              "evidence": "Artist-supplied label photograph transcribed in the master.",
+              "note": "B1 Alright (Breakbeat Mix) and B2 Alright (Hybrid Analogue Mix) are produced and mixed by L. Mullin & M. Truman and licensed from Final Phase Records; those credits are not assigned to Dixon."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Discogs edition record",
+              "href": "https://www.discogs.com/release/50155",
+              "supports": "Edition and credit transcription retained in the master; database evidence."
+            }
+          ]
+        },
+        {
+          "id": "cosmic-017",
+          "title": "Time Travel E.P.",
+          "artist": "Voyager",
+          "date": "1999 label",
+          "catalogNumber": "COSMIC 017",
+          "format": "12-inch vinyl",
+          "roles": [
+            "Writer",
+            "Producer"
+          ],
+          "summary": "Double-title release; exact track titles awaiting primary-label confirmation.",
+          "gallery": [
+            {
+              "kind": "pending",
+              "alt": "Time Travel E.P.",
+              "caption": "Original artwork awaiting source reconciliation."
+            }
+          ]
+        }
+      ],
+      "relatedRecordIds": [
+        "groove-me-anniversary"
+      ]
+    },
+    {
+      "id": "time-travel",
+      "slug": "time-travel",
+      "title": "Time Travel / Time Travel, Part 2",
+      "displayArtistOrClient": "Voyager",
+      "category": "music",
+      "format": "Two-track EP",
+      "dateDisplay": "July 11, 1999",
+      "sortDate": "1999-07-11",
+      "era": "TRANSATLANTIC PROGRESSIVE",
+      "roles": [
+        "Artist",
+        "Composer"
+      ],
+      "summary": "A two-part Voyager EP released through Voyager Recordings and later connected to the film soundtrack record for Stark Raving Mad.",
+      "status": "released",
+      "evidenceLevel": "corroborated-public",
+      "catalog": {
+        "label": "Voyager Recordings",
+        "catalogNumber": "VR008",
+        "barcode": "198704703652"
+      },
+      "presentation": {
+        "kind": "none"
+      },
+      "publicSources": [
+        {
+          "label": "MusicBrainz release record",
+          "href": "https://musicbrainz.org/release/a8e6c051-cc16-4926-a7d3-b077bbd0f000",
+          "supports": "Title, artist, label, catalog number, barcode and release date"
+        },
+        {
+          "label": "IMDb soundtrack record",
+          "href": "https://www.imdb.com/title/tt0286152/soundtrack/",
+          "supports": "Time Travel soundtrack listing, writer, performer alias and label"
+        }
+      ],
+      "public": true,
+      "gallery": [
+        {
+          "kind": "pending",
+          "alt": "Image research placeholder for Time Travel / Time Travel, Part 2",
+          "caption": "Associated artwork and documentary images are being sourced and cleared."
+        }
+      ]
+    },
+    {
+      "id": "one-voyager-remix",
+      "slug": "one-voyager-remix",
+      "title": "One (Voyager Remix)",
+      "displayArtistOrClient": "Voyager",
+      "category": "music",
+      "format": "Remix / compilation appearance",
+      "dateDisplay": "February 26, 2001",
+      "sortDate": "2001-02-26",
+      "era": "TRANSATLANTIC PROGRESSIVE",
+      "roles": [
+        "Remixer"
+      ],
+      "summary": "The Voyager remix of One as documented on Global Underground 019: John Digweed in Los Angeles.",
+      "status": "released",
+      "evidenceLevel": "attributed-public",
+      "catalog": {},
+      "presentation": {
+        "kind": "none"
+      },
+      "publicSources": [
+        {
+          "label": "MusicBrainz compilation record",
+          "href": "https://musicbrainz.org/release/cbbd0c31-9d5f-416b-b916-ccb475a10d2e",
+          "supports": "Voyager remix attribution and compilation date"
+        }
+      ],
+      "public": true,
+      "gallery": [
+        {
+          "kind": "pending",
+          "alt": "Image research placeholder for One (Voyager Remix)",
+          "caption": "Associated artwork and documentary images are being sourced and cleared."
+        }
+      ],
+      "sections": [
+        {
+          "title": "The recording and its placement",
+          "items": [
+            {
+              "title": "Aria — One (Voyager Remix)",
+              "detail": "The remix appears on Global Underground 019: John Digweed in Los Angeles. The Fire single is a separate edition with its own original-production and remix credits."
+            },
+            {
+              "title": "Exact version",
+              "detail": "Compilation placement does not make Dixon the compiler or DJ mixer of Global Underground 019."
+            }
+          ]
+        }
+      ],
+      "relatedRecordIds": [
+        "singles-remixes",
+        "compilation-appearances"
+      ]
+    },
+    {
+      "id": "two-worlds",
+      "slug": "two-worlds",
+      "title": "Two Worlds",
+      "displayArtistOrClient": "Mike Hiratzka & Justin Scott Dixon",
+      "category": "music",
+      "format": "Single",
+      "dateDisplay": "Digital listing: 2003 · vinyl edition: 2004 (database)",
+      "sortDate": "2003-10-13",
+      "era": "TRANSATLANTIC PROGRESSIVE",
+      "roles": [
+        "Artist",
+        "Producer"
+      ],
+      "summary": "A collaboration with Mike Hiratzka released through Propulsion Records.",
+      "status": "released",
+      "evidenceLevel": "corroborated-public",
+      "catalog": {
+        "label": "Propulsion Records"
+      },
+      "presentation": {
+        "kind": "none"
+      },
+      "publicSources": [
+        {
+          "label": "Beatport release record",
+          "href": "https://www.beatport.com/artist/justin-scott-dixon/2884/releases",
+          "supports": "Artists, label and release date"
+        },
+        {
+          "label": "Apple Music artist record",
+          "href": "https://music.apple.com/us/artist/justin-scott-dixon/135623570",
+          "supports": "Single title, artist identity and release year"
+        },
+        {
+          "label": "Discogs — PRP002 vinyl edition",
+          "href": "https://www.discogs.com/release/264316",
+          "supports": "Database reports 2004 vinyl edition and Original Mix / Descent Remix; not the digital release date."
+        }
+      ],
+      "public": true,
+      "gallery": [
+        {
+          "kind": "pending",
+          "alt": "Image research placeholder for Two Worlds",
+          "caption": "Associated artwork and documentary images are being sourced and cleared."
+        }
+      ],
+      "sections": [
+        {
+          "title": "Separate edition dates",
+          "items": [
+            {
+              "title": "Digital catalog listing",
+              "detail": "The retained digital catalog research reports October 13, 2003. That date is not assigned to the vinyl pressing."
+            },
+            {
+              "title": "Propulsion PRP002",
+              "detail": "The reviewed database lists a 2004 12-inch edition pairing Original Mix and Descent Remix. The digital and vinyl dates remain separate; original packaging verification is outstanding."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "someone-else-bloom",
+      "slug": "someone-else-bloom",
+      "title": "Someone Else — Bloom",
+      "displayArtistOrClient": "Voyager / Gabriel & Dresden",
+      "category": "music",
+      "format": "Track / mix-compilation appearance",
+      "dateDisplay": "2004",
+      "sortDate": "2004-01-01",
+      "era": "TRANSATLANTIC PROGRESSIVE",
+      "roles": [
+        "Producer",
+        "Composer"
+      ],
+      "summary": "The Voyager track Someone Else as included on Gabriel & Dresden's Bloom, with production and composition attribution.",
+      "status": "released",
+      "evidenceLevel": "corroborated-public",
+      "catalog": {},
+      "presentation": {
+        "kind": "none"
+      },
+      "publicSources": [
+        {
+          "label": "MusicBrainz release record",
+          "href": "https://musicbrainz.org/release/de6dffe0-bd36-4a55-b172-c87b9c773095",
+          "supports": "Track, artist and producer attribution"
+        },
+        {
+          "label": "AllMusic credit index",
+          "href": "https://www.allmusic.com/artist/justin-scott-dixon-mn0000311941",
+          "supports": "Bloom production and composition credit listing"
+        }
+      ],
+      "public": true,
+      "gallery": [
+        {
+          "kind": "pending",
+          "alt": "Image research placeholder for Someone Else — Bloom",
+          "caption": "Associated artwork and documentary images are being sourced and cleared."
+        }
+      ],
+      "sections": [
+        {
+          "title": "The compilation appearance",
+          "items": [
+            {
+              "title": "Disc 1 · track 8",
+              "detail": "The cited CD listing places Voyager’s Someone Else at this position. Justin Scott Dixon is credited with composition and production of the recording; Gabriel & Dresden compiled and mixed Bloom."
+            },
+            {
+              "title": "Edition distinction",
+              "detail": "The 2004 compilation appearance is not an original-recording date. Digital and CD running orders may differ."
+            }
+          ]
+        }
+      ],
+      "relatedRecordIds": [
+        "compilation-appearances"
+      ]
+    },
+    {
+      "id": "audio-shock",
+      "slug": "audio-shock",
+      "title": "Audio Shock",
+      "displayArtistOrClient": "Justin Dixon / Voyager",
+      "category": "product",
+      "format": "Native Instruments Reaktor ensemble",
+      "dateDisplay": "2005–2006",
+      "sortDate": "2005-10-28",
+      "era": "DSP & TOOL DESIGN",
+      "roles": [
+        "Designer",
+        "Developer"
+      ],
+      "summary": "A Reaktor stereo M/S mixing and finishing ensemble documented through surviving builds and Native Instruments User Library records.",
+      "status": "archived",
+      "evidenceLevel": "primary-public",
+      "catalog": {},
+      "presentation": {
+        "kind": "none"
+      },
+      "publicSources": [
+        {
+          "label": "Native Instruments User Library — Audio Shock 4.0",
+          "href": "https://www.native-instruments.com/en/reaktor-community/reaktor-user-library/entry/show/4043/",
+          "supports": "Title, author identity and October 2005 library record"
+        },
+        {
+          "label": "Native Instruments User Library — M/S Mixing",
+          "href": "https://www.native-instruments.com/en/reaktor-community/reaktor-user-library/entry/show/4045/",
+          "supports": "M/S design description, author identity and February 2006 record"
+        }
+      ],
+      "public": true,
+      "gallery": [
+        {
+          "kind": "image",
+          "src": "/reference/audio-shock-interface.jpg",
+          "alt": "Audio Shock Reaktor ensemble interface showing multiband expansion, dynamics and stereo signal controls",
+          "caption": "Surviving Audio Shock interface capture from the owner archive."
+        }
+      ]
+    },
+    {
+      "id": "unexpected",
+      "slug": "unexpected",
+      "title": "Unexpected",
+      "displayArtistOrClient": "Feature film directed by Sr. Premil",
+      "category": "film",
+      "format": "Feature-film post-production sound",
+      "dateDisplay": "2026",
+      "sortDate": "2026-01-01",
+      "era": "CURRENT FILM & MEDIA",
+      "roles": [
+        "Post-Production Sound",
+        "Re-Recording Mixer",
+        "Supervising Sound Editor",
+        "Music / Music Supervisor — Uncredited"
+      ],
+      "summary": "Feature-film sound work with public post-production credits and a released Prime Video listing. Music-related roles retain the public uncredited designation.",
+      "status": "released",
+      "evidenceLevel": "corroborated-public",
+      "catalog": {},
+      "presentation": {
+        "kind": "none"
+      },
+      "publicSources": [
+        {
+          "label": "Prime Video release",
+          "href": "https://www.amazon.com/gp/video/detail/0TZTA6DG1P3D0WPKRUKQTMSG14",
+          "supports": "Released title, director, year and availability"
+        },
+        {
+          "label": "IMDb full credits",
+          "href": "https://www.imdb.com/title/tt37786123/fullcredits/",
+          "supports": "Named post-production roles and uncredited music designations"
+        }
+      ],
+      "public": true,
+      "gallery": [
+        {
+          "kind": "pending",
+          "alt": "Image research placeholder for Unexpected",
+          "caption": "Associated artwork and documentary images are being sourced and cleared."
+        }
+      ],
+      "sections": [
+        {
+          "title": "Directing the score",
+          "items": [
+            {
+              "title": "A musical foundation",
+              "detail": "Dixon used his own musical archive, narrative direction and film frames to guide AI-assisted score development."
+            },
+            {
+              "title": "Prompting and selection",
+              "detail": "ChatGPT helped articulate scene requirements; Suno supplied musical material. Dixon selected cues by their fit with the story."
+            },
+            {
+              "title": "Editing to picture",
+              "detail": "Dixon shaped the cues to the film’s timing, establishing tone in the opening and carrying transitions from suspense into vulnerability."
+            }
+          ]
+        },
+        {
+          "title": "Creative range",
+          "items": [
+            {
+              "title": "Artist account",
+              "detail": "AI expanded what Dixon could realize beyond what he could personally perform or produce alone. His taste, experience and editorial judgment guided the result."
+            },
+            {
+              "title": "Emotional continuity",
+              "detail": "The opening prepared viewers for the larger journey. Emotional cues helped the film settle after high-impact action."
+            },
+            {
+              "title": "Process and credit",
+              "detail": "This is the artist’s account of his creative process; formal screen credits are documented separately."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "screen-credits-history",
+      "slug": "screen-credits-history",
+      "title": "Screen Credits — Selected History",
+      "displayArtistOrClient": "Film, television and soundtrack work",
+      "category": "film",
+      "format": "Newest-first screen-credit dossier",
+      "dateDisplay": "2002–2026",
+      "sortDate": "2002-01-01",
+      "era": "SCREEN & MEDIA HISTORY",
+      "roles": [
+        "Re-Recording Mixer",
+        "Sound Mixer",
+        "Supervising Sound Editor",
+        "Sound Designer",
+        "Music Supervisor",
+        "Composer"
+      ],
+      "summary": "A newest-first history of currently located public screen and soundtrack credits. Every title retains its exact credited or uncredited designation and will gain artwork, stills and end-credit evidence as those assets are cleared.",
+      "status": "verification-pending",
+      "evidenceLevel": "attributed-public",
+      "catalog": {},
+      "presentation": {
+        "kind": "none"
+      },
+      "gallery": [
+        {
+          "kind": "pending",
+          "alt": "Film posters, production stills and end-credit image gallery",
+          "caption": "Title artwork, authorized stills and primary end-credit frames are being sourced title by title."
+        }
+      ],
+      "sections": [
+        {
+          "title": "Filmography — newest first",
+          "intro": "Current public anchors. Dates, role wording and release status will be reconciled against primary end credits and production records.",
+          "items": [
+            {
+              "date": "2026",
+              "title": "Unexpected",
+              "detail": "Post-production sound, re-recording mixer and supervising sound editor; music and music-supervisor listings retain the uncredited designation."
+            },
+            {
+              "date": "2020",
+              "title": "Wild Ride — Tuk Tuk",
+              "detail": "Sound designer, sound mixer and music supervisor listings."
+            },
+            {
+              "date": "2010",
+              "title": "Inale",
+              "detail": "Re-recording mixer, sound-effects editor, sound mixer and supervising sound editor listings."
+            },
+            {
+              "date": "2004",
+              "title": "The Works",
+              "detail": "Sound mixer listing."
+            },
+            {
+              "date": "2002",
+              "title": "Stark Raving Mad",
+              "detail": "Soundtrack listing for Time Travel, written by Justin Scott Dixon and performed by Voyager."
+            }
+          ]
+        }
+      ],
+      "publicSources": [
+        {
+          "label": "IMDb — Unexpected full credits",
+          "href": "https://www.imdb.com/title/tt37786123/fullcredits/",
+          "supports": "Post-production and uncredited music-role listings"
+        },
+        {
+          "label": "IMDb — Wild Ride full credits",
+          "href": "https://www.imdb.com/title/tt11657016/fullcredits/",
+          "supports": "Sound and music-supervisor listings"
+        },
+        {
+          "label": "IMDb — Inale full credits",
+          "href": "https://www.imdb.com/title/tt1744772/fullcredits/",
+          "supports": "Sound-department role listings"
+        },
+        {
+          "label": "IMDb — The Works full credits",
+          "href": "https://www.imdb.com/title/tt0379033/fullcredits/",
+          "supports": "Sound-mixer listing"
+        },
+        {
+          "label": "IMDb — Stark Raving Mad soundtrack",
+          "href": "https://www.imdb.com/title/tt0286152/soundtrack/",
+          "supports": "Time Travel soundtrack, writer and performer listing"
+        }
+      ],
+      "public": true
+    },
+    {
+      "id": "chart-history",
+      "slug": "chart-history",
+      "title": "Charts & reception",
+      "displayArtistOrClient": "Justin Scott Dixon / Voyager",
+      "category": "career",
+      "format": "Archive dossier",
+      "dateDisplay": "1999–2002",
+      "sortDate": "1999-01-01",
+      "era": "DOCUMENTED RECEPTION",
+      "roles": [
+        "Artist"
+      ],
+      "summary": "Chart achievements are attributed to the exact release and chart category. Remix appearances are distinguished from an independently charted remix.",
+      "status": "archived",
+      "evidenceLevel": "owner-approved-archive",
+      "public": true,
+      "catalog": {},
+      "presentation": {
+        "kind": "none"
+      },
+      "gallery": [
+        {
+          "kind": "pending",
+          "alt": "Charts & reception",
+          "caption": "Original artwork awaiting source reconciliation."
+        }
+      ],
+      "sections": [
+        {
+          "title": "Voyager — Time Travel",
+          "items": [
+            {
+              "title": "UK Independent Singles · No. 30 / UK Singles · No. 93",
+              "detail": "Coded CODE6, November 1999; these figures are not assigned to the Cosmic pressing."
+            }
+          ]
+        },
+        {
+          "title": "Voyager — Panic EP",
+          "items": [
+            {
+              "title": "UK Dance Singles · No. 19 / Independent Singles · No. 25",
+              "detail": "April 2000. Weekly and title-history date labels differ; summary uses month precision."
+            }
+          ]
+        },
+        {
+          "title": "Aria — One",
+          "items": [
+            {
+              "title": "UK Dance Singles · No. 14 / Independent Singles · No. 17 / Singles · No. 82",
+              "detail": "Fire ERIF008, April 2001. Release contains Voyager remix; ranking belongs to the release."
+            }
+          ]
+        },
+        {
+          "title": "Origin — Refined Intricacy",
+          "items": [
+            {
+              "title": "UK Independent Singles · No. 29",
+              "detail": "Steel Yard SYW006, February 2000. Charted edition contains the Voyager remix."
+            }
+          ]
+        },
+        {
+          "title": "Bedrock — Beautiful Strange",
+          "items": [
+            {
+              "title": "UK Independent Albums · No. 17",
+              "detail": "BS1001CD, March 2001, includes Voyager’s Platinum Mix. Preserve the chart’s Albums classification."
+            }
+          ]
+        },
+        {
+          "title": "Francesco Farfa — The Search",
+          "items": [
+            {
+              "title": "UK Dance Singles · No. 30 / Independent Singles · No. 44",
+              "detail": "PFT031, March 2002. Voyager-remix association is catalog corroborated; physical-label match remains open."
+            }
+          ]
+        },
+        {
+          "title": "Pure and Northern Exposure",
+          "items": [
+            {
+              "title": "Compilation placement",
+              "detail": "Pure (Friction’s Groove) appears on disc two, track five of Northern Exposure: Expeditions, between Polarstern and Gamelan."
+            },
+            {
+              "title": "Compilation chart",
+              "detail": "Official Charts records a UK Compilations peak of No. 6. This is a compilation result, not a Pure singles ranking."
+            },
+            {
+              "title": "Artist recollection",
+              "detail": "Dixon recalls handing Sasha a Pure test pressing during a Firestone performance; Sasha played it, and it was later selected for the compilation."
+            }
+          ]
+        },
+        {
+          "title": "Press context",
+          "items": [
+            {
+              "title": "AllMusic",
+              "detail": "John Bush names Voyager among the compilation’s less-obvious selections. The review concerns the compilation rather than a standalone Pure release."
+            },
+            {
+              "title": "Contemporary coverage",
+              "detail": "The Mix rated Expeditions 7/10 in May 1999. Hi-Fi World covered it in April 1999; Orlando Weekly’s May review was critical overall."
+            },
+            {
+              "title": "Unresolved chart leads",
+              "detail": "No primary ranking was established for Tribe ’n’ Trance. Pure’s reported No. 154 remains explicitly attributed to Chart Log UK."
+            }
+          ]
+        }
+      ],
+      "children": [],
+      "publicSources": [
+        {
+          "label": "Voyager — Time Travel",
+          "href": "https://www.officialcharts.com/songs/voyager-time-travel/",
+          "supports": "UK Independent Singles · No. 30 / UK Singles · No. 93"
+        },
+        {
+          "label": "Voyager — Panic EP",
+          "href": "https://www.officialcharts.com/songs/voyager-panic-ep/",
+          "supports": "UK Dance Singles · No. 19 / Independent Singles · No. 25"
+        },
+        {
+          "label": "Aria — One",
+          "href": "https://www.officialcharts.com/songs/aria-one/",
+          "supports": "UK Dance Singles · No. 14 / Independent Singles · No. 17 / Singles · No. 82"
+        },
+        {
+          "label": "Origin — Refined Intricacy",
+          "href": "https://www.officialcharts.com/songs/origin-refined-intricacy/",
+          "supports": "UK Independent Singles · No. 29"
+        },
+        {
+          "label": "Bedrock — Beautiful Strange",
+          "href": "https://www.officialcharts.com/albums/bedrock-beautiful-strange/",
+          "supports": "UK Independent Albums · No. 17"
+        },
+        {
+          "label": "Francesco Farfa — The Search",
+          "href": "https://www.officialcharts.com/songs/francesco-farfa-the-search/",
+          "supports": "UK Dance Singles · No. 30 / Independent Singles · No. 44"
+        },
+        {
+          "label": "Northern Exposure: chart history",
+          "href": "https://www.officialcharts.com/albums/various-artists-northern-exposure-sasha-jon-digweed/",
+          "supports": "Compilation-level chart record"
+        },
+        {
+          "label": "AllMusic: Expeditions",
+          "href": "https://www.allmusic.com/album/northern-exposure-expeditions-mw0000666154",
+          "supports": "Review and track placement"
+        },
+        {
+          "label": "The Mix: May 1999",
+          "href": "https://www.worldradiohistory.com/UK/The-Mix/The-Mix-UK-1999-05-S-OCR.pdf",
+          "supports": "Contemporary review, printed page 73"
+        },
+        {
+          "label": "Hi-Fi World: April 1999",
+          "href": "https://www.worldradiohistory.com/UK/Hi-Fi-World/1999/Hi-Fi-World-1999-04.pdf",
+          "supports": "Contemporary coverage, printed page 84"
+        },
+        {
+          "label": "Orlando Weekly review",
+          "href": "https://www.orlandoweekly.com/music/review-northern-exposure-3-expeditions-2314359/",
+          "supports": "Critical contemporary review"
+        },
+        {
+          "label": "Chart Log UK 2001",
+          "href": "https://www.zobbel.de/cluk/CLUK2001.pdf",
+          "supports": "Secondary report for Pure, not primary corroboration"
+        }
+      ]
+    },
+    {
+      "id": "studio-evolution",
+      "slug": "studio-evolution",
+      "title": "Studio evolution",
+      "displayArtistOrClient": "Justin Scott Dixon / Voyager",
+      "category": "career",
+      "format": "Archive dossier",
+      "dateDisplay": "Early foundations → studio practice",
+      "sortDate": "1995-10-01",
+      "era": "ENGINEERING & COMPOSITION",
+      "roles": [
+        "Artist"
+      ],
+      "summary": "Dixon’s account connects changes in instruments, sequencing, mixing and monitoring with changes in the music he could make.",
+      "status": "archived",
+      "evidenceLevel": "owner-approved-archive",
+      "public": true,
+      "catalog": {},
+      "presentation": {
+        "kind": "none"
+      },
+      "gallery": [
+        {
+          "kind": "pending",
+          "alt": "Studio evolution",
+          "caption": "Original artwork awaiting source reconciliation."
+        }
+      ],
+      "sections": [
+        {
+          "title": "Before Cosmic: listening, performance and editing",
+          "intro": "Dixon recalls these formative experiences in his Super Progressive interview; exact dates remain unstated.",
+          "items": [
+            {
+              "title": "Learning to listen",
+              "detail": "Family stereo equipment and a fascination with the DJ booth connected music, sound systems and performance long before the Cosmic recordings."
+            },
+            {
+              "title": "Programming a night",
+              "detail": "Early club work developed his sense of continuity and musical pacing. Radio production introduced reel-to-reel tape editing as a way to rearrange music."
+            },
+            {
+              "title": "From systems to songs",
+              "detail": "Sound and lighting work, followed by computer sequencing and sampling, formed the bridge into the studio and the Friction & Spice partnership with Jeff Alderson."
+            }
+          ]
+        },
+        {
+          "title": "Hardware and musical space",
+          "items": [
+            {
+              "title": "Merritt Island",
+              "detail": "External samplers and synthesizers, a DOS sequencer and a compact console formed the early Cosmic studio."
+            },
+            {
+              "title": "Effects as arrangement",
+              "detail": "Dixon describes carefully programmed delays and selected reverbs as central to the spatial character of those records."
+            },
+            {
+              "title": "Larger consoles",
+              "detail": "After COSMIC 009, the Mackie 24-8 and expanded MIDI routing gave him more room to visualize and organize arrangements."
+            }
+          ]
+        },
+        {
+          "title": "Digital instruments and recall",
+          "items": [
+            {
+              "title": "Time Travel",
+              "detail": "Logic sequencing and the Yamaha 03D changed the workflow. Digital mixing and mastering introduced new lessons in headroom, synchronization and loudness."
+            },
+            {
+              "title": "Aria — One",
+              "detail": "The 2001 remix represents tighter rhythmic alignment, expanded sampling and local effects processing in Dixon’s account."
+            },
+            {
+              "title": "Logic instruments",
+              "detail": "EXS24, Absynth, ES2, EVOC and later software tools expanded his cinematic palette and reduced the effort of recalling sessions."
+            }
+          ]
+        },
+        {
+          "title": "AK1200: capturing the performance",
+          "intro": "Artist-recalled recording sessions. Album-edition credits and session dates remain to be verified.",
+          "items": [
+            {
+              "title": "Recording engineering and corrective editing",
+              "detail": "Dixon provided the recording environment and captured AK1200 performing vinyl DJ sets. Where needed, he joined passages from restarted takes to repair performance errors."
+            },
+            {
+              "title": "The performer and the engineer",
+              "detail": "AK1200 selected and performed the music. Dixon’s contribution was capture and editing before delivery to the label for subsequent mastering."
+            },
+            {
+              "title": "A practical digital workflow",
+              "detail": "He recalls capturing and editing the performance in Pro Tools, with separate booth and studio monitoring, then delivering the files on a data CD."
+            }
+          ]
+        },
+        {
+          "title": "Composition with greater control",
+          "items": [
+            {
+              "title": "Almost Flew",
+              "detail": "Dixon identifies this remix as a decisive application of scales to vocal placement and newly written melodies."
+            },
+            {
+              "title": "Pulse",
+              "detail": "A cinematic opening leads into a heavier dance-floor section, demonstrating the compositional control he wanted to express."
+            },
+            {
+              "title": "Preservation",
+              "detail": "Returning to archived hardware patches was rewarding, but also reminded him why recall and practical workflow mattered."
+            }
+          ]
+        }
+      ],
+      "children": [],
+      "publicSources": [
+        {
+          "label": "Artist interview",
+          "href": "https://www.youtube.com/watch?v=R6sa-Mg2YaM",
+          "supports": "Background interview; later case-study details also supplied directly by the artist."
+        },
+        {
+          "label": "Almost Flew — Voyager Remix",
+          "href": "https://music.apple.com/us/album/almost-flew-voyager-remix/1041178339?i=1041179562",
+          "supports": "Release identity"
+        },
+        {
+          "label": "Super Progressive — early editing and production",
+          "href": "https://www.youtube.com/watch?v=R6sa-Mg2YaM&t=2015",
+          "supports": "Dixon recalls radio production and reel-to-reel editing. The AK1200 workflow is drawn from his later direct artist account, not verified by this timestamp."
+        }
+      ]
+    },
+    {
+      "id": "cinematic-library",
+      "slug": "cinematic-library",
+      "title": "Voyager: cinematic library",
+      "displayArtistOrClient": "Justin Scott Dixon / Voyager",
+      "category": "career",
+      "format": "Archive dossier",
+      "dateDisplay": "Software-instrument era",
+      "sortDate": "2002-01-01",
+      "era": "MUSIC FOR PICTURE",
+      "roles": [
+        "Artist"
+      ],
+      "summary": "Dixon wrote these Voyager pieces with television and film in mind. Software instruments opened a cinematic palette beyond the demands of the dance floor.",
+      "status": "archived",
+      "evidenceLevel": "owner-approved-archive",
+      "public": true,
+      "catalog": {},
+      "presentation": {
+        "kind": "none"
+      },
+      "gallery": [
+        {
+          "kind": "pending",
+          "alt": "Voyager: cinematic library",
+          "caption": "Original artwork awaiting source reconciliation."
+        }
+      ],
+      "sections": [
+        {
+          "title": "The writing environment",
+          "items": [
+            {
+              "title": "An entire studio in software",
+              "detail": "Dixon recalls Logic 5 on a dual G4 with Absynth, Stylus, EXS24, ES2 and EVOC."
+            },
+            {
+              "title": "Musical freedom",
+              "detail": "Atmospheric textures and rhythm libraries supported compositions intended for imagined pictures rather than a DJ’s set."
+            },
+            {
+              "title": "Selection for library use",
+              "detail": "The later Extreme Music relationship gave this material a route into screen use, according to Dixon."
+            }
+          ]
+        },
+        {
+          "title": "Title relationships",
+          "items": [
+            {
+              "title": "Tranquil → Spinfinity",
+              "detail": "Artist-confirmed title relationship."
+            },
+            {
+              "title": "Due North → Chill Pill",
+              "detail": "Artist-confirmed title relationship."
+            },
+            {
+              "title": "Voices in the Sea → Shaderunner",
+              "detail": "Artist library title associated with the released library title."
+            }
+          ]
+        },
+        {
+          "title": "Related versions",
+          "items": [
+            {
+              "title": "Voices in the Sea → Electro-Wave",
+              "detail": "Dixon identifies Electro-Wave as an edited version; retain its separate catalog identity."
+            },
+            {
+              "title": "Infinite Cycles → Solarnaut",
+              "detail": "Artist-confirmed original/library title relationship."
+            },
+            {
+              "title": "Documenting use",
+              "detail": "Specific screen placements and counts require work-level evidence; no account-wide totals are presented as a single track’s performance."
+            }
+          ]
+        }
+      ],
+      "children": [],
+      "publicSources": [
+        {
+          "label": "Artist interview",
+          "href": "https://www.youtube.com/watch?v=R6sa-Mg2YaM",
+          "supports": "Background interview; later case-study details also supplied directly by the artist."
+        }
+      ]
+    },
+    {
+      "id": "qvibe-immersive",
+      "slug": "qvibe-immersive",
+      "title": "QVibe & immersive composition",
+      "displayArtistOrClient": "Justin Scott Dixon / Voyager",
+      "category": "career",
+      "format": "Archive dossier",
+      "dateDisplay": "Artist retrospective",
+      "sortDate": "2020-01-01",
+      "era": "SPACE, TUNING & TRANSLATION",
+      "roles": [
+        "Artist"
+      ],
+      "summary": "Contemplative pieces developed for looping visuals became source material for later immersive work. This account describes musical intentions, not therapeutic outcomes.",
+      "status": "archived",
+      "evidenceLevel": "owner-approved-archive",
+      "public": true,
+      "catalog": {},
+      "presentation": {
+        "kind": "none"
+      },
+      "gallery": [
+        {
+          "kind": "pending",
+          "alt": "QVibe & immersive composition",
+          "caption": "Original artwork awaiting source reconciliation."
+        }
+      ],
+      "sections": [
+        {
+          "title": "QVibe: pacing and tone",
+          "items": [
+            {
+              "title": "The brief",
+              "detail": "Build music to accompany frequency-themed looping fractal visuals."
+            },
+            {
+              "title": "Tuning experiments",
+              "detail": "Dixon recalls manually tuning instruments around target tones, with a low-level sine-wave reference throughout each piece."
+            },
+            {
+              "title": "Breathing space",
+              "detail": "Long drones, sustaining piano chords and carefully paced openings and endings let the music breathe."
+            }
+          ]
+        },
+        {
+          "title": "Unfolding into Atmos",
+          "items": [
+            {
+              "title": "Anxiety",
+              "detail": "Dixon selects this dark, textural piece as his leading immersive example. The Atmos version is artist-reported mastered and unpublished."
+            },
+            {
+              "title": "A stable foundation",
+              "detail": "He retained anchored source sounds and placed accompanying effects around the listener, considering stereo and binaural translation throughout."
+            },
+            {
+              "title": "Calibrated monitoring",
+              "detail": "Balancing bass management, LFE and the monitoring system made translation and dynamics central to the workflow."
+            }
+          ]
+        }
+      ],
+      "children": [],
+      "publicSources": [
+        {
+          "label": "Artist reference playlist",
+          "href": "https://www.youtube.com/playlist?list=PLv_XND-ZcK0F4nVgP9QMUt89RjHxLkiYI",
+          "supports": "Related listening references; not a verified original QVibe sequence"
+        }
+      ]
+    },
+    {
+      "id": "ai-creative-practice",
+      "slug": "ai-creative-practice",
+      "title": "AI in creative practice",
+      "displayArtistOrClient": "Justin Scott Dixon / Voyager",
+      "category": "career",
+      "format": "Archive dossier",
+      "dateDisplay": "Ongoing practice",
+      "sortDate": "2026-01-01",
+      "era": "MUSIC, FILM & R&D",
+      "roles": [
+        "Artist"
+      ],
+      "summary": "AI extends Dixon’s creative range across music, visual storytelling and tool development. His listening, direction and editing shape the result.",
+      "status": "archived",
+      "evidenceLevel": "owner-approved-archive",
+      "public": true,
+      "catalog": {},
+      "presentation": {
+        "kind": "none"
+      },
+      "gallery": [
+        {
+          "kind": "pending",
+          "alt": "AI in creative practice",
+          "caption": "Original artwork awaiting source reconciliation."
+        }
+      ],
+      "sections": [
+        {
+          "title": "The Unexpected",
+          "items": [
+            {
+              "title": "Direction",
+              "detail": "Story requirements, film frames and Dixon’s own musical archive guided score development."
+            },
+            {
+              "title": "Emotional continuity",
+              "detail": "He selected music to establish the opening’s tone and carry the audience between tension and vulnerability."
+            },
+            {
+              "title": "Editorial craft",
+              "detail": "Generated cues still required selection and editing to picture. This was a central part of his contribution."
+            }
+          ]
+        },
+        {
+          "title": "Creative systems",
+          "items": [
+            {
+              "title": "Music exploration",
+              "detail": "Suno experiments connect source material, stylistic direction and iterative selection."
+            },
+            {
+              "title": "Visual storytelling",
+              "detail": "PROXIMITY planning uses character references, narrative continuity and storyboard packages for cross-model production."
+            },
+            {
+              "title": "Everyday language",
+              "detail": "Dixon sought writing assistance that improved clarity while preserving his tone and avoiding added context."
+            }
+          ]
+        },
+        {
+          "title": "Research into tools",
+          "items": [
+            {
+              "title": "Sound ReFormer",
+              "detail": "A production problem—reconstructing generated material as editable performance—became an instrument-design investigation."
+            },
+            {
+              "title": "Repeatable methods",
+              "detail": "His history documents prompt structures, evidence gathering and tools designed to make experiments easier to review and repeat."
+            },
+            {
+              "title": "Human direction",
+              "detail": "Dixon sees the opportunity as greater expressive precision, guided by the artist’s experience and judgment."
+            }
+          ]
+        }
+      ],
+      "children": [],
+      "publicSources": [
+        {
+          "label": "Prime Video release",
+          "href": "https://www.amazon.com/gp/video/detail/0TZTA6DG1P3D0WPKRUKQTMSG14",
+          "supports": "Released title, director, year and availability"
+        },
+        {
+          "label": "IMDb full credits",
+          "href": "https://www.imdb.com/title/tt37786123/fullcredits/",
+          "supports": "Named post-production roles and uncredited music designations"
+        }
+      ]
+    },
+    {
+      "id": "singles-remixes",
+      "slug": "singles-remixes",
+      "title": "Singles, remixes & photographed editions",
+      "displayArtistOrClient": "Justin Scott Dixon / Voyager",
+      "category": "career",
+      "format": "Archive dossier",
+      "dateDisplay": "Artist retrospective",
+      "sortDate": "1997-01-01",
+      "era": "BEYOND COSMIC",
+      "roles": [
+        "Artist"
+      ],
+      "summary": "Eighteen photographed edition groups document releases beyond the core Cosmic sequence. Original releases, remixes and compilation samplers remain distinct.",
+      "status": "archived",
+      "evidenceLevel": "owner-approved-archive",
+      "public": true,
+      "catalog": {},
+      "presentation": {
+        "kind": "none"
+      },
+      "gallery": [
+        {
+          "kind": "pending",
+          "alt": "Singles, remixes & photographed editions",
+          "caption": "Original artwork awaiting source reconciliation."
+        }
+      ],
+      "sections": [
+        {
+          "title": "Edition-level history",
+          "items": [
+            {
+              "title": "Versions stay separate",
+              "detail": "Promos, commercial pressings and compilation excerpts can carry different artwork, durations and credits."
+            },
+            {
+              "title": "Artwork follows the original",
+              "detail": "Printed jackets, white sleeves and other packages use their own source evidence. Digital releases will not be depicted as vinyl without pressing evidence."
+            },
+            {
+              "title": "Full research register",
+              "detail": "Additional Discogs candidates remain in the private research register until identity, contribution and edition are reconciled."
+            }
+          ]
+        }
+      ],
+      "children": [
+        {
+          "id": "nc-01",
+          "artist": "Various artists",
+          "title": "Sunshine State of Mind — four-track sampler",
+          "catalogNumber": "162-531107-1",
+          "date": "Edition date under review",
+          "format": "FFRR · photographed edition",
+          "roles": [
+            "Contribution documented by edition"
+          ],
+          "summary": "Friction & Spice — Step Into My Dream; writing and production.",
+          "gallery": [
+            {
+              "kind": "pending",
+              "alt": "Sunshine State of Mind — four-track sampler",
+              "caption": "Original artwork awaiting source reconciliation."
+            }
+          ]
+        },
+        {
+          "id": "nc-02",
+          "artist": "Bedrock",
+          "title": "Beautiful Strange",
+          "catalogNumber": "BS1001pr; BS1001EP",
+          "date": "Edition date under review",
+          "format": "Bedrock · photographed edition",
+          "roles": [
+            "Contribution documented by edition"
+          ],
+          "summary": "remixing as Voyager. The photographs establish the Voyager credit; they do not establish that the promo’s “Voyager remix” is the identical recording to “Voyager’s Platinum remix.” Preserve both printed names until confirmed.",
+          "gallery": [
+            {
+              "kind": "pending",
+              "alt": "Beautiful Strange",
+              "caption": "Original artwork awaiting source reconciliation."
+            }
+          ]
+        },
+        {
+          "id": "nc-03",
+          "artist": "Keoki",
+          "title": "Altered-Ego-Trip (The Remix Album)",
+          "catalogNumber": "MM80090-1",
+          "date": "Edition date under review",
+          "format": "Moonshine Music · photographed edition",
+          "roles": [
+            "Contribution documented by edition"
+          ],
+          "summary": "the sticker names DJ’s Friction & Spice among the remixers. The exact contributed track/mix is not established by the photographed C side.",
+          "gallery": [
+            {
+              "kind": "pending",
+              "alt": "Altered-Ego-Trip (The Remix Album)",
+              "caption": "Original artwork awaiting source reconciliation."
+            }
+          ]
+        },
+        {
+          "id": "nc-04",
+          "artist": "Stef, Pako & Frederik",
+          "title": "Magic Shop",
+          "catalogNumber": "CODE10",
+          "date": "Edition date under review",
+          "format": "Coded · photographed edition",
+          "roles": [
+            "Contribution documented by edition"
+          ],
+          "summary": "Voyager remix.",
+          "gallery": [
+            {
+              "kind": "pending",
+              "alt": "Magic Shop",
+              "caption": "Original artwork awaiting source reconciliation."
+            }
+          ]
+        },
+        {
+          "id": "nc-05",
+          "artist": "Various artists",
+          "title": "Acid X-Mas — Special X-Mas E.P.",
+          "catalogNumber": "SB-013",
+          "date": "Edition date under review",
+          "format": "StreetBeat Records · photographed edition",
+          "roles": [
+            "Contribution documented by edition"
+          ],
+          "summary": "DJ’s Friction & Spice — Frosty’s X-Mas Dub. Exact writer/arranger/producer wording remains to be established.",
+          "gallery": [
+            {
+              "kind": "pending",
+              "alt": "Acid X-Mas — Special X-Mas E.P.",
+              "caption": "Original artwork awaiting source reconciliation."
+            }
+          ]
+        },
+        {
+          "id": "nc-06",
+          "artist": "Origin",
+          "title": "Refined Intricacy ’99",
+          "catalogNumber": "SYW006 — database corroborated",
+          "date": "Edition date under review",
+          "format": "Steel Yard Music · photographed edition",
+          "roles": [
+            "Contribution documented by edition"
+          ],
+          "summary": "remixing as Voyager.",
+          "gallery": [
+            {
+              "kind": "pending",
+              "alt": "Refined Intricacy ’99",
+              "caption": "Original artwork awaiting source reconciliation."
+            }
+          ]
+        },
+        {
+          "id": "nc-07",
+          "artist": "MOT",
+          "title": "Mellow",
+          "catalogNumber": "314-570285-1DJ",
+          "date": "Edition date under review",
+          "format": "FFRR · photographed edition",
+          "roles": [
+            "Contribution documented by edition"
+          ],
+          "summary": "Photographed edition in the artist archive. Track-level credits remain qualified in the detailed research.",
+          "gallery": [
+            {
+              "kind": "pending",
+              "alt": "Mellow",
+              "caption": "Original artwork awaiting source reconciliation."
+            }
+          ]
+        },
+        {
+          "id": "nc-08",
+          "artist": "Various artists",
+          "title": "Sunshine State of Mind — full-album sleeve",
+          "catalogNumber": "Photographed edition pending",
+          "date": "Edition date under review",
+          "format": "FFRR · photographed edition",
+          "roles": [
+            "Contribution documented by edition"
+          ],
+          "summary": "Photographed edition in the artist archive. Track-level credits remain qualified in the detailed research.",
+          "gallery": [
+            {
+              "kind": "pending",
+              "alt": "Sunshine State of Mind — full-album sleeve",
+              "caption": "Original artwork awaiting source reconciliation."
+            }
+          ]
+        },
+        {
+          "id": "nc-09",
+          "artist": "Various artists / Sandra Collins",
+          "title": "Music from Tranceport 3",
+          "catalogNumber": "0-54648 P",
+          "date": "Edition date under review",
+          "format": "Kinetic Records · photographed edition",
+          "roles": [
+            "Writer / producer: Motion (Stereo Edit)"
+          ],
+          "summary": "Voyager — Motion (Stereo Edit), written and produced by Justin Scott Dixon; additional keyboard production credited to Sam Frost.",
+          "gallery": [
+            {
+              "kind": "pending",
+              "alt": "Music from Tranceport 3",
+              "caption": "Original artwork awaiting source reconciliation."
+            }
+          ],
+          "credits": [
+            {
+              "title": "Motion (Stereo Edit)",
+              "scope": "A1",
+              "roles": [
+                "Writer",
+                "Producer"
+              ],
+              "evidence": "Artist-supplied label photograph transcribed in the master.",
+              "collaborators": "Sam Frost — additional keyboard production; Sandra Collins — compilation",
+              "note": "Credit is specific to the Voyager recording on this vinyl sampler."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Discogs edition record",
+              "href": "https://www.discogs.com/release/899011",
+              "supports": "Edition and credit transcription retained in the master; database evidence."
+            }
+          ]
+        },
+        {
+          "id": "nc-10",
+          "artist": "Bradley",
+          "title": "Rush",
+          "catalogNumber": "FD-015",
+          "date": "Edition date under review",
+          "format": "Fade Records · photographed edition",
+          "roles": [
+            "Remixer",
+            "Additional producer"
+          ],
+          "summary": "Justin Scott Dixon: remix and additional production on Voyager’s Big Speaker Remix. The other side is Echo’s Wave Dub.",
+          "gallery": [
+            {
+              "kind": "pending",
+              "alt": "Rush",
+              "caption": "Original artwork awaiting source reconciliation."
+            }
+          ],
+          "credits": [
+            {
+              "title": "Rush (Voyager’s Big Speaker Remix)",
+              "scope": "B",
+              "roles": [
+                "Remixer",
+                "Additional producer"
+              ],
+              "evidence": "Database credit transcribed in the master; original packaging comparison pending.",
+              "collaborators": "Brad Harper — original writer and producer",
+              "note": "Echo’s Wave Dub is the other version on this edition."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Discogs edition record",
+              "href": "https://www.discogs.com/master/203684",
+              "supports": "Edition and credit transcription retained in the master; database evidence."
+            },
+            {
+              "label": "Discogs edition record",
+              "href": "https://www.discogs.com/release/15434",
+              "supports": "Edition and credit transcription retained in the master; database evidence."
+            }
+          ]
+        },
+        {
+          "id": "nc-11",
+          "artist": "Ocean Wave",
+          "title": "Ocean Wave E.P. — Voyager Remixes, disk three",
+          "catalogNumber": "RHYSYN005R",
+          "date": "Edition date under review",
+          "format": "Rhythm Syndicate Records · photographed edition",
+          "roles": [
+            "Remixer",
+            "Additional producer"
+          ],
+          "summary": "Velvet (Voyager Remix 1) and Velvet (Voyager Remix 2). Justin Scott Dixon: remix and additional production; original work by Kasey Taylor.",
+          "gallery": [
+            {
+              "kind": "pending",
+              "alt": "Ocean Wave E.P. — Voyager Remixes, disk three",
+              "caption": "Original artwork awaiting source reconciliation."
+            }
+          ],
+          "credits": [
+            {
+              "title": "Velvet (Voyager Remix 1)",
+              "scope": "A",
+              "roles": [
+                "Remixer",
+                "Additional producer"
+              ],
+              "evidence": "Database credit transcribed in the master; original packaging comparison pending.",
+              "collaborators": "Kasey Taylor — original writing, production and mixing"
+            },
+            {
+              "title": "Velvet (Voyager Remix 2)",
+              "scope": "B",
+              "roles": [
+                "Remixer",
+                "Additional producer"
+              ],
+              "evidence": "Database credit transcribed in the master; original packaging comparison pending.",
+              "collaborators": "Kasey Taylor — original writing, production and mixing"
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Discogs edition record",
+              "href": "https://www.discogs.com/release/4872",
+              "supports": "Edition and credit transcription retained in the master; database evidence."
+            }
+          ]
+        },
+        {
+          "id": "nc-12",
+          "artist": "Voyager",
+          "title": "Motion / One or Two",
+          "catalogNumber": "CODE 012",
+          "date": "Edition date under review",
+          "format": "Coded · photographed edition",
+          "roles": [
+            "Writer",
+            "Producer"
+          ],
+          "summary": "Motion and One or Two: written and produced by Justin Scott Dixon. Sam Frost supplies additional keyboard production on Motion.",
+          "gallery": [
+            {
+              "kind": "pending",
+              "alt": "Motion / One or Two",
+              "caption": "Original artwork awaiting source reconciliation."
+            }
+          ],
+          "credits": [
+            {
+              "title": "Motion",
+              "scope": "A",
+              "roles": [
+                "Writer",
+                "Producer"
+              ],
+              "evidence": "Database credit transcribed in the master; original packaging comparison pending.",
+              "collaborators": "Sam Frost — additional keyboard production"
+            },
+            {
+              "title": "One or Two",
+              "scope": "B",
+              "roles": [
+                "Writer",
+                "Producer"
+              ],
+              "evidence": "Database credit transcribed in the master; original packaging comparison pending."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Discogs edition record",
+              "href": "https://www.discogs.com/release/48568",
+              "supports": "Edition and credit transcription retained in the master; database evidence."
+            }
+          ]
+        },
+        {
+          "id": "nc-13",
+          "artist": "Aria",
+          "title": "One — Fire edition",
+          "catalogNumber": "ERIF 008",
+          "date": "Edition date under review",
+          "format": "Fire · photographed edition",
+          "roles": [
+            "Co-writer",
+            "Co-producer",
+            "Remixer / additional producer: Voyager Mix"
+          ],
+          "summary": "Original Mix and Voyager Mix. Writing and production by Justin Scott Dixon and Rich Rosario; Voyager remix and additional production on AA.",
+          "gallery": [
+            {
+              "kind": "pending",
+              "alt": "One — Fire edition",
+              "caption": "Original artwork awaiting source reconciliation."
+            }
+          ],
+          "credits": [
+            {
+              "title": "One (Original Mix)",
+              "scope": "Original recording",
+              "roles": [
+                "Co-writer",
+                "Co-producer"
+              ],
+              "evidence": "Database credit transcribed in the master; original packaging comparison pending.",
+              "collaborators": "Rich Rosario — co-writer and co-producer"
+            },
+            {
+              "title": "One (Voyager Mix)",
+              "scope": "AA",
+              "roles": [
+                "Remixer",
+                "Additional producer"
+              ],
+              "evidence": "Database credit transcribed in the master; original packaging comparison pending.",
+              "note": "Voyager remix credit is distinct from the original writing and production."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Discogs edition record",
+              "href": "https://www.discogs.com/master/247131",
+              "supports": "Edition and credit transcription retained in the master; database evidence."
+            },
+            {
+              "label": "Discogs edition record",
+              "href": "https://www.discogs.com/release/4996",
+              "supports": "Edition and credit transcription retained in the master; database evidence."
+            }
+          ]
+        },
+        {
+          "id": "nc-14",
+          "artist": "DJ’s Friction & Spice",
+          "title": "Groove Me — Sueños edition",
+          "catalogNumber": "Exact reference pending",
+          "date": "Edition date under review",
+          "format": "Sueños / 100% Professional branding · photographed edition",
+          "roles": [
+            "Contribution documented by edition"
+          ],
+          "summary": "linked to the approved Cosmic 001 work; this is an additional licensed edition, not a new composition.",
+          "gallery": [
+            {
+              "kind": "pending",
+              "alt": "Groove Me — Sueños edition",
+              "caption": "Original artwork awaiting source reconciliation."
+            }
+          ]
+        },
+        {
+          "id": "nc-15",
+          "artist": "System 7",
+          "title": "High Plains Drifter",
+          "catalogNumber": "AAWT702",
+          "date": "Edition date under review",
+          "format": "A-Wave Records · photographed edition",
+          "roles": [
+            "Remixer",
+            "Additional producer"
+          ],
+          "summary": "Voyager remix and additional production on side A.",
+          "gallery": [
+            {
+              "kind": "pending",
+              "alt": "High Plains Drifter",
+              "caption": "Original artwork awaiting source reconciliation."
+            }
+          ],
+          "credits": [
+            {
+              "title": "High Plains Drifter (Voyager Remix)",
+              "scope": "A",
+              "roles": [
+                "Remixer",
+                "Additional producer"
+              ],
+              "evidence": "Artist-supplied label photograph transcribed in the master."
+            }
+          ]
+        },
+        {
+          "id": "nc-16",
+          "artist": "Thomas P. Heckmann & Marc Romboy",
+          "title": "Ultra Vixens — Undercurrent edition",
+          "catalogNumber": "Pending; UNC12003 is a public lead",
+          "date": "Edition date under review",
+          "format": "Undercurrent · photographed edition",
+          "roles": [
+            "Contribution documented by edition"
+          ],
+          "summary": "remixing as Voyager on side B.",
+          "gallery": [
+            {
+              "kind": "pending",
+              "alt": "Ultra Vixens — Undercurrent edition",
+              "caption": "Original artwork awaiting source reconciliation."
+            }
+          ]
+        },
+        {
+          "id": "nc-17",
+          "artist": "MAD",
+          "title": "Free",
+          "catalogNumber": "CF-2834",
+          "date": "Edition date under review",
+          "format": "Caffeine Records · photographed edition",
+          "roles": [
+            "Contribution documented by edition"
+          ],
+          "summary": "Friction & Spice remix, printed as Bassline mix.",
+          "gallery": [
+            {
+              "kind": "pending",
+              "alt": "Free",
+              "caption": "Original artwork awaiting source reconciliation."
+            }
+          ]
+        },
+        {
+          "id": "nc-18",
+          "artist": "Aria",
+          "title": "Beyond / Feel",
+          "catalogNumber": "DR-1002",
+          "date": "Edition date under review",
+          "format": "Deuce Recordings · photographed edition",
+          "roles": [
+            "Co-writer",
+            "Co-producer",
+            "Co-arranger"
+          ],
+          "summary": "Writing, production and arrangement credited to Justin Scott Dixon and Rich Rosario in the reviewed edition listing.",
+          "gallery": [
+            {
+              "kind": "pending",
+              "alt": "Beyond / Feel",
+              "caption": "Original artwork awaiting source reconciliation."
+            }
+          ],
+          "credits": [
+            {
+              "title": "Beyond",
+              "scope": "A",
+              "roles": [
+                "Co-writer",
+                "Co-producer",
+                "Co-arranger"
+              ],
+              "evidence": "Database credit transcribed in the master; original packaging comparison pending.",
+              "collaborators": "Rich Rosario — co-writer, co-producer and co-arranger"
+            },
+            {
+              "title": "Feel",
+              "scope": "B",
+              "roles": [
+                "Co-writer",
+                "Co-producer",
+                "Co-arranger"
+              ],
+              "evidence": "Database credit transcribed in the master; original packaging comparison pending.",
+              "collaborators": "Rich Rosario — co-writer, co-producer and co-arranger"
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Discogs edition record",
+              "href": "https://www.discogs.com/release/136652",
+              "supports": "Edition and credit transcription retained in the master; database evidence."
+            }
+          ]
+        }
+      ],
+      "publicSources": [
+        {
+          "label": "Artist source photographs",
+          "href": "https://drive.google.com/drive/folders/1mVnF4skqn2V0ox57tQXu8UrTVVV-iVpi",
+          "supports": "Label and pressing references supplied by the artist."
+        },
+        {
+          "label": "Aria — One",
+          "href": "https://www.discogs.com/release/4996",
+          "supports": "Fire edition and remix credits"
+        },
+        {
+          "label": "Bradley — Rush",
+          "href": "https://www.discogs.com/release/15434",
+          "supports": "Fade edition and Voyager remix credit"
+        },
+        {
+          "label": "Voyager — Motion",
+          "href": "https://www.discogs.com/release/48568",
+          "supports": "Coded edition and track credits"
+        }
+      ]
+    },
+    {
+      "id": "production-engineering-credits",
+      "slug": "production-engineering-credits",
+      "title": "Production, engineering & mastering",
+      "displayArtistOrClient": "Justin Scott Dixon · selected collaborations",
+      "category": "career",
+      "format": "Edition and track-credit dossier",
+      "dateDisplay": "1997–2007 documented editions; some dates unresolved",
+      "sortDate": "1997-01-01",
+      "era": "COLLABORATION & STUDIO CREDITS",
+      "roles": [
+        "Producer",
+        "Remixer",
+        "Engineer",
+        "Mixer",
+        "Editor",
+        "Mastering engineer"
+      ],
+      "summary": "Selected collaborations with credits scoped to the recording, version or edition named in each source. Database-derived credits remain attributed pending original packaging comparison.",
+      "status": "verification-pending",
+      "evidenceLevel": "attributed-public",
+      "catalog": {},
+      "presentation": {
+        "kind": "none"
+      },
+      "gallery": [
+        {
+          "kind": "pending",
+          "alt": "Selected production and engineering credits",
+          "caption": "Original edition artwork awaits clearance."
+        }
+      ],
+      "sections": [],
+      "children": [
+        {
+          "id": "d111",
+          "title": "The Diversity Twins EP",
+          "artist": "Tiny & Dominick featuring Sunny",
+          "date": "1997 — database edition year",
+          "catalogNumber": "KNIGHT-015",
+          "format": "Knight Life · 12-inch EP",
+          "roles": [
+            "Co-writer / co-producer / engineer: Emotional Circumference"
+          ],
+          "summary": "Dixon’s track-specific contribution is on Emotional Circumference.",
+          "gallery": [
+            {
+              "kind": "pending",
+              "alt": "Tiny & Dominick featuring Sunny — The Diversity Twins EP",
+              "caption": "Edition artwork has not yet been cleared for this archive."
+            }
+          ],
+          "credits": [
+            {
+              "title": "Emotional Circumference",
+              "scope": "A",
+              "roles": [
+                "Co-writer",
+                "Co-producer",
+                "Engineer"
+              ],
+              "evidence": "Database credit transcribed in the master; original packaging comparison pending.",
+              "collaborators": "DJ Dominick — shared writing, production and engineering; Sunny — vocals",
+              "note": "The Sleeper on side B is credited to DJ Tiny. Chris Hand also carries general writing, production and engineering credits in the edition listing."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Discogs edition record",
+              "href": "https://www.discogs.com/release/155609",
+              "supports": "Edition and credit transcription retained in the master; database evidence."
+            }
+          ]
+        },
+        {
+          "id": "d112",
+          "title": "Enlighten Me",
+          "artist": "Enlighten Us",
+          "date": "1997 — database edition year",
+          "catalogNumber": "URS001",
+          "format": "URS Records · 12-inch",
+          "roles": [
+            "Co-remixer: The Boyser Dub Mix"
+          ],
+          "summary": "The Boyser Dub Mix credits Scott Dixon with Chris Hand and Dave Cannalte.",
+          "gallery": [
+            {
+              "kind": "pending",
+              "alt": "Enlighten Us — Enlighten Me",
+              "caption": "Edition artwork has not yet been cleared for this archive."
+            }
+          ],
+          "credits": [
+            {
+              "title": "Enlighten Me (The Boyser Dub Mix)",
+              "scope": "A",
+              "roles": [
+                "Co-remixer"
+              ],
+              "evidence": "Database credit transcribed in the master; original packaging comparison pending.",
+              "collaborators": "Chris Hand and Dave Cannalte — co-remixers",
+              "note": "The Mr Knightlife and AGH Conspiracy Trance versions carry separate mix identities."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Discogs edition record",
+              "href": "https://www.discogs.com/release/272169",
+              "supports": "Edition and credit transcription retained in the master; database evidence."
+            }
+          ]
+        },
+        {
+          "id": "d115",
+          "title": "Touch Me",
+          "artist": "Pilgrim State featuring Sunny",
+          "date": "1998 — database edition year",
+          "catalogNumber": "KNIGHT-016",
+          "format": "Knight Life · 12-inch",
+          "roles": [
+            "Engineer"
+          ],
+          "summary": "An engineering credit on the reviewed Touch Me edition; individual mix allocation is not specified.",
+          "gallery": [
+            {
+              "kind": "pending",
+              "alt": "Pilgrim State featuring Sunny — Touch Me",
+              "caption": "Edition artwork has not yet been cleared for this archive."
+            }
+          ],
+          "credits": [
+            {
+              "title": "Touch Me",
+              "scope": "Edition-level credit; mix allocation unspecified",
+              "roles": [
+                "Engineer"
+              ],
+              "evidence": "Database credit transcribed in the master; original packaging comparison pending.",
+              "collaborators": "Chris Hand — writing, production and engineering; Damion Riccio — writing, production and vocals",
+              "note": "The edition includes Club Mix, Radio Edit and Mr Knight Life fREeMIX. The source does not allocate Dixon’s engineering credit to an individual version."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Discogs edition record",
+              "href": "https://www.discogs.com/release/14610",
+              "supports": "Edition and credit transcription retained in the master; database evidence."
+            }
+          ]
+        },
+        {
+          "id": "d116",
+          "title": "Sun God",
+          "artist": "DJ Apache",
+          "date": "1998 — database edition year",
+          "catalogNumber": "KNIGHT-017",
+          "format": "Knight Life · 12-inch",
+          "roles": [
+            "Co-writer / co-producer / engineer: Apache’s Hiani River Break Mix"
+          ],
+          "summary": "Dixon’s production and engineering credit belongs to the B-side mix.",
+          "gallery": [
+            {
+              "kind": "pending",
+              "alt": "DJ Apache — Sun God",
+              "caption": "Edition artwork has not yet been cleared for this archive."
+            }
+          ],
+          "credits": [
+            {
+              "title": "Sun God (Apache’s Hiani River Break Mix)",
+              "scope": "B",
+              "roles": [
+                "Co-writer",
+                "Co-producer",
+                "Engineer"
+              ],
+              "evidence": "Database credit transcribed in the master; original packaging comparison pending.",
+              "collaborators": "Chris Hand — co-writer, co-producer and engineer; Lance Cashion — co-writer and co-producer",
+              "note": "The A-side Melee Deep House Remix is a separate version."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Discogs edition record",
+              "href": "https://www.discogs.com/release/172934",
+              "supports": "Edition and credit transcription retained in the master; database evidence."
+            }
+          ]
+        },
+        {
+          "id": "d139",
+          "title": "Usuaya: The Key",
+          "artist": "Cliff Tangredi",
+          "date": "2000 — database edition year",
+          "catalogNumber": "No catalog number reported",
+          "format": "Unknown World Management · Mixed CD",
+          "roles": [
+            "Editor",
+            "Mastering engineer"
+          ],
+          "summary": "Dixon is credited with editing and mastering the complete mix; Cliff Tangredi is the DJ.",
+          "gallery": [
+            {
+              "kind": "pending",
+              "alt": "Cliff Tangredi — Usuaya: The Key",
+              "caption": "Edition artwork has not yet been cleared for this archive."
+            }
+          ],
+          "credits": [
+            {
+              "title": "Usuaya: The Key",
+              "scope": "Whole mix",
+              "roles": [
+                "Editor",
+                "Mastering engineer"
+              ],
+              "evidence": "Database credit transcribed in the master; original packaging comparison pending.",
+              "collaborators": "Cliff Tangredi — DJ mix",
+              "note": "The appearance of Shimmer in the tracklist does not establish a separate recording credit for Dixon."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Discogs edition record",
+              "href": "https://www.discogs.com/release/607357",
+              "supports": "Edition and credit transcription retained in the master; database evidence."
+            }
+          ]
+        },
+        {
+          "id": "d140",
+          "title": "Breaks Are Delicious",
+          "artist": "DJ Spice",
+          "date": "2001 — database edition year",
+          "catalogNumber": "No catalog number reported",
+          "format": "RaveIndex Inc. · Mixed CD",
+          "roles": [
+            "Mastering engineer"
+          ],
+          "summary": "The reviewed sources credit Dixon with mastering, with DJ Spice as the mix artist.",
+          "gallery": [
+            {
+              "kind": "pending",
+              "alt": "DJ Spice — Breaks Are Delicious",
+              "caption": "Edition artwork has not yet been cleared for this archive."
+            }
+          ],
+          "credits": [
+            {
+              "title": "Breaks Are Delicious",
+              "scope": "Release-level mastering credit",
+              "roles": [
+                "Mastering engineer"
+              ],
+              "evidence": "Database credit transcribed in the master; original packaging comparison pending.",
+              "collaborators": "DJ Spice — DJ mix",
+              "note": "The shared name does not establish a Friction & Spice group credit."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Discogs edition record",
+              "href": "https://www.discogs.com/release/732173",
+              "supports": "Edition and credit transcription retained in the master; database evidence."
+            }
+          ]
+        },
+        {
+          "id": "d125",
+          "title": "Burning The Candle At Both Ends — LP Sampler",
+          "artist": "Cass & Slide",
+          "date": "March 2002 — database edition date",
+          "catalogNumber": "ERIFLP002",
+          "format": "Fire · 2 × 12-inch sampler",
+          "roles": [
+            "Co-producer: JFOK / All The Freaks",
+            "Producer: Sign Your Name"
+          ],
+          "summary": "Three track-scoped production credits on the LP sampler, a separate edition from the full album.",
+          "gallery": [
+            {
+              "kind": "pending",
+              "alt": "Cass & Slide — Burning The Candle At Both Ends — LP Sampler",
+              "caption": "Edition artwork has not yet been cleared for this archive."
+            }
+          ],
+          "credits": [
+            {
+              "title": "JFOK",
+              "scope": "A",
+              "roles": [
+                "Co-producer"
+              ],
+              "evidence": "Database credit transcribed in the master; original packaging comparison pending."
+            },
+            {
+              "title": "All The Freaks (Dark Globe Remix)",
+              "scope": "B",
+              "roles": [
+                "Co-producer"
+              ],
+              "evidence": "Database credit transcribed in the master; original packaging comparison pending.",
+              "collaborators": "Dark Globe — remixer"
+            },
+            {
+              "title": "Sign Your Name (Neon Heights Vocal Remix)",
+              "scope": "D",
+              "roles": [
+                "Producer"
+              ],
+              "evidence": "Database credit transcribed in the master; original packaging comparison pending.",
+              "collaborators": "Neon Heights — remixer; Sam Mollison — vocals",
+              "note": "No Dixon-specific credit is assigned to C, Spanker, in the reviewed edition."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Discogs edition record",
+              "href": "https://www.discogs.com/release/34268",
+              "supports": "Edition and credit transcription retained in the master; database evidence."
+            }
+          ]
+        },
+        {
+          "id": "d126",
+          "title": "Sign Your Name",
+          "artist": "Cass/Slide",
+          "date": "2002 — database edition year",
+          "catalogNumber": "ERIFTT001",
+          "format": "Fire999 · 12-inch test pressing",
+          "roles": [
+            "Producer"
+          ],
+          "summary": "Production credited to Justin Scott Dixon; Neon Heights supplied the remixes.",
+          "gallery": [
+            {
+              "kind": "pending",
+              "alt": "Cass/Slide — Sign Your Name",
+              "caption": "Edition artwork has not yet been cleared for this archive."
+            }
+          ],
+          "credits": [
+            {
+              "title": "Sign Your Name",
+              "scope": "Production credit on the reviewed edition",
+              "roles": [
+                "Producer"
+              ],
+              "evidence": "Database credit transcribed in the master; original packaging comparison pending.",
+              "collaborators": "Neon Heights — remixes; Sam Mollison — vocals on the Vocal Mix",
+              "note": "The edition pairs Neon Heights Vocal Mix and Neon Heights Dub Mix. Reported pressing quantities remain unverified and are omitted."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Discogs edition record",
+              "href": "https://www.discogs.com/release/994703",
+              "supports": "Edition and credit transcription retained in the master; database evidence."
+            }
+          ]
+        },
+        {
+          "id": "d127",
+          "title": "Burnt Out EP",
+          "artist": "Cass & Slide",
+          "date": "2002 — database edition year",
+          "catalogNumber": "ERIFX001",
+          "format": "Fire · 10-inch EP",
+          "roles": [
+            "Co-engineer: Valium Behaviour"
+          ],
+          "summary": "Dixon and Pete Martin are credited as engineers on Valium Behaviour.",
+          "gallery": [
+            {
+              "kind": "pending",
+              "alt": "Cass & Slide — Burnt Out EP",
+              "caption": "Edition artwork has not yet been cleared for this archive."
+            }
+          ],
+          "credits": [
+            {
+              "title": "Valium Behaviour",
+              "scope": "A2",
+              "roles": [
+                "Co-engineer"
+              ],
+              "evidence": "Database credit transcribed in the master; original packaging comparison pending.",
+              "collaborators": "Pete Martin — co-engineer",
+              "note": "The reviewed page does not assign a Dixon-specific credit to Faith Less, Havoc or The Doors (Faith Restored)."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Discogs edition record",
+              "href": "https://www.discogs.com/release/38453",
+              "supports": "Edition and credit transcription retained in the master; database evidence."
+            }
+          ]
+        },
+        {
+          "id": "d095",
+          "title": "Create:Fixate Volume 1",
+          "artist": "Various artists",
+          "date": "December 2005 — database edition date",
+          "catalogNumber": "No catalog number reported",
+          "format": "Create:Fixate · CD compilation",
+          "roles": [
+            "Mastering engineer: Cerulean Blue"
+          ],
+          "summary": "Dixon’s mastering credit applies specifically to track 12, Cerulean Blue.",
+          "gallery": [
+            {
+              "kind": "pending",
+              "alt": "Various artists — Create:Fixate Volume 1",
+              "caption": "Edition artwork has not yet been cleared for this archive."
+            }
+          ],
+          "credits": [
+            {
+              "title": "Cerulean Blue",
+              "scope": "Track 12",
+              "roles": [
+                "Mastering engineer"
+              ],
+              "evidence": "Database credit transcribed in the master; original packaging comparison pending.",
+              "collaborators": "Gruvhaus vs ColorFreQ — recording artist",
+              "note": "Kenneth Graham has the whole-album mastering credit. Dixon’s credit is limited to this track."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Discogs edition record",
+              "href": "https://www.discogs.com/release/646831",
+              "supports": "Edition and credit transcription retained in the master; database evidence."
+            }
+          ]
+        },
+        {
+          "id": "d129",
+          "title": "Gravity Pimps E.P.",
+          "artist": "Matt Xavier / Sean Palm",
+          "date": "February 2007 — database vinyl date",
+          "catalogNumber": "RYR006",
+          "format": "Railyard · 12-inch EP",
+          "roles": [
+            "Mixing engineer"
+          ],
+          "summary": "The vinyl edition credits Dixon with mixing; Matt Xavier is credited with vinyl mastering.",
+          "gallery": [
+            {
+              "kind": "pending",
+              "alt": "Matt Xavier / Sean Palm — Gravity Pimps E.P.",
+              "caption": "Edition artwork has not yet been cleared for this archive."
+            }
+          ],
+          "credits": [
+            {
+              "title": "Gravity Pimps E.P.",
+              "scope": "Release-level mixing credit",
+              "roles": [
+                "Mixing engineer"
+              ],
+              "evidence": "Database credit transcribed in the master; original packaging comparison pending.",
+              "collaborators": "Sean Palm — Pluce (A); Matt Xavier — Quazy (B) and vinyl mastering",
+              "note": "Later digital/distributor dates remain separate from the vinyl edition."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Discogs edition record",
+              "href": "https://www.discogs.com/release/905900",
+              "supports": "Edition and credit transcription retained in the master; database evidence."
+            }
+          ]
+        },
+        {
+          "id": "d130",
+          "title": "Mankind",
+          "artist": "Kyng Nova & Friction",
+          "date": "Release date unresolved",
+          "catalogNumber": "B-15",
+          "format": "Breakthrough · 12-inch",
+          "roles": [
+            "Co-writer",
+            "Co-producer"
+          ],
+          "summary": "Dixon and Nick Nawrocki share writing and production credits on this edition.",
+          "gallery": [
+            {
+              "kind": "pending",
+              "alt": "Kyng Nova & Friction — Mankind",
+              "caption": "Edition artwork has not yet been cleared for this archive."
+            }
+          ],
+          "credits": [
+            {
+              "title": "Mankind",
+              "scope": "Release-level writing and production",
+              "roles": [
+                "Co-writer",
+                "Co-producer"
+              ],
+              "evidence": "Database credit transcribed in the master; original packaging comparison pending.",
+              "collaborators": "Nick Nawrocki — co-writer and co-producer",
+              "note": "The edition lists Mankind, Dub and Instrumental. An inferred catalog-sequence date is not used as a release date."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Discogs edition record",
+              "href": "https://www.discogs.com/release/289076",
+              "supports": "Edition and credit transcription retained in the master; database evidence."
+            }
+          ]
+        },
+        {
+          "id": "d131",
+          "title": "Cystamatic",
+          "artist": "Brian Van Dalen",
+          "date": "Release date unresolved",
+          "catalogNumber": "IMP001",
+          "format": "Implant · 12-inch white label",
+          "roles": [
+            "Mastering engineer"
+          ],
+          "summary": "The reviewed edition credits Dixon with mastering and identifies Brian Van Dalen as the recording artist.",
+          "gallery": [
+            {
+              "kind": "pending",
+              "alt": "Brian Van Dalen — Cystamatic",
+              "caption": "Edition artwork has not yet been cleared for this archive."
+            }
+          ],
+          "credits": [
+            {
+              "title": "Cystamatic",
+              "scope": "Release-level mastering credit",
+              "roles": [
+                "Mastering engineer"
+              ],
+              "evidence": "Database credit transcribed in the master; original packaging comparison pending.",
+              "collaborators": "Brian Van Dalen — recording artist",
+              "note": "The edition lists Main on A and Icabods Dream on B; the release year remains unresolved."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Discogs edition record",
+              "href": "https://www.discogs.com/release/15319731",
+              "supports": "Edition and credit transcription retained in the master; database evidence."
+            }
+          ]
+        }
+      ],
+      "publicSources": [
+        {
+          "label": "Discogs — Justin Scott Dixon credit index",
+          "href": "https://www.discogs.com/artist/17125-Justin-Scott-Dixon",
+          "supports": "Discovery index only. Each release below has its own edition source and scope qualification."
+        }
+      ],
+      "public": true
+    },
+    {
+      "id": "navigator",
+      "slug": "navigator",
+      "title": "Navigator",
+      "displayArtistOrClient": "Voyager",
+      "category": "music",
+      "format": "Digital album",
+      "dateDisplay": "February 27, 2007 — digital release",
+      "sortDate": "2007-02-27",
+      "era": "VOYAGER RECORDINGS",
+      "roles": [
+        "Artist"
+      ],
+      "summary": "Voyager’s 2007 digital album brings ten individual tracks together with a continuous album mix. The release is identified as Justin Scott Dixon’s Voyager project in the master catalog.",
+      "status": "released",
+      "evidenceLevel": "corroborated-public",
+      "catalog": {
+        "label": "Voyager Recordings",
+        "catalogNumber": "VRG 001 — database reference"
+      },
+      "presentation": {
+        "kind": "none"
+      },
+      "gallery": [
+        {
+          "kind": "pending",
+          "alt": "Navigator",
+          "caption": "Edition artwork awaits source matching and clearance."
+        }
+      ],
+      "sections": [
+        {
+          "title": "Navigator — tracks 1–3",
+          "items": [
+            {
+              "title": "01 · What Two Do",
+              "detail": "Voyager album recording; individual technical credits are not specified in the retained sources."
+            },
+            {
+              "title": "02 · Another Wonder",
+              "detail": "Voyager album recording; individual technical credits are not specified in the retained sources."
+            },
+            {
+              "title": "03 · Walking Pacific",
+              "detail": "Voyager album recording; individual technical credits are not specified in the retained sources."
+            }
+          ],
+          "intro": "Sequence from the MusicBrainz release record; Apple Music confirms an eleven-track digital album."
+        },
+        {
+          "title": "Navigator — tracks 4–6",
+          "items": [
+            {
+              "title": "04 · Here on Earth",
+              "detail": "Voyager album recording; individual technical credits are not specified in the retained sources."
+            },
+            {
+              "title": "05 · Outer Space (Navigator album mix)",
+              "detail": "Voyager album recording; individual technical credits are not specified in the retained sources."
+            },
+            {
+              "title": "06 · Close Ghost",
+              "detail": "Voyager album recording; individual technical credits are not specified in the retained sources."
+            }
+          ],
+          "intro": "Sequence from the MusicBrainz release record; Apple Music confirms an eleven-track digital album."
+        },
+        {
+          "title": "Navigator — tracks 7–9",
+          "items": [
+            {
+              "title": "07 · Thinking Now When (Navigator album mix)",
+              "detail": "Voyager album recording; individual technical credits are not specified in the retained sources."
+            },
+            {
+              "title": "08 · Bliss Full",
+              "detail": "Voyager album recording; individual technical credits are not specified in the retained sources."
+            },
+            {
+              "title": "09 · Imploder",
+              "detail": "Voyager album recording; individual technical credits are not specified in the retained sources."
+            }
+          ],
+          "intro": "Sequence from the MusicBrainz release record; Apple Music confirms an eleven-track digital album."
+        },
+        {
+          "title": "Navigator — tracks 10–11",
+          "items": [
+            {
+              "title": "10 · For the Heart (Navigator album mix)",
+              "detail": "Voyager album recording; individual technical credits are not specified in the retained sources."
+            },
+            {
+              "title": "11 · Navigator (continuous mix)",
+              "detail": "Continuous album mix; presented separately from the ten individual tracks."
+            }
+          ],
+          "intro": "Sequence from the MusicBrainz release record; Apple Music confirms an eleven-track digital album."
+        }
+      ],
+      "children": [],
+      "publicSources": [
+        {
+          "label": "Apple Music — Navigator",
+          "href": "https://music.apple.com/us/album/navigator/218408971",
+          "supports": "Digital release identity, February 27, 2007 date, eleven tracks and Voyager Recordings label; checked September 16, 2026."
+        },
+        {
+          "label": "MusicBrainz — Navigator",
+          "href": "https://musicbrainz.org/release/817b7063-c8a0-46ea-b936-e8016c318921",
+          "supports": "Secondary track sequence, continuous mix and VRG 001 catalog reference."
+        },
+        {
+          "label": "Discogs — Navigator edition",
+          "href": "https://www.discogs.com/release/1639669",
+          "supports": "Edition identity retained in the master, Record 33."
+        }
+      ],
+      "relatedRecordIds": [
+        "studio-evolution"
+      ],
+      "public": true
+    },
+    {
+      "id": "groove-me-anniversary",
+      "slug": "groove-me-anniversary",
+      "title": "Groove Me (Twenty Fifth Anniversary Remix Edition)",
+      "displayArtistOrClient": "DJ’s Friction & Spice",
+      "category": "music",
+      "format": "Digital album",
+      "dateDisplay": "2021 — anniversary edition; exact release date unresolved",
+      "sortDate": "2021-01-01",
+      "era": "VOYAGER RECORDINGS",
+      "roles": [
+        "Writer",
+        "Composer"
+      ],
+      "summary": "A six-track digital edition revisits Groove Me with guest remixes and earlier versions. Writing and composition credits here follow the digital edition; the original Cosmic release retains its own collaborative credits.",
+      "status": "released",
+      "evidenceLevel": "corroborated-public",
+      "catalog": {
+        "label": "Voyager Recordings",
+        "catalogNumber": "003 — database reference"
+      },
+      "presentation": {
+        "kind": "none"
+      },
+      "gallery": [
+        {
+          "kind": "pending",
+          "alt": "Groove Me (Twenty Fifth Anniversary Remix Edition)",
+          "caption": "Edition artwork awaits source matching and clearance."
+        }
+      ],
+      "sections": [
+        {
+          "title": "Tracklist · 01–03",
+          "items": [
+            {
+              "title": "01 · Groove Me",
+              "detail": "Justin Scott Dixon — writer and composer."
+            },
+            {
+              "title": "02 · Groove Me (DJ Knightlife & Seth Vogt Remix)",
+              "detail": "Justin Scott Dixon — writer and composer. DJ Knightlife and Seth Vogt — remixers."
+            },
+            {
+              "title": "03 · Groove Me (Mariion Christiian Remix)",
+              "detail": "Justin Scott Dixon — writer and composer. Mariion Christiian — remixer."
+            }
+          ]
+        },
+        {
+          "title": "Tracklist · 04–06",
+          "items": [
+            {
+              "title": "04 · Groove Me (Borka FM Remix)",
+              "detail": "Justin Scott Dixon — writer and composer. Borka FM — remixer."
+            },
+            {
+              "title": "05 · Groove Me (1997 Remix)",
+              "detail": "Justin Scott Dixon — writer and composer. The year is part of this version’s published title."
+            },
+            {
+              "title": "06 · Groove Me (Radio Edit)",
+              "detail": "Justin Scott Dixon — writer and composer."
+            }
+          ]
+        },
+        {
+          "title": "A later edition of the original work",
+          "items": [
+            {
+              "title": "Cosmic 001",
+              "detail": "The original Groove Me release credits Justin Scott Dixon and Jeff Alderson with writing, production and arrangement. Its credits are preserved separately from this digital edition."
+            },
+            {
+              "title": "Edition chronology",
+              "detail": "The master identifies this anniversary edition as 2021. Older copyright and recording years displayed by digital services do not move the anniversary release into the original vinyl chronology."
+            }
+          ]
+        }
+      ],
+      "children": [],
+      "publicSources": [
+        {
+          "label": "Qobuz — anniversary edition",
+          "href": "https://www.qobuz.com/us-en/album/groove-me-twenty-fifth-anniversary-remix-edition-djs-friction-spice/hrpm3q05yuzdb",
+          "supports": "Six tracks, writer/composer and guest-remixer credits; checked September 16, 2026. Copyright dates are not treated as edition release dates."
+        },
+        {
+          "label": "Discogs — anniversary edition",
+          "href": "https://www.discogs.com/release/16773015",
+          "supports": "2021 edition and Voyager Recordings 003 catalog reference retained in the master."
+        }
+      ],
+      "relatedRecordIds": [
+        "cosmic-records-history"
+      ],
+      "public": true
+    },
+    {
+      "id": "compilation-appearances",
+      "slug": "compilation-appearances",
+      "title": "Compilation appearances",
+      "displayArtistOrClient": "Voyager · Justin Scott Dixon · selected recordings",
+      "category": "career",
+      "format": "Compilation and recording-placement dossier",
+      "dateDisplay": "1997–2006 — edition dates qualified individually",
+      "sortDate": "1997-01-01",
+      "era": "COMPILATIONS & SOUNDTRACKS",
+      "roles": [
+        "Recording artist",
+        "Composer",
+        "Producer",
+        "Remixer"
+      ],
+      "summary": "Recordings and remixes placed within DJ mixes, compilations and soundtrack albums. Each entry identifies the qualifying recording and preserves the scope of Dixon’s contribution.",
+      "status": "verification-pending",
+      "evidenceLevel": "attributed-public",
+      "catalog": {},
+      "presentation": {
+        "kind": "none"
+      },
+      "gallery": [
+        {
+          "kind": "pending",
+          "alt": "Compilation appearances",
+          "caption": "Edition artwork awaits source matching and clearance."
+        }
+      ],
+      "sections": [
+        {
+          "title": "How these appearances relate",
+          "items": [
+            {
+              "title": "Recordings and compilations",
+              "detail": "A compilation appearance is a placement of a recording, not a newly authored composition or a credit for compiling the album."
+            },
+            {
+              "title": "Existing dossiers",
+              "detail": "Bloom and Global Underground 019 retain their existing archive pages and are linked below rather than duplicated here."
+            }
+          ]
+        }
+      ],
+      "children": [
+        {
+          "id": "d001",
+          "title": "Sampling the Future",
+          "artist": "Donald Glaude",
+          "date": "1997 — compilation source report",
+          "catalogNumber": "38001-2 — secondary CD reference",
+          "format": "Thrive · CD compilation",
+          "roles": [
+            "Recording artist: Voyager"
+          ],
+          "summary": "Voyager’s Ultra Intense appears on the Donald Glaude compilation.",
+          "gallery": [
+            {
+              "kind": "pending",
+              "alt": "Sampling the Future",
+              "caption": "Edition artwork awaits source matching and clearance."
+            }
+          ],
+          "credits": [
+            {
+              "title": "Ultra Intense",
+              "scope": "Track position unresolved",
+              "roles": [
+                "Recording artist: Voyager"
+              ],
+              "collaborators": "Donald Glaude — compilation / mix artist",
+              "note": "The source identifies Voyager’s recording; precise mix and edition remain to be checked.",
+              "evidence": "Compilation evidence retained in the master; edition and booklet details remain qualified where unresolved."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Discogs compilation reference",
+              "href": "https://www.discogs.com/master/649308",
+              "supports": "Compilation identity retained in the master; master references describe a release family."
+            }
+          ],
+          "relatedRecordIds": [
+            "cosmic-records-history"
+          ]
+        },
+        {
+          "id": "d002",
+          "title": "Bedrock Compiled & Mixed by John Digweed",
+          "artist": "John Digweed",
+          "date": "1999 — compilation source report",
+          "catalogNumber": "INC10CD / UL 1050-2 — separate editions",
+          "format": "Mixed 2CD compilation",
+          "roles": [
+            "Writer",
+            "Recording artist: Voyager"
+          ],
+          "summary": "Time Travel appears in John Digweed’s Bedrock mix. Territory editions remain distinct.",
+          "gallery": [
+            {
+              "kind": "pending",
+              "alt": "Bedrock Compiled & Mixed by John Digweed",
+              "caption": "Edition artwork awaits source matching and clearance."
+            }
+          ],
+          "credits": [
+            {
+              "title": "Time Travel",
+              "scope": "Disc 2 · track 6",
+              "roles": [
+                "Writer",
+                "Recording artist: Voyager"
+              ],
+              "collaborators": "John Digweed — compilation / mix artist",
+              "note": "The source credits Justin Scott Dixon as writer. Part 1/Part 2 identity is not established by the compilation title.",
+              "evidence": "Compilation evidence retained in the master; edition and booklet details remain qualified where unresolved."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Retained credit transcription",
+              "href": "https://soundcloud.com/br09402/john-digweed-bedrock-disc-2-1999",
+              "supports": "Time Travel writer attribution; secondary transcription cited in the master."
+            },
+            {
+              "label": "Discogs compilation reference",
+              "href": "https://www.discogs.com/master/38400",
+              "supports": "Compilation identity retained in the master; master references describe a release family."
+            },
+            {
+              "label": "Discogs compilation reference",
+              "href": "https://www.discogs.com/release/77826",
+              "supports": "Compilation identity retained in the master; master references describe a release family."
+            }
+          ],
+          "relatedRecordIds": [
+            "time-travel",
+            "cosmic-records-history"
+          ]
+        },
+        {
+          "id": "d003",
+          "title": "Tranceport.3 — mix album",
+          "artist": "Sandra Collins",
+          "date": "2000 — compilation source report",
+          "catalogNumber": "Catalog number unresolved",
+          "format": "Kinetic · mixed CD",
+          "roles": [
+            "Recording artist: Voyager"
+          ],
+          "summary": "The full Sandra Collins mix album includes Voyager’s Motion, separately from the vinyl sampler.",
+          "gallery": [
+            {
+              "kind": "pending",
+              "alt": "Tranceport.3 — mix album",
+              "caption": "Edition artwork awaits source matching and clearance."
+            }
+          ],
+          "credits": [
+            {
+              "title": "Motion",
+              "scope": "Track 9",
+              "roles": [
+                "Recording artist: Voyager"
+              ],
+              "collaborators": "Sandra Collins — compilation / mix artist",
+              "note": "Full mix-album appearance. The separately photographed vinyl sampler specifies Motion (Stereo Edit); that subtitle is not automatically assigned here.",
+              "evidence": "Compilation evidence retained in the master; edition and booklet details remain qualified where unresolved."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Discogs compilation reference",
+              "href": "https://www.discogs.com/master/642648",
+              "supports": "Compilation identity retained in the master; master references describe a release family."
+            }
+          ],
+          "relatedRecordIds": [
+            "singles-remixes"
+          ]
+        },
+        {
+          "id": "d004",
+          "title": "Renaissance: Awakening",
+          "artist": "Dave Seaman",
+          "date": "2000 — compilation source report",
+          "catalogNumber": "REN1CD / RENCD1 — source variants",
+          "format": "Renaissance · mixed 2CD",
+          "roles": [
+            "Composer",
+            "Recording artist: Voyager"
+          ],
+          "summary": "Voyager’s Motion opens the second disc of Dave Seaman’s Awakening.",
+          "gallery": [
+            {
+              "kind": "pending",
+              "alt": "Renaissance: Awakening",
+              "caption": "Edition artwork awaits source matching and clearance."
+            }
+          ],
+          "credits": [
+            {
+              "title": "Motion",
+              "scope": "Disc 2 · track 1",
+              "roles": [
+                "Composer",
+                "Recording artist: Voyager"
+              ],
+              "collaborators": "Dave Seaman — compilation / mix artist",
+              "note": "Justin Scott Dixon is credited as composer. Territory date and printed catalog styling remain qualified.",
+              "evidence": "Compilation evidence retained in the master; edition and booklet details remain qualified where unresolved."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "AllMusic — Awakening",
+              "href": "https://www.allmusic.com/album/renaissance-awakening-mw0000445545",
+              "supports": "Track position and composer credit retained in the master."
+            },
+            {
+              "label": "Discogs compilation reference",
+              "href": "https://www.discogs.com/master/96945",
+              "supports": "Compilation identity retained in the master; master references describe a release family."
+            }
+          ],
+          "relatedRecordIds": [
+            "singles-remixes"
+          ]
+        },
+        {
+          "id": "d005",
+          "title": "Stark Raving Mad — soundtrack album",
+          "artist": "John Digweed featuring Nick Muir",
+          "date": "2003 — compilation source report",
+          "catalogNumber": "90704-2",
+          "format": "Thrive · 2CD soundtrack compilation",
+          "roles": [
+            "Writer",
+            "Recording artist: Voyager"
+          ],
+          "summary": "Time Travel appears on the soundtrack album, with Justin Scott Dixon credited as writer.",
+          "gallery": [
+            {
+              "kind": "pending",
+              "alt": "Stark Raving Mad — soundtrack album",
+              "caption": "Edition artwork awaits source matching and clearance."
+            }
+          ],
+          "credits": [
+            {
+              "title": "Time Travel",
+              "scope": "Disc 2 · track 8",
+              "roles": [
+                "Writer",
+                "Recording artist: Voyager"
+              ],
+              "collaborators": "John Digweed featuring Nick Muir — compilation / mix artist",
+              "note": "The 2003 soundtrack album is separate from the film’s 2002 listing. The compilation title does not identify the original Part 1/Part 2 version.",
+              "evidence": "Compilation evidence retained in the master; edition and booklet details remain qualified where unresolved."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "MusicBrainz — soundtrack edition",
+              "href": "https://musicbrainz.org/release/bb5af242-4fa6-4eec-91e7-6de33326ca06",
+              "supports": "Track position and writer credit retained in the master."
+            },
+            {
+              "label": "Discogs compilation reference",
+              "href": "https://www.discogs.com/master/197156",
+              "supports": "Compilation identity retained in the master; master references describe a release family."
+            }
+          ],
+          "relatedRecordIds": [
+            "time-travel",
+            "screen-credits-history"
+          ]
+        },
+        {
+          "id": "d009",
+          "title": "Underground Beats — Series 3 Volume 3",
+          "artist": "Various artists",
+          "date": "1999 — compilation source report",
+          "catalogNumber": "UGB3003",
+          "format": "CD Pool · promotional 2CD",
+          "roles": [
+            "Recording artist: Voyager"
+          ],
+          "summary": "A Part 2 appearance in CD Pool’s promotional compilation series.",
+          "gallery": [
+            {
+              "kind": "pending",
+              "alt": "Underground Beats — Series 3 Volume 3",
+              "caption": "Edition artwork awaits source matching and clearance."
+            }
+          ],
+          "credits": [
+            {
+              "title": "Time Travel (Part 2)",
+              "scope": "Disc 1 · track 5",
+              "roles": [
+                "Recording artist: Voyager"
+              ],
+              "collaborators": "Various artists — compilation / mix artist",
+              "note": "Compilation running time is not used as the original master duration.",
+              "evidence": "Compilation evidence retained in the master; edition and booklet details remain qualified where unresolved."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Discogs compilation reference",
+              "href": "https://www.discogs.com/release/588560",
+              "supports": "Compilation identity retained in the master; master references describe a release family."
+            }
+          ],
+          "relatedRecordIds": [
+            "time-travel"
+          ]
+        },
+        {
+          "id": "d010",
+          "title": "UK Underground Beats — Volume 2",
+          "artist": "Various artists",
+          "date": "1999 — compilation source report",
+          "catalogNumber": "UK1002",
+          "format": "CD Pool · promotional 2CD",
+          "roles": [
+            "Recording artist: Voyager"
+          ],
+          "summary": "Time Travel (Part 2) appears on this separately cataloged CD Pool edition.",
+          "gallery": [
+            {
+              "kind": "pending",
+              "alt": "UK Underground Beats — Volume 2",
+              "caption": "Edition artwork awaits source matching and clearance."
+            }
+          ],
+          "credits": [
+            {
+              "title": "Time Travel (Part 2)",
+              "scope": "Track position unresolved",
+              "roles": [
+                "Recording artist: Voyager"
+              ],
+              "collaborators": "Various artists — compilation / mix artist",
+              "note": "Separate CD Pool edition from UGB3003; original booklet comparison remains outstanding.",
+              "evidence": "Compilation evidence retained in the master; edition and booklet details remain qualified where unresolved."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Discogs compilation reference",
+              "href": "https://www.discogs.com/release/2580844",
+              "supports": "Compilation identity retained in the master; master references describe a release family."
+            }
+          ],
+          "relatedRecordIds": [
+            "time-travel"
+          ]
+        },
+        {
+          "id": "d014",
+          "title": "Underground Beats — Series 3 Volume 7",
+          "artist": "Various artists",
+          "date": "2000 — compilation source report",
+          "catalogNumber": "UGB3007",
+          "format": "CD Pool · promotional 2CD",
+          "roles": [
+            "Recording artist: Voyager"
+          ],
+          "summary": "A Voyager Panic appearance in the CD Pool series.",
+          "gallery": [
+            {
+              "kind": "pending",
+              "alt": "Underground Beats — Series 3 Volume 7",
+              "caption": "Edition artwork awaits source matching and clearance."
+            }
+          ],
+          "credits": [
+            {
+              "title": "Panic",
+              "scope": "Disc 2 · track 5",
+              "roles": [
+                "Recording artist: Voyager"
+              ],
+              "collaborators": "Various artists — compilation / mix artist",
+              "note": "The retained retailer listing identifies the track and position; final catalog/booklet verification remains outstanding.",
+              "evidence": "Compilation evidence retained in the master; edition and booklet details remain qualified where unresolved."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Discogs compilation reference",
+              "href": "https://www.discogs.com/release/3444963",
+              "supports": "Compilation identity retained in the master; master references describe a release family."
+            }
+          ],
+          "relatedRecordIds": [
+            "chart-history"
+          ]
+        },
+        {
+          "id": "d015",
+          "title": "Cream",
+          "artist": "Sandra Collins",
+          "date": "2001 — compilation source report",
+          "catalogNumber": "Full printed catalog unresolved",
+          "format": "Kinetic · mixed CD",
+          "roles": [
+            "Producer"
+          ],
+          "summary": "Derangement of the Senses appears in Sandra Collins’ Cream mix with a Dixon production credit.",
+          "gallery": [
+            {
+              "kind": "pending",
+              "alt": "Cream",
+              "caption": "Edition artwork awaits source matching and clearance."
+            }
+          ],
+          "credits": [
+            {
+              "title": "Derangement of the Senses",
+              "scope": "Track 7",
+              "roles": [
+                "Producer"
+              ],
+              "collaborators": "Sandra Collins — compilation / mix artist",
+              "note": "Producer credit names Justin Scott Dixon. The composition credit is displayed as Justin Scott; its spelling remains for booklet reconciliation.",
+              "evidence": "Compilation evidence retained in the master; edition and booklet details remain qualified where unresolved."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "AllMusic — Cream",
+              "href": "https://www.allmusic.com/album/cream-mw0000015604",
+              "supports": "Track 7 and production credit retained in the master."
+            },
+            {
+              "label": "Discogs compilation reference",
+              "href": "https://www.discogs.com/master/769757",
+              "supports": "Compilation identity retained in the master; master references describe a release family."
+            }
+          ],
+          "relatedRecordIds": []
+        },
+        {
+          "id": "d016",
+          "title": "Perfecto Presents… Sandra Collins",
+          "artist": "Sandra Collins",
+          "date": "2003 — compilation source report",
+          "catalogNumber": "90714-2",
+          "format": "Thrive · mixed 2CD",
+          "roles": [
+            "Recording artist: Voyager"
+          ],
+          "summary": "Two Voyager recordings appear on this 2003 mix compilation.",
+          "gallery": [
+            {
+              "kind": "pending",
+              "alt": "Perfecto Presents… Sandra Collins",
+              "caption": "Edition artwork awaits source matching and clearance."
+            }
+          ],
+          "credits": [
+            {
+              "title": "Cosmic Fugue",
+              "scope": "Disc 1 · track 10",
+              "roles": [
+                "Recording artist: Voyager"
+              ],
+              "collaborators": "Sandra Collins — compilation / mix artist",
+              "note": "Booklet-level writing and production credits remain unverified.",
+              "evidence": "Compilation evidence retained in the master; edition and booklet details remain qualified where unresolved."
+            },
+            {
+              "title": "Spectacle",
+              "scope": "Disc 2 · track 10",
+              "roles": [
+                "Recording artist: Voyager"
+              ],
+              "collaborators": "Sandra Collins — compilation / mix artist",
+              "note": "Distinct from Perfecto Presents Sandra Collins Part 2, issued in 2006.",
+              "evidence": "Compilation evidence retained in the master; edition and booklet details remain qualified where unresolved."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Discogs compilation reference",
+              "href": "https://www.discogs.com/master/278944",
+              "supports": "Compilation identity retained in the master; master references describe a release family."
+            }
+          ],
+          "relatedRecordIds": []
+        },
+        {
+          "id": "d028",
+          "title": "The 4 A.M. Sound of Progressive Trance",
+          "artist": "Jay Ell",
+          "date": "2002 — compilation source report",
+          "catalogNumber": "LAK 33695CD",
+          "format": "Lakeshore · mixed CD",
+          "roles": [
+            "Composer",
+            "Producer"
+          ],
+          "summary": "Two Voyager recordings carry composition and production attribution in the retained credit research.",
+          "gallery": [
+            {
+              "kind": "pending",
+              "alt": "The 4 A.M. Sound of Progressive Trance",
+              "caption": "Edition artwork awaits source matching and clearance."
+            }
+          ],
+          "credits": [
+            {
+              "title": "Derangement of the Senses",
+              "scope": "Track 1",
+              "roles": [
+                "Composer",
+                "Producer"
+              ],
+              "collaborators": "Jay Ell — compilation / mix artist",
+              "note": "The retained source credits Justin Scott Dixon.",
+              "evidence": "Compilation evidence retained in the master; edition and booklet details remain qualified where unresolved."
+            },
+            {
+              "title": "Words of Cavious",
+              "scope": "Track 4",
+              "roles": [
+                "Composer",
+                "Producer"
+              ],
+              "collaborators": "Jay Ell — compilation / mix artist",
+              "note": "Title spelling follows the retained source; original booklet spelling remains unverified.",
+              "evidence": "Compilation evidence retained in the master; edition and booklet details remain qualified where unresolved."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "AllMusic — The 4 A.M. Sound",
+              "href": "https://www.allmusic.com/album/the-4-am-sound-of-progressive-trance-mw0000213612",
+              "supports": "Track names, positions and composer/producer credits retained in the master."
+            },
+            {
+              "label": "Discogs compilation reference",
+              "href": "https://www.discogs.com/release/2095502",
+              "supports": "Compilation identity retained in the master; master references describe a release family."
+            }
+          ],
+          "relatedRecordIds": []
+        },
+        {
+          "id": "d092",
+          "title": "Northern Exposure: Expeditions",
+          "artist": "Sasha + John Digweed",
+          "date": "1999 — compilation source report",
+          "catalogNumber": "Ultra / INCredible — edition selection pending",
+          "format": "Mixed 2CD compilation",
+          "roles": [
+            "Recording artist: Voyager"
+          ],
+          "summary": "Voyager’s Pure (Friction’s Groove) appears between Polarstern and Gamelan on disc two.",
+          "gallery": [
+            {
+              "kind": "pending",
+              "alt": "Northern Exposure: Expeditions",
+              "caption": "Edition artwork awaits source matching and clearance."
+            }
+          ],
+          "credits": [
+            {
+              "title": "Pure (Friction’s Groove)",
+              "scope": "Disc 2 · track 5",
+              "roles": [
+                "Recording artist: Voyager"
+              ],
+              "collaborators": "Sasha + John Digweed — compilation / mix artist",
+              "note": "The placement is distinct from a singles-chart result. The related Cosmic releases retain their own edition identities.",
+              "evidence": "Compilation evidence retained in the master; edition and booklet details remain qualified where unresolved."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "AllMusic — Expeditions",
+              "href": "https://www.allmusic.com/album/northern-exposure-expeditions-mw0000666154",
+              "supports": "Compilation track placement retained in the master."
+            },
+            {
+              "label": "Discogs compilation reference",
+              "href": "https://www.discogs.com/master/1441",
+              "supports": "Compilation identity retained in the master; master references describe a release family."
+            }
+          ],
+          "relatedRecordIds": [
+            "cosmic-records-history",
+            "chart-history"
+          ]
+        },
+        {
+          "id": "d032",
+          "title": "Global Underground 014: Hong Kong",
+          "artist": "John Digweed",
+          "date": "1999 — compilation source report",
+          "catalogNumber": "Edition catalog unresolved",
+          "format": "Boxed · mix compilation",
+          "roles": [
+            "Remixer"
+          ],
+          "summary": "A compilation appearance of the Voyager remix, identified in the retained credit index.",
+          "gallery": [
+            {
+              "kind": "pending",
+              "alt": "Global Underground 014: Hong Kong",
+              "caption": "Edition artwork awaits source matching and clearance."
+            }
+          ],
+          "credits": [
+            {
+              "title": "Tribe & Trance (Voyager Remix)",
+              "scope": "Track position unresolved",
+              "roles": [
+                "Remixer"
+              ],
+              "collaborators": "John Digweed — compilation / mix artist",
+              "note": "Title follows the compilation credit index. The source single also appears under Tribe N Trance / Tribe ’n’ Trance.",
+              "evidence": "Compilation evidence retained in the master; edition and booklet details remain qualified where unresolved."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Discogs compilation reference",
+              "href": "https://www.discogs.com/master/38413",
+              "supports": "Compilation identity retained in the master; master references describe a release family."
+            }
+          ],
+          "relatedRecordIds": []
+        },
+        {
+          "id": "d033",
+          "title": "Global Underground Prototype > 3",
+          "artist": "Seb Fontaine",
+          "date": "2000 — compilation source report",
+          "catalogNumber": "Edition catalog unresolved",
+          "format": "Boxed · mix compilation",
+          "roles": [
+            "Remixer"
+          ],
+          "summary": "The Voyager remix of Origin’s Refined Intricacy ’99 appears in Seb Fontaine’s compilation.",
+          "gallery": [
+            {
+              "kind": "pending",
+              "alt": "Global Underground Prototype > 3",
+              "caption": "Edition artwork awaits source matching and clearance."
+            }
+          ],
+          "credits": [
+            {
+              "title": "Refined Intricacy ’99 (Voyager Remix)",
+              "scope": "Track position unresolved",
+              "roles": [
+                "Remixer"
+              ],
+              "collaborators": "Seb Fontaine — compilation / mix artist",
+              "note": "This is the compilation family, separate from the Steel Yard single and unofficial cassette appearances.",
+              "evidence": "Compilation evidence retained in the master; edition and booklet details remain qualified where unresolved."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Discogs compilation reference",
+              "href": "https://www.discogs.com/master/897728",
+              "supports": "Compilation identity retained in the master; master references describe a release family."
+            }
+          ],
+          "relatedRecordIds": [
+            "singles-remixes"
+          ]
+        },
+        {
+          "id": "d036",
+          "title": "Trance Nation 2001",
+          "artist": "Various artists",
+          "date": "2001 — compilation source report",
+          "catalogNumber": "Edition catalog unresolved",
+          "format": "Ministry of Sound · compilation",
+          "roles": [
+            "Remixer"
+          ],
+          "summary": "A documented compilation appearance of the Voyager Platinum remix of Bedrock’s Beautiful Strange.",
+          "gallery": [
+            {
+              "kind": "pending",
+              "alt": "Trance Nation 2001",
+              "caption": "Edition artwork awaits source matching and clearance."
+            }
+          ],
+          "credits": [
+            {
+              "title": "Beautiful Strange (Voyager’s Platinum Remix)",
+              "scope": "Track position unresolved",
+              "roles": [
+                "Remixer"
+              ],
+              "collaborators": "Various artists — compilation / mix artist",
+              "note": "The compilation names the Platinum remix. That does not resolve whether the photographed promo’s differently titled Voyager remix is identical.",
+              "evidence": "Compilation evidence retained in the master; edition and booklet details remain qualified where unresolved."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Discogs compilation reference",
+              "href": "https://www.discogs.com/master/956018",
+              "supports": "Compilation identity retained in the master; master references describe a release family."
+            }
+          ],
+          "relatedRecordIds": [
+            "singles-remixes"
+          ]
+        },
+        {
+          "id": "d039",
+          "title": "Live Transmissions — reissue",
+          "artist": "System 7",
+          "date": "2006 — compilation source report",
+          "catalogNumber": "AAWCD010",
+          "format": "A-Wave · mixed CD reissue",
+          "roles": [
+            "Remixer"
+          ],
+          "summary": "The Voyager treatment of High Plains Drifter appears on the cited Live Transmissions reissue.",
+          "gallery": [
+            {
+              "kind": "pending",
+              "alt": "Live Transmissions — reissue",
+              "caption": "Edition artwork awaits source matching and clearance."
+            }
+          ],
+          "credits": [
+            {
+              "title": "High Plains Drifter (Voyager)",
+              "scope": "Track position unresolved",
+              "roles": [
+                "Remixer"
+              ],
+              "collaborators": "System 7 — compilation / mix artist",
+              "note": "The year describes this reissue, not the original single. Version wording follows the retained compilation index.",
+              "evidence": "Compilation evidence retained in the master; edition and booklet details remain qualified where unresolved."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Discogs compilation reference",
+              "href": "https://www.discogs.com/release/963575",
+              "supports": "Compilation identity retained in the master; master references describe a release family."
+            }
+          ],
+          "relatedRecordIds": [
+            "singles-remixes"
+          ]
+        }
+      ],
+      "publicSources": [
+        {
+          "label": "Master research — public credit index",
+          "href": "https://www.discogs.com/artist/17125-Justin-Scott-Dixon",
+          "supports": "Discovery context; individual entries cite their compilation references."
+        }
+      ],
+      "relatedRecordIds": [
+        "someone-else-bloom",
+        "one-voyager-remix"
+      ],
+      "public": true
+    }
+  ]
+}

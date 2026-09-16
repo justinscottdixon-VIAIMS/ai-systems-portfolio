@@ -1,6 +1,10 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { playlistScrollTarget, playlistWheelTarget } from '../src/lib/playlist-scroll.mjs';
+import {
+  playlistDragTarget,
+  playlistScrollTarget,
+  playlistWheelTarget,
+} from '../src/lib/playlist-scroll.mjs';
 
 const base = { scrollTop: 108, rowStep: 54, viewportHeight: 276, scrollHeight: 920 };
 
@@ -31,4 +35,31 @@ test('playlist targets clamp at both boundaries and ignore unrelated keys', () =
   assert.equal(playlistScrollTarget({ ...base, scrollTop: 640, key: 'ArrowDown' }), 644);
   assert.equal(playlistScrollTarget({ ...base, scrollTop: 2, key: 'ArrowUp' }), 0);
   assert.equal(playlistScrollTarget({ ...base, key: 'Enter' }), null);
+});
+
+test('dragging the playlist thumb maps rail travel to the full scroll range', () => {
+  assert.equal(playlistDragTarget({
+    startScrollTop: 108,
+    deltaY: 50,
+    viewportHeight: 276,
+    scrollHeight: 920,
+    railHeight: 300,
+    thumbHeight: 100,
+  }), 269);
+  assert.equal(playlistDragTarget({
+    startScrollTop: 108,
+    deltaY: -200,
+    viewportHeight: 276,
+    scrollHeight: 920,
+    railHeight: 300,
+    thumbHeight: 100,
+  }), 0);
+  assert.equal(playlistDragTarget({
+    startScrollTop: 600,
+    deltaY: 200,
+    viewportHeight: 276,
+    scrollHeight: 920,
+    railHeight: 300,
+    thumbHeight: 100,
+  }), 644);
 });

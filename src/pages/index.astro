@@ -1,7 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import HybridMediaEngine from '../components/HybridMediaEngine.astro';
-import PublicationsAndCredits from '../components/PublicationsAndCredits.astro';
 import { loadBuildMediaData } from '../lib/build-media-manifest.mjs';
 import { getMediaOrigin, parseMediaManifest } from '../lib/media-manifest.mjs';
 
@@ -42,7 +41,6 @@ const mediaOrigin = getMediaOrigin(mediaManifest);
 			<span>MUSIC / VIDEO PRODUCER</span>
 			<span>SPATIAL AUDIO ENGINEER · SONGWRITER</span>
 			<span>SOUND DESIGNER · VISUAL STORYTELLER</span>
-			<span>INNOVATOR · MOTIVATOR · CREATOR</span>
 		</p>
 	</header>
 
@@ -50,5 +48,4 @@ const mediaOrigin = getMediaOrigin(mediaManifest);
 		<HybridMediaEngine manifest={mediaManifest} />
 	</section>
 
-	<PublicationsAndCredits />
 </Layout>
