@@ -1,0 +1,7 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import vm from 'node:vm';
+import {readFile} from 'node:fs/promises';
+async function processor(rate=48000){let P;vm.runInNewContext(await readFile('public-deploy/audio/stereo-peak-worklet.js','utf8'),{sampleRate:rate,AudioWorkletProcessor:class{constructor(){this.messages=[];this.port={postMessage:m=>this.messages.push(m)}}},registerProcessor:(n,p)=>P=p});return new P();}
+for(const rate of [44100,48000])test(`997Hz stereo calibration and RMS at ${rate}Hz`,async()=>{const p=await processor(rate);for(let base=0;base<rate*4;base+=128){const a=Float32Array.from({length:128},(_,i)=>0.1*Math.sin(2*Math.PI*997*(base+i)/rate));p.process([[a,a]],[[new Float32Array(128)]]);}const m=p.messages.at(-1);assert.ok(Math.abs(m.rms[0]-0.1/Math.sqrt(2))<0.0001);assert.ok(Math.abs(m.lufs+20)<0.08,`LUFS ${m.lufs}`);assert.ok(m.peaks[0]>.099);});
+test('short-term waits three seconds and reset discards old programme',async()=>{const p=await processor();for(let i=0;i<20;i++)p.process([[new Float32Array(128).fill(.5)]],[[new Float32Array(128)]]);assert.equal(p.messages.at(-1).lufs,null);p.port.onmessage({data:{reset:true,epoch:2}});for(let i=0;i<1200;i++)p.process([[new Float32Array(128)]],[[new Float32Array(128)]]);assert.equal(p.messages.at(-1).lufs,null);assert.equal(p.messages.at(-1).epoch,2);assert.equal(p.messages.at(-1).rms[0],0);});

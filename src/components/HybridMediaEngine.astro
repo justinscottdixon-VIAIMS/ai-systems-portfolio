@@ -47,7 +47,7 @@ const evidenceLabels = {
 				</button>
 			</div>
 		)}
-		<video id="master-video" src={library.experience.enabled ? library.experience.welcomeVideoSrc : firstCinema?.src ?? ''} autoplay={!library.experience.enabled} muted playsinline preload="metadata" class="media-master"></video>
+		<video id="master-video" crossorigin="anonymous" src={library.experience.enabled ? library.experience.welcomeVideoSrc : firstCinema?.src ?? ''} autoplay={!library.experience.enabled} muted playsinline preload="metadata" class="media-master"></video>
 		<video id="music-visual-video" muted playsinline loop preload="metadata" aria-hidden="true" class="music-visual-video"></video>
 		<section id="reference-stage" class="reference-stage" aria-label="Career and release reference" hidden>
 			<header class="reference-stage__header">
@@ -114,7 +114,7 @@ const evidenceLabels = {
 				<button id="next-reference" type="button" aria-label="Next slide">NEXT SLIDE →</button>
 			</footer>
 		</section>
-		<audio id="ambient-audio" src={library.experience.ambientAudioSrc ?? ''} loop preload="metadata"></audio>
+		<audio id="ambient-audio" crossorigin="anonymous" src={library.experience.ambientAudioSrc ?? ''} loop preload="metadata"></audio>
 		<button id="cinema-audio-invitation" type="button" class="cinema-audio-invitation" data-cinema-audio-invitation disabled={library.experience.enabled || !firstCinema} aria-disabled={String(library.experience.enabled || !firstCinema)} aria-pressed="false">
 			<span aria-hidden="true" class="cinema-audio-invitation__wave"></span>
 			<span id="cinema-audio-label">HEAR CINEMA</span>
@@ -152,7 +152,7 @@ const evidenceLabels = {
 		</div>
 	</div>
 
-	<audio id="music-audio" src={firstMusic?.audioSrc ?? ''} preload="metadata"></audio>
+	<audio id="music-audio" crossorigin="anonymous" src={firstMusic?.audioSrc ?? ''} preload="metadata"></audio>
 
 	<section data-player-dock class="player-dock" aria-label="VIAIMS media player">
 		<div class="media-library__tabs" role="tablist" aria-label="Media Library" data-player-tabs>
@@ -181,12 +181,15 @@ const evidenceLabels = {
 			</div>
 		</div>
 		<div class="player-dock__status" data-player-status-strip>
-			<div class="engineering-meters" data-meter-status="pending" aria-label="Stereo engineering meters">
-				<span id="meter-status">METERS PENDING</span>
-				<div data-meter-channel="left"><span>L</span><meter id="meter-l" aria-label="Left channel level" min="-60" max="0" value="-60"></meter><output id="meter-l-value">−∞</output><span id="clip-l">CLIP</span></div>
-				<div data-meter-channel="right"><span>R</span><meter id="meter-r" aria-label="Right channel level" min="-60" max="0" value="-60"></meter><output id="meter-r-value">−∞</output><span id="clip-r">CLIP</span></div>
-			</div>
-			<div class="player-dock__commerce"><span>CART</span><output id="cart-count">0</output></div>
+			<div class="engineering-meters" data-meter-status="idle" aria-label="Stereo engineering meters">
+                <span id="meter-status">METERS · CLICK TO ENABLE</span>
+                <div class="meter-column-labels"><span>dBFS</span><span>RMS</span><span>PEAK</span><span></span></div>
+                <div data-meter-channel="left"><span>L</span><div class="meter-layer-track"><span class="meter-layer meter-layer--peak" id="bar-l"></span><span class="meter-layer meter-layer--rms" id="rms-bar-l"></span><meter class="meter-accessible" id="meter-l" aria-label="Left channel level" min="-60" max="0" value="-60"></meter></div><output class="meter-rms-value" id="rms-l-value" aria-live="off">−∞</output><output class="meter-peak-value" id="meter-l-value" aria-live="off">−∞</output><span id="clip-l" title="Sample amplitude reached full scale">FS</span></div>
+                <div data-meter-channel="right"><span>R</span><div class="meter-layer-track"><span class="meter-layer meter-layer--peak" id="bar-r"></span><span class="meter-layer meter-layer--rms" id="rms-bar-r"></span><meter class="meter-accessible" id="meter-r" aria-label="Right channel level" min="-60" max="0" value="-60"></meter></div><output class="meter-rms-value" id="rms-r-value" aria-live="off">−∞</output><output class="meter-peak-value" id="meter-r-value" aria-live="off">−∞</output><span id="clip-r" title="Sample amplitude reached full scale">FS</span></div>
+                <div class="meter-db-scale"><span>−60</span><span>−48</span><span>−36</span><span>−24</span><span>−12</span><span>0 dBFS</span></div>
+                <div class="meter-loudness-row"><span>ST</span><div class="meter-loudness-track" role="meter" id="lufs-meter" aria-label="Stereo short-term loudness" aria-valuemin="-60" aria-valuemax="0" aria-valuenow="-60"><span id="lufs-bar"></span></div><output id="lufs-value" aria-live="off">—</output><span>LUFS</span></div>
+                <small class="meter-loudness-caption">STEREO · 3s · −60 → 0 LUFS</small>
+            </div>
 		</div>
 		<div class="player-dock__tray" data-provider-tray>
 			<div id="panel-cinema" role="tabpanel" aria-labelledby="tab-cinema" data-provider-panel="cinema">
@@ -279,6 +282,7 @@ const evidenceLabels = {
 </div>
 
 	<script>
+	import { connectStereoMeters } from '../lib/stereo-meter.mjs';
 	import { activePlayButtonState, activeTransportPolicy, createEndedEventToken, isCurrentEndedEventToken, runtimeVideoErrorAction, runCommittedPlayback, runActivePlaybackRetry, transportPlaybackForTab } from '../lib/active-transport.mjs';
 	import { audibleElementKind, claimCinemaAudio, createAudibleSource, removeAudibleProvider, restorePriorAudio, selectAudibleTrack } from '../lib/audible-source.mjs';
 	import { advanceCinema, createCinemaContinuity, createCinemaEndedToken, isCurrentCinemaEndedToken, selectCinema } from '../lib/cinema-continuity.mjs';
@@ -2231,6 +2235,16 @@ const evidenceLabels = {
 	syncTransportTime();
 	syncEntryControlAvailability();
 	renderTab('cinema');
+	connectStereoMeters({
+		root, elements: [mv, musicAudio, ambientAudio],
+		getSource: () => {
+			if (referenceReturnState) return null;
+			if (session.playback.provider === 'youtube') return { external: true };
+			// The audible deck may differ from the selected tab or visual stage.
+			const element = [musicAudio, ambientAudio, mv].find(media => !media.paused && !media.muted && !media.ended && media.volume > 0);
+			return element ? { element } : null;
+		},
+	});
 	const runtimeCatalogue = createRuntimeCatalogueController({
 		applyCatalogue: (items, lifecycle) => {
 			const applied = transitionQueue.then(() => lifecycle.isCurrent() && applyRuntimeLibrary(toRuntimeMediaLibrary(items), items, lifecycle));

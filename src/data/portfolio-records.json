@@ -5,19 +5,19 @@
       "id": "cosmic-records-history",
       "slug": "cosmic-records-history",
       "title": "Cosmic Records — Catalogue History",
-      "displayArtistOrClient": "DJ’s Friction & Spice / Voyager / The Beat Brothers",
+      "displayArtistOrClient": "DJ’s Friction & Spice / Voyager",
       "category": "career",
-      "format": "Label and release dossier",
+      "format": "Label body of work · COSMIC 001–017",
       "dateDisplay": "Vinyl chronology begins January 1996",
       "sortDate": "1996-01-01",
       "era": "VINYL FOUNDATIONS",
       "roles": [
+        "Label co-owner",
         "Artist",
         "Composer",
-        "Producer",
-        "Catalogue Participant"
+        "Producer"
       ],
-      "summary": "Seventeen Cosmic releases connect the early Friction & Spice recordings with the emergence of Voyager. Artists and titles follow Dixon’s corrected archive. Individual release dates remain qualified where unresolved.",
+      "summary": "Cosmic Records brings together COSMIC 001–017 as one body of work in Justin Scott Dixon’s portfolio, centered on DJ’s Friction & Spice and Voyager. Label owners and producers: Justin Scott Dixon (DJ Friction / Voyager) and Jeff Alderson (DJ Spice). Other artist identities and contributions are documented within the relevant releases.",
       "status": "verification-pending",
       "evidenceLevel": "owner-approved-archive",
       "catalog": {
@@ -29,12 +29,25 @@
       "gallery": [
         {
           "kind": "image",
-          "src": "/reference/cosmic-002-approved.png",
-          "alt": "DJ’s Friction & Spice — Pure / Journees: approved vinyl presentation",
-          "caption": "Artist-approved reconstructed presentation; original label photograph is the archival source."
+          "src": "/reference/cosmic-002-flat-sleeve-v2.png",
+          "alt": "DJ’s Friction & Spice — Pure / Journees: vinyl presentation with flat white sleeve",
+          "caption": "Reconstructed presentation from original label photography; artwork fidelity review pending."
         }
       ],
       "sections": [
+        {
+          "title": "Cosmic Records: ownership and artist identities",
+          "items": [
+            {
+              "title": "Justin Scott Dixon",
+              "detail": "Label co-owner and producer; DJ Friction and Voyager."
+            },
+            {
+              "title": "Jeff Alderson",
+              "detail": "Label co-owner and producer; DJ Spice."
+            }
+          ]
+        },
         {
           "title": "Groove Me: the first studio",
           "items": [
@@ -70,16 +83,8 @@
           ]
         },
         {
-          "title": "Credits belong to tracks",
+          "title": "Catalogue chronology",
           "items": [
-            {
-              "title": "The E.P.",
-              "detail": "Explorations pairs Dixon with Jason Morgan; Go With The Flow with Jeff Alderson; Dark Knight with Chris Hand."
-            },
-            {
-              "title": "Get Jazzed Up",
-              "detail": "The label credits J.S. Dixon for producing and mixing In The Mind. The licensed Alright versions carry different production credits."
-            },
             {
               "title": "Release chronology",
               "detail": "January 1996 begins the artist-confirmed vinyl chronology. Copyright dates and provisional catalog years are not exact release dates."
@@ -112,9 +117,9 @@
           "gallery": [
             {
               "kind": "image",
-              "src": "/reference/cosmic-001-approved.png",
-              "alt": "DJ’s Friction & Spice — Groove Me: approved vinyl presentation",
-              "caption": "Artist-approved reconstructed presentation; original label photograph is the archival source."
+              "src": "/reference/cosmic-001-flat-sleeve-v2.png",
+              "alt": "DJ’s Friction & Spice — Groove Me: vinyl presentation with flat white sleeve",
+              "caption": "Reconstructed presentation from original label photography; artwork fidelity review pending."
             }
           ]
         },
@@ -134,9 +139,9 @@
           "gallery": [
             {
               "kind": "image",
-              "src": "/reference/cosmic-002-approved.png",
-              "alt": "DJ’s Friction & Spice — Pure / Journees: approved vinyl presentation",
-              "caption": "Artist-approved reconstructed presentation; original label photograph is the archival source."
+              "src": "/reference/cosmic-002-flat-sleeve-v2.png",
+              "alt": "DJ’s Friction & Spice — Pure / Journees: vinyl presentation with flat white sleeve",
+              "caption": "Reconstructed presentation from original label photography; artwork fidelity review pending."
             }
           ]
         },
@@ -156,9 +161,9 @@
           "gallery": [
             {
               "kind": "image",
-              "src": "/reference/cosmic-003-approved.png",
-              "alt": "DJ’s Friction & Spice — You Make Me Feel So Good: approved vinyl presentation",
-              "caption": "Artist-approved reconstructed presentation; original label photograph is the archival source."
+              "src": "/reference/cosmic-003-flat-sleeve-v2.png",
+              "alt": "DJ’s Friction & Spice — You Make Me Feel So Good: vinyl presentation with flat white sleeve",
+              "caption": "Reconstructed presentation from original label photography; artwork fidelity review pending."
             }
           ]
         },
@@ -178,9 +183,9 @@
           "gallery": [
             {
               "kind": "image",
-              "src": "/reference/cosmic-004-approved.png",
-              "alt": "The Beat Brothers — Ah Yeah: approved vinyl presentation",
-              "caption": "Artist-approved reconstructed presentation; original label photograph is the archival source."
+              "src": "/reference/cosmic-004-flat-sleeve-v2.png",
+              "alt": "The Beat Brothers — Ah Yeah: vinyl presentation with flat white sleeve",
+              "caption": "Reconstructed presentation from original label photography; artwork fidelity review pending."
             }
           ]
         },
@@ -197,9 +202,10 @@
           "summary": "Trixta; Friction.",
           "gallery": [
             {
-              "kind": "pending",
-              "alt": "Trixta / Friction",
-              "caption": "Original artwork awaiting source reconciliation."
+              "kind": "image",
+              "src": "/reference/cosmic-005-flat-sleeve-v2.png",
+              "alt": "Voyager — Trixta / Friction: vinyl presentation",
+              "caption": "Reconstructed presentation from original label photography; artwork fidelity review pending."
             }
           ]
         },
@@ -238,9 +244,10 @@
           "summary": "The Beat; Relax; Slider.",
           "gallery": [
             {
-              "kind": "pending",
-              "alt": "The Beat / Relax — also includes Slider",
-              "caption": "Original artwork awaiting source reconciliation."
+              "kind": "image",
+              "src": "/reference/cosmic-007-flat-sleeve-v2.png",
+              "alt": "Voyager — The Beat / Relax — also includes Slider: vinyl presentation",
+              "caption": "Reconstructed presentation from original label photography; artwork fidelity review pending."
             }
           ]
         },
@@ -258,9 +265,10 @@
           "summary": "The Rhythm (Cosmic’s Funky Mix); The Rhythm (DJ Who’s Progressive Mix).",
           "gallery": [
             {
-              "kind": "pending",
-              "alt": "The Rhythm",
-              "caption": "Original artwork awaiting source reconciliation."
+              "kind": "image",
+              "src": "/reference/cosmic-008-flat-sleeve-v2.png",
+              "alt": "DJ’s Friction & Spice — The Rhythm: vinyl presentation",
+              "caption": "Reconstructed presentation from original label photography; artwork fidelity review pending."
             }
           ]
         },
@@ -277,9 +285,10 @@
           "summary": "Groove Me (Remix); You Make Me Feel So Good (Remix).",
           "gallery": [
             {
-              "kind": "pending",
-              "alt": "Remix LP",
-              "caption": "Original artwork awaiting source reconciliation."
+              "kind": "image",
+              "src": "/reference/cosmic-009-continuous-grooves-v2.png",
+              "alt": "DJ’s Friction & Spice — Remix LP: vinyl presentation",
+              "caption": "Reconstructed presentation from original label photography; artwork fidelity review pending."
             }
           ]
         },
@@ -297,9 +306,10 @@
           "summary": "Lost Worlds; Ultra Intense.",
           "gallery": [
             {
-              "kind": "pending",
-              "alt": "Lost Worlds / Ultra Intense",
-              "caption": "Original artwork awaiting source reconciliation."
+              "kind": "image",
+              "src": "/reference/cosmic-010-flat-sleeve-v2.png",
+              "alt": "Voyager — Lost Worlds / Ultra Intense: vinyl presentation",
+              "caption": "Reconstructed presentation from original label photography; artwork fidelity review pending."
             }
           ]
         },
@@ -316,9 +326,10 @@
           "summary": "Rhythm Rockin’; Future Funk.",
           "gallery": [
             {
-              "kind": "pending",
-              "alt": "Rhythm Rockin’ / Future Funk",
-              "caption": "Original artwork awaiting source reconciliation."
+              "kind": "image",
+              "src": "/reference/cosmic-011-continuous-grooves-v1.png",
+              "alt": "DJ’s Friction & Spice — Rhythm Rockin’ / Future Funk: vinyl presentation",
+              "caption": "Reconstructed presentation from original label photography; artwork fidelity review pending."
             }
           ]
         },
@@ -335,9 +346,10 @@
           "summary": "Acid Drop; Ah Yeah (RMX).",
           "gallery": [
             {
-              "kind": "pending",
-              "alt": "Acid Drop / Ah Yeah (RMX)",
-              "caption": "Original artwork awaiting source reconciliation."
+              "kind": "image",
+              "src": "/reference/cosmic-012-flat-sleeve-v2.png",
+              "alt": "The Beat Brothers — Acid Drop / Ah Yeah (RMX): vinyl presentation",
+              "caption": "Reconstructed presentation from original label photography; artwork fidelity review pending."
             }
           ]
         },
@@ -354,9 +366,10 @@
           "summary": "Work 4 Love (The Orlando Breaks Mix); Work 4 Love (Back To The Old School Mix).",
           "gallery": [
             {
-              "kind": "pending",
-              "alt": "Work 4 Love",
-              "caption": "Original artwork awaiting source reconciliation."
+              "kind": "image",
+              "src": "/reference/cosmic-013-continuous-grooves-v3.png",
+              "alt": "Three Wise Monkeys Meet DJ’s Friction & Spice — Work 4 Love: vinyl presentation",
+              "caption": "Reconstructed presentation from original label photography; artwork fidelity review pending."
             }
           ]
         },
@@ -372,12 +385,13 @@
             "Co-arranger",
             "Production credited to Friction & Spice"
           ],
-          "summary": "Go With The Flow; Explorations; Dark Knight.",
+          "summary": "Go With The Flow; Explorations; Dark Knight. Explorations pairs Dixon with Jason Morgan; Go With The Flow with Jeff Alderson; Dark Knight with Chris Hand.",
           "gallery": [
             {
-              "kind": "pending",
-              "alt": "The E.P.",
-              "caption": "Original artwork awaiting source reconciliation."
+              "kind": "image",
+              "src": "/reference/cosmic-014-flat-sleeve-v2.png",
+              "alt": "DJ’s Friction & Spice — The E.P.: vinyl presentation",
+              "caption": "Reconstructed presentation from original label photography; artwork fidelity review pending."
             }
           ],
           "credits": [
@@ -436,9 +450,10 @@
           "summary": "Original Mix; Thorn’s Break; Friction’s Groove.",
           "gallery": [
             {
-              "kind": "pending",
-              "alt": "Pure Frictions Groove",
-              "caption": "Original artwork awaiting source reconciliation."
+              "kind": "image",
+              "src": "/reference/cosmic-015-flat-sleeve-v2.png",
+              "alt": "Voyager — Pure Frictions Groove: vinyl presentation",
+              "caption": "Reconstructed presentation from original label photography; artwork fidelity review pending."
             }
           ]
         },
@@ -452,12 +467,13 @@
           "roles": [
             "Producer / mixer: In The Mind"
           ],
-          "summary": "In The Mind; Alright (Breakbeat Mix); Alright (Hybrid Analogue Mix).",
+          "summary": "In The Mind; Alright (Breakbeat Mix); Alright (Hybrid Analogue Mix). The label credits J.S. Dixon for producing and mixing In The Mind. The licensed Alright versions carry different production credits.",
           "gallery": [
             {
-              "kind": "pending",
-              "alt": "Get Jazzed Up",
-              "caption": "Original artwork awaiting source reconciliation."
+              "kind": "image",
+              "src": "/reference/cosmic-016-flat-sleeve-v2.png",
+              "alt": "DJ’s Friction & Spice — Get Jazzed Up: vinyl presentation",
+              "caption": "Reconstructed presentation from original label photography; artwork fidelity review pending."
             }
           ],
           "credits": [
@@ -494,9 +510,10 @@
           "summary": "Double-title release; exact track titles awaiting primary-label confirmation.",
           "gallery": [
             {
-              "kind": "pending",
-              "alt": "Time Travel E.P.",
-              "caption": "Original artwork awaiting source reconciliation."
+              "kind": "image",
+              "src": "/reference/cosmic-017-scale-v6.png",
+              "alt": "Voyager — Time Travel E.P.: vinyl presentation",
+              "caption": "Artist-approved reconstructed presentation; original label photograph is the archival source."
             }
           ]
         }

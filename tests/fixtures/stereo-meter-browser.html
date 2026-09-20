@@ -1,0 +1,22 @@
+<!doctype html><html><head><title>Stereo meter verification</title></head><body><button id="run">Run silent PCM verification</button><pre id="result">Ready</pre><script type="module">
+document.querySelector('#run').onclick=async()=>{
+ const out=document.querySelector('#result');
+ try{
+ const ctx=new AudioContext();await ctx.resume();await ctx.audioWorklet.addModule('/audio/stereo-peak-worklet.js');
+ const source=ctx.createBufferSource();const buffer=ctx.createBuffer(2,ctx.sampleRate*2,ctx.sampleRate);
+ buffer.getChannelData(0).fill(0.25);buffer.getChannelData(1).fill(0.5);source.buffer=buffer;
+ const meter=new AudioWorkletNode(ctx,'viaims-stereo-peak',{outputChannelCount:[2]});
+ const analyser=ctx.createAnalyser();analyser.fftSize=2048;
+ const mute=ctx.createGain();mute.gain.value=0;
+ source.connect(analyser);source.connect(meter);meter.connect(analyser);analyser.connect(mute);mute.connect(ctx.destination);
+ let measured;
+ meter.port.onmessage=e=>{if(e.data.peaks[0]>0)measured=e.data.peaks;};source.start();
+ await new Promise(r=>setTimeout(r,500));
+ const data=new Float32Array(analyser.fftSize);analyser.getFloatTimeDomainData(data);
+ const outputPeak=Math.max(...data.map(Math.abs));
+ const pass=measured?.[0]===0.25&&measured?.[1]===0.5&&Math.abs(outputPeak-0.375)<0.0001;
+ out.textContent=JSON.stringify({pass,leftPeak:measured?.[0],rightPeak:measured?.[1],expectedMonoOutput:0.375,actualMonoOutput:outputPeak,noDoubledAudio:Math.abs(outputPeak-0.375)<0.0001},null,2);
+ source.stop();await ctx.close();
+ }catch(e){out.textContent='FAIL '+e.message;}
+};
+</script></body></html>

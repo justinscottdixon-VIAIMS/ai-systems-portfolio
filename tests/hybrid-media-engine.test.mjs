@@ -213,7 +213,7 @@ test('stage precedes one integrated player dock containing every command surface
   assert.match(component, /id="now-playing-status"[^>]+aria-live="polite"/s);
 });
 
-test('stage owns the Cinema audio invitation and dock owns transport, meters, and cart', async () => {
+test('stage owns the Cinema audio invitation and dock owns transport and meters', async () => {
   const component = await source(componentPath);
   const stageStart = component.indexOf('id="master-stage-container"');
   const stageEnd = component.indexOf('<audio id="music-audio"', stageStart);
@@ -224,7 +224,7 @@ test('stage owns the Cinema audio invitation and dock owns transport, meters, an
 
 	assert.match(stage, /id="cinema-audio-invitation"[^>]+data-cinema-audio-invitation/s);
   assert.equal((component.match(/data-cinema-audio-invitation/g) ?? []).length, 1);
-  for (const id of ['active-prev', 'active-play', 'active-next', 'music-shuffle', 'music-repeat', 'return-to-cinema', 'meter-l', 'meter-r', 'cart-count']) {
+  for (const id of ['active-prev', 'active-play', 'active-next', 'music-shuffle', 'music-repeat', 'return-to-cinema', 'meter-l', 'meter-r']) {
     assert.match(dock, new RegExp(`id="${id}"`));
     assert.doesNotMatch(stage, new RegExp(`id="${id}"`));
   }
@@ -277,7 +277,7 @@ test('Music rows keep one product identity with distinct Audio and optional Vide
   assert.match(component, /id="music-shuffle"/);
   assert.match(component, /id="music-repeat"/);
   assert.match(component, /id="buy-license"/);
-  assert.match(component, /id="cart-count"/);
+  assert.doesNotMatch(component, /id="cart-count"/);
   assert.match(component, /data-music-mode="audio"[^>]+aria-label={`Play \$\{item\.title\}`}/s);
   assert.match(component, /data-music-mode="video"[^>]+aria-label={`Play \$\{item\.title\} video`}/s);
 });
