@@ -76,7 +76,7 @@ function relatedIds(value, label) {
 }
 
 function childRecord(child, label) {
-  if (!child || !Array.isArray(child.roles) || child.roles.length === 0) throw new TypeError(`${label} requires roles`);
+  if (!child || !Array.isArray(child.roles)) throw new TypeError(`${label} requires roles`);
   if (!Array.isArray(child.gallery) || child.gallery.length === 0) throw new TypeError(`${label} requires a gallery plan`);
   if (child.credits !== undefined && !Array.isArray(child.credits)) throw new TypeError(`${label} credits must be an array`);
   if (child.publicSources !== undefined && !Array.isArray(child.publicSources)) throw new TypeError(`${label} sources must be an array`);

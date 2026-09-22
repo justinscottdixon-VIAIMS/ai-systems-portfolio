@@ -113,7 +113,7 @@
             "Co-producer",
             "Co-arranger"
           ],
-          "summary": "Groove Me (Dub); Groove Me (Original).",
+          "summary": "Groove Me (Original); Groove Me (Dub).",
           "gallery": [
             {
               "kind": "image",
@@ -197,7 +197,9 @@
           "catalogNumber": "COSMIC 005",
           "format": "12-inch vinyl",
           "roles": [
-            "Artist"
+            "Writer",
+            "Producer",
+            "Arranger"
           ],
           "summary": "Trixta; Friction.",
           "gallery": [
@@ -239,9 +241,10 @@
           "catalogNumber": "COSMIC 007",
           "format": "12-inch vinyl",
           "roles": [
-            "Artist"
+            "Writer",
+            "Producer"
           ],
-          "summary": "The Beat; Relax; Slider.",
+          "summary": "The Beat; Relax; Slider. Written and produced by Voyager.",
           "gallery": [
             {
               "kind": "image",
@@ -260,9 +263,10 @@
           "format": "12-inch vinyl",
           "roles": [
             "Co-writer / original",
+            "Co-arranger / original",
             "Co-producer / original"
           ],
-          "summary": "The Rhythm (Cosmic’s Funky Mix); The Rhythm (DJ Who’s Progressive Mix).",
+          "summary": "The Rhythm (Cosmic’s Funky Mix); The Rhythm (DJ Who’s Progressive Mix). Written, arranged and produced by Justin Scott Dixon and Jeff Alderson. DJ Who’s Progressive Mix: DJ Who — remix and production.",
           "gallery": [
             {
               "kind": "image",
@@ -280,9 +284,11 @@
           "catalogNumber": "COSMIC 009",
           "format": "12-inch vinyl",
           "roles": [
-            "Artist"
+            "Co-writer",
+            "Co-arranger",
+            "Co-producer"
           ],
-          "summary": "Groove Me (Remix); You Make Me Feel So Good (Remix).",
+          "summary": "Groove Me (Remix); You Make Me Feel So Good (Remix). Written, arranged and produced by Justin Scott Dixon and Jeff Alderson.",
           "gallery": [
             {
               "kind": "image",
@@ -300,10 +306,10 @@
           "catalogNumber": "COSMIC 010",
           "format": "12-inch vinyl",
           "roles": [
-            "Co-writer",
-            "Co-producer"
+            "Writer",
+            "Producer"
           ],
-          "summary": "Lost Worlds; Ultra Intense.",
+          "summary": "Lost Worlds; Ultra Intense. Written and produced by Voyager.",
           "gallery": [
             {
               "kind": "image",
@@ -321,9 +327,10 @@
           "catalogNumber": "COSMIC 011",
           "format": "12-inch vinyl",
           "roles": [
-            "Artist"
+            "Co-writer",
+            "Co-producer"
           ],
-          "summary": "Rhythm Rockin’; Future Funk.",
+          "summary": "Rhythm Rockin’; Future Funk. Written and produced by Justin Scott Dixon and Jeff Alderson.",
           "gallery": [
             {
               "kind": "image",
@@ -341,9 +348,10 @@
           "catalogNumber": "COSMIC 012",
           "format": "12-inch vinyl",
           "roles": [
-            "Duo writing / production credit"
+            "Writer",
+            "Producer"
           ],
-          "summary": "Acid Drop; Ah Yeah (RMX).",
+          "summary": "Acid Drop; Ah Yeah (RMX). Written and produced by Justin Scott Dixon (Voyager).",
           "gallery": [
             {
               "kind": "image",
@@ -360,10 +368,8 @@
           "date": "1997 — public listing",
           "catalogNumber": "COSMIC 013",
           "format": "12-inch vinyl",
-          "roles": [
-            "Collaborator"
-          ],
-          "summary": "Work 4 Love (The Orlando Breaks Mix); Work 4 Love (Back To The Old School Mix).",
+          "roles": [],
+          "summary": "Work 4 Love (The Orlando Breaks Mix); Work 4 Love (Back To The Old School Mix). Written and produced by Three Wise Monkeys.",
           "gallery": [
             {
               "kind": "image",
@@ -383,7 +389,7 @@
           "roles": [
             "Co-writer",
             "Co-arranger",
-            "Production credited to Friction & Spice"
+            "Production credited to DJ’s Friction & Spice"
           ],
           "summary": "Go With The Flow; Explorations; Dark Knight. Explorations pairs Dixon with Jason Morgan; Go With The Flow with Jeff Alderson; Dark Knight with Chris Hand.",
           "gallery": [
@@ -404,7 +410,7 @@
               ],
               "evidence": "Artist-supplied label photograph transcribed in the master.",
               "collaborators": "Jeff Alderson — co-writer and co-arranger",
-              "note": "Release-wide production credit: Friction & Spice."
+              "note": "Production credited to DJ’s Friction & Spice unless otherwise noted."
             },
             {
               "title": "Explorations",
@@ -415,7 +421,7 @@
               ],
               "evidence": "Artist-supplied label photograph transcribed in the master.",
               "collaborators": "Jason Morgan — co-writer and co-arranger",
-              "note": "Release-wide production credit: Friction & Spice."
+              "note": "Production credited to DJ’s Friction & Spice unless otherwise noted."
             },
             {
               "title": "Dark Knight",
@@ -426,7 +432,7 @@
               ],
               "evidence": "Artist-supplied label photograph transcribed in the master.",
               "collaborators": "Chris Hand — co-writer and co-arranger",
-              "note": "Release-wide production credit: Friction & Spice."
+              "note": "Production credited to DJ’s Friction & Spice unless otherwise noted."
             }
           ],
           "publicSources": [
@@ -439,7 +445,7 @@
         },
         {
           "id": "cosmic-015",
-          "title": "Pure Frictions Groove",
+          "title": "Pure",
           "artist": "Voyager",
           "date": "1998 — public listing",
           "catalogNumber": "COSMIC 015",
@@ -447,7 +453,7 @@
           "roles": [
             "Artist"
           ],
-          "summary": "Original Mix; Thorn’s Break; Friction’s Groove.",
+          "summary": "Remix release of Pure, originally issued on COSMIC 002. Versions: Original Mix; Thorn’s Break (remix by Thorn); Friction’s Groove. Original Mix written and arranged by Justin Scott Dixon; produced by Justin Scott Dixon and Jeff Alderson. Friction’s Groove was remixed and produced solely by Justin Scott Dixon (Voyager), and became known and published as Pure Frictions Groove by Voyager.",
           "gallery": [
             {
               "kind": "image",
@@ -465,9 +471,9 @@
           "catalogNumber": "COSMIC 016",
           "format": "12-inch vinyl",
           "roles": [
-            "Producer / mixer: In The Mind"
+            "Writer / producer / mixer: In The Mind"
           ],
-          "summary": "In The Mind; Alright (Breakbeat Mix); Alright (Hybrid Analogue Mix). The label credits J.S. Dixon for producing and mixing In The Mind. The licensed Alright versions carry different production credits.",
+          "summary": "In The Mind; Alright (Breakbeat Mix); Alright (Hybrid Analogue Mix). In The Mind was written solely by Justin Scott Dixon and is a Voyager production (Justin Scott Dixon); the label credits J.S. Dixon for production and mixing. The licensed Alright versions carry different production credits.",
           "gallery": [
             {
               "kind": "image",
@@ -481,10 +487,11 @@
               "title": "In The Mind",
               "scope": "A1",
               "roles": [
+                "Writer",
                 "Producer",
                 "Mixer"
               ],
-              "evidence": "Artist-supplied label photograph transcribed in the master.",
+              "evidence": "Artist-supplied label photograph transcribed in the master; sole writing credit and Voyager production identity confirmed by the owner on 2026-09-22.",
               "note": "B1 Alright (Breakbeat Mix) and B2 Alright (Hybrid Analogue Mix) are produced and mixed by L. Mullin & M. Truman and licensed from Final Phase Records; those credits are not assigned to Dixon."
             }
           ],
@@ -507,7 +514,7 @@
             "Writer",
             "Producer"
           ],
-          "summary": "Double-title release; exact track titles awaiting primary-label confirmation.",
+          "summary": "Time Travel Prt 1; Time Travel Prt 2. All tracks written and produced solely by Justin Scott Dixon (Voyager).",
           "gallery": [
             {
               "kind": "image",

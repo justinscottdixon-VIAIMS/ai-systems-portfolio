@@ -40,7 +40,7 @@ const evidenceLabels = {
       {child.gallery.map(item => <figure class="archive-art">{item.kind === 'image' ? <img src={item.src} alt={item.alt} loading="lazy" decoding="async" /> : <div class="art-pending">Presentation artwork forthcoming</div>}<figcaption>{item.caption}</figcaption></figure>)}
     </div>
     <div><p class="eyebrow">{child.catalogNumber}</p><h2>{child.title}</h2><p class="artist">{child.artist}</p>
-      <dl class="archive-facts"><div><dt>Date evidence</dt><dd>{child.date}</dd></div><div><dt>Format</dt><dd>{child.format}</dd></div><div><dt>Contribution</dt><dd>{child.roles.join(' · ')}</dd></div></dl>
+      <dl class="archive-facts"><div><dt>Date evidence</dt><dd>{child.date}</dd></div><div><dt>Format</dt><dd>{child.format}</dd></div>{child.roles.length > 0 && <div><dt>Contribution</dt><dd>{child.roles.join(' · ')}</dd></div>}</dl>
       <p>{child.summary}</p>
       {child.credits.length > 0 && <TrackCredits credits={child.credits} />}
       {child.publicSources.length > 0 && <div class="edition-sources"><h3>Edition sources</h3><ul>{child.publicSources.map(source => <li><a href={source.href} target="_blank" rel="noopener noreferrer">{source.label} ↗</a><p class="muted">{source.supports}</p></li>)}</ul></div>}

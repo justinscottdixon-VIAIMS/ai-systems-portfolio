@@ -16,3 +16,12 @@ test('malformed credits and duplicate release anchors fail validation',()=>{
  s=fixture();s.records[0].children[0].publicSources[0].href='javascript:alert(1)';assert.throws(()=>toPortfolioRecords(s),/HTTPS/);
  s=fixture();s.records[0].children.push(s.records[0].children[0]);assert.throws(()=>toPortfolioRecords(s),/duplicate.*child/);
 });
+
+test('catalogue releases without personal contributions remain valid and searchable',()=>{
+ const records=toPortfolioRecords(source);
+ const child=records.find(r=>r.id==='cosmic-records-history').children.find(c=>c.id==='cosmic-013');
+ assert.deepEqual(child.roles,[]);
+ assert.equal(archiveEntries(records).some(e=>matchesArchiveQuery(e,'Work 4 Love')),true);
+ const invalid=structuredClone(source);delete invalid.records[0].children[0].roles;
+ assert.throws(()=>toPortfolioRecords(invalid),/roles/);
+});
