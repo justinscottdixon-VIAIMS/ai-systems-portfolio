@@ -3,7 +3,7 @@ import { toMediaLibrary } from '../lib/media-library.mjs';
 import curatedMedia from '../data/curated-media.json';
 import portfolioRecordsSource from '../data/portfolio-records.json';
 import { toPortfolioRecords } from '../lib/portfolio-records.mjs';
-import PublicationsAndCredits from './PublicationsAndCredits.astro';
+import CredentialsPlaylist from './CredentialsPlaylist.astro';
 import TrackCredits from './TrackCredits.astro';
 import { archiveHref } from '../lib/archive-index.mjs';
 import '../styles/hybrid-media-engine.css';
@@ -114,6 +114,7 @@ const evidenceLabels = {
 				<button id="next-reference" type="button" aria-label="Next slide">NEXT SLIDE →</button>
 			</footer>
 		</section>
+		<button id="restore-video-from-pip" class="reference-pip-return" type="button" aria-label="Return to video presentation" hidden>RETURN TO VIDEO ↗</button>
 		<audio id="ambient-audio" crossorigin="anonymous" src={library.experience.ambientAudioSrc ?? ''} loop preload="metadata"></audio>
 		<button id="cinema-audio-invitation" type="button" class="cinema-audio-invitation" data-cinema-audio-invitation disabled={library.experience.enabled || !firstCinema} aria-disabled={String(library.experience.enabled || !firstCinema)} aria-pressed="false">
 			<span aria-hidden="true" class="cinema-audio-invitation__wave"></span>
@@ -154,13 +155,13 @@ const evidenceLabels = {
 
 	<audio id="music-audio" crossorigin="anonymous" src={firstMusic?.audioSrc ?? ''} preload="metadata"></audio>
 
-	<section data-player-dock class="player-dock" aria-label="VIAIMS media player">
+	<section data-player-dock data-active-tab="cinema" class="player-dock" aria-label="VIAIMS media player">
 		<div class="media-library__tabs" role="tablist" aria-label="Media Library" data-player-tabs>
 			<button id="tab-cinema" type="button" role="tab" aria-selected="true" aria-controls="panel-cinema" tabindex="0" data-media-tab="cinema">CINEMA</button>
 			<button id="tab-music" type="button" role="tab" aria-selected="false" aria-controls="panel-music" tabindex="-1" data-media-tab="music">MUSIC</button>
 			<button id="tab-media" type="button" role="tab" aria-selected="false" aria-controls="panel-media" tabindex="-1" data-media-tab="media">MEDIA</button>
 			<button id="tab-youtube" type="button" role="tab" aria-selected="false" aria-controls="panel-youtube" tabindex="-1" data-media-tab="youtube">YOUTUBE</button>
-			<button id="tab-credentials" type="button" role="tab" aria-selected="false" aria-controls="panel-credentials" tabindex="-1" data-media-tab="credentials">CREDENTIALS</button>
+			<button id="tab-credentials" type="button" data-open-reference={portfolioRecords[0]?.id} aria-controls="reference-stage" aria-label="Present the first credentials dossier">CREDENTIALS</button>
 		</div>
 		<div class="player-dock__command" data-player-command-strip>
 			<div class="player-dock__identity">
@@ -191,6 +192,13 @@ const evidenceLabels = {
                 <small class="meter-loudness-caption">STEREO · 3s · −60 → 0 LUFS</small>
             </div>
 		</div>
+		<div class="player-dock__libraries" data-library-layout data-active-library="media">
+			<div class="player-dock__library-switch" role="group" aria-label="Choose playlist">
+				<button type="button" data-library-switch="media" aria-pressed="true">MEDIA</button>
+				<button type="button" data-library-switch="credentials" aria-pressed="false">CREDENTIALS</button>
+			</div>
+			<section class="player-dock__media-library" aria-label="Media playlist">
+				<header class="media-playlist__header"><strong id="media-playlist-title">CINEMA PLAYLIST</strong><span>SELECTED SOURCE</span></header>
 		<div class="player-dock__tray" data-provider-tray>
 			<div id="panel-cinema" role="tabpanel" aria-labelledby="tab-cinema" data-provider-panel="cinema">
 				<div class="media-library__scroll-shell">
@@ -244,41 +252,14 @@ const evidenceLabels = {
 				<div id="youtube-player-host" hidden></div>
 				<span class="media-library__external">External Source · Metering Unavailable</span>
 			</div>
-			<div id="panel-credentials" class="credentials-panel" role="tabpanel" aria-labelledby="tab-credentials" data-provider-panel="credentials" hidden>
-				<PublicationsAndCredits />
-			</div>
+		</div>
+			</section>
+			<section id="panel-credentials" class="player-dock__credentials-library" aria-label="Credentials playlist">
+				<CredentialsPlaylist />
+			</section>
 		</div>
 	</section>
 
-	<div class="grid grid-cols-1 gap-6 items-stretch" data-operational-deck>
-		<div class="border border-zinc-800/80 bg-zinc-950/60 p-5 flex flex-col justify-between" data-module="enterprise">
-			<div>
-				<div class="flex justify-between items-center mb-3 pb-2 border-b border-zinc-900">
-					<span class="text-xs font-mono font-bold uppercase text-white">03 / Enterprise AV</span>
-					<span class="text-[10px] font-mono text-amber-400">NETWORKED FABRIC</span>
-				</div>
-				<div class="bg-black/80 border border-zinc-800 p-3.5 font-mono space-y-3">
-					<div class="border-b border-zinc-900 pb-2.5">
-						<div class="flex justify-between text-xs text-zinc-300 mb-0.5"><span>DANTE MULTICAST FABRIC</span><span class="text-emerald-400 text-[10px]">● LOCKED</span></div>
-						<span class="text-[10px] text-zinc-500 block">512x512 PTPv2 Deterministic Clocking</span>
-					</div>
-					<div class="border-b border-zinc-900 pb-2.5">
-						<div class="flex justify-between text-xs text-zinc-300 mb-0.5"><span>ATMOS 7.1.4 REFERENCE</span><span class="text-emerald-400 text-[10px]">● CALIBRATED</span></div>
-						<span class="text-[10px] text-zinc-500 block">PMC MB2S Active Array + Grace Design m908</span>
-					</div>
-					<div class="border-b border-zinc-900 pb-2.5">
-						<div class="flex justify-between text-xs text-zinc-300 mb-0.5"><span>FOH COMMAND DEPLOYMENT</span><span class="text-amber-400 text-[10px]">○ HYBRID SPEC</span></div>
-						<span class="text-[10px] text-zinc-500 block">4-Person Mobile Command Matrix</span>
-					</div>
-					<div>
-						<div class="flex justify-between text-xs text-zinc-300 mb-0.5"><span>SIGNAL TOPOLOGY & DSP</span><span class="text-emerald-400 text-[10px]">● 24b / 48kHz</span></div>
-						<span class="text-[10px] text-zinc-500 block">Bit-Perfect Native Audio Subsystem</span>
-					</div>
-				</div>
-			</div>
-			<div class="pt-3 border-t border-zinc-900 mt-4 flex justify-between text-[10px] font-mono text-zinc-600"><span>SYSTEM SPEC V4.2</span><span>PRODUCTION READY</span></div>
-		</div>
-	</div>
 </div>
 
 	<script>
@@ -308,6 +289,9 @@ const evidenceLabels = {
 	const stage = root.querySelector('#master-stage-container');
 	const playerDock = root.querySelector('[data-player-dock]');
 	const referenceStage = root.querySelector('#reference-stage');
+	const restoreVideoFromPip = root.querySelector('#restore-video-from-pip');
+	const libraryLayout = root.querySelector('[data-library-layout]');
+	const librarySwitches = [...root.querySelectorAll('[data-library-switch]')];
 	const referencePanels = [...root.querySelectorAll('[data-reference-panel]')];
 	const referenceTriggers = [...document.querySelectorAll('[data-open-reference]')];
 	const closeReferenceButton = root.querySelector('#close-reference');
@@ -446,7 +430,7 @@ const evidenceLabels = {
 	function syncCinemaCueAvailability() {
 		for (const button of cinemaButtons) {
 			const eligible = videoPlaylist.some((item) => item.id === button.dataset.cinemaId);
-			const disabled = Boolean(referenceReturnState) || entryControlsLocked || Boolean(session.lease) || !eligible;
+			const disabled = entryControlsLocked || Boolean(session.lease) || !eligible;
 			button.disabled = disabled;
 			button.setAttribute('aria-disabled', String(disabled));
 		}
@@ -534,45 +518,55 @@ const evidenceLabels = {
 		syncFullscreenEligibility();
 	}
 
+	function showLibrary(name) {
+		libraryLayout.dataset.activeLibrary = name;
+		for (const button of librarySwitches) button.setAttribute('aria-pressed', String(button.dataset.librarySwitch === name));
+		requestAnimationFrame(syncPlaylistRails);
+	}
+
 	function openReference(referenceId) {
 		const index = referencePanels.findIndex((panel) => panel.dataset.referencePanel === referenceId);
 		if (index < 0) return;
 		if (!referenceReturnState) {
-			const mediaStates = [mv, musicAudio, ambientAudio, musicVisualVideo].map((element) => ({
-				element,
-				wasPlaying: !element.paused && !element.ended,
-			}));
-			for (const { element } of mediaStates) element.pause();
 			referenceReturnState = {
-				mediaStates,
+				masterLoop: mv.loop,
 				ui: captureControllerUi(),
 				activeElement: document.activeElement,
 			};
+			mv.loop = true;
 		}
 		referenceStage.hidden = false;
-		playerDock.inert = true;
+		stage.dataset.referenceOpen = 'true';
+		restoreVideoFromPip.hidden = false;
+		playerDock.dataset.activeTab = 'credentials';
+		showLibrary('credentials');
+		playerDock.inert = false;
 		showReferencePanel(index);
 		stage.scrollIntoView({ behavior: reducedMotionQuery.matches ? 'auto' : 'smooth', block: 'start' });
 		closeReferenceButton.focus({ preventScroll: true });
 	}
 
-	function closeReference({ resume = true } = {}) {
+	function closeReference({ restoreFocus = true } = {}) {
 		if (!referenceReturnState) return;
 		const returnState = referenceReturnState;
 		referenceReturnState = null;
 		referenceIndex = -1;
 		referenceSlideIndex = 0;
 		referenceStage.hidden = true;
+		stage.dataset.referenceOpen = 'false';
+		restoreVideoFromPip.hidden = true;
+		mv.loop = returnState.masterLoop;
+		playerDock.dataset.activeTab = session.activeTab;
 		playerDock.inert = false;
 		for (const panel of referencePanels) panel.hidden = true;
 		for (const trigger of referenceTriggers) trigger.removeAttribute('aria-current');
 		restoreControllerUi(returnState.ui);
-		if (resume) {
-			for (const { element, wasPlaying } of returnState.mediaStates) {
-				if (wasPlaying) void element.play().catch(() => {});
-			}
-		}
-		returnState.activeElement?.focus?.({ preventScroll: true });
+		if (restoreFocus) returnState.activeElement?.focus?.({ preventScroll: true });
+	}
+
+	function leaveReferenceForMedia() {
+		if (referenceReturnState) closeReference({ restoreFocus: false });
+		showLibrary('media');
 	}
 
 	function captureControllerState({ audibleState = audible } = {}) {
@@ -610,7 +604,11 @@ const evidenceLabels = {
 	}
 
 	function renderTab(activeTab, moveFocus = false) {
+		if (referenceReturnState) closeReference({ restoreFocus: false });
+		showLibrary('media');
 		session = selectBrowseTab(session, activeTab);
+		root.querySelector('#media-playlist-title').textContent = `${activeTab.toUpperCase()} PLAYLIST`;
+		playerDock.dataset.activeTab = activeTab;
 		tabs.forEach((tab) => {
 			const selected = tab.dataset.mediaTab === activeTab;
 			tab.setAttribute('aria-selected', String(selected));
@@ -1948,6 +1946,11 @@ const evidenceLabels = {
 		trigger.addEventListener('click', () => openReference(trigger.dataset.openReference));
 	}
 	closeReferenceButton?.addEventListener('click', () => closeReference());
+	restoreVideoFromPip?.addEventListener('click', () => { closeReference(); showLibrary('media'); });
+	for (const button of librarySwitches) button.addEventListener('click', () => {
+		if (button.dataset.librarySwitch === 'credentials') openReference(referencePanels[0]?.dataset.referencePanel);
+		else { if (referenceReturnState) closeReference({ restoreFocus: false }); showLibrary('media'); }
+	});
 	previousReferenceButton?.addEventListener('click', () => showReferenceSlide(referenceSlideIndex - 1));
 	nextReferenceButton?.addEventListener('click', () => showReferenceSlide(referenceSlideIndex + 1));
 	document.addEventListener('keydown', (event) => {
@@ -1972,6 +1975,7 @@ const evidenceLabels = {
 		if (!button || !cinemaPlaylist.contains(button) || button.disabled) return;
 		enqueueMediaControlTransition(() => {
 			if (session.lease) return;
+			leaveReferenceForMedia();
 			const index = videoPlaylist.findIndex((item) => item.id === button.dataset.cinemaId);
 			if (index < 0) return;
 			return activateCinema(index, { preserveAudibleAuthority: true });
@@ -1981,6 +1985,7 @@ const evidenceLabels = {
 		const button = event.target.closest('button[data-music-mode]');
 		if (!button || !musicPlaylist.contains(button) || button.disabled) return;
 		enqueueMediaControlTransition(() => {
+			leaveReferenceForMedia();
 			const product = productById.get(button.dataset.productId);
 			if (!product) return;
 			if (button.dataset.musicMode === 'audio' && product.audioSrc) {
@@ -1998,6 +2003,7 @@ const evidenceLabels = {
 		const button = event.target.closest('button.media-cue');
 		if (!button || !mediaPlaylist.contains(button) || button.disabled) return;
 		enqueueMediaControlTransition(() => {
+			leaveReferenceForMedia();
 			const item = mediaItems.find((item) => item.id === button.dataset.mediaId);
 			if (item) {
 				selectedMediaId = item.id;
@@ -2007,6 +2013,7 @@ const evidenceLabels = {
 	});
 	root.querySelectorAll('.youtube-cue').forEach((button) => {
 		button.addEventListener('click', () => {
+			leaveReferenceForMedia();
 			updateProviderCueState('youtube', button.dataset.youtubeId);
 		});
 	});
@@ -2238,10 +2245,10 @@ const evidenceLabels = {
 	connectStereoMeters({
 		root, elements: [mv, musicAudio, ambientAudio],
 		getSource: () => {
-			if (referenceReturnState) return null;
 			if (session.playback.provider === 'youtube') return { external: true };
-			// The audible deck may differ from the selected tab or visual stage.
-			const element = [musicAudio, ambientAudio, mv].find(media => !media.paused && !media.muted && !media.ended && media.volume > 0);
+			// Follow the audible deck first; a playing muted video still explains idle meters.
+			const sources = [musicAudio, ambientAudio, mv].filter(media => !media.paused && !media.ended);
+			const element = sources.find(media => !media.muted && media.volume > 0) ?? sources[0];
 			return element ? { element } : null;
 		},
 	});

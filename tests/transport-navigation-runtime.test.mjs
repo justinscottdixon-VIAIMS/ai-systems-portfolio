@@ -593,3 +593,27 @@ test('Music order dispatches video rows to a native lease and audio rows to Musi
   await context.advanceMusic(1); await context.advanceMusic(1); await context.advanceMusic(1);
   assert.deepEqual(calls, [['video', items[1].productId], ['audio', items[2].productId], ['return']]);
 });
+
+test('switching credential dossiers preserves playing music and video audio in PIP', () => {
+  const pauses = [];
+  const media = name => ({ paused: false, ended: false, pause() { pauses.push(name); } });
+  const video = { ...media('video'), muted: false };
+  const shown = [];
+  const libraryViews = [];
+  const context = {
+    referencePanels: [{dataset:{referencePanel:'first'}},{dataset:{referencePanel:'second'}}],
+    referenceReturnState:null, mv:video, musicAudio:media('music'), ambientAudio:media('ambient'), musicVisualVideo:media('visual'),
+    captureControllerUi:()=>({}), document:{activeElement:null}, referenceStage:{hidden:true},
+    restoreVideoFromPip:{hidden:true}, playerDock:{inert:false,dataset:{}},
+    showReferencePanel:index=>shown.push(index), showLibrary:name=>libraryViews.push(name),
+    stage:{dataset:{},scrollIntoView(){}}, reducedMotionQuery:{matches:true}, closeReferenceButton:{focus(){}},
+  };
+  runInNewContext(namedImplementation('openReference') + "\nopenReference('first'); openReference('second');",context);
+  assert.equal(context.playerDock.inert,false);
+  assert.deepEqual(shown,[0,1]);
+  assert.deepEqual(pauses,[]);
+  assert.equal(video.muted,false);
+  assert.equal(context.stage.dataset.referenceOpen,'true');
+  assert.equal(context.restoreVideoFromPip.hidden,false);
+  assert.deepEqual(libraryViews,['credentials','credentials']);
+});

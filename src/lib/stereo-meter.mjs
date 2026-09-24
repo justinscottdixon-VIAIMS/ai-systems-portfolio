@@ -105,7 +105,8 @@ export function connectStereoMeters({ root, elements, getSource, Context = globa
   const now = clock();
   if(current?.external) display('METERS UNAVAILABLE · EXTERNAL');
   else if(unavailable || element?.error) display('METERS UNAVAILABLE');
-  else if(!element || element.paused || element.muted || element.ended || element.volume === 0) { display('METERS IDLE'); lastTime = now; }
+  else if(element?.muted || element?.volume === 0) { display('METERS IDLE · AUDIO MUTED'); lastTime = now; }
+  else if(!element || element.paused || element.ended) { display('METERS IDLE'); lastTime = now; }
   else if(context?.state !== 'running') display('METERS · CLICK TO ENABLE');
   else if(!entry || entry.received <= lastTime || now-entry.received > 250) display('METERS WAITING');
   else { display('PEAK + RMS · dBFS / ST · LUFS', entry.samples, now, entry.measurement); entry.samples = [0,0]; }

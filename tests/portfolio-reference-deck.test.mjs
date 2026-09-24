@@ -65,7 +65,7 @@ test('career index opens shared portfolio records in the theater reference deck'
   assert.match(engine, /function openReference/);
   assert.match(engine, /function closeReference/);
   assert.match(engine, /referenceReturnState/);
-  assert.match(engine, /playerDock\.inert = true/);
+  assert.doesNotMatch(engine, /playerDock\.inert = true/);
   assert.match(engine, /scrollIntoView/);
   assert.equal((engine.match(/if \(typeof referenceReturnState !== 'undefined' && referenceReturnState\) return;/g) ?? []).length >= 2, true);
   assert.match(css, /\.reference-stage\s*\{/);

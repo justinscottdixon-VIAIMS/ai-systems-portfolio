@@ -983,22 +983,6 @@
   font-size: 0.5625rem;
 }
 
-.credentials-panel {
-  max-height: min(62vh, 42rem);
-  overflow-y: auto;
-  scrollbar-color: rgb(181 155 102) rgb(24 24 27);
-}
-
-.credentials-panel .publications-module {
-  margin-top: 0;
-  border: 0;
-  background: transparent;
-}
-
-.credentials-panel .publications-module__grid {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
 @media (max-width: 767px) {
   .reference-stage__header,
   .reference-stage__navigation {
@@ -1033,7 +1017,6 @@
     font-size: clamp(1.1rem, 6vw, 2rem);
   }
 
-  .credentials-panel .publications-module__grid,
   .reference-stage__slide--sources .reference-stage__sources {
     grid-template-columns: 1fr;
   }
@@ -1514,3 +1497,448 @@
 .meter-layer-track::before { content:""; position:absolute; top:0; right:0; bottom:0; width:100%; z-index:3; pointer-events:none; background:linear-gradient(90deg,rgba(34,237,98,0) 0%,rgba(34,237,98,.45) 55%,#22ed62 100%); opacity:0; transition:opacity .12s linear; }
 .engineering-meters[data-meter-status="active"] .meter-layer-track::before { opacity:var(--green-presence,0); }
 @media (prefers-reduced-motion: reduce) { .meter-layer-track::before { transition:none; } }
+
+
+/* Media and Credentials remain available as separate, equal-width queues. */
+.player-dock__libraries {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+  min-width: 0;
+  padding: 0.5rem;
+  background: rgb(9 9 11);
+}
+
+.player-dock__media-library,
+.player-dock__credentials-library {
+  min-width: 0;
+  border: 1px solid rgb(63 63 70);
+  background: linear-gradient(145deg, rgb(27 27 31), rgb(15 15 18));
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.035);
+}
+
+.media-library__tabs > button {
+  flex: 1 0 7rem;
+}
+
+.player-dock[data-active-tab="credentials"] #tab-credentials {
+  border-color: rgb(181 155 102);
+  background: rgb(181 155 102 / 0.1);
+  color: white;
+}
+
+.player-dock__library-switch {
+  display: none;
+}
+
+.player-dock__credentials-library {
+  position: relative;
+  min-height: calc(2.5rem + var(--provider-row-height) * 6 + 3.5rem);
+}
+
+.credentials-playlist {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-rows: 2.5rem minmax(0, 1fr) auto;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+}
+
+.media-playlist__header,
+.credentials-playlist__header {
+  display: flex;
+  height: 2.5rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  border-bottom: 1px solid rgb(39 39 42);
+  padding: 0 0.55rem;
+  color: rgb(113 113 122);
+  font: 0.625rem ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.media-playlist__header strong,
+.credentials-playlist__header strong {
+  color: white;
+  white-space: nowrap;
+}
+
+.media-playlist__header > span,
+.credentials-playlist__header > span {
+  white-space: nowrap;
+}
+
+.credentials-playlist .media-library__scroll-shell {
+  min-height: 0;
+  overflow: hidden;
+  padding: 0.5rem;
+}
+
+.credentials-playlist .media-library__items {
+  min-height: 0;
+  grid-auto-rows: var(--provider-row-height);
+  align-content: start;
+}
+
+.credentials-playlist__items {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.credentials-playlist__items li {
+  min-width: 0;
+  list-style: none;
+}
+
+.credentials-cue {
+  display: grid;
+  grid-template-columns: 1.75rem minmax(0, 1fr) auto;
+  width: 100%;
+  height: var(--provider-row-height);
+  align-items: center;
+  gap: 0.35rem;
+  padding-inline: 0.5rem;
+  text-align: left;
+  cursor: pointer;
+}
+
+.credentials-cue__number,
+.credentials-cue__category {
+  color: rgb(113 113 122);
+  font-size: 0.5625rem;
+  white-space: nowrap;
+}
+
+.credentials-cue__title {
+  min-width: 0;
+  overflow: hidden;
+  color: white;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.credentials-cue[aria-current="true"] {
+  border-color: rgb(181 155 102);
+  background: rgb(181 155 102 / 0.1);
+}
+
+.credentials-playlist__archive {
+  display: block;
+  margin: 0 0.5rem 0.5rem;
+  padding: 0.5rem;
+  text-align: center;
+  text-decoration: none;
+}
+
+/* A dossier fills the stage; the current video stays visible at lower left. */
+.media-stage[data-reference-open="true"] .media-master {
+  position: absolute;
+  z-index: 50;
+  bottom: 4.25rem;
+  left: 0.75rem;
+  width: min(18%, 12rem);
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border: 1px solid rgb(181 155 102);
+  background: #000;
+  object-fit: contain;
+  box-shadow: 0 0.75rem 1.5rem rgb(0 0 0 / 0.65);
+}
+
+.media-stage[data-reference-open="true"] .music-visual-video,
+.media-stage[data-reference-open="true"] .cinema-audio-invitation {
+  display: none;
+}
+
+.reference-pip-return {
+  position: absolute;
+  z-index: 51;
+  bottom: 4.25rem;
+  left: 0.75rem;
+  display: flex;
+  width: min(18%, 12rem);
+  aspect-ratio: 16 / 9;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0.3rem;
+  border: 1px solid transparent;
+  background: linear-gradient(transparent 50%, rgb(0 0 0 / 0.8));
+  color: white;
+  font: 0.5625rem ui-monospace, SFMono-Regular, Menlo, monospace;
+  cursor: pointer;
+}
+
+.reference-pip-return[hidden] {
+  display: none;
+}
+
+.reference-pip-return:hover,
+.reference-pip-return:focus-visible {
+  border-color: white;
+  outline: none;
+}
+
+@media (max-width: 719px) {
+  .player-dock__libraries {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .player-dock__library-switch {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    background: rgb(9 9 11);
+  }
+
+  .player-dock__library-switch button[aria-pressed="true"] {
+    border-color: rgb(181 155 102);
+    color: white;
+  }
+
+  .player-dock__libraries[data-active-library="media"] .player-dock__credentials-library,
+  .player-dock__libraries[data-active-library="credentials"] .player-dock__media-library {
+    display: none;
+  }
+
+  .media-stage[data-reference-open="true"] .media-master,
+  .reference-pip-return {
+    bottom: 3.6rem;
+    left: 0.4rem;
+    width: min(30%, 9rem);
+  }
+}
+
+/* Transport console: visual hierarchy without changing control geometry. */
+.player-dock__command {
+  background:
+    radial-gradient(ellipse at 0% 0%, rgb(181 155 102 / 0.13), transparent 55%),
+    linear-gradient(180deg, rgb(31 31 35), rgb(17 17 20));
+  border-bottom-color: rgb(181 155 102 / 0.3);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.06), inset 3px 0 0 rgb(181 155 102 / 0.75);
+}
+
+.player-dock__command #active-source-kind {
+  color: rgb(201 177 130);
+}
+
+.player-dock__command .player-dock__identity strong {
+  text-shadow: 0 1px 8px rgb(255 255 255 / 0.08);
+}
+
+.player-dock__transport button {
+  border-color: rgb(78 78 85);
+  background: linear-gradient(180deg, rgb(43 43 48), rgb(27 27 31));
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.055), 0 2px 3px rgb(0 0 0 / 0.25);
+  transition: background-color 150ms ease, border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.player-dock__transport #active-play:not(:disabled) {
+  color: rgb(255 243 216);
+  border-color: rgb(181 155 102);
+  background: linear-gradient(180deg, rgb(91 77 49), rgb(55 47 33));
+  box-shadow: inset 0 1px 0 rgb(255 229 176 / 0.2), 0 0 12px rgb(181 155 102 / 0.09);
+}
+
+.player-dock__transport button:hover:not(:disabled) {
+  border-color: rgb(210 187 140);
+  background: linear-gradient(180deg, rgb(61 56 46), rgb(36 34 30));
+  box-shadow: inset 0 1px 0 rgb(255 229 176 / 0.15);
+}
+
+.player-dock__transport button:active:not(:disabled) {
+  box-shadow: inset 0 2px 4px rgb(0 0 0 / 0.5);
+}
+
+.player-dock__transport button:disabled {
+  border-color: rgb(49 49 55);
+  background: rgb(19 19 23 / 0.65);
+  box-shadow: none;
+}
+
+.player-dock__seek output {
+  color: rgb(220 212 194);
+}
+
+/* Carry the console finish through the metering and library surfaces. */
+.player-dock__status {
+  background:
+    radial-gradient(ellipse at 0% 0%, rgb(181 155 102 / 0.09), transparent 60%),
+    linear-gradient(180deg, rgb(27 27 31), rgb(14 14 17));
+  border-bottom-color: rgb(181 155 102 / 0.28);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.045), inset 3px 0 0 rgb(181 155 102 / 0.45);
+}
+
+.engineering-meters #meter-status {
+  color: rgb(201 177 130);
+}
+
+.meter-layer-track,
+.meter-loudness-track {
+  outline: 1px solid rgb(255 255 255 / 0.055);
+  box-shadow: inset 0 2px 4px rgb(0 0 0 / 0.7), 0 1px 0 rgb(255 255 255 / 0.035);
+}
+
+.player-dock__libraries {
+  background: linear-gradient(180deg, rgb(17 17 20), rgb(10 10 12));
+}
+
+.player-dock__media-library,
+.player-dock__credentials-library {
+  border-color: rgb(181 155 102 / 0.3);
+  background:
+    radial-gradient(ellipse at 0% 0%, rgb(181 155 102 / 0.07), transparent 65%),
+    linear-gradient(145deg, rgb(29 29 33), rgb(15 15 18));
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.055), 0 2px 5px rgb(0 0 0 / 0.2);
+}
+
+.media-playlist__header,
+.credentials-playlist__header {
+  background: linear-gradient(180deg, rgb(41 39 35 / 0.65), rgb(22 22 26 / 0.35));
+  border-bottom-color: rgb(181 155 102 / 0.23);
+  box-shadow: inset 3px 0 0 rgb(181 155 102 / 0.65);
+}
+
+.media-playlist__header strong,
+.credentials-playlist__header strong {
+  color: rgb(225 211 180);
+}
+
+.player-dock :is(.cinema-cue, .music-product, .media-cue, .youtube-cue, .credentials-cue) {
+  border-color: rgb(65 65 72);
+  background: linear-gradient(180deg, rgb(36 36 41), rgb(23 23 27));
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.04), 0 1px 2px rgb(0 0 0 / 0.2);
+}
+
+.player-dock :is(.cinema-cue, .music-product, .media-cue, .youtube-cue, .credentials-cue):is(.is-active, [aria-current="true"]) {
+  border-color: rgb(181 155 102 / 0.85);
+  background: linear-gradient(110deg, rgb(68 58 39), rgb(32 30 27));
+  box-shadow: inset 3px 0 0 rgb(181 155 102), inset 0 1px 0 rgb(255 229 176 / 0.1);
+}
+
+.player-dock :is(.cinema-cue, .media-cue, .youtube-cue, .credentials-cue):hover:not(:disabled),
+.player-dock .music-product:focus-within {
+  border-color: rgb(205 181 134);
+  background: linear-gradient(110deg, rgb(55 49 38), rgb(31 30 29));
+}
+
+.player-dock .credentials-playlist__archive,
+.player-dock #buy-license {
+  border-color: rgb(181 155 102 / 0.35);
+  background: linear-gradient(180deg, rgb(39 37 32), rgb(24 24 27));
+  box-shadow: inset 0 1px 0 rgb(255 229 176 / 0.055);
+}
+
+.player-dock .credentials-playlist__archive {
+  color: rgb(225 211 180);
+}
+
+.playlist-scroll-rail {
+  background: linear-gradient(90deg, rgb(12 12 15), rgb(24 24 28));
+  border-color: rgb(181 155 102 / 0.2);
+}
+
+/* A slim console bezel frames the cinema without resizing the presentation. */
+.fullscreen-shell[data-fullscreen-mode="inline"] .media-stage {
+  border-color: rgb(181 155 102 / 0.55);
+  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.75), 0 0 16px rgb(181 155 102 / 0.045);
+}
+
+.fullscreen-shell[data-fullscreen-mode="inline"] .media-stage::after {
+  content: "";
+  position: absolute;
+  z-index: 55;
+  inset: 0;
+  pointer-events: none;
+  border: 4px solid transparent;
+  border-image: linear-gradient(145deg, rgb(66 61 49), rgb(29 29 33) 42%, rgb(17 17 20) 75%, rgb(51 46 37)) 1;
+  box-shadow: inset 0 0 0 1px rgb(181 155 102 / 0.22), inset 0 2px 0 rgb(255 235 193 / 0.06);
+}
+
+.fullscreen-shell:fullscreen .media-stage::after {
+  display: none;
+}
+
+.cinema-audio-invitation {
+  border-color: rgb(181 155 102 / 0.85);
+  background: linear-gradient(180deg, rgb(58 51 38 / 0.96), rgb(24 24 27 / 0.96));
+  color: rgb(240 226 197);
+  box-shadow: inset 0 1px 0 rgb(255 229 176 / 0.14), 0 3px 12px rgb(0 0 0 / 0.4);
+}
+
+.cinema-audio-invitation__wave {
+  border-color: rgb(201 177 130);
+}
+
+.cinema-audio-invitation:hover:not(:disabled),
+.cinema-audio-invitation[aria-pressed="true"] {
+  border-color: rgb(218 192 142);
+  background: linear-gradient(180deg, rgb(91 77 49 / 0.97), rgb(48 42 32 / 0.97));
+  color: rgb(255 243 216);
+  box-shadow: inset 0 1px 0 rgb(255 229 176 / 0.2), 0 0 14px rgb(181 155 102 / 0.15), 0 3px 12px rgb(0 0 0 / 0.4);
+}
+
+.cinema-audio-invitation[aria-pressed="true"] .cinema-audio-invitation__wave {
+  background: rgb(218 192 142);
+  box-shadow: 0 0 8px rgb(218 192 142 / 0.5);
+}
+
+/* Reference deck shares the console frame while preserving quiet reading surfaces. */
+.reference-stage {
+  border-color: rgb(181 155 102 / 0.55);
+  background:
+    linear-gradient(rgb(181 155 102 / 0.025) 1px, transparent 1px) 0 0 / 100% 3rem,
+    radial-gradient(ellipse at 0% 0%, rgb(181 155 102 / 0.09), transparent 60%),
+    linear-gradient(145deg, rgb(28 28 32), rgb(12 12 15));
+}
+
+.reference-stage__header,
+.reference-stage__navigation {
+  border-color: rgb(181 155 102 / 0.3);
+  background: linear-gradient(180deg, rgb(38 36 32), rgb(19 19 23));
+  box-shadow: inset 0 1px 0 rgb(255 229 176 / 0.055), inset 3px 0 0 rgb(181 155 102 / 0.55);
+}
+
+.reference-stage__header strong,
+.reference-stage__header span,
+#reference-status {
+  color: rgb(214 193 154);
+}
+
+.reference-stage__slide {
+  border-color: rgb(181 155 102 / 0.35);
+  background:
+    linear-gradient(135deg, rgb(181 155 102 / 0.065), transparent 42%),
+    rgb(13 13 16);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.04), 0 1rem 3rem rgb(0 0 0 / 0.5);
+}
+
+.reference-stage button,
+.reference-stage a {
+  border-color: rgb(181 155 102 / 0.35);
+  background: linear-gradient(180deg, rgb(37 37 42), rgb(24 24 28));
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.05);
+}
+
+.reference-stage__navigation button:not(:disabled),
+.reference-stage__header button {
+  color: rgb(240 226 197);
+  border-color: rgb(181 155 102 / 0.65);
+  background: linear-gradient(180deg, rgb(61 53 39), rgb(31 29 27));
+}
+
+.reference-stage button:hover:not(:disabled),
+.reference-stage a:hover,
+.reference-stage button:focus-visible,
+.reference-stage a:focus-visible {
+  border-color: rgb(218 192 142);
+  background: linear-gradient(180deg, rgb(73 62 43), rgb(35 32 28));
+  color: rgb(255 243 216);
+}
+
+.reference-stage button:disabled {
+  border-color: rgb(49 49 55);
+  background: rgb(19 19 23);
+  box-shadow: none;
+}

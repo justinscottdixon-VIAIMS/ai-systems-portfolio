@@ -16,7 +16,8 @@ test('archive gives each child a stable URL within its dossier', () => {
 test('search reaches nested releases, titles, artists and roles while preserving date uncertainty', () => {
   const entries = archiveEntries(records);
   const groove = entries.find(e => e.catalogNumber === 'COSMIC 001');
-  assert.equal(groove.date, 'Exact date unresolved');
+  assert.equal(groove.date, 'January 1996');
+  assert.equal(entries.find(e => e.catalogNumber === 'COSMIC 002').date, 'Exact date unresolved');
   assert.equal(matchesArchiveQuery(groove, '  COSMIC 001 ', 'music'), true);
   assert.equal(matchesArchiveQuery(groove, 'friction co-producer'), true);
   assert.equal(matchesArchiveQuery(groove, '1996-01-01'), false);

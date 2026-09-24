@@ -13,7 +13,7 @@ Across ALL labels, organize each title under its core original release. Later ed
 - High Plains Drifter nc-15: d039.
 
 ## Resolve from source evidence before attaching
-- Pure: owner confirmed 2026-09-22 that COSMIC 015 is a remix release of Pure from COSMIC 002. Friction’s Groove is a version name that became incorporated into the published title Pure Frictions Groove by Voyager. Group COSMIC 015 beneath the COSMIC 002 original while preserving both catalogue numbers and edition-specific credits; structural migration remains pending. Thorn’s Break is remixed by Thorn; full-name spelling remains unverified. The exact version relationship for Northern Exposure d092 remains unresolved.
+- Pure: owner confirmed 2026-09-22 that COSMIC 015 is a remix release of Pure from COSMIC 002. Friction’s Groove is a version name that became incorporated into the published title Pure Frictions Groove by Voyager. Group COSMIC 015 beneath the COSMIC 002 original while preserving both catalogue numbers and edition-specific credits; structural migration remains pending. Thorn’s Break is remixed by Thorn (Dan Ramaswami); the owner confirmed the spelling on 2026-09-22 and supplied https://www.discogs.com/artist/1062566-Dan-Ramaswami. The exact version relationship for Northern Exposure d092 remains unresolved.
 - Beautiful Strange: nc-02 photographed promo remix versus d036 Platinum remix; identical version has not been established.
 - Multi-track compilation appearances d016/d028: associate each track to its own original release while retaining one shared compilation identity.
 - Panic, Derangement of the Senses, Cosmic Fugue, Spectacle, Words of Cavious and Tribe & Trance: locate/verify original-release parents before moving appearances.

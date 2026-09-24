@@ -218,7 +218,7 @@ test('stage owns the Cinema audio invitation and dock owns transport and meters'
   const stageStart = component.indexOf('id="master-stage-container"');
   const stageEnd = component.indexOf('<audio id="music-audio"', stageStart);
   const dockStart = component.indexOf('data-player-dock', stageEnd);
-  const dockEnd = component.indexOf('data-operational-deck', dockStart);
+  const dockEnd = component.indexOf('<script>', dockStart);
   const stage = component.slice(stageStart, stageEnd);
   const dock = component.slice(dockStart, dockEnd);
 
@@ -247,17 +247,32 @@ test('empty Cinema fallback disables native controls and exposes programmatic se
   assert.match(component, /id="meter-r"[^>]+aria-label="Right channel level"/s);
 });
 
-test('Media Library exposes five accessible tabs and independent panels', async () => {
+test('Media and Credentials expose independent half-width playlists', async () => {
   const component = await source(componentPath);
+  const credentials = await source(new URL('../src/components/CredentialsPlaylist.astro', import.meta.url));
+  const css = await source(stylePath);
   assert.match(component, /role="tablist"[^>]+aria-label="Media Library"/s);
-  for (const provider of ['cinema', 'music', 'media', 'youtube', 'credentials']) {
+  for (const provider of ['cinema', 'music', 'media', 'youtube']) {
     assert.match(component, new RegExp(`id="tab-${provider}"[^>]+role="tab"`, 's'));
     assert.match(component, new RegExp(`id="panel-${provider}"[^>]+role="tabpanel"`, 's'));
   }
-  assert.match(component, /selectBrowseTab\(/);
-  assert.match(component, /<PublicationsAndCredits\s*\/>/);
-  assert.match(component, /activeSourceKind\.textContent = 'CREDENTIALS'/);
-  assert.match(component, /nowPlayingTitle\.textContent = 'Career & Release Index'/);
+  assert.match(component, /class="player-dock__libraries"/);
+  const tabsPosition = component.indexOf('class="media-library__tabs"');
+  const transportPosition = component.indexOf('class="player-dock__command"');
+  const metersPosition = component.indexOf('class="player-dock__status"');
+  const playlistsPosition = component.indexOf('class="player-dock__libraries"');
+  assert.ok(tabsPosition < transportPosition && transportPosition < metersPosition && metersPosition < playlistsPosition);
+  assert.match(component, /class="media-playlist__header"/);
+  assert.doesNotMatch(css, /data-active-tab="credentials"\] \.engineering-meters > :not\(#meter-status\)/);
+  assert.match(component, /class="player-dock__credentials-library"/);
+  assert.match(component, /<CredentialsPlaylist \/>/);
+  assert.match(component, /id="tab-credentials"[^>]+data-open-reference=/);
+  assert.match(credentials, /CREDENTIALS PLAYLIST/);
+  assert.match(credentials, /id="playlist-credentials"/);
+  assert.match(credentials, /class="credentials-cue"[^>]+data-open-reference=/);
+  assert.match(css, /grid-template-columns: repeat\(2, minmax\(0, 1fr\)\)/);
+  assert.match(component, /id="restore-video-from-pip"/);
+  assert.match(component, /stage\.dataset\.referenceOpen = 'true'/);
 });
 
 test('YouTube tab leads with the approved channel and keeps curated videos independent', async () => {
@@ -1101,7 +1116,8 @@ test('lease policy lets the selected Cinema deck reclaim transport while direct 
   const availabilityStart = component.indexOf('function syncCinemaCueAvailability()');
   const availabilityEnd = component.indexOf('\n\tfunction ', availabilityStart + 1);
   const availability = component.slice(availabilityStart, availabilityEnd);
-  assert.match(availability, /const disabled = Boolean\(referenceReturnState\) \|\| entryControlsLocked \|\| Boolean\(session\.lease\)/);
+  assert.match(availability, /const disabled = entryControlsLocked \|\| Boolean\(session\.lease\)/);
+  assert.match(component, /leaveReferenceForMedia\(\);[\s\S]+activateCinema\(index/);
   assert.match(availability, /button\.disabled = disabled/);
   assert.match(availability, /aria-disabled/);
 
