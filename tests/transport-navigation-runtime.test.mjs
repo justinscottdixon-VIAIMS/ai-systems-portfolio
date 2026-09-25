@@ -601,6 +601,8 @@ test('switching credential dossiers preserves playing music and video audio in P
   const shown = [];
   const libraryViews = [];
   const context = {
+    session: { activeTab: 'music' },
+    root: { querySelector: () => ({ inert:false, setAttribute(){} }) },
     referencePanels: [{dataset:{referencePanel:'first'}},{dataset:{referencePanel:'second'}}],
     referenceReturnState:null, mv:video, musicAudio:media('music'), ambientAudio:media('ambient'), musicVisualVideo:media('visual'),
     captureControllerUi:()=>({}), document:{activeElement:null}, referenceStage:{hidden:true},
@@ -616,4 +618,14 @@ test('switching credential dossiers preserves playing music and video audio in P
   assert.equal(context.stage.dataset.referenceOpen,'true');
   assert.equal(context.restoreVideoFromPip.hidden,false);
   assert.deepEqual(libraryViews,['credentials','credentials']);
+  for (const tab of ['youtube', 'cinema', 'music', 'media']) {
+    const strip = { inert:false, setAttribute(key,value) { this[key] = value; } };
+    context.root.querySelector = () => strip;
+    context.session.activeTab = tab;
+    context.playerDock.dataset.meterTrayClosed = String(tab === 'youtube');
+    context.openReference('first');
+    assert.equal(strip.inert, tab === 'youtube');
+    assert.equal(strip['aria-hidden'], String(tab === 'youtube'));
+    assert.equal(context.playerDock.dataset.meterTrayClosed, String(tab === 'youtube'));
+  }
 });

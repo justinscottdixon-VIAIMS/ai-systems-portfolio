@@ -94,14 +94,19 @@ test('YouTube channel identity requires an HTTPS destination', () => {
   );
 });
 
-test('production YouTube destination is exact and keeps individual videos empty', () => {
+test('production YouTube destination and owner-selected video order are preserved', () => {
   const library = toMediaLibrary(manifest, productionCurated);
   assert.deepEqual(library.youtubeChannel, {
     title: 'Justin Scott Dixon / Voyager',
     handle: '@justinscottdixon_voyager',
     href: 'https://www.youtube.com/@justinscottdixon_voyager',
   });
-  assert.deepEqual(library.youtube, []);
+  assert.deepEqual(library.youtube.map(item => item.videoId), [
+    'QBkYTxHbvnE', '7UCMyjqvpUs', 'yz5x9iDM76s', 'R8dZkdehS-U', 'ynXSNAVszIU',
+    'NBnx0yGln10', 'b-Tl34e2hDE', 'vLGVUkqdtSw', 'noH-445Aq3k', 'KKdaIXWXa7w',
+    'qZjJKlX5vds', 'mOe_J8_rwMc', 'j74uEAwnOpI', 'lP1QgFEBQQA', 'lxEgLzYjvEU',
+    '_YB1WTMEvlQ', 'WAnFtnldJ8g', 'ad1WCDSsgtk',
+  ]);
 });
 
 test('one Music product contains audio and optional video modes without entering Cinema', () => {

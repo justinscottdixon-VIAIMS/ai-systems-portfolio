@@ -1467,23 +1467,24 @@
 .meter-peak-hold { grid-column: 2 / -1; color: #a1a1aa; font-size: .55rem; }
 /* Independent measurements share the horizontal geometry, not a fabricated gradient. */
 .engineering-meters [data-meter-channel] { grid-template-columns: 1rem minmax(0,1fr) 3.4rem 3.4rem 1.2rem; gap:.4rem; }
-.meter-layer-track { position:relative; height:12px; background:#000; border-radius:2px; overflow:hidden; }
+.meter-layer-track { position:relative; height:12px; background:#361b22; border-radius:2px; overflow:hidden; box-shadow:inset 0 0 0 1px #ff3b4626; }
 .meter-layer { position:absolute; left:0; width:0; }
-.meter-layer--peak { top:0; height:100%; z-index:1; background:#ff9b26; box-shadow:0 0 5px #ff9b2640; }
-.meter-layer--rms { top:0; height:100%; z-index:2; background:#379cff; box-shadow:0 0 5px #379cff40; }
+.meter-layer--peak { top:0; height:100%; z-index:1; background:#ff3b46; }
+/* RMS stays above the decorative color wash to preserve its solid blue. */
+.meter-layer--rms { top:0; height:100%; z-index:4; background:#1762cc; box-shadow:0 0 5px #1762cc40; }
 .meter-accessible { position:absolute; opacity:0; pointer-events:none; }
 .meter-rms-value { color:#379cff; text-align:right; font-variant-numeric:tabular-nums; }
-.meter-peak-value { color:#ff9b26; text-align:right; font-variant-numeric:tabular-nums; }
+.meter-peak-value { color:#ff3b46; text-align:right; font-variant-numeric:tabular-nums; }
 .meter-column-labels { display:grid; grid-template-columns:minmax(0,1fr) 3.4rem 3.4rem 1.2rem; gap:.4rem; padding-left:1.4rem; text-align:right; }
 .meter-column-labels span:first-child { text-align:left; }
 .meter-column-labels span:nth-child(2) { color:#379cff; }
-.meter-column-labels span:nth-child(3) { color:#ff9b26; }
+.meter-column-labels span:nth-child(3) { color:#ff3b46; }
 .meter-db-scale { display:flex; justify-content:space-between; margin:0 9.6rem 0 1.4rem; font-size:.52rem; }
-.meter-loudness-row { display:grid; grid-template-columns:1rem minmax(0,1fr) 3.4rem 3.4rem 1.2rem; gap:.4rem; align-items:center; color:#ff4b4b; }
-.meter-loudness-track { height:6px; position:relative; background:#36191b; }
-#lufs-bar { display:block; width:0; height:100%; background:#ff4b4b; box-shadow:0 0 5px #ff4b4b50; }
+.meter-loudness-row { display:grid; grid-template-columns:1rem minmax(0,1fr) 3.4rem 3.4rem 1.2rem; gap:.4rem; align-items:center; color:#22ed62; }
+.meter-loudness-track { height:6px; position:relative; background:#16351f; }
+#lufs-bar { display:block; width:0; height:100%; background:#22ed62; box-shadow:0 0 5px #22ed6250; }
 #lufs-value { text-align:right; font-variant-numeric:tabular-nums; }
-.meter-loudness-caption { color:#ce8585; font-size:.52rem; padding-left:1.4rem; }
+.meter-loudness-caption { color:#85ce99; font-size:.52rem; padding-left:1.4rem; }
 /* The shared loudness lane sits between L and R. */
 .engineering-meters > #meter-status { order:0; }
 .meter-column-labels { order:1; }
@@ -1493,10 +1494,7 @@
 .meter-db-scale { order:5; }
 .meter-loudness-caption { order:6; }
 
-/* Decorative full-width overlay, not a separate dynamic-range measurement. */
-.meter-layer-track::before { content:""; position:absolute; top:0; right:0; bottom:0; width:100%; z-index:3; pointer-events:none; background:linear-gradient(90deg,rgba(34,237,98,0) 0%,rgba(34,237,98,.45) 55%,#22ed62 100%); opacity:0; transition:opacity .12s linear; }
-.engineering-meters[data-meter-status="active"] .meter-layer-track::before { opacity:var(--green-presence,0); }
-@media (prefers-reduced-motion: reduce) { .meter-layer-track::before { transition:none; } }
+
 
 
 /* Media and Credentials remain available as separate, equal-width queues. */
@@ -1942,3 +1940,63 @@
   background: rgb(19 19 23);
   box-shadow: none;
 }
+
+/* YouTube uses the existing theater and its own playback controls. */
+#youtube-player-host:not([hidden]) { position:absolute; inset:4px; z-index:35; background:#000; }
+#youtube-player-host iframe { display:block; width:100%; height:100%; border:0; }
+.media-stage[data-reference-open="true"] #youtube-player-host:not([hidden]) {
+  inset:auto auto 3.8rem 0.75rem; width:min(50%, 360px); height:200px; z-index:50;
+  border:1px solid #b5a16b;
+}
+
+.media-stage[data-stage-provider="youtube"] .media-master { visibility:hidden; }
+
+/* YouTube provides seeking inside its embedded player. */
+.player-dock[data-active-tab="youtube"] .player-dock__seek { display:none; }
+
+/* Still-image wings stay behind the complete, unobstructed YouTube player. */
+#youtube-player-host { overflow:hidden; container-type:size; }
+#youtube-player-host .youtube-still-sides { display:none; pointer-events:none; }
+#youtube-player-host[data-portrait="true"] .youtube-still-sides:not([hidden]) {
+  display:block; position:absolute; inset:-8%; width:116%; height:116%;
+  object-fit:cover; filter:blur(28px) brightness(.55); pointer-events:none;
+}
+#youtube-player-host iframe { position:relative; z-index:1; margin-inline:auto; }
+#youtube-player-host[data-portrait="true"] iframe { width:min(100%, max(200px, 56.25cqh)); }
+#youtube-portrait-sides { margin:0.4rem 0.5rem; padding:0.4rem 0.65rem; border:1px solid #665c44; background:#202022; color:#d7c7a1; font:inherit; }
+#youtube-portrait-sides[aria-pressed="true"] { background:#393326; border-color:#b5a16b; }
+
+/* Retracting meter drawer; transitions reverse naturally on rapid tab changes. */
+.meter-tray { position:relative; overflow:hidden; }
+.meter-tray__reveal { display:grid; grid-template-rows:1fr; transition:grid-template-rows 480ms cubic-bezier(.22,.7,.2,1); }
+.meter-tray__clip { min-height:0; overflow:hidden; }
+.meter-tray .player-dock__status { transition:opacity 280ms ease, transform 480ms cubic-bezier(.22,.7,.2,1); }
+.meter-tray__lid { height:0; overflow:hidden; display:flex; align-items:center; justify-content:center;
+  background:repeating-linear-gradient(0deg,transparent 0 3px,#ffffff03 3px 4px),linear-gradient(180deg,#303034,#17171a);
+  box-shadow:inset 0 1px #b59b6655,inset 0 -1px #000; transition:height 480ms cubic-bezier(.22,.7,.2,1); }
+.meter-tray__lid span { width:42px; height:2px; background:#b59b66; box-shadow:0 1px #000; opacity:.7; }
+.player-dock[data-meter-tray-closed="true"] .meter-tray__reveal { grid-template-rows:0fr; }
+.player-dock[data-meter-tray-closed="true"] .meter-tray .player-dock__status { opacity:0; transform:translateY(-16px); pointer-events:none; }
+.player-dock[data-meter-tray-closed="true"] .meter-tray__lid { height:20px; }
+@media (prefers-reduced-motion:reduce) {
+ .meter-tray__reveal, .meter-tray .player-dock__status, .meter-tray__lid { transition:none; }
+}
+
+.engineering-meters { position:relative; }
+#meter-hear-overlay:not([hidden]) { position:absolute; inset:-0.35rem; z-index:5; display:grid; place-items:center; cursor:pointer; border:1px solid #b59b6660; background:linear-gradient(135deg,#b59b6618,#11111666); color:#eadcba; }
+#meter-hear-overlay span { padding:.3rem .65rem; background:#151519cc; border:1px solid #b59b6680; font:600 .65rem ui-monospace,monospace; letter-spacing:.12em; }
+#meter-hear-overlay:focus-visible { outline:2px solid #d8bf85; outline-offset:2px; }
+
+/* Clip solid bars against the full scale so the LUFS color threshold stays fixed. */
+.meter-layer, #lufs-bar {
+ width:100% !important;
+ clip-path:inset(0 calc(100% - var(--level, 0%)) 0 0);
+}
+#lufs-bar { position:relative; background:linear-gradient(to right, #22ed62 0 76.666667%, #ffff00 76.666667% 100%); }
+.meter-hold-marker {
+ position:absolute; top:0; bottom:0; width:3px;
+ transform:translateX(-100%); z-index:6; pointer-events:none;
+}
+.meter-hold-marker[hidden] { display:none; }
+.meter-hold-marker--peak { background:#ff9aa7; box-shadow:0 0 3px #ff9aa780; }
+.meter-hold-marker--rms { background:#a5dcff; box-shadow:0 0 3px #a5dcff80; z-index:7; }

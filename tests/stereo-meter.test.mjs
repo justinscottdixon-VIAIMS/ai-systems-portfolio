@@ -44,6 +44,7 @@ test('controller routes each element once, clears pauses and replacements, and r
  const root={querySelector:k=>{if(!views.has(k))views.set(k,{dataset:{},style:{setProperty(k,v){this[k]=v;}},setAttribute(){}});return views.get(k);},addEventListener(){},removeEventListener(){}};
  const probes=[], sources=[];let tick, now=0, resumes=0;
  class Context {
+  createGain(){return {gain:{value:1},connect(){}};}
   state='running';destination={};audioWorklet={addModule:async()=>{}};
   resume(){resumes++;return Promise.resolve();}
   createMediaElementSource(element){const source={element,targets:[],connect(target){this.targets.push(target)}};sources.push(source);return source;}
@@ -79,3 +80,44 @@ test('green dissolves as either level advances through the final quarter', async
  assert.equal(greenDissolve(-20,-7.5),0.5);
  assert.equal(greenDissolve(0,-6),0);
 });
+
+test('pre-mute routing keeps native samples available while output stays silent', async () => {
+ const {routeMeterOutput}=await import('../src/lib/stereo-meter.mjs');
+ const prototype={};
+ Object.defineProperties(prototype,{
+  muted:{get(){return this.nativeMuted;},set(v){this.nativeMuted=v;}},
+  volume:{get(){return this.nativeVolume;},set(v){this.nativeVolume=v;}},
+ });
+ const media=Object.assign(Object.create(prototype),{nativeMuted:true,nativeVolume:0.4,dispatchEvent(){}});
+ const gain={gain:{value:1}};
+ routeMeterOutput(media,gain,prototype);
+ assert.equal(media.nativeMuted,false);
+ assert.equal(media.nativeVolume,1);
+ assert.equal(media.muted,true);
+ assert.equal(gain.gain.value,0);
+ media.muted=false;
+ assert.equal(gain.gain.value,0.4);
+ media.volume=0;
+ assert.equal(gain.gain.value,0);
+ assert.equal(media.nativeVolume,1);
+ media.volume=0.6;media.muted=true;
+ assert.equal(gain.gain.value,0);
+ assert.throws(()=>{media.volume=2;},RangeError);
+});
+
+ test('peak and RMS markers hold independently and decay slower than the live peak', () => {
+ const amp = db => 10 ** (db / 20);
+ let m = advanceMeter(initialMeter(), [amp(-6),amp(-12)], 0, [amp(-18),amp(-24)]);
+ assert.deepEqual(m.rmsPeaks, [-18,-24]);
+ m = advanceMeter(m, [0,0], 1000, [0,0]);
+ assert.ok(Math.abs(m.peaks[0]+6)<1e-9);
+ assert.equal(m.rmsPeaks[0],-18);
+ m = advanceMeter(m, [0,0], 2000, [0,0]);
+ assert.ok(Math.abs(m.peaks[0]+12)<1e-9);
+ assert.equal(m.rmsPeaks[0],-20);
+ assert.ok(m.peaks[0]>m.levels[0]);
+ m = advanceMeter(m, [1,1], 2100, [amp(-10),amp(-10)]);
+ assert.equal(m.peaks[0],0);
+ assert.equal(m.rmsPeaks[0],-10);
+ assert.deepEqual(initialMeter().rmsPeaks,[-60,-60]);
+ });

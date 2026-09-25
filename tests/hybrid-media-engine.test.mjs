@@ -876,7 +876,8 @@ test('Music Media and YouTube rows preserve independent accessible selections', 
 
   const youtubeStart = component.indexOf("root.querySelectorAll('.youtube-cue')");
   const youtubeEnd = component.indexOf('\n\t});', youtubeStart) + '\n\t});'.length;
-  assert.match(component.slice(youtubeStart, youtubeEnd), /updateProviderCueState\('youtube', button\.dataset\.youtubeId\)/);
+  assert.match(component.slice(youtubeStart, youtubeEnd), /activateYoutube\(button\)/);
+  assert.match(component.slice(component.indexOf('function activateYoutube('), youtubeStart), /updateProviderCueState\('youtube', button\.dataset\.youtubeId\)/);
 
   assert.match(css, /\.music-product\.is-active,\s*\.media-cue\.is-active,\s*\.youtube-cue\.is-active\s*\{/s);
 });
