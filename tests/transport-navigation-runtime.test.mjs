@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { runInNewContext } from 'node:vm';
-import { activeTransportPolicy, runCommittedPlayback } from '../src/lib/active-transport.mjs';
+import { activeTransportPolicy, runCommittedPlayback, transportPlaybackForTab } from '../src/lib/active-transport.mjs';
 import { createMusicQueue, advanceMusicQueue, selectMusicItem, selectMusicMode, toggleShuffle } from '../src/lib/music-queue.mjs';
 import { toRuntimeMediaLibrary } from '../src/lib/runtime-media-library.mjs';
 import { advanceCinema, createCinemaContinuity, createCinemaEndedToken, isCurrentCinemaEndedToken, selectCinema } from '../src/lib/cinema-continuity.mjs';
@@ -600,24 +600,42 @@ test('switching credential dossiers preserves playing music and video audio in P
   const video = { ...media('video'), muted: false };
   const shown = [];
   const libraryViews = [];
+  const dockedTransport = [];
   const context = {
     session: { activeTab: 'music' },
     root: { querySelector: () => ({ inert:false, setAttribute(){} }) },
     referencePanels: [{dataset:{referencePanel:'first'}},{dataset:{referencePanel:'second'}}],
     referenceReturnState:null, mv:video, musicAudio:media('music'), ambientAudio:media('ambient'), musicVisualVideo:media('visual'),
+    transportPlayback:()=>({provider:'music',id:'test-track',mode:'audio'}),
+    referenceTransportSlot:{append:(...nodes)=>dockedTransport.push(nodes)}, playerIdentity:{}, playerTransport:{},
     captureControllerUi:()=>({}), document:{activeElement:null}, referenceStage:{hidden:true},
     restoreVideoFromPip:{hidden:true}, playerDock:{inert:false,dataset:{}},
     showReferencePanel:index=>shown.push(index), showLibrary:name=>libraryViews.push(name),
+    renderTransportDeckIdentity() {},
     stage:{dataset:{},scrollIntoView(){}}, reducedMotionQuery:{matches:true}, closeReferenceButton:{focus(){}},
   };
   runInNewContext(namedImplementation('openReference') + "\nopenReference('first'); openReference('second');",context);
   assert.equal(context.playerDock.inert,false);
   assert.deepEqual(shown,[0,1]);
+  assert.equal(dockedTransport.length,2);
+  assert.equal(context.playerDock.dataset.referenceOpen,'true');
   assert.deepEqual(pauses,[]);
   assert.equal(video.muted,false);
   assert.equal(context.stage.dataset.referenceOpen,'true');
   assert.equal(context.restoreVideoFromPip.hidden,false);
   assert.deepEqual(libraryViews,['credentials','credentials']);
+  const resumed = [];
+  context.showReferenceSlide = index => resumed.push(index);
+  context.referenceStage.dataset = { lastDossier: 'second', lastSlide: '4', leftAt: '1000' };
+  context.Date = { now: () => 600999 };
+  context.openReference();
+  assert.equal(shown.at(-1), 1);
+  assert.deepEqual(resumed, [4]);
+  context.Date.now = () => 601000;
+  context.openReference();
+  assert.equal(shown.at(-1), 0);
+  assert.deepEqual(resumed, [4], 'expired visit starts at the first slide');
+
   for (const tab of ['youtube', 'cinema', 'music', 'media']) {
     const strip = { inert:false, setAttribute(key,value) { this[key] = value; } };
     context.root.querySelector = () => strip;
@@ -628,4 +646,28 @@ test('switching credential dossiers preserves playing music and video audio in P
     assert.equal(strip['aria-hidden'], String(tab === 'youtube'));
     assert.equal(context.playerDock.dataset.meterTrayClosed, String(tab === 'youtube'));
   }
+});
+
+test('credentials transport controls the native media behind an unplayed YouTube tab', () => {
+  const context = {
+    session: { activeTab:'youtube', playback:{ provider:'cinema', mode:'video' } },
+    referenceReturnState:null,
+    stage:{ dataset:{ stageProvider:'cinema' } },
+    productById:new Map([['track', { productId:'track', kind:'audio' }]]),
+    musicQueue:{ currentProductId:'track', mode:'audio' },
+    mediaItems:[], selectedMediaId:null,
+    currentCinema:()=>({ id:'cinema-1' }),
+    transportPlaybackForTab,
+  };
+  runInNewContext(namedImplementation('transportPlayback'), context);
+  assert.equal(context.transportPlayback().id, undefined);
+  context.referenceReturnState = {};
+  assert.equal(context.transportPlayback().provider, 'cinema');
+  assert.equal(context.transportPlayback().id, 'cinema-1');
+  context.session.playback.provider = 'music';
+  context.session.playback.mode = 'audio';
+  assert.equal(context.transportPlayback().provider, 'music');
+  context.stage.dataset.stageProvider = 'youtube';
+  context.session.playback.provider = 'youtube';
+  assert.equal(context.transportPlayback().id, undefined);
 });

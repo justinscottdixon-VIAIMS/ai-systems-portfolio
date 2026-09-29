@@ -29,9 +29,9 @@
       "gallery": [
         {
           "kind": "image",
-          "src": "/reference/cosmic-002-flat-sleeve-v2.png",
-          "alt": "DJ’s Friction & Spice — Pure / Journees: vinyl presentation with flat white sleeve",
-          "caption": "Reconstructed presentation from original label photography; artwork fidelity review pending."
+          "src": "/reference/cosmic-records-photo.jpg",
+          "alt": "Two people seated on a cream sofa against a weathered teal wall",
+          "caption": "Cosmic Records — photograph supplied by the artist."
         }
       ],
       "sections": [
@@ -564,14 +564,20 @@
           "label": "IMDb soundtrack record",
           "href": "https://www.imdb.com/title/tt0286152/soundtrack/",
           "supports": "Time Travel soundtrack listing, writer, performer alias and label"
+        },
+        {
+          "label": "MusicBrainz cover art",
+          "href": "https://musicbrainz.org/release/a8e6c051-cc16-4926-a7d3-b077bbd0f000/cover-art",
+          "supports": "Front cover for the Voyager Recordings VR008 digital release"
         }
       ],
       "public": true,
       "gallery": [
         {
-          "kind": "pending",
-          "alt": "Image research placeholder for Time Travel / Time Travel, Part 2",
-          "caption": "Associated artwork and documentary images are being sourced and cleared."
+          "kind": "image",
+          "src": "/reference/time-travel-digital-cover.jpg",
+          "alt": "Voyager Time Travel digital cover with blue and amber abstract artwork.",
+          "caption": "Voyager Recordings digital cover."
         }
       ]
     },
@@ -994,9 +1000,10 @@
       },
       "gallery": [
         {
-          "kind": "pending",
-          "alt": "Charts & reception",
-          "caption": "Original artwork awaiting source reconciliation."
+          "kind": "image",
+          "src": "/reference/charts-reception-studio-v2.jpg",
+          "alt": "Recording studio with monitor speakers, keyboards, and two displays under warm red lighting.",
+          "caption": "Studio detail — Justin Scott Dixon / Voyager."
         }
       ],
       "sections": [
@@ -1216,7 +1223,7 @@
             },
             {
               "title": "Larger consoles",
-              "detail": "After COSMIC 009, the Mackie 24-8 and expanded MIDI routing. More room to see the arrangement and organize it."
+              "detail": "Cosmic 009 was the last record on the Mackie 1604. Retiring it was harder than expected, so much learning had happened across that little desk. The 24-8 brought more room, faders, routing, a meter bridge, the composition becoming something I could see across the console. The computer stayed, sixteen MIDI channels became sixty-four, the sound modules had more room to participate. Working on Aria with Rich Rosario in another studio brought ideas back to Cosmic. Ah Yeah grew through that exchange, the arrangement finding space as I learned to see its parts together."
             }
           ]
         },
@@ -1225,11 +1232,11 @@
           "items": [
             {
               "title": "Time Travel",
-              "detail": "Logic sequencing and the Yamaha 03D changed the workflow. Digital mixing and mastering brought new lessons: headroom, synchronization, loudness."
+              "detail": "Automation and recall drew me toward the Yamaha 03D, understanding digital audio became the longer journey. Time Travel was my first release sequenced entirely in Logic, still playing the external sound modules, familiar instruments entering unfamiliar territory. Sounds were shaped at the source, but levels inside the desk needed another kind of attention. Digital overload made itself known. The Finalizer brought loudness and CD playback into the learning, clocking and synchronization took years to fully understand. I was making the equipment work before I could explain everything it was doing. The title belonged to that period, music moving alongside the technology I was trying to understand."
             },
             {
               "title": "Aria — One",
-              "detail": "Tighter rhythmic alignment, expanded sampling, more local effects processing. That was the workflow behind my One remix."
+              "detail": "Cass Cutbush believed in the Voyager sound. Through Fire, the opportunity came to put the original One alongside a new remix, bringing what I was learning back to a piece already familiar. Rhythm became more dependable, drums could gather in layers, longer film samples brought a cinematic space into the arrangement. Pumping effects could be shaped inside Logic, without building the process around external equipment. The studio was still part hardware, part computer, but more of the idea could develop within the session. One became a meeting point, an earlier composition heard through an expanding set of possibilities."
             },
             {
               "title": "Software instruments",

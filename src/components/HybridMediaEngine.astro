@@ -51,10 +51,7 @@ const evidenceLabels = {
 		<video id="music-visual-video" muted playsinline loop preload="metadata" aria-hidden="true" class="music-visual-video"></video>
 		<div id="youtube-player-host" hidden></div>
 		<section id="reference-stage" class="reference-stage" aria-label="Career and release reference" hidden>
-			<header class="reference-stage__header">
-				<div><span>VIAIMS ARCHIVE</span><strong>REFERENCE DECK</strong></div>
-				<button id="close-reference" type="button">BACK TO CREDENTIALS</button>
-			</header>
+			<div class="reference-stage__backdrop" aria-hidden="true"></div>
 			<div class="reference-stage__viewport">
 				{portfolioRecords.map((record, index) => (
 					<article
@@ -98,7 +95,7 @@ const evidenceLabels = {
                                 </section>)}
                               </Fragment>))}
                             {record.sections.map((section, sectionIndex) => (
-								<section class="reference-stage__slide reference-stage__dossier-page" data-reference-slide data-slide-label={section.title} hidden>
+								<section class="reference-stage__slide reference-stage__dossier-page" data-reference-slide data-slide-label={section.title} data-content-density={section.items.length <= 3 && JSON.stringify(section).length < 1800 ? "light" : "regular"} hidden>
 									<header><span>SECTION {String(sectionIndex + 1).padStart(2, '0')}</span><h3>{section.title}</h3></header>{section.intro && <p>{section.intro}</p>}<ol>{section.items.map((item) => <li><time>{item.date}</time><div><strong>{item.title}</strong><p>{item.detail}</p></div></li>)}</ol>
 								</section>
 							))}
@@ -110,9 +107,16 @@ const evidenceLabels = {
 				))}
 			</div>
 			<footer class="reference-stage__navigation">
-				<button id="previous-reference" type="button" aria-label="Previous slide">← PREVIOUS SLIDE</button>
-				<span id="reference-status" aria-live="polite">ARCHIVE READY</span>
-				<button id="next-reference" type="button" aria-label="Next slide">NEXT SLIDE →</button>
+				<div class="reference-stage__header">
+					<div><span>VIAIMS ARCHIVE</span><strong>REFERENCE DECK</strong></div>
+					<span id="reference-status" aria-live="polite">ARCHIVE READY</span>
+				</div>
+				<div class="reference-stage__navigation-actions">
+					<button id="previous-reference" type="button" aria-label="Previous slide">← PREVIOUS SLIDE</button>
+					<button id="close-reference" type="button">BACK TO CREDENTIALS</button>
+					<button id="next-reference" type="button" aria-label="Next slide">NEXT SLIDE →</button>
+				</div>
+				<div class="reference-stage__transport-slot" data-reference-transport-slot></div>
 			</footer>
 		</section>
 		<button id="restore-video-from-pip" class="reference-pip-return" type="button" aria-label="Return to video presentation" hidden>RETURN TO VIDEO ↗</button>
@@ -162,7 +166,7 @@ const evidenceLabels = {
 			<button id="tab-music" type="button" role="tab" aria-selected="false" aria-controls="panel-music" tabindex="-1" data-media-tab="music">MUSIC</button>
 			<button id="tab-media" type="button" role="tab" aria-selected="false" aria-controls="panel-media" tabindex="-1" data-media-tab="media">MEDIA</button>
 			<button id="tab-youtube" type="button" role="tab" aria-selected="false" aria-controls="panel-youtube" tabindex="-1" data-media-tab="youtube">YOUTUBE</button>
-			<button id="tab-credentials" type="button" data-open-reference={portfolioRecords[0]?.id} aria-controls="reference-stage" aria-label="Present the first credentials dossier">CREDENTIALS</button>
+			<button id="tab-credentials" type="button" data-open-reference="" aria-controls="reference-stage" aria-label="Present the first credentials dossier">CREDENTIALS</button>
 		</div>
 		<div class="player-dock__command" data-player-command-strip>
 			<div class="player-dock__identity">
@@ -171,15 +175,19 @@ const evidenceLabels = {
 				<span id="now-playing-status" aria-live="polite">{library.experience.enabled ? 'AWAITING VISITOR ENTRY' : 'CINEMA READY'}</span>
 			</div>
 			<div class="player-dock__transport" aria-label="Active source transport">
-				<button id="active-prev" type="button" aria-label="Previous active item" disabled={library.experience.enabled || !firstCinema} aria-disabled={String(library.experience.enabled || !firstCinema)}>⏮</button>
-				<button id="active-play" type="button" aria-label="Play active item" disabled={library.experience.enabled || !firstCinema} aria-disabled={String(library.experience.enabled || !firstCinema)}>PLAY</button>
-				<button id="active-next" type="button" aria-label="Next active item" disabled={library.experience.enabled || !firstCinema} aria-disabled={String(library.experience.enabled || !firstCinema)}>⏭</button>
-				<button id="active-mute" type="button" aria-label="Unmute active item" aria-pressed="true" disabled aria-disabled="true">UNMUTE</button>
-				<button id="music-shuffle" type="button" aria-pressed="false" disabled aria-disabled="true">SHUFFLE</button>
-				<button id="music-repeat" type="button" data-repeat="off" disabled aria-disabled="true">REPEAT OFF</button>
-				<button id="return-to-cinema" type="button" hidden disabled={library.experience.enabled} aria-disabled={String(library.experience.enabled)}>RETURN TO CINEMA</button>
-				<label class="player-dock__seek"><output id="active-elapsed">--:--</output><input id="active-seek" type="range" min="0" max="0" step="0.01" value="0" aria-label="Seek active item" disabled /><output id="active-remaining">--:--</output></label>
-				<button id="enter-fullscreen" type="button" aria-label="Enter fullscreen player" disabled aria-disabled="true">FULLSCREEN</button>
+				<div class="player-dock__transport-group player-dock__transport-group--primary">
+					<button id="active-prev" type="button" aria-label="Previous active item" disabled={library.experience.enabled || !firstCinema} aria-disabled={String(library.experience.enabled || !firstCinema)}>⏮</button>
+					<button id="active-play" type="button" aria-label="Play active item" disabled={library.experience.enabled || !firstCinema} aria-disabled={String(library.experience.enabled || !firstCinema)}>PLAY</button>
+					<button id="active-mute" type="button" aria-label="Unmute active item" aria-pressed="true" disabled aria-disabled="true">UNMUTE</button>
+					<button id="active-next" type="button" aria-label="Next active item" disabled={library.experience.enabled || !firstCinema} aria-disabled={String(library.experience.enabled || !firstCinema)}>⏭</button>
+				</div>
+				<div class="player-dock__transport-group player-dock__transport-group--secondary">
+					<button id="music-shuffle" type="button" aria-pressed="false" disabled aria-disabled="true">SHUFFLE</button>
+					<button id="music-repeat" type="button" data-repeat="off" disabled aria-disabled="true">REPEAT OFF</button>
+					<button id="return-to-cinema" type="button" hidden disabled={library.experience.enabled} aria-disabled={String(library.experience.enabled)}>RETURN TO CINEMA</button>
+					<label class="player-dock__seek"><output id="active-elapsed">--:--</output><input id="active-seek" type="range" min="0" max="0" step="0.01" value="0" aria-label="Seek active item" disabled /><output id="active-remaining">--:--</output></label>
+					<button id="enter-fullscreen" type="button" aria-label="Enter fullscreen player" disabled aria-disabled="true">FULLSCREEN</button>
+				</div>
 			</div>
 		</div>
 		<div class="meter-tray"><div class="meter-tray__reveal"><div class="meter-tray__clip">
@@ -202,7 +210,7 @@ const evidenceLabels = {
 				<button type="button" data-library-switch="credentials" aria-pressed="false">CREDENTIALS</button>
 			</div>
 			<section class="player-dock__media-library" aria-label="Media playlist">
-				<header class="media-playlist__header"><strong id="media-playlist-title">CINEMA PLAYLIST</strong><span>SELECTED SOURCE</span></header>
+				<header class="media-playlist__header"><strong id="media-playlist-title">CINEMA PLAYLIST</strong><button id="buy-license" type="button" data-product-id={firstMusic?.productId ?? ''} data-store-href={firstMusic?.storeHref ?? ''} disabled aria-disabled="true">BUY / LICENSE · STORE PENDING</button></header>
 		<div class="player-dock__tray" data-provider-tray>
 			<div id="panel-cinema" role="tabpanel" aria-labelledby="tab-cinema" data-provider-panel="cinema">
 				<div class="media-library__scroll-shell">
@@ -231,13 +239,18 @@ const evidenceLabels = {
 					</div>
 					<div class="playlist-scroll-rail" data-playlist-scroll-rail role="scrollbar" aria-label="Scroll Music playlist" aria-controls="playlist-music" aria-orientation="vertical" aria-valuemin="0" aria-valuenow="0" aria-valuemax="0" aria-disabled="true" tabindex="-1"><span data-playlist-scroll-thumb></span></div>
 				</div>
-				<button id="buy-license" type="button" data-product-id={firstMusic?.productId ?? ''} data-store-href={firstMusic?.storeHref ?? ''} disabled aria-disabled="true">BUY / LICENSE · STORE PENDING</button>
+
 			</div>
 			<div id="panel-media" role="tabpanel" aria-labelledby="tab-media" data-provider-panel="media" hidden>
 				<div class="media-library__scroll-shell"><div id="playlist-media" class="media-library__items">{library.media.length === 0 && <p class="media-library__empty">No owned Media published</p>}{library.media.map((item) => <button type="button" class="media-cue" data-media-aspect={item.aspect} data-media-id={item.id} data-media-src={item.src} data-media-title={item.title} disabled={library.experience.enabled} aria-disabled={String(library.experience.enabled)} aria-current="false">{item.title}</button>)}</div><div class="playlist-scroll-rail" data-playlist-scroll-rail role="scrollbar" aria-label="Scroll Media playlist" aria-controls="playlist-media" aria-orientation="vertical" aria-valuemin="0" aria-valuenow="0" aria-valuemax="0" aria-disabled="true" tabindex="-1"><span data-playlist-scroll-thumb></span></div></div>
 			</div>
 			<div id="panel-youtube" role="tabpanel" aria-labelledby="tab-youtube" data-provider-panel="youtube" hidden>
-				{library.youtubeChannel && (
+
+				{library.youtube.length === 0
+					? <p class="media-library__empty">No YouTube selections published</p>
+					: <div class="media-library__scroll-shell"><div id="playlist-youtube" class="media-library__items">{library.youtube.map((item) => <button type="button" class="youtube-cue" data-youtube-id={item.id} data-youtube-video-id={item.videoId} aria-current="false">{item.title}</button>)}</div><div class="playlist-scroll-rail" data-playlist-scroll-rail role="scrollbar" aria-label="Scroll YouTube playlist" aria-controls="playlist-youtube" aria-orientation="vertical" aria-valuemin="0" aria-valuenow="0" aria-valuemax="0" aria-disabled="true" tabindex="-1"><span data-playlist-scroll-thumb></span></div></div>}
+
+				<div class="playlist-provider-footer">				{library.youtubeChannel && (
 					<a
 						class="youtube-channel"
 						href={library.youtubeChannel.href}
@@ -249,12 +262,7 @@ const evidenceLabels = {
 						<span>{library.youtubeChannel.handle} · OPEN CHANNEL ↗</span>
 					</a>
 				)}
-				<button id="youtube-portrait-sides" type="button" aria-pressed="false" hidden>PORTRAIT SIDES</button>
-				{library.youtube.length === 0
-					? <p class="media-library__empty">No YouTube selections published</p>
-					: <div class="media-library__scroll-shell"><div id="playlist-youtube" class="media-library__items">{library.youtube.map((item) => <button type="button" class="youtube-cue" data-youtube-id={item.id} data-youtube-video-id={item.videoId} aria-current="false">{item.title}</button>)}</div><div class="playlist-scroll-rail" data-playlist-scroll-rail role="scrollbar" aria-label="Scroll YouTube playlist" aria-controls="playlist-youtube" aria-orientation="vertical" aria-valuemin="0" aria-valuenow="0" aria-valuemax="0" aria-disabled="true" tabindex="-1"><span data-playlist-scroll-thumb></span></div></div>}
-
-				<span class="media-library__external">External Source · Metering Unavailable</span>
+				<button id="youtube-portrait-sides" type="button" aria-pressed="false" hidden>PORTRAIT SIDES</button><span class="media-library__external">EXTERNAL SOURCE</span></div>
 			</div>
 		</div>
 			</section>
@@ -293,6 +301,11 @@ const evidenceLabels = {
 	const stage = root.querySelector('#master-stage-container');
 	const playerDock = root.querySelector('[data-player-dock]');
 	const referenceStage = root.querySelector('#reference-stage');
+	const referenceTransportSlot = root.querySelector('[data-reference-transport-slot]');
+	const playerCommand = root.querySelector('[data-player-command-strip]');
+	const playerTransport = root.querySelector('.player-dock__transport');
+	const playerTransportHome = playerTransport.parentElement;
+	const playerIdentity = root.querySelector('.player-dock__identity');
 	const restoreVideoFromPip = root.querySelector('#restore-video-from-pip');
 	const libraryLayout = root.querySelector('[data-library-layout]');
 	const librarySwitches = [...root.querySelectorAll('[data-library-switch]')];
@@ -444,7 +457,7 @@ const evidenceLabels = {
 		const controlledPlayback = transportPlayback();
 		const policy = activeTransportPolicy(controlledPlayback);
 		for (const [action, control] of transportControls) {
-			const enabled = !referenceReturnState && !entryControlsLocked && policy[action];
+			const enabled = !entryControlsLocked && policy[action];
 			control.disabled = !enabled;
 			control.setAttribute('aria-disabled', String(!enabled));
 		}
@@ -494,6 +507,14 @@ const evidenceLabels = {
 		renderCinemaAudioInvitation();
 	}
 
+	// Reveal new theater content gently without delaying playback or navigation.
+	function fadeTheaterView(element) {
+		if (reducedMotionQuery.matches) return;
+		element.animate([{ opacity: 0 }, { opacity: 1 }], {
+			duration: 320, easing: 'ease-out',
+		});
+	}
+
 	function showReferenceSlide(index) {
 		const activePanel = referencePanels[referenceIndex];
 		if (!activePanel) return;
@@ -502,6 +523,7 @@ const evidenceLabels = {
 		referenceSlideIndex = Math.min(slides.length - 1, Math.max(0, index));
 		for (const [slideIndex, slide] of slides.entries()) slide.hidden = slideIndex !== referenceSlideIndex;
 		const activeSlide = slides[referenceSlideIndex];
+		fadeTheaterView(activeSlide);
 		referenceStatus.textContent = `${String(referenceSlideIndex + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')} · ${activeSlide.dataset.slideLabel}`;
 		previousReferenceButton.disabled = referenceSlideIndex === 0;
 		nextReferenceButton.disabled = referenceSlideIndex === slides.length - 1;
@@ -511,11 +533,10 @@ const evidenceLabels = {
 		if (referencePanels.length === 0) return;
 		referenceIndex = (index + referencePanels.length) % referencePanels.length;
 		const activePanel = referencePanels[referenceIndex];
+		const thumbnail = activePanel.querySelector('.reference-stage__gallery img');
+		referenceStage.style.setProperty('--reference-artwork', thumbnail ? `url(${JSON.stringify(thumbnail.getAttribute('src'))})` : 'none');
 		for (const panel of referencePanels) panel.hidden = panel !== activePanel;
 		for (const trigger of referenceTriggers) trigger.setAttribute('aria-current', String(trigger.dataset.openReference === activePanel.dataset.referencePanel));
-		activeSourceKind.textContent = 'REFERENCE';
-		nowPlayingTitle.textContent = activePanel.dataset.referenceTitle;
-		nowPlayingStatus.textContent = 'PRESENTATION DECK';
 		showReferenceSlide(0);
 		applyActiveTransportPolicy();
 		syncTransportTime();
@@ -529,11 +550,15 @@ const evidenceLabels = {
 	}
 
 	function openReference(referenceId) {
-		const index = referencePanels.findIndex((panel) => panel.dataset.referencePanel === referenceId);
+		const recalled = !referenceId && Date.now() - Number(referenceStage.dataset.leftAt) < 10 * 60 * 1000;
+		const targetId = referenceId || (recalled ? referenceStage.dataset.lastDossier : referencePanels[0]?.dataset.referencePanel);
+		const resumeSlide = recalled ? Number(referenceStage.dataset.lastSlide) || 0 : 0;
+		const index = referencePanels.findIndex((panel) => panel.dataset.referencePanel === targetId);
 		if (index < 0) return;
 		if (!referenceReturnState) {
 			referenceReturnState = {
 				masterLoop: mv.loop,
+				transport: transportPlayback(),
 				ui: captureControllerUi(),
 				activeElement: document.activeElement,
 			};
@@ -541,13 +566,20 @@ const evidenceLabels = {
 		}
 		referenceStage.hidden = false;
 		stage.dataset.referenceOpen = 'true';
+		referenceTransportSlot.append(playerIdentity, playerTransport);
+		playerDock.dataset.referenceOpen = 'true';
 		restoreVideoFromPip.hidden = false;
 		playerDock.dataset.activeTab = 'credentials';
+		if (session.activeTab === 'youtube') {
+			const referencePlayback = transportPlayback();
+			if (referencePlayback.provider) renderTransportDeckIdentity(referencePlayback.provider);
+		}
 		root.querySelector('[data-player-status-strip]').inert = session.activeTab === 'youtube';
 		root.querySelector('[data-player-status-strip]').setAttribute('aria-hidden', String(session.activeTab === 'youtube'));
 		showLibrary('credentials');
 		playerDock.inert = false;
 		showReferencePanel(index);
+		if (resumeSlide) showReferenceSlide(resumeSlide);
 		stage.scrollIntoView({ behavior: reducedMotionQuery.matches ? 'auto' : 'smooth', block: 'start' });
 		closeReferenceButton.focus({ preventScroll: true });
 	}
@@ -555,11 +587,17 @@ const evidenceLabels = {
 	function closeReference({ restoreFocus = true } = {}) {
 		if (!referenceReturnState) return;
 		const returnState = referenceReturnState;
+		referenceStage.dataset.lastDossier = referencePanels[referenceIndex]?.dataset.referencePanel || '';
+		referenceStage.dataset.lastSlide = String(referenceSlideIndex);
+		referenceStage.dataset.leftAt = String(Date.now());
 		referenceReturnState = null;
 		referenceIndex = -1;
 		referenceSlideIndex = 0;
 		referenceStage.hidden = true;
 		stage.dataset.referenceOpen = 'false';
+		playerTransportHome.append(playerIdentity, playerTransport);
+		playerDock.dataset.referenceOpen = 'false';
+		fadeTheaterView(stage);
 		restoreVideoFromPip.hidden = true;
 		mv.loop = returnState.masterLoop;
 		playerDock.dataset.activeTab = session.activeTab;
@@ -569,6 +607,10 @@ const evidenceLabels = {
 		for (const panel of referencePanels) panel.hidden = true;
 		for (const trigger of referenceTriggers) trigger.removeAttribute('aria-current');
 		restoreControllerUi(returnState.ui);
+		const currentTransport = transportPlayback();
+		if (currentTransport.id !== returnState.transport.id
+			|| currentTransport.provider !== returnState.transport.provider
+			|| currentTransport.mode !== returnState.transport.mode) renderTransportDeckIdentity(session.activeTab);
 		if (restoreFocus) returnState.activeElement?.focus?.({ preventScroll: true });
 	}
 
@@ -612,11 +654,12 @@ const evidenceLabels = {
 	}
 
 	function renderTab(activeTab, moveFocus = false) {
-		if (referenceReturnState) closeReference({ restoreFocus: false });
+		if (referenceReturnState && activeTab !== 'music') closeReference({ restoreFocus: false });
 		showLibrary('media');
 		session = selectBrowseTab(session, activeTab);
 		root.querySelector('#media-playlist-title').textContent = `${activeTab.toUpperCase()} PLAYLIST`;
-		playerDock.dataset.activeTab = activeTab;
+		playerDock.dataset.activeTab = referenceReturnState ? 'credentials' : activeTab;
+		stage.dataset.activeTab = activeTab;
 		playerDock.dataset.meterTrayClosed = String(activeTab === 'youtube');
 		root.querySelector('[data-player-status-strip]').inert = activeTab === 'youtube';
 		root.querySelector('[data-player-status-strip]').setAttribute('aria-hidden', String(activeTab === 'youtube'));
@@ -628,6 +671,11 @@ const evidenceLabels = {
 		});
 		panels.forEach((panel) => { panel.hidden = panel.dataset.providerPanel !== activeTab; });
 		renderTransportDeckIdentity(activeTab);
+		if (activeTab === 'youtube' && selectedYoutubeVideoId) {
+			const selectedVideo = root.querySelector(`.youtube-cue[data-youtube-video-id="${selectedYoutubeVideoId}"]`);
+			nowPlayingTitle.textContent = selectedVideo?.textContent.trim() || 'External Source';
+			nowPlayingStatus.textContent = 'USE PLAYER CONTROLS';
+		}
 		syncTransportTime();
 		requestAnimationFrame(syncPlaylistRails);
 	}
@@ -741,6 +789,7 @@ const evidenceLabels = {
 	});
 
 	function setStageProvider(provider) {
+		fadeTheaterView(stage);
 		stage.dataset.stageProvider = provider;
 		stage.dataset.mediaAspect = 'unknown';
 		stage.dataset.mirrorWings = 'off';
@@ -749,7 +798,12 @@ const evidenceLabels = {
 	function transportPlayback() {
 		const music = productById.get(musicQueue.currentProductId);
 		const media = mediaItems.find((item) => item.id === selectedMediaId) ?? mediaItems[0];
-		return transportPlaybackForTab(session.activeTab, {
+		const provider = referenceReturnState && session.activeTab === 'youtube'
+			? session.playback.provider === 'music' && session.playback.mode === 'audio'
+				? 'music'
+				: stage.dataset.stageProvider
+			: session.activeTab;
+		return transportPlaybackForTab(provider, {
 			cinema: currentCinema() ? { provider: 'cinema', id: currentCinema().id, mode: 'video' } : null,
 			music: music ? { provider: 'music', id: music.productId, mode: musicQueue.mode ?? music.kind } : null,
 			media: media ? { provider: 'media', id: media.id, mode: 'video' } : null,
@@ -799,7 +853,7 @@ const evidenceLabels = {
 
 	function syncTransportTime() {
 		const media = activeAuthoritativeMedia();
-		const loaded = !referenceReturnState && transportTargetIsLoaded();
+		const loaded = transportTargetIsLoaded();
 		const formatted = formatTransportTime({
 			currentTime: loaded ? media.currentTime : Number.NaN,
 			duration: loaded ? media.duration : Number.NaN,
@@ -816,7 +870,7 @@ const evidenceLabels = {
 		activeSeek.max = hasDuration ? String(media.duration) : '0';
 		activeSeek.value = hasDuration ? String(Math.min(media.currentTime, media.duration)) : '0';
 		activeSeek.style.setProperty('--seek-progress', `${seekProgress}%`);
-		activeSeek.disabled = Boolean(referenceReturnState) || !hasDuration || entryControlsLocked;
+		activeSeek.disabled = !hasDuration || entryControlsLocked;
 	}
 
 	function scheduleFullscreenHide(snapshot = fullscreenSession.snapshot()) {
@@ -837,7 +891,7 @@ const evidenceLabels = {
 			['next', fullscreenNext], ['playPause', fullscreenMute],
 			['playPause', activeMute],
 		]) {
-			control.disabled = referenceModeActive || entryControlsLocked || !policy[action];
+			control.disabled = (control !== activeMute && referenceModeActive) || entryControlsLocked || !policy[action];
 			control.setAttribute('aria-disabled', String(control.disabled));
 		}
 		const snapshot = fullscreenSession.snapshot();
@@ -1343,6 +1397,11 @@ const evidenceLabels = {
 	}
 
 	function renderCinemaIdentity(status) {
+		if (session.activeTab !== 'cinema') {
+			renderTransportDeckIdentity(session.activeTab);
+			renderCinemaAudioInvitation();
+			return;
+		}
 		activeSourceKind.textContent = 'CINEMA';
 		nowPlayingTitle.textContent = currentCinema()?.title ?? 'No Media Loaded';
 		if (status) nowPlayingStatus.textContent = status;
@@ -1351,6 +1410,12 @@ const evidenceLabels = {
 	}
 
 	function renderMusicAudioIdentity(productId, status = 'MUSIC AUDIO LIVE · CINEMA AUDIO MUTED') {
+		if (session.activeTab !== 'music') {
+			renderTransportDeckIdentity(session.activeTab);
+			renderCinemaAudioInvitation();
+			syncMusicRowActions();
+			return;
+		}
 		const product = productById.get(productId);
 		activeSourceKind.textContent = 'MUSIC · AUDIO';
 		nowPlayingTitle.textContent = product?.title ?? 'No Media Loaded';
@@ -1961,7 +2026,7 @@ const evidenceLabels = {
 	closeReferenceButton?.addEventListener('click', () => closeReference());
 	restoreVideoFromPip?.addEventListener('click', () => { closeReference(); showLibrary('media'); });
 	for (const button of librarySwitches) button.addEventListener('click', () => {
-		if (button.dataset.librarySwitch === 'credentials') openReference(referencePanels[0]?.dataset.referencePanel);
+		if (button.dataset.librarySwitch === 'credentials') openReference();
 		else { if (referenceReturnState) closeReference({ restoreFocus: false }); showLibrary('media'); }
 	});
 	previousReferenceButton?.addEventListener('click', () => showReferenceSlide(referenceSlideIndex - 1));
@@ -2004,10 +2069,11 @@ const evidenceLabels = {
 		});
 	});
 	musicPlaylist.addEventListener('click', (event) => {
-		const button = event.target.closest('button[data-music-mode]');
+		const row = event.target.closest('.music-product');
+		const button = event.target.closest('button[data-music-mode]')
+			?? row?.querySelector('button[data-music-mode="audio"]');
 		if (!button || !musicPlaylist.contains(button) || button.disabled) return;
 		enqueueMediaControlTransition(() => {
-			leaveReferenceForMedia();
 			const product = productById.get(button.dataset.productId);
 			if (!product) return;
 			if (button.dataset.musicMode === 'audio' && product.audioSrc) {
@@ -2015,6 +2081,7 @@ const evidenceLabels = {
 					? toggleActivePlayback() : activateMusicAudio(product.productId);
 			}
 			if (button.dataset.musicMode === 'video') {
+				leaveReferenceForMedia();
 				if (!product?.videoSrc || eligibleVideoItems([{ ...product, aspect: product.videoAspect }], window.innerWidth).length === 0) return;
 				const nextMusicQueue = product.kind === 'video' ? selectMusicItem(musicQueue, product.productId) : selectMusicMode(musicQueue, product.productId, 'video');
 				return activateNativeLease('music', product.productId, product.videoSrc, product.title, { nextMusicQueue });
@@ -2333,6 +2400,8 @@ const evidenceLabels = {
 	mobileMirrorQuery.addEventListener('change', rebuildEligibleVideoQueues);
 	reducedMotionQuery.addEventListener('change', reconcileMirrorWings);
 
+	stage.append(playerCommand);
+	stage.dataset.transportInStage = 'true';
 	nowPlayingStatus.textContent = introSession.status;
 	rebuildEligibleVideoQueues();
 	syncTransportTime();

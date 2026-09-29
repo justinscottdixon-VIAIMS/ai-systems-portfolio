@@ -31,19 +31,19 @@ Cosmic Studios became legendary, Dj's Friction and Spice, no longer secondary.
 
 Delay the echo, echo the reverb, compress the ratio, attack the release. carefully Reverberation became the space, dynamic range placed it.  the arrangement was the sound, as everyone gathered around.
 
-## Batch 3 — pending
+## Batch 3 — approved
 
 ### 7. Studio evolution — Larger consoles
 
-After COSMIC 009, the Mackie 24-8 and expanded MIDI routing. More room to see the arrangement and organize it.
+Cosmic 009 was the last record on the Mackie 1604. Retiring it was harder than expected, so much learning had happened across that little desk. The 24-8 brought more room, faders, routing, a meter bridge, the composition becoming something I could see across the console. The computer stayed, sixteen MIDI channels became sixty-four, the sound modules had more room to participate. Working on Aria with Rich Rosario in another studio brought ideas back to Cosmic. Ah Yeah grew through that exchange, the arrangement finding space as I learned to see its parts together.
 
 ### 8. Studio evolution — Time Travel
 
-Logic sequencing and the Yamaha 03D changed the workflow. Digital mixing and mastering brought new lessons: headroom, synchronization, loudness.
+Automation and recall drew me toward the Yamaha 03D, understanding digital audio became the longer journey. Time Travel was my first release sequenced entirely in Logic, still playing the external sound modules, familiar instruments entering unfamiliar territory. Sounds were shaped at the source, but levels inside the desk needed another kind of attention. Digital overload made itself known. The Finalizer brought loudness and CD playback into the learning, clocking and synchronization took years to fully understand. I was making the equipment work before I could explain everything it was doing. The title belonged to that period, music moving alongside the technology I was trying to understand.
 
 ### 9. Studio evolution — Aria — One
 
-Tighter rhythmic alignment, expanded sampling, more local effects processing. That was the workflow behind my One remix.
+Cass Cutbush believed in the Voyager sound. Through Fire, the opportunity came to put the original One alongside a new remix, bringing what I was learning back to a piece already familiar. Rhythm became more dependable, drums could gather in layers, longer film samples brought a cinematic space into the arrangement. Pumping effects could be shaped inside Logic, without building the process around external equipment. The studio was still part hardware, part computer, but more of the idea could develop within the session. One became a meeting point, an earlier composition heard through an expanding set of possibilities.
 
 ## Batch 4 — pending
 

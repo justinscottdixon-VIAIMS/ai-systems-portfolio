@@ -8,8 +8,7 @@
   display: grid;
   gap: 0.25rem;
   margin-bottom: 0.5rem;
-  padding-bottom: 0.45rem;
-  padding-inline: 0.65rem;
+  padding: 0.5rem 0.75rem;
   border-bottom: 1px solid #b59b66;
   background: repeating-linear-gradient(0deg, transparent 0 3px, #ffffff02 3px 4px), linear-gradient(115deg, #29282a, #141416 65%, #1d1c1c);
   box-shadow: inset 0 1px 0 #b59b6640, inset 1px 0 0 #b59b6640, inset -1px 0 0 #b59b6640;
@@ -312,4 +311,20 @@
     align-items: start;
     flex-direction: column;
   }
+}
+
+/* Header shares the theater and console bezel. */
+.institutional-header {
+  position:relative;
+  border:1px solid rgb(181 155 102 / 0.55);
+  box-shadow:0 25px 50px -12px rgb(0 0 0 / 0.75), 0 0 16px rgb(181 155 102 / 0.045);
+}
+.institutional-header::after {
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  border:4px solid transparent;
+  border-image:linear-gradient(145deg, rgb(66 61 49), rgb(29 29 33) 42%, rgb(17 17 20) 75%, rgb(51 46 37)) 1;
+  box-shadow:inset 0 0 0 1px rgb(181 155 102 / 0.22), inset 0 2px 0 rgb(255 235 193 / 0.06);
 }

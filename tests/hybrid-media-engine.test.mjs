@@ -213,7 +213,7 @@ test('stage precedes one integrated player dock containing every command surface
   assert.match(component, /id="now-playing-status"[^>]+aria-live="polite"/s);
 });
 
-test('stage owns the Cinema audio invitation and dock owns transport and meters', async () => {
+test('stage owns the Cinema audio invitation while the dock supplies transport and meters', async () => {
   const component = await source(componentPath);
   const stageStart = component.indexOf('id="master-stage-container"');
   const stageEnd = component.indexOf('<audio id="music-audio"', stageStart);
@@ -228,6 +228,14 @@ test('stage owns the Cinema audio invitation and dock owns transport and meters'
     assert.match(dock, new RegExp(`id="${id}"`));
     assert.doesNotMatch(stage, new RegExp(`id="${id}"`));
   }
+});
+
+test('one transport moves into the theater and then the reference console', async () => {
+  const component = await source(componentPath);
+  assert.equal((component.match(/id="active-play"/g) ?? []).length, 1);
+  assert.match(component, /stage\.append\(playerCommand\)/);
+  assert.match(component, /referenceTransportSlot\.append\(playerIdentity, playerTransport\)/);
+  assert.match(component, /playerTransportHome\.append\(playerIdentity, playerTransport\)/);
 });
 
 test('empty Cinema fallback disables native controls and exposes programmatic selection and meter labels', async () => {
@@ -749,7 +757,8 @@ test('entry lock blocks playback controls until either welcome handoff restores 
   const policyStart = component.indexOf('function applyActiveTransportPolicy()');
   const policyEnd = component.indexOf('\n\tfunction ', policyStart + 1);
   const policy = component.slice(policyStart, policyEnd);
-  assert.match(policy, /const enabled = !referenceReturnState && !entryControlsLocked && policy\[action\]/);
+  assert.match(policy, /const enabled = !entryControlsLocked && policy\[action\]/);
+  assert.doesNotMatch(policy, /!referenceReturnState/);
 
   const availabilityStart = component.indexOf('function syncEntryControlAvailability()');
   const availabilityEnd = component.indexOf('\n\tfunction ', availabilityStart + 1);

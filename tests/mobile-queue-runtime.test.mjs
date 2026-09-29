@@ -40,7 +40,7 @@ function runtime({ items = [landscape], width = 390, initialWidth = width, music
     nowPlayingTitle: { textContent: 'Wide' }, nowPlayingStatus: { textContent: 'CINEMA READY' }, activeSourceKind: {},
     retryCinema: { hidden: true, setAttribute() {} },
     eligibleVideoItems, isMobileViewport, createCinemaContinuity, selectCinema, activateSource, removeAudibleProvider,
-    pauseVideoStack() { mv.pause(); }, hideMirrorWings() {},
+    pauseVideoStack() { mv.pause(); }, hideMirrorWings() {}, fadeTheaterView() {},
     applyActiveTransportPolicy() {}, renderCinemaAudioInvitation() {}, syncCinemaCueAvailability() {}, syncFullscreenEligibility() {},
   };
   runInNewContext(
