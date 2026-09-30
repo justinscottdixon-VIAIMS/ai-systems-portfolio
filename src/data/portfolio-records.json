@@ -1614,9 +1614,10 @@
       },
       "gallery": [
         {
-          "kind": "pending",
-          "alt": "Singles, remixes & photographed editions",
-          "caption": "Original artwork awaiting source reconciliation."
+          "kind": "image",
+          "src": "/reference/singles-remixes/nc-01-img-5161.jpg",
+          "alt": "Various artists — Sunshine State of Mind — four-track sampler, photographed edition IMG_5161",
+          "caption": "Sunshine State of Mind — four-track sampler — archive photograph IMG_5161."
         }
       ],
       "sections": [
@@ -1652,9 +1653,16 @@
           "summary": "Friction & Spice — Step Into My Dream; writing and production.",
           "gallery": [
             {
-              "kind": "pending",
-              "alt": "Sunshine State of Mind — four-track sampler",
-              "caption": "Original artwork awaiting source reconciliation."
+              "kind": "image",
+              "src": "/reference/singles-remixes/nc-01-img-5161.jpg",
+              "alt": "Various artists — Sunshine State of Mind — four-track sampler, photographed edition IMG_5161",
+              "caption": "Sunshine State of Mind — four-track sampler — archive photograph IMG_5161."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/singles-remixes/nc-01-img-5162.jpg",
+              "alt": "Various artists — Sunshine State of Mind — four-track sampler, photographed edition IMG_5162",
+              "caption": "Sunshine State of Mind — four-track sampler — archive photograph IMG_5162."
             }
           ]
         },
@@ -1671,9 +1679,22 @@
           "summary": "Remixing as Voyager. The photographs establish the Voyager credit; they do not establish that the promo’s “Voyager remix” is the identical recording to “Voyager’s Platinum remix.” Preserve both printed names until confirmed.",
           "gallery": [
             {
-              "kind": "pending",
-              "alt": "Beautiful Strange",
-              "caption": "Original artwork awaiting source reconciliation."
+              "kind": "image",
+              "src": "/reference/singles-remixes/nc-02-img-5167.jpg",
+              "alt": "Bedrock — Beautiful Strange, photographed edition IMG_5167",
+              "caption": "Beautiful Strange — archive photograph IMG_5167."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/singles-remixes/nc-02-img-5181.jpg",
+              "alt": "Bedrock — Beautiful Strange, photographed edition IMG_5181",
+              "caption": "Beautiful Strange — archive photograph IMG_5181."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/singles-remixes/nc-02-img-5182.jpg",
+              "alt": "Bedrock — Beautiful Strange, photographed edition IMG_5182",
+              "caption": "Beautiful Strange — archive photograph IMG_5182."
             }
           ]
         },
@@ -1690,9 +1711,10 @@
           "summary": "the sticker names DJ’s Friction & Spice among the remixers. The exact contributed track/mix is not established by the photographed C side.",
           "gallery": [
             {
-              "kind": "pending",
-              "alt": "Altered-Ego-Trip (The Remix Album)",
-              "caption": "Original artwork awaiting source reconciliation."
+              "kind": "image",
+              "src": "/reference/singles-remixes/nc-03-img-5168.jpg",
+              "alt": "Keoki — Altered-Ego-Trip (The Remix Album), photographed edition IMG_5168",
+              "caption": "Altered-Ego-Trip (The Remix Album) — archive photograph IMG_5168."
             }
           ]
         },
@@ -1709,9 +1731,16 @@
           "summary": "Voyager remix.",
           "gallery": [
             {
-              "kind": "pending",
-              "alt": "Magic Shop",
-              "caption": "Original artwork awaiting source reconciliation."
+              "kind": "image",
+              "src": "/reference/singles-remixes/nc-04-img-5170.jpg",
+              "alt": "Stef, Pako & Frederik — Magic Shop, photographed edition IMG_5170",
+              "caption": "Magic Shop — archive photograph IMG_5170."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/singles-remixes/nc-04-img-5186.jpg",
+              "alt": "Stef, Pako & Frederik — Magic Shop, photographed edition IMG_5186",
+              "caption": "Magic Shop — archive photograph IMG_5186."
             }
           ]
         },
@@ -1728,9 +1757,22 @@
           "summary": "DJ’s Friction & Spice — Frosty’s X-Mas Dub. Exact writer/arranger/producer wording remains to be established.",
           "gallery": [
             {
-              "kind": "pending",
-              "alt": "Acid X-Mas — Special X-Mas E.P.",
-              "caption": "Original artwork awaiting source reconciliation."
+              "kind": "image",
+              "src": "/reference/singles-remixes/nc-05-img-5171.jpg",
+              "alt": "Various artists — Acid X-Mas — Special X-Mas E.P., photographed edition IMG_5171",
+              "caption": "Acid X-Mas — Special X-Mas E.P. — archive photograph IMG_5171."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/singles-remixes/nc-05-img-5172.jpg",
+              "alt": "Various artists — Acid X-Mas — Special X-Mas E.P., photographed edition IMG_5172",
+              "caption": "Acid X-Mas — Special X-Mas E.P. — archive photograph IMG_5172."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/singles-remixes/nc-05-img-5173.jpg",
+              "alt": "Various artists — Acid X-Mas — Special X-Mas E.P., photographed edition IMG_5173",
+              "caption": "Acid X-Mas — Special X-Mas E.P. — archive photograph IMG_5173."
             }
           ]
         },
@@ -1747,9 +1789,16 @@
           "summary": "Remixing as Voyager.",
           "gallery": [
             {
-              "kind": "pending",
-              "alt": "Refined Intricacy ’99",
-              "caption": "Original artwork awaiting source reconciliation."
+              "kind": "image",
+              "src": "/reference/singles-remixes/nc-06-img-5176.jpg",
+              "alt": "Origin — Refined Intricacy ’99, photographed edition IMG_5176",
+              "caption": "Refined Intricacy ’99 — archive photograph IMG_5176."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/singles-remixes/nc-06-img-5177.jpg",
+              "alt": "Origin — Refined Intricacy ’99, photographed edition IMG_5177",
+              "caption": "Refined Intricacy ’99 — archive photograph IMG_5177."
             }
           ]
         },
@@ -1766,9 +1815,10 @@
           "summary": "Photographed edition in the artist archive. Track-level credits remain qualified in the detailed research.",
           "gallery": [
             {
-              "kind": "pending",
-              "alt": "Mellow",
-              "caption": "Original artwork awaiting source reconciliation."
+              "kind": "image",
+              "src": "/reference/singles-remixes/nc-07-img-5178.jpg",
+              "alt": "MOT — Mellow, photographed edition IMG_5178",
+              "caption": "Mellow — archive photograph IMG_5178."
             }
           ]
         },
@@ -1785,9 +1835,10 @@
           "summary": "Photographed edition in the artist archive. Track-level credits remain qualified in the detailed research.",
           "gallery": [
             {
-              "kind": "pending",
-              "alt": "Sunshine State of Mind — full-album sleeve",
-              "caption": "Original artwork awaiting source reconciliation."
+              "kind": "image",
+              "src": "/reference/singles-remixes/nc-08-img-5179.jpg",
+              "alt": "Various artists — Sunshine State of Mind — full-album sleeve, photographed edition IMG_5179",
+              "caption": "Sunshine State of Mind — full-album sleeve — archive photograph IMG_5179."
             }
           ]
         },
@@ -1804,9 +1855,10 @@
           "summary": "Voyager — Motion (Stereo Edit), written and produced by Justin Scott Dixon; additional keyboard production credited to Sam Frost.",
           "gallery": [
             {
-              "kind": "pending",
-              "alt": "Music from Tranceport 3",
-              "caption": "Original artwork awaiting source reconciliation."
+              "kind": "image",
+              "src": "/reference/singles-remixes/nc-09-img-5180.jpg",
+              "alt": "Various artists / Sandra Collins — Music from Tranceport 3, photographed edition IMG_5180",
+              "caption": "Music from Tranceport 3 — archive photograph IMG_5180."
             }
           ],
           "credits": [
@@ -1844,9 +1896,10 @@
           "summary": "Justin Scott Dixon: remix and additional production on Voyager’s Big Speaker Remix. The other side is Echo’s Wave Dub.",
           "gallery": [
             {
-              "kind": "pending",
-              "alt": "Rush",
-              "caption": "Original artwork awaiting source reconciliation."
+              "kind": "image",
+              "src": "/reference/singles-remixes/nc-10-img-5183.jpg",
+              "alt": "Bradley — Rush, photographed edition IMG_5183",
+              "caption": "Rush — archive photograph IMG_5183."
             }
           ],
           "credits": [
@@ -1889,9 +1942,10 @@
           "summary": "Velvet (Voyager Remix 1) and Velvet (Voyager Remix 2). Justin Scott Dixon: remix and additional production; original work by Kasey Taylor.",
           "gallery": [
             {
-              "kind": "pending",
-              "alt": "Ocean Wave E.P. — Voyager Remixes, disk three",
-              "caption": "Original artwork awaiting source reconciliation."
+              "kind": "image",
+              "src": "/reference/singles-remixes/nc-11-img-5184.jpg",
+              "alt": "Ocean Wave — Ocean Wave E.P. — Voyager Remixes, disk three, photographed edition IMG_5184",
+              "caption": "Ocean Wave E.P. — Voyager Remixes, disk three — archive photograph IMG_5184."
             }
           ],
           "credits": [
@@ -1938,9 +1992,10 @@
           "summary": "Motion and One or Two: written and produced by Justin Scott Dixon. Sam Frost supplies additional keyboard production on Motion.",
           "gallery": [
             {
-              "kind": "pending",
-              "alt": "Motion / One or Two",
-              "caption": "Original artwork awaiting source reconciliation."
+              "kind": "image",
+              "src": "/reference/singles-remixes/nc-12-img-5185.jpg",
+              "alt": "Voyager — Motion / One or Two, photographed edition IMG_5185",
+              "caption": "Motion / One or Two — archive photograph IMG_5185."
             }
           ],
           "credits": [
@@ -1987,9 +2042,10 @@
           "summary": "Original Mix and Voyager Mix. Writing and production by Justin Scott Dixon and Rich Rosario; Voyager remix and additional production on AA.",
           "gallery": [
             {
-              "kind": "pending",
-              "alt": "One — Fire edition",
-              "caption": "Original artwork awaiting source reconciliation."
+              "kind": "image",
+              "src": "/reference/singles-remixes/nc-13-img-5187.jpg",
+              "alt": "Aria — One — Fire edition, photographed edition IMG_5187",
+              "caption": "One — Fire edition — archive photograph IMG_5187."
             }
           ],
           "credits": [
@@ -2040,9 +2096,16 @@
           "summary": "linked to the approved Cosmic 001 work; this is an additional licensed edition, not a new composition.",
           "gallery": [
             {
-              "kind": "pending",
-              "alt": "Groove Me — Sueños edition",
-              "caption": "Original artwork awaiting source reconciliation."
+              "kind": "image",
+              "src": "/reference/singles-remixes/nc-14-img-5188.jpg",
+              "alt": "DJ’s Friction & Spice — Groove Me — Sueños edition, photographed edition IMG_5188",
+              "caption": "Groove Me — Sueños edition — archive photograph IMG_5188."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/singles-remixes/nc-14-img-5189.jpg",
+              "alt": "DJ’s Friction & Spice — Groove Me — Sueños edition, photographed edition IMG_5189",
+              "caption": "Groove Me — Sueños edition — archive photograph IMG_5189."
             }
           ]
         },
@@ -2060,9 +2123,16 @@
           "summary": "Voyager remix and additional production on side A.",
           "gallery": [
             {
-              "kind": "pending",
-              "alt": "High Plains Drifter",
-              "caption": "Original artwork awaiting source reconciliation."
+              "kind": "image",
+              "src": "/reference/singles-remixes/nc-15-img-5190.jpg",
+              "alt": "System 7 — High Plains Drifter, photographed edition IMG_5190",
+              "caption": "High Plains Drifter — archive photograph IMG_5190."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/singles-remixes/nc-15-img-5191.jpg",
+              "alt": "System 7 — High Plains Drifter, photographed edition IMG_5191",
+              "caption": "High Plains Drifter — archive photograph IMG_5191."
             }
           ],
           "credits": [
@@ -2090,9 +2160,10 @@
           "summary": "Remixing as Voyager on side B.",
           "gallery": [
             {
-              "kind": "pending",
-              "alt": "Ultra Vixens — Undercurrent edition",
-              "caption": "Original artwork awaiting source reconciliation."
+              "kind": "image",
+              "src": "/reference/singles-remixes/nc-16-img-5192.jpg",
+              "alt": "Thomas P. Heckmann & Marc Romboy — Ultra Vixens — Undercurrent edition, photographed edition IMG_5192",
+              "caption": "Ultra Vixens — Undercurrent edition — archive photograph IMG_5192."
             }
           ]
         },
@@ -2109,9 +2180,10 @@
           "summary": "Friction & Spice remix, printed as Bassline mix.",
           "gallery": [
             {
-              "kind": "pending",
-              "alt": "Free",
-              "caption": "Original artwork awaiting source reconciliation."
+              "kind": "image",
+              "src": "/reference/singles-remixes/nc-17-img-5193.jpg",
+              "alt": "MAD — Free, photographed edition IMG_5193",
+              "caption": "Free — archive photograph IMG_5193."
             }
           ]
         },
@@ -2130,9 +2202,10 @@
           "summary": "Writing, production and arrangement credited to Justin Scott Dixon and Rich Rosario in the reviewed edition listing.",
           "gallery": [
             {
-              "kind": "pending",
-              "alt": "Beyond / Feel",
-              "caption": "Original artwork awaiting source reconciliation."
+              "kind": "image",
+              "src": "/reference/singles-remixes/nc-18-img-5194.jpg",
+              "alt": "Aria — Beyond / Feel, photographed edition IMG_5194",
+              "caption": "Beyond / Feel — archive photograph IMG_5194."
             }
           ],
           "credits": [

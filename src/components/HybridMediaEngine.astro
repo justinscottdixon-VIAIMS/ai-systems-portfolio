@@ -88,6 +88,10 @@ const evidenceLabels = {
 									<div class="reference-stage__child-art">{child.gallery[0].kind === 'image' ? <img src={child.gallery[0].src} alt={child.gallery[0].alt} loading="lazy" decoding="async" /> : <div role="img" aria-label={child.gallery[0].alt}>ARTWORK PENDING</div>}</div>
 									<div class="reference-stage__child-copy"><span>RELEASE {String(childIndex + 1).padStart(2, '0')} / {String(record.children.length).padStart(2, '0')}</span><h3>{child.title}</h3><strong>{child.artist}</strong><dl><div><dt>CATALOG</dt><dd>{child.catalogNumber}</dd></div><div><dt>DATE</dt><dd>{child.date}</dd></div><div><dt>FORMAT</dt><dd>{child.format}</dd></div></dl><p>{child.summary}</p><small>{child.roles.join(' · ')}</small><p><a href={archiveHref(record, child)} target="_blank" rel="noopener noreferrer">FULL RELEASE RECORD ↗</a></p></div>
                                 </article>
+                                {child.gallery.slice(1).map((item, imageIndex) => item.kind === 'image' && <section class="reference-stage__slide reference-stage__artwork-page" data-reference-slide data-slide-label={`${child.title} — photo ${imageIndex + 2}`} hidden>
+                                  <header class="reference-stage__sequence"><span>{child.title}</span><span>PHOTO {imageIndex + 2} / {child.gallery.length}</span></header>
+                                  <figure><img src={item.src} alt={item.alt} loading="lazy" decoding="async" /><figcaption>{item.caption}</figcaption></figure>
+                                </section>)}
                                 {child.credits.map(credit => <section class="reference-stage__slide reference-stage__dossier-page" data-reference-slide data-slide-label={`${child.title} — ${credit.title} credits`} hidden>
                                   <header><span>{child.catalogNumber} / CREDIT DETAIL</span><h3>{child.title}</h3></header>
                                   <TrackCredits credits={[credit]} />
