@@ -1,0 +1,26 @@
+---
+import { publicProfile, publicContact } from '../lib/public-site.mjs';
+const contact = publicContact(process.env.VIAIMS_PUBLIC_CONTACT);
+---
+<section class="public-introduction" aria-labelledby="public-introduction-title">
+ <div>
+  <p class="public-introduction__label">SOUND · VISION · SYSTEMS</p>
+  <h2 id="public-introduction-title">Music, moving image and creative technology.</h2>
+  <p>{publicProfile.introduction}</p>
+  <a href={publicProfile.channel} target="_blank" rel="noopener noreferrer">Explore my YouTube channel ↗</a>
+ </div>
+ {contact && <div class="public-introduction__contact" id="contact">
+  <h2>Discuss a project</h2>
+  <p>For music production, spatial audio and visual collaborations, share a brief outline of your project, the intended deliverables and your timeframe.</p>
+  <a class="public-introduction__cta" href={contact}>Discuss a project ↗</a>
+ </div>}
+</section>
+<style>
+.public-introduction { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,22rem),1fr)); gap:2rem; margin-top:2rem; padding:clamp(1rem,3vw,2rem); border:1px solid #b59b6666; background:#141416; color:#d4d4d8; }
+.public-introduction__label { color:#c9b182; font-size:.7rem; letter-spacing:.12em; }
+.public-introduction h2 { color:#fafafa; font-size:clamp(1.3rem,3vw,1.8rem); line-height:1.25; margin:.5rem 0 1rem; }
+.public-introduction p:not(.public-introduction__label) { max-width:65ch; line-height:1.75; margin-bottom:1rem; }
+.public-introduction a { color:#e7d3a6; text-decoration:underline; text-underline-offset:.25em; display:inline-block; padding-block:.7rem; }
+.public-introduction a:focus-visible { outline:2px solid #e7d3a6; outline-offset:4px; }
+.public-introduction__cta { border:1px solid #b59b66; padding:.75rem 1rem; min-height:44px; }
+</style>

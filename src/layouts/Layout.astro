@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { publicProfile, siteUrl, structuredIdentity } from '../lib/public-site.mjs';
 
 const { compactMain = false } = Astro.props;
 ---
@@ -10,7 +11,18 @@ const { compactMain = false } = Astro.props;
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Justin Scott Dixon | AI Systems & Spatial Audio Architect</title>
+		<title>{publicProfile.title}</title>
+		<meta name="description" content={publicProfile.description} />
+		<link rel="canonical" href={siteUrl} />
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="VIAIMS" />
+		<meta property="og:title" content={publicProfile.title} />
+		<meta property="og:description" content={publicProfile.description} />
+		<meta property="og:url" content={siteUrl} />
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:title" content={publicProfile.title} />
+		<meta name="twitter:description" content={publicProfile.description} />
+		<script type="application/ld+json" set:html={JSON.stringify(structuredIdentity()).replaceAll('<', '\u003c')} />
 		<slot name="head" />
 	</head>
 	<body class="min-h-screen selection:bg-zinc-100 selection:text-black">

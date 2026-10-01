@@ -220,7 +220,7 @@ const evidenceLabels = {
 				<button type="button" data-library-switch="credentials" aria-pressed="false">CREDENTIALS</button>
 			</div>}
 			<section class="player-dock__media-library" aria-label="Media playlist">
-				<header class="media-playlist__header"><strong id="media-playlist-title">CINEMA PLAYLIST</strong><button id="buy-license" type="button" data-product-id={firstMusic?.productId ?? ''} data-store-href={firstMusic?.storeHref ?? ''} disabled aria-disabled="true">BUY / LICENSE · STORE PENDING</button></header>
+				<header class="media-playlist__header"><strong id="media-playlist-title">CINEMA PLAYLIST</strong>{process.env.VIAIMS_RELEASE_SCOPE !== 'player' && <button id="buy-license" type="button" data-product-id={firstMusic?.productId ?? ''} data-store-href={firstMusic?.storeHref ?? ''} disabled aria-disabled="true">BUY / LICENSE · STORE PENDING</button>}</header>
 		<div class="player-dock__tray" data-provider-tray>
 			<div id="panel-cinema" role="tabpanel" aria-labelledby="tab-cinema" data-provider-panel="cinema">
 				<div class="media-library__scroll-shell">
