@@ -2,17 +2,19 @@
 import ArchiveLayout from '../../layouts/ArchiveLayout.astro';
 import source from '../../data/portfolio-records.json';
 import { toPortfolioRecords } from '../../lib/portfolio-records.mjs';
+import { selectReleaseRecords } from '../../lib/release-scope.mjs';
 import { archiveEntries } from '../../lib/archive-index.mjs';
-const records = toPortfolioRecords(source);
+const records = selectReleaseRecords(toPortfolioRecords(source), process.env.VIAIMS_RELEASE_SCOPE);
 const entries = archiveEntries(records);
+const selectedRelease = process.env.VIAIMS_RELEASE_SCOPE === 'selected';
 const categories = [...new Set(entries.map(entry => entry.category))].sort();
 ---
 <ArchiveLayout title="Career & release archive" description="Explore Justin Scott Dixon’s discography, creative history, production credits and studio evolution.">
   <header class="archive-heading">
     <p class="eyebrow">JUSTIN SCOTT DIXON / THE ARCHIVE</p>
     <h1>Records. People.<br />A life in sound.</h1>
-    <p class="lead">From the first Cosmic releases to Voyager, music for picture and immersive composition. Explore the recordings alongside the stories and engineering decisions behind them.</p>
-    <p class="muted">Vinyl chronology begins January 1996. Earlier studio stories describe recording and career development.</p>
+    <p class="lead">{selectedRelease ? "Selected Voyager releases, music for picture and audio tools. Explore the recordings and the work behind them." : "From the first Cosmic releases to Voyager, music for picture and immersive composition. Explore the recordings alongside the stories and engineering decisions behind them."}</p>
+    {!selectedRelease && <p class="muted">Vinyl chronology begins January 1996. Earlier studio stories describe recording and career development.</p>}
   </header>
   <form class="archive-search" role="search" hidden>
     <label>Search the archive<input type="search" id="archive-query" placeholder="Title, artist, label, catalog, role or year" autocomplete="off" /></label>

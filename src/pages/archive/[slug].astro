@@ -3,12 +3,13 @@ import ArchiveLayout from '../../layouts/ArchiveLayout.astro';
 import TrackCredits from '../../components/TrackCredits.astro';
 import source from '../../data/portfolio-records.json';
 import { toPortfolioRecords } from '../../lib/portfolio-records.mjs';
+import { selectReleaseRecords } from '../../lib/release-scope.mjs';
 import { archiveHref } from '../../lib/archive-index.mjs';
 export function getStaticPaths() {
-  return toPortfolioRecords(source).map(record => ({ params: { slug: record.slug }, props: { record } }));
+  return selectReleaseRecords(toPortfolioRecords(source), process.env.VIAIMS_RELEASE_SCOPE).map(record => ({ params: { slug: record.slug }, props: { record } }));
 }
 const { record } = Astro.props;
-const recordsById = new Map(toPortfolioRecords(source).map(item => [item.id, item]));
+const recordsById = new Map(selectReleaseRecords(toPortfolioRecords(source), process.env.VIAIMS_RELEASE_SCOPE).map(item => [item.id, item]));
 const evidenceLabels = {
   'primary-public': 'Primary public source', 'corroborated-public': 'Corroborated public record',
   'attributed-public': 'Attributed public record', 'owner-approved-archive': 'Artist-approved archive',

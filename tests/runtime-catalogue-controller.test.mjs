@@ -210,7 +210,7 @@ test('component resumes discovery across repeated cached navigation and removes 
     };
   };
   const window = target(), document = target(), h = harness();
-  runInNewContext(script, { ...runtimeApi, createRuntimeCatalogueController: () => h.controller, window, document });
+  runInNewContext(script, { ...runtimeApi, createRuntimeCatalogueController: () => h.controller, window, document, root: { dataset: { catalogueRefresh: 'true' } } });
   await settle();
   for (let cycle = 1; cycle <= 3; cycle++) {
     window.fire('pagehide', { persisted: true });
@@ -223,4 +223,15 @@ test('component resumes discovery across repeated cached navigation and removes 
   assert.equal(h.timers.size, 0);
   assert.equal(window.listeners.size, 0);
   assert.equal(document.listeners.size, 0);
+});
+
+
+test('selected release starts no discovery requests or timers', async () => {
+  const component = await readFile(new URL('../src/components/HybridMediaEngine.astro', import.meta.url), 'utf8');
+  const script = component.slice(component.indexOf('\tconst runtimeCatalogue ='), component.indexOf('</script>'));
+  const h = harness();
+  runInNewContext(script, { ...runtimeApi, createRuntimeCatalogueController: () => h.controller, root: { dataset: { catalogueRefresh: 'false' } } });
+  await settle();
+  assert.equal(h.requests.length, 0);
+  assert.equal(h.timers.size, 0);
 });

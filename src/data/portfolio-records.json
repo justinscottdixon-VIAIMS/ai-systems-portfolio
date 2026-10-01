@@ -578,6 +578,18 @@
           "src": "/reference/time-travel-digital-cover.jpg",
           "alt": "Voyager Time Travel digital cover with blue and amber abstract artwork.",
           "caption": "Voyager Recordings digital cover."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/time-travel-vinyl-side-a.jpg",
+          "alt": "Time Travel E.P. Cosmic 017 vinyl label, side A",
+          "caption": "Time Travel E.P. — original Cosmic 017 label photograph, side A."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/time-travel-vinyl-side-b.jpg",
+          "alt": "Time Travel E.P. Cosmic 017 vinyl label, side B",
+          "caption": "Time Travel E.P. — original Cosmic 017 label photograph, side B."
         }
       ]
     },
@@ -611,9 +623,16 @@
       "public": true,
       "gallery": [
         {
-          "kind": "pending",
-          "alt": "Image research placeholder for One (Voyager Remix)",
-          "caption": "Associated artwork and documentary images are being sourced and cleared."
+          "kind": "image",
+          "src": "/reference/singles-remixes/nc-13-img-5187.jpg",
+          "alt": "Aria — One — Fire edition, photographed edition IMG_5187",
+          "caption": "One — Fire edition — archive photograph IMG_5187."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/global-underground-019.jpg",
+          "alt": "John Digweed Los Angeles Global Underground 019 cover",
+          "caption": "Global Underground 019: Los Angeles — compilation cover."
         }
       ],
       "sections": [
@@ -674,14 +693,20 @@
           "label": "Discogs — PRP002 vinyl edition",
           "href": "https://www.discogs.com/release/264316",
           "supports": "Database reports 2004 vinyl edition and Original Mix / Descent Remix; not the digital release date."
+        },
+        {
+          "label": "Artwork source",
+          "href": "https://music.apple.com/us/album/two-worlds-single/120458890",
+          "supports": "Artwork and packaging for the displayed edition; catalogue credits retain their existing qualifications."
         }
       ],
       "public": true,
       "gallery": [
         {
-          "kind": "pending",
-          "alt": "Image research placeholder for Two Worlds",
-          "caption": "Associated artwork and documentary images are being sourced and cleared."
+          "kind": "image",
+          "src": "/reference/remaining-artwork/two-worlds.jpg",
+          "alt": "Voyager Two Worlds cover with red Propulsion label artwork",
+          "caption": "Two Worlds — digital release artwork, Propulsion."
         }
       ],
       "sections": [
@@ -736,9 +761,10 @@
       "public": true,
       "gallery": [
         {
-          "kind": "pending",
-          "alt": "Image research placeholder for Someone Else — Bloom",
-          "caption": "Associated artwork and documentary images are being sourced and cleared."
+          "kind": "image",
+          "src": "/reference/remaining-artwork/bloom.jpg",
+          "alt": "Gabriel and Dresden Bloom cover with an orange flower",
+          "caption": "Bloom — Gabriel & Dresden compilation cover."
         }
       ],
       "sections": [
@@ -836,14 +862,20 @@
           "label": "IMDb full credits",
           "href": "https://www.imdb.com/title/tt37786123/fullcredits/",
           "supports": "Named post-production roles and uncredited music designations"
+        },
+        {
+          "label": "Artwork source",
+          "href": "https://www.primevideo.com/-/pt/detail/0TZTA6DG1P3D0WPKRUKQTMSG14",
+          "supports": "Artwork and packaging for the displayed edition; catalogue credits retain their existing qualifications."
         }
       ],
       "public": true,
       "gallery": [
         {
-          "kind": "pending",
-          "alt": "Image research placeholder for Unexpected",
-          "caption": "Associated artwork and documentary images are being sourced and cleared."
+          "kind": "image",
+          "src": "/reference/remaining-artwork/unexpected.jpg",
+          "alt": "Unexpected film artwork with a grayscale portrait and red title",
+          "caption": "Unexpected — published film artwork."
         }
       ],
       "sections": [
@@ -910,9 +942,22 @@
       },
       "gallery": [
         {
-          "kind": "pending",
-          "alt": "Film posters, production stills and end-credit image gallery",
-          "caption": "Title artwork, authorized stills and primary end-credit frames are being sourced title by title."
+          "kind": "image",
+          "src": "/reference/remaining-artwork/unexpected.jpg",
+          "alt": "Unexpected film artwork with a grayscale portrait and red title",
+          "caption": "Unexpected — published film artwork."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d005-01.jpg",
+          "alt": "Stark Raving Mad — soundtrack album — edition artwork image 1",
+          "caption": "Stark Raving Mad — soundtrack album — edition image 1 (Discogs release 156853)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/stark-raving-mad-6.jpg",
+          "alt": "Stark Raving Mad soundtrack printed credits",
+          "caption": "Stark Raving Mad — soundtrack printed credits."
         }
       ],
       "sections": [
@@ -973,6 +1018,16 @@
           "label": "IMDb — Stark Raving Mad soundtrack",
           "href": "https://www.imdb.com/title/tt0286152/soundtrack/",
           "supports": "Time Travel soundtrack, writer and performer listing"
+        },
+        {
+          "label": "Unexpected film artwork",
+          "href": "https://www.primevideo.com/-/pt/detail/0TZTA6DG1P3D0WPKRUKQTMSG14",
+          "supports": "Artwork and packaging for the displayed edition; catalogue credits retain their existing qualifications."
+        },
+        {
+          "label": "Stark Raving Mad soundtrack packaging",
+          "href": "https://musicbrainz.org/release/bb5af242-4fa6-4eec-91e7-6de33326ca06",
+          "supports": "Artwork and packaging for the displayed edition; catalogue credits retain their existing qualifications."
         }
       ],
       "public": true
@@ -986,12 +1041,12 @@
       "format": "Archive dossier",
       "dateDisplay": "1999–2002",
       "sortDate": "1999-01-01",
-      "era": "DOCUMENTED RECEPTION",
+      "era": "PRESS & RELEASE CONTEXT",
       "roles": [
         "Artist"
       ],
-      "summary": "Chart entries, DJ selections and reviews. Each result belongs to the release and chart named here.",
-      "status": "archived",
+      "summary": "Compilation placement, contemporary press and artist recollections. Chart rankings are withheld pending source verification.",
+      "status": "verification-pending",
       "evidenceLevel": "owner-approved-archive",
       "public": true,
       "catalog": {},
@@ -1008,69 +1063,11 @@
       ],
       "sections": [
         {
-          "title": "Voyager — Time Travel",
-          "items": [
-            {
-              "title": "UK Independent Singles · No. 30 / UK Singles · No. 93",
-              "detail": "Coded CODE6, November 1999; these figures are not assigned to the Cosmic pressing."
-            }
-          ]
-        },
-        {
-          "title": "Voyager — Panic EP",
-          "items": [
-            {
-              "title": "UK Dance Singles · No. 19 / Independent Singles · No. 25",
-              "detail": "April 2000. Weekly and title-history date labels differ; summary uses month precision."
-            }
-          ]
-        },
-        {
-          "title": "Aria — One",
-          "items": [
-            {
-              "title": "UK Dance Singles · No. 14 / Independent Singles · No. 17 / Singles · No. 82",
-              "detail": "Fire ERIF008, April 2001. Release contains Voyager remix; ranking belongs to the release."
-            }
-          ]
-        },
-        {
-          "title": "Origin — Refined Intricacy",
-          "items": [
-            {
-              "title": "UK Independent Singles · No. 29",
-              "detail": "Steel Yard SYW006, February 2000. Charted edition contains the Voyager remix."
-            }
-          ]
-        },
-        {
-          "title": "Bedrock — Beautiful Strange",
-          "items": [
-            {
-              "title": "UK Independent Albums · No. 17",
-              "detail": "BS1001CD, March 2001, includes Voyager’s Platinum Mix. Preserve the chart’s Albums classification."
-            }
-          ]
-        },
-        {
-          "title": "Francesco Farfa — The Search",
-          "items": [
-            {
-              "title": "UK Dance Singles · No. 30 / Independent Singles · No. 44",
-              "detail": "PFT031, March 2002. Voyager-remix association is catalog corroborated; physical-label match remains open."
-            }
-          ]
-        },
-        {
           "title": "Pure and Northern Exposure",
           "items": [
             {
               "title": "Compilation placement",
               "detail": "Pure (Friction’s Groove) appears on disc two, track five of Northern Exposure: Expeditions, between Polarstern and Gamelan."
-            },
-            {
-              "title": "Compilation chart",
-              "detail": "Official Charts records a UK Compilations peak of No. 6. This is a compilation result, not a Pure singles ranking."
             },
             {
               "title": "Artist recollection",
@@ -1088,51 +1085,12 @@
             {
               "title": "Contemporary coverage",
               "detail": "The Mix rated Expeditions 7/10 in May 1999. Hi-Fi World covered it in April 1999; Orlando Weekly’s May review was critical overall."
-            },
-            {
-              "title": "Unresolved chart leads",
-              "detail": "No primary ranking was established for Tribe ’n’ Trance. Pure’s reported No. 154 remains explicitly attributed to Chart Log UK."
             }
           ]
         }
       ],
       "children": [],
       "publicSources": [
-        {
-          "label": "Voyager — Time Travel",
-          "href": "https://www.officialcharts.com/songs/voyager-time-travel/",
-          "supports": "UK Independent Singles · No. 30 / UK Singles · No. 93"
-        },
-        {
-          "label": "Voyager — Panic EP",
-          "href": "https://www.officialcharts.com/songs/voyager-panic-ep/",
-          "supports": "UK Dance Singles · No. 19 / Independent Singles · No. 25"
-        },
-        {
-          "label": "Aria — One",
-          "href": "https://www.officialcharts.com/songs/aria-one/",
-          "supports": "UK Dance Singles · No. 14 / Independent Singles · No. 17 / Singles · No. 82"
-        },
-        {
-          "label": "Origin — Refined Intricacy",
-          "href": "https://www.officialcharts.com/songs/origin-refined-intricacy/",
-          "supports": "UK Independent Singles · No. 29"
-        },
-        {
-          "label": "Bedrock — Beautiful Strange",
-          "href": "https://www.officialcharts.com/albums/bedrock-beautiful-strange/",
-          "supports": "UK Independent Albums · No. 17"
-        },
-        {
-          "label": "Francesco Farfa — The Search",
-          "href": "https://www.officialcharts.com/songs/francesco-farfa-the-search/",
-          "supports": "UK Dance Singles · No. 30 / Independent Singles · No. 44"
-        },
-        {
-          "label": "Northern Exposure: chart history",
-          "href": "https://www.officialcharts.com/albums/various-artists-northern-exposure-sasha-jon-digweed/",
-          "supports": "Compilation-level chart record"
-        },
         {
           "label": "AllMusic: Expeditions",
           "href": "https://www.allmusic.com/album/northern-exposure-expeditions-mw0000666154",
@@ -1152,11 +1110,6 @@
           "label": "Orlando Weekly review",
           "href": "https://www.orlandoweekly.com/music/review-northern-exposure-3-expeditions-2314359/",
           "supports": "Critical contemporary review"
-        },
-        {
-          "label": "Chart Log UK 2001",
-          "href": "https://www.zobbel.de/cluk/CLUK2001.pdf",
-          "supports": "Secondary report for Pure, not primary corroboration"
         }
       ]
     },
@@ -1356,9 +1309,16 @@
       },
       "gallery": [
         {
-          "kind": "pending",
-          "alt": "Voyager: cinematic library",
-          "caption": "Original artwork awaiting source reconciliation."
+          "kind": "image",
+          "src": "/reference/remaining-artwork/ambient-chill.jpg",
+          "alt": "Ambient Chill — XCD095 album cover",
+          "caption": "Ambient Chill — XCD095 — Extreme Music album artwork."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/chilled-beats.jpg",
+          "alt": "Chilled Beats — XCD167 album cover",
+          "caption": "Chilled Beats — XCD167 — Extreme Music album artwork."
         }
       ],
       "sections": [
@@ -1420,6 +1380,16 @@
           "label": "Artist interview",
           "href": "https://www.youtube.com/watch?v=R6sa-Mg2YaM",
           "supports": "Background interview; later case-study details also supplied directly by the artist."
+        },
+        {
+          "label": "Ambient Chill — XCD095 artwork",
+          "href": "https://www.extrememusic.com/albums/1297",
+          "supports": "Artwork and packaging for the displayed edition; catalogue credits retain their existing qualifications."
+        },
+        {
+          "label": "Chilled Beats — XCD167 artwork",
+          "href": "https://www.extrememusic.com/albums/1327",
+          "supports": "Artwork and packaging for the displayed edition; catalogue credits retain their existing qualifications."
         }
       ]
     },
@@ -1446,9 +1416,16 @@
       },
       "gallery": [
         {
-          "kind": "pending",
-          "alt": "QVibe & immersive composition",
-          "caption": "Original artwork awaiting source reconciliation."
+          "kind": "image",
+          "src": "/reference/remaining-artwork/qvibe-focus.jpg",
+          "alt": "Red fractal audiovisual thumbnail",
+          "caption": "QVibe 40 Hz Focus — published audiovisual thumbnail."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/qvibe-639hz.jpg",
+          "alt": "Gold faceted fractal audiovisual thumbnail",
+          "caption": "QVibe 639 Hz — published audiovisual thumbnail."
         }
       ],
       "sections": [
@@ -1493,6 +1470,16 @@
           "label": "Artist reference playlist",
           "href": "https://www.youtube.com/playlist?list=PLv_XND-ZcK0F4nVgP9QMUt89RjHxLkiYI",
           "supports": "Related listening references; not a verified original QVibe sequence"
+        },
+        {
+          "label": "QVibe 40 Hz Focus thumbnail",
+          "href": "https://www.youtube.com/watch?v=lxEgLzYjvEU",
+          "supports": "Artwork and packaging for the displayed edition; catalogue credits retain their existing qualifications."
+        },
+        {
+          "label": "QVibe 639 Hz thumbnail",
+          "href": "https://www.youtube.com/watch?v=lP1QgFEBQQA",
+          "supports": "Artwork and packaging for the displayed edition; catalogue credits retain their existing qualifications."
         }
       ]
     },
@@ -1519,9 +1506,10 @@
       },
       "gallery": [
         {
-          "kind": "pending",
-          "alt": "AI in creative practice",
-          "caption": "Original artwork awaiting source reconciliation."
+          "kind": "image",
+          "src": "/reference/remaining-artwork/unexpected.jpg",
+          "alt": "Unexpected film artwork with a grayscale portrait and red title",
+          "caption": "Unexpected — published film artwork."
         }
       ],
       "sections": [
@@ -1588,6 +1576,11 @@
           "label": "IMDb full credits",
           "href": "https://www.imdb.com/title/tt37786123/fullcredits/",
           "supports": "Named post-production roles and uncredited music designations"
+        },
+        {
+          "label": "Unexpected film artwork",
+          "href": "https://www.primevideo.com/-/pt/detail/0TZTA6DG1P3D0WPKRUKQTMSG14",
+          "supports": "Artwork and packaging for the displayed edition; catalogue credits retain their existing qualifications."
         }
       ]
     },
@@ -2291,9 +2284,10 @@
       },
       "gallery": [
         {
-          "kind": "pending",
-          "alt": "Selected production and engineering credits",
-          "caption": "Original edition artwork awaits clearance."
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d111-01.jpg",
+          "alt": "The Diversity Twins EP — edition artwork image 1",
+          "caption": "The Diversity Twins EP — edition image 1 (Discogs release 155609)."
         }
       ],
       "sections": [],
@@ -2311,9 +2305,22 @@
           "summary": "Dixon’s track-specific contribution is on Emotional Circumference.",
           "gallery": [
             {
-              "kind": "pending",
-              "alt": "Tiny & Dominick featuring Sunny — The Diversity Twins EP",
-              "caption": "Edition artwork has not yet been cleared for this archive."
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d111-01.jpg",
+              "alt": "The Diversity Twins EP — edition artwork image 1",
+              "caption": "The Diversity Twins EP — edition image 1 (Discogs release 155609)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d111-02.jpg",
+              "alt": "The Diversity Twins EP — edition artwork image 2",
+              "caption": "The Diversity Twins EP — edition image 2 (Discogs release 155609)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d111-03.jpg",
+              "alt": "The Diversity Twins EP — edition artwork image 3",
+              "caption": "The Diversity Twins EP — edition image 3 (Discogs release 155609)."
             }
           ],
           "credits": [
@@ -2351,9 +2358,16 @@
           "summary": "The Boyser Dub Mix credits Scott Dixon with Chris Hand and Dave Cannalte.",
           "gallery": [
             {
-              "kind": "pending",
-              "alt": "Enlighten Us — Enlighten Me",
-              "caption": "Edition artwork has not yet been cleared for this archive."
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d112-01.jpg",
+              "alt": "Enlighten Me — edition artwork image 1",
+              "caption": "Enlighten Me — edition image 1 (Discogs release 272169)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d112-02.jpg",
+              "alt": "Enlighten Me — edition artwork image 2",
+              "caption": "Enlighten Me — edition image 2 (Discogs release 272169)."
             }
           ],
           "credits": [
@@ -2389,9 +2403,10 @@
           "summary": "An engineering credit on the reviewed Touch Me edition; individual mix allocation is not specified.",
           "gallery": [
             {
-              "kind": "pending",
-              "alt": "Pilgrim State featuring Sunny — Touch Me",
-              "caption": "Edition artwork has not yet been cleared for this archive."
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d115-01.jpg",
+              "alt": "Touch Me — edition artwork image 1",
+              "caption": "Touch Me — edition image 1 (Discogs release 14610)."
             }
           ],
           "credits": [
@@ -2427,9 +2442,16 @@
           "summary": "Dixon’s production and engineering credit belongs to the B-side mix.",
           "gallery": [
             {
-              "kind": "pending",
-              "alt": "DJ Apache — Sun God",
-              "caption": "Edition artwork has not yet been cleared for this archive."
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d116-01.jpg",
+              "alt": "Sun God — edition artwork image 1",
+              "caption": "Sun God — edition image 1 (Discogs release 172934)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d116-02.jpg",
+              "alt": "Sun God — edition artwork image 2",
+              "caption": "Sun God — edition image 2 (Discogs release 172934)."
             }
           ],
           "credits": [
@@ -2468,9 +2490,40 @@
           "summary": "Dixon is credited with editing and mastering the complete mix; Cliff Tangredi is the DJ.",
           "gallery": [
             {
-              "kind": "pending",
-              "alt": "Cliff Tangredi — Usuaya: The Key",
-              "caption": "Edition artwork has not yet been cleared for this archive."
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d139-01.jpg",
+              "alt": "Usuaya: The Key — edition artwork image 1",
+              "caption": "Usuaya: The Key — edition image 1 (Discogs release 607357)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d139-02.jpg",
+              "alt": "Usuaya: The Key — edition artwork image 2",
+              "caption": "Usuaya: The Key — edition image 2 (Discogs release 607357)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d139-03.jpg",
+              "alt": "Usuaya: The Key — edition artwork image 3",
+              "caption": "Usuaya: The Key — edition image 3 (Discogs release 607357)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d139-04.jpg",
+              "alt": "Usuaya: The Key — edition artwork image 4",
+              "caption": "Usuaya: The Key — edition image 4 (Discogs release 607357)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d139-05.jpg",
+              "alt": "Usuaya: The Key — edition artwork image 5",
+              "caption": "Usuaya: The Key — edition image 5 (Discogs release 607357)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d139-06.jpg",
+              "alt": "Usuaya: The Key — edition artwork image 6",
+              "caption": "Usuaya: The Key — edition image 6 (Discogs release 607357)."
             }
           ],
           "credits": [
@@ -2507,9 +2560,46 @@
           "summary": "The reviewed sources credit Dixon with mastering, with DJ Spice as the mix artist.",
           "gallery": [
             {
-              "kind": "pending",
-              "alt": "DJ Spice — Breaks Are Delicious",
-              "caption": "Edition artwork has not yet been cleared for this archive."
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d140-01.jpg",
+              "alt": "Breaks Are Delicious — edition artwork image 1",
+              "caption": "Breaks Are Delicious — edition image 1 (Discogs release 732173)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d140-02.jpg",
+              "alt": "Breaks Are Delicious — edition artwork image 2",
+              "caption": "Breaks Are Delicious — edition image 2 (Discogs release 732173)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d140-03.jpg",
+              "alt": "Breaks Are Delicious — edition artwork image 3",
+              "caption": "Breaks Are Delicious — edition image 3 (Discogs release 732173)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d140-04.jpg",
+              "alt": "Breaks Are Delicious — edition artwork image 4",
+              "caption": "Breaks Are Delicious — edition image 4 (Discogs release 732173)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d140-05.jpg",
+              "alt": "Breaks Are Delicious — edition artwork image 5",
+              "caption": "Breaks Are Delicious — edition image 5 (Discogs release 732173)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d140-06.jpg",
+              "alt": "Breaks Are Delicious — edition artwork image 6",
+              "caption": "Breaks Are Delicious — edition image 6 (Discogs release 732173)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d140-07.jpg",
+              "alt": "Breaks Are Delicious — edition artwork image 7",
+              "caption": "Breaks Are Delicious — edition image 7 (Discogs release 732173)."
             }
           ],
           "credits": [
@@ -2546,9 +2636,58 @@
           "summary": "Three track-scoped production credits on the LP sampler, a separate edition from the full album.",
           "gallery": [
             {
-              "kind": "pending",
-              "alt": "Cass & Slide — Burning The Candle At Both Ends — LP Sampler",
-              "caption": "Edition artwork has not yet been cleared for this archive."
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d125-01.jpg",
+              "alt": "Burning The Candle At Both Ends — LP Sampler — edition artwork image 1",
+              "caption": "Burning The Candle At Both Ends — LP Sampler — edition image 1 (Discogs release 34268)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d125-02.jpg",
+              "alt": "Burning The Candle At Both Ends — LP Sampler — edition artwork image 2",
+              "caption": "Burning The Candle At Both Ends — LP Sampler — edition image 2 (Discogs release 34268)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d125-03.jpg",
+              "alt": "Burning The Candle At Both Ends — LP Sampler — edition artwork image 3",
+              "caption": "Burning The Candle At Both Ends — LP Sampler — edition image 3 (Discogs release 34268)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d125-04.jpg",
+              "alt": "Burning The Candle At Both Ends — LP Sampler — edition artwork image 4",
+              "caption": "Burning The Candle At Both Ends — LP Sampler — edition image 4 (Discogs release 34268)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d125-05.jpg",
+              "alt": "Burning The Candle At Both Ends — LP Sampler — edition artwork image 5",
+              "caption": "Burning The Candle At Both Ends — LP Sampler — edition image 5 (Discogs release 34268)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d125-06.jpg",
+              "alt": "Burning The Candle At Both Ends — LP Sampler — edition artwork image 6",
+              "caption": "Burning The Candle At Both Ends — LP Sampler — edition image 6 (Discogs release 34268)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d125-07.jpg",
+              "alt": "Burning The Candle At Both Ends — LP Sampler — edition artwork image 7",
+              "caption": "Burning The Candle At Both Ends — LP Sampler — edition image 7 (Discogs release 34268)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d125-08.jpg",
+              "alt": "Burning The Candle At Both Ends — LP Sampler — edition artwork image 8",
+              "caption": "Burning The Candle At Both Ends — LP Sampler — edition image 8 (Discogs release 34268)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d125-09.jpg",
+              "alt": "Burning The Candle At Both Ends — LP Sampler — edition artwork image 9",
+              "caption": "Burning The Candle At Both Ends — LP Sampler — edition image 9 (Discogs release 34268)."
             }
           ],
           "credits": [
@@ -2601,9 +2740,10 @@
           "summary": "Production credited to Justin Scott Dixon; Neon Heights supplied the remixes.",
           "gallery": [
             {
-              "kind": "pending",
-              "alt": "Cass/Slide — Sign Your Name",
-              "caption": "Edition artwork has not yet been cleared for this archive."
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d126-01.jpg",
+              "alt": "Sign Your Name — edition artwork image 1",
+              "caption": "Sign Your Name — edition image 1 (Discogs release 994703)."
             }
           ],
           "credits": [
@@ -2639,9 +2779,28 @@
           "summary": "Dixon and Pete Martin are credited as engineers on Valium Behaviour.",
           "gallery": [
             {
-              "kind": "pending",
-              "alt": "Cass & Slide — Burnt Out EP",
-              "caption": "Edition artwork has not yet been cleared for this archive."
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d127-01.jpg",
+              "alt": "Burnt Out EP — edition artwork image 1",
+              "caption": "Burnt Out EP — edition image 1 (Discogs release 38453)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d127-02.jpg",
+              "alt": "Burnt Out EP — edition artwork image 2",
+              "caption": "Burnt Out EP — edition image 2 (Discogs release 38453)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d127-03.jpg",
+              "alt": "Burnt Out EP — edition artwork image 3",
+              "caption": "Burnt Out EP — edition image 3 (Discogs release 38453)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d127-04.jpg",
+              "alt": "Burnt Out EP — edition artwork image 4",
+              "caption": "Burnt Out EP — edition image 4 (Discogs release 38453)."
             }
           ],
           "credits": [
@@ -2677,9 +2836,34 @@
           "summary": "Dixon’s mastering credit applies specifically to track 12, Cerulean Blue.",
           "gallery": [
             {
-              "kind": "pending",
-              "alt": "Various artists — Create:Fixate Volume 1",
-              "caption": "Edition artwork has not yet been cleared for this archive."
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d095-01.jpg",
+              "alt": "Create:Fixate Volume 1 — edition artwork image 1",
+              "caption": "Create:Fixate Volume 1 — edition image 1 (Discogs release 646831)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d095-02.jpg",
+              "alt": "Create:Fixate Volume 1 — edition artwork image 2",
+              "caption": "Create:Fixate Volume 1 — edition image 2 (Discogs release 646831)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d095-03.jpg",
+              "alt": "Create:Fixate Volume 1 — edition artwork image 3",
+              "caption": "Create:Fixate Volume 1 — edition image 3 (Discogs release 646831)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d095-04.jpg",
+              "alt": "Create:Fixate Volume 1 — edition artwork image 4",
+              "caption": "Create:Fixate Volume 1 — edition image 4 (Discogs release 646831)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d095-05.jpg",
+              "alt": "Create:Fixate Volume 1 — edition artwork image 5",
+              "caption": "Create:Fixate Volume 1 — edition image 5 (Discogs release 646831)."
             }
           ],
           "credits": [
@@ -2715,9 +2899,10 @@
           "summary": "The vinyl edition credits Dixon with mixing; Matt Xavier is credited with vinyl mastering.",
           "gallery": [
             {
-              "kind": "pending",
-              "alt": "Matt Xavier / Sean Palm — Gravity Pimps E.P.",
-              "caption": "Edition artwork has not yet been cleared for this archive."
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d129-01.jpg",
+              "alt": "Gravity Pimps E.P. — edition artwork image 1",
+              "caption": "Gravity Pimps E.P. — edition image 1 (Discogs release 905900)."
             }
           ],
           "credits": [
@@ -2754,9 +2939,16 @@
           "summary": "Dixon and Nick Nawrocki share writing and production credits on this edition.",
           "gallery": [
             {
-              "kind": "pending",
-              "alt": "Kyng Nova & Friction — Mankind",
-              "caption": "Edition artwork has not yet been cleared for this archive."
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d130-01.jpg",
+              "alt": "Mankind — edition artwork image 1",
+              "caption": "Mankind — edition image 1 (Discogs release 289076)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d130-02.jpg",
+              "alt": "Mankind — edition artwork image 2",
+              "caption": "Mankind — edition image 2 (Discogs release 289076)."
             }
           ],
           "credits": [
@@ -2793,9 +2985,22 @@
           "summary": "The reviewed edition credits Dixon with mastering and identifies Brian Van Dalen as the recording artist.",
           "gallery": [
             {
-              "kind": "pending",
-              "alt": "Brian Van Dalen — Cystamatic",
-              "caption": "Edition artwork has not yet been cleared for this archive."
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d131-01.jpg",
+              "alt": "Cystamatic — edition artwork image 1",
+              "caption": "Cystamatic — edition image 1 (Discogs release 15319731)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d131-02.jpg",
+              "alt": "Cystamatic — edition artwork image 2",
+              "caption": "Cystamatic — edition image 2 (Discogs release 15319731)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d131-03.jpg",
+              "alt": "Cystamatic — edition artwork image 3",
+              "caption": "Cystamatic — edition image 3 (Discogs release 15319731)."
             }
           ],
           "credits": [
@@ -2853,9 +3058,10 @@
       },
       "gallery": [
         {
-          "kind": "pending",
-          "alt": "Navigator",
-          "caption": "Edition artwork awaits source matching and clearance."
+          "kind": "image",
+          "src": "/reference/remaining-artwork/navigator.jpg",
+          "alt": "Voyager Navigator white cover with blue title and architectural line drawing",
+          "caption": "Navigator — release cover."
         }
       ],
       "sections": [
@@ -2977,9 +3183,10 @@
       },
       "gallery": [
         {
-          "kind": "pending",
-          "alt": "Groove Me (Twenty Fifth Anniversary Remix Edition)",
-          "caption": "Edition artwork awaits source matching and clearance."
+          "kind": "image",
+          "src": "/reference/remaining-artwork/groove-me-anniversary.jpg",
+          "alt": "Groove Me anniversary remix edition artwork with a colorful club scene",
+          "caption": "Groove Me — Twenty Fifth Anniversary Remix Edition cover."
         }
       ],
       "sections": [
@@ -3074,9 +3281,10 @@
       },
       "gallery": [
         {
-          "kind": "pending",
-          "alt": "Compilation appearances",
-          "caption": "Edition artwork awaits source matching and clearance."
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d001-01.jpg",
+          "alt": "Sampling the Future — edition artwork image 1",
+          "caption": "Sampling the Future — edition image 1 (Discogs release 5356131)."
         }
       ],
       "sections": [
@@ -3108,9 +3316,22 @@
           "summary": "Voyager’s Ultra Intense appears on the Donald Glaude compilation.",
           "gallery": [
             {
-              "kind": "pending",
-              "alt": "Sampling the Future",
-              "caption": "Edition artwork awaits source matching and clearance."
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d001-01.jpg",
+              "alt": "Sampling the Future — edition artwork image 1",
+              "caption": "Sampling the Future — edition image 1 (Discogs release 5356131)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d001-02.jpg",
+              "alt": "Sampling the Future — edition artwork image 2",
+              "caption": "Sampling the Future — edition image 2 (Discogs release 5356131)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d001-03.jpg",
+              "alt": "Sampling the Future — edition artwork image 3",
+              "caption": "Sampling the Future — edition image 3 (Discogs release 5356131)."
             }
           ],
           "credits": [
@@ -3130,6 +3351,11 @@
               "label": "Discogs compilation reference",
               "href": "https://www.discogs.com/master/649308",
               "supports": "Compilation identity retained in the master; master references describe a release family."
+            },
+            {
+              "label": "Displayed artwork edition",
+              "href": "https://www.discogs.com/release/5356131",
+              "supports": "Artwork and packaging for the displayed edition; catalogue credits retain their existing qualifications."
             }
           ],
           "relatedRecordIds": [
@@ -3150,9 +3376,46 @@
           "summary": "Time Travel appears in John Digweed’s Bedrock mix. Territory editions remain distinct.",
           "gallery": [
             {
-              "kind": "pending",
-              "alt": "Bedrock Compiled & Mixed by John Digweed",
-              "caption": "Edition artwork awaits source matching and clearance."
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d002-01.jpg",
+              "alt": "Bedrock Compiled & Mixed by John Digweed — edition artwork image 1",
+              "caption": "Bedrock Compiled & Mixed by John Digweed — edition image 1 (Discogs release 77826)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d002-02.jpg",
+              "alt": "Bedrock Compiled & Mixed by John Digweed — edition artwork image 2",
+              "caption": "Bedrock Compiled & Mixed by John Digweed — edition image 2 (Discogs release 77826)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d002-03.jpg",
+              "alt": "Bedrock Compiled & Mixed by John Digweed — edition artwork image 3",
+              "caption": "Bedrock Compiled & Mixed by John Digweed — edition image 3 (Discogs release 77826)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d002-04.jpg",
+              "alt": "Bedrock Compiled & Mixed by John Digweed — edition artwork image 4",
+              "caption": "Bedrock Compiled & Mixed by John Digweed — edition image 4 (Discogs release 77826)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d002-05.jpg",
+              "alt": "Bedrock Compiled & Mixed by John Digweed — edition artwork image 5",
+              "caption": "Bedrock Compiled & Mixed by John Digweed — edition image 5 (Discogs release 77826)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d002-06.jpg",
+              "alt": "Bedrock Compiled & Mixed by John Digweed — edition artwork image 6",
+              "caption": "Bedrock Compiled & Mixed by John Digweed — edition image 6 (Discogs release 77826)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d002-07.jpg",
+              "alt": "Bedrock Compiled & Mixed by John Digweed — edition artwork image 7",
+              "caption": "Bedrock Compiled & Mixed by John Digweed — edition image 7 (Discogs release 77826)."
             }
           ],
           "credits": [
@@ -3203,9 +3466,76 @@
           "summary": "The full Sandra Collins mix album includes Voyager’s Motion, separately from the vinyl sampler.",
           "gallery": [
             {
-              "kind": "pending",
-              "alt": "Tranceport.3 — mix album",
-              "caption": "Edition artwork awaits source matching and clearance."
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d003-01.jpg",
+              "alt": "Tranceport.3 — mix album — edition artwork image 1",
+              "caption": "Tranceport.3 — mix album — edition image 1 (Discogs release 40908)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d003-02.jpg",
+              "alt": "Tranceport.3 — mix album — edition artwork image 2",
+              "caption": "Tranceport.3 — mix album — edition image 2 (Discogs release 40908)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d003-03.jpg",
+              "alt": "Tranceport.3 — mix album — edition artwork image 3",
+              "caption": "Tranceport.3 — mix album — edition image 3 (Discogs release 40908)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d003-04.jpg",
+              "alt": "Tranceport.3 — mix album — edition artwork image 4",
+              "caption": "Tranceport.3 — mix album — edition image 4 (Discogs release 40908)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d003-05.jpg",
+              "alt": "Tranceport.3 — mix album — edition artwork image 5",
+              "caption": "Tranceport.3 — mix album — edition image 5 (Discogs release 40908)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d003-06.jpg",
+              "alt": "Tranceport.3 — mix album — edition artwork image 6",
+              "caption": "Tranceport.3 — mix album — edition image 6 (Discogs release 40908)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d003-07.jpg",
+              "alt": "Tranceport.3 — mix album — edition artwork image 7",
+              "caption": "Tranceport.3 — mix album — edition image 7 (Discogs release 40908)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d003-08.jpg",
+              "alt": "Tranceport.3 — mix album — edition artwork image 8",
+              "caption": "Tranceport.3 — mix album — edition image 8 (Discogs release 40908)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d003-09.jpg",
+              "alt": "Tranceport.3 — mix album — edition artwork image 9",
+              "caption": "Tranceport.3 — mix album — edition image 9 (Discogs release 40908)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d003-10.jpg",
+              "alt": "Tranceport.3 — mix album — edition artwork image 10",
+              "caption": "Tranceport.3 — mix album — edition image 10 (Discogs release 40908)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d003-11.jpg",
+              "alt": "Tranceport.3 — mix album — edition artwork image 11",
+              "caption": "Tranceport.3 — mix album — edition image 11 (Discogs release 40908)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d003-12.jpg",
+              "alt": "Tranceport.3 — mix album — edition artwork image 12",
+              "caption": "Tranceport.3 — mix album — edition image 12 (Discogs release 40908)."
             }
           ],
           "credits": [
@@ -3225,6 +3555,11 @@
               "label": "Discogs compilation reference",
               "href": "https://www.discogs.com/master/642648",
               "supports": "Compilation identity retained in the master; master references describe a release family."
+            },
+            {
+              "label": "Displayed artwork edition",
+              "href": "https://www.discogs.com/release/40908",
+              "supports": "Artwork and packaging for the displayed edition; catalogue credits retain their existing qualifications."
             }
           ],
           "relatedRecordIds": [
@@ -3245,9 +3580,94 @@
           "summary": "Voyager’s Motion opens the second disc of Dave Seaman’s Awakening.",
           "gallery": [
             {
-              "kind": "pending",
-              "alt": "Renaissance: Awakening",
-              "caption": "Edition artwork awaits source matching and clearance."
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d004-01.jpg",
+              "alt": "Renaissance: Awakening — edition artwork image 1",
+              "caption": "Renaissance: Awakening — edition image 1 (Discogs release 6327)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d004-02.jpg",
+              "alt": "Renaissance: Awakening — edition artwork image 2",
+              "caption": "Renaissance: Awakening — edition image 2 (Discogs release 6327)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d004-03.jpg",
+              "alt": "Renaissance: Awakening — edition artwork image 3",
+              "caption": "Renaissance: Awakening — edition image 3 (Discogs release 6327)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d004-04.jpg",
+              "alt": "Renaissance: Awakening — edition artwork image 4",
+              "caption": "Renaissance: Awakening — edition image 4 (Discogs release 6327)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d004-05.jpg",
+              "alt": "Renaissance: Awakening — edition artwork image 5",
+              "caption": "Renaissance: Awakening — edition image 5 (Discogs release 6327)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d004-06.jpg",
+              "alt": "Renaissance: Awakening — edition artwork image 6",
+              "caption": "Renaissance: Awakening — edition image 6 (Discogs release 6327)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d004-07.jpg",
+              "alt": "Renaissance: Awakening — edition artwork image 7",
+              "caption": "Renaissance: Awakening — edition image 7 (Discogs release 6327)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d004-08.jpg",
+              "alt": "Renaissance: Awakening — edition artwork image 8",
+              "caption": "Renaissance: Awakening — edition image 8 (Discogs release 6327)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d004-09.jpg",
+              "alt": "Renaissance: Awakening — edition artwork image 9",
+              "caption": "Renaissance: Awakening — edition image 9 (Discogs release 6327)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d004-10.jpg",
+              "alt": "Renaissance: Awakening — edition artwork image 10",
+              "caption": "Renaissance: Awakening — edition image 10 (Discogs release 6327)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d004-11.jpg",
+              "alt": "Renaissance: Awakening — edition artwork image 11",
+              "caption": "Renaissance: Awakening — edition image 11 (Discogs release 6327)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d004-12.jpg",
+              "alt": "Renaissance: Awakening — edition artwork image 12",
+              "caption": "Renaissance: Awakening — edition image 12 (Discogs release 6327)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d004-13.jpg",
+              "alt": "Renaissance: Awakening — edition artwork image 13",
+              "caption": "Renaissance: Awakening — edition image 13 (Discogs release 6327)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d004-14.jpg",
+              "alt": "Renaissance: Awakening — edition artwork image 14",
+              "caption": "Renaissance: Awakening — edition image 14 (Discogs release 6327)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d004-15.jpg",
+              "alt": "Renaissance: Awakening — edition artwork image 15",
+              "caption": "Renaissance: Awakening — edition image 15 (Discogs release 6327)."
             }
           ],
           "credits": [
@@ -3273,6 +3693,11 @@
               "label": "Discogs compilation reference",
               "href": "https://www.discogs.com/master/96945",
               "supports": "Compilation identity retained in the master; master references describe a release family."
+            },
+            {
+              "label": "Displayed artwork edition",
+              "href": "https://www.discogs.com/release/6327",
+              "supports": "Artwork and packaging for the displayed edition; catalogue credits retain their existing qualifications."
             }
           ],
           "relatedRecordIds": [
@@ -3293,9 +3718,46 @@
           "summary": "Time Travel appears on the soundtrack album, with Justin Scott Dixon credited as writer.",
           "gallery": [
             {
-              "kind": "pending",
-              "alt": "Stark Raving Mad — soundtrack album",
-              "caption": "Edition artwork awaits source matching and clearance."
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d005-01.jpg",
+              "alt": "Stark Raving Mad — soundtrack album — edition artwork image 1",
+              "caption": "Stark Raving Mad — soundtrack album — edition image 1 (Discogs release 156853)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/stark-raving-mad-3.jpg",
+              "alt": "Stark Raving Mad soundtrack booklet artwork",
+              "caption": "Stark Raving Mad — soundtrack booklet artwork."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/stark-raving-mad-4.jpg",
+              "alt": "Stark Raving Mad soundtrack booklet artwork",
+              "caption": "Stark Raving Mad — soundtrack booklet artwork."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/stark-raving-mad-6.jpg",
+              "alt": "Stark Raving Mad soundtrack printed credits",
+              "caption": "Stark Raving Mad — soundtrack printed credits."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/stark-raving-mad-7.jpg",
+              "alt": "Stark Raving Mad soundtrack rear track listing",
+              "caption": "Stark Raving Mad — soundtrack rear track listing."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/stark-raving-mad-8.jpg",
+              "alt": "Stark Raving Mad soundtrack front packaging",
+              "caption": "Stark Raving Mad — soundtrack front packaging."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/stark-raving-mad-9.jpg",
+              "alt": "Stark Raving Mad soundtrack rear packaging",
+              "caption": "Stark Raving Mad — soundtrack rear packaging."
             }
           ],
           "credits": [
@@ -3321,6 +3783,11 @@
               "label": "Discogs compilation reference",
               "href": "https://www.discogs.com/master/197156",
               "supports": "Compilation identity retained in the master; master references describe a release family."
+            },
+            {
+              "label": "Displayed artwork edition",
+              "href": "https://www.discogs.com/release/156853",
+              "supports": "Artwork and packaging for the displayed edition; catalogue credits retain their existing qualifications."
             }
           ],
           "relatedRecordIds": [
@@ -3341,9 +3808,16 @@
           "summary": "A Part 2 appearance in CD Pool’s promotional compilation series.",
           "gallery": [
             {
-              "kind": "pending",
-              "alt": "Underground Beats — Series 3 Volume 3",
-              "caption": "Edition artwork awaits source matching and clearance."
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d009-01.jpg",
+              "alt": "Underground Beats — Series 3 Volume 3 — edition artwork image 1",
+              "caption": "Underground Beats — Series 3 Volume 3 — edition image 1 (Discogs release 588560)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d009-02.jpg",
+              "alt": "Underground Beats — Series 3 Volume 3 — edition artwork image 2",
+              "caption": "Underground Beats — Series 3 Volume 3 — edition image 2 (Discogs release 588560)."
             }
           ],
           "credits": [
@@ -3382,9 +3856,16 @@
           "summary": "Time Travel (Part 2) appears on this separately cataloged CD Pool edition.",
           "gallery": [
             {
-              "kind": "pending",
-              "alt": "UK Underground Beats — Volume 2",
-              "caption": "Edition artwork awaits source matching and clearance."
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d010-01.jpg",
+              "alt": "UK Underground Beats — Volume 2 — edition artwork image 1",
+              "caption": "UK Underground Beats — Volume 2 — edition image 1 (Discogs release 2580844)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d010-02.jpg",
+              "alt": "UK Underground Beats — Volume 2 — edition artwork image 2",
+              "caption": "UK Underground Beats — Volume 2 — edition image 2 (Discogs release 2580844)."
             }
           ],
           "credits": [
@@ -3423,9 +3904,28 @@
           "summary": "A Voyager Panic appearance in the CD Pool series.",
           "gallery": [
             {
-              "kind": "pending",
-              "alt": "Underground Beats — Series 3 Volume 7",
-              "caption": "Edition artwork awaits source matching and clearance."
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d014-01.jpg",
+              "alt": "Underground Beats — Series 3 Volume 7 — edition artwork image 1",
+              "caption": "Underground Beats — Series 3 Volume 7 — edition image 1 (Discogs release 3444963)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d014-02.jpg",
+              "alt": "Underground Beats — Series 3 Volume 7 — edition artwork image 2",
+              "caption": "Underground Beats — Series 3 Volume 7 — edition image 2 (Discogs release 3444963)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d014-03.jpg",
+              "alt": "Underground Beats — Series 3 Volume 7 — edition artwork image 3",
+              "caption": "Underground Beats — Series 3 Volume 7 — edition image 3 (Discogs release 3444963)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d014-04.jpg",
+              "alt": "Underground Beats — Series 3 Volume 7 — edition artwork image 4",
+              "caption": "Underground Beats — Series 3 Volume 7 — edition image 4 (Discogs release 3444963)."
             }
           ],
           "credits": [
@@ -3464,9 +3964,28 @@
           "summary": "Derangement of the Senses appears in Sandra Collins’ Cream mix with a Dixon production credit.",
           "gallery": [
             {
-              "kind": "pending",
-              "alt": "Cream",
-              "caption": "Edition artwork awaits source matching and clearance."
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d015-01.jpg",
+              "alt": "Cream — edition artwork image 1",
+              "caption": "Cream — edition image 1 (Discogs release 76304)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d015-02.jpg",
+              "alt": "Cream — edition artwork image 2",
+              "caption": "Cream — edition image 2 (Discogs release 76304)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d015-03.jpg",
+              "alt": "Cream — edition artwork image 3",
+              "caption": "Cream — edition image 3 (Discogs release 76304)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d015-04.jpg",
+              "alt": "Cream — edition artwork image 4",
+              "caption": "Cream — edition image 4 (Discogs release 76304)."
             }
           ],
           "credits": [
@@ -3491,6 +4010,11 @@
               "label": "Discogs compilation reference",
               "href": "https://www.discogs.com/master/769757",
               "supports": "Compilation identity retained in the master; master references describe a release family."
+            },
+            {
+              "label": "Displayed artwork edition",
+              "href": "https://www.discogs.com/release/76304",
+              "supports": "Artwork and packaging for the displayed edition; catalogue credits retain their existing qualifications."
             }
           ],
           "relatedRecordIds": []
@@ -3508,9 +4032,22 @@
           "summary": "Two Voyager recordings appear on this 2003 mix compilation.",
           "gallery": [
             {
-              "kind": "pending",
-              "alt": "Perfecto Presents… Sandra Collins",
-              "caption": "Edition artwork awaits source matching and clearance."
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d016-01.jpg",
+              "alt": "Perfecto Presents… Sandra Collins — edition artwork image 1",
+              "caption": "Perfecto Presents… Sandra Collins — edition image 1 (Discogs release 244957)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d016-02.jpg",
+              "alt": "Perfecto Presents… Sandra Collins — edition artwork image 2",
+              "caption": "Perfecto Presents… Sandra Collins — edition image 2 (Discogs release 244957)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d016-03.jpg",
+              "alt": "Perfecto Presents… Sandra Collins — edition artwork image 3",
+              "caption": "Perfecto Presents… Sandra Collins — edition image 3 (Discogs release 244957)."
             }
           ],
           "credits": [
@@ -3540,6 +4077,11 @@
               "label": "Discogs compilation reference",
               "href": "https://www.discogs.com/master/278944",
               "supports": "Compilation identity retained in the master; master references describe a release family."
+            },
+            {
+              "label": "Displayed artwork edition",
+              "href": "https://www.discogs.com/release/244957",
+              "supports": "Artwork and packaging for the displayed edition; catalogue credits retain their existing qualifications."
             }
           ],
           "relatedRecordIds": []
@@ -3558,9 +4100,10 @@
           "summary": "Two Voyager recordings carry composition and production attribution in the retained credit research.",
           "gallery": [
             {
-              "kind": "pending",
-              "alt": "The 4 A.M. Sound of Progressive Trance",
-              "caption": "Edition artwork awaits source matching and clearance."
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d028-01.jpg",
+              "alt": "The 4 A.M. Sound of Progressive Trance — edition artwork image 1",
+              "caption": "The 4 A.M. Sound of Progressive Trance — edition image 1 (Discogs release 2095502)."
             }
           ],
           "credits": [
@@ -3614,9 +4157,94 @@
           "summary": "Voyager’s Pure (Friction’s Groove) appears between Polarstern and Gamelan on disc two.",
           "gallery": [
             {
-              "kind": "pending",
-              "alt": "Northern Exposure: Expeditions",
-              "caption": "Edition artwork awaits source matching and clearance."
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d092-01.jpg",
+              "alt": "Northern Exposure: Expeditions — edition artwork image 1",
+              "caption": "Northern Exposure: Expeditions — edition image 1 (Discogs release 21353)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d092-02.jpg",
+              "alt": "Northern Exposure: Expeditions — edition artwork image 2",
+              "caption": "Northern Exposure: Expeditions — edition image 2 (Discogs release 21353)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d092-03.jpg",
+              "alt": "Northern Exposure: Expeditions — edition artwork image 3",
+              "caption": "Northern Exposure: Expeditions — edition image 3 (Discogs release 21353)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d092-04.jpg",
+              "alt": "Northern Exposure: Expeditions — edition artwork image 4",
+              "caption": "Northern Exposure: Expeditions — edition image 4 (Discogs release 21353)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d092-05.jpg",
+              "alt": "Northern Exposure: Expeditions — edition artwork image 5",
+              "caption": "Northern Exposure: Expeditions — edition image 5 (Discogs release 21353)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d092-06.jpg",
+              "alt": "Northern Exposure: Expeditions — edition artwork image 6",
+              "caption": "Northern Exposure: Expeditions — edition image 6 (Discogs release 21353)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d092-07.jpg",
+              "alt": "Northern Exposure: Expeditions — edition artwork image 7",
+              "caption": "Northern Exposure: Expeditions — edition image 7 (Discogs release 21353)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d092-08.jpg",
+              "alt": "Northern Exposure: Expeditions — edition artwork image 8",
+              "caption": "Northern Exposure: Expeditions — edition image 8 (Discogs release 21353)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d092-09.jpg",
+              "alt": "Northern Exposure: Expeditions — edition artwork image 9",
+              "caption": "Northern Exposure: Expeditions — edition image 9 (Discogs release 21353)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d092-10.jpg",
+              "alt": "Northern Exposure: Expeditions — edition artwork image 10",
+              "caption": "Northern Exposure: Expeditions — edition image 10 (Discogs release 21353)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d092-11.jpg",
+              "alt": "Northern Exposure: Expeditions — edition artwork image 11",
+              "caption": "Northern Exposure: Expeditions — edition image 11 (Discogs release 21353)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d092-12.jpg",
+              "alt": "Northern Exposure: Expeditions — edition artwork image 12",
+              "caption": "Northern Exposure: Expeditions — edition image 12 (Discogs release 21353)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d092-13.jpg",
+              "alt": "Northern Exposure: Expeditions — edition artwork image 13",
+              "caption": "Northern Exposure: Expeditions — edition image 13 (Discogs release 21353)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d092-14.jpg",
+              "alt": "Northern Exposure: Expeditions — edition artwork image 14",
+              "caption": "Northern Exposure: Expeditions — edition image 14 (Discogs release 21353)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d092-15.jpg",
+              "alt": "Northern Exposure: Expeditions — edition artwork image 15",
+              "caption": "Northern Exposure: Expeditions — edition image 15 (Discogs release 21353)."
             }
           ],
           "credits": [
@@ -3641,6 +4269,11 @@
               "label": "Discogs compilation reference",
               "href": "https://www.discogs.com/master/1441",
               "supports": "Compilation identity retained in the master; master references describe a release family."
+            },
+            {
+              "label": "Displayed artwork edition",
+              "href": "https://www.discogs.com/release/21353",
+              "supports": "Artwork and packaging for the displayed edition; catalogue credits retain their existing qualifications."
             }
           ],
           "relatedRecordIds": [
@@ -3661,9 +4294,52 @@
           "summary": "A compilation appearance of the Voyager remix, identified in the retained credit index.",
           "gallery": [
             {
-              "kind": "pending",
-              "alt": "Global Underground 014: Hong Kong",
-              "caption": "Edition artwork awaits source matching and clearance."
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d032-01.jpg",
+              "alt": "Global Underground 014: Hong Kong — edition artwork image 1",
+              "caption": "Global Underground 014: Hong Kong — edition image 1 (Discogs release 4762)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d032-02.jpg",
+              "alt": "Global Underground 014: Hong Kong — edition artwork image 2",
+              "caption": "Global Underground 014: Hong Kong — edition image 2 (Discogs release 4762)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d032-03.jpg",
+              "alt": "Global Underground 014: Hong Kong — edition artwork image 3",
+              "caption": "Global Underground 014: Hong Kong — edition image 3 (Discogs release 4762)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d032-04.jpg",
+              "alt": "Global Underground 014: Hong Kong — edition artwork image 4",
+              "caption": "Global Underground 014: Hong Kong — edition image 4 (Discogs release 4762)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d032-05.jpg",
+              "alt": "Global Underground 014: Hong Kong — edition artwork image 5",
+              "caption": "Global Underground 014: Hong Kong — edition image 5 (Discogs release 4762)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d032-06.jpg",
+              "alt": "Global Underground 014: Hong Kong — edition artwork image 6",
+              "caption": "Global Underground 014: Hong Kong — edition image 6 (Discogs release 4762)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d032-07.jpg",
+              "alt": "Global Underground 014: Hong Kong — edition artwork image 7",
+              "caption": "Global Underground 014: Hong Kong — edition image 7 (Discogs release 4762)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d032-08.jpg",
+              "alt": "Global Underground 014: Hong Kong — edition artwork image 8",
+              "caption": "Global Underground 014: Hong Kong — edition image 8 (Discogs release 4762)."
             }
           ],
           "credits": [
@@ -3683,6 +4359,11 @@
               "label": "Discogs compilation reference",
               "href": "https://www.discogs.com/master/38413",
               "supports": "Compilation identity retained in the master; master references describe a release family."
+            },
+            {
+              "label": "Displayed artwork edition",
+              "href": "https://www.discogs.com/release/4762",
+              "supports": "Artwork and packaging for the displayed edition; catalogue credits retain their existing qualifications."
             }
           ],
           "relatedRecordIds": []
@@ -3700,9 +4381,46 @@
           "summary": "The Voyager remix of Origin’s Refined Intricacy ’99 appears in Seb Fontaine’s compilation.",
           "gallery": [
             {
-              "kind": "pending",
-              "alt": "Global Underground Prototype > 3",
-              "caption": "Edition artwork awaits source matching and clearance."
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d033-01.jpg",
+              "alt": "Global Underground Prototype > 3 — edition artwork image 1",
+              "caption": "Global Underground Prototype > 3 — edition image 1 (Discogs release 48911)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d033-02.jpg",
+              "alt": "Global Underground Prototype > 3 — edition artwork image 2",
+              "caption": "Global Underground Prototype > 3 — edition image 2 (Discogs release 48911)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d033-03.jpg",
+              "alt": "Global Underground Prototype > 3 — edition artwork image 3",
+              "caption": "Global Underground Prototype > 3 — edition image 3 (Discogs release 48911)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d033-04.jpg",
+              "alt": "Global Underground Prototype > 3 — edition artwork image 4",
+              "caption": "Global Underground Prototype > 3 — edition image 4 (Discogs release 48911)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d033-05.jpg",
+              "alt": "Global Underground Prototype > 3 — edition artwork image 5",
+              "caption": "Global Underground Prototype > 3 — edition image 5 (Discogs release 48911)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d033-06.jpg",
+              "alt": "Global Underground Prototype > 3 — edition artwork image 6",
+              "caption": "Global Underground Prototype > 3 — edition image 6 (Discogs release 48911)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d033-07.jpg",
+              "alt": "Global Underground Prototype > 3 — edition artwork image 7",
+              "caption": "Global Underground Prototype > 3 — edition image 7 (Discogs release 48911)."
             }
           ],
           "credits": [
@@ -3722,6 +4440,11 @@
               "label": "Discogs compilation reference",
               "href": "https://www.discogs.com/master/897728",
               "supports": "Compilation identity retained in the master; master references describe a release family."
+            },
+            {
+              "label": "Displayed artwork edition",
+              "href": "https://www.discogs.com/release/48911",
+              "supports": "Artwork and packaging for the displayed edition; catalogue credits retain their existing qualifications."
             }
           ],
           "relatedRecordIds": [
@@ -3741,9 +4464,94 @@
           "summary": "A documented compilation appearance of the Voyager Platinum remix of Bedrock’s Beautiful Strange.",
           "gallery": [
             {
-              "kind": "pending",
-              "alt": "Trance Nation 2001",
-              "caption": "Edition artwork awaits source matching and clearance."
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d036-01.jpg",
+              "alt": "Trance Nation 2001 — edition artwork image 1",
+              "caption": "Trance Nation 2001 — edition image 1 (Discogs release 14797)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d036-02.jpg",
+              "alt": "Trance Nation 2001 — edition artwork image 2",
+              "caption": "Trance Nation 2001 — edition image 2 (Discogs release 14797)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d036-03.jpg",
+              "alt": "Trance Nation 2001 — edition artwork image 3",
+              "caption": "Trance Nation 2001 — edition image 3 (Discogs release 14797)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d036-04.jpg",
+              "alt": "Trance Nation 2001 — edition artwork image 4",
+              "caption": "Trance Nation 2001 — edition image 4 (Discogs release 14797)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d036-05.jpg",
+              "alt": "Trance Nation 2001 — edition artwork image 5",
+              "caption": "Trance Nation 2001 — edition image 5 (Discogs release 14797)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d036-06.jpg",
+              "alt": "Trance Nation 2001 — edition artwork image 6",
+              "caption": "Trance Nation 2001 — edition image 6 (Discogs release 14797)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d036-07.jpg",
+              "alt": "Trance Nation 2001 — edition artwork image 7",
+              "caption": "Trance Nation 2001 — edition image 7 (Discogs release 14797)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d036-08.jpg",
+              "alt": "Trance Nation 2001 — edition artwork image 8",
+              "caption": "Trance Nation 2001 — edition image 8 (Discogs release 14797)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d036-09.jpg",
+              "alt": "Trance Nation 2001 — edition artwork image 9",
+              "caption": "Trance Nation 2001 — edition image 9 (Discogs release 14797)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d036-10.jpg",
+              "alt": "Trance Nation 2001 — edition artwork image 10",
+              "caption": "Trance Nation 2001 — edition image 10 (Discogs release 14797)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d036-11.jpg",
+              "alt": "Trance Nation 2001 — edition artwork image 11",
+              "caption": "Trance Nation 2001 — edition image 11 (Discogs release 14797)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d036-20.jpg",
+              "alt": "Trance Nation 2001 — edition artwork image 12",
+              "caption": "Trance Nation 2001 — edition image 12 (Discogs release 14797)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d036-21.jpg",
+              "alt": "Trance Nation 2001 — edition artwork image 13",
+              "caption": "Trance Nation 2001 — edition image 13 (Discogs release 14797)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d036-22.jpg",
+              "alt": "Trance Nation 2001 — edition artwork image 14",
+              "caption": "Trance Nation 2001 — edition image 14 (Discogs release 14797)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d036-23.jpg",
+              "alt": "Trance Nation 2001 — edition artwork image 15",
+              "caption": "Trance Nation 2001 — edition image 15 (Discogs release 14797)."
             }
           ],
           "credits": [
@@ -3763,6 +4571,11 @@
               "label": "Discogs compilation reference",
               "href": "https://www.discogs.com/master/956018",
               "supports": "Compilation identity retained in the master; master references describe a release family."
+            },
+            {
+              "label": "Displayed artwork edition",
+              "href": "https://www.discogs.com/release/14797",
+              "supports": "Artwork and packaging for the displayed edition; catalogue credits retain their existing qualifications."
             }
           ],
           "relatedRecordIds": [
@@ -3782,9 +4595,28 @@
           "summary": "The Voyager treatment of High Plains Drifter appears on the cited Live Transmissions reissue.",
           "gallery": [
             {
-              "kind": "pending",
-              "alt": "Live Transmissions — reissue",
-              "caption": "Edition artwork awaits source matching and clearance."
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d039-01.jpg",
+              "alt": "Live Transmissions — reissue — edition artwork image 1",
+              "caption": "Live Transmissions — reissue — edition image 1 (Discogs release 963575)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d039-02.jpg",
+              "alt": "Live Transmissions — reissue — edition artwork image 2",
+              "caption": "Live Transmissions — reissue — edition image 2 (Discogs release 963575)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d039-03.jpg",
+              "alt": "Live Transmissions — reissue — edition artwork image 3",
+              "caption": "Live Transmissions — reissue — edition image 3 (Discogs release 963575)."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d039-04.jpg",
+              "alt": "Live Transmissions — reissue — edition artwork image 4",
+              "caption": "Live Transmissions — reissue — edition image 4 (Discogs release 963575)."
             }
           ],
           "credits": [

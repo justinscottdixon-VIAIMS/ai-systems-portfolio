@@ -86,8 +86,8 @@
 #active-seek::-webkit-slider-thumb {
   appearance: none;
   -webkit-appearance: none;
-  width: 0.5rem;
-  height: 1rem;
+  width: 0.375rem;
+  height: 0.625rem;
   border: 1px solid rgb(212 212 216);
   border-radius: 0;
   background: rgb(181 155 102);
@@ -101,8 +101,8 @@
 }
 
 #active-seek::-moz-range-thumb {
-  width: 0.5rem;
-  height: 1rem;
+  width: 0.375rem;
+  height: 0.625rem;
   border: 1px solid rgb(212 212 216);
   border-radius: 0;
   background: rgb(181 155 102);
@@ -2178,8 +2178,9 @@
 /* One theater console: playback, centered PiP, then deck navigation. */
 .media-stage {
   --reference-video-width:18rem;
-  --reference-console-height:6rem;
-  --theater-console-height:6rem;
+  --reference-console-height:4.5rem;
+  --theater-console-height:4.5rem;
+  --transport-control-height:1.75rem;
   --transport-control-font:0.625rem;
 }
 .media-stage[data-transport-in-stage="true"]:not([data-reference-open="true"]) {
@@ -2212,7 +2213,7 @@
   row-gap:0.25rem;
   min-height:var(--theater-console-height);
   margin:0;
-  padding:0.5rem 1rem;
+  padding:0.375rem 0.75rem;
   border:1px solid rgb(181 155 102 / 0.4);
   background:linear-gradient(180deg, rgb(38 36 32), rgb(19 19 23));
 }
@@ -2222,6 +2223,8 @@
   grid-template-columns:auto minmax(0, 1fr);
   gap:0.25rem 0.65rem;
   align-items:baseline;
+  width:min(100%, 20rem);
+  justify-self:center;
 }
 .media-stage[data-transport-in-stage="true"]:not([data-reference-open="true"]) .player-dock__identity #now-playing-status { display:none; }
 .media-stage[data-transport-in-stage="true"]:not([data-reference-open="true"])[data-active-tab="youtube"] .player-dock__identity #now-playing-status {
@@ -2236,7 +2239,7 @@
   display:grid;
   grid-template-columns:repeat(4, minmax(0, 1fr));
   gap:0.25rem;
-  width:min(100%, 24rem);
+  width:min(100%, 20rem);
   justify-self:center;
 }
 .media-stage[data-transport-in-stage="true"]:not([data-reference-open="true"]) .player-dock__transport-group--secondary {
@@ -2257,12 +2260,15 @@
 }
 .media-stage[data-transport-in-stage="true"]:not([data-reference-open="true"])[data-active-tab="youtube"] .player-dock__transport-group--primary,
 .media-stage[data-transport-in-stage="true"]:not([data-reference-open="true"])[data-active-tab="youtube"] .player-dock__seek { display:none; }
-.media-stage .player-dock__transport-group--primary button,
+.media-stage .player-dock__transport button,
 .media-stage .reference-stage__navigation-actions button {
   font:var(--transport-control-font) ui-monospace, SFMono-Regular, Menlo, monospace;
   letter-spacing:0.04em;
-  min-height:2.25rem;
+  min-height:var(--transport-control-height);
+  padding:0.2rem 0.5rem;
+  line-height:1.2;
 }
+.media-stage .player-dock__seek { font-size:var(--transport-control-font); }
 .media-stage[data-reference-open="true"] .player-dock__command { display:none; }
 .fullscreen-shell:fullscreen .media-stage .player-dock__command,
 .fullscreen-shell[data-fullscreen-mode="viewport"] .media-stage .player-dock__command { display:none; }
@@ -2278,7 +2284,7 @@
   }
 }
 @media (max-width:719px) {
-  .media-stage { --theater-console-height:10.5rem; }
+  .media-stage { --theater-console-height:8.75rem; }
   .media-stage[data-transport-in-stage="true"]:not([data-reference-open="true"]) {
     height:calc(min(70svh, 40rem) + var(--theater-console-height));
   }
@@ -2327,11 +2333,11 @@
 .reference-stage__navigation {
   display:grid;
   grid-template-columns:minmax(0, 1fr) var(--reference-video-width) minmax(0, 1fr);
-  grid-template-rows:minmax(0, 1fr) 2.25rem;
-  gap:0.5rem 1.25rem;
+  grid-template-rows:minmax(0, 1fr) var(--transport-control-height);
+  gap:0.25rem 1.25rem;
   height:var(--reference-console-height);
   min-height:0;
-  padding:0.375rem 1rem;
+  padding:0.375rem 0.75rem;
   align-items:center;
   align-content:center;
 }
@@ -2373,8 +2379,8 @@
   grid-column:1;
   grid-row:1 / -1;
   display:grid;
-  grid-template-rows:subgrid;
-  gap:0.5rem;
+  grid-template-rows:0.75rem 0.875rem var(--transport-control-height);
+  gap:0.125rem;
   width:100%;
   max-width:24rem;
   min-width:0;
@@ -2387,6 +2393,7 @@
   grid-template-columns:auto minmax(0, 1fr);
   align-items:baseline;
   gap:0.65rem;
+  line-height:1;
 }
 .reference-stage__transport-slot #active-source-kind { color:rgb(201 177 130); }
 .reference-stage__transport-slot #now-playing-title { font-size:0.75rem; }
@@ -2396,18 +2403,18 @@
 }
 .reference-stage__transport-slot .player-dock__transport-group--primary {
   grid-column:1;
-  grid-row:2;
+  grid-row:3;
   display:grid;
   grid-template-columns:repeat(4, minmax(0, 1fr));
   gap:0.25rem;
 }
 .reference-stage__transport-slot .player-dock__transport-group--secondary {
   grid-column:1;
-  grid-row:1;
+  grid-row:2;
   align-self:end;
   flex-wrap:nowrap;
   align-items:end;
-  padding-top:1.25rem;
+  padding-top:0;
   justify-content:flex-start;
   gap:0.25rem;
 }
@@ -2418,6 +2425,7 @@
   width:auto;
   grid-template-columns:auto minmax(1rem, 1fr) auto;
 }
+.reference-stage__transport-slot #active-seek { height:0.875rem; }
 .media-stage[data-reference-open="true"][data-stage-provider="youtube"] .reference-stage__transport-slot .player-dock__transport-group--primary,
 .media-stage[data-reference-open="true"][data-stage-provider="youtube"] .reference-stage__transport-slot .player-dock__seek { display:none; }
 .reference-stage__transport-slot button { white-space:nowrap; }
@@ -2435,7 +2443,7 @@
   .reference-stage__navigation #reference-status { font-size:0.5rem; }
 }
 @media (max-width:900px) {
-  .media-stage { --reference-video-width:8rem; --reference-console-height:22rem; }
+  .media-stage { --reference-video-width:8rem; --reference-console-height:18rem; }
   .media-stage[data-reference-open="true"] { height:calc(min(70svh, 40rem) + 13rem); }
   .reference-stage__navigation {
     grid-template-columns:minmax(0, 1fr);
@@ -2575,3 +2583,11 @@
 .reference-stage__artwork-page figure { margin: 0; min-height: 0; display: grid; grid-template-rows: minmax(0, 1fr) auto; gap: .6rem; }
 .reference-stage__artwork-page img { display: block; width: 100%; height: 100%; min-height: 0; object-fit: contain; }
 .reference-stage__artwork-page figcaption { color: var(--text-muted, #aaa); font-size: .8rem; text-align: center; }
+
+/* Use the available phone reading area instead of a shallow 16:9 slide. */
+@media (max-width:767px) {
+  .reference-stage__slide {
+    height:100%;
+    aspect-ratio:auto;
+  }
+}

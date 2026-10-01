@@ -3,6 +3,7 @@ import { toMediaLibrary } from '../lib/media-library.mjs';
 import curatedMedia from '../data/curated-media.json';
 import portfolioRecordsSource from '../data/portfolio-records.json';
 import { toPortfolioRecords } from '../lib/portfolio-records.mjs';
+import { selectReleaseRecords } from '../lib/release-scope.mjs';
 import CredentialsPlaylist from './CredentialsPlaylist.astro';
 import TrackCredits from './TrackCredits.astro';
 import { archiveHref } from '../lib/archive-index.mjs';
@@ -12,7 +13,7 @@ const { manifest } = Astro.props;
 const library = toMediaLibrary(manifest, curatedMedia);
 const [firstCinema] = library.cinema;
 const [firstMusic] = library.music;
-const portfolioRecords = toPortfolioRecords(portfolioRecordsSource);
+const portfolioRecords = selectReleaseRecords(toPortfolioRecords(portfolioRecordsSource), process.env.VIAIMS_RELEASE_SCOPE);
 const evidenceLabels = {
 	'primary-public': 'PRIMARY SOURCE',
 	'corroborated-public': 'CORROBORATED PUBLIC RECORD',
@@ -21,7 +22,7 @@ const evidenceLabels = {
 };
 ---
 
-<div class="space-y-8" data-hybrid-media-engine data-entry-enabled={String(library.experience.enabled)}>
+<div class="space-y-8" data-hybrid-media-engine data-catalogue-refresh={String(process.env.VIAIMS_RELEASE_SCOPE !== 'selected')} data-entry-enabled={String(library.experience.enabled)}>
 	<div class="fullscreen-shell" data-fullscreen-shell data-fullscreen-mode="inline" data-controls-visible="true">
 	<div
 		id="master-stage-container"
@@ -83,6 +84,10 @@ const evidenceLabels = {
 								<a href={archiveHref(record)} target="_blank" rel="noopener noreferrer">READ FULL RECORD ↗</a>
 								{Object.keys(record.catalog ?? {}).length > 0 && <div class="reference-stage__catalog">{Object.entries(record.catalog).map(([label, value]) => <span><b>{label.replaceAll(/([A-Z])/g, ' $1')}</b>{value}</span>)}</div>}
 							</section>
+							{record.gallery.slice(1).map((item, imageIndex) => item.kind === 'image' && <section class="reference-stage__slide reference-stage__artwork-page" data-reference-slide data-slide-label={`${record.title} — artwork ${imageIndex + 2}`} hidden>
+								<header class="reference-stage__sequence"><span>{record.title}</span><span>ARTWORK {imageIndex + 2} / {record.gallery.length}</span></header>
+								<figure><img src={item.src} alt={item.alt} loading="lazy" decoding="async" /><figcaption>{item.caption}</figcaption></figure>
+							</section>)}
 							{record.children.map((child, childIndex) => (<Fragment>
 								<article class="reference-stage__slide reference-stage__child-page" data-reference-slide data-slide-label={child.title} id={`${record.id}-${child.id}`} hidden>
 									<div class="reference-stage__child-art">{child.gallery[0].kind === 'image' ? <img src={child.gallery[0].src} alt={child.gallery[0].alt} loading="lazy" decoding="async" /> : <div role="img" aria-label={child.gallery[0].alt}>ARTWORK PENDING</div>}</div>
@@ -2440,5 +2445,7 @@ const evidenceLabels = {
 			return applied;
 		},
 	});
-	bindRuntimeCatalogueLifecycle(runtimeCatalogue, { windowTarget: window, documentTarget: document });
+	if (root.dataset.catalogueRefresh !== 'false') {
+		bindRuntimeCatalogueLifecycle(runtimeCatalogue, { windowTarget: window, documentTarget: document });
+	}
 </script>
