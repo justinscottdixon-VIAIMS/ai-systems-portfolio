@@ -13,8 +13,12 @@ export default defineConfig({
     hooks: {
       'astro:build:done': async ({ dir }) => {
         // Old static dossiers are development evidence, not selected release routes.
-        if (process.env.VIAIMS_RELEASE_SCOPE === 'selected') {
+        if (['selected', 'player'].includes(process.env.VIAIMS_RELEASE_SCOPE ?? 'full')) {
           await rm(new URL('reference/archive/', dir), { recursive: true, force: true });
+        }
+        if (process.env.VIAIMS_RELEASE_SCOPE === 'player') {
+          await rm(new URL('archive/', dir), { recursive: true, force: true });
+          await rm(new URL('reference/', dir), { recursive: true, force: true });
         }
       },
     },

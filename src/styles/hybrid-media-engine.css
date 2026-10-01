@@ -2591,3 +2591,8 @@
     aspect-ratio:auto;
   }
 }
+
+/* A release without Credentials uses the whole playlist width. */
+[data-credentials-enabled="false"] .player-dock__libraries {
+  grid-template-columns:minmax(0, 1fr);
+}

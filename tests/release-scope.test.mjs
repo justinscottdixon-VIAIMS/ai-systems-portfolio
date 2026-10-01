@@ -34,3 +34,10 @@ test('a selected dossier regressing to verification-pending blocks the candidate
  changed.find(r => r.id === 'time-travel').status = 'verification-pending';
  assert.throws(() => selectReleaseRecords(changed, 'selected'), /pending/);
 });
+
+test('player release excludes all credentials without changing the development records', () => {
+ const before = structuredClone(records);
+ assert.deepEqual(selectReleaseRecords(records, 'player'), []);
+ assert.deepEqual(records, before);
+ assert.equal(selectReleaseRecords(records).length, 18);
+});

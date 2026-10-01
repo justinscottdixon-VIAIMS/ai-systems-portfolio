@@ -14,6 +14,7 @@ const library = toMediaLibrary(manifest, curatedMedia);
 const [firstCinema] = library.cinema;
 const [firstMusic] = library.music;
 const portfolioRecords = selectReleaseRecords(toPortfolioRecords(portfolioRecordsSource), process.env.VIAIMS_RELEASE_SCOPE);
+const credentialsEnabled = portfolioRecords.length > 0;
 const evidenceLabels = {
 	'primary-public': 'PRIMARY SOURCE',
 	'corroborated-public': 'CORROBORATED PUBLIC RECORD',
@@ -22,7 +23,7 @@ const evidenceLabels = {
 };
 ---
 
-<div class="space-y-8" data-hybrid-media-engine data-catalogue-refresh={String(process.env.VIAIMS_RELEASE_SCOPE !== 'selected')} data-entry-enabled={String(library.experience.enabled)}>
+<div class="space-y-8" data-hybrid-media-engine data-credentials-enabled={String(credentialsEnabled)} data-catalogue-refresh={String(!['selected', 'player'].includes(process.env.VIAIMS_RELEASE_SCOPE ?? 'full'))} data-entry-enabled={String(library.experience.enabled)}>
 	<div class="fullscreen-shell" data-fullscreen-shell data-fullscreen-mode="inline" data-controls-visible="true">
 	<div
 		id="master-stage-container"
@@ -51,7 +52,7 @@ const evidenceLabels = {
 		<video id="master-video" crossorigin="anonymous" src={library.experience.enabled ? library.experience.welcomeVideoSrc : firstCinema?.src ?? ''} autoplay={!library.experience.enabled} muted playsinline preload="metadata" class="media-master"></video>
 		<video id="music-visual-video" muted playsinline loop preload="metadata" aria-hidden="true" class="music-visual-video"></video>
 		<div id="youtube-player-host" hidden></div>
-		<section id="reference-stage" class="reference-stage" aria-label="Career and release reference" hidden>
+		{credentialsEnabled && <section id="reference-stage" class="reference-stage" aria-label="Career and release reference" hidden>
 			<div class="reference-stage__backdrop" aria-hidden="true"></div>
 			<div class="reference-stage__viewport">
 				{portfolioRecords.map((record, index) => (
@@ -127,7 +128,7 @@ const evidenceLabels = {
 				</div>
 				<div class="reference-stage__transport-slot" data-reference-transport-slot></div>
 			</footer>
-		</section>
+		</section>}
 		<button id="restore-video-from-pip" class="reference-pip-return" type="button" aria-label="Return to video presentation" hidden>RETURN TO VIDEO ↗</button>
 		<audio id="ambient-audio" crossorigin="anonymous" src={library.experience.ambientAudioSrc ?? ''} loop preload="metadata"></audio>
 		<button id="cinema-audio-invitation" type="button" class="cinema-audio-invitation" data-cinema-audio-invitation disabled={library.experience.enabled || !firstCinema} aria-disabled={String(library.experience.enabled || !firstCinema)} aria-pressed="false">
@@ -175,7 +176,7 @@ const evidenceLabels = {
 			<button id="tab-music" type="button" role="tab" aria-selected="false" aria-controls="panel-music" tabindex="-1" data-media-tab="music">MUSIC</button>
 			<button id="tab-media" type="button" role="tab" aria-selected="false" aria-controls="panel-media" tabindex="-1" data-media-tab="media">MEDIA</button>
 			<button id="tab-youtube" type="button" role="tab" aria-selected="false" aria-controls="panel-youtube" tabindex="-1" data-media-tab="youtube">YOUTUBE</button>
-			<button id="tab-credentials" type="button" data-open-reference="" aria-controls="reference-stage" aria-label="Present the first credentials dossier">CREDENTIALS</button>
+			{credentialsEnabled && <button id="tab-credentials" type="button" data-open-reference="" aria-controls="reference-stage" aria-label="Present the first credentials dossier">CREDENTIALS</button>}
 		</div>
 		<div class="player-dock__command" data-player-command-strip>
 			<div class="player-dock__identity">
@@ -214,10 +215,10 @@ const evidenceLabels = {
 		</div>
 		</div></div><div class="meter-tray__lid" aria-hidden="true"><span></span></div></div>
 		<div class="player-dock__libraries" data-library-layout data-active-library="media">
-			<div class="player-dock__library-switch" role="group" aria-label="Choose playlist">
+			{credentialsEnabled && <div class="player-dock__library-switch" role="group" aria-label="Choose playlist">
 				<button type="button" data-library-switch="media" aria-pressed="true">MEDIA</button>
 				<button type="button" data-library-switch="credentials" aria-pressed="false">CREDENTIALS</button>
-			</div>
+			</div>}
 			<section class="player-dock__media-library" aria-label="Media playlist">
 				<header class="media-playlist__header"><strong id="media-playlist-title">CINEMA PLAYLIST</strong><button id="buy-license" type="button" data-product-id={firstMusic?.productId ?? ''} data-store-href={firstMusic?.storeHref ?? ''} disabled aria-disabled="true">BUY / LICENSE · STORE PENDING</button></header>
 		<div class="player-dock__tray" data-provider-tray>
@@ -275,9 +276,9 @@ const evidenceLabels = {
 			</div>
 		</div>
 			</section>
-			<section id="panel-credentials" class="player-dock__credentials-library" aria-label="Credentials playlist">
+			{credentialsEnabled && <section id="panel-credentials" class="player-dock__credentials-library" aria-label="Credentials playlist">
 				<CredentialsPlaylist />
-			</section>
+			</section>}
 		</div>
 	</section>
 
@@ -559,6 +560,7 @@ const evidenceLabels = {
 	}
 
 	function openReference(referenceId) {
+		if (!referenceStage || referencePanels.length === 0) return;
 		const recalled = !referenceId && Date.now() - Number(referenceStage.dataset.leftAt) < 10 * 60 * 1000;
 		const targetId = referenceId || (recalled ? referenceStage.dataset.lastDossier : referencePanels[0]?.dataset.referencePanel);
 		const resumeSlide = recalled ? Number(referenceStage.dataset.lastSlide) || 0 : 0;

@@ -6,6 +6,7 @@ export const releaseRecordIds = Object.freeze([
 
 export function selectReleaseRecords(records, scope = 'full') {
  if (scope === 'full') return records;
+ if (scope === 'player') return [];
  if (scope !== 'selected') throw new Error(`Unknown VIAIMS_RELEASE_SCOPE: ${scope}`);
  const ids = new Set(releaseRecordIds);
  for (const id of ids) {
