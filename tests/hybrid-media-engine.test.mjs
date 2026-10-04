@@ -568,7 +568,7 @@ test('native ended events capture their scoped source identity before queueing a
   const video = component.slice(videoStart, videoEnd);
   assert.equal(video.indexOf('createEndedEventToken(session.playback, mv.currentSrc || mv.src)') < video.indexOf('enqueueTransition(async () =>', video.indexOf('if (session.lease)')), true);
   assert.match(video, /if \(!isCurrentEndedEventToken\(leaseToken, session\.playback, mv\.currentSrc \|\| mv\.src\)\) return/);
-  assert.match(video, /if \(!isCurrentCinemaEndedToken\(cinemaToken, cinema, mv\.currentSrc \|\| mv\.src\)\) return/);
+  assert.match(video, /if \(session\.lease \|\| !isCurrentCinemaEndedToken\(cinemaToken, cinema, mv\.currentSrc \|\| mv\.src\)\) return/);
 });
 
 test('Cinema selection commits identity and loading state before playback orchestration', async () => {
@@ -579,7 +579,7 @@ test('Cinema selection commits identity and loading state before playback orches
   assert.match(component, /async function switchVideo\(index, playImmediate = true\)/);
   assert.doesNotMatch(component, /if \(playImmediate\) void playVideoStack\(\)/);
 
-  const activateStart = component.indexOf('async function activateCinema(index, { preserveAudibleAuthority = false } = {})');
+  const activateStart = component.indexOf('async function activateCinema(index,');
   const activateEnd = component.indexOf('\n\tasync function ', activateStart + 1);
   const activateCinema = component.slice(activateStart, activateEnd);
   const orchestrate = activateCinema.indexOf('runCommittedPlayback({');
@@ -620,7 +620,8 @@ test('validated experience configuration alone gates the entry overlay and media
 
   const masterTag = component.slice(masterStart, component.indexOf('></video>', masterStart));
   assert.match(masterTag, /src=\{library\.experience\.enabled \? library\.experience\.welcomeVideoSrc : firstCinema\?\.src \?\? ''\}/);
-  assert.match(masterTag, /autoplay=\{!library\.experience\.enabled\}/);
+  assert.doesNotMatch(masterTag, /autoplay/);
+  assert.match(component, /cinemaBrandCard\.show/);
   assert.doesNotMatch(masterTag, /src=["'][^"']+["']/);
   assert.doesNotMatch(masterTag, /\sloop(?:\s|>|=)/);
 
@@ -1229,4 +1230,19 @@ test('Cinema auto-advance failure exposes a dedicated retry without taking Music
   assert.match(activate, /retryCinema\.hidden = false/);
   assert.match(activate, /preserveMusicTransport\s*\? 'MUSIC AUDIO LIVE · CINEMA MOTION RESTORED'\s*:\s*'CINEMA LIVE'/s);
   assert.match(component, /retryCinema\.addEventListener\('click',[\s\S]+preserveAudibleAuthority: session\.playback\.provider === 'music'/s);
+});
+
+
+test('YouTube applies the master mute through the player API before autoplay', async () => {
+  const component = await source(componentPath);
+  const activation = component.slice(component.indexOf('function activateYoutube('), component.indexOf("root.querySelectorAll('.youtube-cue')"));
+  const expression = activation.match(/iframe\.src = ([^;]+);/)[1];
+  const makeUrl = new Function('videoId', 'window', `return ${expression}`);
+  const url = new URL(makeUrl('QBkYTxHbvnE', { location: { origin: 'http://localhost:4328' } }));
+  assert.equal(url.searchParams.get('autoplay'), '0');
+  assert.equal(url.searchParams.get('enablejsapi'), '1');
+  assert.equal(url.searchParams.get('origin'), 'http://localhost:4328');
+  assert.match(activation, /const youtubeMuted = session\.lease\?\.snapshot\?\.muted \?\? mv\.muted/);
+  assert.ok(activation.indexOf('const youtubeMuted') < activation.indexOf('session = activateSource'));
+  assert.match(activation, /connectYoutubePlayer\(iframe, \{\s*muted: youtubeMuted/);
 });

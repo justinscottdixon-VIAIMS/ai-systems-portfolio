@@ -121,3 +121,70 @@ test('pre-mute routing keeps native samples available while output stays silent'
  assert.equal(m.rmsPeaks[0],-10);
  assert.deepEqual(initialMeter().rmsPeaks,[-60,-60]);
  });
+
+test('post-meter gain changes are smoothed while the native measurement feed stays at unity', async () => {
+ const {routeMeterOutput}=await import('../src/lib/stereo-meter.mjs');
+ const prototype={};Object.defineProperties(prototype,{
+  muted:{get(){return this.nativeMuted},set(v){this.nativeMuted=v}},
+  volume:{get(){return this.nativeVolume},set(v){this.nativeVolume=v}},
+ });
+ const calls=[];const gain={context:{currentTime:4},gain:{value:1,cancelScheduledValues(t){calls.push(['cancel',t])},setTargetAtTime(...args){calls.push(['target',...args])}}};
+ const media=Object.assign(Object.create(prototype),{nativeMuted:false,nativeVolume:1,dispatchEvent(){}});
+ routeMeterOutput(media,gain,prototype);media.volume=0.25;
+ assert.deepEqual(calls,[['cancel',4],['target',0.25,4,0.015]]);
+ assert.equal(media.nativeVolume,1);assert.equal(media.nativeMuted,false);
+ media.muted=true;assert.deepEqual(calls.at(-1),['target',0,4,0.015]);
+});
+
+test('background Cinema stays natively muted across source changes while Music owns audio', async () => {
+ const {routeMeterOutput}=await import('../src/lib/stereo-meter.mjs');
+ const prototype={};
+ Object.defineProperties(prototype,{
+  muted:{get(){return this.nativeMuted},set(value){this.nativeMuted=Boolean(value)}},
+  volume:{get(){return this.nativeVolume},set(value){this.nativeVolume=value}},
+ });
+ const video=Object.assign(Object.create(prototype),{nativeMuted:true,nativeVolume:0.4,dispatchEvent(){}});
+ const music=Object.assign(Object.create(prototype),{nativeMuted:false,nativeVolume:0.6,paused:false,currentTime:42,dispatchEvent(){}});
+ const videoGain={gain:{value:1}},musicGain={gain:{value:1}};
+ routeMeterOutput(music,musicGain,prototype);
+ routeMeterOutput(video,videoGain,prototype,()=>true);
+ assert.equal(video.nativeMuted,true,'a mixer-only mute still advertises an audible video to mobile browsers');
+ for(const src of ['cinema-two.mp4','cinema-three.mp4']) {
+  video.src=src;
+  assert.equal(video.nativeMuted,true,'auto-advance must start a natively silent video');
+  assert.equal(videoGain.gain.value,0);
+  assert.equal(music.muted,false);
+  assert.equal(musicGain.gain.value,0.6);
+  assert.equal(music.paused,false);
+  assert.equal(music.currentTime,42);
+ }
+ // Explicit Cinema sound must still restore the normal source-meter route.
+ video.muted=false;
+ assert.equal(video.nativeMuted,false);
+ assert.equal(videoGain.gain.value,0.4);
+});
+
+test('native background mute follows audio ownership without changing monitor level or user mute', async () => {
+ const {routeMeterOutput}=await import('../src/lib/stereo-meter.mjs');
+ const prototype={};Object.defineProperties(prototype,{
+  muted:{get(){return this.nativeMuted},set(value){this.nativeMuted=Boolean(value)}},
+  volume:{get(){return this.nativeVolume},set(value){this.nativeVolume=value}},
+ });
+ let background=false;
+ const video=Object.assign(Object.create(prototype),{nativeMuted:true,nativeVolume:0.25,dispatchEvent(){}});
+ const gain={gain:{value:1}};
+ const route=routeMeterOutput(video,gain,prototype,()=>background);
+ assert.equal(video.nativeMuted,false,'foreground Cinema retains its pre-mute meter feed');
+ background=true;
+ video.muted=true;
+ assert.equal(video.nativeMuted,true,'entering Music must silence the native Cinema element immediately');
+ video.volume=0.6;
+ assert.equal(video.nativeMuted,true);
+ assert.equal(gain.gain.value,0);
+ background=false;
+ route.syncNativeMute();
+ assert.equal(video.nativeMuted,false,'returning to foreground restores the meter feed');
+ assert.equal(video.muted,true,'ownership changes must not undo user mute');
+ assert.equal(video.volume,0.6);
+ assert.equal(gain.gain.value,0);
+});

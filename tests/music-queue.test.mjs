@@ -93,6 +93,8 @@ test('queue starts on one product identity in Audio mode', () => {
   assert.equal(queue.currentProductId, 'a');
   assert.equal(queue.mode, 'audio');
   assert.deepEqual(queue.order, ['a', 'b', 'c']);
+  assert.equal(queue.repeat, 'all');
+  assert.equal(advanceMusicQueue(selectMusicMode(queue, 'c', 'audio')).currentProductId, 'a');
 });
 
 test('mode selection preserves queue position and rejects missing video', () => {
@@ -128,7 +130,7 @@ test('queue rejects duplicate Music product identities', () => {
 });
 
 test('Repeat Off ends, Repeat All wraps, and Repeat One retains the current product', () => {
-  let queue = selectMusicMode(createMusicQueue(tracks), 'c', 'audio');
+  let queue = setRepeatMode(selectMusicMode(createMusicQueue(tracks), 'c', 'audio'), 'off');
   assert.equal(advanceMusicQueue(queue, 1), null);
   queue = setRepeatMode(queue, 'all');
   assert.equal(advanceMusicQueue(queue, 1).currentProductId, 'a');

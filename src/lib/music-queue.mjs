@@ -35,7 +35,7 @@ export function createMusicQueue(items) {
     currentProductId: order[0] ?? null,
     mode: normalized[0] ? itemMode(normalized[0]) : 'audio',
     shuffle: false,
-    repeat: 'off',
+    repeat: 'all',
   };
 }
 

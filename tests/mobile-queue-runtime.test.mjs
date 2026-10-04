@@ -32,6 +32,7 @@ function runtime({ items = [landscape], width = 390, initialWidth = width, music
     setAttribute(name, value) { this[name] = value; },
   }));
   const context = {
+    cinemaBrandCard: { cancel() {} },
     window: { innerWidth: width }, root: { querySelectorAll: () => [] },
     stage: { dataset: { stageProvider: locked ? 'welcome' : 'cinema', mediaAspect: 'landscape', visualOwner: music ? 'music-tag' : 'cinema', visualTag: music ? 'VIZ-A' : '' } },
     mv, cinemaButtons, videoPlaylist, cinema, session, allCinemaItems: items, allMediaItems: [], mediaItems: [], productById: new Map(),

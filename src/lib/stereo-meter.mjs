@@ -29,22 +29,37 @@ export function advanceMeter(previous, samples, now, rmsSamples = [0,0]) {
 }
 
 // Preserve the media controller's mute/volume contract while metering upstream.
-export function routeMeterOutput(element, gain, prototype = globalThis.HTMLMediaElement?.prototype) {
+export function routeMeterOutput(element, gain, prototype = globalThis.HTMLMediaElement?.prototype, keepNativeMuted = () => false) {
  const mute = prototype && Object.getOwnPropertyDescriptor(prototype, 'muted');
  const volume = prototype && Object.getOwnPropertyDescriptor(prototype, 'volume');
  if (!mute || !volume) return;
  let muted = element.muted, level = element.volume;
- const sync = () => { gain.gain.value = muted ? 0 : level; };
- sync();
+ // A silent background video must also be silent to the browser's media session.
+ // Foreground source metering remains upstream of the monitor mute and fader.
+ const syncNativeMute = () => {
+  const nativeMuted = muted && keepNativeMuted();
+  if (mute.get.call(element) !== nativeMuted) mute.set.call(element, nativeMuted);
+ };
+ const sync = () => {
+  const target=muted ? 0 : level;
+  if(gain.gain.setTargetAtTime && gain.context) {
+   const now=gain.context.currentTime;
+   gain.gain.cancelScheduledValues(now);
+   gain.gain.setTargetAtTime(target,now,0.015);
+  } else gain.gain.value=target;
+  syncNativeMute();
+ };
+ gain.gain.value=muted ? 0 : level;
  Object.defineProperties(element, {
   muted: { configurable:true, get:()=>muted, set(value) { muted=Boolean(value); sync(); element.dispatchEvent(new Event('volumechange')); } },
   volume: { configurable:true, get:()=>level, set(value) { value=Number(value); if(!Number.isFinite(value)||value<0||value>1) throw new RangeError('Volume must be between 0 and 1'); level=value; sync(); element.dispatchEvent(new Event('volumechange')); } },
  });
- mute.set.call(element,false);
+ syncNativeMute();
  volume.set.call(element,1);
+ return { syncNativeMute };
 }
 
-export function connectStereoMeters({ root, elements, getSource, onHear, Context = globalThis.AudioContext, Worklet = globalThis.AudioWorkletNode, clock = () => performance.now(), schedule = setInterval, unschedule = clearInterval }) {
+export function connectStereoMeters({ root, elements, getSource, onHear, keepNativeMuted = () => false, Context = globalThis.AudioContext, Worklet = globalThis.AudioWorkletNode, clock = () => performance.now(), schedule = setInterval, unschedule = clearInterval }) {
  const panel = root.querySelector('.engineering-meters');
  const status = root.querySelector('#meter-status');
  const overlay = root.querySelector('#meter-hear-overlay');
@@ -107,9 +122,9 @@ export function connectStereoMeters({ root, elements, getSource, onHear, Context
   output.gain.value = element.muted ? 0 : element.volume;
   source.connect(output);
   output.connect(context.destination);
-  routeMeterOutput(element, output);
+  const outputRoute = routeMeterOutput(element, output, undefined, () => keepNativeMuted(element));
   source.connect(probe);
-  nodes.set(element, { source, probe, samples:[0,0], received:0, epoch:0, measurement:null });
+  nodes.set(element, { source, probe, outputRoute, samples:[0,0], received:0, epoch:0, measurement:null });
   probe.port.onmessage = ({data}) => {
    const entry = nodes.get(element);
    if(data.epoch !== entry.epoch) return;
@@ -131,6 +146,7 @@ export function connectStereoMeters({ root, elements, getSource, onHear, Context
   finally { starting = false; }
  };
  const tick = () => {
+  for (const { outputRoute } of nodes.values()) outputRoute?.syncNativeMute();
   const current = getSource();
   const element = current?.element;
   if(element !== selected || element?.currentSrc !== selectedSrc) { state = initialMeter(); selected = element; selectedSrc = element?.currentSrc; lastTime = clock(); reset(); }

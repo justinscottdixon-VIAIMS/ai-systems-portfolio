@@ -147,6 +147,7 @@ for (const aspect of ['landscape', 'portrait']) {
     assert.deepEqual(navigated, [remaining.id]);
     navigated.length = 0;
     Object.assign(ctx, {
+      cinemaBrandCard: { show(fn) { fn(); }, cancel() {} }, pauseVideoStack() {},
       introSession: { phase: 'ready' }, advanceCinema, createCinemaEndedToken, isCurrentCinemaEndedToken,
       enqueueTransition(fn) { pending = fn(); return pending; },
     });
@@ -572,7 +573,7 @@ test('Music Video lease participates in Previous and Next navigation', async () 
   }
 });
 
-test('Music order dispatches video rows to a native lease and audio rows to Music audio', async () => {
+test('Music order dispatches video and audio rows and repeats the queue by default', async () => {
   const start = source.indexOf('\tasync function advanceMusic(direction)');
   const end = source.indexOf('\n\tasync function ', start + 1);
   const items = [
@@ -591,7 +592,7 @@ test('Music order dispatches video rows to a native lease and audio rows to Musi
   };
   runInNewContext(source.slice(start, end), context);
   await context.advanceMusic(1); await context.advanceMusic(1); await context.advanceMusic(1);
-  assert.deepEqual(calls, [['video', items[1].productId], ['audio', items[2].productId], ['return']]);
+  assert.deepEqual(calls, [['video', items[1].productId], ['audio', items[2].productId], ['audio', items[0].productId]]);
 });
 
 test('switching credential dossiers preserves playing music and video audio in PIP', () => {

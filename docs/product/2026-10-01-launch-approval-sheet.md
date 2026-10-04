@@ -1,18 +1,22 @@
 # VIAIMS launch: concrete review and task selections
 
-Current direction: publish the player and a concise public introduction/contact surface. Credentials, archive routes, store/checkout and automatic media-folder publishing remain withheld. Existing source/media/credentials work is preserved. This document proposes final content and task scopes; it is not itself owner approval.
+Current direction: publish the player and a concise public introduction/contact surface. Credentials, archive routes, store/checkout and automatic media-folder publishing remain withheld. Existing source/media/credentials work is preserved. Owner selected A + B + C on 2026-10-01: launch content, release verification and private backup. This approves the proposed wording and enquiry categories. Public contact destination and private backup destination remain required inputs; crawler preference remains optional. Publication is selection D, outside this batch.
 
-## Public introduction for approval
+## Approved public introduction
 
 Heading: **Music, moving image and creative technology.**
 
-I’m Justin Scott Dixon, a music and video producer, spatial audio engineer and creative technologist. Through VIAIMS—the Voyager Institute of AI Music Systems—I bring together sound, moving image and AI-assisted creative work. Explore the player for selected music and visual projects.
+Justin Scott Dixon’s creative work spans music, video, spatial audio and the technology that connects them. Through VIAIMS, the Voyager Institute of AI Music Systems, he explores how sound, moving image and AI-assisted workflows can support one another, with an emphasis on thoughtful experimentation and personal expression.
 
-Supporting link: **Explore my YouTube channel ↗** → https://www.youtube.com/@justinscottdixon_voyager (already configured in the site's curated media).
+This site brings together a curated selection of that work, offering visitors a place to listen, watch and discover connections between the projects. Whether arriving with a particular interest or simply a little curiosity, visitors are welcome to spend time with the collection.
+
+The site’s player reflects that same care, bringing a little of the tactile character and visual feedback of studio hardware into a web interface. It is an expression of Justin’s commitment to thoughtful presentation and technology that serves the experience.
+
+Supporting link: **Explore the YouTube channel ↗** → https://www.youtube.com/@justinscottdixon_voyager (already configured in the site's curated media).
 
 Placement: a readable charcoal-and-gold section below the player, in HTML rather than embedded in artwork. On wider screens the contact block sits alongside the introduction; on mobile they stack. No full biography, credentials, awards or client claims are introduced.
 
-## Contact block for approval
+## Approved contact wording — destination pending
 
 Heading and button: **Discuss a project**
 
@@ -20,7 +24,7 @@ For music production, spatial audio and visual collaborations, share a brief out
 
 Destination: owner-approved public email (`mailto:`) or existing HTTPS booking page. It is not inferred from private research. No new contact service/form/account, response-time promise, rates or availability claim. The block is omitted until a valid destination is supplied. `VIAIMS_PUBLIC_CONTACT` supplies that destination at build time; it is intentionally public, never a credential.
 
-Confirm that those enquiry categories match the services you want to invite. Alternatives can be revised before publication.
+The owner approved this wording with selection A. The destination must be supplied before the contact block can appear.
 
 ## Search essentials prepared locally
 
@@ -38,10 +42,10 @@ Confirm that those enquiry categories match the services you want to invite. Alt
 
 | Selection | Agent work | Owner decision/action | Timing |
 | --- | --- | --- | --- |
-| A. Launch content and discovery | Implement approved introduction/contact wording, contact link, metadata, sitemap, crawler controls and output checks. Most implementation is prepared; 433 tests passed. | Approve/edit the copy and enquiry categories; supply public contact destination; choose GPTBot policy. | Now, before launch. |
+| A. Launch content and discovery | Implement approved introduction/contact wording, contact link, metadata, sitemap, crawler controls and output checks. Most implementation is prepared; 433 tests passed. | Copy and enquiry categories approved; supply public contact destination; optionally choose GPTBot policy. | Now, before launch. |
 | B. Release verification | Check the final artifact across desktop/mobile, keyboard/focus, all providers, media delivery, failures, Credentials exclusion and performance. Prepare exact release/rollback steps. | Perform/approve real-phone and listening checks on your chosen output route; resolve any visual/content objections. | After A. |
-| C. Preview and production release | Package the approved source, create the approved hosted preview, inspect remote build/headers, then perform and verify approved production promotion. | Approve exact preview/deployment/promotion actions after the candidate is reviewable. Keep DNS/media destinations unchanged. | After B and final review. |
-| D. Private off-device backup | Copy the verified workspace/media/Git backups to the selected destination, compare hashes and rehearse restore. | Name an existing private cloud location or external disk; authorize its use. No public Git backup of private material. | Before production; independent work can overlap A/B. |
+| C. Private off-device backup | Copy the verified workspace/media/Git backups to the selected destination, compare hashes and rehearse restore. | Name an existing private cloud location or external disk; authorize its use. No public Git backup of private material. | Before production; independent work can overlap A/B. |
+| D. Preview and production release | Package the approved source, create the approved hosted preview, inspect remote build/headers, then perform and verify approved production promotion. | Approve exact preview/deployment/promotion actions after the candidate is reviewable. Keep DNS/media destinations unchanged. | After B and final review. |
 | E. Search measurement | Inspect existing Search Console/Bing access, verify ownership where authorized, submit the public sitemap and record crawl/index baseline. | Approve new account connection/verification only if needed; choose any analytics separately. | Immediately after launch. |
 | F. Complete Credentials | Reconcile remaining evidence/artwork/credits, prepare proofreading batches, fix/test deck/archive UI and give you an itemized final approval ledger. | Supply unresolved facts and approve copy/artwork. Credentials stays withheld until the entire section is approved. | Next content milestone; can proceed privately alongside launch. |
 | G. Media-folder automation | Prepare isolated remote tests for upload/move/replacement/deletion, caching, discovery and fallback; fix defects, then propose activation. | Approve exact test objects/mutations and later production activation. | After stable public launch. |
@@ -49,7 +53,7 @@ Confirm that those enquiry categories match the services you want to invite. Alt
 | I. Services and conversion expansion | Draft dedicated service/accomplishment pages grounded in approved evidence; build approved booking flows. | Approve services, wording, destinations and availability expectations. | Following observed needs and approved archive evidence. |
 | J. Commerce | Prepare catalogue/pricing/licensing/checkout design; implement and test the approved flow. | Decide products, terms, provider, fees, taxes, delivery and refund responsibilities. | Separate later project scope. |
 
-Recommended immediate selection: **A + B + D**, followed by **C**, then **E**. Keep **F** as the next private content priority. G–J are optional later batches, not automatic launch blockers.
+Recommended immediate selection: **A + B + C** (selected), followed by **D**, then **E**. Keep **F** as the next private content priority. G–J are optional later batches, not automatic launch blockers.
 
 ## Current boundaries
 

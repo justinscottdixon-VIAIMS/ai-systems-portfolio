@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-04T12:25:57.833Z",
+  "generatedAt": "2026-10-03T13:56:04.074Z",
   "items": [
     {
       "id": "video-3i-atlas-1",
@@ -150,49 +150,56 @@
       "kind": "audio",
       "title": "V_Metafysion One_",
       "src": "https://5vqpsktuycwubnaj.public.blob.vercel-storage.com/portfolio-preview/audio/e2270e9decd160191b97375d83acd624a540577597f13b5f94128d15f6ef6f69-1-metafysion-one.mp3",
-      "specs": "MP3 • Compressed Delivery"
+      "specs": "MP3 \u2022 Compressed Delivery"
+    },
+    {
+      "id": "audio-v-blissful-2026-pre-mstr",
+      "kind": "audio",
+      "title": "Voyager - Blissful (2026 Navi Rmx)",
+      "src": "https://5vqpsktuycwubnaj.public.blob.vercel-storage.com/portfolio-preview/audio/4bc0abd1dea00ca2789b68ed064d493f9a18b9004538abde523675bc70588c88-v-blissful-2026-pre-mstr.mp3",
+      "specs": "MP3 \u2022 Compressed Delivery"
     },
     {
       "id": "audio-v-edges-fade-voo1-1-2-48k24b-mstr",
       "kind": "audio",
       "title": "V_Edges Fade_",
       "src": "https://5vqpsktuycwubnaj.public.blob.vercel-storage.com/portfolio-preview/audio/4eedefb400de66af912d934280ae05045d4c960f02d9d0616edbfbd6be27850f-v-edges-fade-voo1-1-2-48k24b-mstr.mp3",
-      "specs": "MP3 • Compressed Delivery"
+      "specs": "MP3 \u2022 Compressed Delivery"
     },
     {
       "id": "audio-v-experlence-v12",
       "kind": "audio",
-      "title": "V_Experlénčë_",
+      "title": "V_Experl\u00e9n\u010d\u00eb_",
       "src": "https://5vqpsktuycwubnaj.public.blob.vercel-storage.com/portfolio-preview/audio/0eddc7f11b3fccfb86306017e60a1fa5b8812950937e3dc6d39b1595c640cd35-v-experlence-v12.mp3",
-      "specs": "MP3 • Compressed Delivery"
+      "specs": "MP3 \u2022 Compressed Delivery"
     },
     {
       "id": "audio-v-manic-mania-mstr",
       "kind": "audio",
       "title": "V_Manic manIA_",
       "src": "https://5vqpsktuycwubnaj.public.blob.vercel-storage.com/portfolio-preview/audio/c9a7efbc80ad4ae8a483ecd3e23f5e4a113e2ad42d8d755b8166383e5e5ce57e-v-manic-mania-mstr.mp3",
-      "specs": "MP3 • Compressed Delivery"
+      "specs": "MP3 \u2022 Compressed Delivery"
     },
     {
       "id": "audio-v-motion-mine-mk4-15",
       "kind": "audio",
       "title": "V_Motion Mine_",
       "src": "https://5vqpsktuycwubnaj.public.blob.vercel-storage.com/portfolio-preview/audio/1415eed27679f0f5341c498f66a11a0ed426c6e2a5acf41f7526c2547318b650-v-motion-mine-mk4-15.mp3",
-      "specs": "MP3 • Compressed Delivery"
+      "specs": "MP3 \u2022 Compressed Delivery"
     },
     {
       "id": "audio-v-msnic-m-alpha-v01-1",
       "kind": "audio",
       "title": "V_Msnic M Alpha_",
       "src": "https://5vqpsktuycwubnaj.public.blob.vercel-storage.com/portfolio-preview/audio/9b980d93614836540c6802310fcea2c6e5c5918f4c7fdea30fa295180d87dffd-v-msnic-m-alpha-v01-1.mp3",
-      "specs": "MP3 • Compressed Delivery"
+      "specs": "MP3 \u2022 Compressed Delivery"
     },
     {
       "id": "audio-v-saymynane-v45-agtr-stem4-1",
       "kind": "audio",
       "title": "V_Saymynane_",
       "src": "https://5vqpsktuycwubnaj.public.blob.vercel-storage.com/portfolio-preview/audio/2389e05771b473004620da038c9949ef5e0fedc9b672b4771a90c74ac707a66e-v-saymynane-v45-agtr-stem4-1.mp3",
-      "specs": "MP3 • Compressed Delivery"
+      "specs": "MP3 \u2022 Compressed Delivery"
     }
   ]
 }

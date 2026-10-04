@@ -102,7 +102,7 @@ test('production YouTube destination and owner-selected video order are preserve
     href: 'https://www.youtube.com/@justinscottdixon_voyager',
   });
   assert.deepEqual(library.youtube.map(item => item.videoId), [
-    'QBkYTxHbvnE', '7UCMyjqvpUs', 'yz5x9iDM76s', 'R8dZkdehS-U', 'ynXSNAVszIU',
+    'QBkYTxHbvnE', '7UCMyjqvpUs', 'R8dZkdehS-U', 'ynXSNAVszIU',
     'NBnx0yGln10', 'b-Tl34e2hDE', 'vLGVUkqdtSw', 'noH-445Aq3k', 'KKdaIXWXa7w',
     'qZjJKlX5vds', 'mOe_J8_rwMc', 'j74uEAwnOpI', 'lP1QgFEBQQA', 'lxEgLzYjvEU',
     '_YB1WTMEvlQ', 'WAnFtnldJ8g', 'ad1WCDSsgtk',

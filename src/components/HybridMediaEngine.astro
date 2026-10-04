@@ -49,9 +49,10 @@ const evidenceLabels = {
 				</button>
 			</div>
 		)}
-		<video id="master-video" crossorigin="anonymous" src={library.experience.enabled ? library.experience.welcomeVideoSrc : firstCinema?.src ?? ''} autoplay={!library.experience.enabled} muted playsinline preload="metadata" class="media-master"></video>
+		<video id="master-video" crossorigin="anonymous" src={library.experience.enabled ? library.experience.welcomeVideoSrc : firstCinema?.src ?? ''} muted playsinline preload="metadata" class="media-master"></video>
 		<video id="music-visual-video" muted playsinline loop preload="metadata" aria-hidden="true" class="music-visual-video"></video>
 		<div id="youtube-player-host" hidden></div>
+		<div class="cinema-brand-card" data-cinema-brand-card hidden aria-hidden="true"><span class="cinema-brand-card__logo"></span></div>
 		{credentialsEnabled && <section id="reference-stage" class="reference-stage" aria-label="Career and release reference" hidden>
 			<div class="reference-stage__backdrop" aria-hidden="true"></div>
 			<div class="reference-stage__viewport">
@@ -188,29 +189,33 @@ const evidenceLabels = {
 				<div class="player-dock__transport-group player-dock__transport-group--primary">
 					<button id="active-prev" type="button" aria-label="Previous active item" disabled={library.experience.enabled || !firstCinema} aria-disabled={String(library.experience.enabled || !firstCinema)}>⏮</button>
 					<button id="active-play" type="button" aria-label="Play active item" disabled={library.experience.enabled || !firstCinema} aria-disabled={String(library.experience.enabled || !firstCinema)}>PLAY</button>
-					<button id="active-mute" type="button" aria-label="Unmute active item" aria-pressed="true" disabled aria-disabled="true">UNMUTE</button>
 					<button id="active-next" type="button" aria-label="Next active item" disabled={library.experience.enabled || !firstCinema} aria-disabled={String(library.experience.enabled || !firstCinema)}>⏭</button>
 				</div>
 				<div class="player-dock__transport-group player-dock__transport-group--secondary">
 					<button id="music-shuffle" type="button" aria-pressed="false" disabled aria-disabled="true">SHUFFLE</button>
-					<button id="music-repeat" type="button" data-repeat="off" disabled aria-disabled="true">REPEAT OFF</button>
+					<button id="music-repeat" type="button" data-repeat="all" disabled aria-disabled="true">REPEAT ALL</button>
 					<button id="return-to-cinema" type="button" hidden disabled={library.experience.enabled} aria-disabled={String(library.experience.enabled)}>RETURN TO CINEMA</button>
 					<label class="player-dock__seek"><output id="active-elapsed">--:--</output><input id="active-seek" type="range" min="0" max="0" step="0.01" value="0" aria-label="Seek active item" disabled /><output id="active-remaining">--:--</output></label>
+				</div>
+				<div class="player-dock__utility">
+					<button id="active-mute" type="button" aria-label="Unmute active item" aria-pressed="true" disabled aria-disabled="true">UNMUTE</button>
+					<label class="player-dock__volume" title="Listening level. Source meters stay unchanged."><input id="active-volume" type="range" min="0" max="100" step="1" value="100" aria-label="Listening volume" aria-valuetext="0.0 dB" disabled /><output id="active-volume-level" for="active-volume">0.0 dB</output></label>
 					<button id="enter-fullscreen" type="button" aria-label="Enter fullscreen player" disabled aria-disabled="true">FULLSCREEN</button>
 				</div>
 			</div>
 		</div>
 		<div class="meter-tray"><div class="meter-tray__reveal"><div class="meter-tray__clip">
 		<div class="player-dock__status" data-player-status-strip>
+			<button id="meter-hear-overlay" type="button" hidden aria-label="Enable sound"><span>CLICK TO HEAR</span></button>
 			<div class="engineering-meters" data-meter-status="idle" aria-label="Stereo engineering meters">
-                <button id="meter-hear-overlay" type="button" hidden aria-label="Enable sound"><span>CLICK TO HEAR</span></button>
-                <span id="meter-status">METERS · CLICK TO ENABLE</span>
-                <div class="meter-column-labels"><span>dBFS</span><span>RMS</span><span>PEAK</span><span></span></div>
+                <div class="meter-column-labels">
+                    <div class="meter-header-copy"><span id="meter-status">METERS · CLICK TO ENABLE</span><small class="meter-loudness-caption">STEREO · 3s · −60 → 0 LUFS</small></div>
+                    <span>RMS</span><span>PEAK</span><span></span>
+                </div>
                 <div data-meter-channel="left"><span>L</span><div class="meter-layer-track"><span class="meter-layer meter-layer--peak" id="bar-l"></span><span class="meter-layer meter-layer--rms" id="rms-bar-l"></span><span class="meter-hold-marker meter-hold-marker--peak" id="peak-hold-l" aria-hidden="true" hidden></span><span class="meter-hold-marker meter-hold-marker--rms" id="rms-hold-l" aria-hidden="true" hidden></span><meter class="meter-accessible" id="meter-l" aria-label="Left channel level" min="-60" max="0" value="-60"></meter></div><output class="meter-rms-value" id="rms-l-value" aria-live="off">−∞</output><output class="meter-peak-value" id="meter-l-value" aria-live="off">−∞</output><span id="clip-l" title="Sample amplitude reached full scale">FS</span></div>
                 <div data-meter-channel="right"><span>R</span><div class="meter-layer-track"><span class="meter-layer meter-layer--peak" id="bar-r"></span><span class="meter-layer meter-layer--rms" id="rms-bar-r"></span><span class="meter-hold-marker meter-hold-marker--peak" id="peak-hold-r" aria-hidden="true" hidden></span><span class="meter-hold-marker meter-hold-marker--rms" id="rms-hold-r" aria-hidden="true" hidden></span><meter class="meter-accessible" id="meter-r" aria-label="Right channel level" min="-60" max="0" value="-60"></meter></div><output class="meter-rms-value" id="rms-r-value" aria-live="off">−∞</output><output class="meter-peak-value" id="meter-r-value" aria-live="off">−∞</output><span id="clip-r" title="Sample amplitude reached full scale">FS</span></div>
                 <div class="meter-db-scale"><span>−60</span><span>−48</span><span>−36</span><span>−24</span><span>−12</span><span>0 dBFS</span></div>
                 <div class="meter-loudness-row"><span>ST</span><div class="meter-loudness-track" role="meter" id="lufs-meter" aria-label="Stereo short-term loudness" aria-valuemin="-60" aria-valuemax="0" aria-valuenow="-60"><span id="lufs-bar"></span></div><output id="lufs-value" aria-live="off">—</output><span>LUFS</span></div>
-                <small class="meter-loudness-caption">STEREO · 3s · −60 → 0 LUFS</small>
             </div>
 		</div>
 		</div></div><div class="meter-tray__lid" aria-hidden="true"><span></span></div></div>
@@ -285,9 +290,12 @@ const evidenceLabels = {
 </div>
 
 	<script>
+	import { connectYoutubePlayer } from '../lib/youtube-player.mjs';
 	import { connectStereoMeters } from '../lib/stereo-meter.mjs';
+	import { createMonitorVolumeController, monitorLevelText } from '../lib/monitor-volume.mjs';
 	import { activePlayButtonState, activeTransportPolicy, createEndedEventToken, isCurrentEndedEventToken, runtimeVideoErrorAction, runCommittedPlayback, runActivePlaybackRetry, transportPlaybackForTab } from '../lib/active-transport.mjs';
 	import { audibleElementKind, claimCinemaAudio, createAudibleSource, removeAudibleProvider, restorePriorAudio, selectAudibleTrack } from '../lib/audible-source.mjs';
+	import { createCinemaBrandCard } from '../lib/cinema-brand-card.mjs';
 	import { advanceCinema, createCinemaContinuity, createCinemaEndedToken, isCurrentCinemaEndedToken, selectCinema } from '../lib/cinema-continuity.mjs';
 	import { advanceMusicQueue, createMusicQueue, selectMusicItem, selectMusicMode, setRepeatMode, toggleShuffle } from '../lib/music-queue.mjs';
 	import { bindRuntimeCatalogueLifecycle, createRuntimeCatalogueController } from '../lib/runtime-catalogue-controller.mjs';
@@ -309,6 +317,7 @@ const evidenceLabels = {
 
 	const root = document.querySelector('[data-hybrid-media-engine]');
 	const stage = root.querySelector('#master-stage-container');
+	const cinemaBrandCard = createCinemaBrandCard(root.querySelector('[data-cinema-brand-card]'));
 	const playerDock = root.querySelector('[data-player-dock]');
 	const referenceStage = root.querySelector('#reference-stage');
 	const referenceTransportSlot = root.querySelector('[data-reference-transport-slot]');
@@ -378,6 +387,9 @@ const evidenceLabels = {
 	const fullscreenNext = root.querySelector('#fullscreen-next');
 	const fullscreenMute = root.querySelector('#fullscreen-mute');
 	const activeMute = root.querySelector('#active-mute');
+	const activeVolume = root.querySelector('#active-volume');
+	const activeVolumeLevel = root.querySelector('#active-volume-level');
+	const monitorVolume = createMonitorVolumeController([mv, musicAudio, ambientAudio]);
 	const fullscreenElapsed = root.querySelector('#fullscreen-elapsed');
 	const fullscreenRemaining = root.querySelector('#fullscreen-remaining');
 	const fullscreenTitle = root.querySelector('#fullscreen-title');
@@ -445,6 +457,17 @@ const evidenceLabels = {
 	function enqueueMediaControlTransition(action) {
 		if (entryControlsLocked) return;
 		void enqueueTransition(action);
+	}
+
+	function syncMonitorVolume() {
+		const policy = activeTransportPolicy(transportPlayback());
+		activeVolume.disabled = entryControlsLocked || !policy.playPause;
+		activeVolume.value = String(monitorVolume.position);
+		const level = monitorLevelText(monitorVolume.position);
+		activeVolume.setAttribute('aria-valuetext', level);
+		activeVolume.style.setProperty('--volume-progress', `${monitorVolume.position}%`);
+		activeVolumeLevel.textContent = level;
+		activeVolume.title = session.playback.provider === 'youtube' ? 'Use the embedded YouTube volume control' : `Listening level: ${level}. Source meters stay unchanged.`;
 	}
 
 	function syncActivePlayButton() {
@@ -800,6 +823,7 @@ const evidenceLabels = {
 	});
 
 	function setStageProvider(provider) {
+		cinemaBrandCard.cancel();
 		fadeTheaterView(stage);
 		stage.dataset.stageProvider = provider;
 		stage.dataset.mediaAspect = 'unknown';
@@ -916,7 +940,9 @@ const evidenceLabels = {
 			control.setAttribute('aria-label', media.muted ? 'Unmute active item' : 'Mute active item');
 			control.setAttribute('aria-pressed', String(media.muted));
 		}
-		activeMute.textContent = media.muted ? 'UNMUTE' : 'MUTE';
+		if (typeof syncMonitorVolume === 'function') syncMonitorVolume();
+		const muteLabel = media.muted ? 'UNMUTE' : 'MUTE';
+		if (activeMute.textContent !== muteLabel) activeMute.textContent = muteLabel;
 		scheduleFullscreenHide(snapshot);
 	}
 
@@ -1289,10 +1315,11 @@ const evidenceLabels = {
 	}
 
 	async function playMirrorWings() {
+		const generation = mirrorActivationGeneration;
 		try {
 			await Promise.all(activeMirrorWings().map((wing) => wing.play()));
 		} catch {
-			handleMirrorWingFailure();
+			if (generation === mirrorActivationGeneration) handleMirrorWingFailure();
 		}
 	}
 
@@ -1352,11 +1379,15 @@ const evidenceLabels = {
 	}
 
 	async function playVideoStack() {
-		const results = await Promise.allSettled([mv.play(), ...activeMirrorWings().map((wing) => wing.play())]);
-		if (results[0].status === 'rejected') throw results[0].reason;
+		cinemaBrandCard.cancel();
+		const masterPlayback = mv.play();
+		// Decorative playback must never hold the authoritative control queue.
+		void playMirrorWings();
+		await masterPlayback;
 	}
 
 	function pauseVideoStack() {
+		cinemaBrandCard.cancel();
 		mv.pause();
 		for (const wing of activeMirrorWings()) wing.pause();
 	}
@@ -1816,8 +1847,20 @@ const evidenceLabels = {
 		nowPlayingStatus.textContent = `${activeSourceKind.textContent} LIVE`;
 	}
 
-	async function activateCinema(index, { preserveAudibleAuthority = false } = {}) {
+	async function activateCinema(index, { preserveAudibleAuthority = false, showBrandCard = false } = {}) {
 		if (session.lease) return;
+		if (showBrandCard && videoPlaylist.length) {
+			const targetId = videoPlaylist[(index % videoPlaylist.length + videoPlaylist.length) % videoPlaylist.length].id;
+			pauseVideoStack();
+			cinemaBrandCard.show(() => {
+				void enqueueTransition(() => {
+					const targetIndex = videoPlaylist.findIndex(item => item.id === targetId);
+					if (session.lease || targetIndex < 0) return;
+					return activateCinema(targetIndex, { preserveAudibleAuthority });
+				});
+			});
+			return;
+		}
 		const preserveMusicTransport = preserveAudibleAuthority
 			&& session.playback.provider === 'music'
 			&& session.playback.mode === 'audio';
@@ -2076,7 +2119,7 @@ const evidenceLabels = {
 			leaveReferenceForMedia();
 			const index = videoPlaylist.findIndex((item) => item.id === button.dataset.cinemaId);
 			if (index < 0) return;
-			return activateCinema(index, { preserveAudibleAuthority: true });
+			return activateCinema(index, { preserveAudibleAuthority: true, showBrandCard: true });
 		});
 	});
 	musicPlaylist.addEventListener('click', (event) => {
@@ -2112,14 +2155,14 @@ const evidenceLabels = {
 		});
 	});
 	let selectedYoutubeVideoId = null;
+	let disconnectYoutubePlayer = null;
 	const youtubePortraitToggle = root.querySelector('#youtube-portrait-sides');
 	function youtubePortraitEnabled(videoId) {
 		try {
 			const saved = localStorage.getItem(`viaims:youtube-portrait:${videoId}`);
 			if (saved !== null) return saved === 'true';
 		} catch {}
-		// Confirmed from the video's displayed playback dimensions (720 x 1278).
-		return videoId === 'yz5x9iDM76s';
+		return false;
 	}
 	function renderYoutubeSides(enabled) {
 		const host = root.querySelector('#youtube-player-host');
@@ -2134,6 +2177,8 @@ const evidenceLabels = {
 	});
 
 	function clearYoutubeStage() {
+		disconnectYoutubePlayer?.();
+		disconnectYoutubePlayer = null;
 		const host = root.querySelector('#youtube-player-host');
 		host.replaceChildren();
 		host.hidden = true;
@@ -2142,6 +2187,8 @@ const evidenceLabels = {
 	}
 
 	function activateYoutube(button) {
+		// A leased source must retain the Cinema master's mute authority.
+		const youtubeMuted = session.lease?.snapshot?.muted ?? mv.muted;
 		const videoId = button.dataset.youtubeVideoId;
 		if (!/^[A-Za-z0-9_-]{11}$/.test(videoId)) return;
 		leaveReferenceForMedia();
@@ -2164,7 +2211,7 @@ const evidenceLabels = {
 		iframe.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
 		iframe.allowFullscreen = true;
 		iframe.referrerPolicy = 'strict-origin-when-cross-origin';
-		iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&playsinline=1&rel=0`;
+		iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=0&playsinline=1&rel=0&enablejsapi=1&origin=${encodeURIComponent(window.location.origin)}`;
 		const host = root.querySelector('#youtube-player-host');
 		const backdrop = document.createElement('img');
 		backdrop.className = 'youtube-still-sides';
@@ -2172,7 +2219,12 @@ const evidenceLabels = {
 		backdrop.setAttribute('aria-hidden', 'true');
 		backdrop.src = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
 		backdrop.addEventListener('error', () => { backdrop.hidden = true; });
+		disconnectYoutubePlayer?.();
 		host.replaceChildren(backdrop, iframe);
+		disconnectYoutubePlayer = connectYoutubePlayer(iframe, {
+			muted: youtubeMuted,
+			onError: () => { nowPlayingStatus.textContent = 'YOUTUBE COULD NOT START · USE PLAYER CONTROLS'; },
+		});
 		selectedYoutubeVideoId = videoId;
 		youtubePortraitToggle.hidden = false;
 		renderYoutubeSides(youtubePortraitEnabled(videoId));
@@ -2222,10 +2274,13 @@ const evidenceLabels = {
 			return;
 		}
 		const cinemaToken = createCinemaEndedToken(cinema, mv.currentSrc || mv.src);
-		void enqueueTransition(async () => {
-			if (!isCurrentCinemaEndedToken(cinemaToken, cinema, mv.currentSrc || mv.src)) return;
-			cinema = advanceCinema(cinema, 1);
-			await activateCinema(cinema.cursor, { preserveAudibleAuthority: true });
+		pauseVideoStack();
+		cinemaBrandCard.show(() => {
+			void enqueueTransition(async () => {
+				if (session.lease || !isCurrentCinemaEndedToken(cinemaToken, cinema, mv.currentSrc || mv.src)) return;
+				cinema = advanceCinema(cinema, 1);
+				await activateCinema(cinema.cursor, { preserveAudibleAuthority: true });
+			});
 		});
 	});
 	mv.addEventListener('error', () => {
@@ -2268,6 +2323,7 @@ const evidenceLabels = {
 			if (controlledPlayback.provider === 'cinema') {
 				if (session.lease) await restoreLeasedCinema({ resumeAudible: false });
 				await activateCinema(cinema.cursor < 0 ? videoPlaylist.length - 1 : cinema.cursor - 1, {
+					showBrandCard: true,
 					preserveAudibleAuthority: session.playback.provider === 'music' && session.playback.mode === 'audio',
 				});
 			}
@@ -2283,6 +2339,7 @@ const evidenceLabels = {
 			if (controlledPlayback.provider === 'cinema') {
 				if (session.lease) await restoreLeasedCinema({ resumeAudible: false });
 				await activateCinema(cinema.cursor + 1, {
+					showBrandCard: true,
 					preserveAudibleAuthority: session.playback.provider === 'music' && session.playback.mode === 'audio',
 				});
 			}
@@ -2317,7 +2374,13 @@ const evidenceLabels = {
 	fullscreenNext.addEventListener('click', requestNext);
 	fullscreenMute.addEventListener('click', requestFullscreenMute);
 	activeMute.addEventListener('click', requestFullscreenMute);
+	activeVolume.addEventListener('input', () => {
+		if (entryControlsLocked || !activeTransportPolicy(transportPlayback()).playPause) return;
+		monitorVolume.setPosition(activeVolume.value);
+		syncMonitorVolume();
+	});
 	fullscreenShell.addEventListener('pointerdown', (event) => {
+		if (fullscreenSession.snapshot().mode !== 'fullscreen') return;
 		if (event.target.closest('[data-fullscreen-overlay]')) return;
 		fullscreenSession.interact();
 		renderFullscreenSession();
@@ -2344,7 +2407,7 @@ const evidenceLabels = {
 	activeNext.addEventListener('click', requestNext);
 	shuffleButton.addEventListener('click', () => {
 		enqueueMediaControlTransition(() => {
-			const policy = activeTransportPolicy(session.playback);
+			const policy = activeTransportPolicy(transportPlayback());
 			if (!policy.shuffle) return;
 			musicQueue = toggleShuffle(musicQueue);
 			shuffleButton.setAttribute('aria-pressed', String(musicQueue.shuffle));
@@ -2352,7 +2415,7 @@ const evidenceLabels = {
 	});
 	repeatButton.addEventListener('click', () => {
 		enqueueMediaControlTransition(() => {
-			const policy = activeTransportPolicy(session.playback);
+			const policy = activeTransportPolicy(transportPlayback());
 			if (!policy.repeat) return;
 			const next = musicQueue.repeat === 'off' ? 'all' : musicQueue.repeat === 'all' ? 'one' : 'off';
 			musicQueue = setRepeatMode(musicQueue, next);
@@ -2418,19 +2481,32 @@ const evidenceLabels = {
 	syncTransportTime();
 	syncEntryControlAvailability();
 	renderTab('cinema');
+	if (root.dataset.entryEnabled !== 'true' && videoPlaylist.length) {
+		cinemaBrandCard.show(() => {
+			void enqueueTransition(async () => {
+				if (!session.lease && stage.dataset.stageProvider === 'cinema') {
+					await activateCinema(cinema.cursor, { preserveAudibleAuthority: true });
+				}
+			});
+		});
+	}
 	connectStereoMeters({
 		root, elements: [mv, musicAudio, ambientAudio],
+		keepNativeMuted: (element) => element === mv
+			&& audible.current?.mode === 'audio'
+			&& ['music', 'ambient'].includes(audible.current?.provider),
 		onHear: (element) => enqueueTransition(async () => {
 			if (!element || session.playback.provider === 'youtube') return;
 			if (element === mv && !session.lease) {
-				if (mv.volume === 0) mv.volume = 1;
+				if (mv.volume === 0) monitorVolume.restore();
 				await hearCinema();
 			} else {
 				element.muted = false;
-				if (element.volume === 0) element.volume = 1;
+				if (element.volume === 0) monitorVolume.restore();
 				session = setPlaybackMuted(session, false);
 				renderFullscreenSession();
 			}
+			syncMonitorVolume();
 		}),
 		getSource: () => {
 			if (session.playback.provider === 'youtube') return { external: true };
