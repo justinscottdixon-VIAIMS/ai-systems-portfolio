@@ -1,0 +1,831 @@
+{
+  "version": 1,
+  "date": "2026-10-12",
+  "status": "owner-approved-locally-imported-and-verified",
+  "ownerApproval": {
+    "quote": "They all look good to me. Let's commit these, add them to the site, update, commit and push, and then keep continuing on with the remaining titles.",
+    "scope": "All seven Batch13 releases and nine complete views, including D003 new CD placement.",
+    "approvedMasterHashes": [
+      {
+        "id": "nc-12",
+        "view": 0,
+        "sha256": "a3fdf012b0a11f36b7d3ad7147b49f363342da584d90426776598920b96bf8a9"
+      },
+      {
+        "id": "nc-12",
+        "view": 1,
+        "sha256": "e71a9f9f211e377b59bee251b47d36692de8023957c8205faeda5ed21d0bbbe8"
+      },
+      {
+        "id": "d003",
+        "view": 0,
+        "sha256": "4d3aaa4a8124994097d58095c7f0c84ca26eaafc45041f196020ed94759ec17f"
+      },
+      {
+        "id": "d130",
+        "view": 0,
+        "sha256": "d1e9ba3cec48c1c6b5acf063d91cafb6016fb87f1425b5c7e9da40bccd909141"
+      },
+      {
+        "id": "d131",
+        "view": 0,
+        "sha256": "c7ca95c5c1c85000975c52c9350263ce25bdeb4c2e3a9638bd582c8ccc30ffd4"
+      },
+      {
+        "id": "d092",
+        "view": 0,
+        "sha256": "208cf105e016b29bdfe8354d59fe1346a014eed06d88904cd00236cfbeb076e9"
+      },
+      {
+        "id": "nc-01",
+        "view": 0,
+        "sha256": "073f197bf6e8be1a0dcdb8cf41bb8b8a6f6c34dcb3af1d0e057eeca2220b5eb5"
+      },
+      {
+        "id": "cosmic-009",
+        "view": 0,
+        "sha256": "d2e59b81bc273a58b919ba6b5433b6e38fe033051935a36db688200203c0d167"
+      },
+      {
+        "id": "cosmic-009",
+        "view": 1,
+        "sha256": "5049ed12eb45394a0e81dad8a9faf8c57383fa827ae03efbe4f4391f8bde40ad"
+      }
+    ],
+    "localImportAuthorized": true,
+    "commitAndPushAuthorized": true,
+    "publicationAuthorized": false
+  },
+  "scope": "Presentation galleries only. Catalogue facts, original evidence and capture exclusions preserved. Superseded presentation assets remain archived on disk.",
+  "assets": [
+    {
+      "id": "nc-12",
+      "view": 0,
+      "sourceFile": "outputs/credentials-artwork-2026-10-11/restoration/nc12/motion-one-or-two-sleeve-restored-v1.png",
+      "sourceSha256": "a3fdf012b0a11f36b7d3ad7147b49f363342da584d90426776598920b96bf8a9",
+      "file": "outputs/credentials-artwork-2026-10-12/batch13-approved/assets/nc-12-motion-one-or-two-sleeve-approved-v1.webp",
+      "assetPath": "/reference/restored-artwork/nc-12-motion-one-or-two-sleeve-approved-v1.webp",
+      "sha256": "bb5c19f72d6ecabd5637e0edb5d3abe5da4fcc729e675a669bb0b04b7992aaba",
+      "dimensions": [
+        4000,
+        4000
+      ],
+      "bytes": 1419416,
+      "encoding": "lossless",
+      "decodedRgbaSha256": "e3d8a7ac4f2c7e922b99f685d89ea7c97b0f79881df13f4b4ee0423eca060a85",
+      "pixelIdentical": true,
+      "reusedExistingAsset": false,
+      "copies": {
+        "public": "site/.worktrees/adaptive-media-shadow/public/reference/restored-artwork/nc-12-motion-one-or-two-sleeve-approved-v1.webp",
+        "public-deploy": "site/.worktrees/adaptive-media-shadow/public-deploy/reference/restored-artwork/nc-12-motion-one-or-two-sleeve-approved-v1.webp"
+      },
+      "sourceReference": "https://www.discogs.com/release/48568",
+      "restorationManifest": "outputs/credentials-artwork-2026-10-11/restoration/nc12/manifest.json",
+      "qualification": "Owner-confirmed punctuation; fitted type, logo contours and restored sleeve geometry are approximations."
+    },
+    {
+      "id": "nc-12",
+      "view": 1,
+      "sourceFile": "outputs/credentials-artwork-2026-10-11/restoration/nc12/motion-one-or-two-label-restored-v1.png",
+      "sourceSha256": "e71a9f9f211e377b59bee251b47d36692de8023957c8205faeda5ed21d0bbbe8",
+      "file": "outputs/credentials-artwork-2026-10-12/batch13-approved/assets/nc-12-motion-one-or-two-label-approved-v1.webp",
+      "assetPath": "/reference/restored-artwork/nc-12-motion-one-or-two-label-approved-v1.webp",
+      "sha256": "c3095e92f36f6b73e10d186ea2d03dd78d95c055d7169ab0c93991cb98b89310",
+      "dimensions": [
+        4000,
+        4000
+      ],
+      "bytes": 175966,
+      "encoding": "lossless",
+      "decodedRgbaSha256": "48d010f21012c3e9c7a226f52c7701f6e29edac2f735b84bdc9f0a837aaddc0d",
+      "pixelIdentical": true,
+      "reusedExistingAsset": false,
+      "copies": {
+        "public": "site/.worktrees/adaptive-media-shadow/public/reference/restored-artwork/nc-12-motion-one-or-two-label-approved-v1.webp",
+        "public-deploy": "site/.worktrees/adaptive-media-shadow/public-deploy/reference/restored-artwork/nc-12-motion-one-or-two-label-approved-v1.webp"
+      },
+      "sourceReference": "https://www.discogs.com/release/48568",
+      "restorationManifest": "outputs/credentials-artwork-2026-10-11/restoration/nc12/manifest.json",
+      "qualification": "Owner-confirmed punctuation; fitted type, logo contours and restored sleeve geometry are approximations."
+    },
+    {
+      "id": "d003",
+      "view": 0,
+      "sourceFile": "outputs/credentials-artwork-2026-10-12/restoration/d003/tranceport-3-cd-approved-reuse-v2.png",
+      "sourceSha256": "4d3aaa4a8124994097d58095c7f0c84ca26eaafc45041f196020ed94759ec17f",
+      "file": "outputs/credentials-artwork-2026-10-12/batch13-approved/assets/nc-09-tranceport-3-cd-approved-v2.webp",
+      "assetPath": "/reference/restored-artwork/nc-09-tranceport-3-cd-approved-v2.webp",
+      "sha256": "2ceb2e662d1f1f19348a84a3c4242b5cf53655090f64ef3ea03a76ee9e81777f",
+      "dimensions": [
+        1265,
+        1244
+      ],
+      "bytes": 1986372,
+      "encoding": "lossless",
+      "decodedRgbaSha256": "183015019d4ca74bf5ea2809e8b8bc84fe7b99e02c794fc23249ca90eefebc68",
+      "pixelIdentical": true,
+      "reusedExistingAsset": true,
+      "copies": {
+        "public": "site/.worktrees/adaptive-media-shadow/public/reference/restored-artwork/nc-09-tranceport-3-cd-approved-v2.webp",
+        "public-deploy": "site/.worktrees/adaptive-media-shadow/public-deploy/reference/restored-artwork/nc-09-tranceport-3-cd-approved-v2.webp"
+      },
+      "sourceReference": "https://www.discogs.com/release/40908",
+      "restorationManifest": "outputs/credentials-artwork-2026-10-12/restoration/d003/manifest.json",
+      "qualification": "Exact approved v2 artwork reused for this CD placement; prior color and fine-graphic reconstruction limits carry over."
+    },
+    {
+      "id": "d130",
+      "view": 0,
+      "sourceFile": "outputs/credentials-artwork-2026-10-11/restoration/d130/mankind-earth-breakthrough-restored-v2.png",
+      "sourceSha256": "d1e9ba3cec48c1c6b5acf063d91cafb6016fb87f1425b5c7e9da40bccd909141",
+      "file": "outputs/credentials-artwork-2026-10-12/batch13-approved/assets/d130-mankind-earth-breakthrough-approved-v2.webp",
+      "assetPath": "/reference/restored-artwork/d130-mankind-earth-breakthrough-approved-v2.webp",
+      "sha256": "ea2d0f8e15287e2c18189a3bbf41c6b641172178c0537bcf8670409b438011f2",
+      "dimensions": [
+        1248,
+        1254
+      ],
+      "bytes": 1357612,
+      "encoding": "lossless",
+      "decodedRgbaSha256": "9639f49afcfef5d61e7ccc24b4fc8c53ee747b6c6e7cf6715ba3ae5052d90d2d",
+      "pixelIdentical": true,
+      "reusedExistingAsset": false,
+      "copies": {
+        "public": "site/.worktrees/adaptive-media-shadow/public/reference/restored-artwork/d130-mankind-earth-breakthrough-approved-v2.webp",
+        "public-deploy": "site/.worktrees/adaptive-media-shadow/public-deploy/reference/restored-artwork/d130-mankind-earth-breakthrough-approved-v2.webp"
+      },
+      "sourceReference": "https://www.discogs.com/release/289076",
+      "restorationManifest": "outputs/credentials-artwork-2026-10-11/restoration/d130/manifest.json",
+      "qualification": "Complete alternate art face; surface and planetary microdetail reconstructed. Information-side fine print stays held."
+    },
+    {
+      "id": "d131",
+      "view": 0,
+      "sourceFile": "outputs/credentials-artwork-2026-10-12/restoration/d131/cystamatic-a-restored-v1.png",
+      "sourceSha256": "c7ca95c5c1c85000975c52c9350263ce25bdeb4c2e3a9638bd582c8ccc30ffd4",
+      "file": "outputs/credentials-artwork-2026-10-12/batch13-approved/assets/d131-cystamatic-a-approved-v1.webp",
+      "assetPath": "/reference/restored-artwork/d131-cystamatic-a-approved-v1.webp",
+      "sha256": "0c872ad9aec5e4001b98276bde887e6e53b396232c9a4598d9db4fb7a61f2dcb",
+      "dimensions": [
+        4000,
+        4045
+      ],
+      "bytes": 6941510,
+      "encoding": "lossless",
+      "decodedRgbaSha256": "90584fa96d747033fc4f48242fc087e30e0dccaccca5a673bdf1f5c4aeca9804",
+      "pixelIdentical": true,
+      "reusedExistingAsset": false,
+      "copies": {
+        "public": "site/.worktrees/adaptive-media-shadow/public/reference/restored-artwork/d131-cystamatic-a-approved-v1.webp",
+        "public-deploy": "site/.worktrees/adaptive-media-shadow/public-deploy/reference/restored-artwork/d131-cystamatic-a-approved-v1.webp"
+      },
+      "sourceReference": "https://www.discogs.com/release/15319731",
+      "restorationManifest": "outputs/credentials-artwork-2026-10-12/restoration/d131/restoration-manifest-v1.json",
+      "qualification": "Handwritten contours retained with stronger strokes; paper texture reconstructed. 4000px is an enlarged export."
+    },
+    {
+      "id": "d092",
+      "view": 0,
+      "sourceFile": "outputs/credentials-artwork-2026-10-12/restoration/d092/northern-exposure-expeditions-sticker-removed-v2.png",
+      "sourceSha256": "208cf105e016b29bdfe8354d59fe1346a014eed06d88904cd00236cfbeb076e9",
+      "file": "outputs/credentials-artwork-2026-10-12/batch13-approved/assets/d092-northern-exposure-expeditions-approved-v2.webp",
+      "assetPath": "/reference/restored-artwork/d092-northern-exposure-expeditions-approved-v2.webp",
+      "sha256": "9f87c06d5bb5a58b20d377b8b4e65a2f1c62e8faaad94129f8b09ef77a31a832",
+      "dimensions": [
+        1339,
+        1176
+      ],
+      "bytes": 1249924,
+      "encoding": "lossless",
+      "decodedRgbaSha256": "695e2b14a96a006e27015aa017de7349fee831a903d80efd17b02bc98d254ed4",
+      "pixelIdentical": true,
+      "reusedExistingAsset": false,
+      "copies": {
+        "public": "site/.worktrees/adaptive-media-shadow/public/reference/restored-artwork/d092-northern-exposure-expeditions-approved-v2.webp",
+        "public-deploy": "site/.worktrees/adaptive-media-shadow/public-deploy/reference/restored-artwork/d092-northern-exposure-expeditions-approved-v2.webp"
+      },
+      "sourceReference": "https://coverartarchive.org/release/b035098d-4581-4c18-9b23-7e5113f1238c",
+      "restorationManifest": "outputs/credentials-artwork-2026-10-12/restoration/d092/manifest.json",
+      "qualification": "Complete front with owner-authorized sticker removal. Rope fiber, lettering contours and green field are reconstructed."
+    },
+    {
+      "id": "nc-01",
+      "view": 0,
+      "sourceFile": "outputs/credentials-artwork-2026-10-12/restoration/nc01/sunshine-sampler-sticker-restored-v2.png",
+      "sourceSha256": "073f197bf6e8be1a0dcdb8cf41bb8b8a6f6c34dcb3af1d0e057eeca2220b5eb5",
+      "file": "outputs/credentials-artwork-2026-10-12/batch13-approved/assets/nc-01-sunshine-sampler-sticker-approved-v2.webp",
+      "assetPath": "/reference/restored-artwork/nc-01-sunshine-sampler-sticker-approved-v2.webp",
+      "sha256": "d1feadb458d10b23363692754639bbc75bd21ca12e17ed843306c89ed4a37a02",
+      "dimensions": [
+        4000,
+        3880
+      ],
+      "bytes": 530748,
+      "encoding": "lossless",
+      "decodedRgbaSha256": "cf0aceabbd03c640e5f28cb4415cb7773404748e782c6810b532e40f7b6d7b13",
+      "pixelIdentical": true,
+      "reusedExistingAsset": false,
+      "copies": {
+        "public": "site/.worktrees/adaptive-media-shadow/public/reference/restored-artwork/nc-01-sunshine-sampler-sticker-approved-v2.webp",
+        "public-deploy": "site/.worktrees/adaptive-media-shadow/public-deploy/reference/restored-artwork/nc-01-sunshine-sampler-sticker-approved-v2.webp"
+      },
+      "sourceReference": "https://www.discogs.com/release/135181",
+      "restorationManifest": "outputs/credentials-artwork-2026-10-12/restoration/nc01/restoration-manifest-v2.json",
+      "qualification": "Complete sticker only. Owner-confirmed punctuation/emblem wording; Iowan body font, ear contours and generated title are approximations. Original typeface not recovered."
+    },
+    {
+      "id": "cosmic-009",
+      "view": 0,
+      "sourceFile": "outputs/credentials-artwork-2026-10-12/restoration/cosmic009/cosmic009-a-label-restored-v2.png",
+      "sourceSha256": "d2e59b81bc273a58b919ba6b5433b6e38fe033051935a36db688200203c0d167",
+      "file": "outputs/credentials-artwork-2026-10-12/batch13-approved/assets/cosmic-009-a-label-approved-v2.webp",
+      "assetPath": "/reference/restored-artwork/cosmic-009-a-label-approved-v2.webp",
+      "sha256": "49a72d39529bf79bf9a313f9993bc4cd1869c7f683198fe16bf89bbf6fe6495a",
+      "dimensions": [
+        4000,
+        4000
+      ],
+      "bytes": 149342,
+      "encoding": "lossless",
+      "decodedRgbaSha256": "602e9627847cd3b8a2fdf38aeb464551f783c46315bc48b1b3b9a69e77004135",
+      "pixelIdentical": true,
+      "reusedExistingAsset": false,
+      "copies": {
+        "public": "site/.worktrees/adaptive-media-shadow/public/reference/restored-artwork/cosmic-009-a-label-approved-v2.webp",
+        "public-deploy": "site/.worktrees/adaptive-media-shadow/public-deploy/reference/restored-artwork/cosmic-009-a-label-approved-v2.webp"
+      },
+      "sourceReference": "https://handsomezacksrecords.com/products/friction-spice-remix-lp-12-very-good-plus-vg",
+      "restorationManifest": "outputs/credentials-artwork-2026-10-12/restoration/cosmic009/manifest.json",
+      "qualification": "Verified wording and complete A/B layouts; source-derived custom header contours regularized as vectors. Fitted ordinary type and geometry are approximations."
+    },
+    {
+      "id": "cosmic-009",
+      "view": 1,
+      "sourceFile": "outputs/credentials-artwork-2026-10-12/restoration/cosmic009/cosmic009-b-label-restored-v2.png",
+      "sourceSha256": "5049ed12eb45394a0e81dad8a9faf8c57383fa827ae03efbe4f4391f8bde40ad",
+      "file": "outputs/credentials-artwork-2026-10-12/batch13-approved/assets/cosmic-009-b-label-approved-v2.webp",
+      "assetPath": "/reference/restored-artwork/cosmic-009-b-label-approved-v2.webp",
+      "sha256": "d8c030206459c3387d8d6b6c0e398d37deb6c5450d2a30d0d38f5d572c79cd5f",
+      "dimensions": [
+        4000,
+        4000
+      ],
+      "bytes": 152858,
+      "encoding": "lossless",
+      "decodedRgbaSha256": "c296be4fbb1b139413d3308e027cb352fdf48d04fb6674ab5b892c87d706638a",
+      "pixelIdentical": true,
+      "reusedExistingAsset": false,
+      "copies": {
+        "public": "site/.worktrees/adaptive-media-shadow/public/reference/restored-artwork/cosmic-009-b-label-approved-v2.webp",
+        "public-deploy": "site/.worktrees/adaptive-media-shadow/public-deploy/reference/restored-artwork/cosmic-009-b-label-approved-v2.webp"
+      },
+      "sourceReference": "https://handsomezacksrecords.com/products/friction-spice-remix-lp-12-very-good-plus-vg",
+      "restorationManifest": "outputs/credentials-artwork-2026-10-12/restoration/cosmic009/manifest.json",
+      "qualification": "Verified wording and complete A/B layouts; source-derived custom header contours regularized as vectors. Fitted ordinary type and geometry are approximations."
+    }
+  ],
+  "operations": [
+    {
+      "parentId": "singles-remixes",
+      "childId": "nc-12",
+      "action": "prepend",
+      "newGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/restored-artwork/nc-12-motion-one-or-two-sleeve-approved-v1.webp",
+          "alt": "Restored white Coded sleeve with green circular design and complete Motion / One or Two label.",
+          "caption": "Voyager \u2014 Motion / One or Two \u2014 restored CODE 012 sleeve."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/restored-artwork/nc-12-motion-one-or-two-label-approved-v1.webp",
+          "alt": "Restored Motion / One or Two label with blue 12, verified credits and Coded barcode.",
+          "caption": "Voyager \u2014 Motion / One or Two \u2014 restored CODE 012 information label."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/singles-remixes/nc-12-img-5185.jpg",
+          "alt": "Voyager \u2014 Motion / One or Two, photographed edition IMG_5185",
+          "caption": "Motion / One or Two \u2014 archive photograph IMG_5185."
+        }
+      ],
+      "previousGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/singles-remixes/nc-12-img-5185.jpg",
+          "alt": "Voyager \u2014 Motion / One or Two, photographed edition IMG_5185",
+          "caption": "Motion / One or Two \u2014 archive photograph IMG_5185."
+        }
+      ]
+    },
+    {
+      "parentId": "compilation-appearances",
+      "childId": "d003",
+      "action": "replace-first",
+      "newGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/restored-artwork/nc-09-tranceport-3-cd-approved-v2.webp",
+          "alt": "Restored orange and black Sandra Collins Tranceport.3 CD cover with red outlined emblem.",
+          "caption": "Sandra Collins \u2014 Tranceport.3 \u2014 restored CD front cover."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d003-02.jpg",
+          "alt": "Tranceport.3 \u2014 mix album \u2014 edition artwork image 2",
+          "caption": "Tranceport.3 \u2014 mix album \u2014 edition image 2 (Discogs release 40908)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d003-03.jpg",
+          "alt": "Tranceport.3 \u2014 mix album \u2014 edition artwork image 3",
+          "caption": "Tranceport.3 \u2014 mix album \u2014 edition image 3 (Discogs release 40908)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d003-04.jpg",
+          "alt": "Tranceport.3 \u2014 mix album \u2014 edition artwork image 4",
+          "caption": "Tranceport.3 \u2014 mix album \u2014 edition image 4 (Discogs release 40908)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d003-05.jpg",
+          "alt": "Tranceport.3 \u2014 mix album \u2014 edition artwork image 5",
+          "caption": "Tranceport.3 \u2014 mix album \u2014 edition image 5 (Discogs release 40908)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d003-06.jpg",
+          "alt": "Tranceport.3 \u2014 mix album \u2014 edition artwork image 6",
+          "caption": "Tranceport.3 \u2014 mix album \u2014 edition image 6 (Discogs release 40908)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d003-07.jpg",
+          "alt": "Tranceport.3 \u2014 mix album \u2014 edition artwork image 7",
+          "caption": "Tranceport.3 \u2014 mix album \u2014 edition image 7 (Discogs release 40908)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d003-08.jpg",
+          "alt": "Tranceport.3 \u2014 mix album \u2014 edition artwork image 8",
+          "caption": "Tranceport.3 \u2014 mix album \u2014 edition image 8 (Discogs release 40908)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d003-09.jpg",
+          "alt": "Tranceport.3 \u2014 mix album \u2014 edition artwork image 9",
+          "caption": "Tranceport.3 \u2014 mix album \u2014 edition image 9 (Discogs release 40908)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d003-10.jpg",
+          "alt": "Tranceport.3 \u2014 mix album \u2014 edition artwork image 10",
+          "caption": "Tranceport.3 \u2014 mix album \u2014 edition image 10 (Discogs release 40908)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d003-11.jpg",
+          "alt": "Tranceport.3 \u2014 mix album \u2014 edition artwork image 11",
+          "caption": "Tranceport.3 \u2014 mix album \u2014 edition image 11 (Discogs release 40908)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d003-12.jpg",
+          "alt": "Tranceport.3 \u2014 mix album \u2014 edition artwork image 12",
+          "caption": "Tranceport.3 \u2014 mix album \u2014 edition image 12 (Discogs release 40908)."
+        }
+      ],
+      "previousGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d003-01.jpg",
+          "alt": "Tranceport.3 \u2014 mix album \u2014 edition artwork image 1",
+          "caption": "Tranceport.3 \u2014 mix album \u2014 edition image 1 (Discogs release 40908)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d003-02.jpg",
+          "alt": "Tranceport.3 \u2014 mix album \u2014 edition artwork image 2",
+          "caption": "Tranceport.3 \u2014 mix album \u2014 edition image 2 (Discogs release 40908)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d003-03.jpg",
+          "alt": "Tranceport.3 \u2014 mix album \u2014 edition artwork image 3",
+          "caption": "Tranceport.3 \u2014 mix album \u2014 edition image 3 (Discogs release 40908)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d003-04.jpg",
+          "alt": "Tranceport.3 \u2014 mix album \u2014 edition artwork image 4",
+          "caption": "Tranceport.3 \u2014 mix album \u2014 edition image 4 (Discogs release 40908)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d003-05.jpg",
+          "alt": "Tranceport.3 \u2014 mix album \u2014 edition artwork image 5",
+          "caption": "Tranceport.3 \u2014 mix album \u2014 edition image 5 (Discogs release 40908)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d003-06.jpg",
+          "alt": "Tranceport.3 \u2014 mix album \u2014 edition artwork image 6",
+          "caption": "Tranceport.3 \u2014 mix album \u2014 edition image 6 (Discogs release 40908)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d003-07.jpg",
+          "alt": "Tranceport.3 \u2014 mix album \u2014 edition artwork image 7",
+          "caption": "Tranceport.3 \u2014 mix album \u2014 edition image 7 (Discogs release 40908)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d003-08.jpg",
+          "alt": "Tranceport.3 \u2014 mix album \u2014 edition artwork image 8",
+          "caption": "Tranceport.3 \u2014 mix album \u2014 edition image 8 (Discogs release 40908)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d003-09.jpg",
+          "alt": "Tranceport.3 \u2014 mix album \u2014 edition artwork image 9",
+          "caption": "Tranceport.3 \u2014 mix album \u2014 edition image 9 (Discogs release 40908)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d003-10.jpg",
+          "alt": "Tranceport.3 \u2014 mix album \u2014 edition artwork image 10",
+          "caption": "Tranceport.3 \u2014 mix album \u2014 edition image 10 (Discogs release 40908)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d003-11.jpg",
+          "alt": "Tranceport.3 \u2014 mix album \u2014 edition artwork image 11",
+          "caption": "Tranceport.3 \u2014 mix album \u2014 edition image 11 (Discogs release 40908)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d003-12.jpg",
+          "alt": "Tranceport.3 \u2014 mix album \u2014 edition artwork image 12",
+          "caption": "Tranceport.3 \u2014 mix album \u2014 edition image 12 (Discogs release 40908)."
+        }
+      ]
+    },
+    {
+      "parentId": "production-engineering-credits",
+      "childId": "d130",
+      "action": "replace-second-and-promote",
+      "newGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/restored-artwork/d130-mankind-earth-breakthrough-approved-v2.webp",
+          "alt": "Restored complete Mankind label artwork with Earth, dark concentric rings, a planetary horizon and Breakthrough lettering.",
+          "caption": "Kyng Nova & Friction \u2014 Mankind \u2014 restored Earth / Breakthrough artwork."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d130-01.jpg",
+          "alt": "Mankind \u2014 edition artwork image 1",
+          "caption": "Mankind \u2014 edition image 1 (Discogs release 289076)."
+        }
+      ],
+      "previousGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d130-01.jpg",
+          "alt": "Mankind \u2014 edition artwork image 1",
+          "caption": "Mankind \u2014 edition image 1 (Discogs release 289076)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d130-02.jpg",
+          "alt": "Mankind \u2014 edition artwork image 2",
+          "caption": "Mankind \u2014 edition image 2 (Discogs release 289076)."
+        }
+      ]
+    },
+    {
+      "parentId": "production-engineering-credits",
+      "childId": "d131",
+      "action": "replace-first",
+      "newGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/restored-artwork/d131-cystamatic-a-approved-v1.webp",
+          "alt": "Restored cream Cystamatic white label retaining Brian Van Dalen, Side A and IMP 001 handwriting.",
+          "caption": "Brian Van Dalen \u2014 Cystamatic \u2014 restored handwritten A-side label."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d131-02.jpg",
+          "alt": "Cystamatic \u2014 edition artwork image 2",
+          "caption": "Cystamatic \u2014 edition image 2 (Discogs release 15319731)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d131-03.jpg",
+          "alt": "Cystamatic \u2014 edition artwork image 3",
+          "caption": "Cystamatic \u2014 edition image 3 (Discogs release 15319731)."
+        }
+      ],
+      "previousGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d131-01.jpg",
+          "alt": "Cystamatic \u2014 edition artwork image 1",
+          "caption": "Cystamatic \u2014 edition image 1 (Discogs release 15319731)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d131-02.jpg",
+          "alt": "Cystamatic \u2014 edition artwork image 2",
+          "caption": "Cystamatic \u2014 edition image 2 (Discogs release 15319731)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d131-03.jpg",
+          "alt": "Cystamatic \u2014 edition artwork image 3",
+          "caption": "Cystamatic \u2014 edition image 3 (Discogs release 15319731)."
+        }
+      ]
+    },
+    {
+      "parentId": "compilation-appearances",
+      "childId": "d092",
+      "action": "replace-first",
+      "newGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/restored-artwork/d092-northern-exposure-expeditions-approved-v2.webp",
+          "alt": "Restored Northern Exposure: Expeditions cover with white title and interlocking red and yellow ropes on green, with the yellow sticker removed.",
+          "caption": "Sasha + John Digweed \u2014 Northern Exposure: Expeditions \u2014 restored front cover."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d092-02.jpg",
+          "alt": "Northern Exposure: Expeditions \u2014 edition artwork image 2",
+          "caption": "Northern Exposure: Expeditions \u2014 edition image 2 (Discogs release 21353)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d092-03.jpg",
+          "alt": "Northern Exposure: Expeditions \u2014 edition artwork image 3",
+          "caption": "Northern Exposure: Expeditions \u2014 edition image 3 (Discogs release 21353)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d092-04.jpg",
+          "alt": "Northern Exposure: Expeditions \u2014 edition artwork image 4",
+          "caption": "Northern Exposure: Expeditions \u2014 edition image 4 (Discogs release 21353)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d092-05.jpg",
+          "alt": "Northern Exposure: Expeditions \u2014 edition artwork image 5",
+          "caption": "Northern Exposure: Expeditions \u2014 edition image 5 (Discogs release 21353)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d092-06.jpg",
+          "alt": "Northern Exposure: Expeditions \u2014 edition artwork image 6",
+          "caption": "Northern Exposure: Expeditions \u2014 edition image 6 (Discogs release 21353)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d092-07.jpg",
+          "alt": "Northern Exposure: Expeditions \u2014 edition artwork image 7",
+          "caption": "Northern Exposure: Expeditions \u2014 edition image 7 (Discogs release 21353)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d092-08.jpg",
+          "alt": "Northern Exposure: Expeditions \u2014 edition artwork image 8",
+          "caption": "Northern Exposure: Expeditions \u2014 edition image 8 (Discogs release 21353)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d092-09.jpg",
+          "alt": "Northern Exposure: Expeditions \u2014 edition artwork image 9",
+          "caption": "Northern Exposure: Expeditions \u2014 edition image 9 (Discogs release 21353)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d092-10.jpg",
+          "alt": "Northern Exposure: Expeditions \u2014 edition artwork image 10",
+          "caption": "Northern Exposure: Expeditions \u2014 edition image 10 (Discogs release 21353)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d092-11.jpg",
+          "alt": "Northern Exposure: Expeditions \u2014 edition artwork image 11",
+          "caption": "Northern Exposure: Expeditions \u2014 edition image 11 (Discogs release 21353)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d092-12.jpg",
+          "alt": "Northern Exposure: Expeditions \u2014 edition artwork image 12",
+          "caption": "Northern Exposure: Expeditions \u2014 edition image 12 (Discogs release 21353)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d092-13.jpg",
+          "alt": "Northern Exposure: Expeditions \u2014 edition artwork image 13",
+          "caption": "Northern Exposure: Expeditions \u2014 edition image 13 (Discogs release 21353)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d092-14.jpg",
+          "alt": "Northern Exposure: Expeditions \u2014 edition artwork image 14",
+          "caption": "Northern Exposure: Expeditions \u2014 edition image 14 (Discogs release 21353)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d092-15.jpg",
+          "alt": "Northern Exposure: Expeditions \u2014 edition artwork image 15",
+          "caption": "Northern Exposure: Expeditions \u2014 edition image 15 (Discogs release 21353)."
+        }
+      ],
+      "previousGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d092-01.jpg",
+          "alt": "Northern Exposure: Expeditions \u2014 edition artwork image 1",
+          "caption": "Northern Exposure: Expeditions \u2014 edition image 1 (Discogs release 21353)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d092-02.jpg",
+          "alt": "Northern Exposure: Expeditions \u2014 edition artwork image 2",
+          "caption": "Northern Exposure: Expeditions \u2014 edition image 2 (Discogs release 21353)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d092-03.jpg",
+          "alt": "Northern Exposure: Expeditions \u2014 edition artwork image 3",
+          "caption": "Northern Exposure: Expeditions \u2014 edition image 3 (Discogs release 21353)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d092-04.jpg",
+          "alt": "Northern Exposure: Expeditions \u2014 edition artwork image 4",
+          "caption": "Northern Exposure: Expeditions \u2014 edition image 4 (Discogs release 21353)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d092-05.jpg",
+          "alt": "Northern Exposure: Expeditions \u2014 edition artwork image 5",
+          "caption": "Northern Exposure: Expeditions \u2014 edition image 5 (Discogs release 21353)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d092-06.jpg",
+          "alt": "Northern Exposure: Expeditions \u2014 edition artwork image 6",
+          "caption": "Northern Exposure: Expeditions \u2014 edition image 6 (Discogs release 21353)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d092-07.jpg",
+          "alt": "Northern Exposure: Expeditions \u2014 edition artwork image 7",
+          "caption": "Northern Exposure: Expeditions \u2014 edition image 7 (Discogs release 21353)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d092-08.jpg",
+          "alt": "Northern Exposure: Expeditions \u2014 edition artwork image 8",
+          "caption": "Northern Exposure: Expeditions \u2014 edition image 8 (Discogs release 21353)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d092-09.jpg",
+          "alt": "Northern Exposure: Expeditions \u2014 edition artwork image 9",
+          "caption": "Northern Exposure: Expeditions \u2014 edition image 9 (Discogs release 21353)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d092-10.jpg",
+          "alt": "Northern Exposure: Expeditions \u2014 edition artwork image 10",
+          "caption": "Northern Exposure: Expeditions \u2014 edition image 10 (Discogs release 21353)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d092-11.jpg",
+          "alt": "Northern Exposure: Expeditions \u2014 edition artwork image 11",
+          "caption": "Northern Exposure: Expeditions \u2014 edition image 11 (Discogs release 21353)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d092-12.jpg",
+          "alt": "Northern Exposure: Expeditions \u2014 edition artwork image 12",
+          "caption": "Northern Exposure: Expeditions \u2014 edition image 12 (Discogs release 21353)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d092-13.jpg",
+          "alt": "Northern Exposure: Expeditions \u2014 edition artwork image 13",
+          "caption": "Northern Exposure: Expeditions \u2014 edition image 13 (Discogs release 21353)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d092-14.jpg",
+          "alt": "Northern Exposure: Expeditions \u2014 edition artwork image 14",
+          "caption": "Northern Exposure: Expeditions \u2014 edition image 14 (Discogs release 21353)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d092-15.jpg",
+          "alt": "Northern Exposure: Expeditions \u2014 edition artwork image 15",
+          "caption": "Northern Exposure: Expeditions \u2014 edition image 15 (Discogs release 21353)."
+        }
+      ]
+    },
+    {
+      "parentId": "singles-remixes",
+      "childId": "nc-01",
+      "action": "prepend",
+      "newGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/restored-artwork/nc-01-sunshine-sampler-sticker-approved-v2.webp",
+          "alt": "Restored blue Sunshine State of Mind four-track sampler sticker, with verified artist list, FFRR emblem and warning.",
+          "caption": "Sunshine State of Mind \u2014 four-track sampler \u2014 restored FFRR sticker."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/singles-remixes/nc-01-img-5161.jpg",
+          "alt": "Various artists \u2014 Sunshine State of Mind \u2014 four-track sampler, photographed edition IMG_5161",
+          "caption": "Sunshine State of Mind \u2014 four-track sampler \u2014 archive photograph IMG_5161."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/singles-remixes/nc-01-img-5162.jpg",
+          "alt": "Various artists \u2014 Sunshine State of Mind \u2014 four-track sampler, photographed edition IMG_5162",
+          "caption": "Sunshine State of Mind \u2014 four-track sampler \u2014 archive photograph IMG_5162."
+        }
+      ],
+      "previousGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/singles-remixes/nc-01-img-5161.jpg",
+          "alt": "Various artists \u2014 Sunshine State of Mind \u2014 four-track sampler, photographed edition IMG_5161",
+          "caption": "Sunshine State of Mind \u2014 four-track sampler \u2014 archive photograph IMG_5161."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/singles-remixes/nc-01-img-5162.jpg",
+          "alt": "Various artists \u2014 Sunshine State of Mind \u2014 four-track sampler, photographed edition IMG_5162",
+          "caption": "Sunshine State of Mind \u2014 four-track sampler \u2014 archive photograph IMG_5162."
+        }
+      ]
+    },
+    {
+      "parentId": "cosmic-records-history",
+      "childId": "cosmic-009",
+      "action": "replace-all",
+      "newGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/restored-artwork/cosmic-009-a-label-approved-v2.webp",
+          "alt": "Restored black and white Cosmic 009 Remix LP label, side A Groove Me, with verified production credits.",
+          "caption": "DJ\u2019s Friction & Spice \u2014 Remix LP \u2014 restored Cosmic 009 A-side label."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/restored-artwork/cosmic-009-b-label-approved-v2.webp",
+          "alt": "Restored black and white Cosmic 009 Remix LP label, side B You Make Me Feel So Good, with verified production credits.",
+          "caption": "DJ\u2019s Friction & Spice \u2014 Remix LP \u2014 restored Cosmic 009 B-side label."
+        }
+      ],
+      "previousGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/cosmic-009-continuous-grooves-v2.png",
+          "alt": "DJ\u2019s Friction & Spice \u2014 Remix LP: vinyl presentation",
+          "caption": "Reconstructed presentation from original label photography; artwork fidelity review pending."
+        }
+      ]
+    }
+  ],
+  "batchManifest": "outputs/credentials-artwork-2026-10-11/batch-13-review/batch.json",
+  "beforeSnapshot": "outputs/credentials-artwork-2026-10-12/batch13-approved/before-snapshot.json",
+  "verification": {
+    "status": "passed",
+    "independentReport": "outputs/credentials-artwork-2026-10-12/batch13-approved/import-verification.json",
+    "independentReportSha256": "a877dc969f01fd858f58da7410f4767727c545e4d0b1d04d3b5e97ec4acabf43",
+    "browserReport": "outputs/credentials-artwork-2026-10-12/batch13-approved/browser-verification.json",
+    "browserStatus": "passed",
+    "counts": {
+      "approvedReleases": 7,
+      "approvedViews": 9,
+      "newAssets": 8,
+      "reusedAssets": 1,
+      "galleryOperations": 7,
+      "projectedImages": 217,
+      "projectedPending": 1,
+      "excludedCaptures": 29,
+      "preservedCaptureCopies": 58,
+      "builtPages": 20,
+      "focusedTests": 9
+    }
+  },
+  "published": false
+}

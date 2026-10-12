@@ -1,5 +1,17 @@
 # Next batch — eight release targets
 
+## Execution checkpoint — 12 October 2026
+
+The owner approved all seven Batch 13 releases and nine complete views, explicitly authorizing local import, commit and push. NC12 sleeve/label and NC01 sampler sticker are added; D003 reuses the existing approved Tranceport.3 asset for its newly approved CD placement; D092, D130 and D131 use their approved replacements; Cosmic 009 now shows the approved A/B labels. Superseded presentation files remain preserved as evidence. All non-gallery catalogue fields are unchanged.
+
+Independent verification passed exact gallery-diff checks, all nine master-to-WebP lossless pixel comparisons, public/public-deploy/build/HTTP hashes, 29 unchanged exclusions, 58 capture-copy hashes, and all 583 preexisting public assets. Nine focused tests and a fresh 20-page full build passed. Root checked all seven Credentials cards, both companion slides, and all nine archive images in the actual 507×800 browser viewport; this does not claim physical-device acceptance. Evidence: `docs/research/2026-10-12-batch13-approved-artwork-import.json`, `docs/research/2026-10-12-batch13-artwork-verification.json`, and parent-workspace `outputs/credentials-artwork-2026-10-12/batch13-approved/`.
+
+Approved batches 02–13 now total 37 release candidates. Current projection is 217 images / one pending Singles parent; all child releases have a displayed image, although remaining quality reviews are still open. Fifteen release entries remain in the quality queue: D014 plus fourteen Cosmic editions. That count is not fifteen new restorations, and optional secondary-view microtext remains separate. D014's printed durations/BPM/label/release-note lines are the sole active owner question. No duplicate question or guessed lettering.
+
+The next eight-release round is Cosmic 001–005, 007, 008 and 010. Fresh public-source originals and independent text checks are saved under `outputs/credentials-artwork-2026-10-12/batch14-preparation/`; restoration candidates are being prepared in parallel. No new Batch 14 approval or import is inferred. Initial owner photographs and old generated cards are forbidden restoration inputs. The authorized Batch 13 Git checkpoint is recorded in `outputs/credentials-artwork-2026-10-12/batch13-approved/git-receipt.json` after completion. Unrelated player/style/test work is preserved outside the artwork commit. Dinner automation remains PAUSED; production publication remains separately gated. Earlier snapshots below are historical.
+
+## Original plan
+
 12 October2026. Planning only while root completes the authorized commit/push checkpoint. No generation, site edit, import or Git action was performed for this plan. Eight is the standard batch target, not a promise that eight are already unblocked.
 
 | Release | Current evidence and readiness | Next action / gate |

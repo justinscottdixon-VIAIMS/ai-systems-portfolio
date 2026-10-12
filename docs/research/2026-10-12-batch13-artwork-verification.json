@@ -1,0 +1,465 @@
+{
+  "startedAt": "2026-10-12T10:49:04.932Z",
+  "status": "passed",
+  "siteReadOnly": true,
+  "reviewer": "/root/artwork_pipeline",
+  "checks": {
+    "allOriginalPublicAssetsPreserved": {
+      "count": 583,
+      "evidence": "worktree-before.json"
+    },
+    "historicalImportLedgersUnchanged": {
+      "count": 4
+    },
+    "capturePolicyAnd58EvidenceCopiesUnchanged": true,
+    "exactSevenAuthorizedGalleryOperations": true,
+    "everyNonGalleryFieldUnchanged": true,
+    "projectedImages217PendingParentOnly": true,
+    "allNinePinnedMastersDecodedPixelsCopiesBuildHttpMatch": true,
+    "allNineViewsInCorrectBuiltDeckAndArchive": true,
+    "all20PagesAndOutputFilesExclude29CaptureSources": true,
+    "nineFreshFocusedTestsAnd20PageBuildPassed": true
+  },
+  "assets": [
+    {
+      "id": "nc-12",
+      "view": 0,
+      "sourceSha256": "a3fdf012b0a11f36b7d3ad7147b49f363342da584d90426776598920b96bf8a9",
+      "assetSha256": "bb5c19f72d6ecabd5637e0edb5d3abe5da4fcc729e675a669bb0b04b7992aaba",
+      "dimensions": [
+        4000,
+        4000
+      ],
+      "pixelIdentical": true,
+      "copies": {
+        "public": {
+          "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/site/.worktrees/adaptive-media-shadow/public/reference/restored-artwork/nc-12-motion-one-or-two-sleeve-approved-v1.webp",
+          "sha256": "bb5c19f72d6ecabd5637e0edb5d3abe5da4fcc729e675a669bb0b04b7992aaba"
+        },
+        "publicDeploy": {
+          "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/site/.worktrees/adaptive-media-shadow/public-deploy/reference/restored-artwork/nc-12-motion-one-or-two-sleeve-approved-v1.webp",
+          "sha256": "bb5c19f72d6ecabd5637e0edb5d3abe5da4fcc729e675a669bb0b04b7992aaba"
+        },
+        "previewBuild": {
+          "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-review-2026-10-04/dist/reference/restored-artwork/nc-12-motion-one-or-two-sleeve-approved-v1.webp",
+          "sha256": "bb5c19f72d6ecabd5637e0edb5d3abe5da4fcc729e675a669bb0b04b7992aaba"
+        }
+      },
+      "http": {
+        "url": "http://127.0.0.1:4334/reference/restored-artwork/nc-12-motion-one-or-two-sleeve-approved-v1.webp",
+        "status": 200,
+        "sha256": "bb5c19f72d6ecabd5637e0edb5d3abe5da4fcc729e675a669bb0b04b7992aaba"
+      }
+    },
+    {
+      "id": "nc-12",
+      "view": 1,
+      "sourceSha256": "e71a9f9f211e377b59bee251b47d36692de8023957c8205faeda5ed21d0bbbe8",
+      "assetSha256": "c3095e92f36f6b73e10d186ea2d03dd78d95c055d7169ab0c93991cb98b89310",
+      "dimensions": [
+        4000,
+        4000
+      ],
+      "pixelIdentical": true,
+      "copies": {
+        "public": {
+          "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/site/.worktrees/adaptive-media-shadow/public/reference/restored-artwork/nc-12-motion-one-or-two-label-approved-v1.webp",
+          "sha256": "c3095e92f36f6b73e10d186ea2d03dd78d95c055d7169ab0c93991cb98b89310"
+        },
+        "publicDeploy": {
+          "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/site/.worktrees/adaptive-media-shadow/public-deploy/reference/restored-artwork/nc-12-motion-one-or-two-label-approved-v1.webp",
+          "sha256": "c3095e92f36f6b73e10d186ea2d03dd78d95c055d7169ab0c93991cb98b89310"
+        },
+        "previewBuild": {
+          "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-review-2026-10-04/dist/reference/restored-artwork/nc-12-motion-one-or-two-label-approved-v1.webp",
+          "sha256": "c3095e92f36f6b73e10d186ea2d03dd78d95c055d7169ab0c93991cb98b89310"
+        }
+      },
+      "http": {
+        "url": "http://127.0.0.1:4334/reference/restored-artwork/nc-12-motion-one-or-two-label-approved-v1.webp",
+        "status": 200,
+        "sha256": "c3095e92f36f6b73e10d186ea2d03dd78d95c055d7169ab0c93991cb98b89310"
+      }
+    },
+    {
+      "id": "d003",
+      "view": 0,
+      "sourceSha256": "4d3aaa4a8124994097d58095c7f0c84ca26eaafc45041f196020ed94759ec17f",
+      "assetSha256": "2ceb2e662d1f1f19348a84a3c4242b5cf53655090f64ef3ea03a76ee9e81777f",
+      "dimensions": [
+        1265,
+        1244
+      ],
+      "pixelIdentical": true,
+      "copies": {
+        "public": {
+          "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/site/.worktrees/adaptive-media-shadow/public/reference/restored-artwork/nc-09-tranceport-3-cd-approved-v2.webp",
+          "sha256": "2ceb2e662d1f1f19348a84a3c4242b5cf53655090f64ef3ea03a76ee9e81777f"
+        },
+        "publicDeploy": {
+          "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/site/.worktrees/adaptive-media-shadow/public-deploy/reference/restored-artwork/nc-09-tranceport-3-cd-approved-v2.webp",
+          "sha256": "2ceb2e662d1f1f19348a84a3c4242b5cf53655090f64ef3ea03a76ee9e81777f"
+        },
+        "previewBuild": {
+          "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-review-2026-10-04/dist/reference/restored-artwork/nc-09-tranceport-3-cd-approved-v2.webp",
+          "sha256": "2ceb2e662d1f1f19348a84a3c4242b5cf53655090f64ef3ea03a76ee9e81777f"
+        }
+      },
+      "http": {
+        "url": "http://127.0.0.1:4334/reference/restored-artwork/nc-09-tranceport-3-cd-approved-v2.webp",
+        "status": 200,
+        "sha256": "2ceb2e662d1f1f19348a84a3c4242b5cf53655090f64ef3ea03a76ee9e81777f"
+      }
+    },
+    {
+      "id": "d130",
+      "view": 0,
+      "sourceSha256": "d1e9ba3cec48c1c6b5acf063d91cafb6016fb87f1425b5c7e9da40bccd909141",
+      "assetSha256": "ea2d0f8e15287e2c18189a3bbf41c6b641172178c0537bcf8670409b438011f2",
+      "dimensions": [
+        1248,
+        1254
+      ],
+      "pixelIdentical": true,
+      "copies": {
+        "public": {
+          "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/site/.worktrees/adaptive-media-shadow/public/reference/restored-artwork/d130-mankind-earth-breakthrough-approved-v2.webp",
+          "sha256": "ea2d0f8e15287e2c18189a3bbf41c6b641172178c0537bcf8670409b438011f2"
+        },
+        "publicDeploy": {
+          "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/site/.worktrees/adaptive-media-shadow/public-deploy/reference/restored-artwork/d130-mankind-earth-breakthrough-approved-v2.webp",
+          "sha256": "ea2d0f8e15287e2c18189a3bbf41c6b641172178c0537bcf8670409b438011f2"
+        },
+        "previewBuild": {
+          "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-review-2026-10-04/dist/reference/restored-artwork/d130-mankind-earth-breakthrough-approved-v2.webp",
+          "sha256": "ea2d0f8e15287e2c18189a3bbf41c6b641172178c0537bcf8670409b438011f2"
+        }
+      },
+      "http": {
+        "url": "http://127.0.0.1:4334/reference/restored-artwork/d130-mankind-earth-breakthrough-approved-v2.webp",
+        "status": 200,
+        "sha256": "ea2d0f8e15287e2c18189a3bbf41c6b641172178c0537bcf8670409b438011f2"
+      }
+    },
+    {
+      "id": "d131",
+      "view": 0,
+      "sourceSha256": "c7ca95c5c1c85000975c52c9350263ce25bdeb4c2e3a9638bd582c8ccc30ffd4",
+      "assetSha256": "0c872ad9aec5e4001b98276bde887e6e53b396232c9a4598d9db4fb7a61f2dcb",
+      "dimensions": [
+        4000,
+        4045
+      ],
+      "pixelIdentical": true,
+      "copies": {
+        "public": {
+          "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/site/.worktrees/adaptive-media-shadow/public/reference/restored-artwork/d131-cystamatic-a-approved-v1.webp",
+          "sha256": "0c872ad9aec5e4001b98276bde887e6e53b396232c9a4598d9db4fb7a61f2dcb"
+        },
+        "publicDeploy": {
+          "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/site/.worktrees/adaptive-media-shadow/public-deploy/reference/restored-artwork/d131-cystamatic-a-approved-v1.webp",
+          "sha256": "0c872ad9aec5e4001b98276bde887e6e53b396232c9a4598d9db4fb7a61f2dcb"
+        },
+        "previewBuild": {
+          "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-review-2026-10-04/dist/reference/restored-artwork/d131-cystamatic-a-approved-v1.webp",
+          "sha256": "0c872ad9aec5e4001b98276bde887e6e53b396232c9a4598d9db4fb7a61f2dcb"
+        }
+      },
+      "http": {
+        "url": "http://127.0.0.1:4334/reference/restored-artwork/d131-cystamatic-a-approved-v1.webp",
+        "status": 200,
+        "sha256": "0c872ad9aec5e4001b98276bde887e6e53b396232c9a4598d9db4fb7a61f2dcb"
+      }
+    },
+    {
+      "id": "d092",
+      "view": 0,
+      "sourceSha256": "208cf105e016b29bdfe8354d59fe1346a014eed06d88904cd00236cfbeb076e9",
+      "assetSha256": "9f87c06d5bb5a58b20d377b8b4e65a2f1c62e8faaad94129f8b09ef77a31a832",
+      "dimensions": [
+        1339,
+        1176
+      ],
+      "pixelIdentical": true,
+      "copies": {
+        "public": {
+          "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/site/.worktrees/adaptive-media-shadow/public/reference/restored-artwork/d092-northern-exposure-expeditions-approved-v2.webp",
+          "sha256": "9f87c06d5bb5a58b20d377b8b4e65a2f1c62e8faaad94129f8b09ef77a31a832"
+        },
+        "publicDeploy": {
+          "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/site/.worktrees/adaptive-media-shadow/public-deploy/reference/restored-artwork/d092-northern-exposure-expeditions-approved-v2.webp",
+          "sha256": "9f87c06d5bb5a58b20d377b8b4e65a2f1c62e8faaad94129f8b09ef77a31a832"
+        },
+        "previewBuild": {
+          "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-review-2026-10-04/dist/reference/restored-artwork/d092-northern-exposure-expeditions-approved-v2.webp",
+          "sha256": "9f87c06d5bb5a58b20d377b8b4e65a2f1c62e8faaad94129f8b09ef77a31a832"
+        }
+      },
+      "http": {
+        "url": "http://127.0.0.1:4334/reference/restored-artwork/d092-northern-exposure-expeditions-approved-v2.webp",
+        "status": 200,
+        "sha256": "9f87c06d5bb5a58b20d377b8b4e65a2f1c62e8faaad94129f8b09ef77a31a832"
+      }
+    },
+    {
+      "id": "nc-01",
+      "view": 0,
+      "sourceSha256": "073f197bf6e8be1a0dcdb8cf41bb8b8a6f6c34dcb3af1d0e057eeca2220b5eb5",
+      "assetSha256": "d1feadb458d10b23363692754639bbc75bd21ca12e17ed843306c89ed4a37a02",
+      "dimensions": [
+        4000,
+        3880
+      ],
+      "pixelIdentical": true,
+      "copies": {
+        "public": {
+          "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/site/.worktrees/adaptive-media-shadow/public/reference/restored-artwork/nc-01-sunshine-sampler-sticker-approved-v2.webp",
+          "sha256": "d1feadb458d10b23363692754639bbc75bd21ca12e17ed843306c89ed4a37a02"
+        },
+        "publicDeploy": {
+          "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/site/.worktrees/adaptive-media-shadow/public-deploy/reference/restored-artwork/nc-01-sunshine-sampler-sticker-approved-v2.webp",
+          "sha256": "d1feadb458d10b23363692754639bbc75bd21ca12e17ed843306c89ed4a37a02"
+        },
+        "previewBuild": {
+          "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-review-2026-10-04/dist/reference/restored-artwork/nc-01-sunshine-sampler-sticker-approved-v2.webp",
+          "sha256": "d1feadb458d10b23363692754639bbc75bd21ca12e17ed843306c89ed4a37a02"
+        }
+      },
+      "http": {
+        "url": "http://127.0.0.1:4334/reference/restored-artwork/nc-01-sunshine-sampler-sticker-approved-v2.webp",
+        "status": 200,
+        "sha256": "d1feadb458d10b23363692754639bbc75bd21ca12e17ed843306c89ed4a37a02"
+      }
+    },
+    {
+      "id": "cosmic-009",
+      "view": 0,
+      "sourceSha256": "d2e59b81bc273a58b919ba6b5433b6e38fe033051935a36db688200203c0d167",
+      "assetSha256": "49a72d39529bf79bf9a313f9993bc4cd1869c7f683198fe16bf89bbf6fe6495a",
+      "dimensions": [
+        4000,
+        4000
+      ],
+      "pixelIdentical": true,
+      "copies": {
+        "public": {
+          "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/site/.worktrees/adaptive-media-shadow/public/reference/restored-artwork/cosmic-009-a-label-approved-v2.webp",
+          "sha256": "49a72d39529bf79bf9a313f9993bc4cd1869c7f683198fe16bf89bbf6fe6495a"
+        },
+        "publicDeploy": {
+          "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/site/.worktrees/adaptive-media-shadow/public-deploy/reference/restored-artwork/cosmic-009-a-label-approved-v2.webp",
+          "sha256": "49a72d39529bf79bf9a313f9993bc4cd1869c7f683198fe16bf89bbf6fe6495a"
+        },
+        "previewBuild": {
+          "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-review-2026-10-04/dist/reference/restored-artwork/cosmic-009-a-label-approved-v2.webp",
+          "sha256": "49a72d39529bf79bf9a313f9993bc4cd1869c7f683198fe16bf89bbf6fe6495a"
+        }
+      },
+      "http": {
+        "url": "http://127.0.0.1:4334/reference/restored-artwork/cosmic-009-a-label-approved-v2.webp",
+        "status": 200,
+        "sha256": "49a72d39529bf79bf9a313f9993bc4cd1869c7f683198fe16bf89bbf6fe6495a"
+      }
+    },
+    {
+      "id": "cosmic-009",
+      "view": 1,
+      "sourceSha256": "5049ed12eb45394a0e81dad8a9faf8c57383fa827ae03efbe4f4391f8bde40ad",
+      "assetSha256": "d8c030206459c3387d8d6b6c0e398d37deb6c5450d2a30d0d38f5d572c79cd5f",
+      "dimensions": [
+        4000,
+        4000
+      ],
+      "pixelIdentical": true,
+      "copies": {
+        "public": {
+          "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/site/.worktrees/adaptive-media-shadow/public/reference/restored-artwork/cosmic-009-b-label-approved-v2.webp",
+          "sha256": "d8c030206459c3387d8d6b6c0e398d37deb6c5450d2a30d0d38f5d572c79cd5f"
+        },
+        "publicDeploy": {
+          "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/site/.worktrees/adaptive-media-shadow/public-deploy/reference/restored-artwork/cosmic-009-b-label-approved-v2.webp",
+          "sha256": "d8c030206459c3387d8d6b6c0e398d37deb6c5450d2a30d0d38f5d572c79cd5f"
+        },
+        "previewBuild": {
+          "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-review-2026-10-04/dist/reference/restored-artwork/cosmic-009-b-label-approved-v2.webp",
+          "sha256": "d8c030206459c3387d8d6b6c0e398d37deb6c5450d2a30d0d38f5d572c79cd5f"
+        }
+      },
+      "http": {
+        "url": "http://127.0.0.1:4334/reference/restored-artwork/cosmic-009-b-label-approved-v2.webp",
+        "status": 200,
+        "sha256": "d8c030206459c3387d8d6b6c0e398d37deb6c5450d2a30d0d38f5d572c79cd5f"
+      }
+    }
+  ],
+  "presentationTargets": [
+    {
+      "id": "nc-12",
+      "view": 0,
+      "parentId": "singles-remixes",
+      "dossierNumber": 3,
+      "childNumber": 12,
+      "childCount": 18,
+      "cardId": "singles-remixes-nc-12",
+      "zeroBasedSlide": 18,
+      "oneBasedSlide": 19,
+      "totalSlides": 35,
+      "cardZeroBasedSlide": 18,
+      "archiveRoute": "/archive/singles-remixes/#nc-12",
+      "assetPath": "/reference/restored-artwork/nc-12-motion-one-or-two-sleeve-approved-v1.webp",
+      "evidence": "Parsed data-reference-slide order and image src from built index.html"
+    },
+    {
+      "id": "nc-12",
+      "view": 1,
+      "parentId": "singles-remixes",
+      "dossierNumber": 3,
+      "childNumber": 12,
+      "childCount": 18,
+      "cardId": "singles-remixes-nc-12",
+      "zeroBasedSlide": 19,
+      "oneBasedSlide": 20,
+      "totalSlides": 35,
+      "cardZeroBasedSlide": 18,
+      "archiveRoute": "/archive/singles-remixes/#nc-12",
+      "assetPath": "/reference/restored-artwork/nc-12-motion-one-or-two-label-approved-v1.webp",
+      "evidence": "Parsed data-reference-slide order and image src from built index.html"
+    },
+    {
+      "id": "d003",
+      "view": 0,
+      "parentId": "compilation-appearances",
+      "dossierNumber": 5,
+      "childNumber": 3,
+      "childCount": 16,
+      "cardId": "compilation-appearances-d003",
+      "zeroBasedSlide": 14,
+      "oneBasedSlide": 15,
+      "totalSlides": 132,
+      "cardZeroBasedSlide": 14,
+      "archiveRoute": "/archive/compilation-appearances/#d003",
+      "assetPath": "/reference/restored-artwork/nc-09-tranceport-3-cd-approved-v2.webp",
+      "evidence": "Parsed data-reference-slide order and image src from built index.html"
+    },
+    {
+      "id": "d130",
+      "view": 0,
+      "parentId": "production-engineering-credits",
+      "dossierNumber": 4,
+      "childNumber": 12,
+      "childCount": 13,
+      "cardId": "production-engineering-credits-d130",
+      "zeroBasedSlide": 57,
+      "oneBasedSlide": 58,
+      "totalSlides": 65,
+      "cardZeroBasedSlide": 57,
+      "archiveRoute": "/archive/production-engineering-credits/#d130",
+      "assetPath": "/reference/restored-artwork/d130-mankind-earth-breakthrough-approved-v2.webp",
+      "evidence": "Parsed data-reference-slide order and image src from built index.html"
+    },
+    {
+      "id": "d131",
+      "view": 0,
+      "parentId": "production-engineering-credits",
+      "dossierNumber": 4,
+      "childNumber": 13,
+      "childCount": 13,
+      "cardId": "production-engineering-credits-d131",
+      "zeroBasedSlide": 60,
+      "oneBasedSlide": 61,
+      "totalSlides": 65,
+      "cardZeroBasedSlide": 60,
+      "archiveRoute": "/archive/production-engineering-credits/#d131",
+      "assetPath": "/reference/restored-artwork/d131-cystamatic-a-approved-v1.webp",
+      "evidence": "Parsed data-reference-slide order and image src from built index.html"
+    },
+    {
+      "id": "d092",
+      "view": 0,
+      "parentId": "compilation-appearances",
+      "dossierNumber": 5,
+      "childNumber": 12,
+      "childCount": 16,
+      "cardId": "compilation-appearances-d092",
+      "zeroBasedSlide": 75,
+      "oneBasedSlide": 76,
+      "totalSlides": 132,
+      "cardZeroBasedSlide": 75,
+      "archiveRoute": "/archive/compilation-appearances/#d092",
+      "assetPath": "/reference/restored-artwork/d092-northern-exposure-expeditions-approved-v2.webp",
+      "evidence": "Parsed data-reference-slide order and image src from built index.html"
+    },
+    {
+      "id": "nc-01",
+      "view": 0,
+      "parentId": "singles-remixes",
+      "dossierNumber": 3,
+      "childNumber": 1,
+      "childCount": 18,
+      "cardId": "singles-remixes-nc-01",
+      "zeroBasedSlide": 2,
+      "oneBasedSlide": 3,
+      "totalSlides": 35,
+      "cardZeroBasedSlide": 2,
+      "archiveRoute": "/archive/singles-remixes/#nc-01",
+      "assetPath": "/reference/restored-artwork/nc-01-sunshine-sampler-sticker-approved-v2.webp",
+      "evidence": "Parsed data-reference-slide order and image src from built index.html"
+    },
+    {
+      "id": "cosmic-009",
+      "view": 0,
+      "parentId": "cosmic-records-history",
+      "dossierNumber": 2,
+      "childNumber": 9,
+      "childCount": 17,
+      "cardId": "cosmic-records-history-cosmic-009",
+      "zeroBasedSlide": 10,
+      "oneBasedSlide": 11,
+      "totalSlides": 29,
+      "cardZeroBasedSlide": 10,
+      "archiveRoute": "/archive/cosmic-records-history/#cosmic-009",
+      "assetPath": "/reference/restored-artwork/cosmic-009-a-label-approved-v2.webp",
+      "evidence": "Parsed data-reference-slide order and image src from built index.html"
+    },
+    {
+      "id": "cosmic-009",
+      "view": 1,
+      "parentId": "cosmic-records-history",
+      "dossierNumber": 2,
+      "childNumber": 9,
+      "childCount": 17,
+      "cardId": "cosmic-records-history-cosmic-009",
+      "zeroBasedSlide": 11,
+      "oneBasedSlide": 12,
+      "totalSlides": 29,
+      "cardZeroBasedSlide": 10,
+      "archiveRoute": "/archive/cosmic-records-history/#cosmic-009",
+      "assetPath": "/reference/restored-artwork/cosmic-009-b-label-approved-v2.webp",
+      "evidence": "Parsed data-reference-slide order and image src from built index.html"
+    }
+  ],
+  "buildRoot": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-review-2026-10-04/dist",
+  "counts": {
+    "approvedReleases": 7,
+    "approvedViews": 9,
+    "newAssets": 8,
+    "reusedAssets": 1,
+    "galleryOperations": 7,
+    "projectedImages": 217,
+    "projectedPending": 1,
+    "excludedCaptures": 29,
+    "preservedCaptureCopies": 58,
+    "builtPages": 20,
+    "focusedTests": 9
+  },
+  "pendingRecordIds": [
+    "singles-remixes"
+  ],
+  "snapshotHashes": {
+    "beforeRecords": "a5d73f2a06899cb41c1fa08c3588c34020f9c78b280327c2c21a688464bcc32e",
+    "afterRecords": "6774d9aca85c83958f5324fd454950b104f6d6839baf08c3adef1007320c962c",
+    "policy": "607b2ee8533366a454e7f9d8160c6da2e024111b1d01936e307bf063aad49407",
+    "builtIndex": "61968d926ef8b7c5e651bd7feee0fd030f6f8d0d687362f5b0c9603e51cb6086"
+  },
+  "completedAt": "2026-10-12T10:49:07.081Z"
+}

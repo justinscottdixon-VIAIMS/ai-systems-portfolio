@@ -292,9 +292,15 @@
           "gallery": [
             {
               "kind": "image",
-              "src": "/reference/cosmic-009-continuous-grooves-v2.png",
-              "alt": "DJ’s Friction & Spice — Remix LP: vinyl presentation",
-              "caption": "Reconstructed presentation from original label photography; artwork fidelity review pending."
+              "src": "/reference/restored-artwork/cosmic-009-a-label-approved-v2.webp",
+              "alt": "Restored black and white Cosmic 009 Remix LP label, side A Groove Me, with verified production credits.",
+              "caption": "DJ’s Friction & Spice — Remix LP — restored Cosmic 009 A-side label."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/restored-artwork/cosmic-009-b-label-approved-v2.webp",
+              "alt": "Restored black and white Cosmic 009 Remix LP label, side B You Make Me Feel So Good, with verified production credits.",
+              "caption": "DJ’s Friction & Spice — Remix LP — restored Cosmic 009 B-side label."
             }
           ]
         },
@@ -1653,6 +1659,12 @@
           "gallery": [
             {
               "kind": "image",
+              "src": "/reference/restored-artwork/nc-01-sunshine-sampler-sticker-approved-v2.webp",
+              "alt": "Restored blue Sunshine State of Mind four-track sampler sticker, with verified artist list, FFRR emblem and warning.",
+              "caption": "Sunshine State of Mind — four-track sampler — restored FFRR sticker."
+            },
+            {
+              "kind": "image",
               "src": "/reference/singles-remixes/nc-01-img-5161.jpg",
               "alt": "Various artists — Sunshine State of Mind — four-track sampler, photographed edition IMG_5161",
               "caption": "Sunshine State of Mind — four-track sampler — archive photograph IMG_5161."
@@ -2056,6 +2068,18 @@
           ],
           "summary": "Motion and One or Two: written and produced by Justin Scott Dixon. Sam Frost supplies additional keyboard production on Motion.",
           "gallery": [
+            {
+              "kind": "image",
+              "src": "/reference/restored-artwork/nc-12-motion-one-or-two-sleeve-approved-v1.webp",
+              "alt": "Restored white Coded sleeve with green circular design and complete Motion / One or Two label.",
+              "caption": "Voyager — Motion / One or Two — restored CODE 012 sleeve."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/restored-artwork/nc-12-motion-one-or-two-label-approved-v1.webp",
+              "alt": "Restored Motion / One or Two label with blue 12, verified credits and Coded barcode.",
+              "caption": "Voyager — Motion / One or Two — restored CODE 012 information label."
+            },
             {
               "kind": "image",
               "src": "/reference/singles-remixes/nc-12-img-5185.jpg",
@@ -3054,15 +3078,15 @@
           "gallery": [
             {
               "kind": "image",
-              "src": "/reference/remaining-artwork/d130-01.jpg",
-              "alt": "Mankind — edition artwork image 1",
-              "caption": "Mankind — edition image 1 (Discogs release 289076)."
+              "src": "/reference/restored-artwork/d130-mankind-earth-breakthrough-approved-v2.webp",
+              "alt": "Restored complete Mankind label artwork with Earth, dark concentric rings, a planetary horizon and Breakthrough lettering.",
+              "caption": "Kyng Nova & Friction — Mankind — restored Earth / Breakthrough artwork."
             },
             {
               "kind": "image",
-              "src": "/reference/remaining-artwork/d130-02.jpg",
-              "alt": "Mankind — edition artwork image 2",
-              "caption": "Mankind — edition image 2 (Discogs release 289076)."
+              "src": "/reference/remaining-artwork/d130-01.jpg",
+              "alt": "Mankind — edition artwork image 1",
+              "caption": "Mankind — edition image 1 (Discogs release 289076)."
             }
           ],
           "credits": [
@@ -3100,9 +3124,9 @@
           "gallery": [
             {
               "kind": "image",
-              "src": "/reference/remaining-artwork/d131-01.jpg",
-              "alt": "Cystamatic — edition artwork image 1",
-              "caption": "Cystamatic — edition image 1 (Discogs release 15319731)."
+              "src": "/reference/restored-artwork/d131-cystamatic-a-approved-v1.webp",
+              "alt": "Restored cream Cystamatic white label retaining Brian Van Dalen, Side A and IMP 001 handwriting.",
+              "caption": "Brian Van Dalen — Cystamatic — restored handwritten A-side label."
             },
             {
               "kind": "image",
@@ -3581,9 +3605,9 @@
           "gallery": [
             {
               "kind": "image",
-              "src": "/reference/remaining-artwork/d003-01.jpg",
-              "alt": "Tranceport.3 — mix album — edition artwork image 1",
-              "caption": "Tranceport.3 — mix album — edition image 1 (Discogs release 40908)."
+              "src": "/reference/restored-artwork/nc-09-tranceport-3-cd-approved-v2.webp",
+              "alt": "Restored orange and black Sandra Collins Tranceport.3 CD cover with red outlined emblem.",
+              "caption": "Sandra Collins — Tranceport.3 — restored CD front cover."
             },
             {
               "kind": "image",
@@ -4272,9 +4296,9 @@
           "gallery": [
             {
               "kind": "image",
-              "src": "/reference/remaining-artwork/d092-01.jpg",
-              "alt": "Northern Exposure: Expeditions — edition artwork image 1",
-              "caption": "Northern Exposure: Expeditions — edition image 1 (Discogs release 21353)."
+              "src": "/reference/restored-artwork/d092-northern-exposure-expeditions-approved-v2.webp",
+              "alt": "Restored Northern Exposure: Expeditions cover with white title and interlocking red and yellow ropes on green, with the yellow sticker removed.",
+              "caption": "Sasha + John Digweed — Northern Exposure: Expeditions — restored front cover."
             },
             {
               "kind": "image",
