@@ -6,6 +6,7 @@ import { toPortfolioRecords } from '../lib/portfolio-records.mjs';
 import { selectReleaseRecords } from '../lib/release-scope.mjs';
 import CredentialsPlaylist from './CredentialsPlaylist.astro';
 import TrackCredits from './TrackCredits.astro';
+import CosmicLabelFlip from './CosmicLabelFlip.astro';
 import { archiveHref } from '../lib/archive-index.mjs';
 import '../styles/hybrid-media-engine.css';
 
@@ -90,13 +91,15 @@ const evidenceLabels = {
 								<header class="reference-stage__sequence"><span>{record.title}</span><span>ARTWORK {imageIndex + 2} / {record.gallery.length}</span></header>
 								<figure><img src={item.src} alt={item.alt} loading="lazy" decoding="async" /><figcaption>{item.caption}</figcaption></figure>
 							</section>)}
-							{record.children.map((child, childIndex) => (<Fragment>
+							{record.children.map((child, childIndex) => {
+                                const canFlipLabel = record.id === 'cosmic-records-history' && child.gallery.length >= 2 && child.gallery.slice(0, 2).every(item => item.kind === 'image' && item.src.includes('-circle-'));
+                                return (<Fragment>
 								<article class="reference-stage__slide reference-stage__child-page" data-reference-slide data-slide-label={child.title} id={`${record.id}-${child.id}`} hidden>
-									<div class="reference-stage__child-art">{child.gallery[0].kind === 'image' ? <img src={child.gallery[0].src} alt={child.gallery[0].alt} loading="lazy" decoding="async" /> : <div role="img" aria-label={child.gallery[0].alt}>ARTWORK PENDING</div>}</div>
+									<div class="reference-stage__child-art">{canFlipLabel ? <CosmicLabelFlip front={child.gallery[0]} back={child.gallery[1]} title={child.title} /> : child.gallery[0].kind === 'image' ? <img src={child.gallery[0].src} alt={child.gallery[0].alt} loading="lazy" decoding="async" /> : <div role="img" aria-label={child.gallery[0].alt}>ARTWORK PENDING</div>}</div>
 									<div class="reference-stage__child-copy"><span>RELEASE {String(childIndex + 1).padStart(2, '0')} / {String(record.children.length).padStart(2, '0')}</span><h3>{child.title}</h3><strong>{child.artist}</strong><dl><div><dt>CATALOG</dt><dd>{child.catalogNumber}</dd></div><div><dt>DATE</dt><dd>{child.date}</dd></div><div><dt>FORMAT</dt><dd>{child.format}</dd></div></dl><p>{child.summary}</p><small>{child.roles.join(' · ')}</small><p><a href={archiveHref(record, child)} target="_blank" rel="noopener noreferrer">FULL RELEASE RECORD ↗</a></p></div>
                                 </article>
-                                {child.gallery.slice(1).map((item, imageIndex) => item.kind === 'image' && <section class="reference-stage__slide reference-stage__artwork-page" data-reference-slide data-slide-label={`${child.title} — photo ${imageIndex + 2}`} hidden>
-                                  <header class="reference-stage__sequence"><span>{child.title}</span><span>PHOTO {imageIndex + 2} / {child.gallery.length}</span></header>
+                                {child.gallery.slice(canFlipLabel ? 2 : 1).map((item, imageIndex) => item.kind === 'image' && <section class="reference-stage__slide reference-stage__artwork-page" data-reference-slide data-slide-label={`${child.title} — photo ${imageIndex + (canFlipLabel ? 3 : 2)}`} hidden>
+                                  <header class="reference-stage__sequence"><span>{child.title}</span><span>PHOTO {imageIndex + (canFlipLabel ? 3 : 2)} / {child.gallery.length}</span></header>
                                   <figure><img src={item.src} alt={item.alt} loading="lazy" decoding="async" /><figcaption>{item.caption}</figcaption></figure>
                                 </section>)}
                                 {child.credits.map(credit => <section class="reference-stage__slide reference-stage__dossier-page" data-reference-slide data-slide-label={`${child.title} — ${credit.title} credits`} hidden>
@@ -104,7 +107,7 @@ const evidenceLabels = {
                                   <TrackCredits credits={[credit]} />
                                   <a href={archiveHref(record, child)} target="_blank" rel="noopener noreferrer">FULL RELEASE & SOURCES ↗</a>
                                 </section>)}
-                              </Fragment>))}
+                              </Fragment>);})}
                             {record.sections.map((section, sectionIndex) => (
 								<section class="reference-stage__slide reference-stage__dossier-page" data-reference-slide data-slide-label={section.title} data-content-density={section.items.length <= 3 && JSON.stringify(section).length < 1800 ? "light" : "regular"} hidden>
 									<header><span>SECTION {String(sectionIndex + 1).padStart(2, '0')}</span><h3>{section.title}</h3></header>{section.intro && <p>{section.intro}</p>}<ol>{section.items.map((item) => <li><time>{item.date}</time><div><strong>{item.title}</strong><p>{item.detail}</p></div></li>)}</ol>
@@ -556,6 +559,7 @@ const evidenceLabels = {
 		referenceSlideIndex = Math.min(slides.length - 1, Math.max(0, index));
 		for (const [slideIndex, slide] of slides.entries()) slide.hidden = slideIndex !== referenceSlideIndex;
 		const activeSlide = slides[referenceSlideIndex];
+		activeSlide.querySelector('[data-cosmic-label-flip]')?.dispatchEvent(new Event('cosmic-label-reset'));
 		fadeTheaterView(activeSlide);
 		referenceStatus.textContent = `${String(referenceSlideIndex + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')} · ${activeSlide.dataset.slideLabel}`;
 		previousReferenceButton.disabled = referenceSlideIndex === 0;

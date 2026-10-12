@@ -1,0 +1,1400 @@
+{
+  "date": "2026-10-12",
+  "status": "owner-approved-and-imported",
+  "ownerApproval": {
+    "quote": "ok, whats left for us to finished as far as the credentials? And can we please git commit and push?",
+    "scope": "Current reviewed Cosmic circle-only presentation and click-to-flip interaction, all 17 releases / 33 views. Commit and push authorized; Credentials production release remains separate."
+  },
+  "releaseCount": 17,
+  "viewCount": 33,
+  "flipPairCount": 16,
+  "sourcePolicy": "Initial owner release photographs were never presentation or restoration inputs. Source-led reconstructions and verified wording retain provenance. Cosmic 003 portrait uses the explicitly owner-supplied modern reconstruction; it is not recovered historical detail.",
+  "assets": [
+    {
+      "number": "001",
+      "recordId": "groove-me",
+      "index": 0,
+      "title": "Groove Me",
+      "labelRole": "information",
+      "asset": "/reference/restored-artwork/cosmic-001-label-a-approved-circle-v1.webp",
+      "previousPreviewAsset": "/reference/cosmic-label-preview/cosmic-001-label-a-review-circle-v1.webp",
+      "sha256": "a02ad87e56d8c43935d50edd92342a108f6c173aac8d1e09310887a197099558",
+      "bytes": 5035194,
+      "dimensions": [
+        4000,
+        4000
+      ],
+      "master": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-001-0/circle-only.png",
+        "sha256": "cb08e57a857294d73f46412f078f552cca31366cd1a0b34623c0027afa0b78a0",
+        "dimensions": [
+          4000,
+          4000
+        ],
+        "bytes": 10896588
+      },
+      "source": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/restoration/cosmic001/cosmic001-discogs-107023-1.jpg",
+        "sha256": "43d973a1bcbb49af8737e456181a8431ad7a6d0f7d5bfac8181acb57a33f54c5",
+        "url": "https://www.discogs.com/release/107023-DJs-Friction-And-Spice-Groove-Me",
+        "sourceKind": "public exact-edition source retained in prior restoration package"
+      },
+      "publicSourceUrl": "https://www.discogs.com/release/107023-DJs-Friction-And-Spice-Groove-Me",
+      "restorationManifest": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-001-0/manifest.json",
+      "restorationManifestSha256": "9e9448e8928ce6a6aae7c2470564b8e022b78b7dc93ffaeeae88403ffb366130",
+      "circleMask": {
+        "file": "mask.svg",
+        "sha256": "f0f5c8627b34c08af1987a6344683b867b05282a8605712ec4662781ef288811",
+        "rasterFile": "mask.png",
+        "rasterSha256": "c02dbbffd1eeab7d821c5bcede701e5772c6ca2b72f0ffb22cb898d71fb1f0fc"
+      },
+      "qualification": "Custom lettering, ink, paper and orbit logo reconstructed. Black exterior is a source-measured vector framing layer; original label pixels are retained. Exterior framing superseded by a transparent vector perimeter; retained label interior and spindle pixels are unchanged.",
+      "sourceApprovalHistory": {
+        "modernReconstruction": false
+      }
+    },
+    {
+      "number": "001",
+      "recordId": "groove-me",
+      "index": 1,
+      "title": "Groove Me",
+      "labelRole": "companion",
+      "asset": "/reference/restored-artwork/cosmic-001-flip-label-approved-circle-v1.webp",
+      "previousPreviewAsset": "/reference/cosmic-label-preview/cosmic-001-flip-label-review-circle-v1.webp",
+      "sha256": "35f7727b6a2e5638297c52a795dcc9b145817b8132b5c27f2a975345c97dc658",
+      "bytes": 643528,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "master": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/cosmic001-flip/cosmic001-flip-circle-only-v1.png",
+        "sha256": "b941b4fe5d5103e89838675c64b81d9bc5db51bc21f7ecdf0abfc6ebc8ad8622",
+        "dimensions": [
+          1254,
+          1254
+        ],
+        "bytes": 1016654
+      },
+      "source": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/cosmic001-flip/cosmic001-discogs-107023-2.jpg",
+        "url": "https://www.discogs.com/release/107023-DJs-Friction-And-Spice-Groove-Me"
+      },
+      "publicSourceUrl": "https://www.discogs.com/release/107023-DJs-Friction-And-Spice-Groove-Me",
+      "restorationManifest": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/cosmic001-flip/manifest.json",
+      "restorationManifestSha256": "305bc6060e541c24afd14396b4f47bd4cb75b634b660f4a4f4415c25b6b656a0",
+      "circleMask": {
+        "method": "Owner-approved precise vector exterior mask",
+        "mask": "exterior-mask-v1.svg",
+        "geometry": "exterior-mask-geometry-v1.json",
+        "verification": "verification-v1.json",
+        "rgbValuesUnchanged": true,
+        "interiorRgbaUnchanged": true
+      },
+      "qualification": "Only the unchanged public Discogs107023 image2 was the generation input; no owner photograph, screenshot or previous generated mockup. Custom wordmark, drawn alien/saucer outlines and print texture are source-led reconstructions, not recovered original vector paths or printing master. Fine stroke weights and contour positions may differ slightly. White/black source palette and central white spindle appearance retained. Existing native interior alpha values252\u2013254 are retained unchanged; no interior erase, recolour or alpha forcing. Generated transparent boundary had stray exterior fringe. An inspectable source-measured ellipse removes only boundary/exterior alpha, insetting a few paper-edge pixels; all RGB channels and every retained interior RGBA pixel are byte-identical to native. Geometry is an approximation of the generated label circumference. Complete1254px master with real transparent exterior and proportionally resized1200px preview; checkerboard exists only in the comparison board. Information-side-first order remains unchanged. Owner artwork approval and site import remain false; isolated review candidate only.",
+      "sourceApprovalHistory": {
+        "modernReconstruction": false
+      }
+    },
+    {
+      "number": "002",
+      "recordId": "cosmic-002",
+      "index": 0,
+      "title": "Pure / Journees",
+      "labelRole": "information",
+      "asset": "/reference/restored-artwork/cosmic-002-label-a-approved-circle-v1.webp",
+      "previousPreviewAsset": "/reference/cosmic-label-preview/cosmic-002-label-a-review-circle-v1.webp",
+      "sha256": "3d345fff32780e6dbf8fe5fc9d8b67fcb8bac7b2caa693adf7f2de97ffdb44d3",
+      "bytes": 4258220,
+      "dimensions": [
+        4000,
+        3566
+      ],
+      "master": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-002-0/circle-only.png",
+        "sha256": "1172ddd85e81150159bf913bd4cf06ab693cc2b4bca4075c372404824c457f03",
+        "dimensions": [
+          4000,
+          3566
+        ],
+        "bytes": 9475072
+      },
+      "source": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/restoration/cosmic002/cosmic002-popsike-1.jpg",
+        "sha256": "146a4adfd4aa6a48df68a26fe09727189dbc3c3a810c200020faeabf092b7c38",
+        "url": "https://www.popsike.com/DJs-Friction-Spice-PURE-JOURNEES-12-Breaks-Techno-Record-1995-RARE/284616337968.html",
+        "sourceKind": "public exact-edition source retained in prior restoration package"
+      },
+      "publicSourceUrl": "https://www.popsike.com/DJs-Friction-Spice-PURE-JOURNEES-12-Breaks-Techno-Record-1995-RARE/284616337968.html",
+      "restorationManifest": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-002-0/manifest.json",
+      "restorationManifestSha256": "0febe954ecf719b640c730f7d9973724612070a924db2f451ec4e588dedf24bd",
+      "circleMask": {
+        "file": "mask.svg",
+        "sha256": "946987ae686bc3a071ecbd6aa0213ba0a3bc5df7e98fd6da3eb80a7932ea0a4b",
+        "rasterFile": "mask.png",
+        "rasterSha256": "40f35f042471a0e3b039e7243f44dff309c1483048e244e3b9e007c5cf1c9ccc"
+      },
+      "qualification": "Perspective flattened; custom outlines and fine texture reconstructed. Black exterior is a source-measured vector framing layer; original label pixels are retained. Exterior framing superseded by a transparent vector perimeter; retained label interior and spindle pixels are unchanged.",
+      "sourceApprovalHistory": {
+        "modernReconstruction": false
+      }
+    },
+    {
+      "number": "002",
+      "recordId": "cosmic-002",
+      "index": 1,
+      "title": "Pure / Journees",
+      "labelRole": "companion",
+      "asset": "/reference/restored-artwork/cosmic-002-label-b-approved-circle-v1.webp",
+      "previousPreviewAsset": "/reference/cosmic-label-preview/cosmic-002-label-b-review-circle-v1.webp",
+      "sha256": "f1d7b2f783f9b1c76160c7ae6e5c9426687abcc750626fc8638084d37161e8c1",
+      "bytes": 1016664,
+      "dimensions": [
+        1273,
+        1236
+      ],
+      "master": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-002-1/circle-only.png",
+        "sha256": "7b042da23ddb09f575d626b82a88543d1e50dfb31653ab2ca72c33233ce8a0e0",
+        "dimensions": [
+          1273,
+          1236
+        ],
+        "bytes": 1719446
+      },
+      "source": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/flip-sides/cosmic002/cosmic002-discogs-107024-2.jpg",
+        "sha256": "b6ec0fe38278a8fbb81f3c54d184c0934779865a10bffc70708756f36a697da7",
+        "url": "https://www.discogs.com/release/107024-DJs-Friction-Spice-Pure-Journees",
+        "sourceKind": "public exact-edition source retained in prior restoration package"
+      },
+      "publicSourceUrl": "https://www.discogs.com/release/107024-DJs-Friction-Spice-Pure-Journees",
+      "restorationManifest": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-002-1/manifest.json",
+      "restorationManifestSha256": "364bc21c226e74bfd98a2361cd7d0fa445b49fee9bf57366bdb27a95650116a6",
+      "circleMask": {
+        "file": "mask.svg",
+        "sha256": "9891cfc696394183d0f44e19e6ca63e8cc75c55b63c25a5ab41490bf75cc4ab1",
+        "rasterFile": "mask.png",
+        "rasterSha256": "4d519b1b8d404b055e98e612918431c3d35818b01e75ec1585a526ac682361e8"
+      },
+      "qualification": "Exact Discogs107024 public label source is600x583. Custom double-outline COSMIC / RECORDS lettering and orbital band are source-led reconstructed contours, not recovered original vector artwork. No generic font substitution. The source perspective is regularized to a complete circle; fine halftone dots, ink weight and clean paper texture are approximations. The photographed brown spindle opening becomes a separate neutral white opening. Native output is retained unchanged as master;1200px preview is a derivative, not newly recovered detail. No owner capture, screenshot or earlier generated mockup was used as input. Opposite-side companion only; existing information-side-first order and edition facts remain unchanged. Owner artwork approval and site import remain false. Exterior framing superseded by a transparent vector perimeter; retained label interior and spindle pixels are unchanged.",
+      "sourceApprovalHistory": {
+        "modernReconstruction": false
+      }
+    },
+    {
+      "number": "003",
+      "recordId": "cosmic-003",
+      "index": 0,
+      "title": "You Make Me Feel So Good",
+      "labelRole": "information",
+      "asset": "/reference/restored-artwork/cosmic-003-label-a-approved-circle-v1.webp",
+      "previousPreviewAsset": "/reference/cosmic-label-preview/cosmic-003-label-a-review-circle-v1.webp",
+      "sha256": "dd26cdab9109d802305b541381e7b5374c4c63c4a95088a461abb36d88bdbe86",
+      "bytes": 4993792,
+      "dimensions": [
+        4000,
+        4000
+      ],
+      "master": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-003-0/circle-only.png",
+        "sha256": "8bea88502ae6bd9936ddd27bcafeae9fb8eeb43aeda3d371ee9cf75f542cad22",
+        "dimensions": [
+          4000,
+          4000
+        ],
+        "bytes": 11223622
+      },
+      "source": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/restoration/cosmic003/cosmic003-discogs-127492-1.jpg",
+        "sha256": "d2f2f67c98ce133739cd7e812317c1b41b22ade3bd550d59409bdb0179cc8fd2",
+        "url": "https://www.discogs.com/release/127492-DJs-Friction-Spice-You-Make-Me-Feel-So-Good",
+        "sourceKind": "public exact-edition source retained in prior restoration package"
+      },
+      "publicSourceUrl": "https://www.discogs.com/release/127492-DJs-Friction-Spice-You-Make-Me-Feel-So-Good",
+      "restorationManifest": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-003-0/manifest.json",
+      "restorationManifestSha256": "93986191ec1301bc84fff753e433a8199c48628b3d0253a9ea231992ae9ca079",
+      "circleMask": {
+        "file": "mask.svg",
+        "sha256": "a5a155ecd8160cba1964c9195efd8381b54c102e2758512160c080adb174d6fe",
+        "rasterFile": "mask.png",
+        "rasterSha256": "f9cd6ab7f713e9cf706b77e4bd56c49b48f247962c33237d819b50ea5af46c62"
+      },
+      "qualification": "Stamp and wear removed; stronger ink and custom glyph cuts reconstructed. Black exterior is a source-measured vector framing layer; original label pixels are retained. Exterior framing superseded by a transparent vector perimeter; retained label interior and spindle pixels are unchanged.",
+      "sourceApprovalHistory": {
+        "modernReconstruction": false
+      }
+    },
+    {
+      "number": "003",
+      "recordId": "cosmic-003",
+      "index": 1,
+      "title": "You Make Me Feel So Good",
+      "labelRole": "companion",
+      "asset": "/reference/restored-artwork/cosmic-003-portrait-monochrome-approved-circle-v3.webp",
+      "previousPreviewAsset": "/reference/restored-artwork/cosmic-003-portrait-monochrome-approved-circle-v3.webp",
+      "sha256": "254ab7395a6e4c915d257a282b7229691ca6d396060f1f3959b9a7b84b1b38c8",
+      "bytes": 1127382,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "master": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-003-1/circle-only.png",
+        "sha256": "7fc8ad9dcc773d46a1c8ed46e5b1ddf70a1c8cb719d024e6de733fdaa11f41ad",
+        "dimensions": [
+          1254,
+          1254
+        ],
+        "bytes": 2149327
+      },
+      "source": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/flip-sides/cosmic003/owner-reconstruction-monochrome-v1/owner-reconstruction-colour.jpg",
+        "sha256": "03431744030aedb157273deefe1a649a9efac5fa3f555bf593ad836e265a34f2",
+        "url": "https://www.discogs.com/release/127492-DJs-Friction-Spice-You-Make-Me-Feel-So-Good",
+        "sourceKind": "owner-supplied reconstruction, expressly authorized for monochrome conversion"
+      },
+      "publicSourceUrl": "https://www.discogs.com/release/127492-DJs-Friction-Spice-You-Make-Me-Feel-So-Good",
+      "restorationManifest": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-003-1/manifest.json",
+      "restorationManifestSha256": "6e481d619993c02eb46e16868784f551702383381eb09a5a50fc3594ddae44f4",
+      "circleMask": {
+        "file": "mask.svg",
+        "sha256": "6fb96008b1f626f3d457685fb2cbe23faace6c93bf265baa970ba120060db1ee",
+        "rasterFile": "mask.png",
+        "rasterSha256": "2f1eeb0a04bc9cbae40d4d0183b7d105c5685e52866080b69d07bc48d1db5682"
+      },
+      "qualification": "Monochrome edit of the owner-supplied modern photographic reconstruction; not recovered historical portrait detail. Generative colour editing is not guaranteed pixel-identical to the supplied image. Owner-approved monochrome companion on 12 October 2026. Fine texture is slightly re-rendered; the original public scan remains preserved as historical evidence. The linked public page is the historical reference, not the source of the owner\u2019s reconstruction. Owner-requested black exterior added with source-traced editable vector framing. The approved portrait and spindle pixels inside the boundary are unchanged; the antialiased rim receives 0.75px white-matte edge cleanup. Exterior framing superseded by a transparent vector perimeter; retained label interior and spindle pixels are unchanged.",
+      "sourceApprovalHistory": {
+        "modernReconstruction": true
+      }
+    },
+    {
+      "number": "004",
+      "recordId": "cosmic-004",
+      "index": 0,
+      "title": "Ah Yeah",
+      "labelRole": "information",
+      "asset": "/reference/restored-artwork/cosmic-004-label-a-approved-circle-v1.webp",
+      "previousPreviewAsset": "/reference/cosmic-label-preview/cosmic-004-label-a-review-circle-v1.webp",
+      "sha256": "7ed896bbbacb6f1ca0479cc69636352c133680a880180b0624f31a31e38460ec",
+      "bytes": 6029620,
+      "dimensions": [
+        4000,
+        4000
+      ],
+      "master": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-004-0/circle-only.png",
+        "sha256": "b4384dee291dc29338df4f9f5c1dfe0d08be0d4923015a0559740b416135ced6",
+        "dimensions": [
+          4000,
+          4000
+        ],
+        "bytes": 15665430
+      },
+      "source": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/info-side-correction/cosmic004/cosmic004-discogs-18577-2.jpg",
+        "sha256": "f9f7cff7f2c0246cd42fb42e8876e493dea9dbc3ffc21cd0dabf6749ccd1b862",
+        "url": "https://www.discogs.com/release/18577-The-Beat-Brothers-Ah-Yeah",
+        "sourceKind": "public exact-edition source retained in prior restoration package"
+      },
+      "publicSourceUrl": "https://www.discogs.com/release/18577-The-Beat-Brothers-Ah-Yeah",
+      "restorationManifest": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-004-0/manifest.json",
+      "restorationManifestSha256": "5e7ba6851d45143bcec2095a4bed37bccc11452aa5350d514465c79a09a59dd7",
+      "circleMask": {
+        "file": "mask.svg",
+        "sha256": "b1864ea399252df9d5b90801d8bfd23d73e44daa5b9d6a3a5b7ff062eb2e9c6c",
+        "rasterFile": "mask.png",
+        "rasterSha256": "f68269da00f21c19bd3ca033c1920d8febb5b4f1d6d36e9caa4d979775eef113"
+      },
+      "qualification": "Custom Cosmic Records orbit logo, irregular outlined artist/title shapes, black-and-white stone/paint pattern and border geometry are reconstructed approximations from the unmodified public 398 x 400 information-side scan. Footer letter metrics, outlines and catalog spacing are cleaner/stronger approximations, with all verified wording and punctuation retained. No original printing master or microscopic detail was recovered. The complete B-side information label is the primary candidate. The previously prepared A-side remains separately preserved; no edition facts change. Built-in native output is 1254 x 1254; the 4000px-wide master is a Lanczos enlargement, not native4000px generation or newly recovered detail. Native output is preserved unchanged. No separate vector replacement was needed after direct lettering inspection; all final text is part of the built-in raster restoration. Complete circular label with black exterior and retained spindle appearance; no outer record, sleeve, owner capture, screenshot or previous generated mockup used as restoration input. Local review candidate only. No site assets, catalogue metadata, Git, published state or owner approval changed. Exterior framing superseded by a transparent vector perimeter; retained label interior and spindle pixels are unchanged.",
+      "sourceApprovalHistory": {
+        "modernReconstruction": false
+      }
+    },
+    {
+      "number": "004",
+      "recordId": "cosmic-004",
+      "index": 1,
+      "title": "Ah Yeah",
+      "labelRole": "companion",
+      "asset": "/reference/restored-artwork/cosmic-004-label-b-approved-circle-v1.webp",
+      "previousPreviewAsset": "/reference/cosmic-label-preview/cosmic-004-label-b-review-circle-v1.webp",
+      "sha256": "19dc4d2028b9f7465c5ba67cdfa95112479b1a9be8c039e58e1ceb34758a389b",
+      "bytes": 5507070,
+      "dimensions": [
+        4000,
+        3970
+      ],
+      "master": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-004-1/circle-only.png",
+        "sha256": "7ee24aeee8d8177467d5aa99a8c1c7755a5fdd5a017039f3929c3d9ff1dd3110",
+        "dimensions": [
+          4000,
+          3970
+        ],
+        "bytes": 14316658
+      },
+      "source": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/restoration/cosmic004/cosmic004-a-source.jpg",
+        "sha256": "b23fdd84e41f57918b7c5f8fe2032d19d086bea6c5a8c71354127511c5677d7c",
+        "url": "https://www.discogs.com/release/18577-The-Beat-Brothers-Ah-Yeah",
+        "sourceKind": "public exact-edition source retained in prior restoration package"
+      },
+      "publicSourceUrl": "https://www.discogs.com/release/18577-The-Beat-Brothers-Ah-Yeah",
+      "restorationManifest": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-004-1/manifest.json",
+      "restorationManifestSha256": "25ed84b5e458fb30f6082422ed56977e6899a183b9aa9fd51a413ff39b21b2aa",
+      "circleMask": {
+        "file": "mask.svg",
+        "sha256": "d847c312834b51aedd90bac1bf36a2dabd79cb6687e541b941fef99bf86f3101",
+        "rasterFile": "mask.png",
+        "rasterSha256": "bc42946a3cd099a08a05cbe1bfc4c83dc841153447880feb7f3050e69cc926bf"
+      },
+      "qualification": "Custom art restored; fitted small vector type and pattern are approximate. Exterior framing superseded by a transparent vector perimeter; retained label interior and spindle pixels are unchanged.",
+      "sourceApprovalHistory": {
+        "modernReconstruction": false
+      }
+    },
+    {
+      "number": "005",
+      "recordId": "cosmic-005",
+      "index": 0,
+      "title": "Trixta / Friction",
+      "labelRole": "information",
+      "asset": "/reference/restored-artwork/cosmic-005-label-a-approved-circle-v1.webp",
+      "previousPreviewAsset": "/reference/cosmic-label-preview/cosmic-005-label-a-review-circle-v1.webp",
+      "sha256": "6a42210777ade44b4d83b6adc82a7ea1fe2c7740c7562646bab3bd2e1725b8d0",
+      "bytes": 1160124,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "master": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-005-0/circle-only.png",
+        "sha256": "004665fca88a68b8d7ff4851cbabf27abdb9017b50c78d39ac84a5c46c5e3540",
+        "dimensions": [
+          1254,
+          1254
+        ],
+        "bytes": 2076214
+      },
+      "source": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/info-side-correction/cosmic005/cosmic005-discogs-237736-2.jpg",
+        "sha256": "e05ba0c9372783b18082425c82c5f4f314a3d9a66787a628e29fef4c1f448adf",
+        "url": "https://www.discogs.com/release/237736-Friction-Spice-Trixta-Friction",
+        "sourceKind": "public exact-edition source retained in prior restoration package"
+      },
+      "publicSourceUrl": "https://www.discogs.com/release/237736-Friction-Spice-Trixta-Friction",
+      "restorationManifest": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-005-0/manifest.json",
+      "restorationManifestSha256": "8b01500004e4481280d73097285ad331530e3a8b854371b81a77b64d84420d70",
+      "circleMask": {
+        "file": "mask.svg",
+        "sha256": "962ea7ffbb02d64c0ca8864b368f7d066e2d14eb900c9e3c5078d61874dbcfd6",
+        "rasterFile": "mask.png",
+        "rasterSha256": "e90745f8bf0780bcb5f36e2b49a7f282da0950f5c72f0b569ed23c510f83ae58"
+      },
+      "qualification": "Custom geometric glyph contours, weight and tracking are reconstructed approximations, not recovered original font outlines. Owner-confirmed first digit rendered as an unambiguous open4. This small contour clarification is explicitly documented rather than claimed identical to the ambiguous source glyph. Paper discoloration, scan noise and wear removed; clean warm paper, black ink and pressing-ring microtexture reconstructed. No catalogue facts or credit ownership changed; owner artwork approval remains distinct from wording confirmation. Exterior framing superseded by a transparent vector perimeter; retained label interior and spindle pixels are unchanged.",
+      "sourceApprovalHistory": {
+        "modernReconstruction": false
+      }
+    },
+    {
+      "number": "005",
+      "recordId": "cosmic-005",
+      "index": 1,
+      "title": "Trixta / Friction",
+      "labelRole": "companion",
+      "asset": "/reference/restored-artwork/cosmic-005-label-b-approved-circle-v1.webp",
+      "previousPreviewAsset": "/reference/cosmic-label-preview/cosmic-005-label-b-review-circle-v1.webp",
+      "sha256": "08e4aeb5d704bcd9934038be0963468c6a1d9a1f777b483294c33cec4a135280",
+      "bytes": 1035226,
+      "dimensions": [
+        1254,
+        1252
+      ],
+      "master": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-005-1/circle-only.png",
+        "sha256": "09c3cbe61fb69d51ec02486a8db8341025969a5917800b44cd60fe3b0f8ecc28",
+        "dimensions": [
+          1254,
+          1252
+        ],
+        "bytes": 1671639
+      },
+      "source": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/restoration/cosmic005/cosmic005-discogs-237736-1.jpg",
+        "sha256": "e5c372f98c3ddd46acb7ee4fe81601b38534eb1e69b38ca9fdcbaaac1f765994",
+        "url": "https://www.discogs.com/release/237736",
+        "sourceKind": "public exact-edition source retained in prior restoration package"
+      },
+      "publicSourceUrl": "https://www.discogs.com/release/237736",
+      "restorationManifest": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-005-1/manifest.json",
+      "restorationManifestSha256": "ba17e9364761f5784617fa1b826c29275bb5de21ec5633400589d0c29d2b1995",
+      "circleMask": {
+        "file": "mask.svg",
+        "sha256": "1c55d4878adaa8b875e9c157246c4c9e76a788091e181b6341a4caf408e03a49",
+        "rasterFile": "mask.png",
+        "rasterSha256": "f08c57f287978aa6c7e2bb2929c7eda1d848abc79a22f5c07b7fc3d2a5943d66"
+      },
+      "qualification": "Custom geometric lettering and label texture reconstructed. Black exterior is a source-measured vector framing layer; original label pixels are retained. Exterior framing superseded by a transparent vector perimeter; retained label interior and spindle pixels are unchanged.",
+      "sourceApprovalHistory": {
+        "modernReconstruction": false
+      }
+    },
+    {
+      "number": "006",
+      "recordId": "cosmic-006",
+      "index": 0,
+      "title": "Funkee Ass Breaks Vol. 1",
+      "labelRole": "information",
+      "asset": "/reference/restored-artwork/cosmic-006-label-a-approved-circle-v1.webp",
+      "previousPreviewAsset": "/reference/cosmic-label-preview/cosmic-006-label-a-review-circle-v1.webp",
+      "sha256": "d5c85dd1c8e086aa0d2497209fddc9decdc7e39592e47e0bd363aeed8e778031",
+      "bytes": 1325750,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "master": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-006-0/circle-only.png",
+        "sha256": "c8d34dec7a057ead2099374b739384d5e337fb5c7ed2e3ca0ed4d27d12e290bd",
+        "dimensions": [
+          1254,
+          1254
+        ],
+        "bytes": 2219611
+      },
+      "source": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/restoration/cosmic006/cosmic006-discogs-107007-1.jpg",
+        "sha256": "9da0109cbba0660a3167fe8ef6f8f75ebde1ae8169b180d084e196e3c36b762a",
+        "url": "https://www.discogs.com/release/107007-Friction-Spice-Funkee-Ass-Breaks-Vol-1",
+        "sourceKind": "public exact-edition source retained in prior restoration package"
+      },
+      "publicSourceUrl": "https://www.discogs.com/release/107007-Friction-Spice-Funkee-Ass-Breaks-Vol-1",
+      "restorationManifest": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-006-0/manifest.json",
+      "restorationManifestSha256": "68effeaf7eb58408cfea352a3d6cb36b33fdf9fca14cbe89167d38b0c51275eb",
+      "circleMask": {
+        "file": "mask.svg",
+        "sha256": "151ae472d9564b205b23f3858b7c5eb4cc85e26c158b3be1c9db07857c21bb90",
+        "rasterFile": "mask.png",
+        "rasterSha256": "045bfce74944ee59fd6500338a777093a65987085d90f8bc85f526234fcce82c"
+      },
+      "qualification": "Public information-label scan is 600 \u00d7 600. Native generated master is 1254 \u00d7 1254; no recovered original printing-master detail is claimed. Custom rounded italic logo, geometric small-cap type, circuit-rule curves and paper/spindle contours are reconstructed from source. No generic replacement artist text was added. Fresh pale mauve paper and darker purple-charcoal ink are cleaner/stronger than the aged scan; exact historical ink and paper colors are unverified. Original branching-rule layout and complete label framing are preserved; fine positions and contours are approximate. Original owner photographs and existing vinyl/sleeve mockups were not inputs. This changes presentation, not release metadata or prior completion. Exterior framing superseded by a transparent vector perimeter; retained label interior and spindle pixels are unchanged.",
+      "sourceApprovalHistory": {
+        "modernReconstruction": false
+      }
+    },
+    {
+      "number": "006",
+      "recordId": "cosmic-006",
+      "index": 1,
+      "title": "Funkee Ass Breaks Vol. 1",
+      "labelRole": "companion",
+      "asset": "/reference/restored-artwork/cosmic-006-label-b-approved-circle-v1.webp",
+      "previousPreviewAsset": "/reference/cosmic-label-preview/cosmic-006-label-b-review-circle-v1.webp",
+      "sha256": "c4c4998665fed802bd189f23b2df8c23e7f1f3917d00964662fded8a9fa461cb",
+      "bytes": 2136462,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "master": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-006-1/circle-only.png",
+        "sha256": "2d8ff1eab5c635d3106ff31a8d50d227d2c3287119664fa693020cd39f2e0742",
+        "dimensions": [
+          1254,
+          1254
+        ],
+        "bytes": 3664711
+      },
+      "source": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/flip-sides/cosmic006/cosmic006-discogs-107007-2.jpg",
+        "sha256": "240784b83174474db6ee61cd5c69f9c1b195c80c3b8f5dc741e72fc47f4da184",
+        "url": "https://www.discogs.com/release/107007-Friction-Spice-Funkee-Ass-Breaks-Vol-1",
+        "sourceKind": "public exact-edition source retained in prior restoration package"
+      },
+      "publicSourceUrl": "https://www.discogs.com/release/107007-Friction-Spice-Funkee-Ass-Breaks-Vol-1",
+      "restorationManifest": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-006-1/manifest.json",
+      "restorationManifestSha256": "604cc5de1cc669ac599fbbca362568f72c172f8a3f004ff90c0d1d343e9621cb",
+      "circleMask": {
+        "file": "mask.svg",
+        "sha256": "799ed5d3d607cf16ec5b5b97bbe84e800a98bb34b22569e6770a86790b2a201f",
+        "rasterFile": "mask.png",
+        "rasterSha256": "bb79c802a98e7997240c93d817377d0a59a1399ff6b68ae50a04254c3578b88a"
+      },
+      "qualification": "Exact107007 public opposite label is600x599; only COSMIC / RECORDS is printed. Broad mauve/plum halftone abstract/portrait-like forms are retained; fine dot topology, low-contrast lettering contours and paper surface are reconstructed approximations, not recovered source detail. The original public information side is included only as same-edition palette evidence. Its tracks, credits and circuit lines are not transferred. Muted mauve/lavender hue family is retained, with cleaner contrast. Only unmodified public originals were inputs. No owner release-capture photos, screenshots or previous generated mockups were used. Complete circular label and black exterior only. New opposite view is a companion; existing information/tracklist first-side package remains unchanged and first in the eventual presentation. Native1254x1254 output is retained byte-for-byte as the full master. Preview1200x1200 and enlarged detail are derivatives, not newly recovered resolution. No additional text vectors were required after direct full-source lettering checks. Local review candidate; owner artwork approval and site import remain false. Exterior framing superseded by a transparent vector perimeter; retained label interior and spindle pixels are unchanged.",
+      "sourceApprovalHistory": {
+        "modernReconstruction": false
+      }
+    },
+    {
+      "number": "007",
+      "recordId": "cosmic-007",
+      "index": 0,
+      "title": "The Beat / Relax \u2014 also includes Slider",
+      "labelRole": "information",
+      "asset": "/reference/restored-artwork/cosmic-007-label-a-approved-circle-v1.webp",
+      "previousPreviewAsset": "/reference/cosmic-label-preview/cosmic-007-label-a-review-circle-v1.webp",
+      "sha256": "19487d829f3ec58ad7930abead3db945ac600b7e2b7a88931ae25491cb0679b4",
+      "bytes": 694836,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "master": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-007-0/circle-only.png",
+        "sha256": "696b711d7fd99b9ac96d2a794fb6bc861becb562ef46768851f130dfd8629e47",
+        "dimensions": [
+          1254,
+          1254
+        ],
+        "bytes": 1393030
+      },
+      "source": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/info-side-correction/cosmic007/cosmic007-discogs-106999-1.jpg",
+        "sha256": "4dc6ab3f5cf00113ff5c7ec78bc18ddaecddfcaa26351eb8d3e274c22f62df40",
+        "url": "https://www.discogs.com/release/106999-Voyager-The-Beat-Relax",
+        "sourceKind": "public exact-edition source retained in prior restoration package"
+      },
+      "publicSourceUrl": "https://www.discogs.com/release/106999-Voyager-The-Beat-Relax",
+      "restorationManifest": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-007-0/manifest.json",
+      "restorationManifestSha256": "2d78ac7e944f231fe1ec206318803647eecfd5c24b2e3bfa9231d19f9ec8af96",
+      "circleMask": {
+        "file": "mask.svg",
+        "sha256": "5445c0a721015f438b85698f3cf9ae595de191201e11ec30da8189d49d94f1fc",
+        "rasterFile": "mask.png",
+        "rasterSha256": "ddaa422a083478eec2e3a62a57280c4706881964df3b4e61c36a44829798e049"
+      },
+      "qualification": "Primary public source106999 is a white/black 600px information-label photograph whose lower writer-name line is cropped. The complete line and lower circular geometry are directly corroborated by public blue-label variant9509366, not claimed as the same pressing. Perspective is regularized to a complete flat circle; bottom credit placement and boundary geometry follow the supplemental complete view. All wording is retained. This is a local review candidate only. It does not change release metadata, app state, existing approved artwork, Git or publication. The owner explicitly superseded the prior white/black palette direction with a pale-blue match to the existing restored alien side. This is a presentation colour decision, not an edition/pressing identity claim. The existing source-verified restored information label was the sole geometry/lettering edit target; the restored alien side was a palette reference only. This authorised colour pass uses prior restored label pixels, not an owner capture, screenshot or old sleeve/vinyl mockup. All prior verified wording and source evidence remain applicable. Exact ink/paper colour is not recovered; pale cyan is a visual match and colour/antialiasing may vary slightly between generated passes. Full frame, black printing/exterior and separate neutral white spindle retained. Custom fonts/contours and print texture remain source-led reconstructed approximations. V1 and brighter cyan V2 images, prompts and manifests remain preserved. Owner colour instruction is not new pixel approval; site import stays false. Exterior framing superseded by a transparent vector perimeter; retained label interior and spindle pixels are unchanged.",
+      "sourceApprovalHistory": {
+        "modernReconstruction": false
+      }
+    },
+    {
+      "number": "007",
+      "recordId": "cosmic-007",
+      "index": 1,
+      "title": "The Beat / Relax \u2014 also includes Slider",
+      "labelRole": "companion",
+      "asset": "/reference/restored-artwork/cosmic-007-label-b-approved-circle-v1.webp",
+      "previousPreviewAsset": "/reference/cosmic-label-preview/cosmic-007-label-b-review-circle-v1.webp",
+      "sha256": "ead8cf97a9ce2816fe24775ac6cb6bbd7e63b8dcd719d5e11346c288d08559ac",
+      "bytes": 1002386,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "master": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-007-1/circle-only.png",
+        "sha256": "2c623e539bb012125585580ebd37f06d2316ded51267bfc20e7d87e842680360",
+        "dimensions": [
+          1254,
+          1254
+        ],
+        "bytes": 2077461
+      },
+      "source": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/restoration/cosmic007/cosmic007-discogs-106999-2.jpg",
+        "sha256": "9646fc034c2020ac48f64f69e8e6f737cd7151fa02aad79aae4a00682ea0bf49",
+        "url": "https://www.discogs.com/release/106999",
+        "sourceKind": "public exact-edition source retained in prior restoration package"
+      },
+      "publicSourceUrl": "https://www.discogs.com/release/106999",
+      "restorationManifest": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-007-1/manifest.json",
+      "restorationManifestSha256": "dfba872ceb3e54aee0118c9a65fe5224117fc13944a6405fbbb590a3aa4a54bc",
+      "circleMask": {
+        "file": "mask.svg",
+        "sha256": "a6311c35694426f7d7ddb33f5736544a9cffc8f8ad778d7cc26b4bb642754747",
+        "rasterFile": "mask.png",
+        "rasterSha256": "3d2d3737d44fc72b52f61e3a2e081dc98cf94e54799b6e17a913068a8eef92fc"
+      },
+      "qualification": "Complete standard-edition alien face; contours and paper reconstructed. Exterior framing superseded by a transparent vector perimeter; retained label interior and spindle pixels are unchanged.",
+      "sourceApprovalHistory": {
+        "modernReconstruction": false
+      }
+    },
+    {
+      "number": "008",
+      "recordId": "cosmic-008",
+      "index": 0,
+      "title": "The Rhythm",
+      "labelRole": "A",
+      "asset": "/reference/restored-artwork/cosmic-008-label-a-approved-circle-v1.webp",
+      "previousPreviewAsset": "/reference/cosmic-label-preview/cosmic-008-label-a-review-circle-v1.webp",
+      "sha256": "93dd278cbc6e9570678402033479db3d65fd1bc98c7d41b8527823de104f51bc",
+      "bytes": 941246,
+      "dimensions": [
+        1254,
+        1258
+      ],
+      "master": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-008-0/circle-only.png",
+        "sha256": "c5bf4c966275a36bd064c86858bcff3783d85a2ce28fc0b6ace37862e624d1e3",
+        "dimensions": [
+          1254,
+          1258
+        ],
+        "bytes": 1622068
+      },
+      "source": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/restoration/cosmic008/cosmic008-discogs-107002-1.jpg",
+        "sha256": "152ac54e35dab456bb22042dbd700045cd0c4030c3681948768fe1587845127d",
+        "url": "https://www.discogs.com/release/107002",
+        "sourceKind": "public exact-edition source retained in prior restoration package"
+      },
+      "publicSourceUrl": "https://www.discogs.com/release/107002",
+      "restorationManifest": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-008-0/manifest.json",
+      "restorationManifestSha256": "4656e214e5382024368839feca2dc3c4b0d8f66b4cfdcebce267f95055f6bcad",
+      "circleMask": {
+        "file": "mask.svg",
+        "sha256": "3fc967ca57841b67c37f068320dc32b1ad3a5eb672c78a3d30fca3d9312bcf4f",
+        "rasterFile": "mask.png",
+        "rasterSha256": "47eda9ae5526878a911ffbb4ab19fdaaa38d3e04acc444c5034660f3b334a127"
+      },
+      "qualification": "Printed PROGRESIVE retained; curves and lettering reconstructed. Exterior framing superseded by a transparent vector perimeter; retained label interior and spindle pixels are unchanged.",
+      "sourceApprovalHistory": {
+        "modernReconstruction": false
+      }
+    },
+    {
+      "number": "008",
+      "recordId": "cosmic-008",
+      "index": 1,
+      "title": "The Rhythm",
+      "labelRole": "B",
+      "asset": "/reference/restored-artwork/cosmic-008-label-b-approved-circle-v1.webp",
+      "previousPreviewAsset": "/reference/cosmic-label-preview/cosmic-008-label-b-review-circle-v1.webp",
+      "sha256": "4a989a0d2a477e9a4fa2cef1cd9312adf5dffe04768bc8ba03bbcb04d5023bf4",
+      "bytes": 971640,
+      "dimensions": [
+        1254,
+        1250
+      ],
+      "master": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-008-1/circle-only.png",
+        "sha256": "1c21cf0393c6dd15cedb97a3d74658e89c92591d21734d8c3174686812ea4a6c",
+        "dimensions": [
+          1254,
+          1250
+        ],
+        "bytes": 1939147
+      },
+      "source": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/restoration/cosmic008/cosmic008-discogs-107002-2.jpg",
+        "sha256": "55d8dc64b2440a2be4d46a60c9c31ffc67f39fa5b6e6006617ac57ef34bee756",
+        "url": "https://www.discogs.com/release/107002",
+        "sourceKind": "public exact-edition source retained in prior restoration package"
+      },
+      "publicSourceUrl": "https://www.discogs.com/release/107002",
+      "restorationManifest": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-008-1/manifest.json",
+      "restorationManifestSha256": "6bfbdef5f192694dc062d9c1ce86e52fca45c3329db85ee15b0c208916bd2a7c",
+      "circleMask": {
+        "file": "mask.svg",
+        "sha256": "9695ee1c313e728a6f76cf0341fd854a55b3dfa0c899cdd93818247e7f99bcca",
+        "rasterFile": "mask.png",
+        "rasterSha256": "63bcb5109202b73e279a5848b90bdfabef1a7460e208d54af1d187bb1b380d50"
+      },
+      "qualification": "Printed PROGRESIVE retained; curves and lettering reconstructed. Exterior framing superseded by a transparent vector perimeter; retained label interior and spindle pixels are unchanged.",
+      "sourceApprovalHistory": {
+        "modernReconstruction": false
+      }
+    },
+    {
+      "number": "009",
+      "recordId": "cosmic-009",
+      "index": 0,
+      "title": "Remix LP",
+      "labelRole": "A",
+      "asset": "/reference/restored-artwork/cosmic-009-label-a-approved-circle-v1.webp",
+      "previousPreviewAsset": "/reference/restored-artwork/cosmic-009-label-a-approved-circle-v1.webp",
+      "sha256": "9865f5660c5c20f8bf831774c586df15f11853c261c0d9ee22240019e331034a",
+      "bytes": 153830,
+      "dimensions": [
+        4000,
+        4000
+      ],
+      "master": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-009-0/circle-only.png",
+        "sha256": "e73426c13e0902f5dd18b4bfb19a4ec438b0a72edb2c2008b54ce83b0544a038",
+        "dimensions": [
+          4000,
+          4000
+        ],
+        "bytes": 558466
+      },
+      "source": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/restoration/cosmic009/cosmic009-source-a.jpg",
+        "sha256": "ed91d289b5089795200acf6c9373b160afea4bb16fb26a76500d0c2f686dc424",
+        "url": "https://handsomezacksrecords.com/products/friction-spice-remix-lp-12-very-good-plus-vg"
+      },
+      "publicSourceUrl": "https://handsomezacksrecords.com/products/friction-spice-remix-lp-12-very-good-plus-vg",
+      "restorationManifest": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-009-0/manifest.json",
+      "restorationManifestSha256": "3998621b96e2eb5857274d36653facf6c70cdf2685b5661caedbc4bc5ef47bff",
+      "circleMask": {
+        "file": "mask.svg",
+        "sha256": "44503a2db8b0ae12b172cf93eca9197398ed0bc65cbde96309415978b3d64160"
+      },
+      "qualification": "Verified wording and complete A/B layouts; source-derived custom header contours regularized as vectors. Fitted ordinary type and geometry are approximations. Exterior framing superseded by a transparent vector perimeter; retained label interior and spindle pixels are unchanged.",
+      "sourceApprovalHistory": {
+        "modernReconstruction": false
+      }
+    },
+    {
+      "number": "009",
+      "recordId": "cosmic-009",
+      "index": 1,
+      "title": "Remix LP",
+      "labelRole": "B",
+      "asset": "/reference/restored-artwork/cosmic-009-label-b-approved-circle-v1.webp",
+      "previousPreviewAsset": "/reference/restored-artwork/cosmic-009-label-b-approved-circle-v1.webp",
+      "sha256": "d1615e34605f251c0849ee6e2097970aede0c882f2274a8c4da5984dc3af95a6",
+      "bytes": 156156,
+      "dimensions": [
+        4000,
+        4000
+      ],
+      "master": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-009-1/circle-only.png",
+        "sha256": "fc12f78f56a08f0a63fc3aade4697ed87de3b4a4afbd9278aa2f0473a66b9cb1",
+        "dimensions": [
+          4000,
+          4000
+        ],
+        "bytes": 562779
+      },
+      "source": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/restoration/cosmic009/cosmic009-source-b.jpg",
+        "sha256": "4f93cb9043861bc717aeab9000bb99e6ba6b2a2e24eef115fddb83d5be66a5dc",
+        "url": "https://handsomezacksrecords.com/products/friction-spice-remix-lp-12-very-good-plus-vg"
+      },
+      "publicSourceUrl": "https://handsomezacksrecords.com/products/friction-spice-remix-lp-12-very-good-plus-vg",
+      "restorationManifest": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-009-1/manifest.json",
+      "restorationManifestSha256": "176004b8bc6f6e930c9b2438325d9ab840839848dcfecd6a67a088e13db5fc81",
+      "circleMask": {
+        "file": "mask.svg",
+        "sha256": "44503a2db8b0ae12b172cf93eca9197398ed0bc65cbde96309415978b3d64160"
+      },
+      "qualification": "Verified wording and complete A/B layouts; source-derived custom header contours regularized as vectors. Fitted ordinary type and geometry are approximations. Exterior framing superseded by a transparent vector perimeter; retained label interior and spindle pixels are unchanged.",
+      "sourceApprovalHistory": {
+        "modernReconstruction": false
+      }
+    },
+    {
+      "number": "010",
+      "recordId": "cosmic-010",
+      "index": 0,
+      "title": "Lost Worlds / Ultra Intense",
+      "labelRole": "information",
+      "asset": "/reference/restored-artwork/cosmic-010-label-a-approved-circle-v1.webp",
+      "previousPreviewAsset": "/reference/cosmic-label-preview/cosmic-010-label-a-review-circle-v1.webp",
+      "sha256": "a38990ef3b3b40f20c567e0d758f31e4f1cf9a4e99bec39088fc5d4b34f2f049",
+      "bytes": 798054,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "master": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-010-0/circle-only.png",
+        "sha256": "1fce91d9cf699a1b98a54b6c67960f154a798ab57cd5fe1bab2d48ce72960a65",
+        "dimensions": [
+          1254,
+          1254
+        ],
+        "bytes": 1315638
+      },
+      "source": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/info-side-correction/cosmic010/cosmic010-discogs-58219-1.jpg",
+        "sha256": "5f81d0265f9647b34849d0273f55b67723d679e5a9576c6a05b8bce28cd59b6c",
+        "url": "https://www.discogs.com/release/58219-Voyager-Lost-Worlds"
+      },
+      "publicSourceUrl": "https://www.discogs.com/release/58219-Voyager-Lost-Worlds",
+      "restorationManifest": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-010-0/manifest.json",
+      "restorationManifestSha256": "9b1c33b1cb3b3952dcbc9798ca5f6110cc714f927811a93efc45e2debe1824cb",
+      "circleMask": {
+        "file": "mask.svg",
+        "sha256": "89bbe8358c9c881bc708f0eb1749ee8896e4250721f712ab56d74744ddc2faea"
+      },
+      "qualification": "Public exact printed edition58219 source is598\u00d7600. Native generated master is1254\u00d71254; no recovered original printing master is claimed. Copyright C was explicitly confirmed by the owner before generation. Other words/digits were independently verified from source; database/API metadata was not used to guess the circled symbol. Geometric font contours, extended widths, letter spacing, small-cap proportions, paper/ink surfaces and regularized perspective are reconstructed approximations. Source layout and full printed wording are preserved. The native built-in result is retained and used byte-identically as the master. No replacement generic type overlay was needed. Complete label on black exterior with clean white spindle appearance; no sleeve, grooves, owner initial photograph, screenshot or prior generated mockup was an input. A-side information presentation is a new candidate. Existing B-side graphic and catalogue metadata are not modified; owner visual approval and site import remain pending. The source hole shows brown tabletop through the opening; restored spindle is light neutral/white for the isolated label presentation. This appearance is reconstructed, not recovered source material. Exterior framing superseded by a transparent vector perimeter; retained label interior and spindle pixels are unchanged.",
+      "sourceApprovalHistory": {
+        "modernReconstruction": false
+      }
+    },
+    {
+      "number": "010",
+      "recordId": "cosmic-010",
+      "index": 1,
+      "title": "Lost Worlds / Ultra Intense",
+      "labelRole": "companion",
+      "asset": "/reference/restored-artwork/cosmic-010-label-b-approved-circle-v1.webp",
+      "previousPreviewAsset": "/reference/cosmic-label-preview/cosmic-010-label-b-review-circle-v1.webp",
+      "sha256": "1fcfe2afa4ad19ffa77ba3d8b38807424da9ed8bbbf1018f901eb88eb56063ae",
+      "bytes": 1060084,
+      "dimensions": [
+        1254,
+        1239
+      ],
+      "master": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-010-1/circle-only.png",
+        "sha256": "409fe88502858ae23812900371ced23623b13de08e76934f0bec2d8b03644b67",
+        "dimensions": [
+          1254,
+          1239
+        ],
+        "bytes": 2082024
+      },
+      "source": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/restoration/cosmic010/cosmic010-discogs-58219-2.jpg",
+        "sha256": "1741f9b1325a4bbc4b9137319929d00e2014c8f3920f4ac066ee8e6cedc57dd6",
+        "url": "https://www.discogs.com/release/58219"
+      },
+      "publicSourceUrl": "https://www.discogs.com/release/58219",
+      "restorationManifest": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-010-1/manifest.json",
+      "restorationManifestSha256": "147ee59e074a43229722a09e8723ca03ba8f912af1f7294dbe7fe96cf645e86c",
+      "circleMask": {
+        "file": "mask.svg",
+        "sha256": "7693955c875db76056245ca26171d2e5045ae861463f213c0c5aaf6aeb66b0c6"
+      },
+      "qualification": "Complete B label; sloping band and lettering contours reconstructed. Exterior framing superseded by a transparent vector perimeter; retained label interior and spindle pixels are unchanged.",
+      "sourceApprovalHistory": {
+        "modernReconstruction": false
+      }
+    },
+    {
+      "number": "011",
+      "recordId": "cosmic-011",
+      "index": 0,
+      "title": "Rhythm Rockin\u2019 / Future Funk",
+      "labelRole": "information",
+      "asset": "/reference/restored-artwork/cosmic-011-label-a-approved-circle-v1.webp",
+      "previousPreviewAsset": "/reference/cosmic-label-preview/cosmic-011-label-a-review-circle-v1.webp",
+      "sha256": "6b1ec0f7fe08b61ac0161451d1fdffdbc9922670884b0bf6ffaa452e84421d8f",
+      "bytes": 4270436,
+      "dimensions": [
+        4000,
+        4000
+      ],
+      "master": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-011-0/circle-only.png",
+        "sha256": "ffdaf2d73ff20aa7078a553a4f3e7be3396c5d23406658ded8a3c272b3d60475",
+        "dimensions": [
+          4000,
+          4000
+        ],
+        "bytes": 10489560
+      },
+      "source": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/restoration/cosmic011/cosmic011-discogs-107013-1.jpg",
+        "sha256": "69f9d7476781790844b4e640ab30122bb3009fab7b299163bf70964da5806dcd",
+        "url": "https://www.discogs.com/release/107013-DJs-Friction-Spice-Rhythm-Rockin-Future-Funk"
+      },
+      "publicSourceUrl": "https://www.discogs.com/release/107013-DJs-Friction-Spice-Rhythm-Rockin-Future-Funk",
+      "restorationManifest": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-011-0/manifest.json",
+      "restorationManifestSha256": "9e893b7a1c0c18254722dca84534c399cb31886e6080fe66528cef8fef40533b",
+      "circleMask": {
+        "file": "mask.svg",
+        "sha256": "f8a7198752a4644a20b0b6e860eafc7be25816ebb492dd21d5b9071fa611273d"
+      },
+      "qualification": "Custom glyph contours and stroke weights are reconstructed approximations, not recovered original fonts. Paper, clean edges, ink density and perspective are reconstructed. No claims of an authenticated original production master. Exterior framing superseded by a transparent vector perimeter; retained label interior and spindle pixels are unchanged.",
+      "sourceApprovalHistory": {
+        "modernReconstruction": false
+      }
+    },
+    {
+      "number": "011",
+      "recordId": "cosmic-011",
+      "index": 1,
+      "title": "Rhythm Rockin\u2019 / Future Funk",
+      "labelRole": "companion",
+      "asset": "/reference/restored-artwork/cosmic-011-label-b-approved-circle-v1.webp",
+      "previousPreviewAsset": "/reference/cosmic-label-preview/cosmic-011-label-b-review-circle-v1.webp",
+      "sha256": "a7b4000cc3e8a7ff515ba2a01fb0649663833d50e9c7817c582389d5e5c7a6c6",
+      "bytes": 1028288,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "master": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-011-1/circle-only.png",
+        "sha256": "bd680117b83dc4c2c621fe25a0f5727563d5d9236d8f9dd1e40b073e76f21923",
+        "dimensions": [
+          1254,
+          1254
+        ],
+        "bytes": 1806033
+      },
+      "source": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/flip-sides/cosmic011/cosmic011-discogs-107013-2.jpg",
+        "sha256": "630a66e9d880c2746cc7949caf06ad89157ee5afce7c3fedc65bf11a0b652198",
+        "url": "https://www.discogs.com/release/107013-DJs-Friction-Spice-Rhythm-Rockin-Future-Funk"
+      },
+      "publicSourceUrl": "https://www.discogs.com/release/107013-DJs-Friction-Spice-Rhythm-Rockin-Future-Funk",
+      "restorationManifest": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-011-1/manifest.json",
+      "restorationManifestSha256": "58e7172eb0766e3766d2446d74ce18919bbd7e0bbc993fb31ce5a54c6ad93f7e",
+      "circleMask": {
+        "file": "mask.svg",
+        "sha256": "19e25adf924609bb7d5f461fadcde4c2db14ceb0027e067e2c21d086fe36c350"
+      },
+      "qualification": "Exact107013 public opposite credits label is577x573. Its lower photo edge cuts the lowest part of the leading4 and tiny circumference; the complete407.673.0651 is directly readable from upper/crossbar structures plus all other digits and periods, independently verified by pipeline and root. The missing tiny border/tip is reconstructed rather than source-pixel recovery. Custom square violet-blue lettering, waveform/rule topology and angled credits blocks are preserved as matched approximations. Clean ivory paper and stronger violet ink follow the same-edition public paired label; font metrics, waveform microcontour, spindle and print texture are reconstructed. Bounded public research found no better complete credits scan: same stock images on eBay and a separately catalogued handwritten test pressing were not substituted. Only unmodified public originals were inputs. No owner release-capture photos, screenshots or previous generated mockups were used. Complete circular label and black exterior only. New opposite view is a companion; existing information/tracklist first-side package remains unchanged and first in the eventual presentation. Native1254x1254 output is retained byte-for-byte as the full master. Preview1200x1200 and enlarged detail are derivatives, not newly recovered resolution. No additional text vectors were required after direct full-source lettering checks. Local review candidate; owner artwork approval and site import remain false. Exterior framing superseded by a transparent vector perimeter; retained label interior and spindle pixels are unchanged.",
+      "sourceApprovalHistory": {
+        "modernReconstruction": false
+      }
+    },
+    {
+      "number": "012",
+      "recordId": "cosmic-012",
+      "index": 0,
+      "title": "Acid Drop / Ah Yeah (RMX)",
+      "labelRole": "information",
+      "asset": "/reference/restored-artwork/cosmic-012-label-a-approved-circle-v1.webp",
+      "previousPreviewAsset": "/reference/cosmic-label-preview/cosmic-012-label-a-review-circle-v1.webp",
+      "sha256": "bbf3d636f9f644bf8c76605f91ae3ab8c9067a8aa39e8fcfab35e928d68afa1f",
+      "bytes": 8239540,
+      "dimensions": [
+        4000,
+        4000
+      ],
+      "master": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-012-0/circle-only.png",
+        "sha256": "5f3a30e618693f21cab3b9784ba6df0bb4fe8c330c11901ee0ce74449b420884",
+        "dimensions": [
+          4000,
+          4000
+        ],
+        "bytes": 26927012
+      },
+      "source": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/info-side-correction/cosmic012/cosmic012-discogs-61197-1.jpg",
+        "sha256": "d60362e5ba611520d02524b7279704d417431ea6dfb9caeebba63d9e5c8d5ed3",
+        "url": "https://www.discogs.com/release/61197-The-Beat-Bros-Acid-Drop"
+      },
+      "publicSourceUrl": "https://www.discogs.com/release/61197-The-Beat-Bros-Acid-Drop",
+      "restorationManifest": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-012-0/manifest.json",
+      "restorationManifestSha256": "3f1efb7899693656ea8d71f27cdf29963b3cd3aa939eb6efa33d37b93fdf1ae5",
+      "circleMask": {
+        "file": "mask.svg",
+        "sha256": "fdc6955ca40b2ea601a1ea0c29eccf9fec89eef5b624654e3c8e20ecb557b8e8"
+      },
+      "qualification": "The unmodified exact61197 scan governs identity and layout. A public1600 x1200 seller photograph supports the restrained gray/ivory spiral-halftone treatment; saturated scanner moire is not reproduced as assumed ink color. Public separately catalogued Quiex9530740 information-label image is supplemental glyph/text evidence only. It is not substituted for the selected edition or used to change pressing facts. Owner confirmed the previously unclear block as \u00a91997 COSMIC /407.673.0651 on2026-10-12. This confirms wording, not source-pixel recovery or final artwork approval. Custom thin angular glyph contours, halftone/radial dot geometry, dark shadows, paper tones and circular perspective are reconstructed approximations. Clean print has stronger contrast and legibility; original microscopic detail was not recovered. Built-in native output is 1254 x 1254; the 4000px-wide master is a Lanczos enlargement, not native4000px generation or newly recovered detail. Native output is preserved unchanged. No separate vector replacement was needed after direct lettering inspection; all final text is part of the built-in raster restoration. Complete circular label with black exterior and retained spindle appearance; no outer record, sleeve, owner capture, screenshot or previous generated mockup used as restoration input. Local review candidate only. No site assets, catalogue metadata, Git, published state or owner approval changed. Exterior framing superseded by a transparent vector perimeter; retained label interior and spindle pixels are unchanged.",
+      "sourceApprovalHistory": {
+        "modernReconstruction": false
+      }
+    },
+    {
+      "number": "012",
+      "recordId": "cosmic-012",
+      "index": 1,
+      "title": "Acid Drop / Ah Yeah (RMX)",
+      "labelRole": "companion",
+      "asset": "/reference/restored-artwork/cosmic-012-label-b-approved-circle-v1.webp",
+      "previousPreviewAsset": "/reference/cosmic-label-preview/cosmic-012-label-b-review-circle-v1.webp",
+      "sha256": "4ec02edbfc6e6f6a3b5af47c7ecf1060c14a497139445c7a4129b83cbe1da7ff",
+      "bytes": 12662184,
+      "dimensions": [
+        4000,
+        4000
+      ],
+      "master": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-012-1/circle-only.png",
+        "sha256": "236064d53b0097396e08965783787838d3349f7c9bb82d7a54afc9896395d510",
+        "dimensions": [
+          4000,
+          4000
+        ],
+        "bytes": 33742561
+      },
+      "source": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/restoration/cosmic012/cosmic012-discogs-61197-2.jpg",
+        "sha256": "1dc911ba5fbfc38dbf9a6ac4b1657f87709087ab176333cd059f43cee18bd170",
+        "url": "https://www.discogs.com/release/61197-The-Beat-Bros-Acid-Drop"
+      },
+      "publicSourceUrl": "https://www.discogs.com/release/61197-The-Beat-Bros-Acid-Drop",
+      "restorationManifest": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-012-1/manifest.json",
+      "restorationManifestSha256": "b01d8388d47741bf880387d011fbcf43b260560c3280a1fb10ceb6ecb9b3a2b9",
+      "circleMask": {
+        "file": "mask.svg",
+        "sha256": "2d21c01091278e763f28f8613bb57a58b3f40e502acddfedba29619de0614101"
+      },
+      "qualification": "Custom glyph contours and stroke weights are reconstructed approximations, not recovered original fonts. Paper, clean edges, ink density and perspective are reconstructed. No claims of an authenticated original production master. Larger public seller photo has a retail sticker over upper type. Unoccluded307px source determines words/layout; larger seller photo supports warm monochrome halftone spiral. Exact halftone dots and color are not authenticated. Exterior framing superseded by a transparent vector perimeter; retained label interior and spindle pixels are unchanged.",
+      "sourceApprovalHistory": {
+        "modernReconstruction": false
+      }
+    },
+    {
+      "number": "013",
+      "recordId": "cosmic-013",
+      "index": 0,
+      "title": "Work 4 Love",
+      "labelRole": "information",
+      "asset": "/reference/restored-artwork/cosmic-013-label-a-approved-circle-v1.webp",
+      "previousPreviewAsset": "/reference/cosmic-label-preview/cosmic-013-label-a-review-circle-v1.webp",
+      "sha256": "db175e999ecb508e72b1b7fe5f96bb07582378d92f18d903b6829c9cf6fc7e2c",
+      "bytes": 4446382,
+      "dimensions": [
+        4000,
+        4000
+      ],
+      "master": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-013-0/circle-only.png",
+        "sha256": "fb3fc4f224528bd7a2d597925eabccc694d3812a8b70f6cb964dcb8469efdd33",
+        "dimensions": [
+          4000,
+          4000
+        ],
+        "bytes": 10538219
+      },
+      "source": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/restoration/cosmic013/cosmic013-discogs-157453-1.jpg",
+        "sha256": "e25c643c3f8c2984a26ebfaef292c7ce756f43c83d7db36bb86471d7cd9affbf",
+        "url": "https://www.discogs.com/release/157453-The-Three-Wise-Monkeys-Meet-DJs-Friction-Spice-Work-4-Love"
+      },
+      "publicSourceUrl": "https://www.discogs.com/release/157453-The-Three-Wise-Monkeys-Meet-DJs-Friction-Spice-Work-4-Love",
+      "restorationManifest": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-013-0/manifest.json",
+      "restorationManifestSha256": "30b9a9405ce08b66255e937d147a23530755cd6f078a05b9b5a1c1007d7d551d",
+      "circleMask": {
+        "file": "mask.svg",
+        "sha256": "13af49a1da08e404d4f8b6c0a5459a68a53413ef61c304426f6b6e4e5762cd5c"
+      },
+      "qualification": "Custom glyph contours and stroke weights are reconstructed approximations, not recovered original fonts. Paper, clean edges, ink density and perspective are reconstructed. No claims of an authenticated original production master. Exterior framing superseded by a transparent vector perimeter; retained label interior and spindle pixels are unchanged.",
+      "sourceApprovalHistory": {
+        "modernReconstruction": false
+      }
+    },
+    {
+      "number": "013",
+      "recordId": "cosmic-013",
+      "index": 1,
+      "title": "Work 4 Love",
+      "labelRole": "companion",
+      "asset": "/reference/restored-artwork/cosmic-013-label-b-approved-circle-v1.webp",
+      "previousPreviewAsset": "/reference/cosmic-label-preview/cosmic-013-label-b-review-circle-v1.webp",
+      "sha256": "c990385971cd46b526f94f9de8db5fce6d9b22ccfa91c5fca41b566a3c950160",
+      "bytes": 929418,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "master": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-013-1/circle-only.png",
+        "sha256": "4a7aeeddf577fe182215f39fc0cd9b8905bf0ff98e59df789f40ac4c012b26d6",
+        "dimensions": [
+          1254,
+          1254
+        ],
+        "bytes": 1616108
+      },
+      "source": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/flip-sides/cosmic013/cosmic013-discogs-157453-2.jpg",
+        "sha256": "483fd559ac028cfeb9b56fe8d2435df9c03d9356bdb46217e45516de06527e54",
+        "url": "https://www.discogs.com/release/157453-The-Three-Wise-Monkeys-Meet-DJs-Friction-Spice-Work-4-Love"
+      },
+      "publicSourceUrl": "https://www.discogs.com/release/157453-The-Three-Wise-Monkeys-Meet-DJs-Friction-Spice-Work-4-Love",
+      "restorationManifest": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-013-1/manifest.json",
+      "restorationManifestSha256": "f1a9e8a8bb852a16defd9ca4772e981b06778f1658aef75f34a6f3dd9857e489",
+      "circleMask": {
+        "file": "mask.svg",
+        "sha256": "9123596766481c213b56b1a35814a5f088d762c451fc9edb0d1e58c6348b714a"
+      },
+      "qualification": "The source scan is 600\u00d7596. Custom glyph metrics and geometric line contours, paper texture and cleaned near-black ink are reconstructed approximations, not recovered original vectors. The first generated native had white exterior and inadequate perimeter breathing room. It is retained as a rejected framing alternate; the built-in v2 edit preserves the design with complete circumference on black. The existing information label is cream with black ink. This opposite side intentionally preserves its source inverse black field and warm light ink. Only the exact public label scan was used for initial generation. No owner-capture photographs, screenshots or old generated mockups were restoration inputs. Native intermediates are retained for provenance. Native and master are 1254\u00d71254; preview is 1200\u00d71200. These are restoration/export dimensions, not a claim of recovered original resolution. This is an additional flip view. Existing first-side files and information-side-first ordering are unchanged. Owner pixel approval and site import remain false. Exterior framing superseded by a transparent vector perimeter; retained label interior and spindle pixels are unchanged.",
+      "sourceApprovalHistory": {
+        "modernReconstruction": false
+      }
+    },
+    {
+      "number": "014",
+      "recordId": "cosmic-014",
+      "index": 0,
+      "title": "The E.P.",
+      "labelRole": "information",
+      "asset": "/reference/restored-artwork/cosmic-014-label-a-approved-circle-v1.webp",
+      "previousPreviewAsset": "/reference/cosmic-label-preview/cosmic-014-label-a-review-circle-v1.webp",
+      "sha256": "d08924080aee21bc8b9620f862d905cbf299ee0dfad60bea9701ecc8ad97e1bf",
+      "bytes": 969380,
+      "dimensions": [
+        1264,
+        1244
+      ],
+      "master": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-014-0/circle-only.png",
+        "sha256": "1bdb756cdab93c9cf52c51e9aa3d4b60f9289bfecf9f1a068eb68a676590dd15",
+        "dimensions": [
+          1264,
+          1244
+        ],
+        "bytes": 1573486
+      },
+      "source": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/info-side-correction/cosmic014/cosmic014-discogs-64237-1.jpg",
+        "sha256": "5e7546bc1e77fcfea75fb584ef828b99d4941a3467cec4119ea7c8c5ea34022c",
+        "url": "https://www.discogs.com/release/64237-DJs-Friction-Spice-The-EP"
+      },
+      "publicSourceUrl": "https://www.discogs.com/release/64237-DJs-Friction-Spice-The-EP",
+      "restorationManifest": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-014-0/manifest.json",
+      "restorationManifestSha256": "44c82c39b0bb4f84945d1c0e4ed188491047388cc5458f0e933d88d54103afc3",
+      "circleMask": {
+        "file": "mask.svg",
+        "sha256": "dcbe778be61b87a80aa831c4e6f8179dec6f48f2504567f9625048413cad0aef"
+      },
+      "qualification": "Serif glyph contours, weight, tracking and clean ink are reconstructed approximations, not recovered original typography. Source scan grain and center-hole tearing removed; matte paper microtexture and edge are reconstructed. Tiny isolated upper-right hollow mark preserved visually without inferring a character or meaning. No catalogue facts or credit ownership changed; D014 compilation wording question remains separate. Exterior framing superseded by a transparent vector perimeter; retained label interior and spindle pixels are unchanged.",
+      "sourceApprovalHistory": {
+        "modernReconstruction": false
+      }
+    },
+    {
+      "number": "014",
+      "recordId": "cosmic-014",
+      "index": 1,
+      "title": "The E.P.",
+      "labelRole": "companion",
+      "asset": "/reference/restored-artwork/cosmic-014-label-b-approved-circle-v1.webp",
+      "previousPreviewAsset": "/reference/cosmic-label-preview/cosmic-014-label-b-review-circle-v1.webp",
+      "sha256": "63a9f24910f2ff2629f8b7581554c4f966deabfc13a0a11fc8e848029b43affb",
+      "bytes": 916954,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "master": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-014-1/circle-only.png",
+        "sha256": "e36c39c201294da52888f11d5c1a9e6deabd38bac477fd521b39087941f27e7f",
+        "dimensions": [
+          1254,
+          1254
+        ],
+        "bytes": 1431037
+      },
+      "source": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/restoration/cosmic014/cosmic014-discogs-64237-2.jpg",
+        "sha256": "6ba594222e00b98e2382dad75ddb92f71516130b80bbdabc58987966c2bb9c8b",
+        "url": "https://www.discogs.com/release/64237-DJs-Friction-Spice-The-EP"
+      },
+      "publicSourceUrl": "https://www.discogs.com/release/64237-DJs-Friction-Spice-The-EP",
+      "restorationManifest": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-014-1/manifest.json",
+      "restorationManifestSha256": "b662c4341959822d6b99a598fdfa0ea51a74de04b9f7239a9bd2325b52724340",
+      "circleMask": {
+        "file": "mask.svg",
+        "sha256": "7da1d9dfcc17335a5444af1b16a91c922d227e1aa86eea9d73e516dd3e5b5441"
+      },
+      "qualification": "Printed glyph/logo contours, clean ink and paper microtexture are reconstructed approximations, not recovered original fonts or an authenticated production master. Master remains native1254\u00d71254; the1200px preview is downsampled. No artificial high-resolution claim. The full circular perimeter was measured from the native restoration and framed with an editable exterior-only SVG mask; three-pixel boundary antialias area excluded from deterministic interior QA. CR orbital gray-print stroke curves and tonal texture are reconstructed from the400\u00d7394 public scan. Exterior framing superseded by a transparent vector perimeter; retained label interior and spindle pixels are unchanged.",
+      "sourceApprovalHistory": {
+        "modernReconstruction": false
+      }
+    },
+    {
+      "number": "015",
+      "recordId": "cosmic-015",
+      "index": 0,
+      "title": "Pure",
+      "labelRole": "information",
+      "asset": "/reference/restored-artwork/cosmic-015-label-a-approved-circle-v1.webp",
+      "previousPreviewAsset": "/reference/cosmic-label-preview/cosmic-015-label-a-review-circle-v1.webp",
+      "sha256": "0cf85a258acaa82ac49182e57bfbd438232cace134a91231a23ff8d545ba2315",
+      "bytes": 1022902,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "master": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-015-0/circle-only.png",
+        "sha256": "a75d9b71b4a7b5a4efbdecd65ff4a53f56aae65c00b00cd88f62b5be56790670",
+        "dimensions": [
+          1254,
+          1254
+        ],
+        "bytes": 1717490
+      },
+      "source": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/restoration/cosmic015/cosmic015-discogs-61206-1.jpg",
+        "sha256": "366d737a1c3bb7250a5e0c9e28a6d3409041a984aff3b5f454091761600f1a77",
+        "url": "https://www.discogs.com/release/61206-Pure-2-Pure"
+      },
+      "publicSourceUrl": "https://www.discogs.com/release/61206-Pure-2-Pure",
+      "restorationManifest": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-015-0/manifest.json",
+      "restorationManifestSha256": "bea3ac46b6dd72a9f71da24ccb23d38f9a1f6762af4cbd7125794837b4566836",
+      "circleMask": {
+        "file": "mask.svg",
+        "sha256": "117968a2db60e0e6cf4e202f670ff711c6f1cf41daf38306dfe79d492687dd66"
+      },
+      "qualification": "Printed glyph/logo contours, clean ink and paper microtexture are reconstructed approximations, not recovered original fonts or an authenticated production master. Master remains native1254\u00d71254; the1200px preview is downsampled. No artificial high-resolution claim. The full circular perimeter was measured from the native restoration and framed with an editable exterior-only SVG mask; three-pixel boundary antialias area excluded from deterministic interior QA. Off-white paper tone and fitted typography are cleaned approximations. Public database artist naming does not change owner-confirmed archive artist or credits. Exterior framing superseded by a transparent vector perimeter; retained label interior and spindle pixels are unchanged.",
+      "sourceApprovalHistory": {
+        "modernReconstruction": false
+      }
+    },
+    {
+      "number": "015",
+      "recordId": "cosmic-015",
+      "index": 1,
+      "title": "Pure",
+      "labelRole": "companion",
+      "asset": "/reference/restored-artwork/cosmic-015-label-b-approved-circle-v1.webp",
+      "previousPreviewAsset": "/reference/cosmic-label-preview/cosmic-015-label-b-review-circle-v1.webp",
+      "sha256": "c9393136eef68fa3ab96539e37946f58be647c5cba393756ba8373525f34f8ff",
+      "bytes": 1185786,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "master": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-015-1/circle-only.png",
+        "sha256": "52b589691bdd35b9c120c53e1db9440d64b4c978cb49fa36915204c64bc5a002",
+        "dimensions": [
+          1254,
+          1254
+        ],
+        "bytes": 1871512
+      },
+      "source": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/flip-sides/cosmic015/cosmic015-discogs-61206-2.jpg",
+        "sha256": "d41a80a30db97d1b59649e1712cf9a92237dcfadda4c0927152c868f615de970",
+        "url": "https://www.discogs.com/release/61206-Pure-2-Pure"
+      },
+      "publicSourceUrl": "https://www.discogs.com/release/61206-Pure-2-Pure",
+      "restorationManifest": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-015-1/manifest.json",
+      "restorationManifestSha256": "86b13a3e4bcad4366f4523c833c2c2e48467cecd1e4c1fc63f06ee1c222cdd00",
+      "circleMask": {
+        "file": "mask.svg",
+        "sha256": "e917c0ff706d281edbd8718ffc07130f22c6d01532bc5b72146ff39767502e73"
+      },
+      "qualification": "The source scan is 600\u00d7600. Custom logo contours, stroke geometry, paper and ink are reconstructed approximations, not recovered original vectors. Warm ivory/cream and black match the source and current information-label family. The native white exterior is covered by an editable, measured black SVG exterior mask; label interior and spindle pixels are unchanged away from its antialiased perimeter. Only the exact public label scan was used for initial generation. No owner-capture photographs, screenshots or old generated mockups were restoration inputs. Native intermediates are retained for provenance. Native and master are 1254\u00d71254; preview is 1200\u00d71200. These are restoration/export dimensions, not a claim of recovered original resolution. This is an additional flip view. Existing first-side files and information-side-first ordering are unchanged. Owner pixel approval and site import remain false. Exterior framing superseded by a transparent vector perimeter; retained label interior and spindle pixels are unchanged.",
+      "sourceApprovalHistory": {
+        "modernReconstruction": false
+      }
+    },
+    {
+      "number": "016",
+      "recordId": "cosmic-016",
+      "index": 0,
+      "title": "Get Jazzed Up",
+      "labelRole": "information",
+      "asset": "/reference/restored-artwork/cosmic-016-label-a-approved-circle-v1.webp",
+      "previousPreviewAsset": "/reference/cosmic-label-preview/cosmic-016-label-a-review-circle-v1.webp",
+      "sha256": "0a65741168af91a4c217aa6799f23473f7a42196197288213111b59c2baca21f",
+      "bytes": 1096712,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "master": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-016-0/circle-only.png",
+        "sha256": "08d61ea8a2d37371284d83cbcaf81b0f25160e139fc22b8a7d0d93db474f06c7",
+        "dimensions": [
+          1254,
+          1254
+        ],
+        "bytes": 1900852
+      },
+      "source": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/restoration/cosmic016/cosmic016-discogs-50155-1.jpg",
+        "sha256": "d1bf805e985a8f17ee387f40bf5fedbc157bfd4556404e5abf79427b7bf45a84",
+        "url": "https://www.discogs.com/release/50155-DJs-Friction-Spice-Get-Jazzed-Up"
+      },
+      "publicSourceUrl": "https://www.discogs.com/release/50155-DJs-Friction-Spice-Get-Jazzed-Up",
+      "restorationManifest": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-016-0/manifest.json",
+      "restorationManifestSha256": "5346dd2cb43329626c1c85591d3e46d427e238dca1d1e30bf55c83123805cdd4",
+      "circleMask": {
+        "file": "mask.svg",
+        "sha256": "dcbbb1b931d401cb3b817c034bdf8a2a24885376c1e7cdd5c14ff627781c2350"
+      },
+      "qualification": "Printed glyph/logo contours, clean ink and paper microtexture are reconstructed approximations, not recovered original fonts or an authenticated production master. Master remains native1254\u00d71254; the1200px preview is downsampled. No artificial high-resolution claim. The full circular perimeter was measured from the native restoration and framed with an editable exterior-only SVG mask; three-pixel boundary antialias area excluded from deterministic interior QA. Sage-green ink is cleaner/brighter; custom artist wordmark contours, speed fraction and letter spacing are reconstructed. A1 and B1/B2 credit ownership remain distinct. Exterior framing superseded by a transparent vector perimeter; retained label interior and spindle pixels are unchanged.",
+      "sourceApprovalHistory": {
+        "modernReconstruction": false
+      }
+    },
+    {
+      "number": "016",
+      "recordId": "cosmic-016",
+      "index": 1,
+      "title": "Get Jazzed Up",
+      "labelRole": "companion",
+      "asset": "/reference/restored-artwork/cosmic-016-label-b-approved-circle-v1.webp",
+      "previousPreviewAsset": "/reference/cosmic-label-preview/cosmic-016-label-b-review-circle-v1.webp",
+      "sha256": "f2b7a985b49d53ae0b19dad8bac76d11870738caa6e4f7ba3dc294638ed094ff",
+      "bytes": 1245232,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "master": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-016-1/circle-only.png",
+        "sha256": "3690ec4a48ca7f48dc27691cc030f18009de942d7ff14fff4743476b4e7d8532",
+        "dimensions": [
+          1254,
+          1254
+        ],
+        "bytes": 2143337
+      },
+      "source": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/flip-sides/cosmic016/cosmic016-discogs-50155-2.jpg",
+        "sha256": "c2703c3c4bd8d0e27d63de24202a60f840e38fc916c7fd377f5a0d0fe67bfe0f",
+        "url": "https://www.discogs.com/release/50155-DJs-Friction-Spice-Get-Jazzed-Up"
+      },
+      "publicSourceUrl": "https://www.discogs.com/release/50155-DJs-Friction-Spice-Get-Jazzed-Up",
+      "restorationManifest": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-016-1/manifest.json",
+      "restorationManifestSha256": "10ed66f284e0a8f3d4a831b9c578b683a3ac41d6b71d265589f985298e35b0aa",
+      "circleMask": {
+        "file": "mask.svg",
+        "sha256": "94e93cbfbfbbf0f23f3325a78b737e331a4836d950f77317a030b84c0b015b49"
+      },
+      "qualification": "The source scan is 600\u00d7600. Curved font metrics, CR contours, orbit geometry, ink and paper microtexture are reconstructed approximations, not original vectors or authenticated microscopic recovery. The pale sage/lime green is cleaner and slightly brighter than the public scan, aligned with the current information-side green/black family. Complete original design is retained without invented stars or extra text. Only the exact public label scan was used for initial generation. No owner-capture photographs, screenshots or old generated mockups were restoration inputs. Native intermediates are retained for provenance. Native and master are 1254\u00d71254; preview is 1200\u00d71200. These are restoration/export dimensions, not a claim of recovered original resolution. This is an additional flip view. Existing first-side files and information-side-first ordering are unchanged. Owner pixel approval and site import remain false. Exterior framing superseded by a transparent vector perimeter; retained label interior and spindle pixels are unchanged.",
+      "sourceApprovalHistory": {
+        "modernReconstruction": false
+      }
+    },
+    {
+      "number": "017",
+      "recordId": "cosmic-017",
+      "index": 0,
+      "title": "Time Travel E.P.",
+      "labelRole": "label",
+      "asset": "/reference/restored-artwork/cosmic-017-label-a-approved-circle-v1.webp",
+      "previousPreviewAsset": "/reference/cosmic-label-preview/cosmic-017-label-a-review-circle-v1.webp",
+      "sha256": "f46d24af5d81037cf28375226f3821b0d5f9bbf6b3ef6cc190cabefa4507e6f0",
+      "bytes": 1357030,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "master": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-017-0/circle-only.png",
+        "sha256": "14e6bf70d502463c9d07301c66233a00b5f990a8a97d3a2266b3f86fc444121b",
+        "dimensions": [
+          1254,
+          1254
+        ],
+        "bytes": 2104363
+      },
+      "source": {
+        "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/restoration/cosmic017/cosmic017-discogs-57256-1.jpg",
+        "sha256": "8f650960f6262aa248569fb285827fe3c9236334b7488edfb99378ea0c8b9b8d",
+        "url": "https://www.discogs.com/release/57256-Voyager-Time-Travel-EP"
+      },
+      "publicSourceUrl": "https://www.discogs.com/release/57256-Voyager-Time-Travel-EP",
+      "restorationManifest": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/cosmic-label-presentation/circle-only/labels/cosmic-017-0/manifest.json",
+      "restorationManifestSha256": "ee1aa437a07b36455638f9319f1e813abbcc2111af9fcc574c2b599982b3d862",
+      "circleMask": {
+        "file": "mask.svg",
+        "sha256": "d3e9bb8e68f0ba201f1c416a6b84b4161fd07a09cfce754a19da70c9a9bad9f4"
+      },
+      "qualification": "Public high-contrast A-side source is 600 \u00d7 600; supplementary public color A-side source is 600 \u00d7 593. Native generated master is 1254 \u00d7 1254. No original printing-master recovery is claimed. Custom CR orbit emblem, font contours, line geometry and faint dark radial print texture are source-led reconstructions. Printing/paper texture is cleaner and more regular than the scan, with stronger contrast. Both dots immediately after407 were explicitly confirmed by the owner before generation. This resolves text only, not artwork approval. Printed C017 A-side is represented. Handwritten white-label edition4393149 was researched but is not used as the edit target or substituted. Source scans came directly from public Discogs image URLs; no initial owner photograph, old generated card or sleeve/vinyl mockup was an input. Complete circular label and small white spindle appearance preserved on black exterior. No new catalogue/date/credit claims are added to the site. Exterior framing superseded by a transparent vector perimeter; retained label interior and spindle pixels are unchanged.",
+      "sourceApprovalHistory": {
+        "modernReconstruction": false
+      }
+    }
+  ],
+  "nonGalleryDataUnchanged": true,
+  "originalAssetsPreserved": true,
+  "productionPublished": false,
+  "validation": {
+    "status": "passed",
+    "assetCopiesAndBuildHashesChecked": 165,
+    "masterAndManifestHashesChecked": 66,
+    "cosmicReleases": 17,
+    "cosmicViews": 33,
+    "flipPairs": 16,
+    "cosmicDeckSlides": 28,
+    "exactCandidateTestsPassed": 461,
+    "fullBuildPages": 20,
+    "playerBuildPages": 2,
+    "playerScopeExcludesCredentials": true,
+    "unrelatedWorkingFilesPreserved": 845,
+    "baseCommit": "ebb5c3f628d89d29c12a13ef3a7ed81b545b717b"
+  }
+}

@@ -2648,3 +2648,16 @@
 @media (prefers-reduced-motion:reduce) { .cinema-brand-card__logo { animation:none; } }
 
 .media-stage[data-transport-in-stage="true"] .cinema-brand-card { bottom:var(--theater-console-height); }
+
+/* Cosmic circle-only assets sit directly on the dossier surface. */
+.reference-stage [data-reference-panel="cosmic-records-history"] .reference-stage__child-art:has(img[src*="-circle-"]),
+.reference-stage [data-reference-panel="cosmic-records-history"] .reference-stage__artwork-page figure:has(img[src*="-circle-"]) {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.reference-stage [data-reference-panel="cosmic-records-history"] img[src*="-circle-"] {
+  border-radius: 0;
+  background: transparent;
+}

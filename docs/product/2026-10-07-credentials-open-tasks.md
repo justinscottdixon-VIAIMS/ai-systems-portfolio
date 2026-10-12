@@ -1,5 +1,11 @@
 # Credentials completion workboard
 
+## Approved Cosmic presentation checkpoint — 12 October 2026
+
+The owner approved committing and pushing the current Cosmic presentation. All 17 Cosmic releases now use 33 circular label views with transparent exteriors and information sides first. Sixteen paired releases turn over inside one release card; Cosmic 017 has one documented face. The Cosmic reference deck now contains 28 slides. This is an approved presentation update to previously completed releases. It supersedes earlier candidate-review holds for this current Cosmic set. Catalogue facts and other dossier galleries are unchanged. Source hashes, restoration qualifications and the import decision are in `docs/research/2026-10-12-cosmic-approved-label-presentation.json`.
+
+Remaining primary restoration: D014, Underground Beats — Series 3 Volume 7, whose fine print remains unresolved. Separate work remains for the Singles dossier parent artwork, evidence/catalogue reconciliation, 67 proofreading passages across batches 4–26, complete dossier/archive interaction review, physical iPhone Safari acceptance and final Credentials release approval. Optional secondary artwork holds are not extra unfinished release restorations. Git commit and push are authorized; publication remains a separate release action.
+
 ## Current correction — 12 October 2026
 
 The owner confirmed that all 17 Cosmic releases were already completed. The earlier plan incorrectly treated historical fidelity-review flags as unfinished restorations. All 17 already have presentation artwork; there is no remaining Cosmic restoration batch. Batch 14 is withdrawn from active review as duplicate work, and Batch 15 preparation is stopped. Retain those outputs as unused alternates/evidence without importing or replacing any site artwork. Cosmic 009 retains its separately approved Batch 13 A/B replacement. D014 — Underground Beats, Series 3 Volume 7 — is the sole remaining primary release-restoration target; its existing wording question remains pending. Optional secondary views and general site/release gates are separate, not extra unfinished Cosmic releases.

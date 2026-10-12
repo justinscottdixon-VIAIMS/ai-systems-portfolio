@@ -54,3 +54,12 @@ figcaption { padding: 12px 0; line-height: 1.6; }
   .archive-contents ul { columns: 1; }
   .archive-facts { grid-template-columns: 1fr; gap: 18px; }
 }
+
+/* Preserve the transparent perimeter of Cosmic label derivatives. */
+.archive-art:has(img[src*="cosmic-"][src*="-circle-"]) {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.archive-art img[src*="cosmic-"][src*="-circle-"] { border-radius: 0; background: transparent; }

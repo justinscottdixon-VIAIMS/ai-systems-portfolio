@@ -117,9 +117,15 @@
           "gallery": [
             {
               "kind": "image",
-              "src": "/reference/cosmic-001-flat-sleeve-v2.png",
-              "alt": "DJ’s Friction & Spice — Groove Me: vinyl presentation with flat white sleeve",
-              "caption": "Reconstructed presentation from original label photography; artwork fidelity review pending."
+              "src": "/reference/restored-artwork/cosmic-001-label-a-approved-circle-v1.webp",
+              "alt": "DJ’s Friction & Spice — Groove Me: complete Cosmic 001 information label.",
+              "caption": "Groove Me — information label."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/restored-artwork/cosmic-001-flip-label-approved-circle-v1.webp",
+              "alt": "DJ’s Friction & Spice — Groove Me: complete Cosmic 001 other label side.",
+              "caption": "Groove Me — other label side."
             }
           ]
         },
@@ -139,9 +145,15 @@
           "gallery": [
             {
               "kind": "image",
-              "src": "/reference/cosmic-002-flat-sleeve-v2.png",
-              "alt": "DJ’s Friction & Spice — Pure / Journees: vinyl presentation with flat white sleeve",
-              "caption": "Reconstructed presentation from original label photography; artwork fidelity review pending."
+              "src": "/reference/restored-artwork/cosmic-002-label-a-approved-circle-v1.webp",
+              "alt": "DJ’s Friction & Spice — Pure / Journees: complete Cosmic 002 information label.",
+              "caption": "Pure / Journees — information label."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/restored-artwork/cosmic-002-label-b-approved-circle-v1.webp",
+              "alt": "DJ’s Friction & Spice — Pure / Journees: complete Cosmic 002 other label side.",
+              "caption": "Pure / Journees — other label side."
             }
           ]
         },
@@ -161,9 +173,15 @@
           "gallery": [
             {
               "kind": "image",
-              "src": "/reference/cosmic-003-flat-sleeve-v2.png",
-              "alt": "DJ’s Friction & Spice — You Make Me Feel So Good: vinyl presentation with flat white sleeve",
-              "caption": "Reconstructed presentation from original label photography; artwork fidelity review pending."
+              "src": "/reference/restored-artwork/cosmic-003-label-a-approved-circle-v1.webp",
+              "alt": "DJ’s Friction & Spice — You Make Me Feel So Good: complete Cosmic 003 information label.",
+              "caption": "You Make Me Feel So Good — information label."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/restored-artwork/cosmic-003-portrait-monochrome-approved-circle-v3.webp",
+              "alt": "DJ’s Friction & Spice — You Make Me Feel So Good: complete Cosmic 003 other label side.",
+              "caption": "You Make Me Feel So Good — other label side."
             }
           ]
         },
@@ -183,9 +201,15 @@
           "gallery": [
             {
               "kind": "image",
-              "src": "/reference/cosmic-004-flat-sleeve-v2.png",
-              "alt": "The Beat Brothers — Ah Yeah: vinyl presentation with flat white sleeve",
-              "caption": "Reconstructed presentation from original label photography; artwork fidelity review pending."
+              "src": "/reference/restored-artwork/cosmic-004-label-a-approved-circle-v1.webp",
+              "alt": "The Beat Brothers — Ah Yeah: complete Cosmic 004 information label.",
+              "caption": "Ah Yeah — information label."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/restored-artwork/cosmic-004-label-b-approved-circle-v1.webp",
+              "alt": "The Beat Brothers — Ah Yeah: complete Cosmic 004 other label side.",
+              "caption": "Ah Yeah — other label side."
             }
           ]
         },
@@ -205,9 +229,15 @@
           "gallery": [
             {
               "kind": "image",
-              "src": "/reference/cosmic-005-flat-sleeve-v2.png",
-              "alt": "Voyager — Trixta / Friction: vinyl presentation",
-              "caption": "Reconstructed presentation from original label photography; artwork fidelity review pending."
+              "src": "/reference/restored-artwork/cosmic-005-label-a-approved-circle-v1.webp",
+              "alt": "Voyager — Trixta / Friction: complete Cosmic 005 information label.",
+              "caption": "Trixta / Friction — information label."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/restored-artwork/cosmic-005-label-b-approved-circle-v1.webp",
+              "alt": "Voyager — Trixta / Friction: complete Cosmic 005 other label side.",
+              "caption": "Trixta / Friction — other label side."
             }
           ]
         },
@@ -227,9 +257,15 @@
           "gallery": [
             {
               "kind": "image",
-              "src": "/reference/cosmic-006-approved.png",
-              "alt": "DJ’s Friction & Spice — Funkee Ass Breaks Vol. 1, Cosmic 006, with a white sleeve lying behind the vinyl record",
-              "caption": "Artist-approved reconstructed presentation, flat-sleeve treatment. Original label photograph remains the archival source."
+              "src": "/reference/restored-artwork/cosmic-006-label-a-approved-circle-v1.webp",
+              "alt": "DJ’s Friction & Spice — Funkee Ass Breaks Vol. 1: complete Cosmic 006 information label.",
+              "caption": "Funkee Ass Breaks Vol. 1 — information label."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/restored-artwork/cosmic-006-label-b-approved-circle-v1.webp",
+              "alt": "DJ’s Friction & Spice — Funkee Ass Breaks Vol. 1: complete Cosmic 006 other label side.",
+              "caption": "Funkee Ass Breaks Vol. 1 — other label side."
             }
           ]
         },
@@ -248,9 +284,15 @@
           "gallery": [
             {
               "kind": "image",
-              "src": "/reference/cosmic-007-flat-sleeve-v2.png",
-              "alt": "Voyager — The Beat / Relax — also includes Slider: vinyl presentation",
-              "caption": "Reconstructed presentation from original label photography; artwork fidelity review pending."
+              "src": "/reference/restored-artwork/cosmic-007-label-a-approved-circle-v1.webp",
+              "alt": "Voyager — The Beat / Relax — also includes Slider: complete Cosmic 007 information label.",
+              "caption": "The Beat / Relax — also includes Slider — information label."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/restored-artwork/cosmic-007-label-b-approved-circle-v1.webp",
+              "alt": "Voyager — The Beat / Relax — also includes Slider: complete Cosmic 007 other label side.",
+              "caption": "The Beat / Relax — also includes Slider — other label side."
             }
           ]
         },
@@ -270,9 +312,15 @@
           "gallery": [
             {
               "kind": "image",
-              "src": "/reference/cosmic-008-flat-sleeve-v2.png",
-              "alt": "DJ’s Friction & Spice — The Rhythm: vinyl presentation",
-              "caption": "Reconstructed presentation from original label photography; artwork fidelity review pending."
+              "src": "/reference/restored-artwork/cosmic-008-label-a-approved-circle-v1.webp",
+              "alt": "DJ’s Friction & Spice — The Rhythm: complete Cosmic 008 label A.",
+              "caption": "The Rhythm — complete label A."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/restored-artwork/cosmic-008-label-b-approved-circle-v1.webp",
+              "alt": "DJ’s Friction & Spice — The Rhythm: complete Cosmic 008 label B.",
+              "caption": "The Rhythm — complete label B."
             }
           ]
         },
@@ -292,15 +340,15 @@
           "gallery": [
             {
               "kind": "image",
-              "src": "/reference/restored-artwork/cosmic-009-a-label-approved-v2.webp",
-              "alt": "Restored black and white Cosmic 009 Remix LP label, side A Groove Me, with verified production credits.",
-              "caption": "DJ’s Friction & Spice — Remix LP — restored Cosmic 009 A-side label."
+              "src": "/reference/restored-artwork/cosmic-009-label-a-approved-circle-v1.webp",
+              "alt": "DJ’s Friction & Spice — Remix LP: complete Cosmic 009 label A.",
+              "caption": "Remix LP — complete label A."
             },
             {
               "kind": "image",
-              "src": "/reference/restored-artwork/cosmic-009-b-label-approved-v2.webp",
-              "alt": "Restored black and white Cosmic 009 Remix LP label, side B You Make Me Feel So Good, with verified production credits.",
-              "caption": "DJ’s Friction & Spice — Remix LP — restored Cosmic 009 B-side label."
+              "src": "/reference/restored-artwork/cosmic-009-label-b-approved-circle-v1.webp",
+              "alt": "DJ’s Friction & Spice — Remix LP: complete Cosmic 009 label B.",
+              "caption": "Remix LP — complete label B."
             }
           ]
         },
@@ -319,9 +367,15 @@
           "gallery": [
             {
               "kind": "image",
-              "src": "/reference/cosmic-010-flat-sleeve-v2.png",
-              "alt": "Voyager — Lost Worlds / Ultra Intense: vinyl presentation",
-              "caption": "Reconstructed presentation from original label photography; artwork fidelity review pending."
+              "src": "/reference/restored-artwork/cosmic-010-label-a-approved-circle-v1.webp",
+              "alt": "Voyager — Lost Worlds / Ultra Intense: complete Cosmic 010 information label.",
+              "caption": "Lost Worlds / Ultra Intense — information label."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/restored-artwork/cosmic-010-label-b-approved-circle-v1.webp",
+              "alt": "Voyager — Lost Worlds / Ultra Intense: complete Cosmic 010 other label side.",
+              "caption": "Lost Worlds / Ultra Intense — other label side."
             }
           ]
         },
@@ -340,9 +394,15 @@
           "gallery": [
             {
               "kind": "image",
-              "src": "/reference/cosmic-011-continuous-grooves-v1.png",
-              "alt": "DJ’s Friction & Spice — Rhythm Rockin’ / Future Funk: vinyl presentation",
-              "caption": "Reconstructed presentation from original label photography; artwork fidelity review pending."
+              "src": "/reference/restored-artwork/cosmic-011-label-a-approved-circle-v1.webp",
+              "alt": "DJ’s Friction & Spice — Rhythm Rockin’ / Future Funk: complete Cosmic 011 information label.",
+              "caption": "Rhythm Rockin’ / Future Funk — information label."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/restored-artwork/cosmic-011-label-b-approved-circle-v1.webp",
+              "alt": "DJ’s Friction & Spice — Rhythm Rockin’ / Future Funk: complete Cosmic 011 other label side.",
+              "caption": "Rhythm Rockin’ / Future Funk — other label side."
             }
           ]
         },
@@ -361,9 +421,15 @@
           "gallery": [
             {
               "kind": "image",
-              "src": "/reference/cosmic-012-flat-sleeve-v2.png",
-              "alt": "The Beat Brothers — Acid Drop / Ah Yeah (RMX): vinyl presentation",
-              "caption": "Reconstructed presentation from original label photography; artwork fidelity review pending."
+              "src": "/reference/restored-artwork/cosmic-012-label-a-approved-circle-v1.webp",
+              "alt": "The Beat Brothers — Acid Drop / Ah Yeah (RMX): complete Cosmic 012 information label.",
+              "caption": "Acid Drop / Ah Yeah (RMX) — information label."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/restored-artwork/cosmic-012-label-b-approved-circle-v1.webp",
+              "alt": "The Beat Brothers — Acid Drop / Ah Yeah (RMX): complete Cosmic 012 other label side.",
+              "caption": "Acid Drop / Ah Yeah (RMX) — other label side."
             }
           ]
         },
@@ -379,9 +445,15 @@
           "gallery": [
             {
               "kind": "image",
-              "src": "/reference/cosmic-013-continuous-grooves-v3.png",
-              "alt": "Three Wise Monkeys Meet DJ’s Friction & Spice — Work 4 Love: vinyl presentation",
-              "caption": "Reconstructed presentation from original label photography; artwork fidelity review pending."
+              "src": "/reference/restored-artwork/cosmic-013-label-a-approved-circle-v1.webp",
+              "alt": "Three Wise Monkeys Meet DJ’s Friction & Spice — Work 4 Love: complete Cosmic 013 information label.",
+              "caption": "Work 4 Love — information label."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/restored-artwork/cosmic-013-label-b-approved-circle-v1.webp",
+              "alt": "Three Wise Monkeys Meet DJ’s Friction & Spice — Work 4 Love: complete Cosmic 013 other label side.",
+              "caption": "Work 4 Love — other label side."
             }
           ]
         },
@@ -401,9 +473,15 @@
           "gallery": [
             {
               "kind": "image",
-              "src": "/reference/cosmic-014-flat-sleeve-v2.png",
-              "alt": "DJ’s Friction & Spice — The E.P.: vinyl presentation",
-              "caption": "Reconstructed presentation from original label photography; artwork fidelity review pending."
+              "src": "/reference/restored-artwork/cosmic-014-label-a-approved-circle-v1.webp",
+              "alt": "DJ’s Friction & Spice — The E.P.: complete Cosmic 014 information label.",
+              "caption": "The E.P. — information label."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/restored-artwork/cosmic-014-label-b-approved-circle-v1.webp",
+              "alt": "DJ’s Friction & Spice — The E.P.: complete Cosmic 014 other label side.",
+              "caption": "The E.P. — other label side."
             }
           ],
           "credits": [
@@ -463,9 +541,15 @@
           "gallery": [
             {
               "kind": "image",
-              "src": "/reference/cosmic-015-flat-sleeve-v2.png",
-              "alt": "Voyager — Pure Frictions Groove: vinyl presentation",
-              "caption": "Reconstructed presentation from original label photography; artwork fidelity review pending."
+              "src": "/reference/restored-artwork/cosmic-015-label-a-approved-circle-v1.webp",
+              "alt": "Voyager — Pure: complete Cosmic 015 information label.",
+              "caption": "Pure — information label."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/restored-artwork/cosmic-015-label-b-approved-circle-v1.webp",
+              "alt": "Voyager — Pure: complete Cosmic 015 other label side.",
+              "caption": "Pure — other label side."
             }
           ]
         },
@@ -483,9 +567,15 @@
           "gallery": [
             {
               "kind": "image",
-              "src": "/reference/cosmic-016-flat-sleeve-v2.png",
-              "alt": "DJ’s Friction & Spice — Get Jazzed Up: vinyl presentation",
-              "caption": "Reconstructed presentation from original label photography; artwork fidelity review pending."
+              "src": "/reference/restored-artwork/cosmic-016-label-a-approved-circle-v1.webp",
+              "alt": "DJ’s Friction & Spice — Get Jazzed Up: complete Cosmic 016 information label.",
+              "caption": "Get Jazzed Up — information label."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/restored-artwork/cosmic-016-label-b-approved-circle-v1.webp",
+              "alt": "DJ’s Friction & Spice — Get Jazzed Up: complete Cosmic 016 other label side.",
+              "caption": "Get Jazzed Up — other label side."
             }
           ],
           "credits": [
@@ -524,9 +614,9 @@
           "gallery": [
             {
               "kind": "image",
-              "src": "/reference/cosmic-017-scale-v6.png",
-              "alt": "Voyager — Time Travel E.P.: vinyl presentation",
-              "caption": "Artist-approved reconstructed presentation; original label photograph is the archival source."
+              "src": "/reference/restored-artwork/cosmic-017-label-a-approved-circle-v1.webp",
+              "alt": "Voyager — Time Travel E.P.: complete Cosmic 017 label.",
+              "caption": "Time Travel E.P. — complete label."
             }
           ]
         }
