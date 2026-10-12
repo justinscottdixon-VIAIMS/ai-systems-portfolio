@@ -1,3 +1,5 @@
+import { presentationArtwork } from './artwork-presentation-policy.mjs';
+
 const categories = new Set(['music', 'film', 'publication', 'product', 'podcast-audiobook', 'career']);
 const statuses = new Set(['released', 'published', 'archived', 'in-development', 'verification-pending']);
 const evidenceLevels = new Set(['primary-public', 'corroborated-public', 'attributed-public', 'owner-approved-archive']);
@@ -92,7 +94,7 @@ function childRecord(child, label) {
     format: text(child.format, `${label} format`),
     roles: child.roles.map((role, roleIndex) => text(role, `${label} role ${roleIndex}`)),
     summary: text(child.summary, `${label} summary`),
-    gallery: child.gallery.map((item, itemIndex) => presentationItem(item, `${label} gallery item ${itemIndex}`)),
+    gallery: presentationArtwork(child.gallery.map((item, itemIndex) => presentationItem(item, `${label} gallery item ${itemIndex}`))),
   };
 }
 
@@ -128,7 +130,7 @@ export function toPortfolioRecords(source) {
       era: text(record.era, `${label} era`),
       roles: record.roles.map((role, roleIndex) => text(role, `${label} role ${roleIndex}`)),
       summary: text(record.summary, `${label} summary`),
-      gallery: record.gallery.map((item, itemIndex) => presentationItem(item, `${label} gallery item ${itemIndex}`)),
+      gallery: presentationArtwork(record.gallery.map((item, itemIndex) => presentationItem(item, `${label} gallery item ${itemIndex}`))),
       sections: Array.isArray(record.sections)
         ? record.sections.map((section, sectionIndex) => dossierSection(section, `${label} section ${sectionIndex}`))
         : [],

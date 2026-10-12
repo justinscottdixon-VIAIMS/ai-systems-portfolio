@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "reason": "Owner instruction, 2026-10-11: original release-capture still photographs are source evidence only and must not appear in site presentations or published builds.",
+  "provenance": [
+    "docs/research/2026-09-29-singles-artwork-import.json",
+    "docs/research/2026-09-30-remaining-artwork-import.json"
+  ],
+  "excludedSources": [
+    "/reference/singles-remixes/nc-01-img-5161.jpg",
+    "/reference/singles-remixes/nc-01-img-5162.jpg",
+    "/reference/singles-remixes/nc-02-img-5167.jpg",
+    "/reference/singles-remixes/nc-02-img-5181.jpg",
+    "/reference/singles-remixes/nc-02-img-5182.jpg",
+    "/reference/singles-remixes/nc-03-img-5168.jpg",
+    "/reference/singles-remixes/nc-04-img-5170.jpg",
+    "/reference/singles-remixes/nc-04-img-5186.jpg",
+    "/reference/singles-remixes/nc-05-img-5171.jpg",
+    "/reference/singles-remixes/nc-05-img-5172.jpg",
+    "/reference/singles-remixes/nc-05-img-5173.jpg",
+    "/reference/singles-remixes/nc-06-img-5176.jpg",
+    "/reference/singles-remixes/nc-06-img-5177.jpg",
+    "/reference/singles-remixes/nc-07-img-5178.jpg",
+    "/reference/singles-remixes/nc-08-img-5179.jpg",
+    "/reference/singles-remixes/nc-09-img-5180.jpg",
+    "/reference/singles-remixes/nc-10-img-5183.jpg",
+    "/reference/singles-remixes/nc-11-img-5184.jpg",
+    "/reference/singles-remixes/nc-12-img-5185.jpg",
+    "/reference/singles-remixes/nc-13-img-5187.jpg",
+    "/reference/singles-remixes/nc-14-img-5188.jpg",
+    "/reference/singles-remixes/nc-14-img-5189.jpg",
+    "/reference/singles-remixes/nc-15-img-5190.jpg",
+    "/reference/singles-remixes/nc-15-img-5191.jpg",
+    "/reference/singles-remixes/nc-16-img-5192.jpg",
+    "/reference/singles-remixes/nc-17-img-5193.jpg",
+    "/reference/singles-remixes/nc-18-img-5194.jpg",
+    "/reference/remaining-artwork/time-travel-vinyl-side-a.jpg",
+    "/reference/remaining-artwork/time-travel-vinyl-side-b.jpg"
+  ]
+}

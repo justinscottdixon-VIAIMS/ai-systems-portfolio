@@ -1,0 +1,664 @@
+{
+  "version": 1,
+  "imports": [
+    {
+      "recordId": "singles-remixes",
+      "childId": "nc-08",
+      "presentation": "Sunshine State of Mind — restored full-compilation cover",
+      "assetPath": "/reference/restored-artwork/sunshine-state-of-mind-full-compilation-approved-v1.png",
+      "ownerSuppliedSource": {
+        "originalFilename": "R-100276-1496862340-2455.jpg",
+        "preservedPath": "outputs/credentials-artwork-2026-10-11/restoration/sunshine-state-of-mind-owner-source.jpg",
+        "dimensions": [
+          300,
+          300
+        ],
+        "sha256": "97b04dead9304fab7d4b7f3a633d03811b26167203339f2f443f0636c158146b"
+      },
+      "generatedArtifact": {
+        "path": "outputs/credentials-artwork-2026-10-11/restoration/sunshine-state-of-mind-full-compilation-restored-v1.png",
+        "method": "AI-assisted faithful restoration using the built-in image editor; not a recovered original master",
+        "dimensions": [
+          1254,
+          1254
+        ],
+        "sha256": "f52d937ff1bc3b5be1752f1d8f3e782a9581e65c6280c6cdd346b547eace58cd"
+      },
+      "approval": {
+        "status": "owner-approved",
+        "date": "2026-10-11",
+        "evidence": "Owner: very happy!...lets keep going",
+        "scope": "Approve restored full-compilation artwork for the local Credentials presentation."
+      },
+      "identityNote": "Full-compilation artwork family associated with NC-08. The owner-supplied design does not establish an exact match to the photographed physical pressing; its additional marketing line is absent here. It is not the NC-01 four-track sampler cover. Catalogue, dates, credits and source references remain unchanged.",
+      "sourceEvidenceRetained": "/reference/singles-remixes/nc-08-img-5179.jpg",
+      "pixelHandling": "Approved PNG copied byte-for-byte into both public/reference/restored-artwork and public-deploy/reference/restored-artwork; no image processing."
+    },
+    {
+      "recordId": "compilation-appearances",
+      "childId": "d005",
+      "presentation": "Stark Raving Mad — front cover, John Digweed featuring Nick Muir",
+      "assetPath": "/reference/approved-artwork/stark-raving-mad-front-approved-v1.jpg",
+      "sourceArtifact": {
+        "path": "outputs/credentials-artwork-2026-10-11/discovery/d005-caa-front-34820527709.jpg",
+        "sourcePage": "https://musicbrainz.org/release/bb5af242-4fa6-4eec-91e7-6de33326ca06/cover-art",
+        "imageUrl": "https://archive.org/download/mbid-bb5af242-4fa6-4eec-91e7-6de33326ca06/mbid-bb5af242-4fa6-4eec-91e7-6de33326ca06-34820527709.jpg",
+        "coverArtArchiveImageId": "34820527709",
+        "coverArtArchiveType": "Front",
+        "dimensions": [
+          2850,
+          2806
+        ],
+        "sha256": "2be800f67b8edbb622c02fcfd86127695e45f95cd4f34c05617d97af4993f6fe"
+      },
+      "approval": {
+        "status": "owner-approved",
+        "date": "2026-10-11",
+        "evidence": "Owner: that is perfect! ...keepmovingforward",
+        "scope": "Approve the displayed front-cover scan as shown for local Credentials presentation, without additional editing."
+      },
+      "identityNote": "The MusicBrainz/CAA source identifies the soundtrack release family and Thrive 90704-2, and links Discogs 1727733. The previous lead came from Discogs 156853. Approval selects this front-cover presentation, including featuring Nick Muir, and does not establish an exact pressing match. Catalogue, date, credits, summary and other gallery items remain unchanged.",
+      "previousLeadArtwork": {
+        "kind": "image",
+        "src": "/reference/remaining-artwork/d005-01.jpg",
+        "alt": "Stark Raving Mad — soundtrack album — edition artwork image 1",
+        "caption": "Stark Raving Mad — soundtrack album — edition image 1 (Discogs release 156853)."
+      },
+      "previousDisplayedArtworkSource": {
+        "label": "Displayed artwork edition",
+        "href": "https://www.discogs.com/release/156853",
+        "supports": "Artwork and packaging for the displayed edition; catalogue credits retain their existing qualifications."
+      },
+      "previousLeadPreserved": true,
+      "pixelHandling": "Downloaded JPG copied byte-for-byte into both public/reference/approved-artwork and public-deploy/reference/approved-artwork; no image processing.",
+      "placements": [
+        {
+          "recordId": "compilation-appearances",
+          "childId": "d005",
+          "galleryIndex": 0,
+          "previousArtwork": {
+            "kind": "image",
+            "src": "/reference/remaining-artwork/d005-01.jpg",
+            "alt": "Stark Raving Mad — soundtrack album — edition artwork image 1",
+            "caption": "Stark Raving Mad — soundtrack album — edition image 1 (Discogs release 156853)."
+          },
+          "previousSource": {
+            "label": "Displayed artwork edition",
+            "href": "https://www.discogs.com/release/156853",
+            "supports": "Artwork and packaging for the displayed edition; catalogue credits retain their existing qualifications."
+          }
+        },
+        {
+          "recordId": "screen-credits-history",
+          "galleryIndex": 1,
+          "previousArtwork": {
+            "kind": "image",
+            "src": "/reference/remaining-artwork/d005-01.jpg",
+            "alt": "Stark Raving Mad — soundtrack album — edition artwork image 1",
+            "caption": "Stark Raving Mad — soundtrack album — edition image 1 (Discogs release 156853)."
+          },
+          "previousSource": {
+            "label": "Stark Raving Mad soundtrack packaging",
+            "href": "https://musicbrainz.org/release/bb5af242-4fa6-4eec-91e7-6de33326ca06",
+            "supports": "Artwork and packaging for the displayed edition; catalogue credits retain their existing qualifications."
+          }
+        }
+      ]
+    },
+    {
+      "recordId": "compilation-appearances",
+      "childId": "d028",
+      "presentation": "The 4 A.M. Sound of Progressive Trance — restored compilation cover",
+      "assetPath": "/reference/restored-artwork/the-4-am-sound-of-progressive-trance-approved-v1.png",
+      "sourceArtifact": {
+        "path": "outputs/credentials-artwork-2026-10-11/restoration/d028/the-4-am-source-allmusic-400.jpg",
+        "sourcePage": "https://www.allmusic.com/album/the-4-am-sound-of-progressive-trance-mw0000213612",
+        "dimensions": [
+          400,
+          400
+        ],
+        "sha256": "bbda0542e2e17f9beca12cc36fa481c10baab447971d5d1f688742ad0b73b1eb"
+      },
+      "generatedArtifact": {
+        "path": "outputs/credentials-artwork-2026-10-11/restoration/d028/the-4-am-sound-of-progressive-trance-restored-v1.png",
+        "method": "Built-in image editor; AI-assisted restoration derivative, not a recovered original master",
+        "dimensions": [
+          1254,
+          1254
+        ],
+        "sha256": "c90912781d77ded738ed3f0c7523ad7e7d276acb8fbd4b67be4e479a11f5c28c"
+      },
+      "approval": {
+        "status": "owner-approved",
+        "date": "2026-10-11",
+        "evidence": "Owner: looks perfect! lets use that and move forward!",
+        "scope": "Approve the displayed restoration for local Credentials presentation without further image processing."
+      },
+      "identityNote": "Owner-approved AI-assisted presentation restoration from the 400 × 400 AllMusic artwork. It is not a recovered original master and does not independently establish physical pressing details. The existing catalogue, dates, credits and public source records remain unchanged.",
+      "placements": [
+        {
+          "recordId": "compilation-appearances",
+          "childId": "d028",
+          "galleryIndex": 0,
+          "previousArtwork": {
+            "kind": "image",
+            "src": "/reference/remaining-artwork/d028-01.jpg",
+            "alt": "The 4 A.M. Sound of Progressive Trance — edition artwork image 1",
+            "caption": "The 4 A.M. Sound of Progressive Trance — edition image 1 (Discogs release 2095502)."
+          }
+        }
+      ],
+      "previousLeadPreserved": true,
+      "pixelHandling": "Approved PNG copied byte-for-byte into both public/reference/restored-artwork and public-deploy/reference/restored-artwork; no image processing."
+    },
+    {
+      "recordId": "singles-remixes",
+      "childId": "nc-02",
+      "presentation": "Beautiful Strange — restored retail EP front cover (BS1001EP)",
+      "assetPath": "/reference/restored-artwork/bedrock-beautiful-strange-ep-approved-v1.png",
+      "sourceArtifact": {
+        "path": "outputs/credentials-artwork-2026-10-11/restoration/nc02/bedrock-beautiful-strange-ep-source.jpg",
+        "sourcePage": "https://www.discogs.com/release/14476",
+        "dimensions": [
+          595,
+          586
+        ],
+        "sha256": "cb07076b58f6035e56458722a78c7b0d16024b51cfc5fe9472d9f42125b82bb7"
+      },
+      "generatedArtifact": {
+        "path": "outputs/credentials-artwork-2026-10-11/restoration/nc02/bedrock-beautiful-strange-ep-restored-v2.png",
+        "method": "Built-in image editor; AI-assisted restoration derivative, not a recovered original master",
+        "revision": "v2; localized upper-left crease cleanup after initial restoration",
+        "dimensions": [
+          1254,
+          1254
+        ],
+        "sha256": "85a388f45bb084dfd26d78a7a902c2359932daf129b0d5863bc8cf20a94498c5",
+        "initialCandidate": {
+          "path": "outputs/credentials-artwork-2026-10-11/restoration/nc02/bedrock-beautiful-strange-ep-restored-v1.png",
+          "dimensions": [
+            1254,
+            1254
+          ],
+          "sha256": "bfa818b19fba4c0733c362c4a6f1f70413bf01f2b3484717d28c2bb596f85206"
+        },
+        "prompt": "outputs/credentials-artwork-2026-10-11/restoration/nc02/prompt.txt",
+        "revisionPrompt": "outputs/credentials-artwork-2026-10-11/restoration/nc02/corner-cleanup-prompt.txt"
+      },
+      "approval": {
+        "status": "owner-approved",
+        "date": "2026-10-11",
+        "evidence": "Owner: that looks perfect! thank you. Lets move forward",
+        "scope": "Approve the displayed v2 restoration of the BS1001EP retail front for local Credentials presentation."
+      },
+      "identityNote": "Restored BS1001EP retail front only, based on Discogs release 14476. This does not establish the BS1001pr promo presentation or reconcile the differently printed Voyager remix names. Catalogue, dates, summary, roles and original capture evidence remain unchanged.",
+      "placements": [
+        {
+          "recordId": "singles-remixes",
+          "childId": "nc-02",
+          "galleryIndex": 0,
+          "operation": "Insert approved retail-front restoration before the preserved capture evidence."
+        }
+      ],
+      "sourceEvidenceRetained": [
+        {
+          "kind": "image",
+          "src": "/reference/singles-remixes/nc-02-img-5167.jpg",
+          "alt": "Bedrock — Beautiful Strange, photographed edition IMG_5167",
+          "caption": "Beautiful Strange — archive photograph IMG_5167."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/singles-remixes/nc-02-img-5181.jpg",
+          "alt": "Bedrock — Beautiful Strange, photographed edition IMG_5181",
+          "caption": "Beautiful Strange — archive photograph IMG_5181."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/singles-remixes/nc-02-img-5182.jpg",
+          "alt": "Bedrock — Beautiful Strange, photographed edition IMG_5182",
+          "caption": "Beautiful Strange — archive photograph IMG_5182."
+        }
+      ],
+      "pixelHandling": "Approved v2 PNG copied byte-for-byte into both public/reference/restored-artwork and public-deploy/reference/restored-artwork using approved-v1 filename; no further image processing."
+    },
+    {
+      "recordId": "singles-remixes",
+      "childId": "nc-03",
+      "presentation": "Keoki — Altered-Ego-Trip restored CD/digital cover",
+      "assetPath": "/reference/restored-artwork/keoki-altered-ego-trip-approved-v1.png",
+      "sourceArtifact": {
+        "path": "outputs/credentials-artwork-2026-10-11/restoration/nc03/keoki-altered-ego-trip-source-3000.jpg",
+        "sourcePage": "https://music.apple.com/us/album/altered-ego-trip/1656907009",
+        "dimensions": [
+          3000,
+          3000
+        ],
+        "sha256": "835f0c092dca863f7b538c793234cb2d288d4801a75ad4e6c731f5385f389d12"
+      },
+      "generatedArtifact": {
+        "path": "outputs/credentials-artwork-2026-10-11/restoration/nc03/keoki-altered-ego-trip-restored-v1.png",
+        "method": "Built-in image editor; AI-assisted scan cleanup derivative, not a recovered original master",
+        "dimensions": [
+          1254,
+          1254
+        ],
+        "sha256": "3fd9b50c79f15cc64cb8d67e3c942bac672cfa68b58e314170f3c20b147459fd",
+        "prompt": "outputs/credentials-artwork-2026-10-11/restoration/nc03/prompt.txt"
+      },
+      "approval": {
+        "status": "owner-approved",
+        "date": "2026-10-11",
+        "evidence": "Owner: Perfect! lets add that and move forward!",
+        "scope": "Approve the displayed restoration of the CD/digital-family cover for local Credentials presentation."
+      },
+      "identityNote": "CD/digital-family artwork restored from the Apple Music source and approved for NC-03 presentation. It differs from the photographed MM80090-1 vinyl sticker/die-cut sleeve and does not establish exact vinyl artwork or resolve the contributed track/mix. Catalogue, dates, summary, roles and original capture evidence remain unchanged.",
+      "resolutionNote": "1254 × 1254 cleanup derivative from the preserved 3000 × 3000 source; not a resolution increase or recovered original master.",
+      "placements": [
+        {
+          "recordId": "singles-remixes",
+          "childId": "nc-03",
+          "galleryIndex": 0,
+          "operation": "Insert approved CD/digital-family restoration before the preserved vinyl capture evidence."
+        }
+      ],
+      "sourceEvidenceRetained": [
+        {
+          "kind": "image",
+          "src": "/reference/singles-remixes/nc-03-img-5168.jpg",
+          "alt": "Keoki — Altered-Ego-Trip (The Remix Album), photographed edition IMG_5168",
+          "caption": "Altered-Ego-Trip (The Remix Album) — archive photograph IMG_5168."
+        }
+      ],
+      "pixelHandling": "Approved PNG copied byte-for-byte into both public/reference/restored-artwork and public-deploy/reference/restored-artwork; no further image processing."
+    },
+    {
+      "recordId": "singles-remixes",
+      "childId": "nc-04",
+      "presentation": "Magic Shop — restored CODE10 retail cover and enlarged information label",
+      "assetPaths": [
+        "/reference/restored-artwork/magic-shop-code10-cover-approved-v1.png",
+        "/reference/restored-artwork/magic-shop-code10-label-approved-v1.png"
+      ],
+      "sourceArtifacts": [
+        {
+          "role": "full-front composition target",
+          "path": "outputs/credentials-artwork-2026-10-11/restoration/nc04/magic-shop-front-source-600.jpg",
+          "dimensions": [
+            600,
+            600
+          ],
+          "sha256": "d278aef64a16bba07587cfdae9d2528ceaad06c5e39385593b5a7940e0103a96",
+          "sourcePage": "https://www.discogs.com/release/87301"
+        },
+        {
+          "role": "supporting retail label lettering only",
+          "path": "outputs/credentials-artwork-2026-10-11/restoration/nc04/magic-shop-retail-label-reference.webp",
+          "dimensions": [
+            1600,
+            1200
+          ],
+          "sha256": "b9f7bfa87bf2643f7f291d486910d46e34cd819296a12efadfdcfdd0a4329b59",
+          "sourcePage": "https://www.ebay.com/itm/278387462797"
+        }
+      ],
+      "restoredArtifacts": [
+        {
+          "path": "outputs/credentials-artwork-2026-10-11/restoration/nc04/magic-shop-restored-v3.png",
+          "assetPath": "/reference/restored-artwork/magic-shop-code10-cover-approved-v1.png",
+          "dimensions": [
+            4000,
+            4000
+          ],
+          "sha256": "5f293287ac57ec40191aa380acf28f8b930ad021982f641e7b866e4336f4e06e",
+          "bytes": 2968220
+        },
+        {
+          "path": "outputs/credentials-artwork-2026-10-11/restoration/nc04/magic-shop-label-v3.png",
+          "assetPath": "/reference/restored-artwork/magic-shop-code10-label-approved-v1.png",
+          "dimensions": [
+            2400,
+            2400
+          ],
+          "sha256": "770fd22081da752437f50170f9821f4ca796df75f54414b8b0fd1b3c2e7d9a7a",
+          "bytes": 249222
+        }
+      ],
+      "method": "AI-assisted sleeve restoration combined with precise editable vector text, traced label marks and deterministic EAN13 bars; exported to approved PNGs. Not a recovered original printing master.",
+      "revision": 3,
+      "editableMaster": "outputs/credentials-artwork-2026-10-11/restoration/nc04/magic-shop-restored-v3-editable.svg",
+      "portableOutlinedMaster": "outputs/credentials-artwork-2026-10-11/restoration/nc04/magic-shop-restored-v3-outlined.svg",
+      "ownerConfirmedText": "outputs/credentials-artwork-2026-10-11/restoration/nc04/owner-confirmed-label-text.txt",
+      "approval": {
+        "status": "owner-approved",
+        "date": "2026-10-11",
+        "evidence": "Owner: looks amazing! lets add it",
+        "scope": "Approve the final v3 full cover and enlarged label for local Credentials presentation without further rendering or image processing."
+      },
+      "identityNote": "Restored CODE10 retail sleeve and printed information-label detail, distinct from the separately photographed Coded Test Pressing sticker/label. These presentation restorations do not establish an exact match to the photographed edition. Catalogue, dates, summary, credits and original capture evidence remain unchanged.",
+      "fidelityNote": "Owner-confirmed microtext is set with vector lettering. Arial and Arial Narrow and traced marks are source-matched approximations, not authenticated original typefaces. The outer sleeve preserves the earlier 1254px restored raster; 4000px export does not recover original source detail.",
+      "barcodeVerification": "Printed digits 5033272100203 re-encoded with ReportLab EAN13. Independent vector-bar decode matched the number, guards, parity and checksum. Native raster decoding was unavailable due macOS Vision environment errors; raster or physical scanning is not claimed.",
+      "placements": [
+        {
+          "recordId": "singles-remixes",
+          "childId": "nc-04",
+          "galleryIndex": 0,
+          "assetPath": "/reference/restored-artwork/magic-shop-code10-cover-approved-v1.png",
+          "operation": "Insert approved v3 presentation before preserved capture evidence."
+        },
+        {
+          "recordId": "singles-remixes",
+          "childId": "nc-04",
+          "galleryIndex": 1,
+          "assetPath": "/reference/restored-artwork/magic-shop-code10-label-approved-v1.png",
+          "operation": "Insert approved v3 presentation before preserved capture evidence."
+        }
+      ],
+      "sourceEvidenceRetained": [
+        {
+          "kind": "image",
+          "src": "/reference/singles-remixes/nc-04-img-5170.jpg",
+          "alt": "Stef, Pako & Frederik — Magic Shop, photographed edition IMG_5170",
+          "caption": "Magic Shop — archive photograph IMG_5170."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/singles-remixes/nc-04-img-5186.jpg",
+          "alt": "Stef, Pako & Frederik — Magic Shop, photographed edition IMG_5186",
+          "caption": "Magic Shop — archive photograph IMG_5186."
+        }
+      ],
+      "pixelHandling": "Both approved PNGs copied byte-for-byte into public/reference/restored-artwork and public-deploy/reference/restored-artwork using approved-v1 filenames; no further image processing.",
+      "published": false
+    },
+    {
+      "recordId": "compilation-appearances",
+      "childId": "d028",
+      "revision": 2,
+      "presentation": "The 4 A.M. Sound of Progressive Trance — restored compilation cover with precise artist-strip lettering",
+      "assetPath": "/reference/restored-artwork/the-4-am-sound-of-progressive-trance-approved-v2.png",
+      "sourceArtifact": {
+        "path": "outputs/credentials-artwork-2026-10-11/restoration/d028/the-4-am-source-allmusic-400.jpg",
+        "dimensions": [
+          400,
+          400
+        ],
+        "sha256": "bbda0542e2e17f9beca12cc36fa481c10baab447971d5d1f688742ad0b73b1eb",
+        "sourcePage": "https://www.allmusic.com/album/the-4-am-sound-of-progressive-trance-mw0000213612"
+      },
+      "approvedRasterBase": {
+        "path": "outputs/credentials-artwork-2026-10-11/restoration/d028/the-4-am-sound-of-progressive-trance-restored-v1.png",
+        "sha256": "c90912781d77ded738ed3f0c7523ad7e7d276acb8fbd4b67be4e479a11f5c28c",
+        "dimensions": [
+          1254,
+          1254
+        ]
+      },
+      "restoredArtifact": {
+        "path": "outputs/credentials-artwork-2026-10-11/restoration/d028/the-4-am-restored-v2.png",
+        "dimensions": [
+          4000,
+          4000
+        ],
+        "sha256": "dda2fbd9e48688b1ce861ddc51c17d22af33ba2d8b6c9ac8cac13a521d648c94",
+        "bytes": 11298424,
+        "method": "Previously approved AI-assisted raster cover with only the gray artist-strip interior reconstructed as owner-confirmed editable/outlined vector lettering; deterministic 4000px PNG export, not a recovered original printing master."
+      },
+      "editableMaster": "outputs/credentials-artwork-2026-10-11/restoration/d028/the-4-am-restored-v2-editable.svg",
+      "outlinedMaster": "outputs/credentials-artwork-2026-10-11/restoration/d028/the-4-am-restored-v2-outlined.svg",
+      "artistStripProofRetained": "outputs/credentials-artwork-2026-10-11/restoration/d028/the-4-am-artist-strip-v2.png",
+      "verification": "outputs/credentials-artwork-2026-10-11/restoration/d028/vector-v2-verification.json",
+      "ownerTextConfirmation": {
+        "date": "2026-10-11",
+        "answer": "Confirmed as shown",
+        "scope": "Two artist-strip lines and the displayed two groups of four lime-green slashes before DEEP and after FROM.",
+        "lines": [
+          "//// DEEP LATE NIGHT SOUNDS FROM //// SATOSHI TOMIIE / MEDWAY / VOYAGER",
+          "STEVE PORTER / POB AND TAYLOR / THE FUTURE SOUND OF LONDON"
+        ]
+      },
+      "approval": {
+        "status": "owner-approved",
+        "date": "2026-10-11",
+        "evidence": "Owner: looks great! lets move forward !",
+        "scope": "Approve the displayed v2 full cover with precise artist-strip lettering for local Credentials presentation. The strip detail remains a review proof, not an additional gallery image."
+      },
+      "identityNote": "Same compilation presentation as the approved v1 cover. This lettering revision does not establish physical pressing details or change catalogue, dates, track names, credits, summary or public sources.",
+      "fidelityNote": "Arial Narrow Bold and Arial Narrow are visually matched replacements, not authenticated original typefaces. 4000px export improves vector-strip sampling only. All imagery and title outside the strip retain the approved 1254px raster detail; no recovered original background or printing-master detail is claimed.",
+      "pixelPreservation": {
+        "final4000": {
+          "width": 4000,
+          "height": 4000,
+          "protectedPixels": 15121174,
+          "changedProtectedPixels": 0,
+          "changedPixels": 851741,
+          "overlayAlphaBoundsInclusive": {
+            "xMin": 392,
+            "yMin": 1480,
+            "xMax": 3767,
+            "yMax": 1747
+          }
+        },
+        "native1254": {
+          "width": 1254,
+          "height": 1254,
+          "protectedPixels": 1486138,
+          "changedProtectedPixels": 0,
+          "changedPixels": 83802,
+          "overlayAlphaBoundsInclusive": {
+            "xMin": 123,
+            "yMin": 464,
+            "xMax": 1180,
+            "yMax": 547
+          }
+        }
+      },
+      "placements": [
+        {
+          "recordId": "compilation-appearances",
+          "childId": "d028",
+          "galleryIndex": 0,
+          "previousArtwork": {
+            "kind": "image",
+            "src": "/reference/restored-artwork/the-4-am-sound-of-progressive-trance-approved-v1.png",
+            "alt": "Restored The 4 A.M. Sound of Progressive Trance cover with a lime title panel, gray artist strip and white and green light trails against a navy night scene.",
+            "caption": "The 4 A.M. Sound of Progressive Trance — restored compilation cover."
+          },
+          "operation": "Replace only the lead image source with the approved v2 full cover; keep existing alt/caption and all facts."
+        }
+      ],
+      "previousApprovedFilesRetained": true,
+      "pixelHandling": "Final approved v2 PNG copied byte-for-byte into public/reference/restored-artwork and public-deploy/reference/restored-artwork; no rerendering or further image processing.",
+      "published": false
+    },
+    {
+      "recordId": "singles-remixes",
+      "childId": "nc-05",
+      "presentation": "Acid X-Mas — Special X-Mas E.P. SB-013 promotional sleeve sticker",
+      "assetPath": "/reference/restored-artwork/acid-x-mas-sb013-sticker-approved-v1.png",
+      "sourceArtifact": {
+        "path": "../../discovery/nc05-expanded/nc05-discogs-324116-6.jpg",
+        "sourcePage": "https://www.discogs.com/release/324116",
+        "dimensions": [
+          600,
+          342
+        ],
+        "sha256": "a13f93e92e7249e2e16aa6335f7295b3f5c910ebeaad9579e500ee305780cc8d",
+        "edition": "StreetBeat SB-013 promotional red transparent vinyl EP"
+      },
+      "restoredArtifact": {
+        "path": "acid-x-mas-sticker-restored-v1.png",
+        "bytes": 14552038,
+        "sha256": "2ec8f0d6b480b8213ba90bf22b0856460210e0a26476220ad27400d6933daae7",
+        "dimensions": [
+          4000,
+          2280
+        ],
+        "method": "Built-in image editor restored ornamental title, Christmas illustration and StreetBeat logo. Source-verified subtitle, artist credits and catalogue were reconstructed as precise editable vector text over intentionally blank production areas."
+      },
+      "editableMaster": "outputs/credentials-artwork-2026-10-11/restoration/nc05/acid-x-mas-sticker-restored-v1-editable.svg",
+      "outlinedMaster": "outputs/credentials-artwork-2026-10-11/restoration/nc05/acid-x-mas-sticker-restored-v1-outlined.svg",
+      "approval": {
+        "status": "owner-approved",
+        "date": "2026-10-11",
+        "evidence": "Owner: looks good! , lets move along and lets try and get more than one done at a time. This is taking to long.",
+        "scope": "Accept complete NC05 sticker with lettering for local Credentials use; move subsequent artwork through parallel batch preparation."
+      },
+      "identityNote": "SB-013 promo vinyl sticker; not the separate 12-track CD artwork or a regular-edition information label. Existing catalogue, date and credit qualifications remain unchanged.",
+      "fidelityNote": "Superclarendon Black horizontally fitted, with piecewise vertical fitting to match source high lowercase x-height and short descenders; Arial catalogue. Matched and reshaped substitutes, not authenticated original typefaces. ASCII apostrophe represents the clearly visible apostrophe; original straight/curved glyph contour is unresolved. 4000 × 2280 output provides high-resolution vector lettering; illustration is a reconstruction at1662 × 946. Larger export does not recover original printing-master detail. Foundation fitted by0.14% aspect adjustment to exact600:342 sticker proportion.",
+      "placements": [
+        {
+          "recordId": "singles-remixes",
+          "childId": "nc-05",
+          "galleryIndex": 0,
+          "operation": "Prepend approved restored sticker; original excluded captures preserved.",
+          "previousGallery": [
+            {
+              "kind": "image",
+              "src": "/reference/singles-remixes/nc-05-img-5171.jpg",
+              "alt": "Various artists — Acid X-Mas — Special X-Mas E.P., photographed edition IMG_5171",
+              "caption": "Acid X-Mas — Special X-Mas E.P. — archive photograph IMG_5171."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/singles-remixes/nc-05-img-5172.jpg",
+              "alt": "Various artists — Acid X-Mas — Special X-Mas E.P., photographed edition IMG_5172",
+              "caption": "Acid X-Mas — Special X-Mas E.P. — archive photograph IMG_5172."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/singles-remixes/nc-05-img-5173.jpg",
+              "alt": "Various artists — Acid X-Mas — Special X-Mas E.P., photographed edition IMG_5173",
+              "caption": "Acid X-Mas — Special X-Mas E.P. — archive photograph IMG_5173."
+            }
+          ]
+        }
+      ],
+      "pixelHandling": "Approved completed PNG copied byte-for-byte without rerendering.",
+      "published": false
+    },
+    {
+      "recordId": "singles-remixes",
+      "childId": "nc-06",
+      "presentation": "Refined Intricacy ’99 — restored SYW006 sleeve.",
+      "assetPath": "/reference/restored-artwork/origin-refined-intricacy-99-approved-v1.png",
+      "sourcePage": "https://www.discogs.com/release/107009",
+      "restoredArtifact": {
+        "path": "outputs/credentials-artwork-2026-10-11/restoration/nc06/origin-refined-intricacy-99-restored-v1.png",
+        "sha256": "200750412158d14f991d1207ee23643ea0d9dca515a5d94eaaf1220867f35fb1",
+        "bytes": 28617762
+      },
+      "approval": {
+        "status": "owner-approved",
+        "date": "2026-10-11",
+        "evidence": "Owner: all looks perfect! lets keep it moving",
+        "scope": "Approve all three completed batch-01 candidates for local Credentials presentation."
+      },
+      "identityNote": "Artwork presentation only. Existing catalogue, date, credits and source qualifications preserved. See restoration manifest for source and reconstruction limitations.",
+      "placements": [
+        {
+          "recordId": "singles-remixes",
+          "childId": "nc-06",
+          "assetPath": "/reference/restored-artwork/origin-refined-intricacy-99-approved-v1.png",
+          "sourceFile": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-11/restoration/nc06/origin-refined-intricacy-99-restored-v1.png",
+          "sha256": "200750412158d14f991d1207ee23643ea0d9dca515a5d94eaaf1220867f35fb1",
+          "operation": "prepend",
+          "previousGallery": [
+            {
+              "kind": "image",
+              "src": "/reference/singles-remixes/nc-06-img-5176.jpg",
+              "alt": "Origin — Refined Intricacy ’99, photographed edition IMG_5176",
+              "caption": "Refined Intricacy ’99 — archive photograph IMG_5176."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/singles-remixes/nc-06-img-5177.jpg",
+              "alt": "Origin — Refined Intricacy ’99, photographed edition IMG_5177",
+              "caption": "Refined Intricacy ’99 — archive photograph IMG_5177."
+            }
+          ]
+        }
+      ],
+      "pixelHandling": "Approved completed PNG copied byte-for-byte without rerendering. Original source files retained.",
+      "published": false
+    },
+    {
+      "recordId": "singles-remixes",
+      "childId": "nc-07",
+      "presentation": "Mellow — restored FFRR promotional label, 314-570285-1DJ.",
+      "assetPath": "/reference/restored-artwork/mot-mellow-promo-label-approved-v1.png",
+      "sourcePage": "https://www.discogs.com/release/9950020",
+      "restoredArtifact": {
+        "path": "outputs/credentials-artwork-2026-10-11/restoration/nc07/mot-mellow-promo-label-restored-v1.png",
+        "sha256": "65b7a2ea4e3c9de3d28235623b231f4a239ff7a643850f860499d5934330d0c9",
+        "bytes": 13060260
+      },
+      "approval": {
+        "status": "owner-approved",
+        "date": "2026-10-11",
+        "evidence": "Owner: all looks perfect! lets keep it moving",
+        "scope": "Approve all three completed batch-01 candidates for local Credentials presentation."
+      },
+      "identityNote": "Artwork presentation only. Existing catalogue, date, credits and source qualifications preserved. See restoration manifest for source and reconstruction limitations.",
+      "placements": [
+        {
+          "recordId": "singles-remixes",
+          "childId": "nc-07",
+          "assetPath": "/reference/restored-artwork/mot-mellow-promo-label-approved-v1.png",
+          "sourceFile": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-11/restoration/nc07/mot-mellow-promo-label-restored-v1.png",
+          "sha256": "65b7a2ea4e3c9de3d28235623b231f4a239ff7a643850f860499d5934330d0c9",
+          "operation": "prepend",
+          "previousGallery": [
+            {
+              "kind": "image",
+              "src": "/reference/singles-remixes/nc-07-img-5178.jpg",
+              "alt": "MOT — Mellow, photographed edition IMG_5178",
+              "caption": "Mellow — archive photograph IMG_5178."
+            }
+          ]
+        }
+      ],
+      "pixelHandling": "Approved completed PNG copied byte-for-byte without rerendering. Original source files retained.",
+      "published": false
+    },
+    {
+      "recordId": "production-engineering-credits",
+      "childId": "d129",
+      "presentation": "Gravity Pimps E.P. — restored RYR006 cover.",
+      "assetPath": "/reference/restored-artwork/gravity-pimps-ep-approved-v1.png",
+      "sourcePage": "https://www.discogs.com/release/905900",
+      "restoredArtifact": {
+        "path": "outputs/credentials-artwork-2026-10-11/restoration/d129/gravity-pimps-restored-v1.png",
+        "sha256": "1097006bfbf9bd272ae804850aaa2a2fda831069dc99f08f126d8f8f959e9fb9",
+        "bytes": 1290904
+      },
+      "approval": {
+        "status": "owner-approved",
+        "date": "2026-10-11",
+        "evidence": "Owner: all looks perfect! lets keep it moving",
+        "scope": "Approve all three completed batch-01 candidates for local Credentials presentation."
+      },
+      "identityNote": "Artwork presentation only. Existing catalogue, date, credits and source qualifications preserved. See restoration manifest for source and reconstruction limitations.",
+      "placements": [
+        {
+          "recordId": "production-engineering-credits",
+          "childId": "d129",
+          "assetPath": "/reference/restored-artwork/gravity-pimps-ep-approved-v1.png",
+          "sourceFile": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-11/restoration/d129/gravity-pimps-restored-v1.png",
+          "sha256": "1097006bfbf9bd272ae804850aaa2a2fda831069dc99f08f126d8f8f959e9fb9",
+          "operation": "replace lead",
+          "previousGallery": [
+            {
+              "kind": "image",
+              "src": "/reference/remaining-artwork/d129-01.jpg",
+              "alt": "Gravity Pimps E.P. — edition artwork image 1",
+              "caption": "Gravity Pimps E.P. — edition image 1 (Discogs release 905900)."
+            }
+          ]
+        }
+      ],
+      "pixelHandling": "Approved completed PNG copied byte-for-byte without rerendering. Original source files retained.",
+      "published": false
+    }
+  ]
+}

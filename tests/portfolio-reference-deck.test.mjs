@@ -59,7 +59,7 @@ test('career index opens shared portfolio records in the theater reference deck'
   assert.match(engine, /aria-label="Previous slide"/);
   assert.match(engine, /aria-label="Next slide"/);
   assert.match(css, /aspect-ratio:\s*16\s*\/\s*9/);
-  assert.match(engine, /RESEARCH \/ CLEARANCE PENDING/);
+  assert.match(engine, /ARTWORK PENDING/);
 	assert.match(engine, /id="close-reference"/);
 	assert.match(engine, />BACK TO CREDENTIALS<\/button>/);
   assert.match(engine, /function openReference/);

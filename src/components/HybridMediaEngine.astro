@@ -71,7 +71,7 @@ const evidenceLabels = {
 									<div class="reference-stage__gallery" aria-label={`${record.title} image gallery`}>
 										{record.gallery.slice(0, 1).map((item, imageIndex) => (
 											<figure class:list={['reference-stage__image', { 'reference-stage__image--pending': item.kind === 'pending' }]}>
-												{item.kind === 'image' ? <img src={item.src} alt={item.alt} loading="lazy" decoding="async" /> : <div role="img" aria-label={item.alt}><span>IMAGE {String(imageIndex + 1).padStart(2, '0')}</span><strong>RESEARCH / CLEARANCE PENDING</strong></div>}
+												{item.kind === 'image' ? <img src={item.src} alt={item.alt} loading="lazy" decoding="async" /> : <div role="img" aria-label={item.alt}><span>IMAGE {String(imageIndex + 1).padStart(2, '0')}</span><strong>ARTWORK PENDING</strong></div>}
 												<figcaption>{item.caption}</figcaption>
 											</figure>
 										))}

@@ -1,0 +1,260 @@
+{
+  "version": 1,
+  "date": "2026-10-12",
+  "status": "owner-approved-locally-imported-and-verified",
+  "ownerApproval": {
+    "date": "2026-10-12",
+    "quote": "Looks good",
+    "context": "Owner approved the displayed Batch12 Prototype >3 and Create:Fixate Volume1 pair; root authorized these two local imports.",
+    "approvedMasterHashes": {
+      "d033": "f3f44cd1643efaea6de4e60ff983b445ecac164480ea1303ffa467ff8bcf5099",
+      "d095": "fd3f3a4f17740c6e2d28f42efd510cd2ffa54068070cfa539a6f988133030398"
+    },
+    "localImportAuthorized": true,
+    "publicationAuthorized": false
+  },
+  "scope": "Prepend only D033 and D095 gallery leads. Preserve every previous image and all catalogue facts. NC12 punctuation is separate and unresolved.",
+  "assets": [
+    {
+      "id": "d033",
+      "sourceFile": "outputs/credentials-artwork-2026-10-11/restoration/d033/prototype-3-restored-v1.png",
+      "sourceSha256": "f3f44cd1643efaea6de4e60ff983b445ecac164480ea1303ffa467ff8bcf5099",
+      "sourceBytes": 13271766,
+      "file": "outputs/credentials-artwork-2026-10-12/batch12-approved/assets/d033-seb-fontaine-prototype-3-approved-v1.webp",
+      "assetPath": "/reference/restored-artwork/d033-seb-fontaine-prototype-3-approved-v1.webp",
+      "sha256": "cbc1e0b2e1c0af7018106e23bff4d0cd9802d51f491ec3c9e75a0c52366f1a01",
+      "bytes": 4440432,
+      "dimensions": [
+        4000,
+        3607
+      ],
+      "format": "webp",
+      "encoding": "lossless",
+      "decodedRgbaSha256": "366368b71d3866e69e8b55d41275bf171bf7ad01cccfb677a5f3f6a31d75fe1a",
+      "pixelIdentical": true,
+      "copies": {
+        "public": "site/.worktrees/adaptive-media-shadow/public/reference/restored-artwork/d033-seb-fontaine-prototype-3-approved-v1.webp",
+        "public-deploy": "site/.worktrees/adaptive-media-shadow/public-deploy/reference/restored-artwork/d033-seb-fontaine-prototype-3-approved-v1.webp"
+      },
+      "sourceReference": "https://www.discogs.com/release/48911",
+      "restorationManifest": "outputs/credentials-artwork-2026-10-11/restoration/d033/restoration-manifest-v1.json",
+      "qualification": "Portrait detail and colour are reconstructed; 4000px is an enlarged export."
+    },
+    {
+      "id": "d095",
+      "sourceFile": "outputs/credentials-artwork-2026-10-11/restoration/d095/create-fixate-volume-1-restored-v1.png",
+      "sourceSha256": "fd3f3a4f17740c6e2d28f42efd510cd2ffa54068070cfa539a6f988133030398",
+      "sourceBytes": 2523412,
+      "file": "outputs/credentials-artwork-2026-10-12/batch12-approved/assets/d095-create-fixate-volume-1-approved-v1.webp",
+      "assetPath": "/reference/restored-artwork/d095-create-fixate-volume-1-approved-v1.webp",
+      "sha256": "6f6238beed199a6b90ed0ba6cd4c9136c9f39f307748dc894eb592324ef15c5a",
+      "bytes": 1491058,
+      "dimensions": [
+        1200,
+        1190
+      ],
+      "format": "webp",
+      "encoding": "lossless",
+      "decodedRgbaSha256": "ccd2ef84a0e740b1941bf5c2508f6edd527f5e70ddf81b6640079afba15c96b4",
+      "pixelIdentical": true,
+      "copies": {
+        "public": "site/.worktrees/adaptive-media-shadow/public/reference/restored-artwork/d095-create-fixate-volume-1-approved-v1.webp",
+        "public-deploy": "site/.worktrees/adaptive-media-shadow/public-deploy/reference/restored-artwork/d095-create-fixate-volume-1-approved-v1.webp"
+      },
+      "sourceReference": "https://www.discogs.com/release/646831",
+      "restorationManifest": "outputs/credentials-artwork-2026-10-11/restoration/d095/manifest.json",
+      "qualification": "All 13 panels retained; fine artwork contours are reconstructed."
+    }
+  ],
+  "operations": [
+    {
+      "parentId": "compilation-appearances",
+      "childId": "d033",
+      "action": "prepend",
+      "newLead": {
+        "kind": "image",
+        "src": "/reference/restored-artwork/d033-seb-fontaine-prototype-3-approved-v1.webp",
+        "alt": "Restored Prototype >3 front cover showing Seb Fontaine leaning forward over equipment, with orange Prototype and Global Underground lettering and white Seb Fontaine text.",
+        "caption": "Seb Fontaine — Prototype >3 — restored front cover."
+      },
+      "previousGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d033-01.jpg",
+          "alt": "Global Underground Prototype > 3 — edition artwork image 1",
+          "caption": "Global Underground Prototype > 3 — edition image 1 (Discogs release 48911)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d033-02.jpg",
+          "alt": "Global Underground Prototype > 3 — edition artwork image 2",
+          "caption": "Global Underground Prototype > 3 — edition image 2 (Discogs release 48911)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d033-03.jpg",
+          "alt": "Global Underground Prototype > 3 — edition artwork image 3",
+          "caption": "Global Underground Prototype > 3 — edition image 3 (Discogs release 48911)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d033-04.jpg",
+          "alt": "Global Underground Prototype > 3 — edition artwork image 4",
+          "caption": "Global Underground Prototype > 3 — edition image 4 (Discogs release 48911)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d033-05.jpg",
+          "alt": "Global Underground Prototype > 3 — edition artwork image 5",
+          "caption": "Global Underground Prototype > 3 — edition image 5 (Discogs release 48911)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d033-06.jpg",
+          "alt": "Global Underground Prototype > 3 — edition artwork image 6",
+          "caption": "Global Underground Prototype > 3 — edition image 6 (Discogs release 48911)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d033-07.jpg",
+          "alt": "Global Underground Prototype > 3 — edition artwork image 7",
+          "caption": "Global Underground Prototype > 3 — edition image 7 (Discogs release 48911)."
+        }
+      ]
+    },
+    {
+      "parentId": "production-engineering-credits",
+      "childId": "d095",
+      "action": "prepend",
+      "newLead": {
+        "kind": "image",
+        "src": "/reference/restored-artwork/d095-create-fixate-volume-1-approved-v1.webp",
+        "alt": "Restored Create:Fixate Volume 1 front cover with thirteen artwork panels arranged on a dark background and orange title lettering.",
+        "caption": "Create:Fixate Volume 1 — restored front cover."
+      },
+      "previousGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d095-01.jpg",
+          "alt": "Create:Fixate Volume 1 — edition artwork image 1",
+          "caption": "Create:Fixate Volume 1 — edition image 1 (Discogs release 646831)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d095-02.jpg",
+          "alt": "Create:Fixate Volume 1 — edition artwork image 2",
+          "caption": "Create:Fixate Volume 1 — edition image 2 (Discogs release 646831)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d095-03.jpg",
+          "alt": "Create:Fixate Volume 1 — edition artwork image 3",
+          "caption": "Create:Fixate Volume 1 — edition image 3 (Discogs release 646831)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d095-04.jpg",
+          "alt": "Create:Fixate Volume 1 — edition artwork image 4",
+          "caption": "Create:Fixate Volume 1 — edition image 4 (Discogs release 646831)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d095-05.jpg",
+          "alt": "Create:Fixate Volume 1 — edition artwork image 5",
+          "caption": "Create:Fixate Volume 1 — edition image 5 (Discogs release 646831)."
+        }
+      ]
+    }
+  ],
+  "batchManifest": "outputs/credentials-artwork-2026-10-11/batch-12-review/batch.json",
+  "beforeSnapshot": "outputs/credentials-artwork-2026-10-12/batch12-approved/before-snapshot.json",
+  "verification": {
+    "status": "passed",
+    "completedAt": "2026-10-12T09:41:17.377Z",
+    "evidencePath": "outputs/credentials-artwork-2026-10-12/batch12-approved/import-verification.json",
+    "evidenceSha256": "71490442c78021f8b69244a9a9c878d9af61e26d04ed548522001dab7fc4060b",
+    "checks": {
+      "historical27Nc18AndRestorationEvidenceUnchanged": true,
+      "all29CaptureSourcesAndExclusionsPreserved": true,
+      "exactlyTwoGalleryPrependsAndEveryOtherFieldPreserved": true,
+      "allNonGalleryDataUnchanged": true,
+      "projectionUsesApprovedArtWithoutCaptureEvidence": true,
+      "approvedMastersLosslessPixelsCopiesBuildAndHttpMatch": true,
+      "allBuiltPagesAndAssetsExcludeCaptureEvidence": true,
+      "indexAndArchivePagesUseBothApprovedLeads": true,
+      "nineFocusedTestsPassed": true,
+      "fullScopeBuild20PagesPassed": true
+    },
+    "counts": {
+      "approvedAssets": 2,
+      "galleryPlacements": 2,
+      "projectedImages": 213,
+      "projectedPending": 3,
+      "excludedCaptures": 29,
+      "preservedCaptureCopies": 58,
+      "builtPages": 20,
+      "focusedTests": 9
+    },
+    "focusedTests": {
+      "passed": 9,
+      "failed": 0,
+      "log": "outputs/credentials-artwork-2026-10-12/batch12-approved/focused-tests.log",
+      "sha256": "fb89490aa062a39fb1462262b24f8b91d4aa87fc3b37e9e9988d67c7b0582fa6"
+    },
+    "fullScopeBuild": {
+      "passed": true,
+      "pages": 20,
+      "log": "outputs/credentials-artwork-2026-10-12/batch12-approved/build.log",
+      "sha256": "04dc9c03eb7070fd2d048adcfa8c16568d2f111725386b53ee4d5e9b7ef8b5b6"
+    },
+    "deckPositionEvidence": "outputs/credentials-artwork-2026-10-12/batch12-approved/deck-position-check.json",
+    "browserReview": {
+      "status": "passed",
+      "completedAt": "2026-10-12T09:46:51.789850+00:00",
+      "cards": [
+        "d033",
+        "d095"
+      ],
+      "archiveViews": [
+        "d033",
+        "d095"
+      ],
+      "checks": {
+        "completeArtworkFrames": true,
+        "naturalDimensionsMatchMasters": true,
+        "containFitPreservesComposition": true,
+        "correctCaptionAndIdentity": true
+      },
+      "evidence": [
+        {
+          "file": "outputs/credentials-artwork-2026-10-12/batch12-approved/browser-card-checks.json",
+          "sha256": "e74bf6bca9d7a3a4f49034a866254ded21388c4ce03aed8a73ae724471e75048"
+        },
+        {
+          "file": "outputs/credentials-artwork-2026-10-12/batch12-approved/browser-archive-checks.json",
+          "sha256": "8490caadb597037a09d98c1e8b80719a3c58a6e73cb88ec95b7d59e96323e67b"
+        },
+        {
+          "file": "outputs/credentials-artwork-2026-10-12/batch12-approved/d033-card.png",
+          "sha256": "d5b40e2a1f3a3ce043c2479a41064a8b5151231faff49a514f65321ea3fe82df"
+        },
+        {
+          "file": "outputs/credentials-artwork-2026-10-12/batch12-approved/d095-card.png",
+          "sha256": "623b991e27aa365b9fc62b526eaa7a090c90e5a9dc7e880cada546e68fa6320a"
+        },
+        {
+          "file": "outputs/credentials-artwork-2026-10-12/batch12-approved/d033-archive.png",
+          "sha256": "e8e4d1cc3359f09642cf4bef5f7f22300909f28c392cfa0a60fd78c5bea374e0"
+        },
+        {
+          "file": "outputs/credentials-artwork-2026-10-12/batch12-approved/d095-archive.png",
+          "sha256": "ae4c06a8617c97e0c78e4e62feab61ec84fab1f64f8646c8aae2bad5f8958914"
+        }
+      ],
+      "limitations": "Desktop preview checked; no new real-device acceptance claimed."
+    }
+  },
+  "published": false,
+  "siteImported": true,
+  "imported": true
+}

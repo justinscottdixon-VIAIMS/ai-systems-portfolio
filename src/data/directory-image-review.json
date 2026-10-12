@@ -1,0 +1,17 @@
+{
+  "studio-evolution": {
+    "desktop": "/reference/directory-review/studio-evolution-desktop.webp",
+    "mobile": "/reference/directory-review/studio-evolution-mobile.webp",
+    "source": "public/reference/studio-evolution-thumbnail.jpg"
+  },
+  "cosmic-records-history": {
+    "desktop": "/reference/directory-review/cosmic-records-history-desktop.webp",
+    "mobile": "/reference/directory-review/cosmic-records-history-mobile.webp",
+    "source": "public/reference/cosmic-records-photo.jpg"
+  },
+  "qvibe-immersive": {
+    "desktop": "/reference/directory-review/qvibe-immersive-desktop.webp",
+    "mobile": "/reference/directory-review/qvibe-immersive-mobile.webp",
+    "source": "public/reference/remaining-artwork/qvibe-focus.jpg"
+  }
+}

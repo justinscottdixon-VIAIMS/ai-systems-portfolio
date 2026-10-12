@@ -1,0 +1,2242 @@
+{
+  "version": 1,
+  "date": "2026-10-12",
+  "status": "owner-approved-locally-imported-and-verified",
+  "ownerApproval": {
+    "date": "2026-10-12",
+    "quote": "All of the above processed looked good please add them to the credentials. Im home from dinner so we can proceed as we were and the usage limits have been reset",
+    "scope": "27 completed candidates in batches02–10 for local Credentials import only; NC18 excluded pending visual review"
+  },
+  "scope": {
+    "candidates": 27,
+    "galleryPlacements": 30,
+    "publicationAuthorized": false,
+    "nc18Included": false
+  },
+  "assets": [
+    {
+      "id": "d115",
+      "sourceFile": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-11/restoration/d115/touch-me-restored-v1.png",
+      "sourceSha256": "dd88bcaa5a986ede95ab77a1fb19d832f4ac1c81acb217b4a4ae83874f1308f6",
+      "assetPath": "/reference/restored-artwork/d115-touch-me-approved-v1.webp",
+      "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/approved-batches-02-10/assets/d115-touch-me-approved-v1.webp",
+      "sha256": "e7b5243f3d1fd05eaac3bbc0b28bc1a8c9b5265abc96d03240e14806d0fb701f",
+      "sourceBytes": 19900657,
+      "bytes": 8185080,
+      "dimensions": [
+        4000,
+        4000
+      ],
+      "decodedRgbaSha256": "8c4f857bb92eec67151a9f13f2d37756b5694ae6809e0126a7f1a5e5ae66dabd",
+      "pixelIdentical": true,
+      "pixelHandling": "Same-resolution lossless WebP; decoded RGBA pixel identity verified against approved master"
+    },
+    {
+      "id": "d015",
+      "sourceFile": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-11/restoration/d015/sandra-collins-cream-restored-v1.png",
+      "sourceSha256": "7037728dcbbc6db6e7e8212473d2b80ad0fa81b8bc2c9a82154aea5ae1a1baed",
+      "assetPath": "/reference/restored-artwork/d015-sandra-collins-cream-approved-v1.webp",
+      "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/approved-batches-02-10/assets/d015-sandra-collins-cream-approved-v1.webp",
+      "sha256": "b45e0cfa58b6426b631ad0841b223d21cc4635dcf1bb6659b31cb47713360100",
+      "sourceBytes": 2931412,
+      "bytes": 2060834,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "decodedRgbaSha256": "15ceb13e0c51d6cf66cc300716264be64e0e0f09c9c2961743dd01b9d825a667",
+      "pixelIdentical": true,
+      "pixelHandling": "Same-resolution lossless WebP; decoded RGBA pixel identity verified against approved master"
+    },
+    {
+      "id": "nc-09",
+      "sourceFile": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-11/restoration/nc09-cd/tranceport-3-cd-restored-v2.png",
+      "sourceSha256": "4d3aaa4a8124994097d58095c7f0c84ca26eaafc45041f196020ed94759ec17f",
+      "assetPath": "/reference/restored-artwork/nc-09-tranceport-3-cd-approved-v2.webp",
+      "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/approved-batches-02-10/assets/nc-09-tranceport-3-cd-approved-v2.webp",
+      "sha256": "2ceb2e662d1f1f19348a84a3c4242b5cf53655090f64ef3ea03a76ee9e81777f",
+      "sourceBytes": 2542467,
+      "bytes": 1986372,
+      "dimensions": [
+        1265,
+        1244
+      ],
+      "decodedRgbaSha256": "183015019d4ca74bf5ea2809e8b8bc84fe7b99e02c794fc23249ca90eefebc68",
+      "pixelIdentical": true,
+      "pixelHandling": "Same-resolution lossless WebP; decoded RGBA pixel identity verified against approved master"
+    },
+    {
+      "id": "nc-10",
+      "sourceFile": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-11/restoration/nc10/bradley-rush-sticker-detail-v1.png",
+      "sourceSha256": "55ee088e6c856cb30bb67b0e00e742e669ddb7cd99efbe0e60e877b784231f9d",
+      "assetPath": "/reference/restored-artwork/nc-10-bradley-rush-sticker-detail-v1.webp",
+      "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/approved-batches-02-10/assets/nc-10-bradley-rush-sticker-detail-v1.webp",
+      "sha256": "82d7d01368bc6c76a267b698c4c2a0413f8bf8a255db988f9c49807c02b76763",
+      "sourceBytes": 2623684,
+      "bytes": 1398344,
+      "dimensions": [
+        2400,
+        739
+      ],
+      "decodedRgbaSha256": "7d3e1e72f3f20255c02f3d99f59906bb331908adb417221641c3d8c843466c36",
+      "pixelIdentical": true,
+      "pixelHandling": "Same-resolution lossless WebP; decoded RGBA pixel identity verified against approved master"
+    },
+    {
+      "id": "nc-11",
+      "sourceFile": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-11/restoration/nc11/ocean-wave-voyager-remixes-restored-v1.png",
+      "sourceSha256": "d4842171761818721f1fd91ec94d0cb106d7c7cd378ead829ce45d81a03056ab",
+      "assetPath": "/reference/restored-artwork/nc-11-ocean-wave-voyager-remixes-approved-v1.webp",
+      "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/approved-batches-02-10/assets/nc-11-ocean-wave-voyager-remixes-approved-v1.webp",
+      "sha256": "5c3165258b04bfb9ad2b86b07bd221a551eb97d54e2be8984bdf04ec40fd70ea",
+      "sourceBytes": 12925110,
+      "bytes": 4905382,
+      "dimensions": [
+        4000,
+        4000
+      ],
+      "decodedRgbaSha256": "a68aeace70bf9c065a8d217972f0cd3429bce44b64d1ff498e7a55523d310c82",
+      "pixelIdentical": true,
+      "pixelHandling": "Same-resolution lossless WebP; decoded RGBA pixel identity verified against approved master"
+    },
+    {
+      "id": "nc-16",
+      "sourceFile": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-11/restoration/nc16/ultra-vixens-restored-v1.png",
+      "sourceSha256": "3555a2553241b9a364798b863fb4c5c56611f5a6df9d6121c1abfff66a1d5b28",
+      "assetPath": "/reference/restored-artwork/nc-16-ultra-vixens-approved-v1.webp",
+      "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/approved-batches-02-10/assets/nc-16-ultra-vixens-approved-v1.webp",
+      "sha256": "0c68c2ec605f3d18d80be0852fe7cb99b226d23bd94a603247f829d696dde8fa",
+      "sourceBytes": 3017551,
+      "bytes": 1477584,
+      "dimensions": [
+        4000,
+        4000
+      ],
+      "decodedRgbaSha256": "096abdbde9eb379f2cb94efbbf2dfda22b4e98f67c9a93c28d190ff2433e9d43",
+      "pixelIdentical": true,
+      "pixelHandling": "Same-resolution lossless WebP; decoded RGBA pixel identity verified against approved master"
+    },
+    {
+      "id": "nc-17",
+      "sourceFile": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-11/restoration/nc17/mad-free-label-restored-v1.png",
+      "sourceSha256": "fab5e72062d81cdfc3657b2ada68488aaebf0e3e7cb23f7ec749b80a6877694a",
+      "assetPath": "/reference/restored-artwork/nc-17-mad-free-label-approved-v1.webp",
+      "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/approved-batches-02-10/assets/nc-17-mad-free-label-approved-v1.webp",
+      "sha256": "77adb9e32e69bb2d6d7f30489a79faf4596b071e71ddc2938d9084861fcb86b0",
+      "sourceBytes": 4894013,
+      "bytes": 2328706,
+      "dimensions": [
+        4000,
+        4000
+      ],
+      "decodedRgbaSha256": "542882296ddd7b849c6edfa737eaeff69705af5b008f6eed481fd604a91fb331",
+      "pixelIdentical": true,
+      "pixelHandling": "Same-resolution lossless WebP; decoded RGBA pixel identity verified against approved master"
+    },
+    {
+      "id": "d036",
+      "sourceFile": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-11/restoration/d036/trance-nation-2001-restored-v1.png",
+      "sourceSha256": "980c9605bac1a69fee8450887160af9306a89464ee3e34a1dde016c61d69d6b1",
+      "assetPath": "/reference/restored-artwork/d036-trance-nation-2001-approved-v1.webp",
+      "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/approved-batches-02-10/assets/d036-trance-nation-2001-approved-v1.webp",
+      "sha256": "2cbc28941382cc2355b089cd542bb498926536e629b8d9b0dd2bed5ee9d9755c",
+      "sourceBytes": 1318591,
+      "bytes": 525766,
+      "dimensions": [
+        4000,
+        3843
+      ],
+      "decodedRgbaSha256": "4cf8f14ece65d3bfd91d47034e6d13d0954a13b22a43171e8407436d1d87a6ba",
+      "pixelIdentical": true,
+      "pixelHandling": "Same-resolution lossless WebP; decoded RGBA pixel identity verified against approved master"
+    },
+    {
+      "id": "d016",
+      "sourceFile": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-11/restoration/d016/perfecto-sandra-collins-restored-v1.png",
+      "sourceSha256": "786a2822dbac434008074c0ce8209c16ec3b410eb1cd2fcfe5608fa367e3de3f",
+      "assetPath": "/reference/restored-artwork/d016-perfecto-sandra-collins-approved-v1.webp",
+      "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/approved-batches-02-10/assets/d016-perfecto-sandra-collins-approved-v1.webp",
+      "sha256": "998c0b04ac1a0aa2311bf5cb7ebfe098ce1346beb1258678b7f096a4766a1ab7",
+      "sourceBytes": 2026301,
+      "bytes": 1457984,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "decodedRgbaSha256": "8755ce08c7f9bbb565752987f60684ee07aa94ddfd856d39a3560bd60e3d3931",
+      "pixelIdentical": true,
+      "pixelHandling": "Same-resolution lossless WebP; decoded RGBA pixel identity verified against approved master"
+    },
+    {
+      "id": "nc-13",
+      "sourceFile": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-11/restoration/nc13-label/aria-one-fire-a-side-restored-v1.png",
+      "sourceSha256": "cea5de65762a205573a3e4486c38a1fe4dcf71204a64e8b03d7d902f2ca005cc",
+      "assetPath": "/reference/restored-artwork/nc-13-aria-one-fire-a-side-approved-v1.webp",
+      "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/approved-batches-02-10/assets/nc-13-aria-one-fire-a-side-approved-v1.webp",
+      "sha256": "c6e5d78ea51656f06c88da13912c983cdf380056b3545e8b8a6bdc20f0ad096a",
+      "sourceBytes": 6364241,
+      "bytes": 2171698,
+      "dimensions": [
+        4000,
+        4000
+      ],
+      "decodedRgbaSha256": "167e6d132e735633780956f40cacacb14ebd399ba46a47524eed51d0ddb2074a",
+      "pixelIdentical": true,
+      "pixelHandling": "Same-resolution lossless WebP; decoded RGBA pixel identity verified against approved master"
+    },
+    {
+      "id": "d001",
+      "sourceFile": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-11/restoration/d001/sampling-the-future-promo-restored-v1.png",
+      "sourceSha256": "bb01762ac29c991c69bb78547aff8f9b51a5e52acccf740ed23ef1419b22c230",
+      "assetPath": "/reference/restored-artwork/d001-sampling-the-future-promo-approved-v1.webp",
+      "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/approved-batches-02-10/assets/d001-sampling-the-future-promo-approved-v1.webp",
+      "sha256": "657b11e03e7ccc70e601bdef877568dd9a13d162256f18807733403c515af034",
+      "sourceBytes": 2406296,
+      "bytes": 1773970,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "decodedRgbaSha256": "7714b1fec976f30d7ead25e30f4a59d8e9865e1be4d8a9efcaa970bdc7f51784",
+      "pixelIdentical": true,
+      "pixelHandling": "Same-resolution lossless WebP; decoded RGBA pixel identity verified against approved master"
+    },
+    {
+      "id": "d002",
+      "sourceFile": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-11/restoration/d002/bedrock-john-digweed-original-scan-v1.png",
+      "sourceSha256": "e4515f6b1c8652a0e6315ed77f06b1b352f98c626c2aa12e58ad61082422819f",
+      "assetPath": "/reference/restored-artwork/d002-bedrock-john-digweed-original-scan-v1.webp",
+      "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/approved-batches-02-10/assets/d002-bedrock-john-digweed-original-scan-v1.webp",
+      "sha256": "f8d181ecd384a21e98b86a5ef987f7a7252ae1882e56c156c0acac403338e52a",
+      "sourceBytes": 10873492,
+      "bytes": 4272968,
+      "dimensions": [
+        2842,
+        2807
+      ],
+      "decodedRgbaSha256": "687afbc5f9106c9ddc9e5e5af7e6375191a1f6ae78a91fd4de77d2724bf26c3c",
+      "pixelIdentical": true,
+      "pixelHandling": "Same-resolution lossless WebP; decoded RGBA pixel identity verified against approved master"
+    },
+    {
+      "id": "nc-14",
+      "sourceFile": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-11/restoration/nc14/groove-me-suenos-restored-v1.png",
+      "sourceSha256": "708b84bccb29f02b4994a1ec301dffea7e3de8deb05770c454fc9289efbeea78",
+      "assetPath": "/reference/restored-artwork/nc-14-groove-me-suenos-approved-v1.webp",
+      "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/approved-batches-02-10/assets/nc-14-groove-me-suenos-approved-v1.webp",
+      "sha256": "a34125e589d0954911ed5c5be127aa0d8973a180ce8006ebe74de82d12d71667",
+      "sourceBytes": 28768364,
+      "bytes": 8536102,
+      "dimensions": [
+        4000,
+        4000
+      ],
+      "decodedRgbaSha256": "62091059c6cdfeae8d574383f84dd53fe3e128085a40694373b257210ba20cd3",
+      "pixelIdentical": true,
+      "pixelHandling": "Same-resolution lossless WebP; decoded RGBA pixel identity verified against approved master"
+    },
+    {
+      "id": "d111",
+      "sourceFile": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-11/restoration/d111/diversity-twins-label-restored-v1.png",
+      "sourceSha256": "8ddbabe3111d115b878d088e79873fb6a7c45f74cf5ed6ab5307d06a19244cc3",
+      "assetPath": "/reference/restored-artwork/d111-diversity-twins-label-approved-v1.webp",
+      "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/approved-batches-02-10/assets/d111-diversity-twins-label-approved-v1.webp",
+      "sha256": "3390e1226ac690b89473677168d4bbbde17ded002de1a12b4c39a460e15a7ff1",
+      "sourceBytes": 12809266,
+      "bytes": 6325788,
+      "dimensions": [
+        4000,
+        4000
+      ],
+      "decodedRgbaSha256": "488bf056692223850ca347ea50f7d4f812e7369882c842019a6217e8b68a7e52",
+      "pixelIdentical": true,
+      "pixelHandling": "Same-resolution lossless WebP; decoded RGBA pixel identity verified against approved master"
+    },
+    {
+      "id": "d112",
+      "sourceFile": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-11/restoration/d112/enlighten-me-a-side-restored-v1.png",
+      "sourceSha256": "9686924a08eed46d79ae3202a259db5fabbf55685715937dbc459f4e682b8e73",
+      "assetPath": "/reference/restored-artwork/d112-enlighten-me-a-side-approved-v1.webp",
+      "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/approved-batches-02-10/assets/d112-enlighten-me-a-side-approved-v1.webp",
+      "sha256": "252b184a61bb70b6dc43c3e94974f39b8f55c7f3f7fddebb7551e1f56225c524",
+      "sourceBytes": 19509922,
+      "bytes": 7503268,
+      "dimensions": [
+        4000,
+        4000
+      ],
+      "decodedRgbaSha256": "a5b0c6bb70301a2a4f96643070bfb06bb71fa6b6bca3dccf8f951e2f0cd3326e",
+      "pixelIdentical": true,
+      "pixelHandling": "Same-resolution lossless WebP; decoded RGBA pixel identity verified against approved master"
+    },
+    {
+      "id": "d116",
+      "sourceFile": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-11/restoration/d116/dj-apache-sun-god-restored-v1.png",
+      "sourceSha256": "7d0e7ce72bf752902fb663f2425b0008a8499249e06d4fb965b8ae12321e617a",
+      "assetPath": "/reference/restored-artwork/d116-dj-apache-sun-god-approved-v1.webp",
+      "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/approved-batches-02-10/assets/d116-dj-apache-sun-god-approved-v1.webp",
+      "sha256": "efbeb0e034ac12845d6fdef22a84315f439bc17f87edbb6ff4af1d7402785319",
+      "sourceBytes": 1602508,
+      "bytes": 948068,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "decodedRgbaSha256": "3229f78cceb2b9adde5049d6a47e96f8915d8b38738dde71fbfbd215c22abdc5",
+      "pixelIdentical": true,
+      "pixelHandling": "Same-resolution lossless WebP; decoded RGBA pixel identity verified against approved master"
+    },
+    {
+      "id": "d139",
+      "sourceFile": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-11/restoration/d139/usuaya-the-key-restored-v1.png",
+      "sourceSha256": "342024058ca9a78c2f448fd19ff5108b061f2ad9c21ac65bca73949571a48075",
+      "assetPath": "/reference/restored-artwork/d139-usuaya-the-key-approved-v1.webp",
+      "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/approved-batches-02-10/assets/d139-usuaya-the-key-approved-v1.webp",
+      "sha256": "93f05779e4c4d14b78699c10585d2214242af09409c55aec366d00665419225a",
+      "sourceBytes": 20428714,
+      "bytes": 6377934,
+      "dimensions": [
+        4000,
+        3956
+      ],
+      "decodedRgbaSha256": "54a68f487a65776f65a0a32286c012724b5b648e6db91a5737c3c6460190f22a",
+      "pixelIdentical": true,
+      "pixelHandling": "Same-resolution lossless WebP; decoded RGBA pixel identity verified against approved master"
+    },
+    {
+      "id": "d140",
+      "sourceFile": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-11/restoration/d140/dj-spice-breaks-are-delicious-restored-v1.png",
+      "sourceSha256": "128090ff16e42585489760f44149f9dbccac37de8b145a6fbe7230ca29efa0b2",
+      "assetPath": "/reference/restored-artwork/d140-dj-spice-breaks-are-delicious-approved-v1.webp",
+      "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/approved-batches-02-10/assets/d140-dj-spice-breaks-are-delicious-approved-v1.webp",
+      "sha256": "569e0bf8c7faae3e73e84f95e8eb8b34aec3356889fe6fbfbb8e2841d1a5ba49",
+      "sourceBytes": 1578448,
+      "bytes": 1110448,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "decodedRgbaSha256": "1a3c891eda9c10a61fb416d8cb875f13f5e6aad0dc0acbdb578a9857df98544e",
+      "pixelIdentical": true,
+      "pixelHandling": "Same-resolution lossless WebP; decoded RGBA pixel identity verified against approved master"
+    },
+    {
+      "id": "d126",
+      "sourceFile": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-11/restoration/d126/sign-your-name-restored-v1.png",
+      "sourceSha256": "5f296c6034d7f9e9436c310dd0690e2525d982643e3105ed671df52cc8bdb0e1",
+      "assetPath": "/reference/restored-artwork/d126-sign-your-name-approved-v1.webp",
+      "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/approved-batches-02-10/assets/d126-sign-your-name-approved-v1.webp",
+      "sha256": "f21cfc02dd92a56d625248d228a1f99134a4fae2948dfe62e287543e7040ad34",
+      "sourceBytes": 12064944,
+      "bytes": 6251418,
+      "dimensions": [
+        4000,
+        4000
+      ],
+      "decodedRgbaSha256": "2769f25a1dfd063fa29eb06b929519c8ecd1b01eb7365f9db929881b8b23acf0",
+      "pixelIdentical": true,
+      "pixelHandling": "Same-resolution lossless WebP; decoded RGBA pixel identity verified against approved master"
+    },
+    {
+      "id": "d004",
+      "sourceFile": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-11/restoration/d004/renaissance-awakening-restored-v1.png",
+      "sourceSha256": "1a44942553a3be76be6fc2f8dcba99ef0b55cc04d40b0342de502d0f6996d5b9",
+      "assetPath": "/reference/restored-artwork/d004-renaissance-awakening-approved-v1.webp",
+      "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/approved-batches-02-10/assets/d004-renaissance-awakening-approved-v1.webp",
+      "sha256": "9d0817a5962d3ba97b021279c4af1c3d53008096f5193eabbb09a9bb650a1223",
+      "sourceBytes": 3033395,
+      "bytes": 1336750,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "decodedRgbaSha256": "643bbf46de6308a9d645056f24ebaebd7ccd4212e84eee5d7853a0580d545b69",
+      "pixelIdentical": true,
+      "pixelHandling": "Same-resolution lossless WebP; decoded RGBA pixel identity verified against approved master"
+    },
+    {
+      "id": "d125",
+      "sourceFile": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-11/restoration/d125/burning-the-candle-restored-v1.png",
+      "sourceSha256": "cb2a0627dbf0c2bb9f28369b680ddbc50d6957d034bdc7d4e3b6c4565cdd53da",
+      "assetPath": "/reference/restored-artwork/d125-burning-the-candle-approved-v1.webp",
+      "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/approved-batches-02-10/assets/d125-burning-the-candle-approved-v1.webp",
+      "sha256": "e45ab928d57911ac84c9d037077b1f09e4010344ab0de4825a8b850d6b371c3a",
+      "sourceBytes": 28177416,
+      "bytes": 8469460,
+      "dimensions": [
+        4000,
+        4000
+      ],
+      "decodedRgbaSha256": "6f02fe727e2dbef538fb2e9e3c020e5539d90ce43c2c53a98b21ab5f2201d9b9",
+      "pixelIdentical": true,
+      "pixelHandling": "Same-resolution lossless WebP; decoded RGBA pixel identity verified against approved master"
+    },
+    {
+      "id": "d127",
+      "sourceFile": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-11/restoration/d127/burnt-out-restored-v1.png",
+      "sourceSha256": "f78ebcb0859aca0cb5d39b8694e466a10053625ed825dab72807a5b7eb7cd764",
+      "assetPath": "/reference/restored-artwork/d127-burnt-out-approved-v1.webp",
+      "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/approved-batches-02-10/assets/d127-burnt-out-approved-v1.webp",
+      "sha256": "df0a50c98373f869c86b4ec85bd431d15de3c117bd666a17191b23d4ba302020",
+      "sourceBytes": 38065572,
+      "bytes": 15106290,
+      "dimensions": [
+        4000,
+        4000
+      ],
+      "decodedRgbaSha256": "490d96880ef04bbccfd06d4f4e84d3afe7b6eee3ed37a85947979f073275fae7",
+      "pixelIdentical": true,
+      "pixelHandling": "Same-resolution lossless WebP; decoded RGBA pixel identity verified against approved master"
+    },
+    {
+      "id": "nc-15",
+      "sourceFile": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-11/restoration/nc15/high-plains-drifter-restored-v1.png",
+      "sourceSha256": "8ae09c4c52f3cf4f9e6ca45102bfa2f16fd4d5658b362ea6dff56e95819baa06",
+      "assetPath": "/reference/restored-artwork/nc-15-high-plains-drifter-approved-v1.webp",
+      "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/approved-batches-02-10/assets/nc-15-high-plains-drifter-approved-v1.webp",
+      "sha256": "14c1ae012d948a95e7459255ae9015c4d93d89b5d98b698a495a2f147a615f82",
+      "sourceBytes": 13952440,
+      "bytes": 5575038,
+      "dimensions": [
+        4000,
+        4000
+      ],
+      "decodedRgbaSha256": "80673be8308a8c52967014d8e3be3f96d94ac35d27d503fa2f39850f6cfcdce7",
+      "pixelIdentical": true,
+      "pixelHandling": "Same-resolution lossless WebP; decoded RGBA pixel identity verified against approved master"
+    },
+    {
+      "id": "d009",
+      "sourceFile": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-11/restoration/d009/underground-beats-s3v3-restored-v1.png",
+      "sourceSha256": "6706b918114b98d09d82b276b77d3c71a0b5ae79ee16199d16ccd2e39dd9298f",
+      "assetPath": "/reference/restored-artwork/d009-underground-beats-s3v3-approved-v1.webp",
+      "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/approved-batches-02-10/assets/d009-underground-beats-s3v3-approved-v1.webp",
+      "sha256": "c2d1e879946afef9190c8f5b686c5c490056258b1daa0c3f8a3570ae044a3b11",
+      "sourceBytes": 33190107,
+      "bytes": 8379730,
+      "dimensions": [
+        4000,
+        3980
+      ],
+      "decodedRgbaSha256": "5cbfc4943b9afd800eddbfb2c86fa1a93a292222d1d76c481eec3618ba6e653d",
+      "pixelIdentical": true,
+      "pixelHandling": "Same-resolution lossless WebP; decoded RGBA pixel identity verified against approved master"
+    },
+    {
+      "id": "d010",
+      "sourceFile": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-11/restoration/d010/uk-underground-beats-volume-2-restored-v1.png",
+      "sourceSha256": "071dd4d3c15094eb36d2fb7b48f4057298c1c2058ef247ab9d533641e67edfe3",
+      "assetPath": "/reference/restored-artwork/d010-uk-underground-beats-volume-2-approved-v1.webp",
+      "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/approved-batches-02-10/assets/d010-uk-underground-beats-volume-2-approved-v1.webp",
+      "sha256": "8e38238573094bc41da04ae485af185a6fefbdf36f3877dcec5ca07a3f57591e",
+      "sourceBytes": 34522902,
+      "bytes": 10983544,
+      "dimensions": [
+        4000,
+        4000
+      ],
+      "decodedRgbaSha256": "c296a7d849571ebc1f2274c469a9eee86c1aa9ca98e8a2adb97dfe27475045d4",
+      "pixelIdentical": true,
+      "pixelHandling": "Same-resolution lossless WebP; decoded RGBA pixel identity verified against approved master"
+    },
+    {
+      "id": "d032",
+      "sourceFile": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-11/restoration/d032/john-digweed-hong-kong-restored-v1.png",
+      "sourceSha256": "1c8717cdad41fe9c078ec336207b9a50a298a4444b2f279083a02f3eba45fbd9",
+      "assetPath": "/reference/restored-artwork/d032-john-digweed-hong-kong-approved-v1.webp",
+      "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/approved-batches-02-10/assets/d032-john-digweed-hong-kong-approved-v1.webp",
+      "sha256": "91855119e068f64f9c312b3a0bb014ee1815df98193e1ce5becce230b1d1a1b9",
+      "sourceBytes": 3090637,
+      "bytes": 1308724,
+      "dimensions": [
+        1200,
+        1076
+      ],
+      "decodedRgbaSha256": "dacfb12e444e1bb02c74878492a93fa2a4eae102a86078eaca705a38ed641c65",
+      "pixelIdentical": true,
+      "pixelHandling": "Same-resolution lossless WebP; decoded RGBA pixel identity verified against approved master"
+    },
+    {
+      "id": "d039",
+      "sourceFile": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-11/restoration/d039/live-transmissions-official-front-v1.jpg",
+      "sourceSha256": "0ee65fba3145e8c392e7b21b830e30e3beddd2c7675c3c4f6f11638eef3db2d5",
+      "assetPath": "/reference/restored-artwork/d039-live-transmissions-official-front-v1.jpg",
+      "file": "/Users/jsdmbp/Documents/ChatGPT/VIAIMS web agent Portfolio/outputs/credentials-artwork-2026-10-12/approved-batches-02-10/assets/d039-live-transmissions-official-front-v1.jpg",
+      "sha256": "0ee65fba3145e8c392e7b21b830e30e3beddd2c7675c3c4f6f11638eef3db2d5",
+      "sourceBytes": 472263,
+      "bytes": 472263,
+      "dimensions": [
+        1200,
+        1200
+      ],
+      "decodedRgbaSha256": "683299679783056c5fa35c40f5e2783b784b16ee33c162f5dfef534079eda8bb",
+      "pixelIdentical": true,
+      "pixelHandling": "Original approved JPEG copied byte-for-byte"
+    }
+  ],
+  "operations": [
+    {
+      "id": "d115",
+      "recordId": "production-engineering-credits",
+      "childId": "d115",
+      "jsonPointer": "/records/14/children/2",
+      "operation": "replace lead artwork",
+      "previousGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d115-01.jpg",
+          "alt": "Touch Me — edition artwork image 1",
+          "caption": "Touch Me — edition image 1 (Discogs release 14610)."
+        }
+      ],
+      "newGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/restored-artwork/d115-touch-me-approved-v1.webp",
+          "alt": "Touch Me — restored KNIGHT-016 label",
+          "caption": "Touch Me — restored KNIGHT-016 label."
+        }
+      ]
+    },
+    {
+      "id": "d015",
+      "recordId": "compilation-appearances",
+      "childId": "d015",
+      "jsonPointer": "/records/17/children/8",
+      "operation": "replace lead artwork",
+      "previousGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d015-01.jpg",
+          "alt": "Cream — edition artwork image 1",
+          "caption": "Cream — edition image 1 (Discogs release 76304)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d015-02.jpg",
+          "alt": "Cream — edition artwork image 2",
+          "caption": "Cream — edition image 2 (Discogs release 76304)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d015-03.jpg",
+          "alt": "Cream — edition artwork image 3",
+          "caption": "Cream — edition image 3 (Discogs release 76304)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d015-04.jpg",
+          "alt": "Cream — edition artwork image 4",
+          "caption": "Cream — edition image 4 (Discogs release 76304)."
+        }
+      ],
+      "newGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/restored-artwork/d015-sandra-collins-cream-approved-v1.webp",
+          "alt": "Sandra Collins — Cream, restored front cover",
+          "caption": "Sandra Collins — Cream, restored front cover."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d015-02.jpg",
+          "alt": "Cream — edition artwork image 2",
+          "caption": "Cream — edition image 2 (Discogs release 76304)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d015-03.jpg",
+          "alt": "Cream — edition artwork image 3",
+          "caption": "Cream — edition image 3 (Discogs release 76304)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d015-04.jpg",
+          "alt": "Cream — edition artwork image 4",
+          "caption": "Cream — edition image 4 (Discogs release 76304)."
+        }
+      ]
+    },
+    {
+      "id": "nc-09",
+      "recordId": "singles-remixes",
+      "childId": "nc-09",
+      "jsonPointer": "/records/13/children/8",
+      "operation": "prepend approved artwork; retain excluded identity evidence",
+      "previousGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/singles-remixes/nc-09-img-5180.jpg",
+          "alt": "Various artists / Sandra Collins — Music from Tranceport 3, photographed edition IMG_5180",
+          "caption": "Music from Tranceport 3 — archive photograph IMG_5180."
+        }
+      ],
+      "newGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/restored-artwork/nc-09-tranceport-3-cd-approved-v2.webp",
+          "alt": "Tranceport.3 — restored Sandra Collins CD-family cover, selected to represent Music from Tranceport 3 on vinyl (0-54648 P)",
+          "caption": "Tranceport.3 — restored Sandra Collins CD-family cover, selected to represent Music from Tranceport 3 on vinyl (0-54648 P)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/singles-remixes/nc-09-img-5180.jpg",
+          "alt": "Various artists / Sandra Collins — Music from Tranceport 3, photographed edition IMG_5180",
+          "caption": "Music from Tranceport 3 — archive photograph IMG_5180."
+        }
+      ]
+    },
+    {
+      "id": "nc-10",
+      "recordId": "singles-remixes",
+      "childId": "nc-10",
+      "jsonPointer": "/records/13/children/9",
+      "operation": "prepend approved artwork; retain excluded identity evidence",
+      "previousGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/singles-remixes/nc-10-img-5183.jpg",
+          "alt": "Bradley — Rush, photographed edition IMG_5183",
+          "caption": "Rush — archive photograph IMG_5183."
+        }
+      ],
+      "newGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/restored-artwork/nc-10-bradley-rush-sticker-detail-v1.webp",
+          "alt": "Bradley — Rush, restored complete FD-015 sleeve sticker",
+          "caption": "Bradley — Rush, restored complete FD-015 sleeve sticker."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/singles-remixes/nc-10-img-5183.jpg",
+          "alt": "Bradley — Rush, photographed edition IMG_5183",
+          "caption": "Rush — archive photograph IMG_5183."
+        }
+      ]
+    },
+    {
+      "id": "nc-11",
+      "recordId": "singles-remixes",
+      "childId": "nc-11",
+      "jsonPointer": "/records/13/children/10",
+      "operation": "prepend approved artwork; retain excluded identity evidence",
+      "previousGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/singles-remixes/nc-11-img-5184.jpg",
+          "alt": "Ocean Wave — Ocean Wave E.P. — Voyager Remixes, disk three, photographed edition IMG_5184",
+          "caption": "Ocean Wave E.P. — Voyager Remixes, disk three — archive photograph IMG_5184."
+        }
+      ],
+      "newGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/restored-artwork/nc-11-ocean-wave-voyager-remixes-approved-v1.webp",
+          "alt": "Ocean Wave EP — restored Voyager Remixes disk three cover, RHYSYN005R",
+          "caption": "Ocean Wave EP — restored Voyager Remixes disk three cover, RHYSYN005R."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/singles-remixes/nc-11-img-5184.jpg",
+          "alt": "Ocean Wave — Ocean Wave E.P. — Voyager Remixes, disk three, photographed edition IMG_5184",
+          "caption": "Ocean Wave E.P. — Voyager Remixes, disk three — archive photograph IMG_5184."
+        }
+      ]
+    },
+    {
+      "id": "nc-16",
+      "recordId": "singles-remixes",
+      "childId": "nc-16",
+      "jsonPointer": "/records/13/children/15",
+      "operation": "prepend approved artwork; retain excluded identity evidence",
+      "previousGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/singles-remixes/nc-16-img-5192.jpg",
+          "alt": "Thomas P. Heckmann & Marc Romboy — Ultra Vixens — Undercurrent edition, photographed edition IMG_5192",
+          "caption": "Ultra Vixens — Undercurrent edition — archive photograph IMG_5192."
+        }
+      ],
+      "newGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/restored-artwork/nc-16-ultra-vixens-approved-v1.webp",
+          "alt": "Thomas P. Heckmann & Marc Romboy — Ultra Vixens, restored information label",
+          "caption": "Thomas P. Heckmann & Marc Romboy — Ultra Vixens, restored information label."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/singles-remixes/nc-16-img-5192.jpg",
+          "alt": "Thomas P. Heckmann & Marc Romboy — Ultra Vixens — Undercurrent edition, photographed edition IMG_5192",
+          "caption": "Ultra Vixens — Undercurrent edition — archive photograph IMG_5192."
+        }
+      ]
+    },
+    {
+      "id": "nc-17",
+      "recordId": "singles-remixes",
+      "childId": "nc-17",
+      "jsonPointer": "/records/13/children/16",
+      "operation": "prepend approved artwork; retain excluded identity evidence",
+      "previousGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/singles-remixes/nc-17-img-5193.jpg",
+          "alt": "MAD — Free, photographed edition IMG_5193",
+          "caption": "Free — archive photograph IMG_5193."
+        }
+      ],
+      "newGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/restored-artwork/nc-17-mad-free-label-approved-v1.webp",
+          "alt": "M.A.D. — Free, restored complete record label",
+          "caption": "M.A.D. — Free, restored complete record label."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/singles-remixes/nc-17-img-5193.jpg",
+          "alt": "MAD — Free, photographed edition IMG_5193",
+          "caption": "Free — archive photograph IMG_5193."
+        }
+      ]
+    },
+    {
+      "id": "d036",
+      "recordId": "compilation-appearances",
+      "childId": "d036",
+      "jsonPointer": "/records/17/children/14",
+      "operation": "replace lead artwork",
+      "previousGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d036-01.jpg",
+          "alt": "Trance Nation 2001 — edition artwork image 1",
+          "caption": "Trance Nation 2001 — edition image 1 (Discogs release 14797)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d036-02.jpg",
+          "alt": "Trance Nation 2001 — edition artwork image 2",
+          "caption": "Trance Nation 2001 — edition image 2 (Discogs release 14797)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d036-03.jpg",
+          "alt": "Trance Nation 2001 — edition artwork image 3",
+          "caption": "Trance Nation 2001 — edition image 3 (Discogs release 14797)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d036-04.jpg",
+          "alt": "Trance Nation 2001 — edition artwork image 4",
+          "caption": "Trance Nation 2001 — edition image 4 (Discogs release 14797)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d036-05.jpg",
+          "alt": "Trance Nation 2001 — edition artwork image 5",
+          "caption": "Trance Nation 2001 — edition image 5 (Discogs release 14797)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d036-06.jpg",
+          "alt": "Trance Nation 2001 — edition artwork image 6",
+          "caption": "Trance Nation 2001 — edition image 6 (Discogs release 14797)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d036-07.jpg",
+          "alt": "Trance Nation 2001 — edition artwork image 7",
+          "caption": "Trance Nation 2001 — edition image 7 (Discogs release 14797)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d036-08.jpg",
+          "alt": "Trance Nation 2001 — edition artwork image 8",
+          "caption": "Trance Nation 2001 — edition image 8 (Discogs release 14797)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d036-09.jpg",
+          "alt": "Trance Nation 2001 — edition artwork image 9",
+          "caption": "Trance Nation 2001 — edition image 9 (Discogs release 14797)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d036-10.jpg",
+          "alt": "Trance Nation 2001 — edition artwork image 10",
+          "caption": "Trance Nation 2001 — edition image 10 (Discogs release 14797)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d036-11.jpg",
+          "alt": "Trance Nation 2001 — edition artwork image 11",
+          "caption": "Trance Nation 2001 — edition image 11 (Discogs release 14797)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d036-20.jpg",
+          "alt": "Trance Nation 2001 — edition artwork image 12",
+          "caption": "Trance Nation 2001 — edition image 12 (Discogs release 14797)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d036-21.jpg",
+          "alt": "Trance Nation 2001 — edition artwork image 13",
+          "caption": "Trance Nation 2001 — edition image 13 (Discogs release 14797)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d036-22.jpg",
+          "alt": "Trance Nation 2001 — edition artwork image 14",
+          "caption": "Trance Nation 2001 — edition image 14 (Discogs release 14797)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d036-23.jpg",
+          "alt": "Trance Nation 2001 — edition artwork image 15",
+          "caption": "Trance Nation 2001 — edition image 15 (Discogs release 14797)."
+        }
+      ],
+      "newGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/restored-artwork/d036-trance-nation-2001-approved-v1.webp",
+          "alt": "Trance Nation 2001 — restored front cover",
+          "caption": "Trance Nation 2001 — restored front cover."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d036-02.jpg",
+          "alt": "Trance Nation 2001 — edition artwork image 2",
+          "caption": "Trance Nation 2001 — edition image 2 (Discogs release 14797)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d036-03.jpg",
+          "alt": "Trance Nation 2001 — edition artwork image 3",
+          "caption": "Trance Nation 2001 — edition image 3 (Discogs release 14797)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d036-04.jpg",
+          "alt": "Trance Nation 2001 — edition artwork image 4",
+          "caption": "Trance Nation 2001 — edition image 4 (Discogs release 14797)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d036-05.jpg",
+          "alt": "Trance Nation 2001 — edition artwork image 5",
+          "caption": "Trance Nation 2001 — edition image 5 (Discogs release 14797)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d036-06.jpg",
+          "alt": "Trance Nation 2001 — edition artwork image 6",
+          "caption": "Trance Nation 2001 — edition image 6 (Discogs release 14797)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d036-07.jpg",
+          "alt": "Trance Nation 2001 — edition artwork image 7",
+          "caption": "Trance Nation 2001 — edition image 7 (Discogs release 14797)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d036-08.jpg",
+          "alt": "Trance Nation 2001 — edition artwork image 8",
+          "caption": "Trance Nation 2001 — edition image 8 (Discogs release 14797)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d036-09.jpg",
+          "alt": "Trance Nation 2001 — edition artwork image 9",
+          "caption": "Trance Nation 2001 — edition image 9 (Discogs release 14797)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d036-10.jpg",
+          "alt": "Trance Nation 2001 — edition artwork image 10",
+          "caption": "Trance Nation 2001 — edition image 10 (Discogs release 14797)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d036-11.jpg",
+          "alt": "Trance Nation 2001 — edition artwork image 11",
+          "caption": "Trance Nation 2001 — edition image 11 (Discogs release 14797)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d036-20.jpg",
+          "alt": "Trance Nation 2001 — edition artwork image 12",
+          "caption": "Trance Nation 2001 — edition image 12 (Discogs release 14797)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d036-21.jpg",
+          "alt": "Trance Nation 2001 — edition artwork image 13",
+          "caption": "Trance Nation 2001 — edition image 13 (Discogs release 14797)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d036-22.jpg",
+          "alt": "Trance Nation 2001 — edition artwork image 14",
+          "caption": "Trance Nation 2001 — edition image 14 (Discogs release 14797)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d036-23.jpg",
+          "alt": "Trance Nation 2001 — edition artwork image 15",
+          "caption": "Trance Nation 2001 — edition image 15 (Discogs release 14797)."
+        }
+      ]
+    },
+    {
+      "id": "d016",
+      "recordId": "compilation-appearances",
+      "childId": "d016",
+      "jsonPointer": "/records/17/children/9",
+      "operation": "replace lead artwork",
+      "previousGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d016-01.jpg",
+          "alt": "Perfecto Presents… Sandra Collins — edition artwork image 1",
+          "caption": "Perfecto Presents… Sandra Collins — edition image 1 (Discogs release 244957)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d016-02.jpg",
+          "alt": "Perfecto Presents… Sandra Collins — edition artwork image 2",
+          "caption": "Perfecto Presents… Sandra Collins — edition image 2 (Discogs release 244957)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d016-03.jpg",
+          "alt": "Perfecto Presents… Sandra Collins — edition artwork image 3",
+          "caption": "Perfecto Presents… Sandra Collins — edition image 3 (Discogs release 244957)."
+        }
+      ],
+      "newGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/restored-artwork/d016-perfecto-sandra-collins-approved-v1.webp",
+          "alt": "Perfecto Presents Sandra Collins — restored front cover",
+          "caption": "Perfecto Presents Sandra Collins — restored front cover."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d016-02.jpg",
+          "alt": "Perfecto Presents… Sandra Collins — edition artwork image 2",
+          "caption": "Perfecto Presents… Sandra Collins — edition image 2 (Discogs release 244957)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d016-03.jpg",
+          "alt": "Perfecto Presents… Sandra Collins — edition artwork image 3",
+          "caption": "Perfecto Presents… Sandra Collins — edition image 3 (Discogs release 244957)."
+        }
+      ]
+    },
+    {
+      "id": "nc-13",
+      "recordId": "singles-remixes",
+      "childId": "nc-13",
+      "jsonPointer": "/records/13/children/12",
+      "operation": "prepend approved artwork; retain excluded identity evidence",
+      "previousGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/singles-remixes/nc-13-img-5187.jpg",
+          "alt": "Aria — One — Fire edition, photographed edition IMG_5187",
+          "caption": "One — Fire edition — archive photograph IMG_5187."
+        }
+      ],
+      "newGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/restored-artwork/nc-13-aria-one-fire-a-side-approved-v1.webp",
+          "alt": "Aria — One, restored complete Fire A-side label",
+          "caption": "Aria — One, restored complete Fire A-side label."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/singles-remixes/nc-13-img-5187.jpg",
+          "alt": "Aria — One — Fire edition, photographed edition IMG_5187",
+          "caption": "One — Fire edition — archive photograph IMG_5187."
+        }
+      ]
+    },
+    {
+      "id": "d001",
+      "recordId": "compilation-appearances",
+      "childId": "d001",
+      "jsonPointer": "/records/17/children/0",
+      "operation": "replace lead artwork",
+      "previousGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d001-01.jpg",
+          "alt": "Sampling the Future — edition artwork image 1",
+          "caption": "Sampling the Future — edition image 1 (Discogs release 5356131)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d001-02.jpg",
+          "alt": "Sampling the Future — edition artwork image 2",
+          "caption": "Sampling the Future — edition image 2 (Discogs release 5356131)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d001-03.jpg",
+          "alt": "Sampling the Future — edition artwork image 3",
+          "caption": "Sampling the Future — edition image 3 (Discogs release 5356131)."
+        }
+      ],
+      "newGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/restored-artwork/d001-sampling-the-future-promo-approved-v1.webp",
+          "alt": "Sampling the Future — restored promotional front cover",
+          "caption": "Sampling the Future — restored promotional front cover."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d001-02.jpg",
+          "alt": "Sampling the Future — edition artwork image 2",
+          "caption": "Sampling the Future — edition image 2 (Discogs release 5356131)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d001-03.jpg",
+          "alt": "Sampling the Future — edition artwork image 3",
+          "caption": "Sampling the Future — edition image 3 (Discogs release 5356131)."
+        }
+      ]
+    },
+    {
+      "id": "d002",
+      "recordId": "compilation-appearances",
+      "childId": "d002",
+      "jsonPointer": "/records/17/children/1",
+      "operation": "replace lead artwork",
+      "previousGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d002-01.jpg",
+          "alt": "Bedrock Compiled & Mixed by John Digweed — edition artwork image 1",
+          "caption": "Bedrock Compiled & Mixed by John Digweed — edition image 1 (Discogs release 77826)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d002-02.jpg",
+          "alt": "Bedrock Compiled & Mixed by John Digweed — edition artwork image 2",
+          "caption": "Bedrock Compiled & Mixed by John Digweed — edition image 2 (Discogs release 77826)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d002-03.jpg",
+          "alt": "Bedrock Compiled & Mixed by John Digweed — edition artwork image 3",
+          "caption": "Bedrock Compiled & Mixed by John Digweed — edition image 3 (Discogs release 77826)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d002-04.jpg",
+          "alt": "Bedrock Compiled & Mixed by John Digweed — edition artwork image 4",
+          "caption": "Bedrock Compiled & Mixed by John Digweed — edition image 4 (Discogs release 77826)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d002-05.jpg",
+          "alt": "Bedrock Compiled & Mixed by John Digweed — edition artwork image 5",
+          "caption": "Bedrock Compiled & Mixed by John Digweed — edition image 5 (Discogs release 77826)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d002-06.jpg",
+          "alt": "Bedrock Compiled & Mixed by John Digweed — edition artwork image 6",
+          "caption": "Bedrock Compiled & Mixed by John Digweed — edition image 6 (Discogs release 77826)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d002-07.jpg",
+          "alt": "Bedrock Compiled & Mixed by John Digweed — edition artwork image 7",
+          "caption": "Bedrock Compiled & Mixed by John Digweed — edition image 7 (Discogs release 77826)."
+        }
+      ],
+      "newGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/restored-artwork/d002-bedrock-john-digweed-original-scan-v1.webp",
+          "alt": "Bedrock — John Digweed, original front-cover scan",
+          "caption": "Bedrock — John Digweed, original front-cover scan."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d002-02.jpg",
+          "alt": "Bedrock Compiled & Mixed by John Digweed — edition artwork image 2",
+          "caption": "Bedrock Compiled & Mixed by John Digweed — edition image 2 (Discogs release 77826)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d002-03.jpg",
+          "alt": "Bedrock Compiled & Mixed by John Digweed — edition artwork image 3",
+          "caption": "Bedrock Compiled & Mixed by John Digweed — edition image 3 (Discogs release 77826)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d002-04.jpg",
+          "alt": "Bedrock Compiled & Mixed by John Digweed — edition artwork image 4",
+          "caption": "Bedrock Compiled & Mixed by John Digweed — edition image 4 (Discogs release 77826)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d002-05.jpg",
+          "alt": "Bedrock Compiled & Mixed by John Digweed — edition artwork image 5",
+          "caption": "Bedrock Compiled & Mixed by John Digweed — edition image 5 (Discogs release 77826)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d002-06.jpg",
+          "alt": "Bedrock Compiled & Mixed by John Digweed — edition artwork image 6",
+          "caption": "Bedrock Compiled & Mixed by John Digweed — edition image 6 (Discogs release 77826)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d002-07.jpg",
+          "alt": "Bedrock Compiled & Mixed by John Digweed — edition artwork image 7",
+          "caption": "Bedrock Compiled & Mixed by John Digweed — edition image 7 (Discogs release 77826)."
+        }
+      ]
+    },
+    {
+      "id": "nc-14",
+      "recordId": "singles-remixes",
+      "childId": "nc-14",
+      "jsonPointer": "/records/13/children/13",
+      "operation": "prepend approved artwork; retain excluded identity evidence",
+      "previousGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/singles-remixes/nc-14-img-5188.jpg",
+          "alt": "DJ’s Friction & Spice — Groove Me — Sueños edition, photographed edition IMG_5188",
+          "caption": "Groove Me — Sueños edition — archive photograph IMG_5188."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/singles-remixes/nc-14-img-5189.jpg",
+          "alt": "DJ’s Friction & Spice — Groove Me — Sueños edition, photographed edition IMG_5189",
+          "caption": "Groove Me — Sueños edition — archive photograph IMG_5189."
+        }
+      ],
+      "newGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/restored-artwork/nc-14-groove-me-suenos-approved-v1.webp",
+          "alt": "DJ’s Friction & Spice — Groove Me, restored Sueños front cover",
+          "caption": "DJ’s Friction & Spice — Groove Me, restored Sueños front cover."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/singles-remixes/nc-14-img-5188.jpg",
+          "alt": "DJ’s Friction & Spice — Groove Me — Sueños edition, photographed edition IMG_5188",
+          "caption": "Groove Me — Sueños edition — archive photograph IMG_5188."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/singles-remixes/nc-14-img-5189.jpg",
+          "alt": "DJ’s Friction & Spice — Groove Me — Sueños edition, photographed edition IMG_5189",
+          "caption": "Groove Me — Sueños edition — archive photograph IMG_5189."
+        }
+      ]
+    },
+    {
+      "id": "d111",
+      "recordId": "production-engineering-credits",
+      "childId": "d111",
+      "jsonPointer": "/records/14/children/0",
+      "operation": "replace lead artwork",
+      "previousGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d111-01.jpg",
+          "alt": "The Diversity Twins EP — edition artwork image 1",
+          "caption": "The Diversity Twins EP — edition image 1 (Discogs release 155609)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d111-02.jpg",
+          "alt": "The Diversity Twins EP — edition artwork image 2",
+          "caption": "The Diversity Twins EP — edition image 2 (Discogs release 155609)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d111-03.jpg",
+          "alt": "The Diversity Twins EP — edition artwork image 3",
+          "caption": "The Diversity Twins EP — edition image 3 (Discogs release 155609)."
+        }
+      ],
+      "newGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/restored-artwork/d111-diversity-twins-label-approved-v1.webp",
+          "alt": "The Diversity Twins EP — restored complete record label",
+          "caption": "The Diversity Twins EP — restored complete record label."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d111-02.jpg",
+          "alt": "The Diversity Twins EP — edition artwork image 2",
+          "caption": "The Diversity Twins EP — edition image 2 (Discogs release 155609)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d111-03.jpg",
+          "alt": "The Diversity Twins EP — edition artwork image 3",
+          "caption": "The Diversity Twins EP — edition image 3 (Discogs release 155609)."
+        }
+      ]
+    },
+    {
+      "id": "d112",
+      "recordId": "production-engineering-credits",
+      "childId": "d112",
+      "jsonPointer": "/records/14/children/1",
+      "operation": "replace lead artwork",
+      "previousGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d112-01.jpg",
+          "alt": "Enlighten Me — edition artwork image 1",
+          "caption": "Enlighten Me — edition image 1 (Discogs release 272169)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d112-02.jpg",
+          "alt": "Enlighten Me — edition artwork image 2",
+          "caption": "Enlighten Me — edition image 2 (Discogs release 272169)."
+        }
+      ],
+      "newGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/restored-artwork/d112-enlighten-me-a-side-approved-v1.webp",
+          "alt": "Enlighten Us — Enlighten Me, restored branded Side A label",
+          "caption": "Enlighten Us — Enlighten Me, restored branded Side A label."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d112-02.jpg",
+          "alt": "Enlighten Me — edition artwork image 2",
+          "caption": "Enlighten Me — edition image 2 (Discogs release 272169)."
+        }
+      ]
+    },
+    {
+      "id": "d116",
+      "recordId": "production-engineering-credits",
+      "childId": "d116",
+      "jsonPointer": "/records/14/children/3",
+      "operation": "replace lead artwork",
+      "previousGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d116-01.jpg",
+          "alt": "Sun God — edition artwork image 1",
+          "caption": "Sun God — edition image 1 (Discogs release 172934)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d116-02.jpg",
+          "alt": "Sun God — edition artwork image 2",
+          "caption": "Sun God — edition image 2 (Discogs release 172934)."
+        }
+      ],
+      "newGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/restored-artwork/d116-dj-apache-sun-god-approved-v1.webp",
+          "alt": "DJ Apache — Sun God, restored record label",
+          "caption": "DJ Apache — Sun God, restored record label."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d116-02.jpg",
+          "alt": "Sun God — edition artwork image 2",
+          "caption": "Sun God — edition image 2 (Discogs release 172934)."
+        }
+      ]
+    },
+    {
+      "id": "d139",
+      "recordId": "production-engineering-credits",
+      "childId": "d139",
+      "jsonPointer": "/records/14/children/4",
+      "operation": "replace lead artwork",
+      "previousGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d139-01.jpg",
+          "alt": "Usuaya: The Key — edition artwork image 1",
+          "caption": "Usuaya: The Key — edition image 1 (Discogs release 607357)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d139-02.jpg",
+          "alt": "Usuaya: The Key — edition artwork image 2",
+          "caption": "Usuaya: The Key — edition image 2 (Discogs release 607357)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d139-03.jpg",
+          "alt": "Usuaya: The Key — edition artwork image 3",
+          "caption": "Usuaya: The Key — edition image 3 (Discogs release 607357)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d139-04.jpg",
+          "alt": "Usuaya: The Key — edition artwork image 4",
+          "caption": "Usuaya: The Key — edition image 4 (Discogs release 607357)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d139-05.jpg",
+          "alt": "Usuaya: The Key — edition artwork image 5",
+          "caption": "Usuaya: The Key — edition image 5 (Discogs release 607357)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d139-06.jpg",
+          "alt": "Usuaya: The Key — edition artwork image 6",
+          "caption": "Usuaya: The Key — edition image 6 (Discogs release 607357)."
+        }
+      ],
+      "newGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/restored-artwork/d139-usuaya-the-key-approved-v1.webp",
+          "alt": "Usuaya: The Key — restored front cover",
+          "caption": "Usuaya: The Key — restored front cover."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d139-02.jpg",
+          "alt": "Usuaya: The Key — edition artwork image 2",
+          "caption": "Usuaya: The Key — edition image 2 (Discogs release 607357)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d139-03.jpg",
+          "alt": "Usuaya: The Key — edition artwork image 3",
+          "caption": "Usuaya: The Key — edition image 3 (Discogs release 607357)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d139-04.jpg",
+          "alt": "Usuaya: The Key — edition artwork image 4",
+          "caption": "Usuaya: The Key — edition image 4 (Discogs release 607357)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d139-05.jpg",
+          "alt": "Usuaya: The Key — edition artwork image 5",
+          "caption": "Usuaya: The Key — edition image 5 (Discogs release 607357)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d139-06.jpg",
+          "alt": "Usuaya: The Key — edition artwork image 6",
+          "caption": "Usuaya: The Key — edition image 6 (Discogs release 607357)."
+        }
+      ]
+    },
+    {
+      "id": "d140",
+      "recordId": "production-engineering-credits",
+      "childId": "d140",
+      "jsonPointer": "/records/14/children/5",
+      "operation": "replace lead artwork",
+      "previousGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d140-01.jpg",
+          "alt": "Breaks Are Delicious — edition artwork image 1",
+          "caption": "Breaks Are Delicious — edition image 1 (Discogs release 732173)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d140-02.jpg",
+          "alt": "Breaks Are Delicious — edition artwork image 2",
+          "caption": "Breaks Are Delicious — edition image 2 (Discogs release 732173)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d140-03.jpg",
+          "alt": "Breaks Are Delicious — edition artwork image 3",
+          "caption": "Breaks Are Delicious — edition image 3 (Discogs release 732173)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d140-04.jpg",
+          "alt": "Breaks Are Delicious — edition artwork image 4",
+          "caption": "Breaks Are Delicious — edition image 4 (Discogs release 732173)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d140-05.jpg",
+          "alt": "Breaks Are Delicious — edition artwork image 5",
+          "caption": "Breaks Are Delicious — edition image 5 (Discogs release 732173)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d140-06.jpg",
+          "alt": "Breaks Are Delicious — edition artwork image 6",
+          "caption": "Breaks Are Delicious — edition image 6 (Discogs release 732173)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d140-07.jpg",
+          "alt": "Breaks Are Delicious — edition artwork image 7",
+          "caption": "Breaks Are Delicious — edition image 7 (Discogs release 732173)."
+        }
+      ],
+      "newGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/restored-artwork/d140-dj-spice-breaks-are-delicious-approved-v1.webp",
+          "alt": "DJ Spice — Breaks Are Delicious, restored front cover",
+          "caption": "DJ Spice — Breaks Are Delicious, restored front cover."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d140-02.jpg",
+          "alt": "Breaks Are Delicious — edition artwork image 2",
+          "caption": "Breaks Are Delicious — edition image 2 (Discogs release 732173)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d140-03.jpg",
+          "alt": "Breaks Are Delicious — edition artwork image 3",
+          "caption": "Breaks Are Delicious — edition image 3 (Discogs release 732173)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d140-04.jpg",
+          "alt": "Breaks Are Delicious — edition artwork image 4",
+          "caption": "Breaks Are Delicious — edition image 4 (Discogs release 732173)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d140-05.jpg",
+          "alt": "Breaks Are Delicious — edition artwork image 5",
+          "caption": "Breaks Are Delicious — edition image 5 (Discogs release 732173)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d140-06.jpg",
+          "alt": "Breaks Are Delicious — edition artwork image 6",
+          "caption": "Breaks Are Delicious — edition image 6 (Discogs release 732173)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d140-07.jpg",
+          "alt": "Breaks Are Delicious — edition artwork image 7",
+          "caption": "Breaks Are Delicious — edition image 7 (Discogs release 732173)."
+        }
+      ]
+    },
+    {
+      "id": "d126",
+      "recordId": "production-engineering-credits",
+      "childId": "d126",
+      "jsonPointer": "/records/14/children/7",
+      "operation": "replace lead artwork",
+      "previousGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d126-01.jpg",
+          "alt": "Sign Your Name — edition artwork image 1",
+          "caption": "Sign Your Name — edition image 1 (Discogs release 994703)."
+        }
+      ],
+      "newGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/restored-artwork/d126-sign-your-name-approved-v1.webp",
+          "alt": "Sign Your Name — restored complete test-pressing label and sticker",
+          "caption": "Sign Your Name — restored complete test-pressing label and sticker."
+        }
+      ]
+    },
+    {
+      "id": "d004",
+      "recordId": "compilation-appearances",
+      "childId": "d004",
+      "jsonPointer": "/records/17/children/3",
+      "operation": "replace lead artwork",
+      "previousGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d004-01.jpg",
+          "alt": "Renaissance: Awakening — edition artwork image 1",
+          "caption": "Renaissance: Awakening — edition image 1 (Discogs release 6327)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d004-02.jpg",
+          "alt": "Renaissance: Awakening — edition artwork image 2",
+          "caption": "Renaissance: Awakening — edition image 2 (Discogs release 6327)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d004-03.jpg",
+          "alt": "Renaissance: Awakening — edition artwork image 3",
+          "caption": "Renaissance: Awakening — edition image 3 (Discogs release 6327)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d004-04.jpg",
+          "alt": "Renaissance: Awakening — edition artwork image 4",
+          "caption": "Renaissance: Awakening — edition image 4 (Discogs release 6327)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d004-05.jpg",
+          "alt": "Renaissance: Awakening — edition artwork image 5",
+          "caption": "Renaissance: Awakening — edition image 5 (Discogs release 6327)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d004-06.jpg",
+          "alt": "Renaissance: Awakening — edition artwork image 6",
+          "caption": "Renaissance: Awakening — edition image 6 (Discogs release 6327)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d004-07.jpg",
+          "alt": "Renaissance: Awakening — edition artwork image 7",
+          "caption": "Renaissance: Awakening — edition image 7 (Discogs release 6327)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d004-08.jpg",
+          "alt": "Renaissance: Awakening — edition artwork image 8",
+          "caption": "Renaissance: Awakening — edition image 8 (Discogs release 6327)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d004-09.jpg",
+          "alt": "Renaissance: Awakening — edition artwork image 9",
+          "caption": "Renaissance: Awakening — edition image 9 (Discogs release 6327)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d004-10.jpg",
+          "alt": "Renaissance: Awakening — edition artwork image 10",
+          "caption": "Renaissance: Awakening — edition image 10 (Discogs release 6327)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d004-11.jpg",
+          "alt": "Renaissance: Awakening — edition artwork image 11",
+          "caption": "Renaissance: Awakening — edition image 11 (Discogs release 6327)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d004-12.jpg",
+          "alt": "Renaissance: Awakening — edition artwork image 12",
+          "caption": "Renaissance: Awakening — edition image 12 (Discogs release 6327)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d004-13.jpg",
+          "alt": "Renaissance: Awakening — edition artwork image 13",
+          "caption": "Renaissance: Awakening — edition image 13 (Discogs release 6327)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d004-14.jpg",
+          "alt": "Renaissance: Awakening — edition artwork image 14",
+          "caption": "Renaissance: Awakening — edition image 14 (Discogs release 6327)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d004-15.jpg",
+          "alt": "Renaissance: Awakening — edition artwork image 15",
+          "caption": "Renaissance: Awakening — edition image 15 (Discogs release 6327)."
+        }
+      ],
+      "newGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/restored-artwork/d004-renaissance-awakening-approved-v1.webp",
+          "alt": "Renaissance: Awakening — restored front cover",
+          "caption": "Renaissance: Awakening — restored front cover."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d004-02.jpg",
+          "alt": "Renaissance: Awakening — edition artwork image 2",
+          "caption": "Renaissance: Awakening — edition image 2 (Discogs release 6327)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d004-03.jpg",
+          "alt": "Renaissance: Awakening — edition artwork image 3",
+          "caption": "Renaissance: Awakening — edition image 3 (Discogs release 6327)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d004-04.jpg",
+          "alt": "Renaissance: Awakening — edition artwork image 4",
+          "caption": "Renaissance: Awakening — edition image 4 (Discogs release 6327)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d004-05.jpg",
+          "alt": "Renaissance: Awakening — edition artwork image 5",
+          "caption": "Renaissance: Awakening — edition image 5 (Discogs release 6327)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d004-06.jpg",
+          "alt": "Renaissance: Awakening — edition artwork image 6",
+          "caption": "Renaissance: Awakening — edition image 6 (Discogs release 6327)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d004-07.jpg",
+          "alt": "Renaissance: Awakening — edition artwork image 7",
+          "caption": "Renaissance: Awakening — edition image 7 (Discogs release 6327)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d004-08.jpg",
+          "alt": "Renaissance: Awakening — edition artwork image 8",
+          "caption": "Renaissance: Awakening — edition image 8 (Discogs release 6327)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d004-09.jpg",
+          "alt": "Renaissance: Awakening — edition artwork image 9",
+          "caption": "Renaissance: Awakening — edition image 9 (Discogs release 6327)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d004-10.jpg",
+          "alt": "Renaissance: Awakening — edition artwork image 10",
+          "caption": "Renaissance: Awakening — edition image 10 (Discogs release 6327)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d004-11.jpg",
+          "alt": "Renaissance: Awakening — edition artwork image 11",
+          "caption": "Renaissance: Awakening — edition image 11 (Discogs release 6327)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d004-12.jpg",
+          "alt": "Renaissance: Awakening — edition artwork image 12",
+          "caption": "Renaissance: Awakening — edition image 12 (Discogs release 6327)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d004-13.jpg",
+          "alt": "Renaissance: Awakening — edition artwork image 13",
+          "caption": "Renaissance: Awakening — edition image 13 (Discogs release 6327)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d004-14.jpg",
+          "alt": "Renaissance: Awakening — edition artwork image 14",
+          "caption": "Renaissance: Awakening — edition image 14 (Discogs release 6327)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d004-15.jpg",
+          "alt": "Renaissance: Awakening — edition artwork image 15",
+          "caption": "Renaissance: Awakening — edition image 15 (Discogs release 6327)."
+        }
+      ]
+    },
+    {
+      "id": "d125",
+      "recordId": "production-engineering-credits",
+      "childId": "d125",
+      "jsonPointer": "/records/14/children/6",
+      "operation": "replace lead artwork",
+      "previousGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d125-01.jpg",
+          "alt": "Burning The Candle At Both Ends — LP Sampler — edition artwork image 1",
+          "caption": "Burning The Candle At Both Ends — LP Sampler — edition image 1 (Discogs release 34268)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d125-02.jpg",
+          "alt": "Burning The Candle At Both Ends — LP Sampler — edition artwork image 2",
+          "caption": "Burning The Candle At Both Ends — LP Sampler — edition image 2 (Discogs release 34268)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d125-03.jpg",
+          "alt": "Burning The Candle At Both Ends — LP Sampler — edition artwork image 3",
+          "caption": "Burning The Candle At Both Ends — LP Sampler — edition image 3 (Discogs release 34268)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d125-04.jpg",
+          "alt": "Burning The Candle At Both Ends — LP Sampler — edition artwork image 4",
+          "caption": "Burning The Candle At Both Ends — LP Sampler — edition image 4 (Discogs release 34268)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d125-05.jpg",
+          "alt": "Burning The Candle At Both Ends — LP Sampler — edition artwork image 5",
+          "caption": "Burning The Candle At Both Ends — LP Sampler — edition image 5 (Discogs release 34268)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d125-06.jpg",
+          "alt": "Burning The Candle At Both Ends — LP Sampler — edition artwork image 6",
+          "caption": "Burning The Candle At Both Ends — LP Sampler — edition image 6 (Discogs release 34268)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d125-07.jpg",
+          "alt": "Burning The Candle At Both Ends — LP Sampler — edition artwork image 7",
+          "caption": "Burning The Candle At Both Ends — LP Sampler — edition image 7 (Discogs release 34268)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d125-08.jpg",
+          "alt": "Burning The Candle At Both Ends — LP Sampler — edition artwork image 8",
+          "caption": "Burning The Candle At Both Ends — LP Sampler — edition image 8 (Discogs release 34268)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d125-09.jpg",
+          "alt": "Burning The Candle At Both Ends — LP Sampler — edition artwork image 9",
+          "caption": "Burning The Candle At Both Ends — LP Sampler — edition image 9 (Discogs release 34268)."
+        }
+      ],
+      "newGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/restored-artwork/d125-burning-the-candle-approved-v1.webp",
+          "alt": "Burning the Candle at Both Ends — restored LP sampler front cover",
+          "caption": "Burning the Candle at Both Ends — restored LP sampler front cover."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d125-02.jpg",
+          "alt": "Burning The Candle At Both Ends — LP Sampler — edition artwork image 2",
+          "caption": "Burning The Candle At Both Ends — LP Sampler — edition image 2 (Discogs release 34268)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d125-03.jpg",
+          "alt": "Burning The Candle At Both Ends — LP Sampler — edition artwork image 3",
+          "caption": "Burning The Candle At Both Ends — LP Sampler — edition image 3 (Discogs release 34268)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d125-04.jpg",
+          "alt": "Burning The Candle At Both Ends — LP Sampler — edition artwork image 4",
+          "caption": "Burning The Candle At Both Ends — LP Sampler — edition image 4 (Discogs release 34268)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d125-05.jpg",
+          "alt": "Burning The Candle At Both Ends — LP Sampler — edition artwork image 5",
+          "caption": "Burning The Candle At Both Ends — LP Sampler — edition image 5 (Discogs release 34268)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d125-06.jpg",
+          "alt": "Burning The Candle At Both Ends — LP Sampler — edition artwork image 6",
+          "caption": "Burning The Candle At Both Ends — LP Sampler — edition image 6 (Discogs release 34268)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d125-07.jpg",
+          "alt": "Burning The Candle At Both Ends — LP Sampler — edition artwork image 7",
+          "caption": "Burning The Candle At Both Ends — LP Sampler — edition image 7 (Discogs release 34268)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d125-08.jpg",
+          "alt": "Burning The Candle At Both Ends — LP Sampler — edition artwork image 8",
+          "caption": "Burning The Candle At Both Ends — LP Sampler — edition image 8 (Discogs release 34268)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d125-09.jpg",
+          "alt": "Burning The Candle At Both Ends — LP Sampler — edition artwork image 9",
+          "caption": "Burning The Candle At Both Ends — LP Sampler — edition image 9 (Discogs release 34268)."
+        }
+      ]
+    },
+    {
+      "id": "d127",
+      "recordId": "production-engineering-credits",
+      "childId": "d127",
+      "jsonPointer": "/records/14/children/8",
+      "operation": "replace lead artwork",
+      "previousGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d127-01.jpg",
+          "alt": "Burnt Out EP — edition artwork image 1",
+          "caption": "Burnt Out EP — edition image 1 (Discogs release 38453)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d127-02.jpg",
+          "alt": "Burnt Out EP — edition artwork image 2",
+          "caption": "Burnt Out EP — edition image 2 (Discogs release 38453)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d127-03.jpg",
+          "alt": "Burnt Out EP — edition artwork image 3",
+          "caption": "Burnt Out EP — edition image 3 (Discogs release 38453)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d127-04.jpg",
+          "alt": "Burnt Out EP — edition artwork image 4",
+          "caption": "Burnt Out EP — edition image 4 (Discogs release 38453)."
+        }
+      ],
+      "newGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/restored-artwork/d127-burnt-out-approved-v1.webp",
+          "alt": "Burnt Out EP — restored front cover",
+          "caption": "Burnt Out EP — restored front cover."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d127-02.jpg",
+          "alt": "Burnt Out EP — edition artwork image 2",
+          "caption": "Burnt Out EP — edition image 2 (Discogs release 38453)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d127-03.jpg",
+          "alt": "Burnt Out EP — edition artwork image 3",
+          "caption": "Burnt Out EP — edition image 3 (Discogs release 38453)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d127-04.jpg",
+          "alt": "Burnt Out EP — edition artwork image 4",
+          "caption": "Burnt Out EP — edition image 4 (Discogs release 38453)."
+        }
+      ]
+    },
+    {
+      "id": "nc-15",
+      "recordId": "singles-remixes",
+      "childId": "nc-15",
+      "jsonPointer": "/records/13/children/14",
+      "operation": "prepend approved artwork; retain excluded identity evidence",
+      "previousGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/singles-remixes/nc-15-img-5190.jpg",
+          "alt": "System 7 — High Plains Drifter, photographed edition IMG_5190",
+          "caption": "High Plains Drifter — archive photograph IMG_5190."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/singles-remixes/nc-15-img-5191.jpg",
+          "alt": "System 7 — High Plains Drifter, photographed edition IMG_5191",
+          "caption": "High Plains Drifter — archive photograph IMG_5191."
+        }
+      ],
+      "newGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/restored-artwork/nc-15-high-plains-drifter-approved-v1.webp",
+          "alt": "System 7 — High Plains Drifter, restored AAWT702 label",
+          "caption": "System 7 — High Plains Drifter, restored AAWT702 label."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/singles-remixes/nc-15-img-5190.jpg",
+          "alt": "System 7 — High Plains Drifter, photographed edition IMG_5190",
+          "caption": "High Plains Drifter — archive photograph IMG_5190."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/singles-remixes/nc-15-img-5191.jpg",
+          "alt": "System 7 — High Plains Drifter, photographed edition IMG_5191",
+          "caption": "High Plains Drifter — archive photograph IMG_5191."
+        }
+      ]
+    },
+    {
+      "id": "d009",
+      "recordId": "compilation-appearances",
+      "childId": "d009",
+      "jsonPointer": "/records/17/children/5",
+      "operation": "replace lead artwork",
+      "previousGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d009-01.jpg",
+          "alt": "Underground Beats — Series 3 Volume 3 — edition artwork image 1",
+          "caption": "Underground Beats — Series 3 Volume 3 — edition image 1 (Discogs release 588560)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d009-02.jpg",
+          "alt": "Underground Beats — Series 3 Volume 3 — edition artwork image 2",
+          "caption": "Underground Beats — Series 3 Volume 3 — edition image 2 (Discogs release 588560)."
+        }
+      ],
+      "newGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/restored-artwork/d009-underground-beats-s3v3-approved-v1.webp",
+          "alt": "Underground Beats — Series 3 Volume 3, restored front cover",
+          "caption": "Underground Beats — Series 3 Volume 3, restored front cover."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d009-02.jpg",
+          "alt": "Underground Beats — Series 3 Volume 3 — edition artwork image 2",
+          "caption": "Underground Beats — Series 3 Volume 3 — edition image 2 (Discogs release 588560)."
+        }
+      ]
+    },
+    {
+      "id": "d010",
+      "recordId": "compilation-appearances",
+      "childId": "d010",
+      "jsonPointer": "/records/17/children/6",
+      "operation": "replace lead artwork",
+      "previousGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d010-01.jpg",
+          "alt": "UK Underground Beats — Volume 2 — edition artwork image 1",
+          "caption": "UK Underground Beats — Volume 2 — edition image 1 (Discogs release 2580844)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d010-02.jpg",
+          "alt": "UK Underground Beats — Volume 2 — edition artwork image 2",
+          "caption": "UK Underground Beats — Volume 2 — edition image 2 (Discogs release 2580844)."
+        }
+      ],
+      "newGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/restored-artwork/d010-uk-underground-beats-volume-2-approved-v1.webp",
+          "alt": "UK Underground Beats — Volume 2, restored front cover",
+          "caption": "UK Underground Beats — Volume 2, restored front cover."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d010-02.jpg",
+          "alt": "UK Underground Beats — Volume 2 — edition artwork image 2",
+          "caption": "UK Underground Beats — Volume 2 — edition image 2 (Discogs release 2580844)."
+        }
+      ]
+    },
+    {
+      "id": "d032",
+      "recordId": "compilation-appearances",
+      "childId": "d032",
+      "jsonPointer": "/records/17/children/12",
+      "operation": "replace lead artwork",
+      "previousGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d032-01.jpg",
+          "alt": "Global Underground 014: Hong Kong — edition artwork image 1",
+          "caption": "Global Underground 014: Hong Kong — edition image 1 (Discogs release 4762)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d032-02.jpg",
+          "alt": "Global Underground 014: Hong Kong — edition artwork image 2",
+          "caption": "Global Underground 014: Hong Kong — edition image 2 (Discogs release 4762)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d032-03.jpg",
+          "alt": "Global Underground 014: Hong Kong — edition artwork image 3",
+          "caption": "Global Underground 014: Hong Kong — edition image 3 (Discogs release 4762)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d032-04.jpg",
+          "alt": "Global Underground 014: Hong Kong — edition artwork image 4",
+          "caption": "Global Underground 014: Hong Kong — edition image 4 (Discogs release 4762)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d032-05.jpg",
+          "alt": "Global Underground 014: Hong Kong — edition artwork image 5",
+          "caption": "Global Underground 014: Hong Kong — edition image 5 (Discogs release 4762)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d032-06.jpg",
+          "alt": "Global Underground 014: Hong Kong — edition artwork image 6",
+          "caption": "Global Underground 014: Hong Kong — edition image 6 (Discogs release 4762)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d032-07.jpg",
+          "alt": "Global Underground 014: Hong Kong — edition artwork image 7",
+          "caption": "Global Underground 014: Hong Kong — edition image 7 (Discogs release 4762)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d032-08.jpg",
+          "alt": "Global Underground 014: Hong Kong — edition artwork image 8",
+          "caption": "Global Underground 014: Hong Kong — edition image 8 (Discogs release 4762)."
+        }
+      ],
+      "newGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/restored-artwork/d032-john-digweed-hong-kong-approved-v1.webp",
+          "alt": "Global Underground 014: Hong Kong — restored complete John Digweed front cover",
+          "caption": "Global Underground 014: Hong Kong — restored complete John Digweed front cover."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d032-02.jpg",
+          "alt": "Global Underground 014: Hong Kong — edition artwork image 2",
+          "caption": "Global Underground 014: Hong Kong — edition image 2 (Discogs release 4762)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d032-03.jpg",
+          "alt": "Global Underground 014: Hong Kong — edition artwork image 3",
+          "caption": "Global Underground 014: Hong Kong — edition image 3 (Discogs release 4762)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d032-04.jpg",
+          "alt": "Global Underground 014: Hong Kong — edition artwork image 4",
+          "caption": "Global Underground 014: Hong Kong — edition image 4 (Discogs release 4762)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d032-05.jpg",
+          "alt": "Global Underground 014: Hong Kong — edition artwork image 5",
+          "caption": "Global Underground 014: Hong Kong — edition image 5 (Discogs release 4762)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d032-06.jpg",
+          "alt": "Global Underground 014: Hong Kong — edition artwork image 6",
+          "caption": "Global Underground 014: Hong Kong — edition image 6 (Discogs release 4762)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d032-07.jpg",
+          "alt": "Global Underground 014: Hong Kong — edition artwork image 7",
+          "caption": "Global Underground 014: Hong Kong — edition image 7 (Discogs release 4762)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d032-08.jpg",
+          "alt": "Global Underground 014: Hong Kong — edition artwork image 8",
+          "caption": "Global Underground 014: Hong Kong — edition image 8 (Discogs release 4762)."
+        }
+      ]
+    },
+    {
+      "id": "d039",
+      "recordId": "compilation-appearances",
+      "childId": "d039",
+      "jsonPointer": "/records/17/children/15",
+      "operation": "replace lead artwork",
+      "previousGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d039-01.jpg",
+          "alt": "Live Transmissions — reissue — edition artwork image 1",
+          "caption": "Live Transmissions — reissue — edition image 1 (Discogs release 963575)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d039-02.jpg",
+          "alt": "Live Transmissions — reissue — edition artwork image 2",
+          "caption": "Live Transmissions — reissue — edition image 2 (Discogs release 963575)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d039-03.jpg",
+          "alt": "Live Transmissions — reissue — edition artwork image 3",
+          "caption": "Live Transmissions — reissue — edition image 3 (Discogs release 963575)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d039-04.jpg",
+          "alt": "Live Transmissions — reissue — edition artwork image 4",
+          "caption": "Live Transmissions — reissue — edition image 4 (Discogs release 963575)."
+        }
+      ],
+      "newGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/restored-artwork/d039-live-transmissions-official-front-v1.jpg",
+          "alt": "System 7 — Live Transmissions, artist-published album-family front artwork",
+          "caption": "System 7 — Live Transmissions, artist-published album-family front artwork."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d039-02.jpg",
+          "alt": "Live Transmissions — reissue — edition artwork image 2",
+          "caption": "Live Transmissions — reissue — edition image 2 (Discogs release 963575)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d039-03.jpg",
+          "alt": "Live Transmissions — reissue — edition artwork image 3",
+          "caption": "Live Transmissions — reissue — edition image 3 (Discogs release 963575)."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d039-04.jpg",
+          "alt": "Live Transmissions — reissue — edition artwork image 4",
+          "caption": "Live Transmissions — reissue — edition image 4 (Discogs release 963575)."
+        }
+      ]
+    },
+    {
+      "id": "nc-13",
+      "recordId": "one-voyager-remix",
+      "childId": null,
+      "jsonPointer": "/records/2",
+      "operation": "prepend approved artwork; retain excluded identity evidence",
+      "previousGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/singles-remixes/nc-13-img-5187.jpg",
+          "alt": "Aria — One — Fire edition, photographed edition IMG_5187",
+          "caption": "One — Fire edition — archive photograph IMG_5187."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/global-underground-019.jpg",
+          "alt": "John Digweed Los Angeles Global Underground 019 cover",
+          "caption": "Global Underground 019: Los Angeles — compilation cover."
+        }
+      ],
+      "newGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/restored-artwork/nc-13-aria-one-fire-a-side-approved-v1.webp",
+          "alt": "Aria — One, restored complete Fire A-side label",
+          "caption": "Aria — One, restored complete Fire A-side label."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/singles-remixes/nc-13-img-5187.jpg",
+          "alt": "Aria — One — Fire edition, photographed edition IMG_5187",
+          "caption": "One — Fire edition — archive photograph IMG_5187."
+        },
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/global-underground-019.jpg",
+          "alt": "John Digweed Los Angeles Global Underground 019 cover",
+          "caption": "Global Underground 019: Los Angeles — compilation cover."
+        }
+      ]
+    },
+    {
+      "id": "d001",
+      "recordId": "compilation-appearances",
+      "childId": null,
+      "jsonPointer": "/records/17",
+      "operation": "replace lead artwork",
+      "previousGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d001-01.jpg",
+          "alt": "Sampling the Future — edition artwork image 1",
+          "caption": "Sampling the Future — edition image 1 (Discogs release 5356131)."
+        }
+      ],
+      "newGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/restored-artwork/d001-sampling-the-future-promo-approved-v1.webp",
+          "alt": "Sampling the Future — restored promotional front cover",
+          "caption": "Sampling the Future — restored promotional front cover."
+        }
+      ]
+    },
+    {
+      "id": "d111",
+      "recordId": "production-engineering-credits",
+      "childId": null,
+      "jsonPointer": "/records/14",
+      "operation": "replace lead artwork",
+      "previousGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/remaining-artwork/d111-01.jpg",
+          "alt": "The Diversity Twins EP — edition artwork image 1",
+          "caption": "The Diversity Twins EP — edition image 1 (Discogs release 155609)."
+        }
+      ],
+      "newGallery": [
+        {
+          "kind": "image",
+          "src": "/reference/restored-artwork/d111-diversity-twins-label-approved-v1.webp",
+          "alt": "The Diversity Twins EP — restored complete record label",
+          "caption": "The Diversity Twins EP — restored complete record label."
+        }
+      ]
+    }
+  ],
+  "nonGalleryDataPreserved": true,
+  "sourceEvidencePreserved": true,
+  "originalCapturePolicyUnchanged": true,
+  "qualifications": {
+    "nc09": "Approved CD-family cover represents the documented vinyl; catalogue facts unchanged.",
+    "nc10": "Complete sticker primary; full sleeve remains available in restoration package.",
+    "nc13": "A-side only; flower sleeve lettering remains held.",
+    "nc14": "Sueños front only; anniversary edition and reverse unchanged.",
+    "d112": "Branded Side A only; information side remains held.",
+    "nc16": "Information label only; full-sleeve barcode remains held.",
+    "d002": "Authentic original larger scan, no reconstruction.",
+    "d039": "Artist-published album-family image, not proof of the exact2006 printing; record facts unchanged."
+  },
+  "verification": {
+    "independentReport": "independent-import-verification.json",
+    "independentReportSha256": "5f47132c9a495af91d0b86d22474782bee491e84b29923d419c5395fcf9b2239",
+    "browserCards": 27,
+    "browserArchives": 27,
+    "sharedDossierViews": 3,
+    "visualComparison": "Root reviewed complete browser screenshot contact sheets; all27 images loaded in cards and detailed archives with full proportions.",
+    "focusedTests": {
+      "passed": 9,
+      "total": 9
+    },
+    "fullScopeBuildPages": 20,
+    "counts": {
+      "dossiers": 18,
+      "children": 64,
+      "displayedImagePlacements": 210,
+      "pending": 4
+    },
+    "originalCaptureAssetsExcluded": 29,
+    "physicalDeviceAcceptance": false,
+    "publication": "local preview only"
+  }
+}

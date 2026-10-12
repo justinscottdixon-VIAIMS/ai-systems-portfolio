@@ -1,0 +1,155 @@
+{
+  "version": 1,
+  "date": "2026-10-12",
+  "status": "owner-approved-locally-imported-and-verified",
+  "ownerApproval": {
+    "date": "2026-10-12",
+    "quote": "Continuing on!",
+    "context": "Owner replied to the displayed NC18 completed restoration and invitation to add it. Root confirmed this as authorization for this local import.",
+    "approvedMasterSha256": "ab1ec71f4da6c3ec73da3324f8aad4e32fd272d9699ad214fa04d8dbf0a9ac5d",
+    "localImportAuthorized": true,
+    "publicationAuthorized": false
+  },
+  "scope": "One new NC18 gallery lead under singles-remixes; all previous gallery items and every other catalogue field preserved.",
+  "asset": {
+    "id": "nc-18",
+    "sourceFile": "outputs/credentials-artwork-2026-10-11/restoration/nc18/aria-beyond-feel-restored-v1.png",
+    "sourceSha256": "ab1ec71f4da6c3ec73da3324f8aad4e32fd272d9699ad214fa04d8dbf0a9ac5d",
+    "sourceBytes": 23659733,
+    "file": "outputs/credentials-artwork-2026-10-12/nc18-approved/assets/nc-18-aria-beyond-feel-label-approved-v1.webp",
+    "assetPath": "/reference/restored-artwork/nc-18-aria-beyond-feel-label-approved-v1.webp",
+    "sha256": "1952824dbcbdd3b5049c23ba60cf13df3aaaa6cd58fdeef5b20a0f191151b2f1",
+    "bytes": 9689248,
+    "dimensions": [
+      4000,
+      4000
+    ],
+    "format": "webp",
+    "encoding": "lossless",
+    "decodedRgbaSha256": "5058e03e0b14620fb2d5cc64997238f779b780271f9fba1c4e11fcf321b572c6",
+    "pixelIdentical": true,
+    "copies": {
+      "public": "site/.worktrees/adaptive-media-shadow/public/reference/restored-artwork/nc-18-aria-beyond-feel-label-approved-v1.webp",
+      "public-deploy": "site/.worktrees/adaptive-media-shadow/public-deploy/reference/restored-artwork/nc-18-aria-beyond-feel-label-approved-v1.webp"
+    }
+  },
+  "operation": {
+    "parentId": "singles-remixes",
+    "childId": "nc-18",
+    "action": "prepend",
+    "newLead": {
+      "kind": "image",
+      "src": "/reference/restored-artwork/nc-18-aria-beyond-feel-label-approved-v1.webp",
+      "alt": "Restored gray circular Deuce Recordings DR-1002 label for Aria — Beyond / Feel, with the outlined AIRIA wordmark, side A and B lettering, and complete credits and rim text.",
+      "caption": "Aria — Beyond / Feel — restored Deuce Recordings DR-1002 label."
+    },
+    "previousGallery": [
+      {
+        "kind": "image",
+        "src": "/reference/singles-remixes/nc-18-img-5194.jpg",
+        "alt": "Aria — Beyond / Feel, photographed edition IMG_5194",
+        "caption": "Beyond / Feel — archive photograph IMG_5194."
+      }
+    ]
+  },
+  "source": {
+    "page": "https://www.discogs.com/release/136652",
+    "file": "outputs/credentials-artwork-2026-10-11/restoration/nc18/aria-beyond-feel-source.jpg",
+    "sha256": "b26e0f33c147f2a38c16793c9a1e57c6bdcca947964d751d4bef3861763ce4e0",
+    "dimensions": [
+      600,
+      600
+    ]
+  },
+  "restorationManifest": "outputs/credentials-artwork-2026-10-11/restoration/nc18/restoration-manifest-v1.json",
+  "batchManifest": "outputs/credentials-artwork-2026-10-11/batch-11-review/batch.json",
+  "ownerTextConfirmation": {
+    "symbol": "©",
+    "date": "2026-10-12",
+    "scope": "Circled C immediately before1997DEUCERECORDINGSORLANDOFLORIDA; not final artwork approval."
+  },
+  "qualifications": [
+    "Original public photo is600px;4000pxoutput adds native vector type over enlarged1254pxgenerated raster, not recovered original print detail.",
+    "Paper texture, vinyl grooves, spindle-hole edge/lighting and custom AIRIA, a/b and Deuce mark contours are reconstructed approximations.",
+    "Typeface shapes, tracking and curved-text arc geometry are measured approximations, not original-font recovery.",
+    "Printed AIRIA is retained only in artwork; app artist identity and catalogue facts are unchanged.",
+    "Owner resolved the copyright symbol; this confirmation must not be described as source-pixel recovery."
+  ],
+  "beforeSnapshot": "outputs/credentials-artwork-2026-10-12/nc18-approved/before-snapshot.json",
+  "verification": {
+    "status": "passed",
+    "completedAt": "2026-10-12T05:39:48.955Z",
+    "evidencePath": "outputs/credentials-artwork-2026-10-12/nc18-approved/import-verification.json",
+    "evidenceSha256": "014cf3838f6cd9bf13143f99b9cf81513b10e5d632cb1877476145809d5d83c1",
+    "checks": {
+      "historical27BatchAndRestorationVerificationUnchanged": true,
+      "all29CaptureSourcesAndExclusionsPreserved": true,
+      "onlySingleNc18GalleryPrepend": true,
+      "allNonGalleryCatalogueDataUnchanged": true,
+      "projectedNc18UsesOnlyApprovedArt": true,
+      "noExcludedCaptureInProjection": true,
+      "approvedMasterWebAndAllCopiesMatch": true,
+      "losslessWebpDecodedPixelsIdentical": true,
+      "localHttpAsset200AndIdentical": true,
+      "allBuiltPagesAndAssetsExcludeCaptureEvidence": true,
+      "indexAndSinglesArchiveUseApprovedAsset": true,
+      "nineFocusedTestsPassed": true,
+      "fullScopeBuild20PagesPassed": true
+    },
+    "counts": {
+      "approvedAssets": 1,
+      "galleryPlacements": 1,
+      "projectedImages": 211,
+      "projectedPending": 3,
+      "excludedCaptures": 29,
+      "preservedCaptureCopies": 58,
+      "builtPages": 20,
+      "focusedTests": 9
+    },
+    "focusedTests": {
+      "passed": 9,
+      "failed": 0,
+      "log": "outputs/credentials-artwork-2026-10-12/nc18-approved/focused-tests.log",
+      "sha256": "c6949ad77c53116ff7844adb4009c72a22d5fd7ca25e4065c4991a45df99f963"
+    },
+    "fullScopeBuild": {
+      "passed": true,
+      "pages": 20,
+      "log": "outputs/credentials-artwork-2026-10-12/nc18-approved/build.log",
+      "sha256": "dc72b3f4b9eaf25ac63124e661c01917abec1e1779d6a1e20a58e515b7d5913b"
+    },
+    "browserReview": {
+      "status": "passed",
+      "completedAt": "2026-10-12T05:42:40.816637+00:00",
+      "checks": {
+        "cardCompleteAndUncropped": true,
+        "archiveCompleteAndUncropped": true,
+        "bothUse4000pxApprovedAsset": true,
+        "bothUseContainFit": true,
+        "catalogueAndCaptionConsistent": true
+      },
+      "evidence": [
+        {
+          "file": "outputs/credentials-artwork-2026-10-12/nc18-approved/browser-card.json",
+          "sha256": "b37f0b4079bc93fa46759f3082227829247a4a52e2c7485f6f04cd180670a23b"
+        },
+        {
+          "file": "outputs/credentials-artwork-2026-10-12/nc18-approved/browser-archive.json",
+          "sha256": "50ac851718c1054e9b31907bb9dc6241af4d5200f0290d035bcb47f79f118c56"
+        },
+        {
+          "file": "outputs/credentials-artwork-2026-10-12/nc18-approved/nc18-card.png",
+          "sha256": "eb68c718448c3658a10b1737b0985115ae3be15234081726d3617bd677a52196"
+        },
+        {
+          "file": "outputs/credentials-artwork-2026-10-12/nc18-approved/nc18-archive.png",
+          "sha256": "d7366e4f831a116ffbd77fae87d69f9fbde9339000da8219c443cba04701b824"
+        }
+      ],
+      "limitations": "Desktop browser verification; no new mobile or real-device acceptance is claimed. No responsive framing code changed."
+    }
+  },
+  "published": false,
+  "siteImported": true,
+  "imported": true
+}

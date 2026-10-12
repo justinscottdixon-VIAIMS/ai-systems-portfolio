@@ -624,6 +624,12 @@
       "gallery": [
         {
           "kind": "image",
+          "src": "/reference/restored-artwork/nc-13-aria-one-fire-a-side-approved-v1.webp",
+          "alt": "Aria — One, restored complete Fire A-side label",
+          "caption": "Aria — One, restored complete Fire A-side label."
+        },
+        {
+          "kind": "image",
           "src": "/reference/singles-remixes/nc-13-img-5187.jpg",
           "alt": "Aria — One — Fire edition, photographed edition IMG_5187",
           "caption": "One — Fire edition — archive photograph IMG_5187."
@@ -949,9 +955,9 @@
         },
         {
           "kind": "image",
-          "src": "/reference/remaining-artwork/d005-01.jpg",
-          "alt": "Stark Raving Mad — soundtrack album — edition artwork image 1",
-          "caption": "Stark Raving Mad — soundtrack album — edition image 1 (Discogs release 156853)."
+          "src": "/reference/approved-artwork/stark-raving-mad-front-approved-v1.jpg",
+          "alt": "Stark Raving Mad front cover with black and orange title artwork on an off-white background, John Digweed at upper right and featuring Nick Muir below.",
+          "caption": "Stark Raving Mad — front cover, John Digweed featuring Nick Muir."
         },
         {
           "kind": "image",
@@ -1025,9 +1031,9 @@
           "supports": "Artwork and packaging for the displayed edition; catalogue credits retain their existing qualifications."
         },
         {
-          "label": "Stark Raving Mad soundtrack packaging",
-          "href": "https://musicbrainz.org/release/bb5af242-4fa6-4eec-91e7-6de33326ca06",
-          "supports": "Artwork and packaging for the displayed edition; catalogue credits retain their existing qualifications."
+          "label": "Stark Raving Mad front-cover scan and packaging",
+          "href": "https://musicbrainz.org/release/bb5af242-4fa6-4eec-91e7-6de33326ca06/cover-art",
+          "supports": "Source of the displayed front-cover scan and printed soundtrack packaging; the images do not establish the identity of a particular physical pressing."
         }
       ],
       "public": true
@@ -1673,6 +1679,12 @@
           "gallery": [
             {
               "kind": "image",
+              "src": "/reference/restored-artwork/bedrock-beautiful-strange-ep-approved-v1.png",
+              "alt": "Restored Bedrock Beautiful Strange retail EP front cover with a yellow liquid shape, curved amber and black rim, pale lower field and EP lettering.",
+              "caption": "Beautiful Strange — restored retail EP front cover (BS1001EP)."
+            },
+            {
+              "kind": "image",
               "src": "/reference/singles-remixes/nc-02-img-5167.jpg",
               "alt": "Bedrock — Beautiful Strange, photographed edition IMG_5167",
               "caption": "Beautiful Strange — archive photograph IMG_5167."
@@ -1705,6 +1717,12 @@
           "gallery": [
             {
               "kind": "image",
+              "src": "/reference/restored-artwork/keoki-altered-ego-trip-approved-v1.png",
+              "alt": "Restored Keoki Altered-Ego-Trip CD/digital cover with an ornate white wordmark, black title and white remix-album subtitle on a red-orange background.",
+              "caption": "Altered-Ego-Trip — restored CD/digital cover (distinct from the MM80090-1 vinyl sleeve)."
+            },
+            {
+              "kind": "image",
               "src": "/reference/singles-remixes/nc-03-img-5168.jpg",
               "alt": "Keoki — Altered-Ego-Trip (The Remix Album), photographed edition IMG_5168",
               "caption": "Altered-Ego-Trip (The Remix Album) — archive photograph IMG_5168."
@@ -1723,6 +1741,18 @@
           ],
           "summary": "Voyager remix.",
           "gallery": [
+            {
+              "kind": "image",
+              "src": "/reference/restored-artwork/magic-shop-code10-cover-approved-v1.png",
+              "alt": "Restored Magic Shop CODE10 retail cover: white and bright green sleeve with black Coded graphics, magenta 10 and a precisely reconstructed information label.",
+              "caption": "Magic Shop — restored CODE10 retail sleeve with precise label lettering."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/restored-artwork/magic-shop-code10-label-approved-v1.png",
+              "alt": "Restored Magic Shop CODE10 retail label detail showing Stef, Pako & Frederik, Voyager Remix, Original Mix, Forths Shopping Trolley and owner-confirmed production and publishing text.",
+              "caption": "Magic Shop — restored CODE10 retail information label, enlarged detail."
+            },
             {
               "kind": "image",
               "src": "/reference/singles-remixes/nc-04-img-5170.jpg",
@@ -1749,6 +1779,12 @@
           ],
           "summary": "DJ’s Friction & Spice — Frosty’s X-Mas Dub. Exact writer/arranger/producer wording remains to be established.",
           "gallery": [
+            {
+              "kind": "image",
+              "src": "/reference/restored-artwork/acid-x-mas-sb013-sticker-approved-v1.png",
+              "alt": "Restored Acid X-Mas Special X-Mas E.P. SB-013 sleeve sticker with ornate red title, Christmas ornaments, artist credits and StreetBeat logo.",
+              "caption": "Acid X-Mas — restored SB-013 promotional sleeve sticker."
+            },
             {
               "kind": "image",
               "src": "/reference/singles-remixes/nc-05-img-5171.jpg",
@@ -1783,6 +1819,12 @@
           "gallery": [
             {
               "kind": "image",
+              "src": "/reference/restored-artwork/origin-refined-intricacy-99-approved-v1.png",
+              "alt": "Origin — Refined Intricacy ’99 restored sleeve with silver diamond plate, Origin title panel and Steel Yard Music emblem.",
+              "caption": "Refined Intricacy ’99 — restored SYW006 sleeve."
+            },
+            {
+              "kind": "image",
               "src": "/reference/singles-remixes/nc-06-img-5176.jpg",
               "alt": "Origin — Refined Intricacy ’99, photographed edition IMG_5176",
               "caption": "Refined Intricacy ’99 — archive photograph IMG_5176."
@@ -1809,6 +1851,12 @@
           "gallery": [
             {
               "kind": "image",
+              "src": "/reference/restored-artwork/mot-mellow-promo-label-approved-v1.png",
+              "alt": "MOT — Mellow restored FFRR promotional record label with track titles and production credits.",
+              "caption": "Mellow — restored FFRR promotional label, 314-570285-1DJ."
+            },
+            {
+              "kind": "image",
               "src": "/reference/singles-remixes/nc-07-img-5178.jpg",
               "alt": "MOT — Mellow, photographed edition IMG_5178",
               "caption": "Mellow — archive photograph IMG_5178."
@@ -1829,6 +1877,12 @@
           "gallery": [
             {
               "kind": "image",
+              "src": "/reference/restored-artwork/sunshine-state-of-mind-full-compilation-approved-v1.png",
+              "alt": "Sunshine State of Mind full-compilation cover with white lettering, abstract cyan-white light and blue curved shapes on a dark background.",
+              "caption": "Sunshine State of Mind — restored full-compilation cover."
+            },
+            {
+              "kind": "image",
               "src": "/reference/singles-remixes/nc-08-img-5179.jpg",
               "alt": "Various artists — Sunshine State of Mind — full-album sleeve, photographed edition IMG_5179",
               "caption": "Sunshine State of Mind — full-album sleeve — archive photograph IMG_5179."
@@ -1847,6 +1901,12 @@
           ],
           "summary": "Voyager — Motion (Stereo Edit), written and produced by Justin Scott Dixon; additional keyboard production credited to Sam Frost.",
           "gallery": [
+            {
+              "kind": "image",
+              "src": "/reference/restored-artwork/nc-09-tranceport-3-cd-approved-v2.webp",
+              "alt": "Tranceport.3 — restored Sandra Collins CD-family cover, selected to represent Music from Tranceport 3 on vinyl (0-54648 P)",
+              "caption": "Tranceport.3 — restored Sandra Collins CD-family cover, selected to represent Music from Tranceport 3 on vinyl (0-54648 P)."
+            },
             {
               "kind": "image",
               "src": "/reference/singles-remixes/nc-09-img-5180.jpg",
@@ -1888,6 +1948,12 @@
           ],
           "summary": "Justin Scott Dixon: remix and additional production on Voyager’s Big Speaker Remix. The other side is Echo’s Wave Dub.",
           "gallery": [
+            {
+              "kind": "image",
+              "src": "/reference/restored-artwork/nc-10-bradley-rush-sticker-detail-v1.webp",
+              "alt": "Bradley — Rush, restored complete FD-015 sleeve sticker",
+              "caption": "Bradley — Rush, restored complete FD-015 sleeve sticker."
+            },
             {
               "kind": "image",
               "src": "/reference/singles-remixes/nc-10-img-5183.jpg",
@@ -1934,6 +2000,12 @@
           ],
           "summary": "Velvet (Voyager Remix 1) and Velvet (Voyager Remix 2). Justin Scott Dixon: remix and additional production; original work by Kasey Taylor.",
           "gallery": [
+            {
+              "kind": "image",
+              "src": "/reference/restored-artwork/nc-11-ocean-wave-voyager-remixes-approved-v1.webp",
+              "alt": "Ocean Wave EP — restored Voyager Remixes disk three cover, RHYSYN005R",
+              "caption": "Ocean Wave EP — restored Voyager Remixes disk three cover, RHYSYN005R."
+            },
             {
               "kind": "image",
               "src": "/reference/singles-remixes/nc-11-img-5184.jpg",
@@ -2036,6 +2108,12 @@
           "gallery": [
             {
               "kind": "image",
+              "src": "/reference/restored-artwork/nc-13-aria-one-fire-a-side-approved-v1.webp",
+              "alt": "Aria — One, restored complete Fire A-side label",
+              "caption": "Aria — One, restored complete Fire A-side label."
+            },
+            {
+              "kind": "image",
               "src": "/reference/singles-remixes/nc-13-img-5187.jpg",
               "alt": "Aria — One — Fire edition, photographed edition IMG_5187",
               "caption": "One — Fire edition — archive photograph IMG_5187."
@@ -2090,6 +2168,12 @@
           "gallery": [
             {
               "kind": "image",
+              "src": "/reference/restored-artwork/nc-14-groove-me-suenos-approved-v1.webp",
+              "alt": "DJ’s Friction & Spice — Groove Me, restored Sueños front cover",
+              "caption": "DJ’s Friction & Spice — Groove Me, restored Sueños front cover."
+            },
+            {
+              "kind": "image",
               "src": "/reference/singles-remixes/nc-14-img-5188.jpg",
               "alt": "DJ’s Friction & Spice — Groove Me — Sueños edition, photographed edition IMG_5188",
               "caption": "Groove Me — Sueños edition — archive photograph IMG_5188."
@@ -2115,6 +2199,12 @@
           ],
           "summary": "Voyager remix and additional production on side A.",
           "gallery": [
+            {
+              "kind": "image",
+              "src": "/reference/restored-artwork/nc-15-high-plains-drifter-approved-v1.webp",
+              "alt": "System 7 — High Plains Drifter, restored AAWT702 label",
+              "caption": "System 7 — High Plains Drifter, restored AAWT702 label."
+            },
             {
               "kind": "image",
               "src": "/reference/singles-remixes/nc-15-img-5190.jpg",
@@ -2154,6 +2244,12 @@
           "gallery": [
             {
               "kind": "image",
+              "src": "/reference/restored-artwork/nc-16-ultra-vixens-approved-v1.webp",
+              "alt": "Thomas P. Heckmann & Marc Romboy — Ultra Vixens, restored information label",
+              "caption": "Thomas P. Heckmann & Marc Romboy — Ultra Vixens, restored information label."
+            },
+            {
+              "kind": "image",
               "src": "/reference/singles-remixes/nc-16-img-5192.jpg",
               "alt": "Thomas P. Heckmann & Marc Romboy — Ultra Vixens — Undercurrent edition, photographed edition IMG_5192",
               "caption": "Ultra Vixens — Undercurrent edition — archive photograph IMG_5192."
@@ -2172,6 +2268,12 @@
           ],
           "summary": "Friction & Spice remix, printed as Bassline mix.",
           "gallery": [
+            {
+              "kind": "image",
+              "src": "/reference/restored-artwork/nc-17-mad-free-label-approved-v1.webp",
+              "alt": "M.A.D. — Free, restored complete record label",
+              "caption": "M.A.D. — Free, restored complete record label."
+            },
             {
               "kind": "image",
               "src": "/reference/singles-remixes/nc-17-img-5193.jpg",
@@ -2194,6 +2296,12 @@
           ],
           "summary": "Writing, production and arrangement credited to Justin Scott Dixon and Rich Rosario in the reviewed edition listing.",
           "gallery": [
+            {
+              "kind": "image",
+              "src": "/reference/restored-artwork/nc-18-aria-beyond-feel-label-approved-v1.webp",
+              "alt": "Restored gray circular Deuce Recordings DR-1002 label for Aria — Beyond / Feel, with the outlined AIRIA wordmark, side A and B lettering, and complete credits and rim text.",
+              "caption": "Aria — Beyond / Feel — restored Deuce Recordings DR-1002 label."
+            },
             {
               "kind": "image",
               "src": "/reference/singles-remixes/nc-18-img-5194.jpg",
@@ -2285,9 +2393,9 @@
       "gallery": [
         {
           "kind": "image",
-          "src": "/reference/remaining-artwork/d111-01.jpg",
-          "alt": "The Diversity Twins EP — edition artwork image 1",
-          "caption": "The Diversity Twins EP — edition image 1 (Discogs release 155609)."
+          "src": "/reference/restored-artwork/d111-diversity-twins-label-approved-v1.webp",
+          "alt": "The Diversity Twins EP — restored complete record label",
+          "caption": "The Diversity Twins EP — restored complete record label."
         }
       ],
       "sections": [],
@@ -2306,9 +2414,9 @@
           "gallery": [
             {
               "kind": "image",
-              "src": "/reference/remaining-artwork/d111-01.jpg",
-              "alt": "The Diversity Twins EP — edition artwork image 1",
-              "caption": "The Diversity Twins EP — edition image 1 (Discogs release 155609)."
+              "src": "/reference/restored-artwork/d111-diversity-twins-label-approved-v1.webp",
+              "alt": "The Diversity Twins EP — restored complete record label",
+              "caption": "The Diversity Twins EP — restored complete record label."
             },
             {
               "kind": "image",
@@ -2359,9 +2467,9 @@
           "gallery": [
             {
               "kind": "image",
-              "src": "/reference/remaining-artwork/d112-01.jpg",
-              "alt": "Enlighten Me — edition artwork image 1",
-              "caption": "Enlighten Me — edition image 1 (Discogs release 272169)."
+              "src": "/reference/restored-artwork/d112-enlighten-me-a-side-approved-v1.webp",
+              "alt": "Enlighten Us — Enlighten Me, restored branded Side A label",
+              "caption": "Enlighten Us — Enlighten Me, restored branded Side A label."
             },
             {
               "kind": "image",
@@ -2404,9 +2512,9 @@
           "gallery": [
             {
               "kind": "image",
-              "src": "/reference/remaining-artwork/d115-01.jpg",
-              "alt": "Touch Me — edition artwork image 1",
-              "caption": "Touch Me — edition image 1 (Discogs release 14610)."
+              "src": "/reference/restored-artwork/d115-touch-me-approved-v1.webp",
+              "alt": "Touch Me — restored KNIGHT-016 label",
+              "caption": "Touch Me — restored KNIGHT-016 label."
             }
           ],
           "credits": [
@@ -2443,9 +2551,9 @@
           "gallery": [
             {
               "kind": "image",
-              "src": "/reference/remaining-artwork/d116-01.jpg",
-              "alt": "Sun God — edition artwork image 1",
-              "caption": "Sun God — edition image 1 (Discogs release 172934)."
+              "src": "/reference/restored-artwork/d116-dj-apache-sun-god-approved-v1.webp",
+              "alt": "DJ Apache — Sun God, restored record label",
+              "caption": "DJ Apache — Sun God, restored record label."
             },
             {
               "kind": "image",
@@ -2491,9 +2599,9 @@
           "gallery": [
             {
               "kind": "image",
-              "src": "/reference/remaining-artwork/d139-01.jpg",
-              "alt": "Usuaya: The Key — edition artwork image 1",
-              "caption": "Usuaya: The Key — edition image 1 (Discogs release 607357)."
+              "src": "/reference/restored-artwork/d139-usuaya-the-key-approved-v1.webp",
+              "alt": "Usuaya: The Key — restored front cover",
+              "caption": "Usuaya: The Key — restored front cover."
             },
             {
               "kind": "image",
@@ -2561,9 +2669,9 @@
           "gallery": [
             {
               "kind": "image",
-              "src": "/reference/remaining-artwork/d140-01.jpg",
-              "alt": "Breaks Are Delicious — edition artwork image 1",
-              "caption": "Breaks Are Delicious — edition image 1 (Discogs release 732173)."
+              "src": "/reference/restored-artwork/d140-dj-spice-breaks-are-delicious-approved-v1.webp",
+              "alt": "DJ Spice — Breaks Are Delicious, restored front cover",
+              "caption": "DJ Spice — Breaks Are Delicious, restored front cover."
             },
             {
               "kind": "image",
@@ -2637,9 +2745,9 @@
           "gallery": [
             {
               "kind": "image",
-              "src": "/reference/remaining-artwork/d125-01.jpg",
-              "alt": "Burning The Candle At Both Ends — LP Sampler — edition artwork image 1",
-              "caption": "Burning The Candle At Both Ends — LP Sampler — edition image 1 (Discogs release 34268)."
+              "src": "/reference/restored-artwork/d125-burning-the-candle-approved-v1.webp",
+              "alt": "Burning the Candle at Both Ends — restored LP sampler front cover",
+              "caption": "Burning the Candle at Both Ends — restored LP sampler front cover."
             },
             {
               "kind": "image",
@@ -2741,9 +2849,9 @@
           "gallery": [
             {
               "kind": "image",
-              "src": "/reference/remaining-artwork/d126-01.jpg",
-              "alt": "Sign Your Name — edition artwork image 1",
-              "caption": "Sign Your Name — edition image 1 (Discogs release 994703)."
+              "src": "/reference/restored-artwork/d126-sign-your-name-approved-v1.webp",
+              "alt": "Sign Your Name — restored complete test-pressing label and sticker",
+              "caption": "Sign Your Name — restored complete test-pressing label and sticker."
             }
           ],
           "credits": [
@@ -2780,9 +2888,9 @@
           "gallery": [
             {
               "kind": "image",
-              "src": "/reference/remaining-artwork/d127-01.jpg",
-              "alt": "Burnt Out EP — edition artwork image 1",
-              "caption": "Burnt Out EP — edition image 1 (Discogs release 38453)."
+              "src": "/reference/restored-artwork/d127-burnt-out-approved-v1.webp",
+              "alt": "Burnt Out EP — restored front cover",
+              "caption": "Burnt Out EP — restored front cover."
             },
             {
               "kind": "image",
@@ -2835,6 +2943,12 @@
           ],
           "summary": "Dixon’s mastering credit applies specifically to track 12, Cerulean Blue.",
           "gallery": [
+            {
+              "kind": "image",
+              "src": "/reference/restored-artwork/d095-create-fixate-volume-1-approved-v1.webp",
+              "alt": "Restored Create:Fixate Volume 1 front cover with thirteen artwork panels arranged on a dark background and orange title lettering.",
+              "caption": "Create:Fixate Volume 1 — restored front cover."
+            },
             {
               "kind": "image",
               "src": "/reference/remaining-artwork/d095-01.jpg",
@@ -2900,9 +3014,9 @@
           "gallery": [
             {
               "kind": "image",
-              "src": "/reference/remaining-artwork/d129-01.jpg",
-              "alt": "Gravity Pimps E.P. — edition artwork image 1",
-              "caption": "Gravity Pimps E.P. — edition image 1 (Discogs release 905900)."
+              "src": "/reference/restored-artwork/gravity-pimps-ep-approved-v1.png",
+              "alt": "Matt Xavier and Sean Palm — Gravity Pimps E.P. restored cover with purple brickwork and New York skyline.",
+              "caption": "Gravity Pimps E.P. — restored RYR006 cover."
             }
           ],
           "credits": [
@@ -3282,9 +3396,9 @@
       "gallery": [
         {
           "kind": "image",
-          "src": "/reference/remaining-artwork/d001-01.jpg",
-          "alt": "Sampling the Future — edition artwork image 1",
-          "caption": "Sampling the Future — edition image 1 (Discogs release 5356131)."
+          "src": "/reference/restored-artwork/d001-sampling-the-future-promo-approved-v1.webp",
+          "alt": "Sampling the Future — restored promotional front cover",
+          "caption": "Sampling the Future — restored promotional front cover."
         }
       ],
       "sections": [
@@ -3317,9 +3431,9 @@
           "gallery": [
             {
               "kind": "image",
-              "src": "/reference/remaining-artwork/d001-01.jpg",
-              "alt": "Sampling the Future — edition artwork image 1",
-              "caption": "Sampling the Future — edition image 1 (Discogs release 5356131)."
+              "src": "/reference/restored-artwork/d001-sampling-the-future-promo-approved-v1.webp",
+              "alt": "Sampling the Future — restored promotional front cover",
+              "caption": "Sampling the Future — restored promotional front cover."
             },
             {
               "kind": "image",
@@ -3377,9 +3491,9 @@
           "gallery": [
             {
               "kind": "image",
-              "src": "/reference/remaining-artwork/d002-01.jpg",
-              "alt": "Bedrock Compiled & Mixed by John Digweed — edition artwork image 1",
-              "caption": "Bedrock Compiled & Mixed by John Digweed — edition image 1 (Discogs release 77826)."
+              "src": "/reference/restored-artwork/d002-bedrock-john-digweed-original-scan-v1.webp",
+              "alt": "Bedrock — John Digweed, original front-cover scan",
+              "caption": "Bedrock — John Digweed, original front-cover scan."
             },
             {
               "kind": "image",
@@ -3581,9 +3695,9 @@
           "gallery": [
             {
               "kind": "image",
-              "src": "/reference/remaining-artwork/d004-01.jpg",
-              "alt": "Renaissance: Awakening — edition artwork image 1",
-              "caption": "Renaissance: Awakening — edition image 1 (Discogs release 6327)."
+              "src": "/reference/restored-artwork/d004-renaissance-awakening-approved-v1.webp",
+              "alt": "Renaissance: Awakening — restored front cover",
+              "caption": "Renaissance: Awakening — restored front cover."
             },
             {
               "kind": "image",
@@ -3719,9 +3833,9 @@
           "gallery": [
             {
               "kind": "image",
-              "src": "/reference/remaining-artwork/d005-01.jpg",
-              "alt": "Stark Raving Mad — soundtrack album — edition artwork image 1",
-              "caption": "Stark Raving Mad — soundtrack album — edition image 1 (Discogs release 156853)."
+              "src": "/reference/approved-artwork/stark-raving-mad-front-approved-v1.jpg",
+              "alt": "Stark Raving Mad front cover with black and orange title artwork on an off-white background, John Digweed at upper right and featuring Nick Muir below.",
+              "caption": "Stark Raving Mad — front cover, John Digweed featuring Nick Muir."
             },
             {
               "kind": "image",
@@ -3785,9 +3899,9 @@
               "supports": "Compilation identity retained in the master; master references describe a release family."
             },
             {
-              "label": "Displayed artwork edition",
-              "href": "https://www.discogs.com/release/156853",
-              "supports": "Artwork and packaging for the displayed edition; catalogue credits retain their existing qualifications."
+              "label": "Displayed front-cover scan",
+              "href": "https://musicbrainz.org/release/bb5af242-4fa6-4eec-91e7-6de33326ca06/cover-art",
+              "supports": "Source of the displayed front-cover scan; the artwork does not establish the identity of a particular physical pressing."
             }
           ],
           "relatedRecordIds": [
@@ -3809,9 +3923,9 @@
           "gallery": [
             {
               "kind": "image",
-              "src": "/reference/remaining-artwork/d009-01.jpg",
-              "alt": "Underground Beats — Series 3 Volume 3 — edition artwork image 1",
-              "caption": "Underground Beats — Series 3 Volume 3 — edition image 1 (Discogs release 588560)."
+              "src": "/reference/restored-artwork/d009-underground-beats-s3v3-approved-v1.webp",
+              "alt": "Underground Beats — Series 3 Volume 3, restored front cover",
+              "caption": "Underground Beats — Series 3 Volume 3, restored front cover."
             },
             {
               "kind": "image",
@@ -3857,9 +3971,9 @@
           "gallery": [
             {
               "kind": "image",
-              "src": "/reference/remaining-artwork/d010-01.jpg",
-              "alt": "UK Underground Beats — Volume 2 — edition artwork image 1",
-              "caption": "UK Underground Beats — Volume 2 — edition image 1 (Discogs release 2580844)."
+              "src": "/reference/restored-artwork/d010-uk-underground-beats-volume-2-approved-v1.webp",
+              "alt": "UK Underground Beats — Volume 2, restored front cover",
+              "caption": "UK Underground Beats — Volume 2, restored front cover."
             },
             {
               "kind": "image",
@@ -3965,9 +4079,9 @@
           "gallery": [
             {
               "kind": "image",
-              "src": "/reference/remaining-artwork/d015-01.jpg",
-              "alt": "Cream — edition artwork image 1",
-              "caption": "Cream — edition image 1 (Discogs release 76304)."
+              "src": "/reference/restored-artwork/d015-sandra-collins-cream-approved-v1.webp",
+              "alt": "Sandra Collins — Cream, restored front cover",
+              "caption": "Sandra Collins — Cream, restored front cover."
             },
             {
               "kind": "image",
@@ -4033,9 +4147,9 @@
           "gallery": [
             {
               "kind": "image",
-              "src": "/reference/remaining-artwork/d016-01.jpg",
-              "alt": "Perfecto Presents… Sandra Collins — edition artwork image 1",
-              "caption": "Perfecto Presents… Sandra Collins — edition image 1 (Discogs release 244957)."
+              "src": "/reference/restored-artwork/d016-perfecto-sandra-collins-approved-v1.webp",
+              "alt": "Perfecto Presents Sandra Collins — restored front cover",
+              "caption": "Perfecto Presents Sandra Collins — restored front cover."
             },
             {
               "kind": "image",
@@ -4101,9 +4215,9 @@
           "gallery": [
             {
               "kind": "image",
-              "src": "/reference/remaining-artwork/d028-01.jpg",
-              "alt": "The 4 A.M. Sound of Progressive Trance — edition artwork image 1",
-              "caption": "The 4 A.M. Sound of Progressive Trance — edition image 1 (Discogs release 2095502)."
+              "src": "/reference/restored-artwork/the-4-am-sound-of-progressive-trance-approved-v2.png",
+              "alt": "Restored The 4 A.M. Sound of Progressive Trance cover with a lime title panel, gray artist strip and white and green light trails against a navy night scene.",
+              "caption": "The 4 A.M. Sound of Progressive Trance — restored compilation cover."
             }
           ],
           "credits": [
@@ -4295,9 +4409,9 @@
           "gallery": [
             {
               "kind": "image",
-              "src": "/reference/remaining-artwork/d032-01.jpg",
-              "alt": "Global Underground 014: Hong Kong — edition artwork image 1",
-              "caption": "Global Underground 014: Hong Kong — edition image 1 (Discogs release 4762)."
+              "src": "/reference/restored-artwork/d032-john-digweed-hong-kong-approved-v1.webp",
+              "alt": "Global Underground 014: Hong Kong — restored complete John Digweed front cover",
+              "caption": "Global Underground 014: Hong Kong — restored complete John Digweed front cover."
             },
             {
               "kind": "image",
@@ -4380,6 +4494,12 @@
           ],
           "summary": "The Voyager remix of Origin’s Refined Intricacy ’99 appears in Seb Fontaine’s compilation.",
           "gallery": [
+            {
+              "kind": "image",
+              "src": "/reference/restored-artwork/d033-seb-fontaine-prototype-3-approved-v1.webp",
+              "alt": "Restored Prototype >3 front cover showing Seb Fontaine leaning forward over equipment, with orange Prototype and Global Underground lettering and white Seb Fontaine text.",
+              "caption": "Seb Fontaine — Prototype >3 — restored front cover."
+            },
             {
               "kind": "image",
               "src": "/reference/remaining-artwork/d033-01.jpg",
@@ -4465,9 +4585,9 @@
           "gallery": [
             {
               "kind": "image",
-              "src": "/reference/remaining-artwork/d036-01.jpg",
-              "alt": "Trance Nation 2001 — edition artwork image 1",
-              "caption": "Trance Nation 2001 — edition image 1 (Discogs release 14797)."
+              "src": "/reference/restored-artwork/d036-trance-nation-2001-approved-v1.webp",
+              "alt": "Trance Nation 2001 — restored front cover",
+              "caption": "Trance Nation 2001 — restored front cover."
             },
             {
               "kind": "image",
@@ -4596,9 +4716,9 @@
           "gallery": [
             {
               "kind": "image",
-              "src": "/reference/remaining-artwork/d039-01.jpg",
-              "alt": "Live Transmissions — reissue — edition artwork image 1",
-              "caption": "Live Transmissions — reissue — edition image 1 (Discogs release 963575)."
+              "src": "/reference/restored-artwork/d039-live-transmissions-official-front-v1.jpg",
+              "alt": "System 7 — Live Transmissions, artist-published album-family front artwork",
+              "caption": "System 7 — Live Transmissions, artist-published album-family front artwork."
             },
             {
               "kind": "image",

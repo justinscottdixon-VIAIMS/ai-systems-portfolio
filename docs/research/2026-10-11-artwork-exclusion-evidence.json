@@ -1,0 +1,19 @@
+{
+  "date": "2026-10-12",
+  "purpose": "Scoped original-capture inventory for artwork-exclusion tests; preserves source paths as evidence only.",
+  "derivedFrom": {
+    "file": "2026-09-30-remaining-artwork-import.json",
+    "sha256": "80aa6c52d4578eb7b38d74ef2f527c8d1a6479977a15ed47a2a1aefe4c5a84c0",
+    "note": "Full local research ledger remains outside this artwork commit."
+  },
+  "images": [
+    {
+      "release": "time-travel",
+      "output": "/reference/remaining-artwork/time-travel-vinyl-side-a.jpg"
+    },
+    {
+      "release": "time-travel",
+      "output": "/reference/remaining-artwork/time-travel-vinyl-side-b.jpg"
+    }
+  ]
+}
