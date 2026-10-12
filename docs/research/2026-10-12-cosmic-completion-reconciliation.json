@@ -1,0 +1,255 @@
+{
+  "date": "2026-10-12",
+  "ownerCorrection": "but we already had performed the task for the 17 Cosmic releases",
+  "decision": "Existing17Cosmic presentations complete; remove redundant restoration work from active queue. No blanket claim that legacy fidelity flags independently verified every printed detail.",
+  "cause": "Historical artwork-fidelity-review-pending flags were incorrectly turned into a new restoration backlog despite completed existing presentations.",
+  "cosmicReleaseCount": 17,
+  "currentPresentationImageCount": 18,
+  "publicCopiesVerified": 36,
+  "cosmicActiveRemainingCount": 0,
+  "entries": [
+    {
+      "id": "groove-me",
+      "catalogue": "COSMIC 001",
+      "title": "Groove Me",
+      "existingPresentationImages": [
+        {
+          "src": "/reference/cosmic-001-flat-sleeve-v2.png",
+          "sha256": "b240dbfbc74c543c911d94b009b78f904782a31223843c2c8fcff3b3c9f163af",
+          "bothPublicTreesPresentAndIdentical": true
+        }
+      ],
+      "activeRestorationRequired": false
+    },
+    {
+      "id": "cosmic-002",
+      "catalogue": "COSMIC 002",
+      "title": "Pure / Journees",
+      "existingPresentationImages": [
+        {
+          "src": "/reference/cosmic-002-flat-sleeve-v2.png",
+          "sha256": "4ae745c1f6db3058e4e5f821ed78b8849875d72ab2d626654e37343dd51a7d05",
+          "bothPublicTreesPresentAndIdentical": true
+        }
+      ],
+      "activeRestorationRequired": false
+    },
+    {
+      "id": "cosmic-003",
+      "catalogue": "COSMIC 003",
+      "title": "You Make Me Feel So Good",
+      "existingPresentationImages": [
+        {
+          "src": "/reference/cosmic-003-flat-sleeve-v2.png",
+          "sha256": "039e2cffe3ed27ab3167b073c6300180d8c41937c12fd6218c5a8ed2b9e77253",
+          "bothPublicTreesPresentAndIdentical": true
+        }
+      ],
+      "activeRestorationRequired": false
+    },
+    {
+      "id": "cosmic-004",
+      "catalogue": "COSMIC 004",
+      "title": "Ah Yeah",
+      "existingPresentationImages": [
+        {
+          "src": "/reference/cosmic-004-flat-sleeve-v2.png",
+          "sha256": "3abeb1cf5e246228196c2942c46133da587d2c26ed5133b1e2a4d8b48c573830",
+          "bothPublicTreesPresentAndIdentical": true
+        }
+      ],
+      "activeRestorationRequired": false
+    },
+    {
+      "id": "cosmic-005",
+      "catalogue": "COSMIC 005",
+      "title": "Trixta / Friction",
+      "existingPresentationImages": [
+        {
+          "src": "/reference/cosmic-005-flat-sleeve-v2.png",
+          "sha256": "38484d3e08991c2d5df71c369624a141dda42ce90ecb9fbcc89872457c86cb23",
+          "bothPublicTreesPresentAndIdentical": true
+        }
+      ],
+      "activeRestorationRequired": false
+    },
+    {
+      "id": "cosmic-006",
+      "catalogue": "COSMIC 006",
+      "title": "Funkee Ass Breaks Vol. 1",
+      "existingPresentationImages": [
+        {
+          "src": "/reference/cosmic-006-approved.png",
+          "sha256": "0f68efce6f3fd62eb9f31560860c380a125c5fec7e646b9ea789657577badd12",
+          "bothPublicTreesPresentAndIdentical": true
+        }
+      ],
+      "activeRestorationRequired": false
+    },
+    {
+      "id": "cosmic-007",
+      "catalogue": "COSMIC 007",
+      "title": "The Beat / Relax \u2014 also includes Slider",
+      "existingPresentationImages": [
+        {
+          "src": "/reference/cosmic-007-flat-sleeve-v2.png",
+          "sha256": "ae6379390c1319e8cc4b398bac261e414561ab3e04483ff6507168174104f26a",
+          "bothPublicTreesPresentAndIdentical": true
+        }
+      ],
+      "activeRestorationRequired": false
+    },
+    {
+      "id": "cosmic-008",
+      "catalogue": "COSMIC 008",
+      "title": "The Rhythm",
+      "existingPresentationImages": [
+        {
+          "src": "/reference/cosmic-008-flat-sleeve-v2.png",
+          "sha256": "45078d41b454fad84a777534503a71ad1badabaf758dcb2fc15accdd852b38bc",
+          "bothPublicTreesPresentAndIdentical": true
+        }
+      ],
+      "activeRestorationRequired": false
+    },
+    {
+      "id": "cosmic-009",
+      "catalogue": "COSMIC 009",
+      "title": "Remix LP",
+      "existingPresentationImages": [
+        {
+          "src": "/reference/restored-artwork/cosmic-009-a-label-approved-v2.webp",
+          "sha256": "49a72d39529bf79bf9a313f9993bc4cd1869c7f683198fe16bf89bbf6fe6495a",
+          "bothPublicTreesPresentAndIdentical": true
+        },
+        {
+          "src": "/reference/restored-artwork/cosmic-009-b-label-approved-v2.webp",
+          "sha256": "d8c030206459c3387d8d6b6c0e398d37deb6c5450d2a30d0d38f5d572c79cd5f",
+          "bothPublicTreesPresentAndIdentical": true
+        }
+      ],
+      "activeRestorationRequired": false
+    },
+    {
+      "id": "cosmic-010",
+      "catalogue": "COSMIC 010",
+      "title": "Lost Worlds / Ultra Intense",
+      "existingPresentationImages": [
+        {
+          "src": "/reference/cosmic-010-flat-sleeve-v2.png",
+          "sha256": "2a1c081a0a3fea2cb2be05ca5c88de31af2c8bd65a32c58bfeb479385ba45c93",
+          "bothPublicTreesPresentAndIdentical": true
+        }
+      ],
+      "activeRestorationRequired": false
+    },
+    {
+      "id": "cosmic-011",
+      "catalogue": "COSMIC 011",
+      "title": "Rhythm Rockin\u2019 / Future Funk",
+      "existingPresentationImages": [
+        {
+          "src": "/reference/cosmic-011-continuous-grooves-v1.png",
+          "sha256": "9f3914d26577df25666d585e54f90ac0146cc06a5f245c2b25bcd983a09b163e",
+          "bothPublicTreesPresentAndIdentical": true
+        }
+      ],
+      "activeRestorationRequired": false
+    },
+    {
+      "id": "cosmic-012",
+      "catalogue": "COSMIC 012",
+      "title": "Acid Drop / Ah Yeah (RMX)",
+      "existingPresentationImages": [
+        {
+          "src": "/reference/cosmic-012-flat-sleeve-v2.png",
+          "sha256": "06e85e66c2d65605faeb91a32eb354b1ae6637b4fafdf95e8aa77a45b7c1b013",
+          "bothPublicTreesPresentAndIdentical": true
+        }
+      ],
+      "activeRestorationRequired": false
+    },
+    {
+      "id": "cosmic-013",
+      "catalogue": "COSMIC 013",
+      "title": "Work 4 Love",
+      "existingPresentationImages": [
+        {
+          "src": "/reference/cosmic-013-continuous-grooves-v3.png",
+          "sha256": "b92e094b81f60b0ac6bbbabc8fb07e112300068224a41c3d88e8c7ef6d950d2d",
+          "bothPublicTreesPresentAndIdentical": true
+        }
+      ],
+      "activeRestorationRequired": false
+    },
+    {
+      "id": "cosmic-014",
+      "catalogue": "COSMIC 014",
+      "title": "The E.P.",
+      "existingPresentationImages": [
+        {
+          "src": "/reference/cosmic-014-flat-sleeve-v2.png",
+          "sha256": "3e02d9a632a2c2bdbd81c29502f306745ce923bab2c702a9f82e371c61923af2",
+          "bothPublicTreesPresentAndIdentical": true
+        }
+      ],
+      "activeRestorationRequired": false
+    },
+    {
+      "id": "cosmic-015",
+      "catalogue": "COSMIC 015",
+      "title": "Pure",
+      "existingPresentationImages": [
+        {
+          "src": "/reference/cosmic-015-flat-sleeve-v2.png",
+          "sha256": "98eb5ffd1d6609abbc2c2c13c46ccf1088874a1c35af9802a101701c28413659",
+          "bothPublicTreesPresentAndIdentical": true
+        }
+      ],
+      "activeRestorationRequired": false
+    },
+    {
+      "id": "cosmic-016",
+      "catalogue": "COSMIC 016",
+      "title": "Get Jazzed Up",
+      "existingPresentationImages": [
+        {
+          "src": "/reference/cosmic-016-flat-sleeve-v2.png",
+          "sha256": "0573a4044d44a30a5821fcf9866c2e4e70c5a1b952918b44a1befd80398725dc",
+          "bothPublicTreesPresentAndIdentical": true
+        }
+      ],
+      "activeRestorationRequired": false
+    },
+    {
+      "id": "cosmic-017",
+      "catalogue": "COSMIC 017",
+      "title": "Time Travel E.P.",
+      "existingPresentationImages": [
+        {
+          "src": "/reference/cosmic-017-scale-v6.png",
+          "sha256": "081df8f03c835fddc41c06d49eb1ca380dc4f668ef4fca27ccfd829a15b2dbf0",
+          "bothPublicTreesPresentAndIdentical": true
+        }
+      ],
+      "activeRestorationRequired": false
+    }
+  ],
+  "historicalEvidence": {
+    "importLedger": "docs/research/2026-09-17-cosmic-artwork-import.json",
+    "summary": "16 original presentation imports plus retained006. Independent artwork_pipeline verification confirms all16historical hashes remain intact."
+  },
+  "retainedApprovedReplacement": "Cosmic009 Batch13 A/B labels; owner correction does not request rollback.",
+  "duplicateDisposition": {
+    "batch14": "withdrawn from active owner review; unused outputs retained, not imported",
+    "batch15": "source preparation stopped; retained as reference only"
+  },
+  "remainingPrimaryRestoration": {
+    "id": "d014",
+    "title": "Underground Beats \u2014 Series3Volume7",
+    "status": "existing single wording question pending"
+  },
+  "catalogueAndArtworkChanged": false,
+  "catalogueSha256": "6774d9aca85c83958f5324fd454950b104f6d6839baf08c3adef1007320c962c",
+  "publicationPerformed": false
+}

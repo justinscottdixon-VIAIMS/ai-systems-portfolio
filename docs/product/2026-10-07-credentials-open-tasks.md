@@ -1,6 +1,12 @@
 # Credentials completion workboard
 
-## Current artwork state — 12 October 2026
+## Current correction — 12 October 2026
+
+The owner confirmed that all 17 Cosmic releases were already completed. The earlier plan incorrectly treated historical fidelity-review flags as unfinished restorations. All 17 already have presentation artwork; there is no remaining Cosmic restoration batch. Batch 14 is withdrawn from active review as duplicate work, and Batch 15 preparation is stopped. Retain those outputs as unused alternates/evidence without importing or replacing any site artwork. Cosmic 009 retains its separately approved Batch 13 A/B replacement. D014 — Underground Beats, Series 3 Volume 7 — is the sole remaining primary release-restoration target; its existing wording question remains pending. Optional secondary views and general site/release gates are separate, not extra unfinished Cosmic releases.
+
+Source: owner correction in this chat; read-only asset verification and reconciliation are recorded in `docs/research/2026-10-12-cosmic-completion-reconciliation.json`. The earlier count of fifteen remaining entries, including fourteen Cosmic releases, is superseded.
+
+## Historical checkpoint before the owner correction
 
 The owner approved all seven Batch 13 releases and nine complete views, explicitly authorizing local import, commit and push. NC12 sleeve/label and NC01 sampler sticker are added; D003 reuses the existing approved Tranceport.3 asset for its newly approved CD placement; D092, D130 and D131 use their approved replacements; Cosmic 009 now shows the approved A/B labels. Superseded presentation files remain preserved as evidence. All non-gallery catalogue fields are unchanged.
 
