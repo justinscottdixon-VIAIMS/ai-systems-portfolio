@@ -2016,6 +2016,13 @@
               "alt": "Various artists — Sunshine State of Mind — full-album sleeve, photographed edition IMG_5179",
               "caption": "Sunshine State of Mind — full-album sleeve — archive photograph IMG_5179."
             }
+          ],
+          "publicSources": [
+            {
+              "label": "Displayed full-compilation CD reference",
+              "href": "https://www.discogs.com/release/100276",
+              "supports": "Printed CD catalogue 162 531 098-2 and track 5 Step Into My Dream; the owner’s physical sleeve edition remains unassigned."
+            }
           ]
         },
         {
@@ -2299,7 +2306,7 @@
           "id": "nc-14",
           "artist": "DJ’s Friction & Spice",
           "title": "Groove Me — Sueños edition",
-          "catalogNumber": "Exact reference pending",
+          "catalogNumber": "100%-005",
           "date": "Edition date under review",
           "format": "Sueños / 100% Professional branding · photographed edition",
           "roles": [
@@ -2324,6 +2331,13 @@
               "src": "/reference/singles-remixes/nc-14-img-5189.jpg",
               "alt": "DJ’s Friction & Spice — Groove Me — Sueños edition, photographed edition IMG_5189",
               "caption": "Groove Me — Sueños edition — archive photograph IMG_5189."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Printed 100% Professional edition label",
+              "href": "https://www.discogs.com/release/825160",
+              "supports": "Catalogue 100%-005 verified against the public record-label photograph. Deposit suffix 96 does not establish an exact release date; that date remains under review."
             }
           ]
         },
@@ -2375,13 +2389,13 @@
           "id": "nc-16",
           "artist": "Thomas P. Heckmann & Marc Romboy",
           "title": "Ultra Vixens — Undercurrent edition",
-          "catalogNumber": "Pending; UNC12003 is a public lead",
+          "catalogNumber": "UNC12003",
           "date": "Edition date under review",
-          "format": "Undercurrent · photographed edition",
+          "format": "Undercurrent Recordings · 12-inch vinyl",
           "roles": [
-            "Contribution documented by edition"
+            "Remix / additional production as Voyager"
           ],
-          "summary": "Remixing as Voyager on side B.",
+          "summary": "Voyager remix and additional production on the information-label side.",
           "gallery": [
             {
               "kind": "image",
@@ -2394,6 +2408,13 @@
               "src": "/reference/singles-remixes/nc-16-img-5192.jpg",
               "alt": "Thomas P. Heckmann & Marc Romboy — Ultra Vixens — Undercurrent edition, photographed edition IMG_5192",
               "caption": "Ultra Vixens — Undercurrent edition — archive photograph IMG_5192."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Printed Undercurrent information label",
+              "href": "https://www.discogs.com/release/178824",
+              "supports": "UNC12003 and remix / additional production by Voyager verified against the public label photograph; the physical edition date remains under review."
             }
           ]
         },
@@ -2575,22 +2596,22 @@
           "credits": [
             {
               "title": "Emotional Circumference",
-              "scope": "A",
+              "scope": "Emotional Circumference",
               "roles": [
                 "Co-writer",
                 "Co-producer",
                 "Engineer"
               ],
-              "evidence": "Database credit transcribed in the master; original packaging comparison pending.",
-              "collaborators": "DJ Dominick — shared writing, production and engineering; Sunny — vocals",
-              "note": "The Sleeper on side B is credited to DJ Tiny. Chris Hand also carries general writing, production and engineering credits in the edition listing."
+              "evidence": "Writing, production and engineering credits verified directly against the public KNIGHT-015 information-label photograph (Discogs release 155609).",
+              "collaborators": "DJ Dominick — co-writer and co-producer; Chris Hand — co-writer, co-producer and engineer; Sunny — vocals",
+              "note": "The printed label credits The Sleeper to DJ Tiny and Chris Hand for writing and production, and Chris Hand for engineering. It identifies the tracks as This (Here) Side and That (Over) Side; A/B letters are not printed."
             }
           ],
           "publicSources": [
             {
-              "label": "Discogs edition record",
+              "label": "Printed Knight Life information label",
               "href": "https://www.discogs.com/release/155609",
-              "supports": "Edition and credit transcription retained in the master; database evidence."
+              "supports": "Track-specific writing, production, engineering and Sunny’s vocal credits verified against the public label photograph; the date remains a database edition year."
             }
           ]
         },
@@ -3265,7 +3286,7 @@
               "roles": [
                 "Mastering engineer"
               ],
-              "evidence": "Database credit transcribed in the master; original packaging comparison pending.",
+              "evidence": "Mastering credit verified directly against the public IMP001 printed insert (Discogs release 15319731).",
               "collaborators": "Brian Van Dalen — recording artist",
               "note": "The edition lists Main on A and Icabods Dream on B; the release year remains unresolved."
             }
@@ -3724,8 +3745,8 @@
           "id": "d003",
           "title": "Tranceport.3 — mix album",
           "artist": "Sandra Collins",
-          "date": "2000 — compilation source report",
-          "catalogNumber": "Catalog number unresolved",
+          "date": "6 June 2000 — announced release date (CMJ)",
+          "catalogNumber": "54648-2",
           "format": "Kinetic · mixed CD",
           "roles": [
             "Recording artist: Voyager"
@@ -3814,7 +3835,7 @@
               ],
               "collaborators": "Sandra Collins — compilation / mix artist",
               "note": "Full mix-album appearance. The separately photographed vinyl sampler specifies Motion (Stereo Edit); that subtitle is not automatically assigned here.",
-              "evidence": "Compilation evidence retained in the master; edition and booklet details remain qualified where unresolved."
+              "evidence": "Track 9 and catalogue 54648-2 verified against the displayed US CD rear artwork (Discogs release 40908)."
             }
           ],
           "publicSources": [
@@ -3826,7 +3847,12 @@
             {
               "label": "Displayed artwork edition",
               "href": "https://www.discogs.com/release/40908",
-              "supports": "Artwork and packaging for the displayed edition; catalogue credits retain their existing qualifications."
+              "supports": "US CD rear artwork prints catalogue 54648-2 and track 9 Motion by Voyager; this is distinct from the vinyl sampler."
+            },
+            {
+              "label": "Contemporary CMJ release notice — 5 June 2000, page 27",
+              "href": "https://www.worldradiohistory.com/Archive-All-Music/CMJ/2000/CMJ-2000-06-05.pdf",
+              "supports": "Sandra Collins Tranceport 3 review announces a June 6 release date; this is a contemporary announcement, not proof of the first retail sale."
             }
           ],
           "relatedRecordIds": [
