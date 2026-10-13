@@ -1,0 +1,126 @@
+---
+import { archiveHref as canonicalArchiveHref } from '../lib/archive-index.mjs';
+
+interface DossierRecord {
+	title: string;
+	slug: string;
+	summary: string;
+	dateDisplay: string;
+	format: string;
+	roles: string[];
+	evidenceLevel: string;
+	status: string;
+	catalog?: Record<string, string>;
+	sections: {
+		title: string;
+		intro?: string;
+		items: { title: string; date?: string; detail: string }[];
+	}[];
+	publicSources: { label: string; href: string; supports: string }[];
+}
+
+interface Props {
+	record: DossierRecord;
+	showSummary?: boolean;
+}
+
+const { record, showSummary = true } = Astro.props;
+const evidenceLabels: Record<string, string> = {
+	'primary-public': 'Primary public source',
+	'corroborated-public': 'Corroborated public record',
+	'attributed-public': 'Attributed public record',
+	'owner-approved-archive': 'Artist-approved archive',
+};
+const catalogEntries = Object.entries(record.catalog ?? {});
+---
+
+<div class="dossier-context" data-dossier-context>
+	{showSummary && <p class="dossier-context__summary">{record.summary}</p>}
+	<dl class="dossier-context__facts">
+		<div><dt>Date</dt><dd>{record.dateDisplay}</dd></div>
+		<div><dt>Format</dt><dd>{record.format}</dd></div>
+		<div><dt>Contribution</dt><dd>{record.roles.join(' · ')}</dd></div>
+		<div><dt>Source status</dt><dd>{evidenceLabels[record.evidenceLevel] ?? record.evidenceLevel}</dd></div>
+		<div><dt>Record status</dt><dd>{record.status.replaceAll('-', ' ')}</dd></div>
+	</dl>
+	{catalogEntries.length > 0 && (
+		<section class="dossier-context__section">
+			<h4>Catalog</h4>
+			<dl class="dossier-context__catalog">
+				{catalogEntries.map(([label, value]) => <div><dt>{label.replaceAll(/([A-Z])/g, ' $1')}</dt><dd>{value}</dd></div>)}
+			</dl>
+		</section>
+	)}
+	{record.sections.map((section) => (
+		<section class="dossier-context__section">
+			<h4>{section.title}</h4>
+			{section.intro && <p>{section.intro}</p>}
+			<ol class="dossier-context__items">
+				{section.items.map((item) => (
+					<li>
+						<h5>{item.title}</h5>
+						{item.date && <p class="dossier-context__date">{item.date}</p>}
+						<p>{item.detail}</p>
+					</li>
+				))}
+			</ol>
+		</section>
+	))}
+	{record.publicSources.length > 0 && (
+		<section class="dossier-context__section">
+			<h4>Sources &amp; attribution</h4>
+			<ul class="dossier-context__sources">
+				{record.publicSources.map((source) => (
+					<li>
+						<a href={source.href} target="_blank" rel="noopener noreferrer">{source.label} <span aria-hidden="true">↗</span><span class="dossier-context__sr-only"> (opens in a new tab)</span></a>
+						<p>{source.supports}</p>
+					</li>
+				))}
+			</ul>
+		</section>
+	)}
+	<p class="dossier-context__archive"><a href={canonicalArchiveHref(record)} target="_blank" rel="noopener noreferrer">Full archive record <span aria-hidden="true">↗</span><span class="dossier-context__sr-only"> for {record.title} (opens in a new tab)</span></a></p>
+</div>
+
+<style>
+	.dossier-context {
+		display: grid;
+		gap: 1rem;
+		min-width: 0;
+		max-width: 100%;
+		margin-block: .8rem;
+		color: var(--dossier-muted, #c8bda9);
+		font-size: .9rem;
+		line-height: 1.5;
+		letter-spacing: normal;
+		text-transform: none;
+		overflow-wrap: anywhere;
+	}
+	.dossier-context p { margin: 0; font-size: inherit; line-height: 1.5; }
+	.dossier-context dl {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr);
+		gap: .7rem;
+		margin: 0;
+		padding: 0;
+		background: transparent;
+	}
+	.dossier-context dl > div { display: block; min-width: 0; margin: 0; padding: 0; background: transparent; }
+	.dossier-context dt { margin: 0 0 .15rem; color: var(--dossier-brass, #dfbb82); font-size: .75rem; line-height: 1.5; }
+	.dossier-context dd { margin: 0; font-size: inherit; line-height: 1.5; }
+	.dossier-context__section { display: grid; gap: .65rem; min-width: 0; border-top: 1px solid var(--dossier-rule, #80623c55); padding-top: .9rem; }
+	.dossier-context h4,
+	.dossier-context h5 { margin: 0; color: var(--dossier-ivory, #eee0c5); font-family: inherit; font-weight: 600; line-height: 1.5; letter-spacing: normal; text-transform: none; }
+	.dossier-context h4 { font-size: 1rem; }
+	.dossier-context h5 { font-size: .9rem; }
+	.dossier-context__items,
+	.dossier-context__sources { display: grid; gap: .9rem; margin: 0; padding: 0; list-style: none; }
+	.dossier-context__items > li,
+	.dossier-context__sources > li { display: grid; gap: .25rem; min-width: 0; }
+	.dossier-context .dossier-context__date { color: var(--dossier-brass, #dfbb82); font-size: .78rem; }
+	.dossier-context a { color: var(--dossier-ivory, #eee0c5); line-height: 1.5; text-decoration: underline; text-underline-offset: .2em; overflow-wrap: anywhere; }
+	.dossier-context a:hover { color: var(--dossier-brass, #dfbb82); }
+	.dossier-context a:focus-visible { outline: 2px solid var(--dossier-brass, #dfbb82); outline-offset: 3px; border-radius: 2px; }
+	.dossier-context__archive { padding-top: .25rem; }
+	.dossier-context__sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+</style>

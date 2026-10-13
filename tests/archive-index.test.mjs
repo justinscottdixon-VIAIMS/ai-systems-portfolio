@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { toPortfolioRecords } from '../src/lib/portfolio-records.mjs';
 import { archiveEntries, matchesArchiveQuery, archiveHref } from '../src/lib/archive-index.mjs';
+import { toCredentialCollections } from '../src/lib/credential-collections.mjs';
 const records = toPortfolioRecords(JSON.parse(await readFile(new URL('../src/data/portfolio-records.json', import.meta.url))));
 
 test('archive gives each child a stable URL within its dossier', () => {
@@ -29,4 +30,19 @@ test('search reaches nested releases, titles, artists and roles while preserving
 test('career search includes attributed history inside a dossier', () => {
   const entries = archiveEntries(records);
   assert.equal(entries.some(e => e.title === 'Studio evolution' && matchesArchiveQuery(e, 'AK1200 recording')), true);
+});
+
+test('grouped music archive keeps album tracks and press context searchable at collection anchors', () => {
+  const grouped = toCredentialCollections(records);
+  assert.equal(grouped.length, 9);
+  const entries = archiveEntries(grouped);
+  assert.equal(new Set(entries.map(entry => entry.href)).size, entries.length);
+  const navigator = entries.find(entry => entry.title === 'Navigator');
+  assert.equal(navigator.href, '/archive/singles-remixes/#navigator');
+  assert.equal(matchesArchiveQuery(navigator, 'close ghost'), true);
+  assert.equal(matchesArchiveQuery(navigator, 'continuous mix'), true);
+  const charts = entries.find(entry => entry.title === 'Charts & reception');
+  assert.equal(charts.href, '/archive/singles-remixes/#context-chart-history');
+  assert.equal(matchesArchiveQuery(charts, 'pure allmusic'), true);
+  assert.equal(charts.category, 'career');
 });

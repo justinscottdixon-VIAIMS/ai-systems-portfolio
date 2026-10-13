@@ -3,10 +3,13 @@ import { toMediaLibrary } from '../lib/media-library.mjs';
 import curatedMedia from '../data/curated-media.json';
 import portfolioRecordsSource from '../data/portfolio-records.json';
 import { toPortfolioRecords } from '../lib/portfolio-records.mjs';
+import { toCredentialCollections } from '../lib/credential-collections.mjs';
 import { selectReleaseRecords } from '../lib/release-scope.mjs';
 import CredentialsPlaylist from './CredentialsPlaylist.astro';
 import TrackCredits from './TrackCredits.astro';
 import CosmicLabelFlip from './CosmicLabelFlip.astro';
+import ReleaseArtworkGallery from './ReleaseArtworkGallery.astro';
+import DossierContext from './DossierContext.astro';
 import { archiveHref } from '../lib/archive-index.mjs';
 import '../styles/hybrid-media-engine.css';
 
@@ -14,8 +17,10 @@ const { manifest } = Astro.props;
 const library = toMediaLibrary(manifest, curatedMedia);
 const [firstCinema] = library.cinema;
 const [firstMusic] = library.music;
-const portfolioRecords = selectReleaseRecords(toPortfolioRecords(portfolioRecordsSource), process.env.VIAIMS_RELEASE_SCOPE);
+const selectedRecords = selectReleaseRecords(toPortfolioRecords(portfolioRecordsSource), process.env.VIAIMS_RELEASE_SCOPE);
+const portfolioRecords = !process.env.VIAIMS_RELEASE_SCOPE || process.env.VIAIMS_RELEASE_SCOPE === 'full' ? toCredentialCollections(selectedRecords) : selectedRecords;
 const credentialsEnabled = portfolioRecords.length > 0;
+const hasStandaloneReleaseGallery = (record) => record.category === 'music' && record.children.length === 0 && record.gallery.filter(item => item.kind === 'image').length > 1;
 const evidenceLabels = {
 	'primary-public': 'PRIMARY SOURCE',
 	'corroborated-public': 'CORROBORATED PUBLIC RECORD',
@@ -68,46 +73,50 @@ const evidenceLabels = {
 							<section class="reference-stage__slide reference-stage__slide--cover" data-reference-slide data-slide-label="Title">
 								<div class="reference-stage__sequence"><span>DOSSIER {String(index + 1).padStart(2, '0')} / {String(portfolioRecords.length).padStart(2, '0')}</span><span>{record.category.toUpperCase()}</span></div>
 								<div class="reference-stage__cover-grid">
-									<div class="reference-stage__identity"><p>{record.era}</p><h2>{record.title}</h2><strong>{record.displayArtistOrClient}</strong></div>
+									<div class="reference-stage__identity"><p>{record.era}</p><h2>{record.title}</h2><strong>{record.displayArtistOrClient}</strong>{record.id === 'singles-remixes' && <button type="button" data-reference-jump={`${record.id}-overview`}>BROWSE RELEASES &amp; CREDITS ↗</button>}</div>
 									<div class="reference-stage__gallery" aria-label={`${record.title} image gallery`}>
 										{record.gallery.slice(0, 1).map((item, imageIndex) => (
 											<figure class:list={['reference-stage__image', { 'reference-stage__image--pending': item.kind === 'pending' }]}>
-												{item.kind === 'image' ? <img src={item.src} alt={item.alt} loading="lazy" decoding="async" /> : <div role="img" aria-label={item.alt}><span>IMAGE {String(imageIndex + 1).padStart(2, '0')}</span><strong>ARTWORK PENDING</strong></div>}
-												<figcaption>{item.caption}</figcaption>
+												{item.kind === 'image' ? hasStandaloneReleaseGallery(record) ? <ReleaseArtworkGallery images={record.gallery.filter(image => image.kind === 'image')} title={record.title} /> : <img src={item.src} alt={item.alt} loading="lazy" decoding="async" /> : <div role="img" aria-label={item.alt}><span>IMAGE {String(imageIndex + 1).padStart(2, '0')}</span><strong>ARTWORK PENDING</strong></div>}
+												{!hasStandaloneReleaseGallery(record) && <figcaption>{item.caption}</figcaption>}
 											</figure>
 										))}
 									</div>
 								</div>
 							</section>
-							<section class="reference-stage__slide reference-stage__slide--overview" data-reference-slide data-slide-label="Overview" hidden>
+							<section class="reference-stage__slide reference-stage__slide--overview" data-reference-slide data-slide-label="Overview" id={`${record.id}-overview`} hidden>
 								<div class="reference-stage__sequence"><span>OVERVIEW</span><span>{record.status.replaceAll('-', ' ').toUpperCase()}</span></div>
 								<h2>{record.title}</h2>
 								<div class="reference-stage__facts"><div><span>DATE</span><strong>{record.dateDisplay}</strong></div><div><span>FORMAT</span><strong>{record.format}</strong></div><div><span>ROLE</span><strong>{record.roles.join(' · ')}</strong></div><div><span>EVIDENCE</span><strong>{evidenceLabels[record.evidenceLevel]}</strong></div></div>
 								<p class="reference-stage__summary">{record.summary}</p>
 								<a href={archiveHref(record)} target="_blank" rel="noopener noreferrer">READ FULL RECORD ↗</a>
 								{Object.keys(record.catalog ?? {}).length > 0 && <div class="reference-stage__catalog">{Object.entries(record.catalog).map(([label, value]) => <span><b>{label.replaceAll(/([A-Z])/g, ' $1')}</b>{value}</span>)}</div>}
+									{record.id === 'singles-remixes' && <nav class="reference-stage__collection-index" aria-label="Browse music releases and context"><h3>Browse this collection</h3>{record.children.map(child => <button type="button" data-reference-jump={`${record.id}-${child.id}`}>{child.title}</button>)}{(record.contextRecords ?? []).map(context => <button type="button" data-reference-jump={`${record.id}-context-${context.id}`}>{context.title}</button>)}</nav>}
 							</section>
-							{record.gallery.slice(1).map((item, imageIndex) => item.kind === 'image' && <section class="reference-stage__slide reference-stage__artwork-page" data-reference-slide data-slide-label={`${record.title} — artwork ${imageIndex + 2}`} hidden>
+							{record.gallery.slice(hasStandaloneReleaseGallery(record) ? record.gallery.length : 1).map((item, imageIndex) => item.kind === 'image' && <section class="reference-stage__slide reference-stage__artwork-page" data-reference-slide data-slide-label={`${record.title} — artwork ${imageIndex + 2}`} hidden>
 								<header class="reference-stage__sequence"><span>{record.title}</span><span>ARTWORK {imageIndex + 2} / {record.gallery.length}</span></header>
 								<figure><img src={item.src} alt={item.alt} loading="lazy" decoding="async" /><figcaption>{item.caption}</figcaption></figure>
 							</section>)}
 							{record.children.map((child, childIndex) => {
-                                const canFlipLabel = record.id === 'cosmic-records-history' && child.gallery.length >= 2 && child.gallery.slice(0, 2).every(item => item.kind === 'image' && item.src.includes('-circle-'));
+                                const artworkImages = child.gallery.filter(item => item.kind === 'image');
+                                const canFlipLabel = record.id === 'cosmic-records-history' && artworkImages.length === 2 && artworkImages.every(item => item.src.includes('-circle-'));
                                 return (<Fragment>
-								<article class="reference-stage__slide reference-stage__child-page" data-reference-slide data-slide-label={child.title} id={`${record.id}-${child.id}`} hidden>
-									<div class="reference-stage__child-art">{canFlipLabel ? <CosmicLabelFlip front={child.gallery[0]} back={child.gallery[1]} title={child.title} /> : child.gallery[0].kind === 'image' ? <img src={child.gallery[0].src} alt={child.gallery[0].alt} loading="lazy" decoding="async" /> : <div role="img" aria-label={child.gallery[0].alt}>ARTWORK PENDING</div>}</div>
-									<div class="reference-stage__child-copy"><span>RELEASE {String(childIndex + 1).padStart(2, '0')} / {String(record.children.length).padStart(2, '0')}</span><h3>{child.title}</h3><strong>{child.artist}</strong><dl><div><dt>CATALOG</dt><dd>{child.catalogNumber}</dd></div><div><dt>DATE</dt><dd>{child.date}</dd></div><div><dt>FORMAT</dt><dd>{child.format}</dd></div></dl><p>{child.summary}</p><small>{child.roles.join(' · ')}</small><p><a href={archiveHref(record, child)} target="_blank" rel="noopener noreferrer">FULL RELEASE RECORD ↗</a></p></div>
-                                </article>
-                                {child.gallery.slice(canFlipLabel ? 2 : 1).map((item, imageIndex) => item.kind === 'image' && <section class="reference-stage__slide reference-stage__artwork-page" data-reference-slide data-slide-label={`${child.title} — photo ${imageIndex + (canFlipLabel ? 3 : 2)}`} hidden>
-                                  <header class="reference-stage__sequence"><span>{child.title}</span><span>PHOTO {imageIndex + (canFlipLabel ? 3 : 2)} / {child.gallery.length}</span></header>
-                                  <figure><img src={item.src} alt={item.alt} loading="lazy" decoding="async" /><figcaption>{item.caption}</figcaption></figure>
-                                </section>)}
-                                {child.credits.map(credit => <section class="reference-stage__slide reference-stage__dossier-page" data-reference-slide data-slide-label={`${child.title} — ${credit.title} credits`} hidden>
-                                  <header><span>{child.catalogNumber} / CREDIT DETAIL</span><h3>{child.title}</h3></header>
-                                  <TrackCredits credits={[credit]} />
-                                  <a href={archiveHref(record, child)} target="_blank" rel="noopener noreferrer">FULL RELEASE & SOURCES ↗</a>
-                                </section>)}
+                                  <article class="reference-stage__slide reference-stage__child-page" data-reference-slide data-slide-label={child.title} id={`${record.id}-${child.id}`} hidden>
+                                    <div class="reference-stage__child-art">{canFlipLabel ? <CosmicLabelFlip front={artworkImages[0]} back={artworkImages[1]} title={child.title} /> : artworkImages.length > 1 ? <ReleaseArtworkGallery images={artworkImages} title={child.title} /> : child.gallery[0].kind === 'image' ? <img src={child.gallery[0].src} alt={child.gallery[0].alt} loading="lazy" decoding="async" /> : <div role="img" aria-label={child.gallery[0].alt}>ARTWORK PENDING</div>}</div>
+                                    <div class="reference-stage__child-copy">
+                                      <span>RELEASE {String(childIndex + 1).padStart(2, '0')} / {String(record.children.length).padStart(2, '0')}</span><h3>{child.title}</h3><strong>{child.artist}</strong>
+                                      <dl><div><dt>CATALOG</dt><dd>{child.catalogNumber}</dd></div><div><dt>DATE</dt><dd>{child.date}</dd></div><div><dt>FORMAT</dt><dd>{child.format}</dd></div></dl>
+                                      <p>{child.summary}</p><small>{child.roles.join(' · ')}</small>
+                                      {child.credits.length > 0 && <details class="reference-stage__release-credits" data-release-credits><summary>Credits &amp; contribution</summary><TrackCredits credits={child.credits} /></details>}
+                                      {(child.contextRecords ?? []).length > 0 && <details class="reference-stage__release-credits" data-release-history><summary>Release history &amp; sources</summary>{child.contextRecords.map(context => <DossierContext record={context} />)}</details>}
+                                      <p><a href={child.sourceArchiveHref ?? archiveHref(record, child)} target="_blank" rel="noopener noreferrer">FULL RELEASE RECORD ↗</a></p>
+                                    </div>
+                                  </article>
                               </Fragment>);})}
+                            {(record.contextRecords ?? []).map(context => <article class="reference-stage__slide reference-stage__child-page" data-reference-slide data-slide-label={context.title} id={`${record.id}-context-${context.id}`} hidden>
+                              <div class="reference-stage__child-art">{context.gallery.filter(item => item.kind === 'image').length > 1 ? <ReleaseArtworkGallery images={context.gallery.filter(item => item.kind === 'image')} title={context.title} /> : context.gallery[0]?.kind === 'image' ? <img src={context.gallery[0].src} alt={context.gallery[0].alt} loading="lazy" decoding="async" /> : <div role="img" aria-label={context.gallery[0]?.alt ?? context.title}>ARTWORK PENDING</div>}</div>
+                              <div class="reference-stage__child-copy"><span>COLLECTION CONTEXT</span><h3>{context.title}</h3><strong>{context.displayArtistOrClient}</strong><DossierContext record={context} /></div>
+                            </article>)}
                             {record.sections.map((section, sectionIndex) => (
 								<section class="reference-stage__slide reference-stage__dossier-page" data-reference-slide data-slide-label={section.title} data-content-density={section.items.length <= 3 && JSON.stringify(section).length < 1800 ? "light" : "regular"} hidden>
 									<header><span>SECTION {String(sectionIndex + 1).padStart(2, '0')}</span><h3>{section.title}</h3></header>{section.intro && <p>{section.intro}</p>}<ol>{section.items.map((item) => <li><time>{item.date}</time><div><strong>{item.title}</strong><p>{item.detail}</p></div></li>)}</ol>
@@ -126,8 +135,8 @@ const evidenceLabels = {
 					<span id="reference-status" aria-live="polite">ARCHIVE READY</span>
 				</div>
 				<div class="reference-stage__navigation-actions">
-					<button id="previous-reference" type="button" aria-label="Previous slide">← PREVIOUS SLIDE</button>
 					<button id="close-reference" type="button">BACK TO CREDENTIALS</button>
+					<button id="previous-reference" type="button" aria-label="Previous slide">← PREVIOUS SLIDE</button>
 					<button id="next-reference" type="button" aria-label="Next slide">NEXT SLIDE →</button>
 				</div>
 				<div class="reference-stage__transport-slot" data-reference-transport-slot></div>
@@ -560,6 +569,7 @@ const evidenceLabels = {
 		for (const [slideIndex, slide] of slides.entries()) slide.hidden = slideIndex !== referenceSlideIndex;
 		const activeSlide = slides[referenceSlideIndex];
 		activeSlide.querySelector('[data-cosmic-label-flip]')?.dispatchEvent(new Event('cosmic-label-reset'));
+		activeSlide.querySelector('[data-release-artwork]')?.dispatchEvent(new Event('release-artwork-reset'));
 		fadeTheaterView(activeSlide);
 		referenceStatus.textContent = `${String(referenceSlideIndex + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')} · ${activeSlide.dataset.slideLabel}`;
 		previousReferenceButton.disabled = referenceSlideIndex === 0;
@@ -2089,11 +2099,16 @@ const evidenceLabels = {
 	});
 	previousReferenceButton?.addEventListener('click', () => showReferenceSlide(referenceSlideIndex - 1));
 	nextReferenceButton?.addEventListener('click', () => showReferenceSlide(referenceSlideIndex + 1));
+	for (const button of root.querySelectorAll<HTMLButtonElement>('[data-reference-jump]')) button.addEventListener('click', () => {
+		const slides = [...referencePanels[referenceIndex]?.querySelectorAll<HTMLElement>('[data-reference-slide]') ?? []];
+		const target = slides.findIndex(slide => slide.id === button.dataset.referenceJump);
+		if (target >= 0) showReferenceSlide(target);
+	});
 	document.addEventListener('keydown', (event) => {
 		if (event.code === 'Space' || event.key === ' ') {
 			const target = event.target;
 			if (event.defaultPrevented || event.repeat || event.isComposing || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
-			if (target instanceof Element && (target.closest('input, textarea, select, button, a, [role="button"], [role="slider"], [role="scrollbar"], [role="tab"], [role="textbox"]') || target.isContentEditable)) return;
+			if (target instanceof Element && (target.closest('input, textarea, select, button, a, summary, [role="button"], [role="slider"], [role="scrollbar"], [role="tab"], [role="textbox"]') || target.isContentEditable)) return;
 			if (entryControlsLocked || !activeTransportPolicy(transportPlayback()).playPause) return;
 			event.preventDefault();
 			requestPlayPause();

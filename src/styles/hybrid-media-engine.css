@@ -738,7 +738,7 @@
 }
 
 .reference-stage__child-copy > span,
-.reference-stage__child-copy dt,
+.reference-stage__child-copy > dl dt,
 .reference-stage__child-copy small {
   color: rgb(161 161 170);
   font-size: 0.5625rem;
@@ -756,20 +756,20 @@
   font-size: 0.6875rem;
 }
 
-.reference-stage__child-copy dl {
+.reference-stage__child-copy > dl {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1px;
   background: rgb(63 63 70);
 }
 
-.reference-stage__child-copy dl div {
+.reference-stage__child-copy > dl > div {
   padding: 0.45rem;
   background: rgb(9 9 11);
 }
 
-.reference-stage__child-copy dd,
-.reference-stage__child-copy p {
+.reference-stage__child-copy > dl dd,
+.reference-stage__child-copy > p {
   color: rgb(212 212 216);
   font-size: 0.625rem;
   line-height: 1.45;
@@ -2660,4 +2660,42 @@
 .reference-stage [data-reference-panel="cosmic-records-history"] img[src*="-circle-"] {
   border-radius: 0;
   background: transparent;
+}
+
+/* Release artwork and credit detail stay inside their release card. */
+.reference-stage__child-art {
+  align-self: start;
+  height: clamp(18rem, 40vh, 32rem);
+  min-height: 0;
+}
+.reference-stage__release-credits { border-top: 1px solid #80623c55; }
+.reference-stage__release-credits > summary {
+  cursor: pointer;
+  padding: .65rem 0;
+  color: var(--dossier-ivory, #e9e4d8);
+  font-size: .75rem;
+  line-height: 1.5;
+  min-height: 44px;
+}
+.reference-stage__release-credits > summary:focus-visible { outline: 2px solid #dfbb82; outline-offset: 2px; }
+.reference-stage__release-credits .track-credits { margin: .2rem 0 .75rem; gap: .85rem; }
+.reference-stage__release-credits .track-credit { padding-top: .6rem; }
+.reference-stage__release-credits .track-credit h3 { font-size: .9rem; line-height: 1.4; }
+.reference-stage__release-credits .track-credit dl { grid-template-columns: 1fr; background: transparent; }
+.reference-stage__release-credits .track-credit dl > div { padding: 0; background: transparent; }
+.reference-stage__collection-index {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .5rem;
+  margin-top: 1rem;
+}
+.reference-stage__collection-index h3 { grid-column: 1 / -1; }
+.reference-stage__collection-index button {
+  min-height: 44px;
+  text-align: left;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+@media (max-width: 580px) {
+  .reference-stage__collection-index { grid-template-columns: 1fr; }
 }

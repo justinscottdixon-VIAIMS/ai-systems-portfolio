@@ -687,7 +687,11 @@
           "alt": "Time Travel E.P. Cosmic 017 vinyl label, side B",
           "caption": "Time Travel E.P. — original Cosmic 017 label photograph, side B."
         }
-      ]
+      ],
+      "credentialsCollection": {
+        "id": "singles-remixes",
+        "kind": "release"
+      }
     },
     {
       "id": "one-voyager-remix",
@@ -755,7 +759,12 @@
       "relatedRecordIds": [
         "singles-remixes",
         "compilation-appearances"
-      ]
+      ],
+      "credentialsCollection": {
+        "id": "singles-remixes",
+        "kind": "release",
+        "childId": "nc-13"
+      }
     },
     {
       "id": "two-worlds",
@@ -825,7 +834,11 @@
             }
           ]
         }
-      ]
+      ],
+      "credentialsCollection": {
+        "id": "singles-remixes",
+        "kind": "release"
+      }
     },
     {
       "id": "someone-else-bloom",
@@ -886,7 +899,11 @@
       ],
       "relatedRecordIds": [
         "compilation-appearances"
-      ]
+      ],
+      "credentialsCollection": {
+        "id": "singles-remixes",
+        "kind": "release"
+      }
     },
     {
       "id": "audio-shock",
@@ -1213,7 +1230,11 @@
           "href": "https://www.orlandoweekly.com/music/review-northern-exposure-3-expeditions-2314359/",
           "supports": "Critical contemporary review"
         }
-      ]
+      ],
+      "credentialsCollection": {
+        "id": "singles-remixes",
+        "kind": "context"
+      }
     },
     {
       "id": "studio-evolution",
@@ -1689,17 +1710,17 @@
     {
       "id": "singles-remixes",
       "slug": "singles-remixes",
-      "title": "Singles, remixes & photographed editions",
+      "title": "Music releases & credits",
       "displayArtistOrClient": "Justin Scott Dixon / Voyager",
       "category": "career",
-      "format": "Archive dossier",
+      "format": "Music release archive",
       "dateDisplay": "Artist retrospective",
       "sortDate": "1997-01-01",
-      "era": "BEYOND COSMIC",
+      "era": "RECORDED WORKS",
       "roles": [
         "Artist"
       ],
-      "summary": "Beyond Cosmic: singles, remixes and compilation samplers. Eighteen photographed edition groups, each tied to its own sleeve, version and credits.",
+      "summary": "Singles, remixes, albums, production and engineering credits, compilation appearances, and contemporary release context. Each edition retains its own artwork, versions and documented contribution.",
       "status": "archived",
       "evidenceLevel": "owner-approved-archive",
       "public": true,
@@ -1708,6 +1729,12 @@
         "kind": "none"
       },
       "gallery": [
+        {
+          "kind": "image",
+          "src": "/reference/restored-artwork/nc-01-sunshine-sampler-sticker-approved-v2.webp",
+          "alt": "Restored blue Sunshine State of Mind four-track sampler sticker, with verified artist list, FFRR emblem and warning.",
+          "caption": "Collection lead: Sunshine State of Mind — four-track sampler — restored FFRR sticker."
+        },
         {
           "kind": "image",
           "src": "/reference/singles-remixes/nc-01-img-5161.jpg",
@@ -3259,7 +3286,11 @@
           "supports": "Discovery index only. Each release below has its own edition source and scope qualification."
         }
       ],
-      "public": true
+      "public": true,
+      "credentialsCollection": {
+        "id": "singles-remixes",
+        "kind": "collection"
+      }
     },
     {
       "id": "navigator",
@@ -3383,7 +3414,11 @@
       "relatedRecordIds": [
         "studio-evolution"
       ],
-      "public": true
+      "public": true,
+      "credentialsCollection": {
+        "id": "singles-remixes",
+        "kind": "release"
+      }
     },
     {
       "id": "groove-me-anniversary",
@@ -3482,7 +3517,11 @@
       "relatedRecordIds": [
         "cosmic-records-history"
       ],
-      "public": true
+      "public": true,
+      "credentialsCollection": {
+        "id": "singles-remixes",
+        "kind": "release"
+      }
     },
     {
       "id": "compilation-appearances",
@@ -4888,7 +4927,11 @@
         "someone-else-bloom",
         "one-voyager-remix"
       ],
-      "public": true
+      "public": true,
+      "credentialsCollection": {
+        "id": "singles-remixes",
+        "kind": "collection"
+      }
     }
   ]
 }

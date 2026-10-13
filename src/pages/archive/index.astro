@@ -2,9 +2,11 @@
 import ArchiveLayout from '../../layouts/ArchiveLayout.astro';
 import source from '../../data/portfolio-records.json';
 import { toPortfolioRecords } from '../../lib/portfolio-records.mjs';
+import { toCredentialCollections } from '../../lib/credential-collections.mjs';
 import { selectReleaseRecords } from '../../lib/release-scope.mjs';
 import { archiveEntries } from '../../lib/archive-index.mjs';
-const records = selectReleaseRecords(toPortfolioRecords(source), process.env.VIAIMS_RELEASE_SCOPE);
+const selectedRecords = selectReleaseRecords(toPortfolioRecords(source), process.env.VIAIMS_RELEASE_SCOPE);
+const records = !process.env.VIAIMS_RELEASE_SCOPE || process.env.VIAIMS_RELEASE_SCOPE === 'full' ? toCredentialCollections(selectedRecords) : selectedRecords;
 const entries = archiveEntries(records);
 const selectedRelease = process.env.VIAIMS_RELEASE_SCOPE === 'selected';
 const categories = [...new Set(entries.map(entry => entry.category))].sort();

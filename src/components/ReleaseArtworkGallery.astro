@@ -1,0 +1,368 @@
+---
+interface ArtworkImage {
+	src: string;
+	alt: string;
+	caption?: string;
+}
+
+interface Props {
+	images: ArtworkImage[];
+	title: string;
+	/** Optional source-specific names; otherwise every image is simply a numbered view. */
+	labels?: string[];
+}
+
+const { images, title, labels = [] } = Astro.props;
+const views = images.map((image, index) => ({ ...image, label: labels[index] || `View ${index + 1}` }));
+const first = views[0];
+---
+
+{first && (
+	<release-artwork-gallery
+		class="release-artwork-gallery"
+		data-release-artwork
+		data-title={title}
+		data-views={JSON.stringify(views)}
+		data-face="front"
+	>
+		<button class="release-artwork-gallery__art" type="button" data-artwork-turn disabled aria-label={`${title}: ${first.alt}`}>
+			<span class="release-artwork-gallery__viewport">
+				<span class="release-artwork-gallery__rotor" data-artwork-rotor>
+					<img class="release-artwork-gallery__face release-artwork-gallery__face--front" data-artwork-front src={first.src} alt={first.alt} aria-hidden="false" loading="lazy" decoding="async" draggable="false" />
+					<img class="release-artwork-gallery__face release-artwork-gallery__face--back" data-artwork-back alt="" aria-hidden="true" decoding="async" draggable="false" />
+				</span>
+			</span>
+			<span class="release-artwork-gallery__hint" aria-hidden="true" data-artwork-hint>{first.label}</span>
+		</button>
+		<div class="release-artwork-gallery__controls" data-artwork-controls hidden>
+			{views.length > 2 && <button class="release-artwork-gallery__step" type="button" data-artwork-previous aria-label={`Previous artwork for ${title}`}>Previous</button>}
+			<span class="release-artwork-gallery__counter" data-artwork-counter>View 1 of {views.length}</span>
+			{views.length > 2 && <button class="release-artwork-gallery__step" type="button" data-artwork-next aria-label={`Next artwork for ${title}`}>Next</button>}
+		</div>
+		{views.length > 2 && (
+			<nav class="release-artwork-gallery__views" data-artwork-selectors hidden aria-label={`Choose an artwork view for ${title}`}>
+				{views.map((view, index) => <button class="release-artwork-gallery__choice" type="button" data-artwork-index={index} aria-label={`Show ${view.label}: ${view.alt}`} aria-pressed={index === 0 ? 'true' : 'false'} title={view.caption || view.label}>{index + 1}</button>)}
+			</nav>
+		)}
+		<p class="release-artwork-gallery__caption" data-artwork-caption hidden={!first.caption}>{first.caption}</p>
+		<p class="release-artwork-gallery__status" data-artwork-status role="status" aria-live="polite" aria-atomic="true">View 1 of {views.length}: {first.alt}</p>
+		<p class="release-artwork-gallery__error" data-artwork-error hidden></p>
+		<details class="release-artwork-gallery__fallback" data-artwork-fallback open>
+			<summary>Open artwork images</summary>
+			<ul>
+				{views.map((view) => <li><a href={view.src}>{view.label}: {view.caption || view.alt}</a></li>)}
+			</ul>
+		</details>
+	</release-artwork-gallery>
+)}
+
+<script>
+	type ArtworkView = { src: string; alt: string; caption?: string; label: string };
+
+	class ReleaseArtworkGallery extends HTMLElement {
+		private initialized = false;
+		private views: ArtworkView[] = [];
+		private index = 0;
+		private generation = 0;
+		private busy = false;
+		private turn!: HTMLButtonElement;
+		private front!: HTMLImageElement;
+		private back!: HTMLImageElement;
+		private rotor!: HTMLElement;
+		private status!: HTMLElement;
+		private hint!: HTMLElement;
+		private counter!: HTMLElement;
+		private caption!: HTMLElement;
+		private fallback!: HTMLElement;
+		private error!: HTMLElement;
+		private controls: HTMLButtonElement[] = [];
+
+		connectedCallback() {
+			if (this.initialized) return;
+			try {
+				this.views = JSON.parse(this.dataset.views || '[]');
+			} catch { return; }
+			if (!this.views.length || !this.views.every((view) => typeof view.src === 'string' && typeof view.alt === 'string')) return;
+			const turn = this.querySelector<HTMLButtonElement>('[data-artwork-turn]');
+			const front = this.querySelector<HTMLImageElement>('[data-artwork-front]');
+			const back = this.querySelector<HTMLImageElement>('[data-artwork-back]');
+			const rotor = this.querySelector<HTMLElement>('[data-artwork-rotor]');
+			const status = this.querySelector<HTMLElement>('[data-artwork-status]');
+			const hint = this.querySelector<HTMLElement>('[data-artwork-hint]');
+			const counter = this.querySelector<HTMLElement>('[data-artwork-counter]');
+			const caption = this.querySelector<HTMLElement>('[data-artwork-caption]');
+			const fallback = this.querySelector<HTMLElement>('[data-artwork-fallback]');
+			const error = this.querySelector<HTMLElement>('[data-artwork-error]');
+			if (!turn || !front || !back || !rotor || !status || !hint || !counter || !caption || !fallback || !error) return;
+			Object.assign(this, { turn, front, back, rotor, status, hint, counter, caption, fallback, error });
+			this.controls = Array.from(this.querySelectorAll<HTMLButtonElement>('button'));
+
+			// Native buttons provide click/tap, Space and Enter. Arrow and Escape
+			// shortcuts remain the enclosing dossier's responsibility.
+			turn.addEventListener('click', () => void this.show(this.index + 1));
+			this.querySelector('[data-artwork-next]')?.addEventListener('click', () => void this.show(this.index + 1));
+			this.querySelector('[data-artwork-previous]')?.addEventListener('click', () => void this.show(this.index - 1));
+			this.querySelectorAll<HTMLButtonElement>('[data-artwork-index]').forEach((button) => {
+				button.addEventListener('click', () => void this.show(Number(button.dataset.artworkIndex)));
+			});
+			this.addEventListener('release-artwork-reset', () => this.reset());
+			this.initialized = true;
+			turn.disabled = this.views.length < 2;
+			this.querySelectorAll<HTMLElement>('[data-artwork-controls], [data-artwork-selectors]').forEach((element) => { element.hidden = false; });
+			fallback.hidden = true;
+			this.describe();
+		}
+
+		disconnectedCallback() {
+			if (this.initialized) this.reset();
+		}
+
+		/** Reset synchronously; an earlier image load may not undo this state. */
+		reset() {
+			if (!this.initialized) return;
+			this.generation += 1;
+			this.setAttribute('data-resetting', '');
+			this.front.src = this.views[0].src;
+			this.front.alt = this.views[0].alt;
+			this.front.setAttribute('aria-hidden', 'false');
+			this.back.setAttribute('aria-hidden', 'true');
+			this.dataset.face = 'front';
+			this.index = 0;
+			this.error.hidden = true;
+			this.fallback.hidden = true;
+			this.setBusy(false);
+			const selectors = this.querySelector<HTMLElement>('[data-artwork-selectors]');
+			if (selectors) selectors.scrollLeft = 0;
+			this.describe();
+			this.rotor.getBoundingClientRect();
+			this.removeAttribute('data-resetting');
+		}
+
+		private setBusy(busy: boolean) {
+			this.busy = busy;
+			this.setAttribute('aria-busy', String(busy));
+			// aria-disabled retains keyboard focus during the short loading/flip interval.
+			this.controls.forEach((button) => button.setAttribute('aria-disabled', String(busy)));
+		}
+
+		private describe() {
+			const view = this.views[this.index];
+			const next = this.views[(this.index + 1) % this.views.length];
+			const count = `View ${this.index + 1} of ${this.views.length}`;
+			this.counter.textContent = count;
+			this.caption.textContent = view.caption || '';
+			this.caption.hidden = !view.caption;
+			this.hint.textContent = this.views.length > 1 ? `Flip artwork · Show ${next.label} ↻` : view.label;
+			this.turn.setAttribute('aria-label', `${this.dataset.title}. ${count}: ${view.alt}.${this.views.length > 1 ? ` Flip artwork to show ${next.label}.` : ''}`);
+			this.status.textContent = `${count}: ${view.alt}`;
+			this.querySelectorAll<HTMLButtonElement>('[data-artwork-index]').forEach((button) => {
+				button.setAttribute('aria-pressed', String(Number(button.dataset.artworkIndex) === this.index));
+			});
+			this.revealActiveSelector();
+		}
+
+		private revealActiveSelector() {
+			const selectors = this.querySelector<HTMLElement>('[data-artwork-selectors]');
+			const active = this.querySelector<HTMLButtonElement>(`[data-artwork-index="${this.index}"]`);
+			if (!selectors || !active || selectors.clientWidth === 0) return;
+			const strip = selectors.getBoundingClientRect();
+			const button = active.getBoundingClientRect();
+			const left = strip.left + selectors.clientLeft;
+			const right = left + selectors.clientWidth;
+			let scrollLeft = selectors.scrollLeft;
+			if (button.left < left) scrollLeft += button.left - left;
+			else if (button.right > right) scrollLeft += button.right - right;
+			// Scroll only this strip; scrollIntoView can also move the release or page.
+			selectors.scrollLeft = Math.max(0, Math.min(scrollLeft, selectors.scrollWidth - selectors.clientWidth));
+		}
+
+		private async show(requested: number) {
+			if (this.busy || this.views.length < 2) return;
+			const nextIndex = ((requested % this.views.length) + this.views.length) % this.views.length;
+			if (nextIndex === this.index) return;
+			const operation = ++this.generation;
+			const target = this.views[nextIndex];
+			const targetFace = this.dataset.face === 'back' ? this.front : this.back;
+			this.setBusy(true);
+			this.error.hidden = true;
+			this.status.textContent = `Loading ${target.label}. Current artwork remains visible.`;
+			try {
+				// Only the requested image is fetched, and the current face stays visible
+				// until the next face has loaded and decoded successfully.
+				const preload = new Image();
+				preload.decoding = 'async';
+				preload.src = target.src;
+				await this.decoded(preload);
+				if (operation !== this.generation) return;
+				targetFace.src = target.src;
+				targetFace.alt = target.alt;
+				await this.decoded(targetFace);
+				if (operation !== this.generation) return;
+				this.fallback.hidden = true;
+				this.front.setAttribute('aria-hidden', String(targetFace !== this.front));
+				this.back.setAttribute('aria-hidden', String(targetFace !== this.back));
+				this.dataset.face = targetFace === this.back ? 'back' : 'front';
+				this.index = nextIndex;
+				this.describe();
+				await this.finishTurn();
+			} catch {
+				if (operation !== this.generation) return;
+				this.describe();
+				this.error.textContent = `This image could not be loaded. Try again or open its original below.`;
+				this.error.hidden = false;
+				this.fallback.hidden = false;
+				this.status.textContent = `${target.label} could not be loaded. The current image is still shown.`;
+			} finally {
+				if (operation === this.generation) this.setBusy(false);
+			}
+		}
+
+		private decoded(image: HTMLImageElement): Promise<void> {
+			return new Promise((resolve, reject) => {
+				let finished = false;
+				const settle = (error?: Error) => {
+					if (finished) return;
+					finished = true;
+					window.clearTimeout(timer);
+					image.removeEventListener('load', loaded);
+					image.removeEventListener('error', failed);
+					error ? reject(error) : resolve();
+				};
+				const failed = () => settle(new Error('Artwork unavailable'));
+				const loaded = async () => {
+					try {
+						if (typeof image.decode === 'function') await image.decode();
+						if (!image.naturalWidth) throw new Error('Empty artwork');
+						settle();
+					} catch { failed(); }
+				};
+				const timer = window.setTimeout(failed, 20000);
+				image.addEventListener('load', loaded, { once: true });
+				image.addEventListener('error', failed, { once: true });
+				if (image.complete) void (image.naturalWidth ? loaded() : failed());
+			});
+		}
+
+		private finishTurn(): Promise<void> {
+			if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return Promise.resolve();
+			return new Promise((resolve) => {
+				const finish = () => {
+					window.clearTimeout(timer);
+					this.rotor.removeEventListener('transitionend', ended);
+					resolve();
+				};
+				const ended = (event: TransitionEvent) => {
+					if (event.target === this.rotor && event.propertyName === 'transform') finish();
+				};
+				const timer = window.setTimeout(finish, 550);
+				this.rotor.addEventListener('transitionend', ended);
+			});
+		}
+	}
+
+	if (!customElements.get('release-artwork-gallery')) customElements.define('release-artwork-gallery', ReleaseArtworkGallery);
+</script>
+
+<style>
+	.release-artwork-gallery {
+		display: grid;
+		grid-template-rows: minmax(0, 1fr) auto auto auto;
+		gap: .3rem;
+		width: 100%;
+		height: 100%;
+		min-height: inherit;
+		min-width: 0;
+		background: transparent;
+		color: var(--dossier-ivory, #eee0c5);
+	}
+
+	/* Keep generic dossier button decoration off the complete artwork. */
+	release-artwork-gallery.release-artwork-gallery .release-artwork-gallery__art,
+	release-artwork-gallery.release-artwork-gallery .release-artwork-gallery__art:hover,
+	release-artwork-gallery.release-artwork-gallery .release-artwork-gallery__art:disabled {
+		appearance: none;
+		display: grid;
+		grid-template-rows: minmax(0, 1fr) auto;
+		gap: .4rem;
+		width: 100%;
+		height: 100%;
+		min-height: 0;
+		min-width: 0;
+		margin: 0;
+		padding: 0;
+		border: 0;
+		border-radius: 0;
+		background: transparent;
+		box-shadow: none;
+		color: inherit;
+		font: inherit;
+		letter-spacing: normal;
+		text-transform: none;
+		cursor: pointer;
+		touch-action: manipulation;
+		-webkit-tap-highlight-color: transparent;
+	}
+	release-artwork-gallery.release-artwork-gallery .release-artwork-gallery__art:disabled { cursor: default; }
+	release-artwork-gallery.release-artwork-gallery button:focus-visible {
+		outline: 2px solid var(--dossier-brass, #dfbb82);
+		outline-offset: -3px;
+	}
+	.release-artwork-gallery__viewport { display: block; position: relative; min-height: 5rem; perspective: 1000px; }
+	.release-artwork-gallery__rotor {
+		display: block;
+		position: absolute;
+		inset: 0;
+		transform-style: preserve-3d;
+		transition: transform 480ms cubic-bezier(.2, .65, .25, 1);
+	}
+	.release-artwork-gallery[data-face="back"] .release-artwork-gallery__rotor { transform: rotateY(180deg); }
+	.release-artwork-gallery[data-resetting] .release-artwork-gallery__rotor { transition: none; }
+	.release-artwork-gallery .release-artwork-gallery__face {
+		position: absolute;
+		inset: 0;
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
+		border: 0;
+		border-radius: 0;
+		background: transparent;
+		backface-visibility: hidden;
+		-webkit-backface-visibility: hidden;
+		pointer-events: none;
+	}
+	.release-artwork-gallery__face--back { transform: rotateY(180deg); }
+	.release-artwork-gallery__hint { display: block; min-height: 1.4em; font-size: .75rem; line-height: 1.4; text-align: center; color: var(--dossier-muted, #c8bda9); }
+	.release-artwork-gallery__controls { display: flex; align-items: center; justify-content: center; gap: .35rem; min-width: 0; }
+	.release-artwork-gallery__counter { font-size: .72rem; line-height: 1.4; text-align: center; white-space: nowrap; }
+	.release-artwork-gallery__views { display: flex; gap: .25rem; min-width: 0; max-width: 100%; overflow-x: auto; padding: 0 .1rem .15rem; }
+	release-artwork-gallery.release-artwork-gallery .release-artwork-gallery__step,
+	release-artwork-gallery.release-artwork-gallery .release-artwork-gallery__choice {
+		appearance: none;
+		flex: 0 0 auto;
+		min-width: 44px;
+		min-height: 44px;
+		margin: 0;
+		padding: .3rem .5rem;
+		border: 1px solid var(--dossier-rule, #7b746a);
+		border-radius: .3rem;
+		background: transparent;
+		box-shadow: none;
+		color: inherit;
+		font: inherit;
+		font-size: .72rem;
+		letter-spacing: normal;
+		text-transform: none;
+		cursor: pointer;
+		touch-action: manipulation;
+	}
+	release-artwork-gallery.release-artwork-gallery .release-artwork-gallery__choice[aria-pressed="true"] { border-color: var(--dossier-brass, #dfbb82); background: rgba(180, 160, 120, .16); }
+	release-artwork-gallery.release-artwork-gallery button[aria-disabled="true"] { cursor: progress; }
+	.release-artwork-gallery .release-artwork-gallery__caption,
+	.release-artwork-gallery .release-artwork-gallery__error { margin: 0; max-height: 4.2em; overflow: auto; font-size: .72rem; line-height: 1.4; text-align: center; letter-spacing: normal; text-transform: none; }
+	.release-artwork-gallery__fallback { font-size: .75rem; line-height: 1.5; max-height: 10rem; overflow: auto; }
+	.release-artwork-gallery__fallback ul { margin: .3rem 0; padding-left: 1.2rem; }
+	.release-artwork-gallery__status { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+	.release-artwork-gallery [hidden] { display: none; }
+	@media (prefers-reduced-motion: reduce) { .release-artwork-gallery__rotor { transition: none; } }
+</style>
