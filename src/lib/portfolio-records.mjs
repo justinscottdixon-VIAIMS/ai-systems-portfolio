@@ -82,10 +82,12 @@ function childRecord(child, label) {
   if (!Array.isArray(child.gallery) || child.gallery.length === 0) throw new TypeError(`${label} requires a gallery plan`);
   if (child.credits !== undefined && !Array.isArray(child.credits)) throw new TypeError(`${label} credits must be an array`);
   if (child.publicSources !== undefined && !Array.isArray(child.publicSources)) throw new TypeError(`${label} sources must be an array`);
+  if (child.historySections !== undefined && !Array.isArray(child.historySections)) throw new TypeError(`${label} history sections must be an array`);
   return {
     relatedRecordIds: relatedIds(child.relatedRecordIds, label),
     credits: (child.credits ?? []).map((credit, index) => trackCredit(credit, `${label} credit ${index}`)),
     publicSources: (child.publicSources ?? []).map((source, index) => sourceReference(source, `${label} source ${index}`)),
+    historySections: (child.historySections ?? []).map((section, index) => dossierSection(section, `${label} history section ${index}`)),
     id: text(child.id, `${label} id`),
     title: text(child.title, `${label} title`),
     artist: text(child.artist, `${label} artist`),

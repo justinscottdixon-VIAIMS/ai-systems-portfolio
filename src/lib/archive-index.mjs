@@ -3,7 +3,8 @@ export function archiveHref(record, child) {
 }
 
 const normalize = value => value.normalize('NFKD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[’']/g, '');
-const dossierHistory = record => (record.sections ?? []).flatMap(section => [section.title, section.intro ?? '', ...section.items.flatMap(item => [item.title, item.date ?? '', item.detail])]).join(' ');
+const sectionHistory = sections => (sections ?? []).flatMap(section => [section.title, section.intro ?? '', ...section.items.flatMap(item => [item.title, item.date ?? '', item.detail])]).join(' ');
+const dossierHistory = record => sectionHistory(record.sections);
 
 export function archiveEntries(records) {
   return records.flatMap(record => {
@@ -20,7 +21,7 @@ export function archiveEntries(records) {
       category: 'music', date: child.date, format: child.format, roles: child.roles,
       summary: child.summary, label: entry.label, catalogNumber: child.catalogNumber,
       parent: record.title,
-      history: [child.credits.flatMap(credit => [credit.title, credit.scope, ...credit.roles, credit.collaborators ?? '', credit.note ?? '']).join(' '), ...(child.contextRecords ?? []).map(dossierHistory)].join(' '),
+      history: [child.credits.flatMap(credit => [credit.title, credit.scope, ...credit.roles, credit.collaborators ?? '', credit.note ?? '']).join(' '), sectionHistory(child.historySections), ...(child.contextRecords ?? []).map(dossierHistory)].join(' '),
     })), ...(record.contextRecords ?? []).map(context => ({
       href: `${archiveHref(record)}#context-${encodeURIComponent(context.id)}`,
       title: context.title, artist: context.displayArtistOrClient ?? '', category: context.category,

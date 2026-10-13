@@ -3857,6 +3857,26 @@
           ],
           "relatedRecordIds": [
             "singles-remixes"
+          ],
+          "historySections": [
+            {
+              "title": "The club, remembered in the studio",
+              "intro": "Justin Scott Dixon’s recollection of working with Sandra Collins, edited for this archive.",
+              "items": [
+                {
+                  "title": "Bringing the live experience into the room",
+                  "detail": "In the studio, there were just the two of us, drawing on the energy we remembered from the club. We had to bring that experience into a controlled room while we shaped the programme, so the mix could retain the feeling of hearing Sandra live."
+                },
+                {
+                  "title": "An invisible language",
+                  "detail": "At times, we knew what needed to happen without putting it into words. That shared understanding was part of our collaboration, alongside the close review and editing we did together."
+                },
+                {
+                  "title": "Listening from another room",
+                  "detail": "Sometimes one of us would step into another room, away from the main listening position. Hearing the balance of two songs from somewhere else, and briefly on our own, could reveal details we missed while immersed in the mix. Even within a close collaboration, that individual perspective mattered."
+                }
+              ]
+            }
           ]
         },
         {

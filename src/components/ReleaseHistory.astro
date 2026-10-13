@@ -1,0 +1,63 @@
+---
+interface HistorySection {
+  title: string;
+  intro?: string;
+  items: { title: string; date?: string; detail: string }[];
+}
+
+interface Props {
+  sections?: HistorySection[];
+  headingLevel?: 3 | 4;
+}
+
+const { sections = [], headingLevel = 4 } = Astro.props;
+const SectionHeading = headingLevel === 3 ? 'h3' : 'h4';
+const ItemHeading = headingLevel === 3 ? 'h4' : 'h5';
+---
+
+{sections.length > 0 && <div class="release-history" data-release-history-sections>
+  {sections.map(section => <section class="release-history__section">
+    <SectionHeading class="release-history__heading">{section.title}</SectionHeading>
+    {section.intro && <p class="release-history__intro">{section.intro}</p>}
+    <ol class="release-history__items">
+      {section.items.map(item => <li>
+        <ItemHeading class="release-history__item-heading">{item.title}</ItemHeading>
+        {item.date && <p class="release-history__date">{item.date}</p>}
+        <p>{item.detail}</p>
+      </li>)}
+    </ol>
+  </section>)}
+</div>}
+
+<style>
+  .release-history {
+    display: grid;
+    gap: 1rem;
+    min-width: 0;
+    max-width: 100%;
+    margin-block: .8rem;
+    color: var(--dossier-muted, #c8bda9);
+    font-size: .9rem;
+    line-height: 1.5;
+    letter-spacing: normal;
+    text-transform: none;
+    overflow-wrap: anywhere;
+  }
+  .release-history__section { border-top: 1px solid var(--dossier-rule, #80623c55); padding-top: .9rem; }
+  .release-history__heading, .release-history__item-heading {
+    margin: 0 0 .35rem;
+    color: var(--dossier-ivory, #eee0c5);
+    font-family: inherit;
+    font-weight: 600;
+    line-height: 1.5;
+    letter-spacing: normal;
+    text-transform: none;
+  }
+  .release-history__heading { font-size: 1rem; }
+  .release-history__item-heading { font-size: .9rem; }
+  .release-history p { margin: 0; font-size: inherit; line-height: 1.5; }
+  .release-history .release-history__intro { margin-bottom: .9rem; }
+  .release-history__items { display: grid; gap: .9rem; margin: 0; padding: 0; list-style: none; }
+  .release-history__items li { min-width: 0; }
+  .release-history .release-history__date { margin-bottom: .3rem; color: var(--dossier-brass, #dfbb82); font-size: .78rem; }
+</style>
