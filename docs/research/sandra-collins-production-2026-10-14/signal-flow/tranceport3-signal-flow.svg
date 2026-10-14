@@ -1,0 +1,204 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="2030" viewBox="0 0 1440 2030" role="img" aria-labelledby="diagram-title diagram-desc">
+<title id="diagram-title">Tranceport.3 — recalled capture and final-print signal flow</title>
+<desc id="diagram-desc">Review-only diagram based on the owner's recollection. Capture: vinyl, Technics 1200 with new Ortofon club DJ cartridge, mostly Rane MP22 phono stage, balanced analog into TC Finalizer 96K A/D with processing bypassed, Pro Tools with Mbox capture at 44.1 kilohertz and 24 bit, then manual track-by-track arrangement and editing. Final print: Pro Tools digital output into the same Finalizer 96K, recalled conversion to 96 kilohertz and 24 bit, external analog insert through D/A, Avalon 747 tube compressor and A/D, Finalizer 96K finishing at 44.1 kilohertz and 16 bit, AES digital into Alesis MasterLink at the same format. Exact insert routing is a functional reconstruction. Rates describe digital stages, not analog signals. The same Finalizer 96K is reused, not multiple units. Two label-delivery versions follow final capture: a continuous 44.1 kilohertz 16-bit mix file with cue-sheet index information, and a second copy already indexed by Scott and team. Mbox generation and connections remain unspecified. Physical medium, file format and second-copy type remain unconfirmed.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0 L7 4 L0 8" fill="none" stroke="#ddb77c" stroke-width="1.5"/></marker></defs>
+<rect width="1440" height="2030" fill="#121216"/>
+<g font-family="Arial, Helvetica, sans-serif">
+<text x="56" y="62" fill="#ddb77c" font-size="17" font-weight="700">
+<tspan x="56" dy="0">REVIEW ONLY  /  OWNER RECOLLECTION</tspan>
+</text>
+<text x="56" y="116" fill="#f3f0e9" font-size="47" font-weight="700">
+<tspan x="56" dy="0">Tranceport.3</tspan>
+</text>
+<text x="56" y="156" fill="#bebbb6" font-size="26" font-weight="400">
+<tspan x="56" dy="0">Capture → arrangement → final print → delivery</tspan>
+</text>
+<rect x="56" y="187" width="1328" height="66" rx="12" fill="#29251f"/>
+<text x="79" y="227" fill="#e5c696" font-size="21" font-weight="600">
+<tspan x="79" dy="0">F1 = the same TC Finalizer 96K reused across both phases; repeated boxes do not imply separate units.</tspan>
+</text>
+<text x="56" y="298" fill="#ddb77c" font-size="23" font-weight="700">
+<tspan x="56" dy="0">01  CAPTURE</tspan>
+</text>
+<text x="752" y="298" fill="#ddb77c" font-size="23" font-weight="700">
+<tspan x="752" dy="0">02  FINAL PRINT</tspan>
+</text>
+<rect x="56" y="323" width="632" height="86" rx="18" fill="#1c1d22" stroke="#48423a" stroke-width="1.5"/>
+<text x="80" y="364" fill="#f3f0e9" font-size="25" font-weight="600">
+<tspan x="80" dy="0">Vinyl records</tspan>
+</text>
+<text x="80" y="399" fill="#bebbb6" font-size="21" font-weight="400">
+<tspan x="80" dy="0">Playback source</tspan>
+</text>
+<path d="M118 411 V441" fill="none" stroke="#ddb77c" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="56" y="453" width="632" height="112" rx="18" fill="#1c1d22" stroke="#48423a" stroke-width="1.5"/>
+<text x="80" y="494" fill="#f3f0e9" font-size="25" font-weight="600">
+<tspan x="80" dy="0">Technics 1200 + new Ortofon cartridge</tspan>
+</text>
+<text x="80" y="529" fill="#bebbb6" font-size="21" font-weight="400">
+<tspan x="80" dy="0">Club DJ cartridge; exact Ortofon model not established.</tspan>
+</text>
+<path d="M118 567 V597" fill="none" stroke="#ddb77c" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="56" y="609" width="632" height="112" rx="18" fill="#1c1d22" stroke="#48423a" stroke-width="1.5"/>
+<text x="80" y="650" fill="#f3f0e9" font-size="25" font-weight="600">
+<tspan x="80" dy="0">Rane MP22 phono stage</tspan>
+</text>
+<text x="80" y="685" fill="#bebbb6" font-size="21" font-weight="400">
+<tspan x="80" dy="0">“Mostly” in the owner’s wording.</tspan>
+</text>
+<path d="M118 723 V770" fill="none" stroke="#ddb77c" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="134" y="753.5" fill="#ddb77c" font-size="16" font-weight="600">
+<tspan x="134" dy="0">BALANCED ANALOG</tspan>
+</text>
+<rect x="56" y="782" width="632" height="121" rx="18" fill="#1c1d22" stroke="#48423a" stroke-width="1.5"/>
+<rect x="80" y="802" width="44" height="28" rx="7" fill="#ddb77c"/>
+<text x="89" y="822" fill="#181719" font-size="17" font-weight="700">
+<tspan x="89" dy="0">F1</tspan>
+</text>
+<text x="137" y="824" fill="#f3f0e9" font-size="24" font-weight="600">
+<tspan x="137" dy="0">TC Finalizer 96K • capture A/D</tspan>
+</text>
+<text x="80" y="858" fill="#bebbb6" font-size="21" font-weight="400">
+<tspan x="80" dy="0">Analog-to-digital conversion.</tspan>
+<tspan x="80" dy="29">Processing bypassed for capture.</tspan>
+</text>
+<path d="M118 905 V949" fill="none" stroke="#ddb77c" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="134" y="934.0" fill="#ddb77c" font-size="16" font-weight="600">
+<tspan x="134" dy="0">DIGITAL</tspan>
+</text>
+<rect x="56" y="961" width="632" height="112" rx="18" fill="#1c1d22" stroke="#48423a" stroke-width="1.5"/>
+<text x="80" y="1002" fill="#f3f0e9" font-size="25" font-weight="600">
+<tspan x="80" dy="0">Pro Tools · Mbox capture</tspan>
+</text>
+<text x="80" y="1037" fill="#bebbb6" font-size="21" font-weight="400">
+<tspan x="80" dy="0">44.1 kHz / 24-bit digital recording</tspan>
+</text>
+<path d="M118 1075 V1104" fill="none" stroke="#ddb77c" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="56" y="1116" width="632" height="112" rx="18" fill="#1c1d22" stroke="#48423a" stroke-width="1.5"/>
+<text x="80" y="1157" fill="#f3f0e9" font-size="25" font-weight="600">
+<tspan x="80" dy="0">In-box arrangement and editing</tspan>
+</text>
+<text x="80" y="1192" fill="#bebbb6" font-size="21" font-weight="400">
+<tspan x="80" dy="0">Manual, track by track, in Pro Tools.</tspan>
+</text>
+<rect x="752" y="323" width="632" height="112" rx="18" fill="#1c1d22" stroke="#48423a" stroke-width="1.5"/>
+<text x="776" y="364" fill="#f3f0e9" font-size="25" font-weight="600">
+<tspan x="776" dy="0">Pro Tools digital output</tspan>
+</text>
+<text x="776" y="399" fill="#bebbb6" font-size="21" font-weight="400">
+<tspan x="776" dy="0">44.1 kHz / 24-bit</tspan>
+</text>
+<path d="M814 437 V466" fill="none" stroke="#ddb77c" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="830" y="458.5" fill="#ddb77c" font-size="16" font-weight="600">
+<tspan x="830" dy="0">DIGITAL</tspan>
+</text>
+<rect x="752" y="478" width="632" height="159" rx="18" fill="#1c1d22" stroke="#48423a" stroke-width="1.5"/>
+<rect x="776" y="498" width="44" height="28" rx="7" fill="#ddb77c"/>
+<text x="785" y="518" fill="#181719" font-size="17" font-weight="700">
+<tspan x="785" dy="0">F1</tspan>
+</text>
+<text x="833" y="520" fill="#f3f0e9" font-size="24" font-weight="600">
+<tspan x="833" dy="0">TC Finalizer 96K • mastering stage</tspan>
+</text>
+<text x="776" y="554" fill="#bebbb6" font-size="21" font-weight="400">
+<tspan x="776" dy="0">Owner recalls real-time conversion to</tspan>
+<tspan x="776" dy="29">96 kHz / 24-bit for insert / processing.</tspan>
+<tspan x="776" dy="29">Digital stage — not an analog signal rate.</tspan>
+</text>
+<path d="M814 639 V668" fill="none" stroke="#ddb77c" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="752" y="680" width="632" height="193" rx="18" fill="#1c1d22" stroke="#ddb77c" stroke-width="1.5" stroke-dasharray="6 6"/>
+<text x="776" y="718" fill="#f3f0e9" font-size="25" font-weight="600">
+<tspan x="776" dy="0">External analog insert loop</tspan>
+</text>
+<text x="776" y="750" fill="#bebbb6" font-size="20" font-weight="400">
+<tspan x="776" dy="0">Functional reconstruction; exact DSP position unspecified.</tspan>
+</text>
+<rect x="776" y="773" width="80" height="48" rx="8" fill="#29251f"/>
+<text x="788" y="803" fill="#e5c696" font-size="19" font-weight="600">
+<tspan x="788" dy="0">D/A</tspan>
+</text>
+<rect x="901" y="773" width="321" height="48" rx="8" fill="#29251f"/>
+<text x="913" y="803" fill="#e5c696" font-size="19" font-weight="600">
+<tspan x="913" dy="0">Avalon 747 tube compressor</tspan>
+</text>
+<rect x="1267" y="773" width="93" height="48" rx="8" fill="#29251f"/>
+<text x="1279" y="803" fill="#e5c696" font-size="19" font-weight="600">
+<tspan x="1279" dy="0">A/D</tspan>
+</text>
+<path d="M857 797 H889" stroke="#ddb77c" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M1224 797 H1255" stroke="#ddb77c" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="776" y="851" fill="#bebbb6" font-size="19" font-weight="400">
+<tspan x="776" dy="0">Analog signal only between D/A and A/D.</tspan>
+</text>
+<path d="M814 875 V904" fill="none" stroke="#ddb77c" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="752" y="916" width="632" height="112" rx="18" fill="#1c1d22" stroke="#48423a" stroke-width="1.5"/>
+<rect x="776" y="936" width="44" height="28" rx="7" fill="#ddb77c"/>
+<text x="785" y="956" fill="#181719" font-size="17" font-weight="700">
+<tspan x="785" dy="0">F1</tspan>
+</text>
+<text x="833" y="958" fill="#f3f0e9" font-size="24" font-weight="600">
+<tspan x="833" dy="0">TC Finalizer 96K • finishing</tspan>
+</text>
+<text x="776" y="992" fill="#bebbb6" font-size="21" font-weight="400">
+<tspan x="776" dy="0">Output returned to 44.1 kHz / 16-bit.</tspan>
+</text>
+<path d="M814 1030 V1087" fill="none" stroke="#ddb77c" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="830" y="1065.5" fill="#ddb77c" font-size="16" font-weight="600">
+<tspan x="830" dy="0">AES DIGITAL</tspan>
+</text>
+<rect x="752" y="1099" width="632" height="129" rx="18" fill="#1c1d22" stroke="#48423a" stroke-width="1.5"/>
+<text x="776" y="1140" fill="#f3f0e9" font-size="25" font-weight="600">
+<tspan x="776" dy="0">Alesis MasterLink • final capture</tspan>
+</text>
+<text x="776" y="1175" fill="#bebbb6" font-size="21" font-weight="400">
+<tspan x="776" dy="0">44.1 kHz / 16-bit digital capture</tspan>
+<tspan x="776" dy="29">Two label-delivery versions follow below.</tspan>
+</text>
+<text x="56" y="1303" fill="#ddb77c" font-size="23" font-weight="700">
+<tspan x="56" dy="0">03  DELIVERY TO LABEL</tspan>
+</text>
+<text x="56" y="1339" fill="#bebbb6" font-size="21" font-weight="400">
+<tspan x="56" dy="0">Two provided versions from the MasterLink final capture</tspan>
+</text>
+<path d="M1068 1230 V1361 H372 V1390" fill="none" stroke="#ddb77c" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M1068 1361 V1390" fill="none" stroke="#ddb77c" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="56" y="1402" width="632" height="150" rx="18" fill="#1c1d22" stroke="#48423a" stroke-width="1.5"/>
+<text x="80" y="1443" fill="#f3f0e9" font-size="25" font-weight="600">
+<tspan x="80" dy="0">Version 1 • continuous mix</tspan>
+</text>
+<text x="80" y="1478" fill="#bebbb6" font-size="21" font-weight="400">
+<tspan x="80" dy="0">44.1 kHz / 16-bit single mix file</tspan>
+<tspan x="80" dy="29">Index information supplied with a cue sheet.</tspan>
+</text>
+<rect x="752" y="1402" width="632" height="150" rx="18" fill="#1c1d22" stroke="#48423a" stroke-width="1.5"/>
+<text x="776" y="1443" fill="#f3f0e9" font-size="25" font-weight="600">
+<tspan x="776" dy="0">Version 2 • already indexed copy</tspan>
+</text>
+<text x="776" y="1478" fill="#bebbb6" font-size="21" font-weight="400">
+<tspan x="776" dy="0">Indexed by Scott / team.</tspan>
+<tspan x="776" dy="29">Exact second-copy type remains unconfirmed.</tspan>
+</text>
+<text x="56" y="1593" fill="#e5c696" font-size="23" font-weight="600">
+<tspan x="56" dy="0">Intent: protect the continuous mix from indexing problems.</tspan>
+</text>
+<text x="56" y="1629" fill="#bebbb6" font-size="21" font-weight="400">
+<tspan x="56" dy="0">Physical medium, file format and the exact type of the already indexed copy remain unconfirmed.</tspan>
+<tspan x="56" dy="31">Capacity limits and DAT availability are working-context recollections, not universal technical history.</tspan>
+</text>
+<path d="M56 1700 H1384" stroke="#48423a"/>
+<text x="56" y="1742" fill="#f3f0e9" font-size="24" font-weight="600">
+<tspan x="56" dy="0">How to read this diagram</tspan>
+</text>
+<text x="56" y="1779" fill="#bebbb6" font-size="21" font-weight="400">
+<tspan x="56" dy="0">Functional signal flow from the owner’s Tranceport.3 discussion, prepared for review.</tspan>
+<tspan x="56" dy="31">Digital rates apply to conversion / processing / capture stages, never the analog insert signal.</tspan>
+</text>
+<text x="56" y="1861" fill="#ddb77c" font-size="22" font-weight="600">
+<tspan x="56" dy="0">Still unspecified</tspan>
+</text>
+<text x="56" y="1895" fill="#bebbb6" font-size="21" font-weight="400">
+<tspan x="56" dy="0">Exact wiring, Finalizer 96K configuration, firmware and SRC settings;</tspan>
+<tspan x="56" dy="31">Pro Tools version, Mbox generation and connections, exact DSP insert position, dither and delivery medium.</tspan>
+<tspan x="56" dy="31">The 96 kHz / 24-bit stage is owner-recalled configuration; actual firmware / SRC settings are unverified.</tspan>
+</text>
+</g></svg>
