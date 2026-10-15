@@ -14,7 +14,7 @@ interface DossierRecord {
 	sections: {
 		title: string;
 		intro?: string;
-		items: { title: string; date?: string; detail: string }[];
+		items: { title: string; date?: string; href?: string; detail: string }[];
 	}[];
 	publicSources: { label: string; href: string; supports: string }[];
 }
@@ -60,7 +60,7 @@ const catalogEntries = Object.entries(record.catalog ?? {});
 					<li>
 						<h5>{item.title}</h5>
 						{item.date && <p class="dossier-context__date">{item.date}</p>}
-						<p>{item.detail}</p>
+						<p>{item.detail}</p>{item.href && <a href={item.href} target="_blank" rel="noopener noreferrer">Read the source ↗</a>}
 					</li>
 				))}
 			</ol>

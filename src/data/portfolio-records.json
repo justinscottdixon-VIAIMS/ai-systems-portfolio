@@ -7,7 +7,7 @@
       "title": "Cosmic Records — Catalogue History",
       "displayArtistOrClient": "DJ’s Friction & Spice / Voyager",
       "category": "career",
-      "format": "Label body of work · COSMIC 001–017",
+      "format": "Cosmic catalogue · duo mix CDs · third-party releases and remixes",
       "dateDisplay": "Vinyl chronology begins January 1996",
       "sortDate": "1996-01-01",
       "era": "VINYL FOUNDATIONS",
@@ -17,7 +17,7 @@
         "Composer",
         "Producer"
       ],
-      "summary": "Cosmic was our label. Jeff Alderson as DJ Spice, me as DJ Friction and Voyager. COSMIC 001–017 collects that work, with each artist’s contribution credited on the release.",
+      "summary": "Cosmic was our label. Jeff Alderson as DJ Spice, me as DJ Friction and Voyager. COSMIC 001–018 collects that work. Transformed follows Explorations, then the duo’s releases, remixes and appearances on other labels.",
       "status": "verification-pending",
       "evidenceLevel": "owner-approved-archive",
       "catalog": {
@@ -90,6 +90,122 @@
               "detail": "January 1996 begins the artist-confirmed vinyl chronology. Copyright dates and provisional catalog years are not exact release dates."
             }
           ]
+        },
+        {
+          "title": "Authorized later editions and edits",
+          "intro": "Justin Scott Dixon confirmed authorization of these four later editions and edits on 14 October 2026. Dates and version names below follow the linked publisher or release listing.",
+          "items": [
+            {
+              "title": "Totemtanz — Groove Me",
+              "date": "2021 — label/store listing",
+              "detail": "TT015 / TT015X: yellow vinyl with the Original 1994 Mix, Ufo Project Remix and Bonus Beats. The printed mix name is retained; it does not replace the artist-confirmed 1996 Cosmic release chronology.",
+              "href": "https://www.totemtanz.com/friction-spice-groove-me-yellow"
+            },
+            {
+              "title": "Dubvinyls — Groove Me",
+              "date": "2019 — database listing",
+              "detail": "Dub007 / Special Red is separate from the Voyager Recordings anniversary edition. The database classifies this pressing as unofficial; Dixon has confirmed authorization, so the two accounts are retained explicitly.",
+              "href": "https://www.discogs.com/release/13723056"
+            },
+            {
+              "title": "Avalon Emerson — Cybernetic Edits",
+              "date": "2015 — database listing",
+              "detail": "Includes Groove Me (Avalon Emerson’s Truth Of Omission Mix), a third-party edit.",
+              "href": "https://www.discogs.com/release/25724977"
+            },
+            {
+              "title": "Bazco & Alex Clubbers remix",
+              "date": "2024 — remixer announcement",
+              "detail": "A later Groove Me remix announced by Alex Clubbers. It is not one of the six versions on the verified anniversary edition.",
+              "href": "https://alexclubberssp.bandcamp.com/community"
+            }
+          ],
+          "placement": "after-releases"
+        },
+        {
+          "title": "Press: contemporary review and retrospective feature",
+          "items": [
+            {
+              "title": "The Courier — The Rhythm",
+              "date": "6 February 1997 · contemporary record review",
+              "detail": "The Courier’s dance column highlighted The Rhythm’s breakbeat sound and its progressive reverse-side mix. Published on page 6; the column’s introduction names Chris and Nik.",
+              "href": "https://courierarchive.ncl.ac.uk/sites/default/files/1997-02-06.pdf#page=6"
+            },
+            {
+              "title": "Forte Magazine — Millú selects Groove Me (Dub)",
+              "date": "11 July 2019 · feature by Tammy Walters",
+              "detail": "Millú picked Groove Me (Dub) among five favorite 1990s rave tracks, singling out its piano break. This is a retrospective track selection, rather than a review of the anniversary edition.",
+              "href": "https://www.fortemagazine.com.au/heres-five-90s-rave-tracks-to-hype-you-up-for-red-bulls-1800-doof-this-month/"
+            }
+          ],
+          "placement": "after-releases"
+        },
+        {
+          "title": "Published DJ selections",
+          "items": [
+            {
+              "title": "The FADER — FADER Mix: Ciel",
+              "date": "31 October 2017 · Jordan Darville",
+              "detail": "Ciel’s published mix and interview include Future Funk and Rhythm Rockin’ in the accompanying track list.",
+              "href": "https://www.thefader.com/2017/10/31/fader-mix-ciel"
+            },
+            {
+              "title": "Resident Advisor — RA.702 Or:la",
+              "date": "11 November 2019",
+              "detail": "Or:la included Dark Knight in her Resident Advisor podcast. The feature documents the selection within her mix.",
+              "href": "https://ra.co/podcast/702"
+            },
+            {
+              "title": "Resident Advisor — RA.832 Ciel",
+              "date": "15 May 2022",
+              "detail": "Ciel selected You Make Me Feel So Good (Spice’s Progressive Mix) for her Resident Advisor podcast.",
+              "href": "https://ra.co/podcast/832"
+            }
+          ],
+          "placement": "after-releases"
+        },
+        {
+          "title": "Radio and event listings",
+          "items": [
+            {
+              "title": "NTS — Kasra V with Moody Mehran",
+              "date": "15 June 2023 · broadcast track list",
+              "detail": "Groove Me (1997 Remix) appears in the published episode track list.",
+              "href": "https://www.nts.live/shows/kasra-v/episodes/kasra-v-moody-mehran-15th-june-2023"
+            },
+            {
+              "title": "Orlando Weekly — Fall Guide 2008: Music",
+              "date": "25 September 2008 · Orlando Weekly Staff",
+              "detail": "The calendar listed Friction & Spice at Club Firestone for 11 October. This is a published event announcement.",
+              "href": "https://www.orlandoweekly.com/orlando-guides/fall-guide-2008-music-2275032/"
+            },
+            {
+              "title": "Orlando Culture Shock — Aquatic Bass 3",
+              "date": "25 September 2014 · Patrick Scott Barnes",
+              "detail": "A firsthand event report discusses Spice performing with Jason Brown and recalls the writer’s affection for the duo’s Step Into My Dream. The reported performance is Spice’s appearance with Jason Brown.",
+              "href": "https://orlandocultureshock.wordpress.com/2014/09/25/aquatic-bass-3-an-exciting-day-of-bikinis-and-bass/"
+            }
+          ],
+          "placement": "after-releases"
+        },
+        {
+          "title": "Compilation reviews",
+          "intro": "These reviews discuss complete compilations that include the duo’s music; their praise is not attributed to an individual Friction & Spice track.",
+          "items": [
+            {
+              "title": "AllMusic — Funk-Da-Fried",
+              "date": "John Bush · review undated",
+              "detail": "John Bush reviews Simply Jeff’s mix album. Its track list includes Friction & Spice’s Groove Me.",
+              "href": "https://www.allmusic.com/album/funk-da-fried-mw0000235401"
+            },
+            {
+              "title": "AllMusic — Electro Dance Mix",
+              "date": "Jason Ankeny · review undated",
+              "detail": "Jason Ankeny provides an editorial overview of the compilation, whose track list includes Get Down to the Funky Beat.",
+              "href": "https://www.allmusic.com/album/electro-dance-mix-mw0000089553"
+            }
+          ],
+          "placement": "after-releases"
         }
       ],
       "publicSources": [
@@ -97,6 +213,56 @@
           "label": "Artist source photographs",
           "href": "https://drive.google.com/drive/folders/1mVnF4skqn2V0ox57tQXu8UrTVVV-iVpi",
           "supports": "Label and pressing references supplied by the artist."
+        },
+        {
+          "label": "The Courier — The Rhythm",
+          "href": "https://courierarchive.ncl.ac.uk/sites/default/files/1997-02-06.pdf#page=6",
+          "supports": "The Courier’s dance column highlighted The Rhythm’s breakbeat sound and its progressive reverse-side mix. Published on page 6; the column’s introduction names Chris and Nik."
+        },
+        {
+          "label": "Forte Magazine — Millú selects Groove Me (Dub)",
+          "href": "https://www.fortemagazine.com.au/heres-five-90s-rave-tracks-to-hype-you-up-for-red-bulls-1800-doof-this-month/",
+          "supports": "Millú picked Groove Me (Dub) among five favorite 1990s rave tracks, singling out its piano break. This is a retrospective track selection, rather than a review of the anniversary edition."
+        },
+        {
+          "label": "The FADER — FADER Mix: Ciel",
+          "href": "https://www.thefader.com/2017/10/31/fader-mix-ciel",
+          "supports": "Ciel’s published mix and interview include Future Funk and Rhythm Rockin’ in the accompanying track list."
+        },
+        {
+          "label": "Resident Advisor — RA.702 Or:la",
+          "href": "https://ra.co/podcast/702",
+          "supports": "Or:la included Dark Knight in her Resident Advisor podcast. The feature documents the selection within her mix."
+        },
+        {
+          "label": "Resident Advisor — RA.832 Ciel",
+          "href": "https://ra.co/podcast/832",
+          "supports": "Ciel selected You Make Me Feel So Good (Spice’s Progressive Mix) for her Resident Advisor podcast."
+        },
+        {
+          "label": "NTS — Kasra V with Moody Mehran",
+          "href": "https://www.nts.live/shows/kasra-v/episodes/kasra-v-moody-mehran-15th-june-2023",
+          "supports": "Groove Me (1997 Remix) appears in the published episode track list."
+        },
+        {
+          "label": "Orlando Weekly — Fall Guide 2008: Music",
+          "href": "https://www.orlandoweekly.com/orlando-guides/fall-guide-2008-music-2275032/",
+          "supports": "The calendar listed Friction & Spice at Club Firestone for 11 October. This is a published event announcement."
+        },
+        {
+          "label": "Orlando Culture Shock — Aquatic Bass 3",
+          "href": "https://orlandocultureshock.wordpress.com/2014/09/25/aquatic-bass-3-an-exciting-day-of-bikinis-and-bass/",
+          "supports": "A firsthand event report discusses Spice performing with Jason Brown and recalls the writer’s affection for the duo’s Step Into My Dream. The reported performance is Spice’s appearance with Jason Brown."
+        },
+        {
+          "label": "AllMusic — Funk-Da-Fried",
+          "href": "https://www.allmusic.com/album/funk-da-fried-mw0000235401",
+          "supports": "John Bush reviews Simply Jeff’s mix album. Its track list includes Friction & Spice’s Groove Me."
+        },
+        {
+          "label": "AllMusic — Electro Dance Mix",
+          "href": "https://www.allmusic.com/album/electro-dance-mix-mw0000089553",
+          "supports": "Jason Ankeny provides an editorial overview of the compilation, whose track list includes Get Down to the Funky Beat."
         }
       ],
       "public": true,
@@ -229,7 +395,7 @@
           "gallery": [
             {
               "kind": "image",
-              "src": "/reference/restored-artwork/cosmic-005-label-a-approved-circle-v1.webp",
+              "src": "/reference/restored-artwork/cosmic-005-label-a-color-matched-circle-v2.png",
               "alt": "Voyager — Trixta / Friction: complete Cosmic 005 information label.",
               "caption": "Trixta / Friction — information label."
             },
@@ -617,12 +783,969 @@
               "src": "/reference/restored-artwork/cosmic-017-label-a-approved-circle-v1.webp",
               "alt": "Voyager — Time Travel E.P.: complete Cosmic 017 label.",
               "caption": "Time Travel E.P. — complete label."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/restored-artwork/cosmic-017-label-b-review-circle-v1.png",
+              "alt": "Voyager — Time Travel E.P.: reconstructed Cosmic 017 Side B label.",
+              "caption": "Time Travel E.P. — Side B."
+            }
+          ]
+        },
+        {
+          "id": "cosmic-018",
+          "title": "Explorations",
+          "artist": "DJs Friction & Spice",
+          "date": "1998 — printed ©",
+          "catalogNumber": "COSMIC 018 · CD: CR 51001-2",
+          "format": "CD · continuous mix",
+          "roles": [
+            "Recording artist: DJs Friction & Spice",
+            "Sole writer / producer: Acid Drop; Ah Yeah ('97 Remix)",
+            "Continuous-mix assembly: Justin Scott Dixon",
+            "CD mastering: Justin Scott Dixon"
+          ],
+          "summary": "A continuous mix of nine recordings by DJs Friction & Spice, recorded at Cosmic Studios in Orlando, Florida. Cosmic 018 identifies its place in the label sequence; CR 51001-2 is the catalogue number printed on the CD.",
+          "gallery": [
+            {
+              "kind": "image",
+              "src": "/reference/restored-artwork/explorations-front-review-v1.png",
+              "alt": "DJs Friction & Spice — Explorations: restored CD front cover.",
+              "caption": "Explorations — CD front cover."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/restored-artwork/explorations-booklet-back-enhanced-v2.png",
+              "alt": "DJs Friction & Spice — Explorations: separate enlarged back booklet panel with the Friction and Spice portraits.",
+              "caption": "Booklet back — enlarged portrait panel. AI-enhanced reconstruction."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/restored-artwork/explorations-inner-spread-typeset-v5.png",
+              "alt": "DJs Friction & Spice — Explorations: complete inside booklet spread, with the biography and acknowledgments reading continuously across both pages.",
+              "caption": "Booklet inside — joined biography, credits and acknowledgments. AI-enhanced artwork with typeset acknowledgments."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/restored-artwork/explorations-tray-enhanced-v2.png",
+              "alt": "DJs Friction & Spice — Explorations: rear tray inlay including both spines and the nine-track listing.",
+              "caption": "Rear tray inlay — both spines retained. AI-enhanced reconstruction."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/restored-artwork/explorations-disc-enhanced-v2.png",
+              "alt": "DJs Friction & Spice — Explorations: complete silver CD face with the original portrait arrangement and hub.",
+              "caption": "CD face — complete disc and hub. AI-enhanced reconstruction."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/restored-artwork/explorations-outer-spread-enhanced-v2.png",
+              "alt": "DJs Friction & Spice — Explorations: complete outside booklet spread, back panel left and front cover right.",
+              "caption": "Booklet outside — back on the left, front on the right. AI-enhanced reconstruction."
+            }
+          ],
+          "historySections": [
+            {
+              "title": "CD tracklist",
+              "items": [
+                {
+                  "title": "01",
+                  "detail": "Acid Drop"
+                },
+                {
+                  "title": "02",
+                  "detail": "Future Funk"
+                },
+                {
+                  "title": "03",
+                  "detail": "Digital Overload"
+                },
+                {
+                  "title": "04",
+                  "detail": "Get Down to the Funky Beat"
+                },
+                {
+                  "title": "05",
+                  "detail": "Groove Me (Remix)"
+                },
+                {
+                  "title": "06",
+                  "detail": "Go with the Flow"
+                },
+                {
+                  "title": "07",
+                  "detail": "Rhythm Rockin'"
+                },
+                {
+                  "title": "08",
+                  "detail": "The Rhythm"
+                },
+                {
+                  "title": "09",
+                  "detail": "Ah Yeah ('97 Remix)"
+                }
+              ]
+            },
+            {
+              "title": "Making the continuous mix",
+              "items": [
+                {
+                  "title": "Pro Tools assembly and CD mastering",
+                  "detail": "Justin Scott Dixon assembled the continuous mix entirely himself in Pro Tools and handled the final mastering for the CD. He describes the workflow as “DDD.”"
+                }
+              ]
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Original CD packaging — Discogs release 338889",
+              "href": "https://www.discogs.com/release/338889-DJ-Friction-Spice-Explorations",
+              "supports": "Reproduced physical packaging: title, artist, printed CD number, copyright year, track order and recording location."
+            }
+          ],
+          "credits": [
+            {
+              "title": "Acid Drop",
+              "scope": "CD track 1",
+              "roles": [
+                "Writer",
+                "Producer"
+              ],
+              "note": "Written and produced solely by Justin Scott Dixon. This is the same version released on COSMIC 012.",
+              "evidence": "Justin Scott Dixon’s firsthand account, October 2026; COSMIC 012 release credits."
+            },
+            {
+              "title": "The Rhythm (Cosmic's Funky Mix)",
+              "scope": "CD track 8",
+              "roles": [
+                "Co-writer",
+                "Co-arranger",
+                "Co-producer"
+              ],
+              "collaborators": "Jeff Alderson — co-writer, co-arranger and co-producer",
+              "note": "The CD sleeve lists The Rhythm; Dixon identifies the recording as Cosmic’s Funky Mix from COSMIC 008.",
+              "evidence": "Justin Scott Dixon’s firsthand version identification, October 2026; COSMIC 008 release credits."
+            },
+            {
+              "title": "Ah Yeah ('97 Remix)",
+              "scope": "CD track 9",
+              "roles": [
+                "Writer",
+                "Producer"
+              ],
+              "note": "Written and produced solely by Justin Scott Dixon. This is the same version released on COSMIC 012.",
+              "evidence": "Justin Scott Dixon’s firsthand account, October 2026; COSMIC 012 release credits."
+            }
+          ]
+        },
+        {
+          "id": "transformed",
+          "title": "Transformed: The 4 Turntable Mix CD",
+          "artist": "DJ’s Friction & Spice",
+          "date": "1999 — printed © and release listing",
+          "catalogNumber": "StreetBeat Records · SB 1058-2",
+          "format": "CD · four-turntable mix",
+          "roles": [
+            "DJ mix — Friction & Spice"
+          ],
+          "summary": "A twelve-track mix CD released by StreetBeat Records. The cover and disc credit simultaneous mixing by DJ’s Friction & Spice. Presented here after Explorations as part of the duo’s history beyond Cosmic Records.",
+          "gallery": [
+            {
+              "kind": "image",
+              "src": "/reference/friction-spice/transformed-01-source-scan.jpg",
+              "alt": "Transformed — front cover",
+              "caption": "Front cover. Original CD packaging scan; StreetBeat Records, 1999."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/friction-spice/transformed-02-source-scan.jpg",
+              "alt": "Transformed — booklet back and illustration credits",
+              "caption": "Booklet back and illustration credits. Original CD packaging scan; StreetBeat Records, 1999."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/friction-spice/transformed-04-source-scan.jpg",
+              "alt": "Transformed — inside booklet — tracks 1–6",
+              "caption": "Inside booklet — tracks 1–6. Original CD packaging scan; StreetBeat Records, 1999."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/friction-spice/transformed-05-source-scan.jpg",
+              "alt": "Transformed — inside booklet — tracks 7–12",
+              "caption": "Inside booklet — tracks 7–12. Original CD packaging scan; StreetBeat Records, 1999."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/friction-spice/transformed-06-source-scan.jpg",
+              "alt": "Transformed — illustrated inner tray",
+              "caption": "Illustrated inner tray. Original CD packaging scan; StreetBeat Records, 1999."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/friction-spice/transformed-07-source-scan.jpg",
+              "alt": "Transformed — rear tray and spines",
+              "caption": "Rear tray and spines. Original CD packaging scan; StreetBeat Records, 1999."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/friction-spice/transformed-08-source-scan.jpg",
+              "alt": "Transformed — cd face",
+              "caption": "CD face. Original CD packaging scan; StreetBeat Records, 1999."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Transformed — physical packaging and release record",
+              "href": "https://www.discogs.com/release/454109",
+              "supports": "Cover, booklet, rear tray and disc: title, duo mixing credit, StreetBeat label, SB 1058-2 and 1999 copyright."
+            }
+          ],
+          "historySections": [
+            {
+              "title": "Printed track sequence",
+              "intro": "Titles and artists follow the CD packaging; these are selections in the duo’s mix, with the recordings credited to their respective artists.",
+              "items": [
+                {
+                  "title": "01 · Bring H On Down",
+                  "detail": "Biochip C."
+                },
+                {
+                  "title": "02 · Break @ Dawn",
+                  "detail": "Sugarwood"
+                },
+                {
+                  "title": "03 · A Long Night",
+                  "detail": "DJ Hart"
+                },
+                {
+                  "title": "04 · Ride The Funk",
+                  "detail": "DJ Volume"
+                },
+                {
+                  "title": "05 · Step Three",
+                  "detail": "Freestyle Funkboogie Manouvres"
+                },
+                {
+                  "title": "06 · Antheum ’98 (The Digital Blondes’ Future Retro Mix)",
+                  "detail": "The Digital Blondes"
+                },
+                {
+                  "title": "07 · Music Take Control",
+                  "detail": "Control Phreakz"
+                },
+                {
+                  "title": "08 · Do It",
+                  "detail": "DJ Volume"
+                },
+                {
+                  "title": "09 · Break Out",
+                  "detail": "DJ Ed The Red"
+                },
+                {
+                  "title": "10 · Glimmer of Dope Theme",
+                  "detail": "Glimmer of Dope"
+                },
+                {
+                  "title": "11 · E-F-F-E-C-T",
+                  "detail": "321 Crew"
+                },
+                {
+                  "title": "12 · All A Dream",
+                  "detail": "DJ Dic"
+                }
+              ]
+            },
+            {
+              "title": "Illustration and design",
+              "items": [
+                {
+                  "title": "Larry Luter",
+                  "detail": "Illustration, as credited on the booklet."
+                },
+                {
+                  "title": "MARLEY DID IT!",
+                  "detail": "Art direction, coloring and design, as credited on the booklet."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "friction-spice-beatbox-2001",
+          "artist": "Friction & Spice",
+          "title": "Beatbox 2001: Essential Acid Funk",
+          "catalogNumber": "StreetBeat Records · SBD 1037",
+          "date": "1997 — database listing",
+          "format": "StreetBeat Records · CD",
+          "roles": [
+            "DJ mix"
+          ],
+          "summary": "1 · Intergalatic Funk Transmission; 2 · To A Nation Rockin (On A Long Journey); 3 · Planet; 4 · My Planet; 5 · Rhythm Rockin'; 6 · Sole Survivor; 7 · Electrofied (Original Mix); 8 · Soul Music (Get On Your Funkin' Knees Mix); 9 · Don't Stop; 10 · Slipped Disk (Original Mix); 11 · Break In (Transatlantic Move Mix); 12 · Groove Me; 13 · Work 4 Love (Old School Remix)",
+          "gallery": [
+            {
+              "kind": "image",
+              "src": "/reference/friction-spice/436680-cover-source.jpg",
+              "alt": "Beatbox 2001: Essential Acid Funk — original release cover",
+              "caption": "Original release cover, preserved from the linked edition record."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Discogs edition record",
+              "href": "https://www.discogs.com/release/436680",
+              "supports": "Physical packaging confirms the title, label and duo contribution."
+            }
+          ]
+        },
+        {
+          "id": "friction-spice-freestyle-millennium",
+          "artist": "Freestyle 2000",
+          "title": "Don't Stop The Rock: The Millennium Mixes",
+          "catalogNumber": "Pandisc · PD 8928-2",
+          "date": "1999 — database listing",
+          "format": "Pandisc · CD",
+          "roles": [
+            "Remix"
+          ],
+          "summary": "5 · In Your Face (DJ's Friction & Spice Remix); 8 · Count Me In (DJ's Friction & Spice Remix)",
+          "gallery": [
+            {
+              "kind": "image",
+              "src": "/reference/friction-spice/59620-cover-source.jpg",
+              "alt": "Don't Stop The Rock: The Millennium Mixes — original release cover",
+              "caption": "Original release cover, preserved from the linked edition record."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Discogs edition record",
+              "href": "https://www.discogs.com/release/59620",
+              "supports": "Physical packaging confirms the title, label and duo contribution."
+            }
+          ]
+        },
+        {
+          "id": "friction-spice-discogs-5029270",
+          "artist": "Various artists · Friction & Spice appearance",
+          "title": "Meio-Dia E Dance - Extra FM 103,9",
+          "catalogNumber": "Paradoxx Music · OXX 1601-1",
+          "date": "1996 — database listing",
+          "format": "Paradoxx Music · CD",
+          "roles": [
+            "Compilation appearance"
+          ],
+          "summary": "Friction & Spice: 8 · You Make Me Feel So Good. Track appearance documented in the linked edition listing.",
+          "gallery": [
+            {
+              "kind": "image",
+              "src": "/reference/friction-spice/5029270-cover-source.jpg",
+              "alt": "Meio-Dia E Dance - Extra FM 103,9 — original release cover",
+              "caption": "Original release cover, preserved from the linked edition record."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Discogs edition record",
+              "href": "https://www.discogs.com/release/5029270",
+              "supports": "Edition catalogue, credited artist and track appearance. Database metadata; packaging review required for small-print credits."
+            }
+          ]
+        },
+        {
+          "id": "friction-spice-discogs-8113982",
+          "artist": "Various artists · Friction & Spice appearance",
+          "title": "Electro Dance Mix",
+          "catalogNumber": "Max Music · MXD-2036",
+          "date": "1996 — database listing",
+          "format": "Max Music · CD",
+          "roles": [
+            "Compilation appearance"
+          ],
+          "summary": "Friction & Spice: 14 · Get Down To The Funky Beat. Track appearance documented in the linked edition listing.",
+          "gallery": [
+            {
+              "kind": "image",
+              "src": "/reference/friction-spice/8113982-cover-source.jpg",
+              "alt": "Electro Dance Mix — original release cover",
+              "caption": "Original release cover, preserved from the linked edition record."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Discogs edition record",
+              "href": "https://www.discogs.com/release/8113982",
+              "supports": "Edition catalogue, credited artist and track appearance. Database metadata; packaging review required for small-print credits."
+            }
+          ]
+        },
+        {
+          "id": "friction-spice-discogs-65543",
+          "artist": "Simply Jeff",
+          "title": "Funk-Da-Fried",
+          "catalogNumber": "City Of Angels · COA 70014-2",
+          "date": "1997 — database listing",
+          "format": "City Of Angels · CD",
+          "roles": [
+            "Compilation appearance"
+          ],
+          "summary": "Friction & Spice: 10 · Groove Me. Track appearance documented in the linked edition listing.",
+          "gallery": [
+            {
+              "kind": "image",
+              "src": "/reference/friction-spice/65543-cover-source.jpg",
+              "alt": "Funk-Da-Fried — original release cover",
+              "caption": "Original release cover, preserved from the linked edition record."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Discogs edition record",
+              "href": "https://www.discogs.com/release/65543",
+              "supports": "Edition catalogue, credited artist and track appearance. Database metadata; packaging review required for small-print credits."
+            }
+          ]
+        },
+        {
+          "id": "friction-spice-discogs-289733",
+          "artist": "Various artists · Friction & Spice appearance",
+          "title": "Electro Breakz 3",
+          "catalogNumber": "StreetBeat Records · SBD-1035",
+          "date": "1997 — database listing",
+          "format": "StreetBeat Records · CD",
+          "roles": [
+            "Compilation appearance"
+          ],
+          "summary": "Friction & Spice: 9 · Rhythm Rockin'. Track appearance documented in the linked edition listing.",
+          "gallery": [
+            {
+              "kind": "image",
+              "src": "/reference/friction-spice/289733-cover-source.jpg",
+              "alt": "Electro Breakz 3 — original release cover",
+              "caption": "Original release cover, preserved from the linked edition record."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Discogs edition record",
+              "href": "https://www.discogs.com/release/289733",
+              "supports": "Edition catalogue, credited artist and track appearance. Database metadata; packaging review required for small-print credits."
+            }
+          ]
+        },
+        {
+          "id": "friction-spice-discogs-711765",
+          "artist": "Chris Fortier",
+          "title": "Alpha",
+          "catalogNumber": "Fade Records · FDCD 001",
+          "date": "1997 — database listing",
+          "format": "Fade Records · CD",
+          "roles": [
+            "Compilation appearance"
+          ],
+          "summary": "Friction & Spice: 9 · You Make Me Feel So Good '97. Track appearance documented in the linked edition listing.",
+          "gallery": [
+            {
+              "kind": "image",
+              "src": "/reference/friction-spice/711765-cover-source.jpg",
+              "alt": "Alpha — original release cover",
+              "caption": "Original release cover, preserved from the linked edition record."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Discogs edition record",
+              "href": "https://www.discogs.com/release/711765",
+              "supports": "Edition catalogue, credited artist and track appearance. Database metadata; packaging review required for small-print credits."
+            }
+          ]
+        },
+        {
+          "id": "friction-spice-discogs-1277291",
+          "artist": "Various artists · Friction & Spice appearance",
+          "title": "Electro Avengers - Attack On Planet Funk 1",
+          "catalogNumber": "Streetbeat Records · SBD1018",
+          "date": "1997 — database listing",
+          "format": "Streetbeat Records · CD",
+          "roles": [
+            "Compilation appearance"
+          ],
+          "summary": "Friction & Spice: 04 · Digital Overload. Track appearance documented in the linked edition listing.",
+          "gallery": [
+            {
+              "kind": "image",
+              "src": "/reference/friction-spice/1277291-cover-source.jpg",
+              "alt": "Electro Avengers - Attack On Planet Funk 1 — original release cover",
+              "caption": "Original release cover, preserved from the linked edition record."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Discogs edition record",
+              "href": "https://www.discogs.com/release/1277291",
+              "supports": "Edition catalogue, credited artist and track appearance. Database metadata; packaging review required for small-print credits."
+            }
+          ]
+        },
+        {
+          "id": "friction-spice-discogs-128485",
+          "artist": "Various artists · Friction & Spice appearance",
+          "title": "Acid X-Mas",
+          "catalogNumber": "StreetBeat Records · SBD 1032 / SBD1032",
+          "date": "1997 — database listing",
+          "format": "StreetBeat Records · CD",
+          "roles": [
+            "Compilation appearance"
+          ],
+          "summary": "Friction & Spice: 2 · Frosties X-Mas Dub. Track appearance documented in the linked edition listing.",
+          "gallery": [
+            {
+              "kind": "image",
+              "src": "/reference/friction-spice/128485-cover-source.jpg",
+              "alt": "Acid X-Mas — original release cover",
+              "caption": "Original release cover, preserved from the linked edition record."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Discogs edition record",
+              "href": "https://www.discogs.com/release/128485",
+              "supports": "Edition catalogue, credited artist and track appearance. Database metadata; packaging review required for small-print credits."
+            }
+          ]
+        },
+        {
+          "id": "friction-spice-discogs-59708",
+          "artist": "DJ John Kelley",
+          "title": "FunkyDesertBreaks 2",
+          "catalogNumber": "Moonshine Music · MM 80068-2",
+          "date": "1997 — database listing",
+          "format": "Moonshine Music · CD",
+          "roles": [
+            "Compilation appearance"
+          ],
+          "summary": "Friction & Spice: 3 · You Make Me Feel So Good. Track appearance documented in the linked edition listing.",
+          "gallery": [
+            {
+              "kind": "image",
+              "src": "/reference/friction-spice/59708-cover-source.jpg",
+              "alt": "FunkyDesertBreaks 2 — original release cover",
+              "caption": "Original release cover, preserved from the linked edition record."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Discogs edition record",
+              "href": "https://www.discogs.com/release/59708",
+              "supports": "Edition catalogue, credited artist and track appearance. Database metadata; packaging review required for small-print credits."
+            }
+          ]
+        },
+        {
+          "id": "friction-spice-discogs-4425192",
+          "artist": "Various artists · Friction & Spice appearance",
+          "title": "DJ Ricardo Guedes Technofrequency",
+          "catalogNumber": "Paradoxx Music · 1009029-1",
+          "date": "1997 — database listing",
+          "format": "Paradoxx Music · CD",
+          "roles": [
+            "Compilation appearance"
+          ],
+          "summary": "Friction & Spice: 5 · Feel So Good. Track appearance documented in the linked edition listing.",
+          "gallery": [
+            {
+              "kind": "image",
+              "src": "/reference/friction-spice/4425192-cover-source.jpg",
+              "alt": "DJ Ricardo Guedes Technofrequency — original release cover",
+              "caption": "Original release cover, preserved from the linked edition record."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Discogs edition record",
+              "href": "https://www.discogs.com/release/4425192",
+              "supports": "Edition catalogue, credited artist and track appearance. Database metadata; packaging review required for small-print credits."
+            }
+          ]
+        },
+        {
+          "id": "friction-spice-discogs-7176090",
+          "artist": "DJ Hardware",
+          "title": "Phunky Breaks From The Vault Vol.I",
+          "catalogNumber": "Toxik Recordings · AURCD-4705",
+          "date": "1997 — database listing",
+          "format": "Toxik Recordings · CD",
+          "roles": [
+            "Compilation appearance"
+          ],
+          "summary": "Friction & Spice: 3 · Future Funk. Track appearance documented in the linked edition listing.",
+          "gallery": [
+            {
+              "kind": "image",
+              "src": "/reference/friction-spice/7176090-cover-source.jpg",
+              "alt": "Phunky Breaks From The Vault Vol.I — original release cover",
+              "caption": "Original release cover, preserved from the linked edition record."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Discogs edition record",
+              "href": "https://www.discogs.com/release/7176090",
+              "supports": "Edition catalogue, credited artist and track appearance. Database metadata; packaging review required for small-print credits."
+            }
+          ]
+        },
+        {
+          "id": "friction-spice-discogs-65835",
+          "artist": "Simply Jeff",
+          "title": "Funk-Da-Fried Two (The Sequel)",
+          "catalogNumber": "City Of Angels · COA 70018-2",
+          "date": "1998 — database listing",
+          "format": "City Of Angels · CD",
+          "roles": [
+            "Compilation appearance"
+          ],
+          "summary": "Friction & Spice: 15 · Work For Love. Track appearance documented in the linked edition listing.",
+          "gallery": [
+            {
+              "kind": "image",
+              "src": "/reference/friction-spice/65835-cover-source.jpg",
+              "alt": "Funk-Da-Fried Two (The Sequel) — original release cover",
+              "caption": "Original release cover, preserved from the linked edition record."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Discogs edition record",
+              "href": "https://www.discogs.com/release/65835",
+              "supports": "Edition catalogue, credited artist and track appearance. Database metadata; packaging review required for small-print credits."
+            }
+          ]
+        },
+        {
+          "id": "friction-spice-discogs-3898657",
+          "artist": "B-Side",
+          "title": "Dragon Lounge Volume One",
+          "catalogNumber": "Champion Sound (2) · none",
+          "date": "1998 — database listing",
+          "format": "Champion Sound (2) · Cassette",
+          "roles": [
+            "Compilation appearance"
+          ],
+          "summary": "Friction & Spice: A14 · In The Mind. Track appearance documented in the linked edition listing.",
+          "gallery": [
+            {
+              "kind": "image",
+              "src": "/reference/friction-spice/3898657-cover-source.jpg",
+              "alt": "Dragon Lounge Volume One — original release cover",
+              "caption": "Original release cover, preserved from the linked edition record."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Discogs edition record",
+              "href": "https://www.discogs.com/release/3898657",
+              "supports": "Edition catalogue, credited artist and track appearance. Database metadata; packaging review required for small-print credits."
+            }
+          ]
+        },
+        {
+          "id": "friction-spice-discogs-4679165",
+          "artist": "Various artists · Friction & Spice appearance",
+          "title": "Aural Sects",
+          "catalogNumber": "Red Distribution · RED PRO-001",
+          "date": "1998 — database listing",
+          "format": "Red Distribution · CD",
+          "roles": [
+            "Compilation appearance"
+          ],
+          "summary": "Friction & Spice: 13 · Rhythm Rockin'. Track appearance documented in the linked edition listing.",
+          "gallery": [
+            {
+              "kind": "image",
+              "src": "/reference/friction-spice/4679165-cover-source.jpg",
+              "alt": "Aural Sects — original release cover",
+              "caption": "Original release cover, preserved from the linked edition record."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Discogs edition record",
+              "href": "https://www.discogs.com/release/4679165",
+              "supports": "Edition catalogue, credited artist and track appearance. Database metadata; packaging review required for small-print credits."
+            }
+          ]
+        },
+        {
+          "id": "friction-spice-discogs-5757202",
+          "artist": "Rick West",
+          "title": "Flavored Beats",
+          "catalogNumber": "Painted Puppy Productions · PP201",
+          "date": "1998 — database listing",
+          "format": "Painted Puppy Productions · CD",
+          "roles": [
+            "Compilation appearance"
+          ],
+          "summary": "Friction & Spice: 6 · Go With The Flow. Track appearance documented in the linked edition listing.",
+          "gallery": [
+            {
+              "kind": "image",
+              "src": "/reference/friction-spice/5757202-cover-source.jpg",
+              "alt": "Flavored Beats — original release cover",
+              "caption": "Original release cover, preserved from the linked edition record."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Discogs edition record",
+              "href": "https://www.discogs.com/release/5757202",
+              "supports": "Edition catalogue, credited artist and track appearance. Database metadata; packaging review required for small-print credits."
+            }
+          ]
+        },
+        {
+          "id": "friction-spice-discogs-9887972",
+          "artist": "DJ Rob-E",
+          "title": "Orlando Breakz Volume 1",
+          "catalogNumber": "Phattraxx Records, Inc. · none",
+          "date": "1998 — database listing",
+          "format": "Phattraxx Records, Inc. · CD",
+          "roles": [
+            "Compilation appearance"
+          ],
+          "summary": "Friction & Spice: 2 · Rhythm Rockin'; 7 · Groove Me (Remix). Track appearance documented in the linked edition listing.",
+          "gallery": [
+            {
+              "kind": "image",
+              "src": "/reference/friction-spice/9887972-cover-source.jpg",
+              "alt": "Orlando Breakz Volume 1 — original release cover",
+              "caption": "Original release cover, preserved from the linked edition record."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Discogs edition record",
+              "href": "https://www.discogs.com/release/9887972",
+              "supports": "Edition catalogue, credited artist and track appearance. Database metadata; packaging review required for small-print credits."
+            }
+          ]
+        },
+        {
+          "id": "friction-spice-discogs-100280",
+          "artist": "DJ Hardware",
+          "title": "Phunky Breaks From The Vault Vol. II",
+          "catalogNumber": "Aureus Records · AU-4713-2",
+          "date": "1998 — database listing",
+          "format": "Aureus Records · CD",
+          "roles": [
+            "Compilation appearance"
+          ],
+          "summary": "Friction & Spice: 6 · Go With The Flow. Track appearance documented in the linked edition listing.",
+          "gallery": [
+            {
+              "kind": "image",
+              "src": "/reference/friction-spice/100280-cover-source.jpg",
+              "alt": "Phunky Breaks From The Vault Vol. II — original release cover",
+              "caption": "Original release cover, preserved from the linked edition record."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Discogs edition record",
+              "href": "https://www.discogs.com/release/100280",
+              "supports": "Edition catalogue, credited artist and track appearance. Database metadata; packaging review required for small-print credits."
+            }
+          ]
+        },
+        {
+          "id": "friction-spice-discogs-73517",
+          "artist": "Various artists · Friction & Spice appearance",
+          "title": "State Of Independents",
+          "catalogNumber": "Muzik Magazine · Muzik SI 99",
+          "date": "1999 — database listing",
+          "format": "Muzik Magazine · CD",
+          "roles": [
+            "Compilation appearance"
+          ],
+          "summary": "Friction & Spice: 14 · In The Mind. Track appearance documented in the linked edition listing.",
+          "gallery": [
+            {
+              "kind": "image",
+              "src": "/reference/friction-spice/73517-cover-source.jpg",
+              "alt": "State Of Independents — original release cover",
+              "caption": "Original release cover, preserved from the linked edition record."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Discogs edition record",
+              "href": "https://www.discogs.com/release/73517",
+              "supports": "Edition catalogue, credited artist and track appearance. Database metadata; packaging review required for small-print credits."
+            }
+          ]
+        },
+        {
+          "id": "friction-spice-discogs-1279387",
+          "artist": "Various artists · Friction & Spice appearance",
+          "title": "Maximum Boom For Your System Volume 3",
+          "catalogNumber": "Pandisc · PD 8945-2",
+          "date": "1999 — database listing",
+          "format": "Pandisc · CD",
+          "roles": [
+            "Compilation appearance"
+          ],
+          "summary": "Friction & Spice: 1-14 · Digital Overload. Track appearance documented in the linked edition listing.",
+          "gallery": [
+            {
+              "kind": "image",
+              "src": "/reference/friction-spice/1279387-cover-source.jpg",
+              "alt": "Maximum Boom For Your System Volume 3 — original release cover",
+              "caption": "Original release cover, preserved from the linked edition record."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Discogs edition record",
+              "href": "https://www.discogs.com/release/1279387",
+              "supports": "Edition catalogue, credited artist and track appearance. Database metadata; packaging review required for small-print credits."
+            }
+          ]
+        },
+        {
+          "id": "friction-spice-discogs-234719",
+          "artist": "DJ X",
+          "title": "Funky Breakz",
+          "catalogNumber": "Xquizit Records · XRCD4589",
+          "date": "2000 — database listing",
+          "format": "Xquizit Records · CD",
+          "roles": [
+            "Compilation appearance"
+          ],
+          "summary": "Friction & Spice: 6 · Groove Me (Remix). Track appearance documented in the linked edition listing.",
+          "gallery": [
+            {
+              "kind": "image",
+              "src": "/reference/friction-spice/234719-cover-source.jpg",
+              "alt": "Funky Breakz — original release cover",
+              "caption": "Original release cover, preserved from the linked edition record."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Discogs edition record",
+              "href": "https://www.discogs.com/release/234719",
+              "supports": "Edition catalogue, credited artist and track appearance. Database metadata; packaging review required for small-print credits."
+            }
+          ]
+        },
+        {
+          "id": "friction-spice-discogs-3155637",
+          "artist": "DJ Ricardo Guedes",
+          "title": "Flash Techno Nonstop",
+          "catalogNumber": "PARADOXX Music · 1005010-1",
+          "date": "2001 — database listing",
+          "format": "PARADOXX Music · CD",
+          "roles": [
+            "Compilation appearance"
+          ],
+          "summary": "Friction & Spice: 14 · Feel So Good. Track appearance documented in the linked edition listing.",
+          "gallery": [
+            {
+              "kind": "image",
+              "src": "/reference/friction-spice/3155637-cover-source.jpg",
+              "alt": "Flash Techno Nonstop — original release cover",
+              "caption": "Original release cover, preserved from the linked edition record."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Discogs edition record",
+              "href": "https://www.discogs.com/release/3155637",
+              "supports": "Edition catalogue, credited artist and track appearance. Database metadata; packaging review required for small-print credits."
+            }
+          ]
+        },
+        {
+          "id": "friction-spice-discogs-4231607",
+          "artist": "Kyngnova",
+          "title": "Orlando Breakz V.04",
+          "catalogNumber": "Topaz · TZ-2643-2",
+          "date": "2001 — database listing",
+          "format": "Topaz · CD",
+          "roles": [
+            "Compilation appearance"
+          ],
+          "summary": "Friction & Spice: 17 · Rock The House. Track appearance documented in the linked edition listing.",
+          "gallery": [
+            {
+              "kind": "image",
+              "src": "/reference/friction-spice/4231607-cover-source.jpg",
+              "alt": "Orlando Breakz V.04 — original release cover",
+              "caption": "Original release cover, preserved from the linked edition record."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Discogs edition record",
+              "href": "https://www.discogs.com/release/4231607",
+              "supports": "Edition catalogue, credited artist and track appearance. Database metadata; packaging review required for small-print credits."
+            }
+          ]
+        },
+        {
+          "id": "friction-spice-discogs-3028093",
+          "artist": "Various artists · Friction & Spice appearance",
+          "title": "The Ultimate Drum&Bass Collection",
+          "catalogNumber": "Warlock Records · WR-2906-2",
+          "date": "2005 — database listing",
+          "format": "Warlock Records · CD, Box Set",
+          "roles": [
+            "Compilation appearance"
+          ],
+          "summary": "Friction & Spice: 5-17 · Rock The House. Track appearance documented in the linked edition listing.",
+          "gallery": [
+            {
+              "kind": "image",
+              "src": "/reference/friction-spice/3028093-cover-source.jpg",
+              "alt": "The Ultimate Drum&Bass Collection — original release cover",
+              "caption": "Original release cover, preserved from the linked edition record."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Discogs edition record",
+              "href": "https://www.discogs.com/release/3028093",
+              "supports": "Edition catalogue, credited artist and track appearance. Database metadata; packaging review required for small-print credits."
             }
           ]
         }
       ],
       "relatedRecordIds": [
         "groove-me-anniversary"
+      ],
+      "credentialsIncludes": [
+        {
+          "recordId": "singles-remixes",
+          "childId": "nc-01"
+        },
+        {
+          "recordId": "singles-remixes",
+          "childId": "nc-08"
+        },
+        {
+          "recordId": "singles-remixes",
+          "childId": "nc-05"
+        },
+        {
+          "recordId": "singles-remixes",
+          "childId": "nc-14"
+        },
+        {
+          "recordId": "singles-remixes",
+          "childId": "nc-17"
+        },
+        {
+          "recordId": "groove-me-anniversary"
+        }
       ]
     },
     {
@@ -1840,9 +2963,10 @@
           "date": "Edition date under review",
           "format": "Moonshine Music · photographed edition",
           "roles": [
-            "Contribution documented by edition"
+            "Additional production",
+            "Engineer"
           ],
-          "summary": "the sticker names DJ’s Friction & Spice among the remixers. The exact contributed track/mix is not established by the photographed C side.",
+          "summary": "Blow (AK1200 Remix): remix by AK1200; additional production and engineering credited to J.S.D. at Cosmic Studio on the photographed C-side label.",
           "gallery": [
             {
               "kind": "image",
@@ -1855,6 +2979,18 @@
               "src": "/reference/singles-remixes/nc-03-img-5168.jpg",
               "alt": "Keoki — Altered-Ego-Trip (The Remix Album), photographed edition IMG_5168",
               "caption": "Altered-Ego-Trip (The Remix Album) — archive photograph IMG_5168."
+            }
+          ],
+          "credits": [
+            {
+              "title": "Blow (AK1200 Remix)",
+              "scope": "C2 · photographed MM 80090-1 vinyl edition",
+              "roles": [
+                "Additional production",
+                "Engineer"
+              ],
+              "collaborators": "Remix: AK1200. Additional production and engineering: J.S.D. at Cosmic Studio.",
+              "evidence": "Original artist-supplied photograph IMG_5168; C-side label directly inspected on 14 October 2026."
             }
           ]
         },
@@ -2002,7 +3138,7 @@
           "roles": [
             "Contribution documented by edition"
           ],
-          "summary": "Photographed edition in the artist archive. Track-level credits remain qualified in the detailed research.",
+          "summary": "Friction & Spice — Step Into My Dream appears on the full Sunshine State of Mind album. This sleeve edition is distinct from the four-track vinyl sampler.",
           "gallery": [
             {
               "kind": "image",
@@ -2022,6 +3158,11 @@
               "label": "Displayed full-compilation CD reference",
               "href": "https://www.discogs.com/release/100276",
               "supports": "Printed CD catalogue 162 531 098-2 and track 5 Step Into My Dream; the owner’s physical sleeve edition remains unassigned."
+            },
+            {
+              "label": "Sunshine State of Mind — CD track listing",
+              "href": "https://www.discogs.com/release/100276",
+              "supports": "Documents Step Into My Dream on the full album; photographed sleeve and sampler remain separate edition records."
             }
           ]
         },

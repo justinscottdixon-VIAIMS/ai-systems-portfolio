@@ -1,0 +1,9 @@
+:root {
+ --viaims-ink:#eee2ce;
+ --viaims-muted:#bfb09a;
+ --viaims-brass:#987346;
+ --viaims-border:#6c5333;
+ --viaims-panel:radial-gradient(ellipse at 0 0,#a26c271b,transparent 65%),repeating-linear-gradient(0deg,#ffffff02 0 1px,transparent 1px 3px),#14110d;
+ --viaims-control:linear-gradient(180deg,#292116,#17140f);
+ --viaims-selected:linear-gradient(115deg,#80592e,#523b22 65%,#35291a);
+}

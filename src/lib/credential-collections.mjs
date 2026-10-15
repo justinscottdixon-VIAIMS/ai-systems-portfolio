@@ -78,8 +78,10 @@ export function toCredentialCollections(normalizedRecords) {
   }
 
   return normalizedRecords.filter(record => record.credentialsCollection === undefined).map(record => {
-    const members = membersByParent.get(record.id);
-    if (!members) return record;
+    const members = membersByParent.get(record.id) ?? [];
+    const includes = record.credentialsIncludes ?? [];
+    if (!Array.isArray(includes)) throw new TypeError(`invalid credential includes: ${record.id}`);
+    if (!members.length && !includes.length) return record;
     const collection = {
       ...record,
       children: record.children.map(child => ({
@@ -105,6 +107,23 @@ export function toCredentialCollections(normalizedRecords) {
         } else {
           collection.children.push(releaseChild(member));
         }
+      }
+    }
+    // Reuse canonical editions in an artist history without moving their original archive.
+    // Explicit array order is editorial: a related release can follow the label catalogue.
+    for (const reference of includes) {
+      const original = recordsById.get(reference?.recordId);
+      if (!original || original === record) throw new TypeError(`invalid credential include target: ${record.id}`);
+      if (reference.childId !== undefined) {
+        const child = original.children.find(item => item.id === reference.childId);
+        if (!child) throw new TypeError(`missing credential include child: ${original.id}/${reference.childId}`);
+        collection.children.push({
+          ...child, id: `${original.id}-${child.id}`,
+          sourceArchiveHref: archiveHref(original, child), contextRecords: [],
+        });
+      } else {
+        if (original.children.length) throw new TypeError(`credential include requires child: ${original.id}`);
+        collection.children.push(releaseChild(original));
       }
     }
     assertUniqueChildren(collection);

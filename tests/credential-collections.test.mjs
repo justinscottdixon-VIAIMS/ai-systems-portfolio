@@ -129,7 +129,7 @@ test('rejects collisions with existing or flattened child IDs', () => {
   ]), /duplicate credential collection child id/);
 });
 
-test('actual catalogue groups into 9 roots and 69 release editions while preserving canonical archives', async () => {
+test('actual catalogue groups into 9 roots and 101 release views while preserving canonical archives', async () => {
   const data = JSON.parse(await readFile(new URL('../src/data/portfolio-records.json', import.meta.url), 'utf8'));
   const canonical = toPortfolioRecords(data);
   const membershipKinds = new Map([
@@ -153,8 +153,8 @@ test('actual catalogue groups into 9 roots and 69 release editions while preserv
   assert.equal(originalParent.children.length, 18);
   assert.equal(parent.children.length, 52);
   assert.equal(new Set(parent.children.map(item => item.id)).size, 52);
-  assert.equal(input.reduce((total, item) => total + item.children.length, 0), 64);
-  assert.equal(output.reduce((total, item) => total + item.children.length, 0), 69);
+  assert.equal(input.reduce((total, item) => total + item.children.length, 0), 90);
+  assert.equal(output.reduce((total, item) => total + item.children.length, 0), 101);
   assert.deepEqual(parent.children.slice(0, 18).map(item => item.id), originalParent.children.map(item => item.id));
   assert.deepEqual(parent.contextRecords.map(item => item.id), ['production-engineering-credits', 'compilation-appearances', 'chart-history']);
 
@@ -183,7 +183,12 @@ test('actual catalogue groups into 9 roots and 69 release editions while preserv
   const sourceKeys = sources => sources.map(item => JSON.stringify([item.href, item.supports]));
   assert.deepEqual(sourceKeys(projectedOne.publicSources), [...new Set(sourceKeys([...existingOne.publicSources, ...one.publicSources]))]);
   const creditsCount = records => records.reduce((total, item) => total + item.children.reduce((sum, edition) => sum + edition.credits.length, 0), 0);
-  assert.equal(creditsCount(output), creditsCount(input));
+  const cosmic = output.find(item => item.id === 'cosmic-records-history');
+  const includedCredits = cosmic.children.filter(item => item.id.startsWith('singles-remixes-')).reduce((sum, child) => sum + child.credits.length, 0);
+  assert.equal(creditsCount(output), creditsCount(input) + includedCredits);
+  assert.equal(cosmic.children.length, 49);
+  assert.equal(cosmic.children[18].id, 'transformed');
+  assert.equal(cosmic.children.at(-1).id, 'groove-me-anniversary');
 
   // Archive callers retain all canonical routes, replacing only roots that received enrichment.
   const enrichedById = new Map(output.map(item => [item.id, item]));
@@ -192,4 +197,30 @@ test('actual catalogue groups into 9 roots and 69 release editions while preserv
   assert.deepEqual(archiveRecords.map(item => archiveHref(item)), input.map(item => archiveHref(item)));
   for (const item of input.filter(item => membershipKinds.has(item.id))) assert.equal(archiveRecords.find(entry => entry.id === item.id), item);
   assert.equal(JSON.stringify(input), snapshot);
+});
+
+
+test('ordered cross-references reuse editions and their canonical links without moving or mutating them', () => {
+  const editions = record('editions', { children: [child('first'), child('second')] });
+  const anniversary = record('anniversary');
+  const parent = record('parent', { children: [child('label-last'), child('transformed')], credentialsIncludes: [
+    { recordId: 'editions', childId: 'second' }, { recordId: 'anniversary' },
+  ] });
+  const input = freeze([parent, editions, anniversary]);
+  const snapshot = JSON.stringify(input);
+  const output = toCredentialCollections(input);
+  assert.deepEqual(output[0].children.map(item => item.id), ['label-last', 'transformed', 'editions-second', 'anniversary']);
+  assert.equal(output[0].children[2].gallery, editions.children[1].gallery);
+  assert.equal(output[0].children[2].sourceArchiveHref, '/archive/editions/#second');
+  assert.equal(output[0].children[3].sourceArchiveHref, '/archive/anniversary/');
+  assert.equal(output[1], editions);
+  assert.equal(JSON.stringify(input), snapshot);
+});
+
+test('cross-references reject missing releases, missing editions, self references and duplicates', () => {
+  const editions = record('editions', { children: [child('first')] });
+  for (const reference of [{ recordId: 'unknown' }, { recordId: 'parent' }, { recordId: 'editions' }, { recordId: 'editions', childId: 'missing' }]) {
+    assert.throws(() => toCredentialCollections([record('parent', { credentialsIncludes: [reference] }), editions]), /credential include/);
+  }
+  assert.throws(() => toCredentialCollections([record('parent', { credentialsIncludes: [{ recordId: 'editions', childId: 'first' }, { recordId: 'editions', childId: 'first' }] }), editions]), /duplicate credential collection child/);
 });

@@ -92,7 +92,7 @@ const evidenceLabels = {
 								<p class="reference-stage__summary">{record.summary}</p>
 								<a href={archiveHref(record)} target="_blank" rel="noopener noreferrer">READ FULL RECORD ↗</a>
 								{Object.keys(record.catalog ?? {}).length > 0 && <div class="reference-stage__catalog">{Object.entries(record.catalog).map(([label, value]) => <span><b>{label.replaceAll(/([A-Z])/g, ' $1')}</b>{value}</span>)}</div>}
-									{record.id === 'singles-remixes' && <nav class="reference-stage__collection-index" aria-label="Browse music releases and context"><h3>Browse this collection</h3>{record.children.map(child => <button type="button" data-reference-jump={`${record.id}-${child.id}`}>{child.title}</button>)}{(record.contextRecords ?? []).map(context => <button type="button" data-reference-jump={`${record.id}-context-${context.id}`}>{context.title}</button>)}</nav>}
+									{['singles-remixes', 'cosmic-records-history'].includes(record.id) && <nav class="reference-stage__collection-index" aria-label="Browse music releases and context"><h3>Browse this collection</h3>{record.children.map(child => <button type="button" data-reference-jump={`${record.id}-${child.id}`}>{child.title}</button>)}{(record.contextRecords ?? []).map(context => <button type="button" data-reference-jump={`${record.id}-context-${context.id}`}>{context.title}</button>)}</nav>}
 							</section>
 							{record.gallery.slice(hasStandaloneReleaseGallery(record) ? record.gallery.length : 1).map((item, imageIndex) => item.kind === 'image' && <section class="reference-stage__slide reference-stage__artwork-page" data-reference-slide data-slide-label={`${record.title} — artwork ${imageIndex + 2}`} hidden>
 								<header class="reference-stage__sequence"><span>{record.title}</span><span>ARTWORK {imageIndex + 2} / {record.gallery.length}</span></header>
@@ -103,7 +103,7 @@ const evidenceLabels = {
                                 const canFlipLabel = record.id === 'cosmic-records-history' && artworkImages.length === 2 && artworkImages.every(item => item.src.includes('-circle-'));
                                 return (<Fragment>
                                   <article class="reference-stage__slide reference-stage__child-page" data-reference-slide data-slide-label={child.title} id={`${record.id}-${child.id}`} hidden>
-                                    <div class="reference-stage__child-art">{canFlipLabel ? <CosmicLabelFlip front={artworkImages[0]} back={artworkImages[1]} title={child.title} /> : artworkImages.length > 1 ? <ReleaseArtworkGallery images={artworkImages} title={child.title} /> : child.gallery[0].kind === 'image' ? <img src={child.gallery[0].src} alt={child.gallery[0].alt} loading="lazy" decoding="async" /> : <div role="img" aria-label={child.gallery[0].alt}>ARTWORK PENDING</div>}</div>
+                                    <div class="reference-stage__child-art">{canFlipLabel ? <CosmicLabelFlip front={artworkImages[0]} back={artworkImages[1]} title={child.title} /> : artworkImages.length > 1 ? <ReleaseArtworkGallery images={artworkImages} title={child.title} labels={child.id === 'cosmic-018' ? ['Front cover', 'Booklet back', 'Booklet inside', 'Rear tray and spines', 'CD face', 'Outside spread overview'] : []} /> : child.gallery[0].kind === 'image' ? <img src={child.gallery[0].src} alt={child.gallery[0].alt} loading="lazy" decoding="async" /> : <div role="img" aria-label={child.gallery[0].alt}>ARTWORK PENDING</div>}</div>
                                     <div class="reference-stage__child-copy">
                                       <span>RELEASE {String(childIndex + 1).padStart(2, '0')} / {String(record.children.length).padStart(2, '0')}</span><h3>{child.title}</h3><strong>{child.artist}</strong>
                                       <dl><div><dt>CATALOG</dt><dd>{child.catalogNumber}</dd></div><div><dt>DATE</dt><dd>{child.date}</dd></div><div><dt>FORMAT</dt><dd>{child.format}</dd></div></dl>
@@ -120,7 +120,7 @@ const evidenceLabels = {
                             </article>)}
                             {record.sections.map((section, sectionIndex) => (
 								<section class="reference-stage__slide reference-stage__dossier-page" data-reference-slide data-slide-label={section.title} data-content-density={section.items.length <= 3 && JSON.stringify(section).length < 1800 ? "light" : "regular"} hidden>
-									<header><span>SECTION {String(sectionIndex + 1).padStart(2, '0')}</span><h3>{section.title}</h3></header>{section.intro && <p>{section.intro}</p>}<ol>{section.items.map((item) => <li><time>{item.date}</time><div><strong>{item.title}</strong><p>{item.detail}</p></div></li>)}</ol>
+									<header><span>SECTION {String(sectionIndex + 1).padStart(2, '0')}</span><h3>{section.title}</h3></header>{section.intro && <p>{section.intro}</p>}<ol>{section.items.map((item) => <li><time>{item.date}</time><div><strong>{item.title}</strong><p>{item.detail}</p>{item.href && <a href={item.href} target="_blank" rel="noopener noreferrer">Read the source ↗</a>}</div></li>)}</ol>
 								</section>
 							))}
 							<section class="reference-stage__slide reference-stage__slide--sources" data-reference-slide data-slide-label="Sources" hidden>

@@ -1,0 +1,72 @@
+---
+import media from '../data/friction-spice-media.json';
+const videoHref = (id, seconds) => `https://www.youtube.com/watch?v=${id}${seconds ? `&t=${seconds}s` : ''}`;
+---
+<section id="further-resources" class="archive-section media-resources" aria-labelledby="resources-heading">
+  <p class="eyebrow">CONTINUE EXPLORING</p>
+  <h2 id="resources-heading">Further reading & listening</h2>
+  <p>Published coverage, radio archives, artist recordings and community listening resources.</p>
+  <div class="resource-grid">{media.resources.map(item => <article class="resource-card">
+    <p class="media-kind">{item.kind}</p>
+    <h3><a href={item.href} target="_blank" rel="noopener noreferrer">{item.title} ↗</a></h3>
+    <p>{item.detail}</p>
+  </article>)}</div>
+</section>
+<section id="watch-listen" class="archive-section dossier-media" aria-labelledby="watch-heading">
+  <p class="eyebrow">FRICTION & SPICE · MOVING PICTURES & SOUND</p>
+  <h2 id="watch-heading">Watch & listen on YouTube</h2>
+  <p>An extended interview, reunion footage, full mixes and individual recordings. Each link opens the uploader’s YouTube page.</p>
+  <nav class="media-jumps" aria-label="YouTube collection">
+    <a href="#video-interview">Interview</a>
+    {media.videoGroups.map(group => <a href={`#${group.id}`}>{group.title}</a>)}
+  </nav>
+  <article id="video-interview" class="interview-feature" aria-labelledby="interview-heading">
+    <p class="media-kind">IN CONVERSATION · SUPER PROGRESSIVE</p>
+    <h3 id="interview-heading">{media.interview.title}</h3>
+    <p class="interview-meta">{media.interview.subtitle}</p>
+    <p>{media.interview.detail}</p>
+    <a class="watch-link" href={media.interview.href} target="_blank" rel="noopener noreferrer"><span aria-hidden="true">▶</span> Watch the full interview ↗</a>
+    <h4>Jump into the Cosmic story</h4>
+    <ol class="interview-chapters">{media.interview.chapters.map(chapter => <li><a href={videoHref('R6sa-Mg2YaM', chapter.seconds)} target="_blank" rel="noopener noreferrer"><time>{chapter.time}</time><span>{chapter.title} ↗</span></a></li>)}</ol>
+    <p class="media-note">Topic links combine the publisher’s chapters with passages identified in the interview transcript. Production memories are attributed to Dixon.</p>
+  </article>
+  {media.videoGroups.map(group => <section id={group.id} class="video-group" aria-labelledby={`${group.id}-heading`}>
+    <h3 id={`${group.id}-heading`}>{group.title}</h3><p>{group.intro}</p>
+    <div class="video-grid">{group.items.map(item => <article class="video-card">
+      <p class="media-kind">{item.kind}</p>
+      <h4><a href={videoHref(item.videoId)} target="_blank" rel="noopener noreferrer"><span class="video-play" aria-hidden="true">▶</span>{item.title} ↗</a></h4>
+      <p class="video-channel">Uploaded by {item.channel}</p>
+      <p>{item.detail}</p>
+      {item.archiveHref && <a class="related-source" href={item.archiveHref}>See the release in this dossier ↑</a>}
+      {item.sourceHref && <a class="related-source" href={item.sourceHref} target="_blank" rel="noopener noreferrer">{item.sourceLabel} ↗</a>}
+    </article>)}</div>
+  </section>)}
+  <p class="media-note">Links checked 14 October 2026. Community upload titles and dates describe those uploads; they do not replace original release credits or establish official upload status. External availability may change.</p>
+</section>
+<style>
+  .media-resources, .dossier-media, .interview-feature, .video-group { scroll-margin-top: 1.5rem; }
+  .resource-grid, .video-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+  .resource-card, .video-card { border: 1px solid #82765380; padding: 1.5rem; background: #ffffff03; min-width: 0; }
+  .resource-card h3, .video-card h4 { font-size: 1.25rem; line-height: 1.4; margin: .65rem 0; }
+  .resource-card p, .video-card p { line-height: 1.65; }
+  .media-kind { font: .75rem/1.6 ui-monospace, monospace; color: #d0b47e; letter-spacing: .07em; }
+  .media-jumps { display: flex; flex-wrap: wrap; gap: .75rem 1.5rem; margin: 1.5rem 0 2rem; }
+  .interview-feature { border: 1px solid #b59a62; background: linear-gradient(125deg, #b69b6420, #15130f); padding: clamp(1.25rem, 4vw, 3rem); margin: 2rem 0 3rem; }
+  .interview-feature h3 { font: 500 clamp(1.6rem, 3vw, 2.5rem)/1.2 Georgia, serif; max-width: 24ch; margin: 1rem 0; }
+  .interview-feature h4 { margin: 2rem 0 1rem; font-size: 1.2rem; }
+  .interview-meta, .video-channel { color: #d3c6ad; font-size: .9rem; }
+  .watch-link { display: inline-flex; align-items: center; gap: .8rem; padding: .85rem 1.2rem; border: 1px solid #b59a62; margin-top: .7rem; text-decoration: none; }
+  .interview-chapters { list-style: none; padding: 0; margin: 0; }
+  .interview-chapters li { border-bottom: 1px solid #82765360; }
+  .interview-chapters a { display: grid; grid-template-columns: 5.2rem 1fr; align-items: baseline; gap: .6rem; padding: .9rem 0; text-decoration: none; line-height: 1.5; }
+  .interview-chapters time { color: #d0b47e; font: .9rem/1.5 ui-monospace, monospace; }
+  .video-group { margin: 3rem 0; }
+  .video-group > h3 { font-size: 1.65rem; }
+  .video-card h4 a { display: flex; align-items: baseline; gap: .7rem; text-decoration: none; }
+  .video-play { color: #d0b47e; font-size: .9rem; }
+  .related-source { display: inline-block; font-size: .85rem; margin-top: .5rem; }
+  .media-note { font-size: .85rem; line-height: 1.65; color: #bbae96; margin-top: 1.5rem; }
+  a:hover { color: #f6d894; }
+  a:focus-visible { outline: 2px solid #f6d894; outline-offset: 5px; }
+  @media (max-width: 680px) { .resource-grid, .video-grid { grid-template-columns: 1fr; } .resource-card, .video-card { padding: 1.2rem; } }
+</style>

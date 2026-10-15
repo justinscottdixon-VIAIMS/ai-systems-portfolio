@@ -34,11 +34,13 @@ function dossierSection(section, label) {
   if (!section || !Array.isArray(section.items) || section.items.length === 0) throw new TypeError(`${label} requires items`);
   return {
     title: text(section.title, `${label} title`),
+    ...(section.placement === 'after-releases' ? { placement: 'after-releases' } : {}),
     intro: section.intro ? text(section.intro, `${label} intro`) : undefined,
     items: section.items.map((item, itemIndex) => ({
       title: text(item.title, `${label} item ${itemIndex} title`),
       date: item.date ? text(item.date, `${label} item ${itemIndex} date`) : undefined,
       detail: text(item.detail, `${label} item ${itemIndex} detail`),
+      ...(item.href ? { href: httpsUrl(item.href, `${label} item ${itemIndex} link`) } : {}),
     })),
   };
 }

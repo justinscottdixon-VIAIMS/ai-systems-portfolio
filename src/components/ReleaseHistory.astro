@@ -2,7 +2,7 @@
 interface HistorySection {
   title: string;
   intro?: string;
-  items: { title: string; date?: string; detail: string }[];
+  items: { title: string; date?: string; href?: string; detail: string }[];
 }
 
 interface Props {
@@ -23,7 +23,7 @@ const ItemHeading = headingLevel === 3 ? 'h4' : 'h5';
       {section.items.map(item => <li>
         <ItemHeading class="release-history__item-heading">{item.title}</ItemHeading>
         {item.date && <p class="release-history__date">{item.date}</p>}
-        <p>{item.detail}</p>
+        <p>{item.detail}</p>{item.href && <a href={item.href} target="_blank" rel="noopener noreferrer">Read the source ↗</a>}
       </li>)}
     </ol>
   </section>)}

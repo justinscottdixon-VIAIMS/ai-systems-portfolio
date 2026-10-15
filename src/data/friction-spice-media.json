@@ -1,0 +1,233 @@
+{
+  "checked": "2026-10-14",
+  "interview": {
+    "title": "Voyager: From Analogue, to Digital, to Atmos",
+    "subtitle": "Super Progressive · SP014 · 5 October 2022 · 3:04:50",
+    "href": "https://www.youtube.com/watch?v=R6sa-Mg2YaM",
+    "detail": "Justin Scott Dixon discusses his musical beginnings, the move to Orlando, early Cosmic productions and the evolution of Voyager. The interview preserves his firsthand recollections.",
+    "chapters": [
+      {
+        "time": "53:37",
+        "seconds": 3217,
+        "title": "Moving to Orlando and production"
+      },
+      {
+        "time": "1:00:37",
+        "seconds": 3637,
+        "title": "Groove Me: production and listening commentary"
+      },
+      {
+        "time": "1:11:30",
+        "seconds": 4290,
+        "title": "You Make Me Feel So Good and the progressive direction"
+      },
+      {
+        "time": "1:22:49",
+        "seconds": 4969,
+        "title": "Pure and The Beat Brothers"
+      },
+      {
+        "time": "1:25:01",
+        "seconds": 5101,
+        "title": "The larger studio, Trixta and the Sasha story"
+      },
+      {
+        "time": "2:15:48",
+        "seconds": 8148,
+        "title": "Time Travel: production recollections"
+      }
+    ]
+  },
+  "videoGroups": [
+    {
+      "id": "reunion-footage",
+      "title": "Reunion footage",
+      "intro": "Audience recordings, identified by their uploaders. Event dates are distinct from upload dates.",
+      "items": [
+        {
+          "title": "Firestone Reunion Party · 30 August 2014",
+          "videoId": "XqQY7aRjgrE",
+          "channel": "dandoonah12",
+          "kind": "Audience footage · 1:24",
+          "detail": "Uploaded 31 August 2014. The uploader identifies Friction & Spice at the Firestone reunion.",
+          "sourceHref": "https://www.orlandoweekly.com/arts/23-fun-things-to-do-in-orlando-this-week-8-27-9-2-30944815/",
+          "sourceLabel": "Orlando Weekly’s reunion listing"
+        },
+        {
+          "title": "Cyberzone Reunion 2010 · live-set excerpt",
+          "videoId": "o0qBEnA0ELY",
+          "channel": "elaine31347",
+          "kind": "Audience footage · 7:11",
+          "detail": "Uploaded 14 February 2010. The uploader identifies the second annual Cyberzone reunion and notes bass distortion in the recording."
+        },
+        {
+          "title": "Cyberzone Reunion 2010 · “Stay in Love”",
+          "videoId": "6ur-exV5PEA",
+          "channel": "elaine31347",
+          "kind": "Audience footage · 4:22",
+          "detail": "A second audience clip, titled “Stay in Love” by its uploader, recorded in the club’s main room."
+        }
+      ]
+    },
+    {
+      "id": "album-mixes",
+      "title": "Full album mixes",
+      "intro": "Community uploads of the released mixes. Original release details remain in the catalogue above.",
+      "items": [
+        {
+          "title": "Explorations",
+          "videoId": "sKOPf1bAeV0",
+          "channel": "Tunes Tomb",
+          "kind": "Full album mix · community upload",
+          "detail": "The upload identifies Cosmic Records CR 51001-2 and provides a nine-track timestamped listing.",
+          "archiveHref": "#cosmic-018"
+        },
+        {
+          "title": "Transformed: The 4 Turntable Mix",
+          "videoId": "sK4usZz9IF8",
+          "channel": "Tunes Tomb",
+          "kind": "Full mix · community upload",
+          "detail": "A full-length upload of the StreetBeat release that follows Explorations in this dossier.",
+          "archiveHref": "#transformed"
+        },
+        {
+          "title": "Beatbox 2001: Essential Acid Funk",
+          "videoId": "uiurwhtITLk",
+          "channel": "EvilNeedlePC",
+          "kind": "Full mix · community upload",
+          "detail": "Includes an uploader-supplied timestamped track list."
+        }
+      ]
+    },
+    {
+      "id": "youtube-tracks",
+      "title": "Tracks & versions on YouTube",
+      "intro": "Artist-channel uploads lead the selection, followed by the distributor’s Topic upload and collector uploads.",
+      "items": [
+        {
+          "title": "Groove Me (Original)",
+          "videoId": "KwDLNGPVJVc",
+          "channel": "Justin Scott Dixon | VIAIMS",
+          "kind": "Artist-channel upload",
+          "detail": "From Justin’s channel.",
+          "archiveHref": "#groove-me"
+        },
+        {
+          "title": "Future Funk",
+          "videoId": "PGkhm-Fb018",
+          "channel": "Justin Scott Dixon | VIAIMS",
+          "kind": "Artist-channel upload",
+          "detail": "From Justin’s channel."
+        },
+        {
+          "title": "Groove Me",
+          "videoId": "xaHGcpf6edU",
+          "channel": "DJ’s Friction & Spice – Topic",
+          "kind": "Distributor-delivered audio",
+          "detail": "YouTube’s description credits delivery by Virgin Music Group."
+        },
+        {
+          "title": "The Rhythm (Cosmic’s Funky Mix)",
+          "videoId": "U7i1cFxh718",
+          "channel": "Rave Reunited",
+          "kind": "Collector upload",
+          "detail": "The uploader identifies the Cosmic 008 version.",
+          "archiveHref": "#cosmic-008"
+        },
+        {
+          "title": "Ah Yeah (97 RMX)",
+          "videoId": "k9rlM8gyf6I",
+          "channel": "Stellerex",
+          "kind": "Collector upload",
+          "detail": "Uploader description names Justin Scott Dixon and Jeff Alderson."
+        },
+        {
+          "title": "You Make Me Feel So Good (Friction’s Original Concept)",
+          "videoId": "gkJc2nDe_aE",
+          "channel": "Andrew Fountain",
+          "kind": "Collector upload",
+          "detail": "Original Concept version, under the uploader’s title.",
+          "archiveHref": "#cosmic-003"
+        },
+        {
+          "title": "Alright (Breakbeat Mix)",
+          "videoId": "7Xibs-CGvCw",
+          "channel": "J.F.P.T. BREAKBEAT",
+          "kind": "Collector upload",
+          "detail": "Listed by the uploader as a Get Jazzed Up track.",
+          "archiveHref": "#cosmic-016"
+        },
+        {
+          "title": "Work 4 Love (Back To The Old School Mix)",
+          "videoId": "rKMRTB3yXbk",
+          "channel": "13Monkeys Vinyl-Shop",
+          "kind": "Record-shop upload",
+          "detail": "The Three Wise Monkeys meet DJs Friction & Spice.",
+          "archiveHref": "#cosmic-013"
+        }
+      ]
+    }
+  ],
+  "resources": [
+    {
+      "title": "The Reunion 2014 — Orlando Weekly",
+      "kind": "Published event listing · 27 August 2014",
+      "href": "https://www.orlandoweekly.com/arts/23-fun-things-to-do-in-orlando-this-week-8-27-9-2-30944815/",
+      "detail": "Names Friction and Spice in the August 30 reunion lineup alongside 2 Bad Mice, DJ Icey, AK1200 and other Orlando DJs."
+    },
+    {
+      "title": "Aquatic Bass 3 — Orlando Culture Shock",
+      "kind": "Firsthand event report · Patrick Scott Barnes · 25 September 2014",
+      "href": "https://orlandocultureshock.wordpress.com/2014/09/25/aquatic-bass-3-an-exciting-day-of-bikinis-and-bass/",
+      "detail": "Barnes recalls the duo’s music and reports seeing Spice perform with Jason Brown. This appearance is Spice’s, rather than a Friction & Spice duo set."
+    },
+    {
+      "title": "Friction & Spice on NTS",
+      "kind": "Broadcast archive",
+      "href": "https://www.nts.live/artists/99916-friction-spice",
+      "detail": "NTS collects appearances of the duo’s tracks across shows including Jenkem Magazine, Kasra V, WHY BE, Situationship and Hell Of A Club."
+    },
+    {
+      "title": "Groove Me — anniversary remixes",
+      "kind": "SoundCloud artist profile",
+      "href": "https://soundcloud.com/djsfrictionspice",
+      "detail": "Six versions, including the DJ Knightlife & Seth Vogt, Mariion Christiian and Borka FM remixes."
+    },
+    {
+      "title": "Ah Yeah — 97 RMX",
+      "kind": "Voyager’s SoundCloud archive",
+      "href": "https://soundcloud.com/jsdvoyager/ah-yeah-97-rmx-djs-friction",
+      "detail": "An artist-posted recording with a long-running listener-comment history."
+    },
+    {
+      "title": "You Make Me Feel So Good",
+      "kind": "Voyager’s SoundCloud archive",
+      "href": "https://soundcloud.com/jsdvoyager/djs-friction-spice-you-make-me-feel-so-good",
+      "detail": "Artist-posted original version and recording recollection; recording dates and release dates are kept separate."
+    },
+    {
+      "title": "Explorations — Mixcloud",
+      "kind": "Community listening archive · Jim",
+      "href": "https://www.mixcloud.com/Gooderenamug/dj-friction-dj-spice-explorations/",
+      "detail": "An alternative listening source for the continuous mix."
+    },
+    {
+      "title": "Transformed — Mixcloud",
+      "kind": "Community listening archive · Probable Cauz",
+      "href": "https://www.mixcloud.com/jason-moreno/djs-friction-spice-transformed/",
+      "detail": "An alternative full-mix upload with listener discussion."
+    },
+    {
+      "title": "Groove Me — Twenty Fifth Anniversary Remix Edition",
+      "kind": "Release and credits · Qobuz",
+      "href": "https://www.qobuz.com/us-en/album/groove-me-twenty-fifth-anniversary-remix-edition-djs-friction-spice/hrpm3q05yuzdb",
+      "detail": "Voyager Recordings’ six-track edition, with individual remix and writing credits."
+    },
+    {
+      "title": "Groove Me — Bazco & Alex Clubbers Remix",
+      "kind": "Remixer’s SoundCloud post · 15 February 2024",
+      "href": "https://soundcloud.com/alex-clubbers/djs-friction-spice3-groove-me-bazco-alex-clubbers-remix-out-now-on-bandcamp",
+      "detail": "The remixer’s announcement and listening page for the later edition."
+    }
+  ]
+}

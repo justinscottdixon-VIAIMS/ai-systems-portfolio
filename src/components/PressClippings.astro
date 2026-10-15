@@ -1,0 +1,101 @@
+---
+import feature from '../data/friction-spice-press.json';
+const assets = '/reference/press-clippings';
+---
+<section id="press-clippings" class="archive-section press-archive" aria-labelledby="press-heading">
+  <p class="eyebrow">FROM THE PRESS ARCHIVE</p>
+  <h2 id="press-heading">Articles & interviews</h2>
+  <p>Features, conversations and reviews documenting Friction & Spice and the music of Cosmic Records.</p>
+  <article id="synergy-feature" aria-labelledby="synergy-heading">
+    <header class="press-intro">
+      <p class="eyebrow">{feature.publication} · PAGE {feature.page}</p>
+      <h3 id="synergy-heading">{feature.title}</h3>
+      <p>By {feature.byline} · {feature.date}</p>
+      <p class="muted">From the magazine page supplied by Justin Scott Dixon. This enlarged reading edition preserves the printed wording, with line breaks rejoined. The headline is AI-enhanced; the studio image is an enhanced color interpretation selected by Dixon. The article and equipment list are typeset from the original.</p>
+      <nav class="press-jumps" aria-label="Synergy feature sections">
+        <a href="#synergy-article-1">Read the article</a>
+        <a href="#synergy-studio">Inside the studio</a>
+        <a href="#synergy-original">Original page</a>
+      </nav>
+    </header>
+    <figure class="press-banner">
+      <a href={`${assets}/synergy-headline-enhanced-v1.png`} target="_blank" rel="noopener noreferrer"><img src={`${assets}/synergy-headline-enhanced-v1.png`} alt="Friction & Spice — A Journey Through the Depths of Cosmic: restored magazine headline" loading="lazy" decoding="async" /></a>
+      <figcaption>Original headline design · AI-enhanced reading edition</figcaption>
+    </figure>
+    <section id="synergy-article-1" class="press-paper" aria-labelledby="synergy-part-one">
+      <h4 id="synergy-part-one" class="panel-label">SYNERGY · ARTICLE · 1 / 2</h4>
+      <div class="press-copy">{feature.paragraphs.slice(0, 3).map(text => <p>{text}</p>)}</div>
+      <a class="paper-next" href="#synergy-article-2">Continue reading ↓</a>
+    </section>
+    <section id="synergy-article-2" class="press-paper" aria-labelledby="synergy-part-two">
+      <h4 id="synergy-part-two" class="panel-label">SYNERGY · ARTICLE · 2 / 2</h4>
+      <div class="press-copy">{feature.paragraphs.slice(3).map(text => <p>{text}</p>)}<p class="press-byline">&lt;{feature.byline}&gt;</p></div>
+    </section>
+    <section id="synergy-studio" class="press-studio" aria-labelledby="synergy-studio-heading">
+      <p class="panel-label">SYNERGY · STUDIO SIDEBAR</p>
+      <h4 id="synergy-studio-heading">{feature.sidebarTitle}</h4>
+      <p class="studio-intro">{feature.sidebarIntro}</p>
+      <figure>
+        <a href={`${assets}/synergy-studio-selected-final-v1.png`} target="_blank" rel="noopener noreferrer"><img src={`${assets}/synergy-studio-selected-final-v1.png`} width="1637" height="961" alt="Friction and Spice in their studio with keyboards, mixing desk, speakers and computer; artist-selected AI-colorized interpretation" loading="lazy" decoding="async" /></a>
+        <figcaption>Studio photograph · Artist-selected AI-colorized interpretation. <a href="#synergy-original">Compare with the original page ↓</a></figcaption>
+      </figure>
+      <dl class="studio-equipment">{feature.equipment.map(([name, model], index) => <div><dt>{index + 1}) {name}:</dt><dd>{model}</dd></div>)}</dl>
+    </section>
+    <p class="press-note">The magazine’s spellings, release claims and equipment names are retained as printed. They document what the article reported; the catalogue’s separately sourced release records remain the reference for release metadata.</p>
+    <details id="synergy-original" class="press-original">
+      <summary>View the original Synergy page · page 14</summary>
+      <figure><a href={`${assets}/synergy-original-page.jpg`} target="_blank" rel="noopener noreferrer"><img src={`${assets}/synergy-original-page.jpg`} alt="Complete original photograph of Synergy page 14, including feature, studio sidebar, byline and magazine logo" loading="lazy" decoding="async" /></a><figcaption>Unaltered photograph supplied by the artist. Open the image at full resolution.</figcaption></figure>
+    </details>
+  </article>
+  <section class="press-reviews" aria-labelledby="press-reviews-heading">
+    <h3 id="press-reviews-heading">Selected review excerpts</h3>
+    <p class="muted">Short excerpts, with links to read each complete source.</p>
+    <article>
+      <p class="eyebrow">THE COURIER · 6 FEBRUARY 1997 · PAGE 6</p>
+      <h4>The Rhythm</h4>
+      <figure><a href={`${assets}/courier-rhythm-excerpt-v1.png`} target="_blank" rel="noopener noreferrer"><img src={`${assets}/courier-rhythm-excerpt-v1.png`} alt="Enlarged excerpt from The Courier’s review of The Rhythm; full excerpt transcribed below" loading="lazy" decoding="async" /></a><figcaption>AI-enhanced excerpt · omissions marked […]</figcaption></figure>
+      <blockquote>DJ Friction and DJ Spice really spice up this week with ‘The Rhythm’ (Cosmic). […] Also has a good progressive mix on the flip.</blockquote>
+      <a href="https://courierarchive.ncl.ac.uk/sites/default/files/1997-02-06.pdf#page=6" target="_blank" rel="noopener noreferrer">Read the original newspaper page ↗</a>
+    </article>
+    <article>
+      <p class="eyebrow">FORTE · 11 JULY 2019</p>
+      <h4>Millú selects Groove Me (Dub)</h4>
+      <p>In Tammy Walters’ feature on Millú’s rave selections, Millú singles out the track and its piano passage.</p>
+      <blockquote>This track gets my vote as the best from DJs Friction &amp; Spice, […]</blockquote>
+      <a href="https://www.fortemagazine.com.au/heres-five-90s-rave-tracks-to-hype-you-up-for-red-bulls-1800-doof-this-month/" target="_blank" rel="noopener noreferrer">Read the feature at Forte ↗</a>
+    </article>
+  </section>
+</section>
+<style>
+  .press-archive { scroll-margin-top: 2rem; }
+  .press-intro { margin: 2.5rem 0 1.5rem; }
+  .press-intro h3 { font-size: clamp(1.5rem, 3vw, 2.2rem); max-width: 30ch; }
+  .press-jumps { display: flex; gap: 1rem 1.5rem; flex-wrap: wrap; margin: 1.5rem 0; }
+  .press-archive figure { margin: 0; }
+  .press-archive img { width: 100%; height: auto; display: block; }
+  .press-archive figcaption { font-size: .875rem; line-height: 1.5; padding: .8rem 0; }
+  .press-banner { margin-bottom: 1.5rem !important; }
+  .press-paper { background: #eee9dc; color: #25231f; padding: clamp(1.25rem, 4.5vw, 3.5rem); border: 1px solid #b8ad94; margin: 1.5rem 0; scroll-margin-top: 1.5rem; }
+  .panel-label { font: 600 .78rem/1.5 ui-monospace, monospace; letter-spacing: .13em; margin: 0 0 1.8rem; }
+  .press-copy { max-width: 65ch; margin-inline: auto; font: 1.125rem/1.85 Georgia, 'Times New Roman', serif; }
+  .press-copy p { margin: 0 0 1.25em; }
+  .press-copy p:last-child { margin-bottom: 0; }
+  .press-byline { text-align: right; }
+  .paper-next { display: block; color: inherit; margin-top: 1.8rem; }
+  .press-studio { background: #161614; color: #f0ede5; border: 1px solid #827653; padding: clamp(1.25rem, 4.5vw, 3rem); margin: 2rem 0 1rem; scroll-margin-top: 1.5rem; }
+  .press-studio h4 { font: italic 2.3rem/1.2 Georgia, serif; margin: 0 0 1.4rem; }
+  .studio-intro { font-size: 1.1rem; line-height: 1.65; max-width: 65ch; }
+  .press-studio figure { margin: 1.5rem 0; }
+  .studio-equipment { margin: 1.5rem 0 0; font-size: 1.05rem; }
+  .studio-equipment div { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem 1.2rem; padding: .85rem 0; border-bottom: 1px solid #ffffff24; }
+  .studio-equipment dt { font-weight: 650; }
+  .studio-equipment dd { margin: 0; text-align: right; font-style: italic; }
+  .press-note { font-size: .9rem; line-height: 1.65; opacity: .8; }
+  .press-original { border: 1px solid #827653; padding: 1.25rem; margin: 1.5rem 0 3rem; scroll-margin-top: 1.5rem; }
+  summary { cursor: pointer; font-weight: 600; }
+  .press-original figure { margin-top: 1.25rem; }
+  .press-reviews > article { border-top: 1px solid #827653; padding: 2rem 0; }
+  .press-reviews h4 { font-size: 1.5rem; margin: .75rem 0 1.25rem; }
+  .press-reviews blockquote { margin: 1.5rem 0; padding-left: 1.25rem; border-left: 2px solid #c0a16a; font: 1.15rem/1.7 Georgia, serif; }
+  @media (max-width: 520px) { .studio-equipment div { grid-template-columns: 1fr; gap: .25rem; } .studio-equipment dd { text-align: left; padding-left: 1.5rem; } .press-copy { font-size: 1.0625rem; line-height: 1.8; } }
+</style>

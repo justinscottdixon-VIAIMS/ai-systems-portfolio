@@ -31,7 +31,11 @@ test('portfolio record model validates and chronologically sorts the public pilo
 test('expanded archive preserves the corrected Cosmic sequence and approved artwork', async () => {
   const source = JSON.parse(await readFile(recordsUrl, 'utf8'));
   const cosmic = source.records.find(record => record.id === 'cosmic-records-history');
-  assert.equal(cosmic.children.length, 17);
+  assert.equal(cosmic.children.length, 43);
+  assert.equal(cosmic.children[17].id, 'cosmic-018');
+  assert.equal(cosmic.children[18].id, 'transformed');
+  assert.match(cosmic.children[18].catalogNumber, /StreetBeat/);
+  assert.equal(cosmic.children.some(child => child.catalogNumber.includes('COSMIC 019')), false);
   assert.equal(cosmic.sortDate, '1996-01-01');
   assert.equal(cosmic.children[4].title, 'Trixta / Friction');
   assert.equal(cosmic.children[16].title, 'Time Travel E.P.');

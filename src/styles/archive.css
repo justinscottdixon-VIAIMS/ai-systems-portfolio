@@ -1,3 +1,4 @@
+@import "./warm-theme.css";
 :root { color-scheme: dark; font-family: system-ui, sans-serif; color: #e9e6df; background: #101113; --gold: #b59b66; }
 * { box-sizing: border-box; }
 body { margin: 0; }
@@ -55,6 +56,19 @@ figcaption { padding: 12px 0; line-height: 1.6; }
   .archive-facts { grid-template-columns: 1fr; gap: 18px; }
 }
 
+/* Archive pages share the player and dossier materials. */
+:root { background:#0d0c09; color:var(--viaims-ink); --gold:#cbaa76; }
+body { background:radial-gradient(ellipse at 0 0,#71451d20,transparent 60%); }
+.archive-nav,.archive-search,.archive-contents,.archive-section { border-color:var(--viaims-border); }
+.archive-results { gap:1rem; }
+.archive-result { padding:1.4rem; border:1px solid var(--viaims-border); border-radius:.6rem; background:var(--viaims-panel); box-shadow:inset 0 1px 0 #f3ca7d18; }
+input,select,button { background:var(--viaims-control); border-color:var(--viaims-brass); color:var(--viaims-ink); border-radius:.3rem; }
+.lead,.muted,figcaption,.archive-footer,.source-list p { color:var(--viaims-muted); }
+.artist { color:var(--viaims-ink); }
+.archive-art { padding:1rem; border:1px solid var(--viaims-border); border-radius:.6rem; background:var(--viaims-panel); }
+.archive-art img { border-radius:.3rem; }
+.art-pending { border-color:var(--viaims-border); background:var(--viaims-panel); }
+
 /* Preserve the transparent perimeter of Cosmic label derivatives. */
 .archive-art:has(img[src*="cosmic-"][src*="-circle-"]) {
   border: 0;
@@ -63,3 +77,27 @@ figcaption { padding: 12px 0; line-height: 1.6; }
   box-shadow: none;
 }
 .archive-art img[src*="cosmic-"][src*="-circle-"] { border-radius: 0; background: transparent; }
+
+/* Keep the color-matched Cosmic 005 derivative within its paper perimeter. */
+img[src$="cosmic-005-label-a-color-matched-circle-v2.png"] { clip-path: circle(48.5% at 49.7% 49.7%); }
+
+/* Explorations is a physical CD package: preserve joined spreads at reading width. */
+#cosmic-018.release-record { grid-template-columns: minmax(0, 1fr); }
+#cosmic-018 .archive-packaging-heading h2 { margin-block: .5rem; }
+#cosmic-018 .archive-packaging { display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; align-items: start; }
+#cosmic-018 .archive-art { width: 100%; max-width: 680px; justify-self: center; min-width: 0; scroll-margin-top: 24px; }
+#cosmic-018 .archive-art:first-child { grid-column: 1 / -1; max-width: 680px; justify-self: center; }
+#cosmic-018 .archive-art--spread { grid-column: 1 / -1; max-width: none; }
+#cosmic-018 .archive-art a { display: block; cursor: zoom-in; }
+@media (max-width: 680px) {
+  #cosmic-018 .archive-packaging { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  #cosmic-018 .archive-art { padding: .6rem; }
+}
+
+/* Keep the Transformed release cover beside its credits, then show the package below. */
+.archive-package-panels { grid-column: 1 / -1; min-width: 0; }
+.archive-package-panels__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; align-items: start; }
+.archive-package-panels__grid .archive-art { margin: 0; }
+.archive-package-panels__grid .archive-art img { width: 100%; height: auto; object-fit: contain; }
+.archive-package-panels__grid .archive-art:first-child { grid-column: 1 / -1; width: min(100%, 600px); justify-self: center; }
+@media (max-width: 680px) { .archive-package-panels__grid { grid-template-columns: minmax(0, 1fr); } }
