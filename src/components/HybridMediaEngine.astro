@@ -219,7 +219,7 @@ const evidenceLabels = {
 		<div class="media-library__tabs" role="tablist" aria-label="Media Library" data-player-tabs>
 			<button id="tab-cinema" type="button" role="tab" aria-selected="true" aria-controls="panel-cinema" tabindex="0" data-media-tab="cinema">CINEMA</button>
 			<button id="tab-music" type="button" role="tab" aria-selected="false" aria-controls="panel-music" tabindex="-1" data-media-tab="music">MUSIC</button>
-			<button id="tab-media" type="button" role="tab" aria-selected="false" aria-controls="panel-media" tabindex="-1" data-media-tab="media">MEDIA</button>
+			{library.media.length > 0 && <button id="tab-media" type="button" role="tab" aria-selected="false" aria-controls="panel-media" tabindex="-1" data-media-tab="media">MEDIA</button>}
 			<button id="tab-youtube" type="button" role="tab" aria-selected="false" aria-controls="panel-youtube" tabindex="-1" data-media-tab="youtube">YOUTUBE</button>
 			{credentialsEnabled && <button id="tab-credentials" type="button" data-open-reference="" aria-controls="reference-stage" aria-label="Explore Credentials">CREDENTIALS</button>}
 		</div>
