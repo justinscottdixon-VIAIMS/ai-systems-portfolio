@@ -43,3 +43,11 @@ node scripts/prepare-publisher-service.mjs --root '/path/to/VIAIMS Publishing' -
 Install the prepared `com.viaims.media-publisher.plist` from the root's `.viaims-publisher` directory into the owner's `~/Library/LaunchAgents`, then bootstrap it in their GUI login session. This installation is a host change; verify the intended root and existing service before installing. Tokens are read from the existing environment file and are not embedded in the plist or runtime. The Node executable and ffmpeg/ffprobe must remain installed.
 
 For manual audit-only scans use `npm run media:publisher -- --root '/path/to/VIAIMS Publishing' --once`. The first scan observes new files; repeat after the settling interval to audit them. Omit `--once` to keep scanning. Actual uploads require `--publish --env-file /path/to/existing/.env.local`.
+
+## Complete local playlist reference
+
+`LIVE PLAYLISTS.txt` in the publishing root lists every published Cinema, Music and Media title in website order, including older releases whose originals remain elsewhere. `LIVE REGISTRY.json` is the validated machine-readable copy; `LIVE PLAYLISTS STATUS.txt` reports freshness or a failed refresh.
+
+Each player folder has a generated `Published Playlist` directory containing numbered `.webloc` shortcuts and a `PLAYLIST.txt`. Sort Finder by Name to see the sequence; open a shortcut to play the hosted media online. These are links, not offline media copies. New exports still go directly into the parent Cinema, Music or Media folder. The watcher ignores the reference directories and `README.txt`.
+
+The local service refreshes this reference about once a minute. A failed read retains the last successful lists and records a generic failure status. Reconciliation removes only unchanged, previously generated shortcuts; unrelated or edited files are preserved. Editing or renaming a reference does not change the public playlist. Manual ordering remains a separate pending connection. No media or catalogue writes are performed by the reference refresh.

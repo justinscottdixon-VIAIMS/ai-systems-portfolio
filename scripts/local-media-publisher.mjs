@@ -5,6 +5,7 @@ import { setTimeout as delay } from 'node:timers/promises';
 import { createApprovedCatalogueStore } from '../src/lib/approved-catalogue-store.mjs';
 import { acquirePublisherLock, createPublisherWatcher } from './publisher-watcher.mjs';
 import { publishAuditedFile } from './publisher-upload.mjs';
+import { refreshLocalPlaylistLibrary } from './publisher-library.mjs';
 
 export async function loadPublisherToken(filename) {
   if (filename) {
@@ -34,12 +35,18 @@ export async function main(args = process.argv.slice(2)) {
   });
   const release = await acquirePublisherLock(watcher.stateDirectory);
   let stop = false;
+  let nextLibraryRefresh = 0;
   const halt = () => { stop = true; pause.abort(); };
   process.once('SIGTERM', halt);
   process.once('SIGINT', halt);
   try {
     do {
       await watcher.scan();
+      if (store && !stop && Date.now() >= nextLibraryRefresh) {
+        nextLibraryRefresh = Date.now() + 60_000;
+        try { await refreshLocalPlaylistLibrary({ root: values.root, store, signal: pause.signal }); }
+        catch { console.error('Local playlist reference could not refresh. Publication continues; check folder permissions.'); }
+      }
       if (values.once || stop) break;
       await delay(5000, undefined, { signal: pause.signal }).catch(error => { if (error.name !== 'AbortError') throw error; });
     } while (!stop);

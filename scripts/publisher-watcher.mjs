@@ -4,6 +4,7 @@ import { pipeline } from 'node:stream/promises';
 import path from 'node:path';
 import { createHash } from 'node:crypto';
 import { AuditHold, auditSnapshot } from './publisher-audit.mjs';
+import { LIBRARY_DIRECTORY } from './publisher-library.mjs';
 
 const PROVIDERS = ['Cinema', 'Music', 'Media'];
 async function sidecarSignature(source) {
@@ -78,7 +79,7 @@ export async function createPublisherWatcher({ root, publish = false, publisher,
         const entries = await fs.readdir(path.join(root, provider), { withFileTypes: true });
         for (const entry of entries.sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true }))) {
           signal?.throwIfAborted();
-          if (entry.name.startsWith('.') || entry.name.endsWith('.json')) continue;
+          if (entry.name.startsWith('.') || entry.name.endsWith('.json') || entry.name.toLowerCase() === 'readme.txt' || (entry.isDirectory() && entry.name === LIBRARY_DIRECTORY)) continue;
           const key = `${provider}/${entry.name}`; seen.add(key);
           const source = path.join(root, provider, entry.name);
           const stat = await fs.lstat(source);
