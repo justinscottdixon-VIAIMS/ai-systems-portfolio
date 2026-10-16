@@ -3,7 +3,6 @@ import { publicProfile, publicContact } from '../lib/public-site.mjs';
 const contact = publicContact(process.env.VIAIMS_PUBLIC_CONTACT ?? publicProfile.contact);
 ---
 <section class="public-introduction" aria-labelledby="public-introduction-title">
- <span class="public-brand__logo" aria-hidden="true"></span>
  <div>
   <p class="public-introduction__label">SOUND · VISION · SYSTEMS</p>
   <h2 id="public-introduction-title">Music, moving image and creative technology.</h2>
@@ -15,11 +14,15 @@ const contact = publicContact(process.env.VIAIMS_PUBLIC_CONTACT ?? publicProfile
   <p>For music production, spatial audio and visual collaborations, share a brief outline of your project, the intended deliverables and your timeframe.</p>
   <a class="public-introduction__cta" href={contact}>Discuss a project ↗</a>
  </div>}
+ <div class="public-brand" role="img" aria-label="VIAIMS — Sound / Vision / Systems">
+  <img class="public-brand__logo" src="/brand/viaims-logo-original.jpg" alt="" loading="lazy" decoding="async" />
+ </div>
 </section>
 <style>
 .public-introduction { position:relative; isolation:isolate; overflow:hidden; }
 .public-introduction > div { position:relative; z-index:1; }
-.public-brand__logo { position:absolute; width:min(65%,32rem); left:50%; top:50%; transform:translate(-50%,-50%); opacity:.065; pointer-events:none; aspect-ratio:768 / 580; background:#fff; mask-image:url('/brand/viaims-logo-original.jpg'); mask-mode:luminance; mask-repeat:no-repeat; mask-size:131.25% auto; mask-position:center 48.267%; }
+.public-brand { grid-column:1 / -1; justify-self:center; width:min(100%,22rem); aspect-ratio:768 / 580; overflow:hidden; mix-blend-mode:screen; }
+.public-brand__logo { display:block; width:100%; height:100%; object-fit:cover; object-position:center 48.267%; }
 .public-introduction { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,22rem),1fr)); gap:2rem; margin-top:2rem; padding:clamp(1rem,3vw,2rem); border:1px solid #b59b6666; background:var(--viaims-panel); color:var(--viaims-muted); border-color:var(--viaims-brass); border-radius:.7rem; }
 .public-introduction__label { color:#c9b182; font-size:.7rem; letter-spacing:.12em; }
 .public-introduction h2 { color:var(--viaims-ink); font-size:clamp(1.3rem,3vw,1.8rem); line-height:1.25; margin:.5rem 0 1rem; }

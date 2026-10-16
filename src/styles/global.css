@@ -348,3 +348,15 @@ body { background:radial-gradient(ellipse at 50% 0,#4c34121a,transparent 65%); }
 .institutional-status,.institutional-status__reference,.institutional-roles { color:#b1a28c; }
 .institutional-nameplate__organization { color:#d1b584; }
 .publications-module { background:var(--viaims-panel); border-color:var(--viaims-brass); border-radius:.6rem; color:var(--viaims-ink); }
+
+/* The phone banner reserves one compact nameplate above the theater. */
+@media (max-width:767px) {
+  .main--compact { padding-inline:.5rem; padding-top:.5rem; }
+  .institutional-header { top:.5rem; padding:.5rem .65rem; gap:.3rem; }
+  .institutional-header::before { inset:-.5rem -1px auto; height:.5rem; }
+  .institutional-status__reference,
+  .institutional-status__clock > span:nth-child(n+3),
+  .institutional-nameplate__organization,
+  .institutional-roles { display:none; }
+  .institutional-nameplate h1 { font-size:clamp(1.1rem,5.5vw,1.375rem); line-height:1.1; }
+}

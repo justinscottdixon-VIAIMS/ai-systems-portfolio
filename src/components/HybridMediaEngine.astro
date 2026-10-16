@@ -171,6 +171,7 @@ const evidenceLabels = {
 					<button id="next-reference" type="button" aria-label="Next slide">NEXT SLIDE →</button>
 				</div>
 				<div class="reference-stage__transport-slot" data-reference-transport-slot></div>
+				<button id="restore-video-mobile" class="reference-stage__mobile-return" type="button">VIDEO ↗</button>
 			</footer>
 		</section>}
 		<button id="restore-video-from-pip" class="reference-pip-return" type="button" aria-label="Return to video presentation" hidden>RETURN TO VIDEO ↗</button>
@@ -2170,6 +2171,7 @@ const evidenceLabels = {
 	}
 
 	restoreVideoFromPip?.addEventListener('click', () => { closeReference(); showLibrary('media'); });
+	root.querySelector('#restore-video-mobile')?.addEventListener('click', () => { closeReference(); showLibrary('media'); });
 	for (const button of librarySwitches) button.addEventListener('click', () => {
 		if (button.dataset.librarySwitch === 'credentials') { openReference(); showReferenceDirectory(); }
 		else { if (referenceReturnState) closeReference({ restoreFocus: false }); showLibrary('media'); }
