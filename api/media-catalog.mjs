@@ -1,5 +1,6 @@
 import { list } from '@vercel/blob';
 import { buildBlobFolderCatalogue, catalogueFailureDiagnostic } from '../src/lib/blob-folder-catalogue.mjs';
+import { runtimeCatalogueEnabled } from '../src/lib/catalogue-release-policy.mjs';
 
 const JSON_CONTENT_TYPE = 'application/json; charset=utf-8';
 
@@ -41,4 +42,11 @@ const readText = async (url) => {
   return text;
 };
 
-export default createMediaCatalogueHandler({ listPage, readText });
+const liveCatalogue = createMediaCatalogueHandler({ listPage, readText });
+export default function mediaCatalogue(request, response) {
+  if (!runtimeCatalogueEnabled(process.env.VIAIMS_RELEASE_SCOPE, process.env.VIAIMS_CATALOGUE_REFRESH)) {
+    response.setHeader('Cache-Control', 'no-store');
+    return json(response, 503, { error: 'Live catalogue is not enabled for this release' });
+  }
+  return liveCatalogue(request, response);
+}

@@ -8,6 +8,7 @@ import { toCredentialCollections } from '../lib/credential-collections.mjs';
 import { musicReleaseGroups } from '../lib/music-release-timeline.mjs';
 import { cosmicReleaseGroups, releaseYear } from '../lib/cosmic-release-order.mjs';
 import { selectReleaseRecords } from '../lib/release-scope.mjs';
+import { runtimeCatalogueEnabled } from '../lib/catalogue-release-policy.mjs';
 import CredentialsPlaylist from './CredentialsPlaylist.astro';
 import TrackCredits from './TrackCredits.astro';
 import CosmicLabelFlip from './CosmicLabelFlip.astro';
@@ -34,7 +35,7 @@ const evidenceLabels = {
 };
 ---
 
-<div class="space-y-8" data-hybrid-media-engine data-credentials-enabled={String(credentialsEnabled)} data-catalogue-refresh={String(!['selected', 'player'].includes(process.env.VIAIMS_RELEASE_SCOPE ?? 'full'))} data-entry-enabled={String(library.experience.enabled)}>
+<div class="space-y-8" data-hybrid-media-engine data-credentials-enabled={String(credentialsEnabled)} data-catalogue-refresh={String(runtimeCatalogueEnabled(process.env.VIAIMS_RELEASE_SCOPE, process.env.VIAIMS_CATALOGUE_REFRESH))} data-entry-enabled={String(library.experience.enabled)}>
 	<div class="fullscreen-shell" data-fullscreen-shell data-fullscreen-mode="inline" data-controls-visible="true">
 	<div
 		id="master-stage-container"
