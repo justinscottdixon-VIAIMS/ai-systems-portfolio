@@ -1,0 +1,18 @@
+---
+interface Props { links?: { href: string; label: string; description: string }[]; }
+const { links = [] } = Astro.props;
+---
+{links.length > 0 && <nav class="release-presentations" aria-label="Production story and flowcharts" data-release-presentations>
+  <h4>Inside the production</h4>
+  <ul>{links.map(link => <li><a href={link.href} target="_blank" rel="noopener noreferrer">{link.label} ↗<span class="sr-only"> (opens in a new tab)</span></a><p>{link.description}</p></li>)}</ul>
+</nav>}
+<style>
+.release-presentations { margin-block:1rem; padding-block:1rem; border-block:1px solid #b8955b55; text-transform:none; letter-spacing:normal; min-width:0; }
+.release-presentations h4 { margin:0 0 .7rem; font-weight:600; font-size:1rem; line-height:1.4; font-family:inherit; color:#eee0c5; }
+.release-presentations ul { display:grid; gap:.8rem; padding:0; margin:0; list-style:none; }
+.release-presentations a { display:inline-block; color:#efd5a5; border:1px solid #957747; border-radius:.35rem; padding:.6rem .8rem; font-size:.95rem; line-height:1.5; text-decoration:none; overflow-wrap:anywhere; }
+.release-presentations a:hover { background:#b8955b22; }
+.release-presentations a:focus-visible { outline:2px solid #efd5a5; outline-offset:4px; }
+.release-presentations p { margin:.3rem 0 0; font-size:.8rem; line-height:1.5; color:#bdaf97; }
+.sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+</style>

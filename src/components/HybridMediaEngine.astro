@@ -14,6 +14,7 @@ import CosmicLabelFlip from './CosmicLabelFlip.astro';
 import ReleaseArtworkGallery from './ReleaseArtworkGallery.astro';
 import DossierContext from './DossierContext.astro';
 import ReleaseHistory from './ReleaseHistory.astro';
+import ReleasePresentations from './ReleasePresentations.astro';
 import ReleaseListening from './ReleaseListening.astro';
 import { archiveHref } from '../lib/archive-index.mjs';
 import '../styles/hybrid-media-engine.css';
@@ -136,7 +137,8 @@ const evidenceLabels = {
                                       <span>RELEASE {String(childIndex + 1).padStart(2, '0')} / {String(record.children.length).padStart(2, '0')}</span><h3>{child.title}</h3><strong>{child.artist}</strong>
                                       <dl><div><dt>CATALOG</dt><dd>{child.catalogNumber}</dd></div><div><dt>DATE</dt><dd>{child.date}</dd></div><div><dt>FORMAT</dt><dd>{child.format}</dd></div></dl>
                                       <p>{child.summary}</p><small>{child.roles.join(' · ')}</small>
-                                      <ReleaseListening links={child.listeningLinks} />
+                                      <ReleasePresentations links={child.presentationLinks} />
+      <ReleaseListening links={child.listeningLinks} />
                                       {child.credits.length > 0 && <details class="reference-stage__release-credits" data-release-credits><summary>Credits &amp; contribution</summary><TrackCredits credits={child.credits} /></details>}
                                       {((child.historySections ?? []).length > 0 || (child.contextRecords ?? []).length > 0) && <details class="reference-stage__release-credits" data-release-history><summary>Release history &amp; sources</summary><ReleaseHistory sections={child.historySections} />{(child.contextRecords ?? []).map(context => <DossierContext record={context} />)}</details>}
                                       <p><a href={child.sourceArchiveHref ?? archiveHref(record, child)} target="_blank" rel="noopener noreferrer">FULL RELEASE RECORD ↗</a></p>

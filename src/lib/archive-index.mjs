@@ -21,7 +21,7 @@ export function archiveEntries(records) {
       category: 'music', date: child.date, format: child.format, roles: child.roles,
       summary: child.summary, label: entry.label, catalogNumber: child.catalogNumber,
       parent: record.title,
-      history: [child.credits.flatMap(credit => [credit.title, credit.scope, ...credit.roles, credit.collaborators ?? '', credit.note ?? '']).join(' '), sectionHistory(child.historySections), ...(child.contextRecords ?? []).map(dossierHistory)].join(' '),
+      history: [(child.presentationLinks ?? []).flatMap(link => [link.label, link.description]).join(' '), child.credits.flatMap(credit => [credit.title, credit.scope, ...credit.roles, credit.collaborators ?? '', credit.note ?? '']).join(' '), sectionHistory(child.historySections), ...(child.contextRecords ?? []).map(dossierHistory)].join(' '),
     })), ...(record.contextRecords ?? []).map(context => ({
       href: `${archiveHref(record)}#context-${encodeURIComponent(context.id)}`,
       title: context.title, artist: context.displayArtistOrClient ?? '', category: context.category,

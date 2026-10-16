@@ -21,6 +21,7 @@ export default defineConfig({
         await Promise.all(excludedArtworkPaths.map(src => rm(new URL(src.slice(1), dir), { force: true })));
         if (process.env.VIAIMS_RELEASE_SCOPE === 'player') {
           await rm(new URL('archive/', dir), { recursive: true, force: true });
+          await rm(new URL('production-notes/', dir), { recursive: true, force: true });
           await rm(new URL('reference/', dir), { recursive: true, force: true });
         }
       },

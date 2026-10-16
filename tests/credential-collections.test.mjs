@@ -129,7 +129,7 @@ test('rejects collisions with existing or flattened child IDs', () => {
   ]), /duplicate credential collection child id/);
 });
 
-test('actual catalogue groups into 9 roots and 96 release views while preserving canonical archives', async () => {
+test('actual catalogue groups into 9 roots and 97 release views while preserving canonical archives', async () => {
   const data = JSON.parse(await readFile(new URL('../src/data/portfolio-records.json', import.meta.url), 'utf8'));
   const canonical = toPortfolioRecords(data);
   const membershipKinds = new Map([
@@ -150,11 +150,11 @@ test('actual catalogue groups into 9 roots and 96 release views while preserving
   assert.deepEqual(output.map(item => item.id), input.filter(item => !membershipKinds.has(item.id)).map(item => item.id));
   const parent = output.find(item => item.id === 'singles-remixes');
   const originalParent = input.find(item => item.id === parent.id);
-  assert.equal(originalParent.children.length, 16);
-  assert.equal(parent.children.length, 48);
-  assert.equal(new Set(parent.children.map(item => item.id)).size, 48);
-  assert.equal(input.reduce((total, item) => total + item.children.length, 0), 90);
-  assert.equal(output.reduce((total, item) => total + item.children.length, 0), 96);
+  assert.equal(originalParent.children.length, 17);
+  assert.equal(parent.children.length, 49);
+  assert.equal(new Set(parent.children.map(item => item.id)).size, 49);
+  assert.equal(input.reduce((total, item) => total + item.children.length, 0), 91);
+  assert.equal(output.reduce((total, item) => total + item.children.length, 0), 97);
   assert.equal(parent.children.some(item => item.id === 'nc-09'), false);
   assert.deepEqual(parent.contextRecords.map(item => item.id), ['production-engineering-credits', 'compilation-appearances', 'chart-history']);
 

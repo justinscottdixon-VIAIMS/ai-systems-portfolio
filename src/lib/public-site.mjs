@@ -20,7 +20,7 @@ export function structuredIdentity() {
 export function sitemapXml(records, scope = 'full') {
  const urls = [siteUrl];
  if (scope !== 'player') {
-  urls.push(`${siteUrl}archive/`);
+  urls.push(`${siteUrl}archive/`, `${siteUrl}production-notes/sandra-collins/`);
   for (const record of records) urls.push(`${siteUrl}archive/${encodeURIComponent(record.slug)}/`);
  }
  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls.map(url=>`<url><loc>${url}</loc></url>`).join('')}</urlset>\n`;

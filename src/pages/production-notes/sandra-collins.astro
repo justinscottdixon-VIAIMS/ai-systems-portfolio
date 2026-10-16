@@ -1,0 +1,20 @@
+---
+import ArchiveLayout from '../../layouts/ArchiveLayout.astro';
+import { Content } from '../../../docs/research/sandra-collins-production-2026-10-14/CREATIVE-STORY.md';
+const albums = [
+  { title: 'Tranceport.3', id: 'compilation-appearances-d003', chart: '/reference/production-workflows/tranceport3/tranceport3-signal-flow.html' },
+  { title: 'Cream', id: 'compilation-appearances-d015' },
+  { title: 'Perfecto Presents… Sandra Collins', id: 'compilation-appearances-d016', chart: '/reference/production-workflows/perfecto/index.html' },
+];
+---
+<ArchiveLayout title="Sandra Collins and Scott Dixon — a shared musical language" description="Scott Dixon’s firsthand account of producing the Sandra Collins mix albums, with the Tranceport.3 and Perfecto Presents workflow charts.">
+  <article class="studio-story"><p class="eyebrow">INSIDE THE PRODUCTION</p><Content /></article>
+  <section class="archive-section"><h2>The albums and their production maps</h2><ul class="album-links">{albums.map(album => <li><h3>{album.title}</h3><a href={`/archive/singles-remixes/#${album.id}`}>View the release card ↗</a>{album.chart && <p><a href={album.chart}>View production flowchart ↗</a></p>}</li>)}</ul>
+  <p class="muted">These maps describe Scott’s firsthand recollections. Product photographs illustrate the equipment, rather than the sessions. Cream has no separate completed flowchart; the detailed finishing chain shown in the Tranceport.3 map applies only to Tranceport.3. Perfecto is one album containing two CDs; its outside mastering studio and engineer remain unverified.</p></section>
+</ArchiveLayout>
+<style>
+.studio-story { max-width:52rem; margin-inline:auto; line-height:1.8; }
+.studio-story :global(h1) { font-size:clamp(1.8rem,4vw,3rem); line-height:1.2; }
+.studio-story :global(p) { margin-block:1.3rem; }
+.album-links { list-style:none; padding:0; display:grid; gap:1.5rem; }
+</style>

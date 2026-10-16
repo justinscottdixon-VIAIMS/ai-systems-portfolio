@@ -4785,6 +4785,103 @@
               "note": "The upload spells the mix “l-40”; the archive retains the reviewed I-40 wording."
             }
           ]
+        },
+        {
+          "id": "spice-market",
+          "title": "Spice Market — Blackjack Remix Series",
+          "artist": "Joel Mull & Sean Palm",
+          "date": "7 July 2009 — digital release listing",
+          "catalogNumber": "RYR021",
+          "format": "Railyard Recordings · digital remix release",
+          "roles": [
+            "Remixer: Voyager",
+            "Remixer: DXN",
+            "Mastering engineer"
+          ],
+          "summary": "Two remixes by Scott Dixon, credited as Voyager and DXN, with mastering by Scott for all tracks on the Blackjack Remix Series release. DXN aka Voyager — both aliases of Scott Dixon.",
+          "gallery": [
+            {
+              "kind": "image",
+              "src": "/reference/release-artwork/spice-market-blackjack-source.jpg",
+              "alt": "Joel Mull and Sean Palm — Spice Market, Blackjack Remix Series, Railyard RYR021 label artwork",
+              "caption": "Spice Market — Blackjack Remix Series · original distributor artwork. The label artwork lists the vinyl mixes; DXN’s version is digital-only."
+            }
+          ],
+          "credits": [
+            {
+              "title": "Mastering — Scott Dixon",
+              "scope": "Entire RYR021 release · all tracks",
+              "roles": [
+                "Mastering engineer"
+              ],
+              "evidence": "Scott confirmed directly on 15 October 2026 that he did all of the mastering for this release."
+            },
+            {
+              "title": "Spice Market (Voyager Remix)",
+              "scope": "Digital track 2 · 9:59; label artwork: d1",
+              "roles": [
+                "Remixer"
+              ],
+              "collaborators": "Joel Mull & Sean Palm — original artists; remix credited as Voyager",
+              "evidence": "Beatport track 899274 explicitly credits Voyager as remixer. The supplied distributor label artwork also prints d1: Voyager."
+            },
+            {
+              "title": "Spice Market (Exclusive Digital Mix)",
+              "scope": "Digital track 7 · 8:58",
+              "roles": [
+                "Remixer"
+              ],
+              "collaborators": "Joel Mull & Sean Palm — original artists; remix credited as DXN",
+              "evidence": "Beatport track 899279 explicitly credits DXN as remixer. Scott confirmed on 15 October 2026 that DXN was also his credit on this release.",
+              "note": "DXN aka Voyager — both aliases of Scott Dixon."
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Beatport — Blackjack Remix Series (RYR021)",
+              "href": "https://www.beatport.com/release/spice-market-blackjack-remix-series/181663",
+              "supports": "Directly inspected release page: Joel Mull and Sean Palm, Railyard Recordings, RYR021, 7 July 2009; seven digital tracks."
+            },
+            {
+              "label": "Beatport — Voyager Remix",
+              "href": "https://www.beatport.com/track/spice-market/899274",
+              "supports": "Voyager remix credit; 9:59; digital release 7 July 2009."
+            },
+            {
+              "label": "Beatport — Exclusive Digital Mix (DXN)",
+              "href": "https://www.beatport.com/track/spice-market/899279",
+              "supports": "DXN remix credit; 8:58; digital release 7 July 2009. DXN identity confirmed by the artist."
+            },
+            {
+              "label": "Frequencies — Beats Tips Boutique vol. 7",
+              "href": "https://www.frequencies.eu/2012/09/11/beats-tips-boutique-vol-7/",
+              "supports": "Review by Federico Spadavecchia names Justin Scott Dixon among the remixers. The page displays 11 September 2012; this is not used as the release date."
+            }
+          ],
+          "historySections": [
+            {
+              "title": "Related release edition",
+              "items": [
+                {
+                  "title": "Spice Market · RYR020",
+                  "date": "2009 · original release",
+                  "detail": "The original Spice Market release and the RYR021 Blackjack remix series belong to the same release family. The supplied Discogs label screenshot lists RYR020 as a 12-inch and RYR021 as the remix series. Dixon’s currently confirmed credits here are the two remixes and mastering for all tracks on RYR021.",
+                  "href": "https://www.discogs.com/label/50713-Railyard-Recordings"
+                }
+              ]
+            },
+            {
+              "title": "Published review",
+              "items": [
+                {
+                  "title": "Beats Tips Boutique vol. 7 — Federico Spadavecchia",
+                  "detail": "The review discusses the Blackjack remix package and names Justin Scott Dixon alongside the other remixers. Its assessment is mixed and is retained as historical coverage.",
+                  "href": "https://www.frequencies.eu/2012/09/11/beats-tips-boutique-vol-7/"
+                }
+              ]
+            }
+          ],
+          "relatedRecordIds": []
         }
       ],
       "publicSources": [
@@ -5980,7 +6077,8 @@
           "format": "Kinetic · mixed CD",
           "roles": [
             "Recording artist: Voyager",
-            "Engineer"
+            "Engineer",
+            "Album co-production / studio mixing (Scott’s account)"
           ],
           "summary": "The full Sandra Collins mix album includes Voyager’s Motion, separately from the vinyl sampler.",
           "gallery": [
@@ -6059,6 +6157,29 @@
           ],
           "credits": [
             {
+              "title": "Studio production and mixing",
+              "scope": "Full album · Scott Dixon’s firsthand account",
+              "roles": [
+                "Album co-producer",
+                "Studio production",
+                "Album mixing"
+              ],
+              "collaborators": "Sandra Collins — artist / DJ; musical direction, playlist and flow",
+              "note": "Scott describes the full-album studio work separately from the printed track credits.",
+              "evidence": "Scott Dixon’s firsthand account, recorded October 2026, presented in the linked studio story and album-specific workflow maps."
+            },
+            {
+              "title": "S&S DAY FOUR",
+              "scope": "Opening intro · printed before numbered track 01",
+              "roles": [
+                "Co-writer",
+                "Co-producer"
+              ],
+              "collaborators": "Sandra Collins — co-writer / co-producer; Scott appears as Justin Scott in the printed credit",
+              "evidence": "The displayed Tranceport.3 CD credit sheet (gallery image 3) prints “Written and Produced by Sandra Collins & Justin Scott.”",
+              "note": "Unnumbered intro; no separate track number or duration is inferred."
+            },
+            {
               "title": "Tranceport.3",
               "scope": "Album-level studio engineering",
               "roles": [
@@ -6071,11 +6192,13 @@
               "title": "Motion",
               "scope": "Track 9",
               "roles": [
+                "Writer",
+                "Producer",
                 "Recording artist: Voyager"
               ],
-              "collaborators": "Sandra Collins — compilation / mix artist",
-              "note": "Full mix-album appearance. The separately photographed vinyl sampler specifies Motion (Stereo Edit); that subtitle is not automatically assigned here.",
-              "evidence": "Track 9 and catalogue 54648-2 verified against the displayed US CD rear artwork (Discogs release 40908)."
+              "collaborators": "Sam Frost — additional keyboard production; Sandra Collins — compilation / mix artist",
+              "note": "The printed CD lists Motion, without the vinyl sampler’s Stereo Edit subtitle.",
+              "evidence": "The displayed CD credit sheet (gallery image 3) credits writing and production to Justin Scott Dixon and additional keyboard production to Sam Frost. Track 9 and catalogue 54648-2 are established by the displayed CD packaging."
             }
           ],
           "publicSources": [
@@ -6130,6 +6253,18 @@
               "title": "Sandra Collins - Tranceport.3 (2000)",
               "channel": "TranceVault99",
               "checkedOn": "2026-10-16"
+            }
+          ],
+          "presentationLinks": [
+            {
+              "href": "/reference/production-workflows/tranceport3/tranceport3-signal-flow.html",
+              "label": "View production flowchart",
+              "description": "From turntable preparation and Pro Tools construction to the Tranceport.3 finishing and delivery chain."
+            },
+            {
+              "href": "/production-notes/sandra-collins/",
+              "label": "Read the studio story",
+              "description": "Scott Dixon’s account of the shared musical language behind the three Sandra Collins albums."
             }
           ]
         },
@@ -6536,7 +6671,8 @@
           "catalogNumber": "Full printed catalog unresolved",
           "format": "Kinetic · mixed CD",
           "roles": [
-            "Producer"
+            "Producer",
+            "Album co-production / studio mixing (Scott’s account)"
           ],
           "summary": "Derangement of the Senses appears in Sandra Collins’ Cream mix with a Dixon production credit.",
           "gallery": [
@@ -6566,6 +6702,18 @@
             }
           ],
           "credits": [
+            {
+              "title": "Studio production and mixing",
+              "scope": "Full album · Scott Dixon’s firsthand account",
+              "roles": [
+                "Album co-producer",
+                "Studio production",
+                "Album mixing"
+              ],
+              "collaborators": "Sandra Collins — artist / DJ; musical direction, playlist and flow",
+              "note": "Scott describes the full-album studio work separately from the printed track credits.",
+              "evidence": "Scott Dixon’s firsthand account, recorded October 2026, presented in the linked studio story and album-specific workflow maps."
+            },
             {
               "title": "Derangement of the Senses",
               "scope": "Track 7",
@@ -6611,6 +6759,13 @@
               "checkedOn": "2026-10-16",
               "alternate": true
             }
+          ],
+          "presentationLinks": [
+            {
+              "href": "/production-notes/sandra-collins/",
+              "label": "Read the studio story",
+              "description": "Scott Dixon’s account of the shared musical language behind the three Sandra Collins albums."
+            }
           ]
         },
         {
@@ -6621,7 +6776,8 @@
           "catalogNumber": "90714-2",
           "format": "Thrive · mixed 2CD",
           "roles": [
-            "Recording artist: Voyager"
+            "Recording artist: Voyager",
+            "Album co-production / studio mixing (Scott’s account)"
           ],
           "summary": "Two Voyager recordings appear on this 2003 mix compilation.",
           "gallery": [
@@ -6646,23 +6802,37 @@
           ],
           "credits": [
             {
+              "title": "Studio production and mixing",
+              "scope": "Full album · Scott Dixon’s firsthand account",
+              "roles": [
+                "Album co-producer",
+                "Studio production",
+                "Album mixing"
+              ],
+              "collaborators": "Sandra Collins — artist / DJ; musical direction, playlist and flow",
+              "note": "Scott describes the full-album studio work separately from the printed track credits. Final mastering was handled by an outside studio; its printed identity remains unverified.",
+              "evidence": "Scott Dixon’s firsthand account, recorded October 2026, presented in the linked studio story and album-specific workflow maps."
+            },
+            {
               "title": "Cosmic Fugue",
               "scope": "Disc 1 · track 10",
               "roles": [
+                "Writer / producer (Scott’s account)",
                 "Recording artist: Voyager"
               ],
               "collaborators": "Sandra Collins — compilation / mix artist",
-              "note": "Booklet-level writing and production credits remain unverified.",
+              "note": "Scott describes writing and producing this piece specifically for the Perfecto project in the linked studio story. Exact printed booklet role wording remains unverified.",
               "evidence": "Compilation evidence retained in the master; edition and booklet details remain qualified where unresolved."
             },
             {
               "title": "Spectacle",
               "scope": "Disc 2 · track 10",
               "roles": [
+                "Writer / producer (Scott’s account)",
                 "Recording artist: Voyager"
               ],
               "collaborators": "Sandra Collins — compilation / mix artist",
-              "note": "Distinct from Perfecto Presents Sandra Collins Part 2, issued in 2006.",
+              "note": "Scott describes writing and producing this piece specifically for the Perfecto project in the linked studio story. Exact printed booklet role wording remains unverified.",
               "evidence": "Compilation evidence retained in the master; edition and booklet details remain qualified where unresolved."
             }
           ],
@@ -6725,6 +6895,18 @@
               "channel": "Progressive Addict",
               "checkedOn": "2026-10-16",
               "alternate": true
+            }
+          ],
+          "presentationLinks": [
+            {
+              "href": "/reference/production-workflows/perfecto/index.html",
+              "label": "View production flowchart",
+              "description": "The two-CD project: selection, Traktor preparation, Logic arrangement, Reaktor filters, review and label handoff."
+            },
+            {
+              "href": "/production-notes/sandra-collins/",
+              "label": "Read the studio story",
+              "description": "Scott Dixon’s account of the shared musical language behind the three Sandra Collins albums."
             }
           ]
         },

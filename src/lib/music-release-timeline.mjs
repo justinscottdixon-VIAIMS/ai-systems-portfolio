@@ -1,3 +1,4 @@
+import { mergePresentationLinks } from './release-presentations.mjs';
 import { mergeListeningLinks } from './release-listening.mjs';
 
 // Deliberate release-family grouping. Similar track names on different compilations
@@ -61,6 +62,7 @@ export function consolidateMusicReleases(children) {
       roles: unique(all.flatMap(item => item.roles)),
       credits: unique(all.flatMap(item => item.credits)),
       listeningLinks: mergeListeningLinks(...all.map(item => item.listeningLinks)),
+      presentationLinks: mergePresentationLinks(...all.map(item => item.presentationLinks)),
       gallery: unique(all.flatMap(item => item.gallery), item => item.src ?? JSON.stringify(item)),
       publicSources: unique(all.flatMap(item => item.publicSources), item => JSON.stringify([item.href, item.supports])),
       relatedRecordIds: unique(all.flatMap(item => item.relatedRecordIds)),

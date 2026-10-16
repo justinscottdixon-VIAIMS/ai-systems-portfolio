@@ -12,11 +12,13 @@ test('player sitemap includes only the canonical homepage and no draft routes', 
  assert.equal((xml.match(/<loc>/g)||[]).length, 1);
  assert.ok(xml.includes('<loc>https://viaims.com/</loc>'));
  assert.ok(!xml.includes('/archive'));
+ assert.ok(!xml.includes('/production-notes/'));
 });
 test('full sitemap uses the actual published records', () => {
  const xml = sitemapXml([{slug:'time-travel'}], 'full');
  assert.ok(xml.includes('https://viaims.com/archive/time-travel/'));
- assert.equal((xml.match(/<loc>/g)||[]).length,3);
+ assert.equal((xml.match(/<loc>/g)||[]).length,4);
+ assert.ok(xml.includes('https://viaims.com/production-notes/sandra-collins/'));
 });
 test('search and training policies remain independently configurable', () => {
  assert.ok(robotsTxt().includes('User-agent: *\nAllow: /'));
