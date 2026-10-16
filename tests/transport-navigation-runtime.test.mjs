@@ -1,3 +1,4 @@
+import { groupMusicPlaylists } from '../src/lib/music-playlists.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
@@ -61,7 +62,7 @@ function catalogueRuntime(items) {
   const context = {
     document: { baseURI: 'https://viaims.test/', createElement: element }, window: { innerWidth: 1000 }, URL,
     root: { querySelector: selector => selector === '#tab-media' ? mediaTab : null, querySelectorAll: (selector) => allRows().filter(row => matches(row, selector)) },
-    mediaTab,
+    mediaTab, groupMusicPlaylists, selectedCinemaPlaylistId: null, cinemaPlaylistPicker: element('select'), cinemaPlaylistChooser: element('label'), selectedMusicPlaylistId: null, musicPlaylistPicker: element('select'), musicPlaylistChooser: element('label'),
     cinemaPlaylist, musicPlaylist, mediaPlaylist, cinemaButtons: [], allCinemaItems: library.cinema, allMediaItems: library.media,
     videoPlaylist: library.cinema, mediaItems: library.media, cinema: createCinemaContinuity(library.cinema),
     musicProducts, productById: new Map(musicProducts.map(item => [item.productId, item])), musicQueue: createMusicQueue(musicProducts),
@@ -74,7 +75,7 @@ function catalogueRuntime(items) {
     updateProviderCueState() {}, syncMusicRowActions() {}, hideMirrorWings() {}, pauseVideoStack() {}, setStageProvider() {}, renderCinemaIdentity() {},
   };
   context.renderTab = tab => { context.session = { ...context.session, activeTab: tab }; };
-  const names = ['createCatalogueButton', 'renderCinemaRows', 'renderMusicRows', 'renderMediaRows', 'sameMediaSource', 'captureRuntimeSources', 'reconcileRuntimeSources', 'rebuildMusicQueue', 'applyRuntimeLibrary', 'rebuildEligibleVideoQueues', 'currentCinema', 'updateCinemaCueState', 'restoreMusicSource'];
+  const names = ['createCatalogueButton', 'visibleCinemaItems', 'renderCinemaRows', 'visibleMusicProducts', 'renderMusicRows', 'renderMediaRows', 'sameMediaSource', 'captureRuntimeSources', 'reconcileRuntimeSources', 'rebuildMusicQueue', 'applyRuntimeLibrary', 'rebuildEligibleVideoQueues', 'currentCinema', 'updateCinemaCueState', 'restoreMusicSource'];
   runInNewContext(names.map(namedImplementation).join('\n'), context);
   context.renderCinemaRows(); context.renderMusicRows(); context.renderMediaRows();
   return context;
@@ -94,11 +95,11 @@ function enableLeaseRestoration(ctx) {
   runInNewContext(namedImplementation('resumeAudibleState') + namedImplementation('restoreLeasedCinema'), ctx);
 }
 
-test('Media tab appears when runtime content arrives and hides when the last entry leaves', () => {
+test('Media stays outside the four main controls while native content remains retained', () => {
   const ctx = catalogueRuntime([]);
   assert.equal(ctx.mediaTab.hidden, true);
   ctx.allMediaItems = toRuntimeMediaLibrary([catalogueItem('Media/one.mp4', 'media', 'video')]).media;
-  ctx.renderMediaRows(); assert.equal(ctx.mediaTab.hidden, false);
+  ctx.renderMediaRows(); assert.equal(ctx.mediaTab.hidden, true);
   ctx.session = { ...ctx.session, activeTab: 'media' };
   ctx.allMediaItems = []; ctx.renderMediaRows();
   assert.equal(ctx.mediaTab.hidden, true); assert.equal(ctx.session.activeTab, 'cinema');
@@ -637,7 +638,7 @@ test('switching credential dossiers preserves playing music and video audio in P
   assert.equal(video.muted,false);
   assert.equal(context.stage.dataset.referenceOpen,'true');
   assert.equal(context.restoreVideoFromPip.hidden,false);
-  assert.deepEqual(libraryViews,['credentials','credentials']);
+  assert.deepEqual(libraryViews,['media','media']);
   const resumed = [];
   context.showReferenceSlide = index => resumed.push(index);
   context.referenceStage.dataset = { lastDossier: 'second', lastSlide: '4', leftAt: '1000' };
@@ -714,4 +715,20 @@ test('Music audio and video ended handlers explicitly retain natural repeat beha
   const audioEnded = source.slice(source.indexOf("musicAudio.addEventListener('ended'"), source.indexOf("mv.addEventListener('ended'"));
   const videoEnded = source.slice(source.indexOf("mv.addEventListener('ended'"), source.indexOf('const cinemaToken', source.indexOf("mv.addEventListener('ended'")));
   for (const handler of [audioEnded, videoEnded]) assert.match(handler, /advanceMusic\(1, \{ natural: true \}\)/);
+});
+test('Music playlist selection limits display and Next queue to that playlist',()=>{
+ const a=catalogueItem('Music/a.mp3','music','audio',{playlistId:'one',playlistTitle:'Chill',playlistPosition:0});const b=catalogueItem('Music/b.mp3','music','audio',{playlistId:'two',playlistTitle:'Breaks',playlistPosition:1});const c=catalogueItem('Music/c.mp3','music','audio',{playlistId:'two',playlistTitle:'Breaks',playlistPosition:1,playlistOrder:1});const ctx=catalogueRuntime([a,b,c]);assert.equal(ctx.musicPlaylist.children.length,1);ctx.selectedMusicPlaylistId='two';ctx.renderMusicRows();ctx.rebuildMusicQueue();assert.equal(ctx.musicPlaylist.children.length,2);assert.deepEqual(Array.from(ctx.musicQueue.order),['Music/b.mp3','Music/c.mp3']);assert.equal(ctx.musicAudio.src,a.src);assert.equal(ctx.musicAudio.loads,0);
+});
+test('playlist rename and move metadata preserve playing audio position on refresh',async()=>{
+ const a=catalogueItem('Music/a.mp3','music','audio',{playlistId:'one',playlistTitle:'Chill',playlistPosition:0});const ctx=catalogueRuntime([a]);ctx.musicAudio.currentTime=72;const revised={...a,playlistId:'two',playlistTitle:'Breaks',playlistPosition:1};await ctx.applyRuntimeLibrary(toRuntimeMediaLibrary([revised]),[revised]);assert.equal(ctx.musicAudio.currentTime,72);assert.equal(ctx.musicAudio.loads,0);assert.equal(ctx.musicAudio.plays,0);assert.equal(ctx.musicProducts[0].playlistTitle,'Breaks');
+});
+test('choosing a different playlist while Cinema is active selects an eligible central Play target',()=>{
+ const a=catalogueItem('Music/a.mp3','music','audio',{playlistId:'one',playlistTitle:'Chill',playlistPosition:0});const b=catalogueItem('Music/b.mp3','music','audio',{playlistId:'two',playlistTitle:'Breaks',playlistPosition:1});const ctx=catalogueRuntime([a,b]);ctx.selectedMusicPlaylistId='two';ctx.renderMusicRows();ctx.rebuildMusicQueue();assert.equal(ctx.musicQueue.currentProductId,'Music/b.mp3');assert.equal(selectMusicMode(ctx.musicQueue,ctx.musicQueue.currentProductId,'audio').currentProductId,'Music/b.mp3');assert.equal(ctx.musicAudio.loads,0);
+});
+
+test('Credentials uses the theater directory without a duplicate playlist tray',()=>{
+ assert.ok(!source.includes('<CredentialsPlaylist'));assert.ok(!source.includes('id="panel-credentials"'));assert.ok(source.includes('aria-label="Explore Credentials"'));assert.ok(source.includes('if (!trigger.dataset.openReference) showReferenceDirectory();'));
+});
+test('Cinema series chooser limits the rows and Next queue without interrupting loaded video',()=>{
+ const a=catalogueItem('Cinema/a.mp4','cinema','video',{playlistId:'atlas',playlistTitle:'ATLAS',playlistPosition:0});const b=catalogueItem('Cinema/b.mp4','cinema','video',{playlistId:'other',playlistTitle:'Other',playlistPosition:1});const ctx=catalogueRuntime([a,b]);assert.equal(ctx.cinemaPlaylist.children.length,1);ctx.selectedCinemaPlaylistId='other';ctx.renderCinemaRows();ctx.rebuildEligibleVideoQueues({preserveLoaded:true});assert.equal(ctx.cinemaPlaylist.children.length,1);assert.deepEqual(Array.from(ctx.videoPlaylist.map(i=>i.id)),['Cinema/b.mp4']);assert.equal(ctx.mv.src,a.src);assert.equal(ctx.mv.loads,0);
 });

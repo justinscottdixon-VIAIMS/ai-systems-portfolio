@@ -1,3 +1,4 @@
+import { musicFoldersEnabled, discoverMusicFolderLayout } from './music-folder-layout.mjs';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { createHash } from 'node:crypto';
@@ -30,13 +31,26 @@ export async function writeLocalPlaylistLibrary({ root, catalogue, checkedAt = n
   const overview = ['VIAIMS — COMPLETE LIVE PLAYLISTS', `Last verified: ${checkedAt}`, '',
     'This is the complete published registry, including older releases whose',
     'original files are outside the drop folders. Positions restart for each',
-    'player. Open Published Playlist inside Cinema, Music or Media for numbered',
-    'shortcuts to the online media. Internet access is required to play them.', '',
+    'player. Music and Cinema use playlist/series folders when enabled; otherwise',
+    'use Published Playlist shortcuts. Internet access is required for links.', '',
     'This view refreshes about once a minute while the publisher is running.',
     'It is a reference view: renaming shortcuts does not reorder the website.',
-    'New exports still belong directly in the Cinema, Music or Media folder.', ''];
+    'With folder mode, export into a track/video subfolder inside its playlist.',
+    'Legacy flat drops and Media still use their parent provider folders.', ''];
   for (const provider of PROVIDERS) {
     await realDirectory(path.join(root, provider));
+    if (['Music','Cinema'].includes(provider) && await musicFoldersEnabled(root, provider)) {
+      const items = accepted.items.filter(item => item.folder === provider.toLowerCase());
+      overview.push(provider.toUpperCase() + ' — ' + items.length + ' live items', ...items.map((item,index) => `${String(index+1).padStart(2,'0')}. ${item.playlistTitle ? `[${item.playlistTitle}] ` : ''}${item.title}`), '');
+      const layout = await discoverMusicFolderLayout(root, provider);
+      for (const track of layout.tracks) {
+        const item = accepted.items.find(item => item.id === track.identity?.itemId);
+        if (!item) continue;
+        const filename = path.join(track.directory, 'Listen online.webloc');
+        try { await fs.writeFile(filename, `<?xml version="1.0" encoding="UTF-8"?><plist version="1.0"><dict><key>URL</key><string>${escapeXml(item.src)}</string></dict></plist>`, {flag:'wx',mode:0o600}); } catch(error) { if(error.code!=='EEXIST')throw error; }
+      }
+      continue;
+    }
     const directory = path.join(root, provider, LIBRARY_DIRECTORY);
     await realDirectory(directory);
     const ownerFile = path.join(directory, '.viaims-library.json');

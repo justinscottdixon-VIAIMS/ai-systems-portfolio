@@ -4,12 +4,16 @@ import { appendApprovedItem, MEDIA_ORIGIN, readApprovedRegistry } from '../src/l
 import { safeObjectName } from './media-catalog.mjs';
 import { AuditHold } from './publisher-audit.mjs';
 
-export async function publishAuditedFile({ file, audit, provider, size, store, token, uploader = put, resolver = head, objectPrefix = '', signal }) {
+export async function publishAuditedFile({ file, audit, provider, size, store, token, uploader = put, resolver = head, objectPrefix = '', signal, expectedItemId }) {
   signal?.throwIfAborted();
   const snapshot = await store.read({ signal });
   if (!snapshot) throw new Error('Approved catalogue must be initialized before publishing');
   const prior = readApprovedRegistry(snapshot.registry).items;
   const folder = provider.toLowerCase();
+  if (expectedItemId) {
+    const expected = prior.find(item => item.id === expectedItemId && item.folder === folder);
+    if (!expected || expected.versionId !== audit.contentHash) throw new AuditHold('REPLACEMENT_REVIEW', 'This track folder already represents a different published recording. Review a replacement before publishing.');
+  }
   const duplicate = prior.find(item => item.folder === folder && item.versionId === audit.contentHash);
   if (duplicate) return { status: 'duplicate', item: duplicate };
   if (prior.some(item => item.folder === folder && item.title.normalize('NFKC').toLowerCase() === audit.title.normalize('NFKC').toLowerCase())) throw new AuditHold('TITLE_CONFLICT', 'This title already has a different published recording.');

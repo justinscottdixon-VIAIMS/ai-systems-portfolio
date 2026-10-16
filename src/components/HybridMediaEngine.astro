@@ -9,7 +9,6 @@ import { musicReleaseGroups } from '../lib/music-release-timeline.mjs';
 import { cosmicReleaseGroups, releaseYear } from '../lib/cosmic-release-order.mjs';
 import { selectReleaseRecords } from '../lib/release-scope.mjs';
 import { runtimeCatalogueEnabled } from '../lib/catalogue-release-policy.mjs';
-import CredentialsPlaylist from './CredentialsPlaylist.astro';
 import TrackCredits from './TrackCredits.astro';
 import CosmicLabelFlip from './CosmicLabelFlip.astro';
 import ReleaseArtworkGallery from './ReleaseArtworkGallery.astro';
@@ -219,7 +218,7 @@ const evidenceLabels = {
 		<div class="media-library__tabs" role="tablist" aria-label="Media Library" data-player-tabs>
 			<button id="tab-cinema" type="button" role="tab" aria-selected="true" aria-controls="panel-cinema" tabindex="0" data-media-tab="cinema">CINEMA</button>
 			<button id="tab-music" type="button" role="tab" aria-selected="false" aria-controls="panel-music" tabindex="-1" data-media-tab="music">MUSIC</button>
-			<button id="tab-media" type="button" role="tab" aria-selected="false" aria-controls="panel-media" tabindex="-1" data-media-tab="media" hidden={library.media.length === 0}>MEDIA</button>
+			<button id="tab-media" type="button" role="tab" aria-selected="false" aria-controls="panel-media" tabindex="-1" data-media-tab="media" hidden>MEDIA</button>
 			<button id="tab-youtube" type="button" role="tab" aria-selected="false" aria-controls="panel-youtube" tabindex="-1" data-media-tab="youtube">YOUTUBE</button>
 			{credentialsEnabled && <button id="tab-credentials" type="button" data-open-reference="" aria-controls="reference-stage" aria-label="Explore Credentials">CREDENTIALS</button>}
 		</div>
@@ -264,14 +263,11 @@ const evidenceLabels = {
 		</div>
 		</div></div><div class="meter-tray__lid" aria-hidden="true"><span></span></div></div>
 		<div class="player-dock__libraries" data-library-layout data-active-library="media">
-			{credentialsEnabled && <div class="player-dock__library-switch" role="group" aria-label="Choose playlist">
-				<button type="button" data-library-switch="media" aria-pressed="true">MEDIA</button>
-				<button type="button" data-library-switch="credentials" aria-pressed="false">CREDENTIALS</button>
-			</div>}
 			<section class="player-dock__media-library" aria-label="Media playlist">
 				<header class="media-playlist__header"><strong id="media-playlist-title">CINEMA PLAYLIST</strong>{process.env.VIAIMS_RELEASE_SCOPE !== 'player' && <button id="buy-license" type="button" data-product-id={firstMusic?.productId ?? ''} data-store-href={firstMusic?.storeHref ?? ''} disabled aria-disabled="true">BUY / LICENSE · STORE PENDING</button>}</header>
 		<div class="player-dock__tray" data-provider-tray>
 			<div id="panel-cinema" role="tabpanel" aria-labelledby="tab-cinema" data-provider-panel="cinema">
+				<label id="cinema-playlist-chooser" class="music-playlist-chooser" hidden>SERIES <select id="cinema-playlist-picker" aria-label="Cinema series"></select></label>
 				<div class="media-library__scroll-shell">
 					<div id="playlist-cinema" class="media-library__items">
 						{library.cinema.map((item, index) => (
@@ -284,6 +280,7 @@ const evidenceLabels = {
 				</div>
 			</div>
 			<div id="panel-music" role="tabpanel" aria-labelledby="tab-music" data-provider-panel="music" hidden>
+				<label id="music-playlist-chooser" class="music-playlist-chooser" hidden>PLAYLIST <select id="music-playlist-picker" aria-label="Music playlist"></select></label>
 				<div class="media-library__scroll-shell">
 					<div id="playlist-music" class="media-library__items">
 						{library.music.map((item) => (
@@ -325,15 +322,13 @@ const evidenceLabels = {
 			</div>
 		</div>
 			</section>
-			{credentialsEnabled && <section id="panel-credentials" class="player-dock__credentials-library" aria-label="Credentials playlist">
-				<CredentialsPlaylist />
-			</section>}
 		</div>
 	</section>
 
 </div>
 
 	<script>
+	import { groupMusicPlaylists } from '../lib/music-playlists.mjs';
 	import { connectYoutubePlayer } from '../lib/youtube-player.mjs';
 	import { connectStereoMeters } from '../lib/stereo-meter.mjs';
 	import { createMonitorVolumeController, monitorLevelText } from '../lib/monitor-volume.mjs';
@@ -392,11 +387,17 @@ const evidenceLabels = {
 	const panels = [...root.querySelectorAll('[role="tabpanel"]')];
 	const playlistRails = [...root.querySelectorAll('[data-playlist-scroll-rail]')];
 	const cinemaPlaylist = root.querySelector('#playlist-cinema');
+	const cinemaPlaylistPicker = root.querySelector('#cinema-playlist-picker');
+	const cinemaPlaylistChooser = root.querySelector('#cinema-playlist-chooser');
+	let selectedCinemaPlaylistId = null;
 	const musicPlaylist = root.querySelector('#playlist-music');
+	const musicPlaylistPicker = root.querySelector('#music-playlist-picker');
+	const musicPlaylistChooser = root.querySelector('#music-playlist-chooser');
+	let selectedMusicPlaylistId = null;
 	const mediaPlaylist = root.querySelector('#playlist-media');
 	let cinemaButtons = [...root.querySelectorAll('.cinema-cue')];
 	let allCinemaItems = cinemaButtons.map((button) => ({ id: button.dataset.cinemaId, src: button.dataset.cinemaSrc, title: button.dataset.cinemaTitle, specs: button.dataset.cinemaSpecs, aspect: button.dataset.mediaAspect }));
-	let videoPlaylist = eligibleVideoItems(allCinemaItems, window.innerWidth);
+	let videoPlaylist = eligibleVideoItems(visibleCinemaItems(), window.innerWidth);
 	let allMediaItems = [...root.querySelectorAll('.media-cue')].map((button) => ({ id: button.dataset.mediaId, src: button.dataset.mediaSrc, title: button.dataset.mediaTitle, aspect: button.dataset.mediaAspect }));
 	let mediaItems = eligibleVideoItems(allMediaItems, window.innerWidth);
 	let selectedMediaId = mediaItems[0]?.id ?? null;
@@ -472,7 +473,7 @@ const evidenceLabels = {
 	});
 	let entryControlsLocked = introSession.phase !== 'cinema';
 	let session = createPlaybackSession({ cinemaId: cinema.currentId, cinemaMuted: mv.muted });
-	let musicQueue = createMusicQueue(musicProducts);
+	let musicQueue = createMusicQueue(visibleMusicProducts());
 	let audible = createAudibleSource(introSession.available
 		? { provider: 'ambient', id: 'viaims-ambient', mode: 'audio', currentTime: 0 }
 		: null);
@@ -670,7 +671,7 @@ const evidenceLabels = {
 		}
 		root.querySelector('[data-player-status-strip]').inert = session.activeTab === 'youtube';
 		root.querySelector('[data-player-status-strip]').setAttribute('aria-hidden', String(session.activeTab === 'youtube'));
-		showLibrary('credentials');
+		showLibrary('media');
 		playerDock.inert = false;
 		showReferencePanel(index);
 		if (resumeSlide) showReferenceSlide(resumeSlide);
@@ -1055,8 +1056,21 @@ const evidenceLabels = {
 		return button;
 	}
 
+	function visibleCinemaItems() {
+		const groups = groupMusicPlaylists(allCinemaItems, { unfiledTitle: 'Other Videos' });
+		if (!groups.some(group => group.id === selectedCinemaPlaylistId)) selectedCinemaPlaylistId = groups[0]?.id ?? null;
+		return groups.find(group => group.id === selectedCinemaPlaylistId)?.items ?? [];
+	}
+
 	function renderCinemaRows() {
-		cinemaButtons = allCinemaItems.map((item, index) => {
+		const visibleItems = visibleCinemaItems();
+		const groups = groupMusicPlaylists(allCinemaItems, { unfiledTitle: 'Other Videos' });
+		if (cinemaPlaylistChooser) cinemaPlaylistChooser.hidden = !groups.some(group => group.id !== 'unfiled');
+		if (cinemaPlaylistPicker) {
+			cinemaPlaylistPicker.replaceChildren(...groups.map(group => { const option = document.createElement('option'); option.value = group.id; option.textContent = group.title; return option; }));
+			cinemaPlaylistPicker.value = selectedCinemaPlaylistId ?? '';
+		}
+		cinemaButtons = visibleItems.map((item, index) => {
 			const button = createCatalogueButton('cinema-cue');
 			button.dataset.cinemaIndex = String(index);
 			button.dataset.cinemaId = item.id;
@@ -1074,8 +1088,21 @@ const evidenceLabels = {
 		cinemaPlaylist.replaceChildren(...cinemaButtons);
 	}
 
+	function visibleMusicProducts() {
+		const groups = groupMusicPlaylists(musicProducts);
+		if (!groups.some(group => group.id === selectedMusicPlaylistId)) selectedMusicPlaylistId = groups[0]?.id ?? null;
+		return groups.find(group => group.id === selectedMusicPlaylistId)?.items ?? [];
+	}
+
 	function renderMusicRows() {
-		musicPlaylist.replaceChildren(...musicProducts.map((item) => {
+		const visibleProducts = visibleMusicProducts();
+		const groups = groupMusicPlaylists(musicProducts);
+		if (musicPlaylistChooser) musicPlaylistChooser.hidden = !groups.some(group => group.id !== 'unfiled');
+		if (musicPlaylistPicker) {
+			musicPlaylistPicker.replaceChildren(...groups.map(group => { const option = document.createElement('option'); option.value = group.id; option.textContent = group.title; return option; }));
+			musicPlaylistPicker.value = selectedMusicPlaylistId ?? '';
+		}
+		musicPlaylist.replaceChildren(...visibleProducts.map((item) => {
 			const row = document.createElement('article');
 			row.className = 'music-product';
 			row.dataset.productId = item.productId;
@@ -1102,7 +1129,7 @@ const evidenceLabels = {
 	}
 
 	function renderMediaRows() {
-		root.querySelector('#tab-media').hidden = allMediaItems.length === 0;
+		root.querySelector('#tab-media').hidden = true;
 		if (allMediaItems.length === 0 && session.activeTab === 'media') renderTab('cinema');
 		const rows = allMediaItems.map((item) => {
 			const button = createCatalogueButton('media-cue');
@@ -1180,13 +1207,17 @@ const evidenceLabels = {
 
 	function rebuildMusicQueue() {
 		const previous = musicQueue;
-		const eligible = musicProducts.filter((item) => item.kind !== 'video'
+		const eligible = visibleMusicProducts().filter((item) => item.kind !== 'video'
 			|| eligibleVideoItems([item], window.innerWidth).length === 1);
 		const next = createMusicQueue(eligible);
 		const order = previous.shuffle
 			? [...previous.order.filter((id) => next.tracks.has(id)), ...next.order.filter((id) => !previous.order.includes(id))]
 			: next.order;
-		const currentProductId = previous.currentProductId ?? next.currentProductId;
+		const priorProduct = productById.get(previous.currentProductId);
+		const priorElement = previous.mode === 'video' ? mv : musicAudio;
+		const preserveActive = session.playback.provider === 'music' && session.playback.id === previous.currentProductId
+			&& sameMediaSource(priorElement.getAttribute('src'), previous.mode === 'video' ? priorProduct?.videoSrc : priorProduct?.audioSrc);
+		const currentProductId = next.tracks.has(previous.currentProductId) || preserveActive ? previous.currentProductId : next.currentProductId;
 		musicQueue = {
 			...next, order, currentProductId, cursor: order.indexOf(currentProductId),
 			mode: next.tracks.get(currentProductId)?.kind ?? previous.mode,
@@ -1266,7 +1297,7 @@ const evidenceLabels = {
 		const preserveMusicVisualPresentation = stage.dataset.visualOwner === 'music-tag'
 			? { aspect: stage.dataset.mediaAspect, tag: stage.dataset.visualTag }
 			: null;
-		videoPlaylist = eligibleVideoItems(allCinemaItems, window.innerWidth);
+		videoPlaylist = eligibleVideoItems(visibleCinemaItems(), window.innerWidth);
 		mediaItems = eligibleVideoItems(allMediaItems, window.innerWidth);
 		const priorCinema = cinema;
 		cinema = setCinemaRepeat(createCinemaContinuity(videoPlaylist), priorCinema.repeat);
@@ -2515,6 +2546,25 @@ const evidenceLabels = {
 	});
 	activePrev.addEventListener('click', requestPrevious);
 	activeNext.addEventListener('click', requestNext);
+	cinemaPlaylistPicker?.addEventListener('change', () => {
+		selectedCinemaPlaylistId = cinemaPlaylistPicker.value;
+		renderCinemaRows();
+		rebuildEligibleVideoQueues({ preserveLoaded: !mv.paused || Boolean(session.lease) });
+		entryCueControls = [...cinemaButtons, ...root.querySelectorAll('[data-music-mode]'), ...root.querySelectorAll('.media-cue'), returnButton, retryCinema];
+		syncEntryControlAvailability();
+		syncPlaylistRails();
+	});
+
+	musicPlaylistPicker?.addEventListener('change', () => {
+		selectedMusicPlaylistId = musicPlaylistPicker.value;
+		renderMusicRows();
+		rebuildMusicQueue();
+		entryCueControls = [...cinemaButtons, ...root.querySelectorAll('[data-music-mode]'), ...root.querySelectorAll('.media-cue'), returnButton, retryCinema];
+		syncEntryControlAvailability();
+		syncMusicRowActions();
+		syncPlaylistRails();
+	});
+
 	shuffleButton.addEventListener('click', () => {
 		enqueueMediaControlTransition(() => {
 			const policy = activeTransportPolicy(transportPlayback());

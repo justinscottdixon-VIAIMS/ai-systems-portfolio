@@ -1,3 +1,4 @@
+import { musicPlaylistFields } from './music-playlists.mjs';
 const VISUAL_TAG = /^VIZ-[A-Z0-9]+(?:-[A-Z0-9]+)*$/;
 
 function providerOf(item) {
@@ -85,6 +86,7 @@ function projectVideo(item, provider) {
   const dimensions = dimensionsOf(item);
   return {
     id: identityOf(item, provider),
+    ...musicPlaylistFields(item),
     kind: 'video',
     title: item.title,
     src,
@@ -125,6 +127,7 @@ export function toRuntimeMediaLibrary(items) {
       const visual = visualsByTag.get(tag);
       return {
         productId: identityOf(item, 'music'),
+        ...musicPlaylistFields(item),
         kind,
         title: item.title,
         src,

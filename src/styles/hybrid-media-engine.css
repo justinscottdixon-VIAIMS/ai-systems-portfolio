@@ -1576,10 +1576,10 @@
 
 
 
-/* Media and Credentials remain available as separate, equal-width queues. */
+/* The media list fills the tray; Credentials lives in the theater. */
 .player-dock__libraries {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1fr);
   gap: 0.5rem;
   min-width: 0;
   padding: 0.5rem;
@@ -3231,3 +3231,11 @@ img[src$="cosmic-005-label-a-color-matched-circle-v2.png"] { clip-path: circle(4
   .media-stage[data-transport-in-stage="true"]:not([data-reference-open="true"]) #active-source-kind::after { content:none; }
   .media-stage[data-transport-in-stage="true"]:not([data-reference-open="true"]) .player-dock__transport-group--primary { height:48px; }
 }
+
+.music-playlist-chooser { display:flex; align-items:center; gap:.75rem; padding:.6rem .8rem; color:var(--text-muted, #c7b28e); font:inherit; }
+.music-playlist-chooser[hidden] { display:none; }
+.music-playlist-chooser select { flex:1; min-width:0; color:#eee4d2; background:#17140f; border:1px solid #957747; border-radius:.3rem; padding:.5rem; font:inherit; }
+
+/* Credentials opens the theater directory; the native media list fills the tray. */
+.player-dock__libraries { grid-template-columns:minmax(0,1fr); }
+.player-dock[data-active-tab="credentials"] .media-library__tabs [role="tab"][aria-selected="true"] { background:transparent; color:var(--viaims-muted); border-color:var(--viaims-border); box-shadow:none; }

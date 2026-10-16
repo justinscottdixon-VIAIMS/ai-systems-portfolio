@@ -255,7 +255,7 @@ test('empty Cinema fallback disables native controls and exposes programmatic se
   assert.match(component, /id="meter-r"[^>]+aria-label="Right channel level"/s);
 });
 
-test('Media and Credentials expose independent half-width playlists', async () => {
+test('native media fills the playlist tray while Credentials opens only in the theater', async () => {
   const component = await source(componentPath);
   const credentials = await source(new URL('../src/components/CredentialsPlaylist.astro', import.meta.url));
   const css = await source(stylePath);
@@ -272,13 +272,13 @@ test('Media and Credentials expose independent half-width playlists', async () =
   assert.ok(tabsPosition < transportPosition && transportPosition < metersPosition && metersPosition < playlistsPosition);
   assert.match(component, /class="media-playlist__header"/);
   assert.doesNotMatch(css, /data-active-tab="credentials"\] \.engineering-meters > :not\(#meter-status\)/);
-  assert.match(component, /class="player-dock__credentials-library"/);
-  assert.match(component, /<CredentialsPlaylist \/>/);
+  assert.doesNotMatch(component, /class="player-dock__credentials-library"/);
+  assert.doesNotMatch(component, /<CredentialsPlaylist \/>/);
   assert.match(component, /id="tab-credentials"[^>]+data-open-reference=/);
   assert.match(credentials, /CREDENTIALS PLAYLIST/);
   assert.match(credentials, /id="playlist-credentials"/);
   assert.match(credentials, /class="credentials-cue"[^>]+data-open-reference=/);
-  assert.match(css, /grid-template-columns: repeat\(2, minmax\(0, 1fr\)\)/);
+  assert.match(css, /\.player-dock__libraries\s*\{[^}]*grid-template-columns:\s*minmax\(0,\s*1fr\)/);
   assert.match(component, /id="restore-video-from-pip"/);
   assert.match(component, /stage\.dataset\.referenceOpen = 'true'/);
 });
@@ -309,7 +309,7 @@ test('mobile portrait policy and inline transport are exposed through one contro
   const component = await source(componentPath);
   const css = await source(stylePath);
   assert.match(component, /from '\.\.\/lib\/mobile-media\.mjs'/);
-  assert.match(component, /eligibleVideoItems\(allCinemaItems, window\.innerWidth\)/);
+  assert.match(component, /eligibleVideoItems\(visibleCinemaItems\(\), window\.innerWidth\)/);
   assert.match(component, /data-media-aspect=\{item\.aspect/);
   assert.match(component, /id="active-seek"[^>]+aria-label="Seek active item"/s);
   assert.match(component, /id="active-elapsed"/);

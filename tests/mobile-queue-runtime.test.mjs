@@ -1,3 +1,4 @@
+import { groupMusicPlaylists } from '../src/lib/music-playlists.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
@@ -32,6 +33,7 @@ function runtime({ items = [landscape], width = 390, initialWidth = width, music
     setAttribute(name, value) { this[name] = value; },
   }));
   const context = {
+    groupMusicPlaylists, selectedCinemaPlaylistId: null,
     cinemaBrandCard: { cancel() {} },
     window: { innerWidth: width }, root: { querySelectorAll: () => [] },
     stage: { dataset: { stageProvider: locked ? 'welcome' : 'cinema', mediaAspect: 'landscape', visualOwner: music ? 'music-tag' : 'cinema', visualTag: music ? 'VIZ-A' : '' } },
@@ -45,7 +47,8 @@ function runtime({ items = [landscape], width = 390, initialWidth = width, music
     applyActiveTransportPolicy() {}, renderCinemaAudioInvitation() {}, syncCinemaCueAvailability() {}, syncFullscreenEligibility() {},
   };
   runInNewContext(
-    implementation('rebuildEligibleVideoQueues(', 'applyMirrorWingGeometry(')
+    implementation('visibleCinemaItems(', 'renderCinemaRows(')
+    + implementation('rebuildEligibleVideoQueues(', 'applyMirrorWingGeometry(')
     + implementation('setStageProvider(', 'activeAuthoritativeMedia()')
     + implementation('currentCinema()', 'renderMusicAudioIdentity(')
     + implementation('updateCinemaCueState()', 'updateProviderCueState('), context);

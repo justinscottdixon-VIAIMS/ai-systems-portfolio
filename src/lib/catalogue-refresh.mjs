@@ -1,3 +1,4 @@
+import { musicPlaylistFields, groupMusicPlaylists } from './music-playlists.mjs';
 const FINGERPRINT = /^[a-f0-9]{64}$/;
 const BOOTSTRAP_ITEM_FIELDS = Object.freeze(['id', 'versionId', 'folder', 'kind', 'title', 'src']);
 const BLOB_ITEM_FIELDS = Object.freeze([
@@ -86,8 +87,10 @@ function projectEndpointItems(rows) {
     ids.add(row.id);
     const item = Object.fromEntries(BLOB_ITEM_FIELDS.map((key) => [key, row[key]]));
     if ('visualTag' in row) item.visualTag = row.visualTag;
+    try { Object.assign(item, musicPlaylistFields(row)); } catch { return null; }
     items.push(Object.freeze(item));
   }
+  try { for (const folder of ['music','cinema']) groupMusicPlaylists(items.filter(item => item.folder === folder)); } catch { return null; }
   return Object.freeze(items);
 }
 

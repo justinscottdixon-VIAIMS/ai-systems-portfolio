@@ -5,6 +5,7 @@ import path from 'node:path';
 import { createHash } from 'node:crypto';
 import { AuditHold, auditSnapshot } from './publisher-audit.mjs';
 import { LIBRARY_DIRECTORY } from './publisher-library.mjs';
+import { discoverMusicFolderLayout, rememberPublishedTrack, musicTrackStillEligible } from './music-folder-layout.mjs';
 
 const PROVIDERS = ['Cinema', 'Music', 'Media'];
 async function sidecarSignature(source) {
@@ -76,7 +77,19 @@ export async function createPublisherWatcher({ root, publish = false, publisher,
       for (const provider of PROVIDERS) {
         signal?.throwIfAborted();
         if ((await fs.lstat(path.join(root, provider))).isSymbolicLink()) throw new Error('Provider folder changed');
-        const entries = await fs.readdir(path.join(root, provider), { withFileTypes: true });
+        let entries = await fs.readdir(path.join(root, provider), { withFileTypes: true });
+        if (['Music','Cinema'].includes(provider)) {
+          let layout;
+          try { layout = await discoverMusicFolderLayout(root, provider); }
+          catch { state.error = `${provider} playlist folders need review. Check duplicate numbers, metadata, and symlinks.`; continue; }
+          if (layout) {
+            entries = entries.filter(entry => !entry.isDirectory());
+            for (const track of layout.tracks) {
+              if (track.media.length > 1) entries.push({ name: track.relativeDirectory, isDirectory: () => false, issue: 'Keep one publishable audio or video file per track folder. Move alternate exports outside this folder.' });
+              else if (track.media.length === 1) entries.push({ name: track.media[0], isDirectory: () => false, track });
+            }
+          }
+        }
         for (const entry of entries.sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true }))) {
           signal?.throwIfAborted();
           if (entry.name.startsWith('.') || entry.name.endsWith('.json') || entry.name.toLowerCase() === 'readme.txt' || (entry.isDirectory() && entry.name === LIBRARY_DIRECTORY)) continue;
@@ -84,11 +97,13 @@ export async function createPublisherWatcher({ root, publish = false, publisher,
           const source = path.join(root, provider, entry.name);
           const stat = await fs.lstat(source);
           const sourceSignature = signature(stat);
-          const metadataSignature = await sidecarSignature(source);
-          const unchanged = async () => signature(await fs.lstat(source)) === sourceSignature && await sidecarSignature(source) === metadataSignature;
+          const contextSignature = async () => (await Promise.all((entry.track?.contextFiles ?? []).map(async filename => { try { return signature(await fs.lstat(filename)); } catch (error) { if (error.code === 'ENOENT') return ''; throw error; } }))).join('|');
+          const metadataSignature = `${await sidecarSignature(source)}:${await contextSignature()}`;
+          const unchanged = async () => signature(await fs.lstat(source)) === sourceSignature && `${await sidecarSignature(source)}:${await contextSignature()}` === metadataSignature && (!entry.track || await musicTrackStillEligible(root, entry.track, entry.name));
           const sig = `${sourceSignature}:${metadataSignature}`;
           let row = Object.hasOwn(state.files, key) ? state.files[key] : null;
           if (!row || row.signature !== sig) row = state.files[key] = { signature: sig, observedAt: now(), status: 'waiting', message: 'Waiting for copying to finish.' };
+          if (entry.issue) { row.status = 'needs-attention'; row.message = entry.issue; continue; }
           if (!stat.isFile() || stat.isSymbolicLink()) { row.status = 'needs-attention'; row.message = 'Only regular files directly inside a player folder are supported.'; continue; }
           if (['published', 'duplicate', 'needs-attention'].includes(row.status) || (!publish && row.status === 'ready')) continue;
           if (now() - row.observedAt < settleMs || row.retryAt > now()) continue;
@@ -97,7 +112,7 @@ export async function createPublisherWatcher({ root, publish = false, publisher,
             if (stat.size <= 0 || stat.size > 2 * 1024 ** 3) throw new AuditHold('FILE_SIZE', 'Files must be nonempty and no larger than 2 GiB.');
             const space = await fs.statfs(stateDirectory);
             if (Number(space.bavail) * Number(space.bsize) < stat.size + 200 * 1024 ** 2) throw new Error('Insufficient staging space');
-            let title;
+            let title = entry.track?.folderTitle;
             try {
               const sidecar = `${source}.json`, sideStat = await fs.lstat(sidecar);
               if (!sideStat.isFile() || sideStat.isSymbolicLink() || sideStat.size > 4096) throw new AuditHold('INVALID_METADATA', 'The optional title sidecar must be a small regular JSON file.');
@@ -110,16 +125,18 @@ export async function createPublisherWatcher({ root, publish = false, publisher,
             try { await pipeline(handle.createReadStream(), createWriteStream(`${snapshot}.tmp`, { mode: 0o600 }), { signal }); } finally { await handle.close(); }
             if (!(await unchanged())) { row.observedAt = now(); row.status = 'waiting'; row.message = 'File or title changed while copying; waiting again.'; continue; }
             await fs.rename(`${snapshot}.tmp`, snapshot);
-            const audit = await auditor(snapshot, { filename: entry.name, provider, title, signal });
+            const audit = await auditor(snapshot, { filename: path.basename(entry.name), provider, title, signal });
             signal?.throwIfAborted();
             if (!(await unchanged())) { row.status = 'waiting'; row.observedAt = now(); row.message = 'File or title changed during audit; waiting again.'; continue; }
+            if (entry.track?.expectedKind && entry.track.expectedKind !== audit.kind) throw new AuditHold('WRONG_PLAYLIST', `This playlist accepts ${entry.track.expectedKind} files. Move the track folder to a matching playlist.`);
             row.audit = audit;
             if (!publish) { row.status = 'ready'; row.message = 'Audit passed. Audit-only mode has not uploaded this file.'; continue; }
             if (typeof publisher !== 'function') throw new Error('Publisher is not configured');
             row.status = 'publishing'; row.message = 'Audit passed. Uploading and registering the release.'; await report();
             signal?.throwIfAborted();
             if (!(await unchanged())) { row.status = 'waiting'; row.observedAt = now(); row.message = 'File or title changed before publication; waiting again.'; continue; }
-            const result = await publisher({ signal, file: { filename: entry.name, extension: path.extname(entry.name).toLowerCase(), snapshot }, audit, provider, size: stat.size });
+            const result = await publisher({ signal, expectedItemId: entry.track?.identity?.itemId, file: { filename: path.basename(entry.name), extension: path.extname(entry.name).toLowerCase(), snapshot }, audit, provider, size: stat.size });
+            if (entry.track) await rememberPublishedTrack(entry.track, result.item);
             row.status = result.status; row.message = result.status === 'duplicate' ? 'This content is already published in this player.' : `Published as ${result.item.title}.`; row.url = result.item.src;
             delete row.retryAt; delete row.failures;
           } catch (error) {

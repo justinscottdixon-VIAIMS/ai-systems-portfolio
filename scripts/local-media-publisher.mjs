@@ -1,4 +1,5 @@
 import fs from 'node:fs/promises';
+import path from 'node:path';
 import { parseEnv, parseArgs } from 'node:util';
 import { pathToFileURL } from 'node:url';
 import { setTimeout as delay } from 'node:timers/promises';
@@ -6,6 +7,7 @@ import { createApprovedCatalogueStore } from '../src/lib/approved-catalogue-stor
 import { acquirePublisherLock, createPublisherWatcher } from './publisher-watcher.mjs';
 import { publishAuditedFile } from './publisher-upload.mjs';
 import { refreshLocalPlaylistLibrary } from './publisher-library.mjs';
+import { createMusicFolderController, discoverMusicFolderLayout } from './music-folder-layout.mjs';
 
 export async function loadPublisherToken(filename) {
   if (filename) {
@@ -34,6 +36,7 @@ export async function main(args = process.argv.slice(2)) {
     publisher: values.publish ? input => publishAuditedFile({ ...input, store, token }) : undefined,
   });
   const release = await acquirePublisherLock(watcher.stateDirectory);
+  const folderControllers = store ? await Promise.all(['Music','Cinema'].map(provider => createMusicFolderController({ root: values.root, store, signal: pause.signal, provider }))) : [];
   let stop = false;
   let nextLibraryRefresh = 0;
   const halt = () => { stop = true; pause.abort(); };
@@ -42,6 +45,15 @@ export async function main(args = process.argv.slice(2)) {
   try {
     do {
       await watcher.scan();
+      for (const [index, controller] of folderControllers.entries()) {
+        if (stop) break;
+        const provider = ['Music','Cinema'][index];
+        try { await controller.reconcile(await discoverMusicFolderLayout(values.root, provider));
+          await fs.writeFile(path.join(values.root, `${provider} Playlist Status.txt`), `${provider} folders checked. Stable folder order is synchronized automatically.\n`);
+        } catch { console.error(`${provider} folder order could not synchronize; public releases are retained.`);
+          await fs.writeFile(path.join(values.root, `${provider} Playlist Status.txt`), 'Folder order needs attention or a service is unavailable. Public releases remain available. Check duplicate folder numbers, identities, and connectivity. Retrying automatically.\n');
+        }
+      }
       if (store && !stop && Date.now() >= nextLibraryRefresh) {
         nextLibraryRefresh = Date.now() + 60_000;
         try { await refreshLocalPlaylistLibrary({ root: values.root, store, signal: pause.signal }); }

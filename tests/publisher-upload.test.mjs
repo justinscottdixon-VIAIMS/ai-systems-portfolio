@@ -34,3 +34,7 @@ test('stop after upload prevents registry commit',async t=>{
  await assert.rejects(publishAuditedFile({...input,signal:controller.signal,store:{read:async()=>({registry:registryDocument([]),etag:'v1'}),write:async()=>writes++},resolver:async()=>{controller.abort();return {url:`${MEDIA_ORIGIN}/Media/file.mp4`,size:5};}}),{name:'AbortError'});
  assert.equal(writes,0);
 });
+test('different audio in a linked track folder is held before any upload or registry write',async t=>{
+ const input=await fixture(t);let uploads=0,writes=0;const old={id:'Music/old.mp4',pathname:'Music/old.mp4',folder:'music',kind:'video',versionId:'b'.repeat(64),title:'Old',src:`${MEDIA_ORIGIN}/Music/old.mp4`,size:5,uploadedAt:'2026-10-16T12:00:00Z',playlistOrder:0};
+ await assert.rejects(publishAuditedFile({...input,provider:'Music',expectedItemId:old.id,store:{read:async()=>({registry:registryDocument([old]),etag:'v1'}),write:async()=>writes++},uploader:async()=>uploads++}),{code:'REPLACEMENT_REVIEW'});assert.equal(uploads,0);assert.equal(writes,0);
+});
