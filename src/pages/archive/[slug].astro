@@ -1,8 +1,10 @@
 ---
+import { musicReleaseGroups } from '../../lib/music-release-timeline.mjs';
 import ArchiveLayout from '../../layouts/ArchiveLayout.astro';
 import TrackCredits from '../../components/TrackCredits.astro';
 import DossierContext from '../../components/DossierContext.astro';
 import ReleaseHistory from '../../components/ReleaseHistory.astro';
+import ReleaseListening from '../../components/ReleaseListening.astro';
 import PressClippings from '../../components/PressClippings.astro';
 import DossierMedia from '../../components/DossierMedia.astro';
 import source from '../../data/portfolio-records.json';
@@ -16,6 +18,8 @@ export function getStaticPaths() {
   return canonicalRecords.map(record => ({ params: { slug: record.slug }, props: { record: grouped.get(record.id) ?? record } }));
 }
 const { record } = Astro.props;
+const timelineGroups = record.id === 'singles-remixes' ? musicReleaseGroups(record.children) : [];
+const timelineStarts = new Map(timelineGroups.map(group => [group.children[0].id, group.title]));
 const recordsById = new Map(selectReleaseRecords(toPortfolioRecords(source), process.env.VIAIMS_RELEASE_SCOPE).map(item => [item.id, item]));
 const evidenceLabels = {
   'primary-public': 'Primary public source', 'corroborated-public': 'Corroborated public record',
@@ -33,10 +37,11 @@ const evidenceLabels = {
       <div><dt>Record status</dt><dd>{record.status.replaceAll('-', ' ')}</dd></div>
     </dl>
   </header>
+  <ReleaseListening links={record.listeningLinks} />
   {record.gallery.filter(item => item.kind === 'image').map(item => <figure class="archive-art"><img src={item.src} alt={item.alt} loading="lazy" decoding="async" /><figcaption>{item.caption}</figcaption></figure>)}
   <nav class="archive-contents" aria-label="Dossier contents"><h2>In this dossier</h2><ul>
     {record.sections.map((section, index) => <li><a href={`#history-${index + 1}`}>{section.title}</a></li>)}
-    {record.children.map(child => <li><a href={`#${child.id}`}>{child.catalogNumber} · {child.title}</a></li>)}
+    {timelineGroups.length ? timelineGroups.map(group => <li><strong>{group.title}</strong><ul>{group.children.map(child => <li><a href={`#${child.id}`}>{child.title}</a></li>)}</ul></li>) : record.children.map(child => <li><a href={`#${child.id}`}>{child.catalogNumber} · {child.title}</a></li>)}
     {(record.contextRecords ?? []).map(context => <li><a href={`#context-${context.id}`}>{context.title}</a></li>)}
     <li><a href="#sources">Sources & attribution</a></li>
     {record.id === 'cosmic-records-history' && <li><a href="#press-clippings">Articles & interviews</a></li>}
@@ -46,7 +51,7 @@ const evidenceLabels = {
     <p class="eyebrow">HISTORY & CONTEXT</p><h2>{section.title}</h2>{section.intro && <p>{section.intro}</p>}
     {section.items.map(item => <div class="history-item"><h3>{item.title}</h3>{item.date && <p class="muted">{item.date}</p>}<p>{item.detail}</p>{item.href && <a href={item.href} target="_blank" rel="noopener noreferrer">Read the source ↗</a>}</div>)}
   </section>)}
-  {record.children.map(child => <article class:list={["archive-section release-record", { "release-record--package": child.id === "transformed" }]} id={child.id}>
+  {record.children.map(child => <>{timelineStarts.has(child.id) && <h2 class="archive-timeline-year">{timelineStarts.get(child.id)}</h2>}<article class:list={["archive-section release-record", { "release-record--package": child.id === "transformed" }]} id={child.id}>
     {child.id === 'cosmic-018' && <header class="archive-packaging-heading"><p class="eyebrow">{child.catalogNumber} · CD packaging</p><h2>{child.title}</h2><p>Front and back panels, joined inside booklet, tray inlay and disc. Open an image to inspect it at full size.</p></header>}
     <div class:list={{ 'archive-packaging': child.id === 'cosmic-018' }}>
       {(child.id === 'transformed' ? child.gallery.slice(0, 1) : child.gallery).map((item, index) => <figure class:list={['archive-art', { 'archive-art--spread': child.id === 'cosmic-018' && item.src?.includes('-spread-') }]} id={child.id === 'cosmic-018' ? `cosmic-018-artwork-${index + 1}` : undefined}>{item.kind === 'image' ? child.id === 'cosmic-018' ? <a href={item.src} target="_blank" rel="noopener noreferrer" aria-label={`Open full-size artwork: ${item.alt}`}><img src={item.src} alt={item.alt} loading="lazy" decoding="async" /></a> : <img src={item.src} alt={item.alt} loading="lazy" decoding="async" /> : <div class="art-pending">Presentation artwork forthcoming</div>}<figcaption>{item.caption}</figcaption></figure>)}
@@ -54,6 +59,7 @@ const evidenceLabels = {
     <div><p class="eyebrow">{child.catalogNumber}</p><h2>{child.title}</h2><p class="artist">{child.artist}</p>
       <dl class="archive-facts"><div><dt>Date evidence</dt><dd>{child.date}</dd></div><div><dt>Format</dt><dd>{child.format}</dd></div>{child.roles.length > 0 && <div><dt>Contribution</dt><dd>{child.roles.join(' · ')}</dd></div>}</dl>
       <p>{child.summary}</p>
+      <ReleaseListening links={child.listeningLinks} />
       {child.credits.length > 0 && <TrackCredits credits={child.credits} />}
       <ReleaseHistory sections={child.historySections} headingLevel={3} />
       {(child.contextRecords ?? []).map(context => <DossierContext record={context} />)}
@@ -62,7 +68,7 @@ const evidenceLabels = {
       <a class="permalink" href={archiveHref(record, child)}>Link to this release ↗</a>
     </div>
     {child.id === 'transformed' && <section class="archive-package-panels" aria-label="Transformed CD packaging"><h3>Inside the CD package</h3><p>Original packaging scans. Open any panel at full size.</p><div class="archive-package-panels__grid">{child.gallery.slice(1).map((item, index) => item.kind === 'image' && <figure class="archive-art" id={`transformed-artwork-${index + 2}`}><a href={item.src} target="_blank" rel="noopener noreferrer" aria-label={`Open full-size artwork: ${item.alt}`}><img src={item.src} alt={item.alt} loading="lazy" decoding="async" /></a><figcaption>{item.caption}</figcaption></figure>)}</div></section>}
-  </article>)}
+  </article></>)}
   {record.sections.map((section, index) => section.placement === 'after-releases' && <section class="archive-section" id={`history-${index + 1}`}>
     <p class="eyebrow">HISTORY & CONTEXT</p><h2>{section.title}</h2>{section.intro && <p>{section.intro}</p>}
     {section.items.map(item => <div class="history-item"><h3>{item.title}</h3>{item.date && <p class="muted">{item.date}</p>}<p>{item.detail}</p>{item.href && <a href={item.href} target="_blank" rel="noopener noreferrer">Read the source ↗</a>}</div>)}
@@ -76,3 +82,26 @@ const evidenceLabels = {
   {record.id === 'cosmic-records-history' && <PressClippings />}
   {record.id === 'cosmic-records-history' && <DossierMedia />}
 </ArchiveLayout>
+
+<script>
+  // Preserve saved edition links after consolidating these releases into Cosmic.
+  const movedEditions = {
+    'nc-01': 'sunshine-state-of-mind',
+    'nc-08': 'sunshine-state-of-mind',
+    'nc-14': 'groove-me-suenos',
+    'nc-17': 'mad-free',
+  };
+  const followMovedEdition = () => {
+    const hash = window.location.hash.slice(1);
+    if (window.location.pathname === '/archive/singles-remixes/' && hash === 'nc-09') {
+      window.location.replace('/archive/singles-remixes/#compilation-appearances-d003');
+      return;
+    }
+    const oldId = window.location.pathname === '/archive/singles-remixes/' ? hash
+      : window.location.pathname === '/archive/cosmic-records-history/' ? hash.replace(/^singles-remixes-/, '') : '';
+    const destination = movedEditions[oldId];
+    if (destination) window.location.replace(`/archive/cosmic-records-history/#${destination}`);
+  };
+  followMovedEdition();
+  window.addEventListener('hashchange', followMovedEdition);
+</script>

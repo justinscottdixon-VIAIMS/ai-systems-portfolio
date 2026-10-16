@@ -6,6 +6,8 @@ import {
   createCinemaEndedToken,
   isCurrentCinemaEndedToken,
   selectCinema,
+  setCinemaRepeat,
+  toggleCinemaShuffle,
 } from '../src/lib/cinema-continuity.mjs';
 
 const items = [
@@ -44,3 +46,23 @@ test('empty Cinema libraries remain safe and inert', () => {
   assert.equal(cinema.currentId, null);
   assert.equal(advanceCinema(cinema, 1).currentId, null);
 });
+
+ test('Cinema repeat modes govern natural endings but manual next escapes Repeat One', () => {
+  let state = selectCinema(createCinemaContinuity(items), 2);
+  assert.equal(advanceCinema(state, 1, { natural: true }).currentId, 'atlas-1');
+  state = setCinemaRepeat(state, 'off');
+  assert.equal(advanceCinema(state, 1, { natural: true }), null);
+  state = setCinemaRepeat(state, 'one');
+  assert.equal(advanceCinema(state, 1, { natural: true }).currentId, 'atlas-3');
+  assert.equal(advanceCinema(state, 1).currentId, 'atlas-1');
+ });
+ test('Cinema shuffle keeps selection and visits each item once, with reversible navigation', () => {
+  const state = toggleCinemaShuffle(createCinemaContinuity(items), () => 0);
+  assert.equal(state.currentId, 'atlas-1');
+  assert.deepEqual(state.order, ['atlas-1', 'atlas-3', 'atlas-2']);
+  const next = advanceCinema(state);
+  assert.equal(next.currentId, 'atlas-3');
+  assert.equal(advanceCinema(next, -1).currentId, 'atlas-1');
+  assert.equal(toggleCinemaShuffle(next).currentId, 'atlas-3');
+  assert.deepEqual(toggleCinemaShuffle(next).order, items.map(item => item.id));
+ });

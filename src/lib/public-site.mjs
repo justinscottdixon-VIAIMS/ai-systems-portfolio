@@ -5,6 +5,7 @@ export const publicProfile = Object.freeze({
  description: 'Music, video and spatial audio by Justin Scott Dixon. Explore selected sound and visual projects from VIAIMS, the Voyager Institute of AI Music Systems.',
  introduction: "Justin Scott Dixon’s creative work spans music, video, spatial audio and the technology that connects them. Through VIAIMS, the Voyager Institute of AI Music Systems, he explores how sound, moving image and AI-assisted workflows can support one another, with an emphasis on thoughtful experimentation and personal expression.\n\nThis site brings together a curated selection of that work, offering visitors a place to listen, watch and discover connections between the projects. Whether arriving with a particular interest or simply a little curiosity, visitors are welcome to spend time with the collection.\n\nThe site’s player reflects that same care, bringing a little of the tactile character and visual feedback of studio hardware into a web interface. It is an expression of Justin’s commitment to thoughtful presentation and technology that serves the experience.",
  channel: 'https://www.youtube.com/@justinscottdixon_voyager',
+ contact: 'mailto:hello@viaims.com',
 });
 export function publicContact(value) {
  if (!value) return null;

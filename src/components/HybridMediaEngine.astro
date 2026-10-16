@@ -2,8 +2,11 @@
 import { toMediaLibrary } from '../lib/media-library.mjs';
 import curatedMedia from '../data/curated-media.json';
 import portfolioRecordsSource from '../data/portfolio-records.json';
+import directoryImageReview from '../data/directory-image-review.json';
 import { toPortfolioRecords } from '../lib/portfolio-records.mjs';
 import { toCredentialCollections } from '../lib/credential-collections.mjs';
+import { musicReleaseGroups } from '../lib/music-release-timeline.mjs';
+import { cosmicReleaseGroups, releaseYear } from '../lib/cosmic-release-order.mjs';
 import { selectReleaseRecords } from '../lib/release-scope.mjs';
 import CredentialsPlaylist from './CredentialsPlaylist.astro';
 import TrackCredits from './TrackCredits.astro';
@@ -11,6 +14,7 @@ import CosmicLabelFlip from './CosmicLabelFlip.astro';
 import ReleaseArtworkGallery from './ReleaseArtworkGallery.astro';
 import DossierContext from './DossierContext.astro';
 import ReleaseHistory from './ReleaseHistory.astro';
+import ReleaseListening from './ReleaseListening.astro';
 import { archiveHref } from '../lib/archive-index.mjs';
 import '../styles/hybrid-media-engine.css';
 
@@ -63,6 +67,18 @@ const evidenceLabels = {
 		{credentialsEnabled && <section id="reference-stage" class="reference-stage" aria-label="Career and release reference" hidden>
 			<div class="reference-stage__backdrop" aria-hidden="true"></div>
 			<div class="reference-stage__viewport">
+				<section class="reference-directory" aria-label="Explore Credentials">
+					<header><span>VIAIMS ARCHIVE</span><h2>Explore Credentials</h2></header>
+					<nav class="reference-directory__list" aria-label="Choose a dossier to preview">
+						{portfolioRecords.map((record, index) => <button type="button" data-preview-reference={record.id} aria-pressed="false"><span>{String(index + 1).padStart(2, '0')}</span><strong>{record.title}</strong></button>)}
+					</nav>
+					<div class="reference-directory__previews">
+						{portfolioRecords.map((record) => <article data-directory-preview={record.id} style={record.gallery[0]?.kind === 'image' ? { '--directory-artwork': `url(${JSON.stringify(directoryImageReview[record.id]?.desktop ?? record.gallery[0].src)})` } : undefined} hidden>
+							<div class="reference-directory__art">{record.gallery[0]?.kind === 'image' ? <picture class:list={{ "directory-review-image": Boolean(directoryImageReview[record.id]) }}>{directoryImageReview[record.id] && <source media="(max-width:900px)" srcset={directoryImageReview[record.id].mobile} />}<img src={directoryImageReview[record.id]?.desktop ?? record.gallery[0].src} alt={record.gallery[0].alt} loading="lazy" decoding="async" /></picture> : <p>ARTWORK PENDING</p>}</div>
+							<div class="reference-directory__copy"><span>{record.category.toUpperCase()}</span><h3>{record.title}</h3><p>{record.era}</p><strong>{record.displayArtistOrClient}</strong><button type="button" data-directory-open={record.id}>OPEN DOSSIER ↗</button></div>
+						</article>)}
+					</div>
+				</section>
 				{portfolioRecords.map((record, index) => (
 					<article
 						class="reference-stage__record"
@@ -90,9 +106,16 @@ const evidenceLabels = {
 								<h2>{record.title}</h2>
 								<div class="reference-stage__facts"><div><span>DATE</span><strong>{record.dateDisplay}</strong></div><div><span>FORMAT</span><strong>{record.format}</strong></div><div><span>ROLE</span><strong>{record.roles.join(' · ')}</strong></div><div><span>EVIDENCE</span><strong>{evidenceLabels[record.evidenceLevel]}</strong></div></div>
 								<p class="reference-stage__summary">{record.summary}</p>
+                                <ReleaseListening links={record.listeningLinks} />
 								<a href={archiveHref(record)} target="_blank" rel="noopener noreferrer">READ FULL RECORD ↗</a>
 								{Object.keys(record.catalog ?? {}).length > 0 && <div class="reference-stage__catalog">{Object.entries(record.catalog).map(([label, value]) => <span><b>{label.replaceAll(/([A-Z])/g, ' $1')}</b>{value}</span>)}</div>}
-									{['singles-remixes', 'cosmic-records-history'].includes(record.id) && <nav class="reference-stage__collection-index" aria-label="Browse music releases and context"><h3>Browse this collection</h3>{record.children.map(child => <button type="button" data-reference-jump={`${record.id}-${child.id}`}>{child.title}</button>)}{(record.contextRecords ?? []).map(context => <button type="button" data-reference-jump={`${record.id}-context-${context.id}`}>{context.title}</button>)}</nav>}
+									{['singles-remixes', 'cosmic-records-history'].includes(record.id) && <nav class="reference-stage__collection-index" aria-label="Browse music releases and context"><h3>Browse this collection</h3>{(record.id === 'cosmic-records-history' ? cosmicReleaseGroups(record.children) : musicReleaseGroups(record.children)).map(group => <section class="reference-stage__release-group" aria-label={group.title}>
+                                      <h4>{group.title}</h4>
+                                      <div class="reference-stage__release-chips">{group.children.map(child => <button type="button" data-reference-jump={`${record.id}-${child.id}`}>
+                                        <span class="reference-stage__chip-meta">{child.catalogNumber} · {releaseYear(child) ?? 'Date unconfirmed'}</span>
+                                        <span>{child.title}</span>
+                                      </button>)}</div>
+                                    </section>)}{(record.contextRecords ?? []).map(context => <button type="button" data-reference-jump={`${record.id}-context-${context.id}`}>{context.title}</button>)}</nav>}
 							</section>
 							{record.gallery.slice(hasStandaloneReleaseGallery(record) ? record.gallery.length : 1).map((item, imageIndex) => item.kind === 'image' && <section class="reference-stage__slide reference-stage__artwork-page" data-reference-slide data-slide-label={`${record.title} — artwork ${imageIndex + 2}`} hidden>
 								<header class="reference-stage__sequence"><span>{record.title}</span><span>ARTWORK {imageIndex + 2} / {record.gallery.length}</span></header>
@@ -105,9 +128,15 @@ const evidenceLabels = {
                                   <article class="reference-stage__slide reference-stage__child-page" data-reference-slide data-slide-label={child.title} id={`${record.id}-${child.id}`} hidden>
                                     <div class="reference-stage__child-art">{canFlipLabel ? <CosmicLabelFlip front={artworkImages[0]} back={artworkImages[1]} title={child.title} /> : artworkImages.length > 1 ? <ReleaseArtworkGallery images={artworkImages} title={child.title} labels={child.id === 'cosmic-018' ? ['Front cover', 'Booklet back', 'Booklet inside', 'Rear tray and spines', 'CD face', 'Outside spread overview'] : []} /> : child.gallery[0].kind === 'image' ? <img src={child.gallery[0].src} alt={child.gallery[0].alt} loading="lazy" decoding="async" /> : <div role="img" aria-label={child.gallery[0].alt}>ARTWORK PENDING</div>}</div>
                                     <div class="reference-stage__child-copy">
+                                      <nav class="reference-stage__card-navigation" aria-label="Navigate dossier from release card">
+                                        <button type="button" data-reference-step="-1" aria-label="Previous dossier card">← Back</button>
+                                        <button type="button" data-reference-jump={`${record.id}-overview`}>Release list</button>
+                                        <button type="button" data-reference-step="1" aria-label="Next dossier card">Next →</button>
+                                      </nav>
                                       <span>RELEASE {String(childIndex + 1).padStart(2, '0')} / {String(record.children.length).padStart(2, '0')}</span><h3>{child.title}</h3><strong>{child.artist}</strong>
                                       <dl><div><dt>CATALOG</dt><dd>{child.catalogNumber}</dd></div><div><dt>DATE</dt><dd>{child.date}</dd></div><div><dt>FORMAT</dt><dd>{child.format}</dd></div></dl>
                                       <p>{child.summary}</p><small>{child.roles.join(' · ')}</small>
+                                      <ReleaseListening links={child.listeningLinks} />
                                       {child.credits.length > 0 && <details class="reference-stage__release-credits" data-release-credits><summary>Credits &amp; contribution</summary><TrackCredits credits={child.credits} /></details>}
                                       {((child.historySections ?? []).length > 0 || (child.contextRecords ?? []).length > 0) && <details class="reference-stage__release-credits" data-release-history><summary>Release history &amp; sources</summary><ReleaseHistory sections={child.historySections} />{(child.contextRecords ?? []).map(context => <DossierContext record={context} />)}</details>}
                                       <p><a href={child.sourceArchiveHref ?? archiveHref(record, child)} target="_blank" rel="noopener noreferrer">FULL RELEASE RECORD ↗</a></p>
@@ -190,7 +219,7 @@ const evidenceLabels = {
 			<button id="tab-music" type="button" role="tab" aria-selected="false" aria-controls="panel-music" tabindex="-1" data-media-tab="music">MUSIC</button>
 			<button id="tab-media" type="button" role="tab" aria-selected="false" aria-controls="panel-media" tabindex="-1" data-media-tab="media">MEDIA</button>
 			<button id="tab-youtube" type="button" role="tab" aria-selected="false" aria-controls="panel-youtube" tabindex="-1" data-media-tab="youtube">YOUTUBE</button>
-			{credentialsEnabled && <button id="tab-credentials" type="button" data-open-reference="" aria-controls="reference-stage" aria-label="Present the first credentials dossier">CREDENTIALS</button>}
+			{credentialsEnabled && <button id="tab-credentials" type="button" data-open-reference="" aria-controls="reference-stage" aria-label="Explore Credentials">CREDENTIALS</button>}
 		</div>
 		<div class="player-dock__command" data-player-command-strip>
 			<div class="player-dock__identity">
@@ -201,12 +230,12 @@ const evidenceLabels = {
 			<div class="player-dock__transport" aria-label="Active source transport">
 				<div class="player-dock__transport-group player-dock__transport-group--primary">
 					<button id="active-prev" type="button" aria-label="Previous active item" disabled={library.experience.enabled || !firstCinema} aria-disabled={String(library.experience.enabled || !firstCinema)}>⏮</button>
+					<button id="music-shuffle" type="button" aria-pressed="false" disabled aria-disabled="true">SHUFFLE</button>
 					<button id="active-play" type="button" aria-label="Play active item" disabled={library.experience.enabled || !firstCinema} aria-disabled={String(library.experience.enabled || !firstCinema)}>PLAY</button>
+					<button id="music-repeat" type="button" data-repeat="all" disabled aria-disabled="true">REPEAT ALL</button>
 					<button id="active-next" type="button" aria-label="Next active item" disabled={library.experience.enabled || !firstCinema} aria-disabled={String(library.experience.enabled || !firstCinema)}>⏭</button>
 				</div>
 				<div class="player-dock__transport-group player-dock__transport-group--secondary">
-					<button id="music-shuffle" type="button" aria-pressed="false" disabled aria-disabled="true">SHUFFLE</button>
-					<button id="music-repeat" type="button" data-repeat="all" disabled aria-disabled="true">REPEAT ALL</button>
 					<button id="return-to-cinema" type="button" hidden disabled={library.experience.enabled} aria-disabled={String(library.experience.enabled)}>RETURN TO CINEMA</button>
 					<label class="player-dock__seek"><output id="active-elapsed">--:--</output><input id="active-seek" type="range" min="0" max="0" step="0.01" value="0" aria-label="Seek active item" disabled /><output id="active-remaining">--:--</output></label>
 				</div>
@@ -309,7 +338,7 @@ const evidenceLabels = {
 	import { activePlayButtonState, activeTransportPolicy, createEndedEventToken, isCurrentEndedEventToken, runtimeVideoErrorAction, runCommittedPlayback, runActivePlaybackRetry, transportPlaybackForTab } from '../lib/active-transport.mjs';
 	import { audibleElementKind, claimCinemaAudio, createAudibleSource, removeAudibleProvider, restorePriorAudio, selectAudibleTrack } from '../lib/audible-source.mjs';
 	import { createCinemaBrandCard } from '../lib/cinema-brand-card.mjs';
-	import { advanceCinema, createCinemaContinuity, createCinemaEndedToken, isCurrentCinemaEndedToken, selectCinema } from '../lib/cinema-continuity.mjs';
+	import { advanceCinema, createCinemaContinuity, createCinemaEndedToken, isCurrentCinemaEndedToken, selectCinema, setCinemaRepeat, toggleCinemaShuffle } from '../lib/cinema-continuity.mjs';
 	import { advanceMusicQueue, createMusicQueue, selectMusicItem, selectMusicMode, setRepeatMode, toggleShuffle } from '../lib/music-queue.mjs';
 	import { bindRuntimeCatalogueLifecycle, createRuntimeCatalogueController } from '../lib/runtime-catalogue-controller.mjs';
 	import { toRuntimeMediaLibrary } from '../lib/runtime-media-library.mjs';
@@ -499,7 +528,19 @@ const evidenceLabels = {
 		}
 	}
 
+	function renderQueueControls() {
+		const queue = transportPlayback().provider === 'cinema' ? cinema : musicQueue;
+		shuffleButton.setAttribute('aria-pressed', String(queue.shuffle));
+		shuffleButton.title = `Shuffle ${queue.shuffle ? 'on' : 'off'}`;
+		repeatButton.dataset.repeat = queue.repeat;
+		repeatButton.textContent = `REPEAT ${queue.repeat.toUpperCase()}`;
+		repeatButton.title = `Repeat ${queue.repeat}`;
+		repeatButton.setAttribute('aria-label', `Repeat ${queue.repeat}`);
+	}
+
 	function applyActiveTransportPolicy() {
+		// Dossier browsing loops background Cinema, never a leased Music/Media video.
+		if (typeof referenceReturnState !== 'undefined' && referenceReturnState) mv.loop = !session.lease;
 		const controlledPlayback = transportPlayback();
 		const policy = activeTransportPolicy(controlledPlayback);
 		for (const [action, control] of transportControls) {
@@ -507,6 +548,7 @@ const evidenceLabels = {
 			control.disabled = !enabled;
 			control.setAttribute('aria-disabled', String(!enabled));
 		}
+		renderQueueControls();
 		syncCinemaCueAvailability();
 		syncActivePlayButton();
 		renderFullscreenSession();
@@ -597,7 +639,7 @@ const evidenceLabels = {
 		requestAnimationFrame(syncPlaylistRails);
 	}
 
-	function openReference(referenceId) {
+	function openReference(referenceId, { scroll = true } = {}) {
 		if (!referenceStage || referencePanels.length === 0) return;
 		const recalled = !referenceId && Date.now() - Number(referenceStage.dataset.leftAt) < 10 * 60 * 1000;
 		const targetId = referenceId || (recalled ? referenceStage.dataset.lastDossier : referencePanels[0]?.dataset.referencePanel);
@@ -611,8 +653,9 @@ const evidenceLabels = {
 				ui: captureControllerUi(),
 				activeElement: document.activeElement,
 			};
-			mv.loop = true;
+			mv.loop = !session.lease;
 		}
+		referenceStage.dataset.view = 'dossier';
 		referenceStage.hidden = false;
 		stage.dataset.referenceOpen = 'true';
 		referenceTransportSlot.append(playerIdentity, playerTransport);
@@ -629,7 +672,7 @@ const evidenceLabels = {
 		playerDock.inert = false;
 		showReferencePanel(index);
 		if (resumeSlide) showReferenceSlide(resumeSlide);
-		stage.scrollIntoView({ behavior: reducedMotionQuery.matches ? 'auto' : 'smooth', block: 'start' });
+		if (scroll) stage.scrollIntoView({ behavior: reducedMotionQuery.matches ? 'auto' : 'smooth', block: 'start' });
 		closeReferenceButton.focus({ preventScroll: true });
 	}
 
@@ -1219,12 +1262,18 @@ const evidenceLabels = {
 			: null;
 		videoPlaylist = eligibleVideoItems(allCinemaItems, window.innerWidth);
 		mediaItems = eligibleVideoItems(allMediaItems, window.innerWidth);
-		cinema = createCinemaContinuity(videoPlaylist);
+		const priorCinema = cinema;
+		cinema = setCinemaRepeat(createCinemaContinuity(videoPlaylist), priorCinema.repeat);
 		const nextIndex = videoPlaylist.findIndex((item) => item.id === currentId);
 		const keepLoaded = preserveLoaded && !entryControlsLocked && Boolean(mv.getAttribute('src'));
 		retainedCinema = keepLoaded && nextIndex < 0 ? current : null;
 		if (nextIndex >= 0) cinema = selectCinema(cinema, nextIndex);
 		else if (retainedCinema) cinema = { ...cinema, cursor: -1, currentId };
+		if (priorCinema.shuffle) {
+			const ids = new Set(videoPlaylist.map(item => item.id));
+			const order = priorCinema.order.filter(id => ids.has(id));
+			cinema = { ...cinema, shuffle: true, order: [...order, ...videoPlaylist.map(item => item.id).filter(id => !order.includes(id))] };
+		}
 		const selected = currentCinema();
 		// Reconcile the actual element too: the server cannot know the viewport,
 		// and the initial client queue has already been filtered before this runs.
@@ -1968,9 +2017,9 @@ const evidenceLabels = {
 			: 'MUSIC QUEUE COMPLETE · CINEMA AUDIO RESTORED');
 	}
 
-	async function advanceMusic(direction) {
+	async function advanceMusic(direction, { natural = false } = {}) {
 		const next = musicQueue.tracks.has(musicQueue.currentProductId)
-			? advanceMusicQueue(musicQueue, direction)
+			? advanceMusicQueue(musicQueue, direction, { natural })
 			: musicQueue.order.length ? selectMusicItem(musicQueue, direction < 0 ? musicQueue.order.at(-1) : musicQueue.order[0]) : null;
 		if (!next) return returnMusicQueueToCinema();
 		const product = productById.get(next.currentProductId);
@@ -2090,16 +2139,49 @@ const evidenceLabels = {
 	}
 
 	for (const trigger of referenceTriggers) {
-		trigger.addEventListener('click', () => openReference(trigger.dataset.openReference));
+		trigger.addEventListener('click', () => {
+			openReference(trigger.dataset.openReference);
+			if (!trigger.dataset.openReference) showReferenceDirectory();
+		});
 	}
-	closeReferenceButton?.addEventListener('click', () => closeReference());
+	function previewReferenceDirectory(id) {
+		const choices = [...root.querySelectorAll('[data-preview-reference]')];
+		for (const choice of choices) choice.setAttribute('aria-pressed', String(choice.dataset.previewReference === id));
+		for (const preview of root.querySelectorAll('[data-directory-preview]')) preview.hidden = preview.dataset.directoryPreview !== id;
+		const index = choices.findIndex((choice) => choice.dataset.previewReference === id);
+		referenceStatus.textContent = `${String(index + 1).padStart(2, '0')} / ${String(choices.length).padStart(2, '0')} · BROWSE`;
+	}
+
+	function showReferenceDirectory() {
+		const id = referencePanels[referenceIndex]?.dataset.referencePanel;
+		referenceStage.dataset.view = 'directory';
+		previewReferenceDirectory(id);
+		const choice = [...root.querySelectorAll('[data-preview-reference]')].find((item) => item.dataset.previewReference === id);
+		choice?.focus({ preventScroll: true });
+	}
+
+	closeReferenceButton?.addEventListener('click', showReferenceDirectory);
+	for (const choice of root.querySelectorAll('[data-preview-reference]')) {
+		choice.addEventListener('click', () => previewReferenceDirectory(choice.dataset.previewReference));
+	}
+	for (const button of root.querySelectorAll('[data-directory-open]')) {
+		button.addEventListener('click', () => openReference(button.dataset.directoryOpen, { scroll: false }));
+	}
+
 	restoreVideoFromPip?.addEventListener('click', () => { closeReference(); showLibrary('media'); });
 	for (const button of librarySwitches) button.addEventListener('click', () => {
-		if (button.dataset.librarySwitch === 'credentials') openReference();
+		if (button.dataset.librarySwitch === 'credentials') { openReference(); showReferenceDirectory(); }
 		else { if (referenceReturnState) closeReference({ restoreFocus: false }); showLibrary('media'); }
 	});
 	previousReferenceButton?.addEventListener('click', () => showReferenceSlide(referenceSlideIndex - 1));
 	nextReferenceButton?.addEventListener('click', () => showReferenceSlide(referenceSlideIndex + 1));
+	for (const button of root.querySelectorAll<HTMLButtonElement>('[data-reference-step]')) button.addEventListener('click', () => {
+		const step = Number(button.dataset.referenceStep);
+		showReferenceSlide(referenceSlideIndex + step);
+		const activeSlide = referencePanels[referenceIndex]?.querySelector<HTMLElement>('[data-reference-slide]:not([hidden])');
+		const control = activeSlide?.querySelector<HTMLButtonElement>(`[data-reference-step="${step}"]`);
+		(control ?? (step < 0 ? previousReferenceButton : nextReferenceButton))?.focus({ preventScroll: true });
+	});
 	for (const button of root.querySelectorAll<HTMLButtonElement>('[data-reference-jump]')) button.addEventListener('click', () => {
 		const slides = [...referencePanels[referenceIndex]?.querySelectorAll<HTMLElement>('[data-reference-slide]') ?? []];
 		const target = slides.findIndex(slide => slide.id === button.dataset.referenceJump);
@@ -2116,8 +2198,8 @@ const evidenceLabels = {
 			return;
 		}
 		if (event.key === 'Escape' && referenceReturnState) closeReference();
-		if (event.key === 'ArrowLeft' && referenceReturnState) showReferenceSlide(referenceSlideIndex - 1);
-		if (event.key === 'ArrowRight' && referenceReturnState) showReferenceSlide(referenceSlideIndex + 1);
+		if (event.key === 'ArrowLeft' && referenceReturnState && referenceStage.dataset.view !== 'directory') showReferenceSlide(referenceSlideIndex - 1);
+		if (event.key === 'ArrowRight' && referenceReturnState && referenceStage.dataset.view !== 'directory') showReferenceSlide(referenceSlideIndex + 1);
 	});
 
 	entryButton?.addEventListener('click', () => {
@@ -2270,16 +2352,15 @@ const evidenceLabels = {
 		}));
 	});
 	musicAudio.addEventListener('ended', () => {
-		if (typeof referenceReturnState !== 'undefined' && referenceReturnState) return;
 		if (!(session.playback.provider === 'music' && session.playback.mode === 'audio')) return;
 		const endedToken = createEndedEventToken(session.playback, musicAudio.currentSrc || musicAudio.src);
 		void enqueueTransition(async () => {
 			if (!isCurrentEndedEventToken(endedToken, session.playback, musicAudio.currentSrc || musicAudio.src)) return;
-			if (session.playback.provider === 'music' && session.playback.mode === 'audio') await advanceMusic(1);
+			if (session.playback.provider === 'music' && session.playback.mode === 'audio') await advanceMusic(1, { natural: true });
 		});
 	});
 	mv.addEventListener('ended', () => {
-		if (typeof referenceReturnState !== 'undefined' && referenceReturnState) return;
+		if (typeof referenceReturnState !== 'undefined' && referenceReturnState && !session.lease) return;
 		if (introSession.phase === 'welcome') {
 			void enqueueTransition(() => finishWelcome());
 			return;
@@ -2288,7 +2369,7 @@ const evidenceLabels = {
 			const leaseToken = createEndedEventToken(session.playback, mv.currentSrc || mv.src);
 			void enqueueTransition(async () => {
 				if (!isCurrentEndedEventToken(leaseToken, session.playback, mv.currentSrc || mv.src)) return;
-				if (session.playback.provider === 'music') return advanceMusic(1);
+				if (session.playback.provider === 'music') return advanceMusic(1, { natural: true });
 				await restoreLeasedCinema();
 			});
 			return;
@@ -2298,7 +2379,9 @@ const evidenceLabels = {
 		cinemaBrandCard.show(() => {
 			void enqueueTransition(async () => {
 				if (session.lease || !isCurrentCinemaEndedToken(cinemaToken, cinema, mv.currentSrc || mv.src)) return;
-				cinema = advanceCinema(cinema, 1);
+				const next = advanceCinema(cinema, 1, { natural: true });
+				if (!next) { syncActivePlayButton(); return; }
+				cinema = next;
 				await activateCinema(cinema.cursor, { preserveAudibleAuthority: true });
 			});
 		});
@@ -2342,7 +2425,7 @@ const evidenceLabels = {
 			if (controlledPlayback.provider === 'music') return advanceMusic(-1);
 			if (controlledPlayback.provider === 'cinema') {
 				if (session.lease) await restoreLeasedCinema({ resumeAudible: false });
-				await activateCinema(cinema.cursor < 0 ? videoPlaylist.length - 1 : cinema.cursor - 1, {
+				await activateCinema(advanceCinema(cinema, -1).cursor, {
 					showBrandCard: true,
 					preserveAudibleAuthority: session.playback.provider === 'music' && session.playback.mode === 'audio',
 				});
@@ -2358,7 +2441,7 @@ const evidenceLabels = {
 			if (controlledPlayback.provider === 'music') return advanceMusic(1);
 			if (controlledPlayback.provider === 'cinema') {
 				if (session.lease) await restoreLeasedCinema({ resumeAudible: false });
-				await activateCinema(cinema.cursor + 1, {
+				await activateCinema(advanceCinema(cinema, 1).cursor, {
 					showBrandCard: true,
 					preserveAudibleAuthority: session.playback.provider === 'music' && session.playback.mode === 'audio',
 				});
@@ -2429,18 +2512,21 @@ const evidenceLabels = {
 		enqueueMediaControlTransition(() => {
 			const policy = activeTransportPolicy(transportPlayback());
 			if (!policy.shuffle) return;
-			musicQueue = toggleShuffle(musicQueue);
-			shuffleButton.setAttribute('aria-pressed', String(musicQueue.shuffle));
+			if (transportPlayback().provider === 'cinema') cinema = toggleCinemaShuffle(cinema);
+			else musicQueue = toggleShuffle(musicQueue);
+			renderQueueControls();
 		});
 	});
 	repeatButton.addEventListener('click', () => {
 		enqueueMediaControlTransition(() => {
 			const policy = activeTransportPolicy(transportPlayback());
 			if (!policy.repeat) return;
-			const next = musicQueue.repeat === 'off' ? 'all' : musicQueue.repeat === 'all' ? 'one' : 'off';
-			musicQueue = setRepeatMode(musicQueue, next);
-			repeatButton.dataset.repeat = next;
-			repeatButton.textContent = `REPEAT ${next.toUpperCase()}`;
+			const isCinema = transportPlayback().provider === 'cinema';
+			const queue = isCinema ? cinema : musicQueue;
+			const next = queue.repeat === 'off' ? 'all' : queue.repeat === 'all' ? 'one' : 'off';
+			if (isCinema) cinema = setCinemaRepeat(cinema, next);
+			else musicQueue = setRepeatMode(musicQueue, next);
+			renderQueueControls();
 		});
 	});
 	cinemaAudioInvitation.addEventListener('click', () => {
@@ -2508,7 +2594,7 @@ const evidenceLabels = {
 					await activateCinema(cinema.cursor, { preserveAudibleAuthority: true });
 				}
 			});
-		});
+		}, { opening: true });
 	}
 	connectStereoMeters({
 		root, elements: [mv, musicAudio, ambientAudio],

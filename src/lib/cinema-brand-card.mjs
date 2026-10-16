@@ -8,9 +8,10 @@ export function createCinemaBrandCard(element, { schedule = setTimeout, unschedu
     timer = null;
     element.hidden = true;
   }
-  function show(onComplete) {
+  function show(onComplete, { opening = false } = {}) {
     cancel();
     const current = generation;
+    element.dataset.opening = String(opening);
     // Commit the hidden state so rapid selections restart the CSS fade.
     void element.offsetWidth;
     element.hidden = false;
@@ -19,7 +20,7 @@ export function createCinemaBrandCard(element, { schedule = setTimeout, unschedu
       timer = null;
       element.hidden = true;
       onComplete();
-    }, 2000);
+    }, opening ? 6000 : 2000);
   }
   return { show, cancel };
 }

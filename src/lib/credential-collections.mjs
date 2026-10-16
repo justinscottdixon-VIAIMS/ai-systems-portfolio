@@ -1,4 +1,7 @@
 import { archiveHref } from './archive-index.mjs';
+import { consolidateMusicReleases } from './music-release-timeline.mjs';
+import { cosmicReleaseGroups } from './cosmic-release-order.mjs';
+import { mergeListeningLinks } from './release-listening.mjs';
 
 const memberKinds = new Set(['release', 'context', 'collection']);
 
@@ -29,7 +32,7 @@ function mergeRelease(child, record) {
       sourceKeys.add(key);
     }
   }
-  return { ...child, gallery, publicSources, contextRecords: [...child.contextRecords, record] };
+  return { ...child, gallery, publicSources, listeningLinks: mergeListeningLinks(child.listeningLinks, record.listeningLinks), contextRecords: [...child.contextRecords, record] };
 }
 
 function releaseChild(record) {
@@ -127,6 +130,12 @@ export function toCredentialCollections(normalizedRecords) {
       }
     }
     assertUniqueChildren(collection);
+    if (collection.id === 'cosmic-records-history') {
+      collection.children = cosmicReleaseGroups(collection.children).flatMap(group => group.children);
+    }
+    if (collection.id === 'singles-remixes') {
+      collection.children = consolidateMusicReleases(collection.children);
+    }
     return collection;
   });
 }

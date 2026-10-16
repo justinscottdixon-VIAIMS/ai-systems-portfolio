@@ -4,6 +4,7 @@ import { readFile } from 'node:fs/promises';
 import { runInNewContext } from 'node:vm';
 import { activeTransportPolicy } from '../src/lib/active-transport.mjs';
 import { createMusicQueue, setRepeatMode, toggleShuffle } from '../src/lib/music-queue.mjs';
+import { createCinemaContinuity, setCinemaRepeat, toggleCinemaShuffle } from '../src/lib/cinema-continuity.mjs';
 import { createFullscreenSession } from '../src/lib/fullscreen-session.mjs';
 const source = await readFile(new URL('../src/components/HybridMediaEngine.astro', import.meta.url), 'utf8');
 function named(name) {
@@ -19,18 +20,18 @@ for (const provider of ['cinema', 'youtube']) test(`Music queue controls configu
  const ctx = { session:{activeTab:'music',playback}, musicQueue:createMusicQueue([{productId:'song',kind:'audio',src:'/song.mp3'}]),
   transportPlayback:()=>({provider:'music',id:'song',mode:'audio'}),activeTransportPolicy,setRepeatMode,toggleShuffle,
   shuffleButton:button(),repeatButton:button(),enqueueMediaControlTransition:fn=>fn() };
- runInNewContext(source.slice(start,end),ctx);
+ runInNewContext(named('renderQueueControls')+source.slice(start,end),ctx);
  ctx.repeatButton.click(); ctx.shuffleButton.click();
  assert.equal(ctx.musicQueue.repeat,'one'); assert.equal(ctx.musicQueue.shuffle,true);
  assert.equal(ctx.session.playback,playback,'queue configuration must not claim audio');
 });
 test('pending decorative playback does not hold a queued control behind the master', async () => {
- let release; const pending = new Promise(resolve=>release=resolve); let muted=false;
- const ctx={cinemaBrandCard:{cancel(){}},transitionQueue:Promise.resolve(),hasReportedTransitionError:false,nowPlayingStatus:{},console,
+ let release; const pending = new Promise(resolve=>release=resolve); let muted=false; const errors=[];
+ const ctx={cinemaBrandCard:{cancel(){}},transitionQueue:Promise.resolve(),hasReportedTransitionError:false,nowPlayingStatus:{},console:{error:error=>errors.push(error)},
   mv:{play:async()=>{}},activeMirrorWings:()=>[{play:()=>pending}],playMirrorWings:()=>pending};
  runInNewContext(named('enqueueTransition')+named('playVideoStack'),ctx);
  ctx.enqueueTransition(()=>ctx.playVideoStack());const mute=ctx.enqueueTransition(()=>{muted=true});
- try { for(let i=0;i<20;i++) await Promise.resolve(); assert.equal(muted,true); }
+ try { for(let i=0;i<20;i++) await Promise.resolve(); assert.equal(muted,true); assert.deepEqual(errors,[]); }
  finally { release(); await mute; }
 });
 test('repeated fullscreen rendering preserves existing mute button content', () => {
@@ -71,4 +72,18 @@ test('a removed Cinema target cannot be started by a pending card',async()=>{
  const ctx={session:{lease:null},videoPlaylist:[{id:'a'}],pauseVideoStack(){},cinemaBrandCard:{show(fn){complete=fn}},enqueueTransition:fn=>fn()};
  runInNewContext(named('activateCinema'),ctx);
  await ctx.activateCinema(0,{showBrandCard:true});ctx.videoPlaylist=[];ctx.activateCinema=()=>{started=true};complete();assert.equal(started,false);
+});
+
+test('Cinema queue controls leave Music settings and audio ownership untouched', () => {
+ const start = source.indexOf("\tshuffleButton.addEventListener('click'");
+ const end = source.indexOf("\tcinemaAudioInvitation.addEventListener('click'", start);
+ const musicQueue = createMusicQueue([{productId:'song',kind:'audio',src:'/song.mp3'}]);
+ const ctx = {cinema:createCinemaContinuity([{id:'film',src:'/film.mp4'}]),musicQueue,
+ transportPlayback:()=>({provider:'cinema',id:'film',mode:'video'}),activeTransportPolicy,setCinemaRepeat,toggleCinemaShuffle,
+ shuffleButton:button(),repeatButton:button(),enqueueMediaControlTransition:fn=>fn()};
+ runInNewContext(named('renderQueueControls')+source.slice(start,end),ctx);
+ ctx.repeatButton.click(); ctx.shuffleButton.click();
+ assert.equal(ctx.cinema.repeat,'one'); assert.equal(ctx.cinema.shuffle,true);
+ assert.equal(ctx.musicQueue,musicQueue); assert.equal(ctx.musicQueue.repeat,'all'); assert.equal(ctx.musicQueue.shuffle,false);
+ assert.equal(ctx.repeatButton.dataset.repeat,'one');
 });

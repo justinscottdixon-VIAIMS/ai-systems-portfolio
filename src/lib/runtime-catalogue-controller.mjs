@@ -1,5 +1,5 @@
 import { catalogueRefreshDecision, createCatalogueRefreshState, refreshCatalogue } from './catalogue-refresh.mjs';
-import { probeCatalogueItems } from './media-metadata-probe.mjs';
+import { isRetryableMetadataFailure, probeCatalogueItems } from './media-metadata-probe.mjs';
 
 export function createRuntimeCatalogueController({
   fetchCatalogue = (...args) => fetch(...args),
@@ -15,6 +15,8 @@ export function createRuntimeCatalogueController({
 } = {}) {
   let state = createCatalogueRefreshState();
   const cache = new Map();
+  let playableItems = new Map();
+  let metadataIncomplete = false, metadataRetryAt = 0, metadataFailures = 0;
   let running = false, inFlight = false, pending = null, timer = null;
   let lastStartedAt = null, generation = 0, reportedFailure = false;
   let abortController = null;
@@ -50,12 +52,27 @@ export function createRuntimeCatalogueController({
         if (!response.ok) throw new Error('Catalogue HTTP failure');
         const result = refreshCatalogue(state, await response.json());
         if (!current()) return;
-        if (result.status === 'unchanged') { reportedFailure = false; return; }
-        if (result.status !== 'accepted') throw new Error('Invalid catalogue');
+        const unchanged = result.status === 'unchanged';
+        if (unchanged && (!metadataIncomplete || now() < metadataRetryAt)) { reportedFailure = false; return; }
+        if (!unchanged && result.status !== 'accepted') throw new Error('Invalid catalogue');
         const probed = await probeItems(result.state.items, { cache, signal });
         if (!current()) return;
-        await applyCatalogue(probed.accepted, { isCurrent: current, signal });
+        const retryable = new Set(probed.rejected.filter(row => isRetryableMetadataFailure(row.reason)).map(row => row.id));
+        const accepted = new Map(probed.accepted.map(row => [row.id, row]));
+        // Keep the last playable version during transient replacement failures.
+        // Only candidates still in the authoritative catalogue can be retained.
+        const nextItems = result.state.items.flatMap(candidate => {
+          const row = accepted.get(candidate.id);
+          const prior = playableItems.get(candidate.id);
+          return row ? [row] : retryable.has(candidate.id) && prior
+            && prior.kind === candidate.kind && prior.folder === candidate.folder ? [prior] : [];
+        });
+        await applyCatalogue(nextItems, { isCurrent: current, signal });
         if (!current()) return;
+        playableItems = new Map(nextItems.map(row => [row.id, row]));
+        metadataIncomplete = retryable.size > 0;
+        metadataFailures = metadataIncomplete ? (unchanged ? metadataFailures + 1 : 1) : 0;
+        metadataRetryAt = metadataIncomplete ? now() + Math.min(60_000, 15_000 * 2 ** Math.min(metadataFailures - 1, 2)) : 0;
         state = result.state;
         reportedFailure = false;
       } catch {

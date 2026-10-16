@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createCinemaBrandCard } from '../src/lib/cinema-brand-card.mjs';
 function fixture() {
- const element={hidden:true}; const tasks=[]; const cleared=[];
+ const element={hidden:true,dataset:{}}; const tasks=[]; const cleared=[];
  const card=createCinemaBrandCard(element,{schedule:(fn,ms)=>{tasks.push({fn,ms});return tasks.length;},unschedule:id=>cleared.push(id)});
  return {element,tasks,cleared,card};
 }
@@ -19,4 +19,13 @@ test('replacement card cannot be hidden or advanced by the previous timer',()=>{
  const {element,tasks,card}=fixture();const calls=[];card.show(()=>calls.push('old'));card.show(()=>calls.push('new'));
  tasks[0].fn();assert.equal(element.hidden,false);assert.deepEqual(calls,[]);
  tasks[1].fn();assert.deepEqual(calls,['new']);
+});
+
+test('opening holds for six seconds and subsequent cards return to two seconds',()=>{
+ const {element,tasks,card}=fixture();let resumed=0;
+ card.show(()=>resumed++,{opening:true});
+ assert.equal(tasks[0].ms,6000);assert.equal(element.dataset.opening,'true');assert.equal(resumed,0);
+ tasks[0].fn();assert.equal(resumed,1);assert.equal(element.hidden,true);
+ card.show(()=>resumed++);
+ assert.equal(tasks[1].ms,2000);assert.equal(element.dataset.opening,'false');
 });

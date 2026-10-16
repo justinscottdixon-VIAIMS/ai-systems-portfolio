@@ -171,7 +171,7 @@ test('reuses settled acceptance and rejection only for the same id and version',
     const cache = new Map();
     const firstVideo = fakeMedia({ width: 720, height: 1280 });
     const replacementVideo = fakeMedia({ width: 1920, height: 1080 });
-    const brokenAudio = fakeMedia({ event: 'error' });
+    const brokenAudio = fakeMedia({ duration: 0 });
     const video = catalogueItem('Cinema/film.mp4', 'video');
     const createQueue = [firstVideo, replacementVideo, brokenAudio];
     let createCount = 0;
@@ -203,12 +203,12 @@ test('reuses settled acceptance and rejection only for the same id and version',
 
     const broken = catalogueItem('Music/broken.mp3', 'audio');
     const rejected = await probeCatalogueItems([broken], { createMediaElement, cache, timeoutMs: 50 });
-    assert.deepEqual(rejected.rejected, [{ id: broken.id, reason: 'metadata-error' }]);
+    assert.deepEqual(rejected.rejected, [{ id: broken.id, reason: 'invalid-duration' }]);
     const rejectedAgain = await probeCatalogueItems(
       [{ ...broken, title: 'Updated title' }],
       { createMediaElement, cache, timeoutMs: 50 },
     );
-    assert.deepEqual(rejectedAgain.rejected, [{ id: broken.id, reason: 'metadata-error' }]);
+    assert.deepEqual(rejectedAgain.rejected, [{ id: broken.id, reason: 'invalid-duration' }]);
     assert.equal(createCount, 3);
 
     for (const fake of createQueue) assertCleaned(fake, timers);
@@ -233,5 +233,20 @@ test('aborting an awaiting metadata probe cleans its resources and leaves that v
     const accepted = await probeCatalogueItems([item], { createMediaElement: () => retry.element, cache });
     assert.equal(accepted.accepted.length, 1);
     assertCleaned(retry, timers);
+  });
+});
+
+for (const event of ['error', null]) test(`transient ${event ?? 'timeout'} metadata failure is not cached`, async () => {
+  await withTimers(async timers => {
+    const cache = new Map(), item = catalogueItem('Music/recover.mp3', 'audio');
+    const failed = fakeMedia({ event });
+    const pending = probeCatalogueItems([item], { cache, createMediaElement: () => failed.element, timeoutMs: 50 });
+    if (!event) timers.runAll();
+    assert.equal((await pending).accepted.length, 0);
+    assert.equal(cache.size, 0);
+    const recovered = fakeMedia();
+    const result = await probeCatalogueItems([item], { cache, createMediaElement: () => recovered.element });
+    assert.equal(result.accepted.length, 1);
+    assertCleaned(failed, timers); assertCleaned(recovered, timers);
   });
 });

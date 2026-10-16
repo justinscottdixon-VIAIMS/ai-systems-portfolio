@@ -1,3 +1,5 @@
+export const isRetryableMetadataFailure = (reason) => ['metadata-error', 'metadata-timeout', 'aborted'].includes(reason);
+
 const aspectFor = (width, height) => height > width
   ? 'portrait'
   : height < width ? 'landscape' : 'square';
@@ -67,7 +69,7 @@ export async function probeCatalogueItems(items, {
     let outcome = cache.get(cacheKey);
     if (!cache.has(cacheKey)) {
       outcome = await probeItem(item, { createMediaElement, timeoutMs, signal });
-      if (!signal?.aborted && outcome.reason !== 'aborted') cache.set(cacheKey, outcome);
+      if (!signal?.aborted && !isRetryableMetadataFailure(outcome.reason)) cache.set(cacheKey, outcome);
     }
     return { item, outcome };
   }));

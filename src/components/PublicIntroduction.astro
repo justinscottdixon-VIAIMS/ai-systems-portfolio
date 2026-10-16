@@ -1,6 +1,6 @@
 ---
 import { publicProfile, publicContact } from '../lib/public-site.mjs';
-const contact = publicContact(process.env.VIAIMS_PUBLIC_CONTACT);
+const contact = publicContact(process.env.VIAIMS_PUBLIC_CONTACT ?? publicProfile.contact);
 ---
 <section class="public-introduction" aria-labelledby="public-introduction-title">
  <span class="public-brand__logo" aria-hidden="true"></span>
@@ -20,9 +20,9 @@ const contact = publicContact(process.env.VIAIMS_PUBLIC_CONTACT);
 .public-introduction { position:relative; isolation:isolate; overflow:hidden; }
 .public-introduction > div { position:relative; z-index:1; }
 .public-brand__logo { position:absolute; width:min(65%,32rem); left:50%; top:50%; transform:translate(-50%,-50%); opacity:.065; pointer-events:none; aspect-ratio:768 / 580; background:#fff; mask-image:url('/brand/viaims-logo-original.jpg'); mask-mode:luminance; mask-repeat:no-repeat; mask-size:131.25% auto; mask-position:center 48.267%; }
-.public-introduction { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,22rem),1fr)); gap:2rem; margin-top:2rem; padding:clamp(1rem,3vw,2rem); border:1px solid #b59b6666; background:#141416; color:#d4d4d8; }
+.public-introduction { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,22rem),1fr)); gap:2rem; margin-top:2rem; padding:clamp(1rem,3vw,2rem); border:1px solid #b59b6666; background:var(--viaims-panel); color:var(--viaims-muted); border-color:var(--viaims-brass); border-radius:.7rem; }
 .public-introduction__label { color:#c9b182; font-size:.7rem; letter-spacing:.12em; }
-.public-introduction h2 { color:#fafafa; font-size:clamp(1.3rem,3vw,1.8rem); line-height:1.25; margin:.5rem 0 1rem; }
+.public-introduction h2 { color:var(--viaims-ink); font-size:clamp(1.3rem,3vw,1.8rem); line-height:1.25; margin:.5rem 0 1rem; }
 .public-introduction p:not(.public-introduction__label) { max-width:65ch; line-height:1.75; margin-bottom:1rem; }
 .public-introduction a { color:#e7d3a6; text-decoration:underline; text-underline-offset:.25em; display:inline-block; padding-block:.7rem; }
 .public-introduction a:focus-visible { outline:2px solid #e7d3a6; outline-offset:4px; }

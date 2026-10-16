@@ -235,3 +235,85 @@ test('selected release starts no discovery requests or timers', async () => {
   assert.equal(h.requests.length, 0);
   assert.equal(h.timers.size, 0);
 });
+
+for (const fingerprint of ['a', 'b']) test(`retries transient metadata with ${fingerprint === 'a' ? 'unchanged' : 'changed'} fingerprint`, async () => {
+  let failing = true, next = envelope();
+  const h = harness({ fetch: async () => response(next), probe: async items => failing
+    ? { accepted: [], rejected: [{ id: items[0].id, reason: 'metadata-error' }] }
+    : { accepted: items, rejected: [] } });
+  await h.controller.start();
+  failing = false; next = envelope([item()], fingerprint);
+  if (fingerprint === 'a') {
+    await h.controller.focus();
+    assert.equal(h.caches.length, 1, 'focus cannot bypass metadata retry backoff');
+    await h.tick(15_000);
+  } else await h.controller.refresh();
+  assert.equal(h.applied.at(-1)[0]?.id, item().id);
+  await h.tick(15_000);
+  assert.equal(h.caches.length, 2, 'successful metadata is complete');
+  h.controller.stop();
+});
+
+test('metadata retries back off to a bounded interval while invalid assets remain excluded', async () => {
+  const h = harness({ probe: async items => ({ accepted: [], rejected: [{ id: items[0].id, reason: 'metadata-timeout' }] }) });
+  await h.controller.start();
+  await h.tick(15_000); assert.equal(h.caches.length, 2);
+  await h.tick(15_000); assert.equal(h.caches.length, 2);
+  await h.tick(15_000); assert.equal(h.caches.length, 3);
+  await h.tick(30_000); assert.equal(h.caches.length, 3);
+  await h.tick(30_000); assert.equal(h.caches.length, 4);
+  await h.tick(60_000); assert.equal(h.caches.length, 5);
+  h.controller.stop();
+  const invalid = harness({ probe: async items => ({ accepted: [], rejected: [{ id: items[0].id, reason: 'unknown-dimensions' }] }) });
+  await invalid.controller.start(); await invalid.tick(60_000);
+  assert.equal(invalid.caches.length, 1);
+  invalid.controller.stop();
+});
+
+test('partial metadata failure retains a known playable version, but never a deleted or definitively invalid row', async () => {
+  const original = item(), removed = item('Cinema/removed.mp4'), added = item('Cinema/new.mp4');
+  let next = envelope([original, removed]), failing = false;
+  const h = harness({ fetch: async () => response(next), probe: async items => failing
+    ? { accepted: items.filter(row => row.id !== original.id), rejected: [{ id: original.id, reason: 'metadata-error' }] }
+    : { accepted: items, rejected: [] } });
+  await h.controller.start();
+  failing = true;
+  const replacement = item(original.id, { versionId: 'v2', src: 'https://media.example.test/replacement.mp4' });
+  next = envelope([replacement, added], 'b');
+  await h.controller.refresh();
+  assert.deepEqual(h.applied.at(-1), [original, added]);
+  failing = false; await h.tick(15_000);
+  assert.deepEqual(h.applied.at(-1), [replacement, added]);
+  next = envelope([], 'c'); await h.controller.refresh();
+  assert.deepEqual(h.applied.at(-1), []);
+  h.controller.stop();
+});
+
+for (const fingerprint of ['a', 'b']) test(`real controller and metadata cache recover the same media version (${fingerprint})`, async () => {
+  const { probeCatalogueItems } = await import('../src/lib/media-metadata-probe.mjs');
+  let failing = true, creates = 0, next = envelope();
+  const createMediaElement = () => {
+    creates++;
+    const listeners = new Map();
+    return { videoWidth: 720, videoHeight: 1280,
+      addEventListener: (event, fn) => listeners.set(event, fn), removeEventListener: event => listeners.delete(event),
+      removeAttribute() { this.src = ''; }, load() { if (this.src) listeners.get(failing ? 'error' : 'loadedmetadata')?.(); } };
+  };
+  const h = harness({ fetch: async () => response(next), probe: (items, options) => probeCatalogueItems(items, { ...options, createMediaElement }) });
+  await h.controller.start(); assert.deepEqual(h.applied, [[]]);
+  failing = false; next = envelope([item()], fingerprint);
+  if (fingerprint === 'a') await h.tick(15_000); else await h.controller.refresh();
+  assert.equal(creates, 2); assert.equal(h.applied.at(-1)[0]?.id, item().id);
+  assert.equal(h.applied.at(-1)[0]?.aspect, 'portrait');
+  h.controller.stop();
+});
+
+test('a definitive invalid replacement drops the old playable row without retrying', async () => {
+  let next = envelope(), invalid = false;
+  const h = harness({ fetch: async () => response(next), probe: async items => invalid
+    ? { accepted: [], rejected: [{ id: items[0].id, reason: 'invalid-duration' }] }
+    : { accepted: items, rejected: [] } });
+  await h.controller.start(); invalid = true; next = envelope([item(undefined, { versionId: 'v2' })], 'b');
+  await h.controller.refresh(); assert.deepEqual(h.applied.at(-1), []);
+  await h.tick(60_000); assert.equal(h.caches.length, 2); h.controller.stop();
+});

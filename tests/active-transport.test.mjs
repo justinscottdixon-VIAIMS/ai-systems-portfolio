@@ -51,8 +51,8 @@ test('Cinema enables only its native playback and queue navigation', () => {
     playPause: true,
     previous: true,
     next: true,
-    shuffle: false,
-    repeat: false,
+    shuffle: true,
+    repeat: true,
   });
 });
 

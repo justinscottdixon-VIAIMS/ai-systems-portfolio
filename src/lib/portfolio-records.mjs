@@ -1,4 +1,5 @@
 import { presentationArtwork } from './artwork-presentation-policy.mjs';
+import { normalizeListeningLinks } from './release-listening.mjs';
 
 const categories = new Set(['music', 'film', 'publication', 'product', 'podcast-audiobook', 'career']);
 const statuses = new Set(['released', 'published', 'archived', 'in-development', 'verification-pending']);
@@ -86,6 +87,7 @@ function childRecord(child, label) {
   if (child.publicSources !== undefined && !Array.isArray(child.publicSources)) throw new TypeError(`${label} sources must be an array`);
   if (child.historySections !== undefined && !Array.isArray(child.historySections)) throw new TypeError(`${label} history sections must be an array`);
   return {
+    listeningLinks: normalizeListeningLinks(child.listeningLinks),
     relatedRecordIds: relatedIds(child.relatedRecordIds, label),
     credits: (child.credits ?? []).map((credit, index) => trackCredit(credit, `${label} credit ${index}`)),
     publicSources: (child.publicSources ?? []).map((source, index) => sourceReference(source, `${label} source ${index}`)),
@@ -124,6 +126,7 @@ export function toPortfolioRecords(source) {
     slugs.add(slug);
     return {
       ...record,
+      listeningLinks: normalizeListeningLinks(record.listeningLinks),
       relatedRecordIds: relatedIds(record.relatedRecordIds, label),
       id,
       slug,

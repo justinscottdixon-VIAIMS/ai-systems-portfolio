@@ -1,0 +1,45 @@
+---
+import { listeningHref } from '../lib/release-listening.mjs';
+interface ListeningLink {
+  videoId: string;
+  label: string;
+  title: string;
+  channel: string;
+  note?: string;
+  alternate?: boolean;
+}
+interface Props { links?: ListeningLink[]; }
+const { links = [] } = Astro.props;
+const featured = links.filter(link => !link.alternate);
+const alternates = links.filter(link => link.alternate);
+---
+{links.length > 0 && <section class="release-listening" data-release-listening aria-label="Listen on YouTube">
+  <h4>Listen on YouTube</h4>
+  <ul>{featured.map(link => <li>
+    <a href={listeningHref(link)} target="_blank" rel="noopener noreferrer" title={link.title}><span aria-hidden="true">▶</span> {link.label} <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
+    <p class="release-listening__channel">Uploaded by {link.channel}</p>
+    {link.note && <p class="release-listening__note">{link.note}</p>}
+  </li>)}</ul>
+  {alternates.length > 0 && <details>
+    <summary>Alternate uploads ({alternates.length})</summary>
+    <ul>{alternates.map(link => <li>
+      <a href={listeningHref(link)} target="_blank" rel="noopener noreferrer" title={link.title}>{link.label} <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
+      <p class="release-listening__channel">Uploaded by {link.channel}</p>
+      {link.note && <p class="release-listening__note">{link.note}</p>}
+    </li>)}</ul>
+  </details>}
+</section>}
+<style>
+  .release-listening { min-width: 0; max-width: 100%; margin-block: 1rem; padding-block: 1rem; border-block: 1px solid #b8955b55; color: #e9ddc7; text-transform: none; letter-spacing: normal; }
+  .release-listening h4 { margin: 0 0 .7rem; font-family: inherit; font-weight: 600; font-size: 1rem; line-height: 1.4; }
+  .release-listening ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .8rem; }
+  .release-listening li { min-width: 0; }
+  .release-listening a { display: inline-block; max-width: 100%; padding: .35rem 0; color: #efd5a5; font-size: .95rem; line-height: 1.5; overflow-wrap: anywhere; text-decoration: underline; text-underline-offset: .2em; }
+  .release-listening a:hover { color: #fff4df; }
+  .release-listening a:focus-visible, .release-listening summary:focus-visible { outline: 2px solid #efd5a5; outline-offset: 4px; }
+  .release-listening .release-listening__channel, .release-listening .release-listening__note { margin: .1rem 0 0; font-size: .8rem; line-height: 1.5; color: #bdaf97; overflow-wrap: anywhere; }
+  .release-listening details { margin-top: .8rem; }
+  .release-listening summary { padding: .4rem 0; font-size: .85rem; cursor: pointer; color: #d6bb8c; }
+  .release-listening details ul { margin-top: .6rem; }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+</style>

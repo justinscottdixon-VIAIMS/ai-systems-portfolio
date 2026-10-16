@@ -71,14 +71,14 @@ export function toggleShuffle(queue, random = Math.random) {
   return copy(queue, { shuffle: true, order: keepCurrent ? [queue.currentProductId, ...upcoming] : upcoming, cursor: keepCurrent ? 0 : -1 });
 }
 
-export function advanceMusicQueue(queue, direction = 1) {
+export function advanceMusicQueue(queue, direction = 1, { natural = true } = {}) {
   if (queue.order.length === 0) return null;
   const currentEligible = queue.tracks.has(queue.currentProductId) && queue.order.includes(queue.currentProductId);
   if (!currentEligible) return selectMusicItem(queue, direction < 0 ? queue.order.at(-1) : queue.order[0]);
-  if (queue.repeat === 'one' && direction > 0) return copy(queue, {});
+  if (natural && queue.repeat === 'one' && direction > 0) return copy(queue, {});
   let cursor = queue.cursor + Math.sign(direction || 1);
   if (cursor < 0 || cursor >= queue.order.length) {
-    if (queue.repeat !== 'all') return null;
+    if (queue.repeat !== 'all' && (natural || queue.repeat !== 'one')) return null;
     cursor = cursor < 0 ? queue.order.length - 1 : 0;
   }
   const currentProductId = queue.order[cursor];

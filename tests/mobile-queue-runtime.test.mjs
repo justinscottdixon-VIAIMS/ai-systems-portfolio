@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { runInNewContext } from 'node:vm';
 import { eligibleVideoItems, isMobileViewport } from '../src/lib/mobile-media.mjs';
-import { createCinemaContinuity, selectCinema } from '../src/lib/cinema-continuity.mjs';
+import { createCinemaContinuity, setCinemaRepeat, selectCinema } from '../src/lib/cinema-continuity.mjs';
 import { activateSource, createPlaybackSession } from '../src/lib/playback-session.mjs';
 import { createAudibleSource, removeAudibleProvider } from '../src/lib/audible-source.mjs';
 import { activeTransportPolicy } from '../src/lib/active-transport.mjs';
@@ -40,7 +40,7 @@ function runtime({ items = [landscape], width = 390, initialWidth = width, music
     retainedCinema: null, rebuildMusicQueue() {},
     nowPlayingTitle: { textContent: 'Wide' }, nowPlayingStatus: { textContent: 'CINEMA READY' }, activeSourceKind: {},
     retryCinema: { hidden: true, setAttribute() {} },
-    eligibleVideoItems, isMobileViewport, createCinemaContinuity, selectCinema, activateSource, removeAudibleProvider,
+    eligibleVideoItems, isMobileViewport, createCinemaContinuity, setCinemaRepeat, selectCinema, activateSource, removeAudibleProvider,
     pauseVideoStack() { mv.pause(); }, hideMirrorWings() {}, fadeTheaterView() {},
     applyActiveTransportPolicy() {}, renderCinemaAudioInvitation() {}, syncCinemaCueAvailability() {}, syncFullscreenEligibility() {},
   };

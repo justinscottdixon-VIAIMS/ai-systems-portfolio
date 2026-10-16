@@ -5,7 +5,7 @@ import { runInNewContext } from 'node:vm';
 import { activeTransportPolicy, runCommittedPlayback, transportPlaybackForTab } from '../src/lib/active-transport.mjs';
 import { createMusicQueue, advanceMusicQueue, selectMusicItem, selectMusicMode, toggleShuffle } from '../src/lib/music-queue.mjs';
 import { toRuntimeMediaLibrary } from '../src/lib/runtime-media-library.mjs';
-import { advanceCinema, createCinemaContinuity, createCinemaEndedToken, isCurrentCinemaEndedToken, selectCinema } from '../src/lib/cinema-continuity.mjs';
+import { advanceCinema, createCinemaContinuity, setCinemaRepeat, createCinemaEndedToken, isCurrentCinemaEndedToken, selectCinema } from '../src/lib/cinema-continuity.mjs';
 import { eligibleVideoItems, isMobileViewport } from '../src/lib/mobile-media.mjs';
 import { activateSource, createPlaybackSession, releaseStageLease } from '../src/lib/playback-session.mjs';
 import { createAudibleSource, removeAudibleProvider, selectAudibleTrack } from '../src/lib/audible-source.mjs';
@@ -67,7 +67,7 @@ function catalogueRuntime(items) {
     session: createPlaybackSession({ cinemaId: library.cinema[0]?.id }), audible: createAudibleSource(), suspendedForStageLease: null,
     stage: { dataset: { stageProvider: 'cinema', visualOwner: 'cinema' } }, entryControlsLocked: false, entryCueControls: [],
     returnButton: element('button'), retryCinema: element('button'), nowPlayingTitle: element(), nowPlayingStatus: element(), activeSourceKind: element(),
-    createMusicQueue, createCinemaContinuity, selectCinema, eligibleVideoItems, isMobileViewport, activateSource, removeAudibleProvider,
+    advanceCinema, createMusicQueue, createCinemaContinuity, setCinemaRepeat, selectCinema, eligibleVideoItems, isMobileViewport, activateSource, removeAudibleProvider,
     syncEntryControlAvailability() {}, syncCinemaCueAvailability() {}, syncFullscreenEligibility() {}, syncPlaylistRails() {},
     updateProviderCueState() {}, syncMusicRowActions() {}, hideMirrorWings() {}, pauseVideoStack() {}, setStageProvider() {}, renderCinemaIdentity() {},
   };
@@ -543,7 +543,7 @@ for (const [name, direction] of [['requestPrevious', -1], ['requestNext', 1]]) {
       const calls = [];
       const session = { playback: { provider, id: 'selected', mode: provider === 'music' ? 'audio' : 'video' }, lease: null };
       const context = {
-        session, cinema: { cursor: 3 }, activeTransportPolicy,
+        session, cinema: selectCinema(createCinemaContinuity(Array.from({length:6}, (_, i) => ({id:String(i),src:`/${i}.mp4`}))), 3), activeTransportPolicy, advanceCinema,
         enqueueMediaControlTransition(fn) { pending = fn(); },
         async advanceMusic(step) {
           calls.push(['music', step]);
@@ -574,7 +574,7 @@ test('Music Video lease participates in Previous and Next navigation', async () 
 });
 
 test('Music order dispatches video and audio rows and repeats the queue by default', async () => {
-  const start = source.indexOf('\tasync function advanceMusic(direction)');
+  const start = source.indexOf('\tasync function advanceMusic(direction,');
   const end = source.indexOf('\n\tasync function ', start + 1);
   const items = [
     { productId: 'Music/song.mp3', kind: 'audio', src: '/song.mp3', audioSrc: '/song.mp3' },
@@ -609,7 +609,7 @@ test('switching credential dossiers preserves playing music and video audio in P
     referenceReturnState:null, mv:video, musicAudio:media('music'), ambientAudio:media('ambient'), musicVisualVideo:media('visual'),
     transportPlayback:()=>({provider:'music',id:'test-track',mode:'audio'}),
     referenceTransportSlot:{append:(...nodes)=>dockedTransport.push(nodes)}, playerIdentity:{}, playerTransport:{},
-    captureControllerUi:()=>({}), document:{activeElement:null}, referenceStage:{hidden:true},
+    captureControllerUi:()=>({}), document:{activeElement:null}, referenceStage:{hidden:true,dataset:{}},
     restoreVideoFromPip:{hidden:true}, playerDock:{inert:false,dataset:{}},
     showReferencePanel:index=>shown.push(index), showLibrary:name=>libraryViews.push(name),
     renderTransportDeckIdentity() {},
@@ -671,4 +671,34 @@ test('credentials transport controls the native media behind an unplayed YouTube
   context.stage.dataset.stageProvider = 'youtube';
   context.session.playback.provider = 'youtube';
   assert.equal(context.transportPlayback().id, undefined);
+});
+
+test('manual Music Next with Repeat One selects another song instead of reactivating the current song', async () => {
+  const items = [
+    { productId: 'a', kind: 'audio', audioSrc: '/a.mp3' },
+    { productId: 'b', kind: 'audio', audioSrc: '/b.mp3' },
+  ];
+  const calls = [];
+  const context = {
+    musicQueue: { ...createMusicQueue(items), repeat: 'one' },
+    productById: new Map(items.map(item => [item.productId, item])),
+    advanceMusicQueue, selectMusicItem,
+    async activateMusicAudio(id, { nextMusicQueue }) { calls.push(id); context.musicQueue = nextMusicQueue; },
+    async returnMusicQueueToCinema() { calls.push('cinema'); },
+  };
+  runInNewContext(namedImplementation('advanceMusic'), context);
+  await context.advanceMusic(1);
+  assert.deepEqual(calls, ['b']);
+  assert.equal(context.musicQueue.repeat, 'one');
+  await context.advanceMusic(1, { natural: true });
+  assert.deepEqual(calls, ['b', 'b']);
+  await context.advanceMusic(1);
+  assert.deepEqual(calls, ['b', 'b', 'a']);
+});
+
+
+test('Music audio and video ended handlers explicitly retain natural repeat behavior', () => {
+  const audioEnded = source.slice(source.indexOf("musicAudio.addEventListener('ended'"), source.indexOf("mv.addEventListener('ended'"));
+  const videoEnded = source.slice(source.indexOf("mv.addEventListener('ended'"), source.indexOf('const cinemaToken', source.indexOf("mv.addEventListener('ended'")));
+  for (const handler of [audioEnded, videoEnded]) assert.match(handler, /advanceMusic\(1, \{ natural: true \}\)/);
 });

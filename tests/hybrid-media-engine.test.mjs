@@ -906,12 +906,12 @@ test('master ended keeps welcome first, leases generic, and Cinema independent',
   assert.equal(leaseToken > lease && cinemaToken > leaseToken, true);
   assert.match(ended, /isCurrentEndedEventToken\(leaseToken, session\.playback, mv\.currentSrc \|\| mv\.src\)/);
   assert.match(ended, /isCurrentCinemaEndedToken\(cinemaToken, cinema, mv\.currentSrc \|\| mv\.src\)/);
-  assert.match(ended, /cinema = advanceCinema\(cinema, 1\)/);
+  assert.match(ended, /const next = advanceCinema\(cinema, 1, \{ natural: true \}\)/);
   assert.match(ended, /activateCinema\(cinema\.cursor, \{ preserveAudibleAuthority: true \}\)/);
 
   const cinemaBranch = ended.slice(cinemaToken);
   assert.doesNotMatch(cinemaBranch, /session\.playback\.provider === 'cinema'/);
-  assert.equal(cinemaBranch.indexOf('cinema = advanceCinema(cinema, 1)') < cinemaBranch.indexOf('activateCinema(cinema.cursor'), true);
+  assert.equal(cinemaBranch.indexOf('const next = advanceCinema(cinema, 1, { natural: true })') < cinemaBranch.indexOf('activateCinema(cinema.cursor'), true);
 });
 
 test('Music Audio ended remains scoped to the exact Music activation', async () => {
@@ -925,7 +925,7 @@ test('Music Audio ended remains scoped to the exact Music activation', async () 
   assert.match(ended, /const endedToken = createEndedEventToken\(session\.playback, musicAudio\.currentSrc \|\| musicAudio\.src\)/);
   assert.match(ended, /isCurrentEndedEventToken\(endedToken, session\.playback, musicAudio\.currentSrc \|\| musicAudio\.src\)/);
   assert.match(ended, /session\.playback\.provider === 'music' && session\.playback\.mode === 'audio'/);
-  assert.match(ended, /advanceMusic\(1\)/);
+  assert.match(ended, /advanceMusic\(1, \{ natural: true \}\)/);
   assert.doesNotMatch(ended, /advanceCinema|activateCinema/);
 });
 
@@ -1037,14 +1037,14 @@ test('a rejected Music Video lease rolls back its Music queue mode selection', a
 
 test('automatic Music advance rolls rejection back to the exact pre-advance queue', async () => {
   const component = await source(componentPath);
-  const advanceStart = component.indexOf('async function advanceMusic(direction)');
+  const advanceStart = component.indexOf('async function advanceMusic(direction,');
   const advanceEnd = component.indexOf('\n\tasync function ', advanceStart + 1);
   const advance = component.slice(advanceStart, advanceEnd);
   const activateStart = component.indexOf('async function activateMusicAudio(');
   const activateEnd = component.indexOf('\n\tasync function ', activateStart + 1);
   const activate = component.slice(activateStart, activateEnd);
 
-  assert.match(advance, /\? advanceMusicQueue\(musicQueue, direction\)/);
+  assert.match(advance, /\? advanceMusicQueue\(musicQueue, direction, \{ natural \}\)/);
   assert.doesNotMatch(advance, /musicQueue = next/);
   assert.match(advance, /await activateMusicAudio\(next\.currentProductId, \{ nextMusicQueue: next \}\)/);
   assert.match(activate, /async function activateMusicAudio\(productId, \{ nextMusicQueue = null \} = \{\}\)/);

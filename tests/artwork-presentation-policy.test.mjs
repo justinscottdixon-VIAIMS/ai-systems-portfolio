@@ -33,7 +33,7 @@ test('public portfolio projection removes all captures while preserving catalogu
       assert.ok(output.gallery.every(item => !isExcludedArtwork(item.src)));
     }
   }
-  assert.equal(originalCaptureReferences, 31);
+  assert.equal(originalCaptureReferences, 28);
   assert.deepEqual(source, before);
   const singles = records.find(record => record.id === 'singles-remixes');
   const rawSingles = source.records.find(record => record.id === 'singles-remixes');
@@ -45,7 +45,7 @@ test('public portfolio projection removes all captures while preserving catalogu
     assert.equal(item.gallery[0].kind, 'pending');
     assert.equal('src' in item.gallery[0], false);
   }
-  assert.deepEqual(singles.children.find(item => item.id === 'nc-08').gallery.map(item => item.src), [
+  assert.deepEqual(records.find(record => record.id === 'cosmic-records-history').children.find(item => item.id === 'sunshine-state-of-mind').gallery.map(item => item.src), [
     '/reference/restored-artwork/sunshine-state-of-mind-full-compilation-approved-v1.png',
   ]);
   assert.deepEqual(singles.children.find(item => item.id === 'nc-02').gallery.map(item => item.src), [

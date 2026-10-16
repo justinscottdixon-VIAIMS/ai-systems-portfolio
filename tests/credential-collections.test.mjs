@@ -129,7 +129,7 @@ test('rejects collisions with existing or flattened child IDs', () => {
   ]), /duplicate credential collection child id/);
 });
 
-test('actual catalogue groups into 9 roots and 101 release views while preserving canonical archives', async () => {
+test('actual catalogue groups into 9 roots and 96 release views while preserving canonical archives', async () => {
   const data = JSON.parse(await readFile(new URL('../src/data/portfolio-records.json', import.meta.url), 'utf8'));
   const canonical = toPortfolioRecords(data);
   const membershipKinds = new Map([
@@ -150,22 +150,28 @@ test('actual catalogue groups into 9 roots and 101 release views while preservin
   assert.deepEqual(output.map(item => item.id), input.filter(item => !membershipKinds.has(item.id)).map(item => item.id));
   const parent = output.find(item => item.id === 'singles-remixes');
   const originalParent = input.find(item => item.id === parent.id);
-  assert.equal(originalParent.children.length, 18);
-  assert.equal(parent.children.length, 52);
-  assert.equal(new Set(parent.children.map(item => item.id)).size, 52);
+  assert.equal(originalParent.children.length, 16);
+  assert.equal(parent.children.length, 48);
+  assert.equal(new Set(parent.children.map(item => item.id)).size, 48);
   assert.equal(input.reduce((total, item) => total + item.children.length, 0), 90);
-  assert.equal(output.reduce((total, item) => total + item.children.length, 0), 101);
-  assert.deepEqual(parent.children.slice(0, 18).map(item => item.id), originalParent.children.map(item => item.id));
+  assert.equal(output.reduce((total, item) => total + item.children.length, 0), 96);
+  assert.equal(parent.children.some(item => item.id === 'nc-09'), false);
   assert.deepEqual(parent.contextRecords.map(item => item.id), ['production-engineering-credits', 'compilation-appearances', 'chart-history']);
 
   for (const originalRecord of input) {
     for (const originalChild of originalRecord.children) {
       const grouped = originalRecord.credentialsCollection?.kind === 'collection';
       const projectedParent = grouped ? parent : output.find(item => item.id === originalRecord.id);
-      const projected = projectedParent.children.find(item => item.id === (grouped ? `${originalRecord.id}-${originalChild.id}` : originalChild.id));
+      const projected = projectedParent.children.find(item => item.id === (grouped ? `${originalRecord.id}-${originalChild.id}` : originalChild.id) || item.aliasIds?.includes(originalChild.id));
       assert.ok(projected, `${originalRecord.id}/${originalChild.id} survives`);
+      if (projected.aliasIds?.length) {
+        for (const credit of originalChild.credits) assert.ok(projected.credits.includes(credit));
+        for (const image of originalChild.gallery) assert.ok(projected.gallery.some(item => item.src === image.src));
+        for (const section of originalChild.historySections) assert.ok(projected.historySections.includes(section));
+        continue;
+      }
       for (const key of Object.keys(originalChild).filter(key => key !== 'id')) {
-        if (originalRecord.id === 'singles-remixes' && originalChild.id === 'nc-13' && ['gallery', 'publicSources'].includes(key)) continue;
+        if (originalRecord.id === 'singles-remixes' && originalChild.id === 'nc-13' && ['gallery', 'publicSources', 'listeningLinks'].includes(key)) continue;
         assert.equal(projected[key], originalChild[key], `${originalRecord.id}/${originalChild.id} retains ${key}`);
       }
       if (projectedParent === parent) assert.equal(projected.sourceArchiveHref, archiveHref(originalRecord, originalChild));
@@ -182,13 +188,15 @@ test('actual catalogue groups into 9 roots and 101 release views while preservin
   assert.deepEqual(projectedOne.gallery.map(item => item.src), [...new Set([...existingOne.gallery, ...one.gallery].filter(item => item.kind === 'image').map(item => item.src))]);
   const sourceKeys = sources => sources.map(item => JSON.stringify([item.href, item.supports]));
   assert.deepEqual(sourceKeys(projectedOne.publicSources), [...new Set(sourceKeys([...existingOne.publicSources, ...one.publicSources]))]);
+  assert.deepEqual(projectedOne.listeningLinks.map(item => item.videoId), [...new Set([...existingOne.listeningLinks, ...one.listeningLinks].map(item => item.videoId))]);
   const creditsCount = records => records.reduce((total, item) => total + item.children.reduce((sum, edition) => sum + edition.credits.length, 0), 0);
   const cosmic = output.find(item => item.id === 'cosmic-records-history');
   const includedCredits = cosmic.children.filter(item => item.id.startsWith('singles-remixes-')).reduce((sum, child) => sum + child.credits.length, 0);
   assert.equal(creditsCount(output), creditsCount(input) + includedCredits);
-  assert.equal(cosmic.children.length, 49);
+  assert.equal(cosmic.children.length, 48);
   assert.equal(cosmic.children[18].id, 'transformed');
-  assert.equal(cosmic.children.at(-1).id, 'groove-me-anniversary');
+  assert.equal(cosmic.children.at(-5).id, 'groove-me-anniversary');
+  assert.equal(cosmic.children.slice(-4).every(child => child.date === 'Edition date under review'), true);
 
   // Archive callers retain all canonical routes, replacing only roots that received enrichment.
   const enrichedById = new Map(output.map(item => [item.id, item]));

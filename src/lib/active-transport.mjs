@@ -10,8 +10,8 @@ const CINEMA = Object.freeze({
   playPause: true,
   previous: true,
   next: true,
-  shuffle: false,
-  repeat: false,
+  shuffle: true,
+  repeat: true,
 });
 
 const MUSIC = Object.freeze({
