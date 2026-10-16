@@ -1,6 +1,8 @@
 import { list } from '@vercel/blob';
 import { buildBlobFolderCatalogue, catalogueFailureDiagnostic } from '../src/lib/blob-folder-catalogue.mjs';
 import { runtimeCatalogueEnabled } from '../src/lib/catalogue-release-policy.mjs';
+import { createApprovedCatalogueStore } from '../src/lib/approved-catalogue-store.mjs';
+import { createApprovedMediaCatalogueHandler } from '../src/lib/approved-catalogue-handler.mjs';
 
 const JSON_CONTENT_TYPE = 'application/json; charset=utf-8';
 
@@ -42,7 +44,7 @@ const readText = async (url) => {
   return text;
 };
 
-const liveCatalogue = createMediaCatalogueHandler({ listPage, readText });
+const liveCatalogue = createApprovedMediaCatalogueHandler({ store: createApprovedCatalogueStore() });
 export default function mediaCatalogue(request, response) {
   if (!runtimeCatalogueEnabled(process.env.VIAIMS_RELEASE_SCOPE, process.env.VIAIMS_CATALOGUE_REFRESH)) {
     response.setHeader('Cache-Control', 'no-store');

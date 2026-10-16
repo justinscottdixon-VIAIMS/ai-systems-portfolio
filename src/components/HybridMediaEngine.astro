@@ -219,7 +219,7 @@ const evidenceLabels = {
 		<div class="media-library__tabs" role="tablist" aria-label="Media Library" data-player-tabs>
 			<button id="tab-cinema" type="button" role="tab" aria-selected="true" aria-controls="panel-cinema" tabindex="0" data-media-tab="cinema">CINEMA</button>
 			<button id="tab-music" type="button" role="tab" aria-selected="false" aria-controls="panel-music" tabindex="-1" data-media-tab="music">MUSIC</button>
-			{library.media.length > 0 && <button id="tab-media" type="button" role="tab" aria-selected="false" aria-controls="panel-media" tabindex="-1" data-media-tab="media">MEDIA</button>}
+			<button id="tab-media" type="button" role="tab" aria-selected="false" aria-controls="panel-media" tabindex="-1" data-media-tab="media" hidden={library.media.length === 0}>MEDIA</button>
 			<button id="tab-youtube" type="button" role="tab" aria-selected="false" aria-controls="panel-youtube" tabindex="-1" data-media-tab="youtube">YOUTUBE</button>
 			{credentialsEnabled && <button id="tab-credentials" type="button" data-open-reference="" aria-controls="reference-stage" aria-label="Explore Credentials">CREDENTIALS</button>}
 		</div>
@@ -871,13 +871,15 @@ const evidenceLabels = {
 		new ResizeObserver(() => syncPlaylistRail(rail)).observe(items);
 	});
 
-	tabs.forEach((tab, index) => {
+	tabs.forEach((tab) => {
 		tab.addEventListener('click', () => renderTab(tab.dataset.mediaTab));
 		tab.addEventListener('keydown', (event) => {
 			if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
 			event.preventDefault();
 			const delta = event.key === 'ArrowRight' ? 1 : -1;
-			const target = tabs[(index + delta + tabs.length) % tabs.length];
+			const visibleTabs = tabs.filter(candidate => !candidate.hidden);
+			const index = visibleTabs.indexOf(tab);
+			const target = visibleTabs[(index + delta + visibleTabs.length) % visibleTabs.length];
 			renderTab(target.dataset.mediaTab, true);
 		});
 	});
@@ -1100,6 +1102,8 @@ const evidenceLabels = {
 	}
 
 	function renderMediaRows() {
+		root.querySelector('#tab-media').hidden = allMediaItems.length === 0;
+		if (allMediaItems.length === 0 && session.activeTab === 'media') renderTab('cinema');
 		const rows = allMediaItems.map((item) => {
 			const button = createCatalogueButton('media-cue');
 			button.dataset.mediaId = item.id;

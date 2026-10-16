@@ -50,6 +50,7 @@ const catalogueItem = (id, folder, kind, patch = {}) => ({
 function catalogueRuntime(items) {
   const library = toRuntimeMediaLibrary(items);
   const cinemaPlaylist = element(), musicPlaylist = element(), mediaPlaylist = element();
+  const mediaTab = element('button');
   const descendants = (row) => [row, ...row.children.flatMap(descendants)];
   const allRows = () => [cinemaPlaylist, musicPlaylist, mediaPlaylist].flatMap(descendants);
   const matches = (row, selector) => selector.startsWith('.') ? row.className === selector.slice(1)
@@ -59,7 +60,8 @@ function catalogueRuntime(items) {
   const mv = mediaElement(library.cinema[0]?.src ?? ''), musicAudio = mediaElement(musicProducts[0]?.audioSrc ?? '');
   const context = {
     document: { baseURI: 'https://viaims.test/', createElement: element }, window: { innerWidth: 1000 }, URL,
-    root: { querySelectorAll: (selector) => allRows().filter(row => matches(row, selector)) },
+    root: { querySelector: selector => selector === '#tab-media' ? mediaTab : null, querySelectorAll: (selector) => allRows().filter(row => matches(row, selector)) },
+    mediaTab,
     cinemaPlaylist, musicPlaylist, mediaPlaylist, cinemaButtons: [], allCinemaItems: library.cinema, allMediaItems: library.media,
     videoPlaylist: library.cinema, mediaItems: library.media, cinema: createCinemaContinuity(library.cinema),
     musicProducts, productById: new Map(musicProducts.map(item => [item.productId, item])), musicQueue: createMusicQueue(musicProducts),
@@ -71,6 +73,7 @@ function catalogueRuntime(items) {
     syncEntryControlAvailability() {}, syncCinemaCueAvailability() {}, syncFullscreenEligibility() {}, syncPlaylistRails() {},
     updateProviderCueState() {}, syncMusicRowActions() {}, hideMirrorWings() {}, pauseVideoStack() {}, setStageProvider() {}, renderCinemaIdentity() {},
   };
+  context.renderTab = tab => { context.session = { ...context.session, activeTab: tab }; };
   const names = ['createCatalogueButton', 'renderCinemaRows', 'renderMusicRows', 'renderMediaRows', 'sameMediaSource', 'captureRuntimeSources', 'reconcileRuntimeSources', 'rebuildMusicQueue', 'applyRuntimeLibrary', 'rebuildEligibleVideoQueues', 'currentCinema', 'updateCinemaCueState', 'restoreMusicSource'];
   runInNewContext(names.map(namedImplementation).join('\n'), context);
   context.renderCinemaRows(); context.renderMusicRows(); context.renderMediaRows();
@@ -90,6 +93,16 @@ function enableLeaseRestoration(ctx) {
   });
   runInNewContext(namedImplementation('resumeAudibleState') + namedImplementation('restoreLeasedCinema'), ctx);
 }
+
+test('Media tab appears when runtime content arrives and hides when the last entry leaves', () => {
+  const ctx = catalogueRuntime([]);
+  assert.equal(ctx.mediaTab.hidden, true);
+  ctx.allMediaItems = toRuntimeMediaLibrary([catalogueItem('Media/one.mp4', 'media', 'video')]).media;
+  ctx.renderMediaRows(); assert.equal(ctx.mediaTab.hidden, false);
+  ctx.session = { ...ctx.session, activeTab: 'media' };
+  ctx.allMediaItems = []; ctx.renderMediaRows();
+  assert.equal(ctx.mediaTab.hidden, true); assert.equal(ctx.session.activeTab, 'cinema');
+});
 
 function enableExplicitSelections(ctx) {
   Object.assign(ctx, {
