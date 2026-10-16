@@ -3187,12 +3187,12 @@ img[src$="cosmic-005-label-a-color-matched-circle-v2.png"] { clip-path: circle(4
   .reference-stage__slide--cover .reference-stage__image img { height:auto; }
   #reference-stage .reference-stage__navigation {
     height:auto;
-    grid-template-columns:minmax(0,1fr) 4.5rem;
+    grid-template-columns:minmax(0,1fr) 4.5rem minmax(0,1fr);
     grid-template-rows:44px 44px auto;
     gap:.35rem;
     padding:.35rem .25rem;
   }
-  .reference-stage__navigation .reference-stage__header { grid-row:1; }
+  .reference-stage__navigation .reference-stage__header { grid-row:1; grid-template-columns:minmax(0,1fr); }
   .reference-stage__navigation .reference-stage__header > div { display:none; }
   .reference-stage__navigation #reference-status { text-align:left; font-size:.6rem; }
   .reference-stage__navigation-actions { grid-column:1 / -1; grid-row:2; grid-template-columns:1.25fr 1fr 1fr; }
