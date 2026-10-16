@@ -3215,7 +3215,7 @@ img[src$="cosmic-005-label-a-color-matched-circle-v2.png"] { clip-path: circle(4
 }
 
 @media (max-width:719px) {
-  #master-stage-container[data-transport-in-stage="true"]:not([data-reference-open="true"]) {
+  .fullscreen-shell[data-fullscreen-mode="inline"] #master-stage-container[data-transport-in-stage="true"]:not([data-reference-open="true"]) {
     --theater-console-height:10rem;
     height:calc(100svh - 5.25rem);
   }
