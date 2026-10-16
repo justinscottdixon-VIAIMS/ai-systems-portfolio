@@ -3239,3 +3239,8 @@ img[src$="cosmic-005-label-a-color-matched-circle-v2.png"] { clip-path: circle(4
 /* Credentials opens the theater directory; the native media list fills the tray. */
 .player-dock__libraries { grid-template-columns:minmax(0,1fr); }
 .player-dock[data-active-tab="credentials"] .media-library__tabs [role="tab"][aria-selected="true"] { background:transparent; color:var(--viaims-muted); border-color:var(--viaims-border); box-shadow:none; }
+/* Playlist selectors occupy a compact row above the existing list viewport. */
+.player-dock #panel-cinema:not([hidden]),
+.player-dock #panel-music:not([hidden]) { grid-template-rows:auto var(--playlist-viewport); }
+.player-dock #panel-cinema:has(> .music-playlist-chooser[hidden]):not([hidden]),
+.player-dock #panel-music:has(> .music-playlist-chooser[hidden]):not([hidden]) { grid-template-rows:var(--playlist-viewport); }
