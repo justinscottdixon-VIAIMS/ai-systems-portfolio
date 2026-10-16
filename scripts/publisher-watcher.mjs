@@ -6,6 +6,9 @@ import { createHash } from 'node:crypto';
 import { AuditHold, auditSnapshot } from './publisher-audit.mjs';
 
 const PROVIDERS = ['Cinema', 'Music', 'Media'];
+async function sidecarSignature(source) {
+  try { return signature(await fs.lstat(`${source}.json`)); } catch (error) { if (error.code === 'ENOENT') return ''; throw error; }
+}
 const signature = s => `${s.dev}:${s.ino}:${s.size}:${s.mtimeMs}:${s.ctimeMs}`;
 const escape = value => String(value ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
@@ -41,7 +44,7 @@ export function renderPublisherReport(state, { root, publish, running = true }) 
   return `<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="refresh" content="15"><title>VIAIMS Publishing</title><style>body{background:#15120f;color:#eee4d2;font:16px system-ui;max-width:1100px;margin:40px auto;padding:0 20px}h1{color:#dfbb82}table{width:100%;border-collapse:collapse}td,th{text-align:left;padding:12px;border-bottom:1px solid #655237;overflow-wrap:anywhere}.published{color:#9ce0a6}.needs-attention,.retrying{color:#f0c779}small{color:#c4b79d}code{overflow-wrap:anywhere}</style><h1>VIAIMS Publishing</h1><p>${publish ? 'Automatic publication enabled' : 'Audit only — no uploads'} · ${running ? 'Last scan' : 'Stopped after scan'}: ${escape(state.scannedAt)}</p><p>Drop finished files into <b>Cinema</b>, <b>Music</b>, or <b>Media</b> inside <code>${escape(root)}</code>. Files publish after they finish copying and pass the technical audit. Originals stay in place. Removing a local file does not remove a published release.</p><p>Questions about a title or an unsupported format appear below. Rename or replace a held file to re-audit it. A same-title replacement needs review.</p>${state.error ? `<p role="alert">${escape(state.error)}</p>` : ''}<table><thead><tr><th>File</th><th>Status</th><th>Details</th></tr></thead><tbody>${rows || '<tr><td colspan="3">Ready for your first drop.</td></tr>'}</tbody></table></html>`;
 }
 
-export async function createPublisherWatcher({ root, publish = false, publisher, auditor = auditSnapshot, settleMs = 15_000, now = Date.now }) {
+export async function createPublisherWatcher({ root, publish = false, publisher, auditor = auditSnapshot, settleMs = 15_000, now = Date.now, signal }) {
   root = path.resolve(root);
   await fs.mkdir(root, { recursive: true });
   if ((await fs.lstat(root)).isSymbolicLink()) throw new Error('Drop folder must be a real directory');
@@ -70,22 +73,24 @@ export async function createPublisherWatcher({ root, publish = false, publisher,
     const seen = new Set();
     try {
       for (const provider of PROVIDERS) {
+        signal?.throwIfAborted();
         if ((await fs.lstat(path.join(root, provider))).isSymbolicLink()) throw new Error('Provider folder changed');
         const entries = await fs.readdir(path.join(root, provider), { withFileTypes: true });
         for (const entry of entries.sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true }))) {
+          signal?.throwIfAborted();
           if (entry.name.startsWith('.') || entry.name.endsWith('.json')) continue;
           const key = `${provider}/${entry.name}`; seen.add(key);
           const source = path.join(root, provider, entry.name);
           const stat = await fs.lstat(source);
           const sourceSignature = signature(stat);
-          let sidecarSignature = '';
-          try { sidecarSignature = signature(await fs.lstat(`${source}.json`)); } catch (error) { if (error.code !== 'ENOENT') throw error; }
-          const sig = `${sourceSignature}:${sidecarSignature}`;
+          const metadataSignature = await sidecarSignature(source);
+          const unchanged = async () => signature(await fs.lstat(source)) === sourceSignature && await sidecarSignature(source) === metadataSignature;
+          const sig = `${sourceSignature}:${metadataSignature}`;
           let row = Object.hasOwn(state.files, key) ? state.files[key] : null;
           if (!row || row.signature !== sig) row = state.files[key] = { signature: sig, observedAt: now(), status: 'waiting', message: 'Waiting for copying to finish.' };
           if (!stat.isFile() || stat.isSymbolicLink()) { row.status = 'needs-attention'; row.message = 'Only regular files directly inside a player folder are supported.'; continue; }
           if (['published', 'duplicate', 'needs-attention'].includes(row.status) || (!publish && row.status === 'ready')) continue;
-          if (now() - row.observedAt < settleMs || now() - stat.mtimeMs < settleMs || row.retryAt > now()) continue;
+          if (now() - row.observedAt < settleMs || row.retryAt > now()) continue;
           const snapshot = path.join(stateDirectory, 'staging', createHash('sha256').update(key).digest('hex'));
           try {
             if (stat.size <= 0 || stat.size > 2 * 1024 ** 3) throw new AuditHold('FILE_SIZE', 'Files must be nonempty and no larger than 2 GiB.');
@@ -101,19 +106,23 @@ export async function createPublisherWatcher({ root, publish = false, publisher,
             } catch (error) { if (error.code !== 'ENOENT') throw new AuditHold('INVALID_METADATA', 'Review the optional filename.ext.json title sidecar.'); }
             row.status = 'auditing'; row.message = 'Inspecting and decoding the complete file.'; await report();
             const handle = await fs.open(source, constants.O_RDONLY | constants.O_NOFOLLOW);
-            try { await pipeline(handle.createReadStream(), createWriteStream(`${snapshot}.tmp`, { mode: 0o600 })); } finally { await handle.close(); }
-            if (signature(await fs.lstat(source)) !== sourceSignature) { row.observedAt = now(); row.status = 'waiting'; row.message = 'File changed while copying; waiting again.'; continue; }
+            try { await pipeline(handle.createReadStream(), createWriteStream(`${snapshot}.tmp`, { mode: 0o600 }), { signal }); } finally { await handle.close(); }
+            if (!(await unchanged())) { row.observedAt = now(); row.status = 'waiting'; row.message = 'File or title changed while copying; waiting again.'; continue; }
             await fs.rename(`${snapshot}.tmp`, snapshot);
-            const audit = await auditor(snapshot, { filename: entry.name, provider, title });
-            if (signature(await fs.lstat(source)) !== sourceSignature) { row.status = 'waiting'; row.observedAt = now(); row.message = 'File changed during audit; waiting again.'; continue; }
+            const audit = await auditor(snapshot, { filename: entry.name, provider, title, signal });
+            signal?.throwIfAborted();
+            if (!(await unchanged())) { row.status = 'waiting'; row.observedAt = now(); row.message = 'File or title changed during audit; waiting again.'; continue; }
             row.audit = audit;
             if (!publish) { row.status = 'ready'; row.message = 'Audit passed. Audit-only mode has not uploaded this file.'; continue; }
             if (typeof publisher !== 'function') throw new Error('Publisher is not configured');
             row.status = 'publishing'; row.message = 'Audit passed. Uploading and registering the release.'; await report();
-            const result = await publisher({ file: { filename: entry.name, extension: path.extname(entry.name).toLowerCase(), snapshot }, audit, provider, size: stat.size });
+            signal?.throwIfAborted();
+            if (!(await unchanged())) { row.status = 'waiting'; row.observedAt = now(); row.message = 'File or title changed before publication; waiting again.'; continue; }
+            const result = await publisher({ signal, file: { filename: entry.name, extension: path.extname(entry.name).toLowerCase(), snapshot }, audit, provider, size: stat.size });
             row.status = result.status; row.message = result.status === 'duplicate' ? 'This content is already published in this player.' : `Published as ${result.item.title}.`; row.url = result.item.src;
             delete row.retryAt; delete row.failures;
           } catch (error) {
+            if (signal?.aborted) { row.status = 'waiting'; row.message = 'Paused before publication completed; will check again on restart.'; throw error; }
             row.status = error instanceof AuditHold ? 'needs-attention' : 'retrying';
             row.message = error instanceof AuditHold ? error.message : 'A local or upload service is unavailable. Retrying automatically.';
             if (!(error instanceof AuditHold)) { row.failures = (row.failures ?? 0) + 1; row.retryAt = now() + Math.min(15 * 60_000, 15_000 * 2 ** Math.min(row.failures - 1, 6)); }
@@ -121,7 +130,7 @@ export async function createPublisherWatcher({ root, publish = false, publisher,
         }
       }
       for (const [key, row] of Object.entries(state.files)) if (!seen.has(key) && !['published', 'duplicate'].includes(row.status)) { row.status = 'removed'; row.message = 'Removed locally; public releases are not deleted.'; }
-    } catch { state.error = 'The drop folder is unavailable or changed. Check its location and folder permissions.'; }
+    } catch { if (!signal?.aborted) state.error = 'The drop folder is unavailable or changed. Check its location and folder permissions.'; }
     finally { scanning = false; await report(); }
     return structuredClone(state);
   }

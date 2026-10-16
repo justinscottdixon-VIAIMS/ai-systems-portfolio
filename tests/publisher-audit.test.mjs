@@ -28,3 +28,11 @@ test('silent audio is held and upstream diagnostics are not exposed', async () =
   await assert.rejects(auditSnapshot('/not-read', { filename: 'Track.mp3', provider: 'Music', runner: async cmd => cmd === 'ffprobe' ? { stdout: JSON.stringify(music) } : { stderr: 'max_volume: -inf dB' } }), { code: 'SILENT_AUDIO' });
   await assert.rejects(auditSnapshot('/not-read', { filename: 'Finished.mp4', provider: 'Cinema', runner: async () => { throw new Error('private/path token'); } }), error => error instanceof AuditHold && !error.message.includes('private'));
 });
+test('empty Music title is held with useful explanation',()=>assert.throws(()=>auditMetadata(music,{filename:'Track.mp3',provider:'Music',title:''}),{code:'INVALID_TITLE'}));
+test('missing inspection tools and process timeouts remain retryable',async()=>{
+  for(const props of [{code:'ENOENT'},{code:'ETIMEDOUT',killed:true}]) await assert.rejects(auditSnapshot('/not-read',{filename:'Finished.mp4',provider:'Cinema',runner:async()=>{throw Object.assign(new Error('tool failed'),props);}}),error=>!(error instanceof AuditHold)&&error.code==='AUDIT_UNAVAILABLE');
+});
+test('audit passes cancellation to native tools and preserves abort',async()=>{
+  const c=new AbortController();c.abort();
+  await assert.rejects(auditSnapshot('/not-read',{filename:'Finished.mp4',provider:'Cinema',signal:c.signal,runner:async(_,__,options)=>options.signal.throwIfAborted()}),{name:'AbortError'});
+});

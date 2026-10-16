@@ -69,3 +69,20 @@ test('owner report renders filenames and audit messages as text', () => {
   const html = renderPublisherReport({ scannedAt: 'now', files: { '<script>': { status: 'needs-attention', message: '<img onerror=bad>' } } }, { root: '/local', publish: true });
   assert.ok(!html.includes('<script>')); assert.ok(!html.includes('<img onerror')); assert.ok(html.includes('&lt;script&gt;'));
 });
+test('title sidecar changes during audit wait instead of publishing old metadata', async t => {
+  let source;
+  const f = await fixture(t, { auditor: async () => { await fs.writeFile(`${source}.json`, JSON.stringify({title:'Corrected'})); return {title:'Old'}; } }); source=f.source;
+  await f.watcher.scan(); f.advance(20_000); const state=await f.watcher.scan();
+  assert.equal(f.calls.length,0); assert.equal(state.files['Cinema/Finished.mp4'].status,'waiting');
+});
+test('stop during audit prevents publication and processing later files', async t => {
+  const controller=new AbortController(); let audits=0;
+  const f=await fixture(t,{signal:controller.signal,auditor:async(_,options)=>{assert.equal(options.signal,controller.signal);audits++;controller.abort();return {title:'Finished'};}});
+  await fs.writeFile(path.join(f.root,'Cinema','Second.mp4'),'other');
+  await f.watcher.scan();f.advance(20_000);await f.watcher.scan();
+  assert.equal(f.calls.length,0);assert.equal(audits,1);assert.equal(f.watcher.snapshot().files['Cinema/Finished.mp4'].status,'waiting');
+});
+test('future dated exports settle by observed stability', async t=>{
+  const f=await fixture(t);const future=new Date(Date.now()+86400000);await fs.utimes(f.source,future,future);
+  await f.watcher.scan();f.advance(20_000);await f.watcher.scan();assert.equal(f.calls.length,1);
+});

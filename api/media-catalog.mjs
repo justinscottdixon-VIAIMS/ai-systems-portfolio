@@ -1,4 +1,3 @@
-import { list } from '@vercel/blob';
 import { buildBlobFolderCatalogue, catalogueFailureDiagnostic } from '../src/lib/blob-folder-catalogue.mjs';
 import { runtimeCatalogueEnabled } from '../src/lib/catalogue-release-policy.mjs';
 import { createApprovedCatalogueStore } from '../src/lib/approved-catalogue-store.mjs';
@@ -33,16 +32,6 @@ export function createMediaCatalogueHandler({ listPage, readText, logger = conso
     }
   };
 }
-
-const listPage = (options) => list({ ...options, token: process.env.BLOB_READ_WRITE_TOKEN });
-
-const readText = async (url) => {
-  const response = await fetch(url, { cache: 'no-store' });
-  if (!response.ok) throw new Error(`sidecar fetch failed: ${response.status}`);
-  const text = await response.text();
-  if (text.length > 65_536) throw new Error('sidecar exceeds 64 KiB');
-  return text;
-};
 
 const liveCatalogue = createApprovedMediaCatalogueHandler({ store: createApprovedCatalogueStore() });
 export default function mediaCatalogue(request, response) {

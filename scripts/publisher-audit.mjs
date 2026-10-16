@@ -14,9 +14,9 @@ export class AuditHold extends Error {
   constructor(code, message) { super(message); this.code = code; }
 }
 
-export async function fileHash(filename) {
+export async function fileHash(filename, signal) {
   const hash = createHash('sha256');
-  for await (const chunk of createReadStream(filename)) hash.update(chunk);
+  for await (const chunk of createReadStream(filename, { signal })) hash.update(chunk);
   return hash.digest('hex');
 }
 
@@ -48,6 +48,7 @@ export function auditMetadata(probe, { filename, provider, title }) {
     hold('AUDIO_COMPATIBILITY', 'Use MP3, AAC, FLAC, or 16/24-bit PCM WAV audio.');
   }
   if (audio.some(row => ![1, 2].includes(row.channels) || Number(row.sample_rate) < 8000 || Number(row.sample_rate) > 192000)) hold('AUDIO_LAYOUT', 'Use mono or stereo audio at a supported sample rate.');
+  if (title !== undefined && (typeof title !== 'string' || !title.trim())) hold('INVALID_TITLE', 'The title sidecar needs a nonempty title.');
   const identity = provider === 'Music' ? parseMusicIdentity(filename, title === undefined ? undefined : { overrideTitle: title }) : null;
   if (identity?.visualTag) hold('VISUAL_REVIEW', 'Tagged music visuals need a matching approved visual; this item is held for review.');
   const displayTitle = identity?.title ?? title ?? path.basename(filename, path.extname(filename)).replaceAll('_', ' ').trim();
@@ -58,25 +59,33 @@ export function auditMetadata(probe, { filename, provider, title }) {
   };
 }
 
-export async function auditSnapshot(snapshot, { filename, provider, title, runner = run } = {}) {
+export async function auditSnapshot(snapshot, { filename, provider, title, runner = run, signal } = {}) {
   const environment = { PATH: process.env.PATH ?? '/opt/homebrew/bin:/usr/bin:/bin', LANG: 'C' };
+  function infrastructureFailure(error) {
+    if (error?.name === 'AbortError' || error?.code === 'ABORT_ERR') throw error;
+    if (['ENOENT', 'EACCES', 'EPERM', 'ETIMEDOUT', 'ERR_CHILD_PROCESS_STDIO_MAXBUFFER'].includes(error?.code) || error?.killed || error?.signal) {
+      const failure = new Error('Media inspection tools are temporarily unavailable'); failure.code = 'AUDIT_UNAVAILABLE'; throw failure;
+    }
+  }
   let metadata;
   try {
-    const { stdout } = await runner('ffprobe', ['-v', 'error', '-show_format', '-show_streams', '-of', 'json', snapshot], { timeout: 120_000, maxBuffer: 2_000_000, env: environment });
+    const { stdout } = await runner('ffprobe', ['-v', 'error', '-show_format', '-show_streams', '-of', 'json', snapshot], { timeout: 120_000, maxBuffer: 2_000_000, env: environment, signal });
     metadata = auditMetadata(JSON.parse(stdout), { filename, provider, title });
   } catch (error) {
     if (error instanceof AuditHold) throw error;
+    infrastructureFailure(error);
     throw new AuditHold('UNREADABLE_MEDIA', 'The file could not be inspected. It may be corrupt or incomplete.');
   }
   try {
     const { stderr = '' } = await runner('ffmpeg', [
       '-nostdin', '-hide_banner', '-nostats', '-v', metadata.kind === 'audio' ? 'info' : 'error', '-xerror', '-i', snapshot,
       ...(metadata.kind === 'audio' ? ['-map', '0:a:0', '-vn', '-af', 'volumedetect'] : ['-map', '0:v?', '-map', '0:a?']), '-f', 'null', '-',
-    ], { timeout: 30 * 60_000, maxBuffer: 2_000_000, env: environment });
+    ], { timeout: 30 * 60_000, maxBuffer: 2_000_000, env: environment, signal });
     if (metadata.kind === 'audio' && /max_volume:\s*-inf\s*dB/.test(stderr)) throw new AuditHold('SILENT_AUDIO', 'The audio is silent. Review before publishing.');
   } catch (error) {
     if (error instanceof AuditHold) throw error;
+    infrastructureFailure(error);
     throw new AuditHold('DECODE_FAILED', 'The complete media file could not be decoded without errors.');
   }
-  return { ...metadata, contentHash: await fileHash(snapshot) };
+  return { ...metadata, contentHash: await fileHash(snapshot, signal) };
 }

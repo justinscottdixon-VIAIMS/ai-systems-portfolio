@@ -29,3 +29,8 @@ test('conditional registry conflict retries with latest entries and does not upl
   const duplicate = await publishAuditedFile({ ...input, store: { read: async () => ({ registry, etag: 'v2' }) }, uploader: () => { throw new Error('duplicate must not upload'); } });
   assert.equal(duplicate.status, 'duplicate');
 });
+test('stop after upload prevents registry commit',async t=>{
+ const input=await fixture(t),controller=new AbortController();let writes=0;
+ await assert.rejects(publishAuditedFile({...input,signal:controller.signal,store:{read:async()=>({registry:registryDocument([]),etag:'v1'}),write:async()=>writes++},resolver:async()=>{controller.abort();return {url:`${MEDIA_ORIGIN}/Media/file.mp4`,size:5};}}),{name:'AbortError'});
+ assert.equal(writes,0);
+});

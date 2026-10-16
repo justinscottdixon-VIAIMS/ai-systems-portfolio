@@ -27,18 +27,18 @@ test('append deduplicates content within a player, holds title collisions and pr
   const result = appendApprovedItem(base, row({ versionId: 'b'.repeat(64), id: 'Cinema/new.mp4', pathname: 'Cinema/new.mp4', title: 'New' }));
   assert.equal(result.item.playlistOrder, 9); assert.equal(result.registry.items[0].title, 'One');
 });
-test('registry store reads from origin and passes the prior ETag on updates', async () => {
-  let readOptions, writeOptions;
+test('registry store verifies current metadata and passes the prior ETag on updates', async () => {
+  let readOptions, readUrl, writeOptions;
   const registry = registryDocument([row()]);
-  const store = createApprovedCatalogueStore({ reader: async (_, options) => {
-    readOptions = options;
+  const store = createApprovedCatalogueStore({ metadata: async () => ({ url: `${MEDIA_ORIGIN}/VIAIMS/approved-catalogue.json`, etag: 'v1', size: 1000 }), reader: async (url, options) => {
+    readUrl = url; readOptions = options;
     return { statusCode: 200, blob: { size: 1000, etag: 'v1' }, stream: new Response(JSON.stringify(registry)).body };
   }, writer: async (_, body, options) => { writeOptions = options; assert.deepEqual(JSON.parse(body), registry); } });
   const result = await store.read(); await store.write(result.registry, result.etag);
-  assert.equal(readOptions.useCache, false); assert.equal(writeOptions.ifMatch, 'v1'); assert.equal(writeOptions.allowOverwrite, true);
+  assert.equal(new URL(readUrl).searchParams.get('viaimsVersion'), 'v1'); assert.equal(readOptions.headers['Cache-Control'], 'no-cache'); assert.equal(writeOptions.ifMatch, 'v1'); assert.equal(writeOptions.allowOverwrite, true);
 });
 test('registry store refuses oversized and uninitialized responses', async () => {
-  const store = createApprovedCatalogueStore({ reader: async () => ({ statusCode: 200, blob: { size: 2_000_001 } }) });
+  const store = createApprovedCatalogueStore({ metadata: async () => ({ url: `${MEDIA_ORIGIN}/VIAIMS/approved-catalogue.json`, etag: 'v1', size: 2_000_001 }), reader: async () => { throw new Error('Must not read oversized content'); } });
   await assert.rejects(store.read());
 });
 test('endpoint fails closed on missing registry and never logs upstream secrets', async () => {
@@ -52,4 +52,9 @@ test('endpoint returns a complete validated snapshot and rejects writes', async 
   const handler = createApprovedMediaCatalogueHandler({ store: { read: async () => ({ registry: registryDocument([row()]) }) } });
   await handler({ method: 'GET' }, response); assert.equal(response.code, 200); assert.equal(response.body.items.length, 1);
   await handler({ method: 'POST' }, response); assert.equal(response.code, 405);
+});
+test('stale public CDN content is rejected against authoritative metadata',async()=>{
+ let cancelled=false;
+ const store=createApprovedCatalogueStore({metadata:async()=>({url:`${MEDIA_ORIGIN}/VIAIMS/approved-catalogue.json`,etag:'latest',size:123}),reader:async()=>({statusCode:200,blob:{size:123,etag:'old'},stream:new ReadableStream({cancel(){cancelled=true;}})})});
+ await assert.rejects(store.read(),/version changed/); assert.equal(cancelled,true);
 });

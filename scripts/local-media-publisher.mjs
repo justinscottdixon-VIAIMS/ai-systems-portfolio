@@ -28,11 +28,11 @@ export async function main(args = process.argv.slice(2)) {
   const token = values.publish ? await loadPublisherToken(values['env-file']) : undefined;
   const store = values.publish ? createApprovedCatalogueStore({ token }) : null;
   if (store && !(await store.read())) throw new Error('Seed and verify the approved catalogue before starting automatic publication');
-  const watcher = await createPublisherWatcher({ root: values.root, publish: values.publish,
+  const pause = new AbortController();
+  const watcher = await createPublisherWatcher({ root: values.root, publish: values.publish, signal: pause.signal,
     publisher: values.publish ? input => publishAuditedFile({ ...input, store, token }) : undefined,
   });
   const release = await acquirePublisherLock(watcher.stateDirectory);
-  const pause = new AbortController();
   let stop = false;
   const halt = () => { stop = true; pause.abort(); };
   process.once('SIGTERM', halt);
