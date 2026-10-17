@@ -40,7 +40,7 @@ test('expanded archive preserves the corrected Cosmic sequence and approved artw
   assert.equal(cosmic.children[4].title, 'Trixta / Friction');
   assert.equal(cosmic.children[16].title, 'Time Travel E.P.');
   assert.equal(cosmic.children.slice(0, 4).every(child => child.gallery[0].kind === 'image'), true);
-  assert.equal(source.records.find(record => record.id === 'singles-remixes').children.length, 18);
+  assert.equal(source.records.find(record => record.id === 'singles-remixes').children.length, 27);
   const archive = await readFile(archiveUrl, 'utf8');
   assert.match(archive, /href="\/archive\/"/);
 });

@@ -5148,6 +5148,573 @@
               "supports": "Visually inspected original 800 × 800 label artwork: Micke, Pulse, remixers Charlie May and Voyager, catalogue PBTM110."
             }
           ]
+        },
+        {
+          "id": "the-art-of-joy",
+          "title": "The Art of Joy",
+          "artist": "Justin Scott Dixon & Voyager",
+          "date": "November 11, 2024",
+          "catalogNumber": "Voyager Recordings",
+          "format": "Digital single · Electronica · Dolby Atmos / Hi-Res Lossless",
+          "roles": [
+            "Artist",
+            "Composer"
+          ],
+          "summary": "The Art of Joy is a single released as Justin Scott Dixon & Voyager on Voyager Recordings. The Apple Music edition includes Dolby Atmos and Hi-Res Lossless. ℗ 2024 Justin Scott Dixon.",
+          "gallery": [
+            {
+              "kind": "image",
+              "src": "/reference/release-artwork/the-art-of-joy-apple-source.jpg",
+              "alt": "The Art of Joy cover: a dancing figure silhouetted against a golden swirl, surrounded by colorful planets and flowing cosmic patterns.",
+              "caption": "The Art of Joy · original digital release artwork supplied to Apple Music."
+            }
+          ],
+          "credits": [
+            {
+              "title": "The Art of Joy",
+              "scope": "Track 1 · 2:46",
+              "roles": [
+                "Artist",
+                "Composer"
+              ],
+              "evidence": "Apple Music credits Justin Scott Dixon & Voyager as the release artists and Justin Scott Dixon as composer. The artist confirmed Voyager Recordings as the label."
+            }
+          ],
+          "historySections": [
+            {
+              "title": "Release details",
+              "items": [
+                {
+                  "title": "Voyager Recordings · November 11, 2024",
+                  "detail": "One-track digital single. The artist confirmed the label; Apple Music documents the release date, composer, audio formats and ℗ 2024 Justin Scott Dixon credit.",
+                  "href": "https://music.apple.com/us/album/the-art-of-joy-single/1779167484"
+                }
+              ]
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Apple Music — The Art of Joy",
+              "href": "https://music.apple.com/us/album/the-art-of-joy-single/1779167484",
+              "supports": "Release artists Justin Scott Dixon & Voyager; November 11, 2024; one track; ℗ 2024 Justin Scott Dixon. The page metadata credits Justin Scott Dixon as composer and flags Dolby Atmos, Lossless and Hi-Res Lossless. Checked October 17, 2026."
+            }
+          ],
+          "relatedRecordIds": []
+        },
+        {
+          "id": "pure-voyager-recordings",
+          "title": "Pure",
+          "artist": "Voyager",
+          "date": "29 August 2025 — digital edition; ℗ 1998",
+          "catalogNumber": "Voyager Recordings",
+          "format": "Three-track digital release · Trance",
+          "roles": [
+            "Artist",
+            "Composer",
+            "Producer",
+            "Remixer"
+          ],
+          "summary": "Voyager Recordings’ three-track digital edition brings together Pure (Frictions Groove), Pure (2001 Six Speaker Rmx) and Pure (2001 Six Speaker Rmx Dub). Frictions Groove was remixed and produced solely by Scott Dixon. This edition retains the ℗ 1998 Justin Scott Dixon recording copyright.",
+          "gallery": [
+            {
+              "kind": "image",
+              "src": "/reference/release-artwork/pure-voyager-recordings-apple-source.jpg",
+              "alt": "Voyager Pure digital cover: intersecting teal and copper tapered shapes on a pale blue background, with voyager at upper left and pure at upper right.",
+              "caption": "Pure · original Voyager Recordings digital cover, supplied to Apple Music. This artwork belongs to the digital edition."
+            }
+          ],
+          "credits": [
+            {
+              "title": "Pure (Frictions Groove)",
+              "scope": "Track 1 · 8:25",
+              "roles": [
+                "Artist",
+                "Composer",
+                "Producer",
+                "Remixer"
+              ],
+              "evidence": "Apple Music identifies Voyager as artist and Justin Scott Dixon as composer. Scott previously confirmed that Frictions Groove was remixed and produced solely by him, under Voyager."
+            },
+            {
+              "title": "Pure (2001 Six Speaker Rmx)",
+              "scope": "Track 2 · 15:54",
+              "roles": [
+                "Artist",
+                "Composer"
+              ],
+              "evidence": "Apple Music identifies Voyager as artist and Justin Scott Dixon as composer. Version name and running time are transcribed from the digital edition; the 2001 text is part of the mix name."
+            },
+            {
+              "title": "Pure (2001 Six Speaker Rmx Dub)",
+              "scope": "Track 3 · 10:39",
+              "roles": [
+                "Artist",
+                "Composer"
+              ],
+              "evidence": "Apple Music identifies Voyager as artist and Justin Scott Dixon as composer. Version name and running time are transcribed from the digital edition."
+            }
+          ],
+          "historySections": [
+            {
+              "title": "Edition chronology",
+              "items": [
+                {
+                  "title": "Digital edition · 29 August 2025",
+                  "detail": "Beatport’s Voyager Recordings catalogue dates all three digital tracks to 29 August 2025. Apple Music groups the edition under 1998 and displays ℗ 1998 Justin Scott Dixon. The recording copyright and Apple catalogue date are retained separately from the later digital edition date.",
+                  "href": "https://www.beatport.com/label/voyager-recordings/4903/tracks"
+                },
+                {
+                  "title": "Earlier Cosmic release",
+                  "detail": "Pure (Frictions Groove) connects to the earlier Pure remix release on COSMIC 015. That vinyl release retains its own artwork, versions and historical credits in the Cosmic Records dossier.",
+                  "href": "https://viaims.com/archive/cosmic-records-history/#cosmic-015"
+                }
+              ]
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Apple Music — Pure",
+              "href": "https://music.apple.com/us/album/pure/1835797511",
+              "supports": "Voyager; three named versions and their running times; Justin Scott Dixon composer credit on each track in the page metadata; ℗ 1998 Justin Scott Dixon. Apple dates this catalogue entry January 1, 1998; that is not used as the release date for the later digital edition. Checked October 17, 2026."
+            },
+            {
+              "label": "Beatport — Voyager Recordings catalogue",
+              "href": "https://www.beatport.com/label/voyager-recordings/4903/tracks",
+              "supports": "Label-delivered catalogue lists Pure Frictions Groove, Pure 2001 Six Speaker Rmx and Pure 2001 Six Speaker Rmx Dub by Voyager on Voyager Recordings, each dated August 29, 2025. Checked October 17, 2026 via the indexed label catalogue."
+            }
+          ],
+          "relatedRecordIds": []
+        },
+        {
+          "id": "almost-flew-voyager-remix",
+          "title": "Almost Flew Remixes",
+          "artist": "Jeff Caylor",
+          "date": "23 December 2015 — Apple Music edition",
+          "catalogNumber": "Del Sol Music / Del Sol LTD",
+          "format": "Del Sol Music / Del Sol LTD · 9-track digital remix release",
+          "roles": [
+            "Remixer"
+          ],
+          "summary": "Scott’s Voyager remix of Jeff Caylor’s Almost Flew appears on the nine-track Almost Flew Remixes release.",
+          "gallery": [
+            {
+              "kind": "image",
+              "src": "/reference/release-artwork/almost-flew-apple-source.jpg",
+              "alt": "Jeff Caylor Almost Flew Remixes cover with black lettering and a magenta angular bird on a cream background.",
+              "caption": "Almost Flew Remixes · original digital release artwork supplied to Apple Music."
+            }
+          ],
+          "credits": [
+            {
+              "title": "Almost Flew (Voyager Remix)",
+              "scope": "Track 9 · 7:15",
+              "roles": [
+                "Remixer"
+              ],
+              "evidence": "The Apple Music track listing names Almost Flew (Voyager Remix). Scott identified this as his remix in the supplied collection; the release artwork and linked edition sources retain the original artist and remixer billing."
+            }
+          ],
+          "historySections": [
+            {
+              "title": "Edition details",
+              "items": [
+                {
+                  "title": "Del Sol Music / Del Sol LTD",
+                  "detail": "Apple Music dates this edition 23 December 2015 and prints ℗ 2015 Del Sol LTD. Beatport lists the remix package under Del Sol Music from 9 December 2015. These storefront dates are retained separately."
+                }
+              ]
+            },
+            {
+              "title": "Artist account",
+              "items": [
+                {
+                  "title": "Almost Flew",
+                  "detail": "Almost Flew changed how I used scales. Where the vocal sat, and how new melodies could work around it."
+                }
+              ]
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Apple Music — Almost Flew Remixes",
+              "href": "https://music.apple.com/us/album/1041178339",
+              "supports": "Original artist billing, exact Voyager remix title, track position and running time; ℗ 2015 Del Sol LTD. Checked October 17, 2026."
+            },
+            {
+              "label": "Beatport — Almost Flew release catalogue",
+              "href": "https://www.beatport.com/artist/glasshouse/98890/releases?page=1&per_page=100&preorders=false",
+              "supports": "The indexed distributor catalogue identifies Almost Flew Remixes, Jeff Caylor, Del Sol Music and 9 December 2015; Apple Music dates its edition 23 December 2015."
+            }
+          ],
+          "relatedRecordIds": []
+        },
+        {
+          "id": "snostorm-voyager-remix",
+          "title": "Snostorm Remixes",
+          "artist": "SONEPAC",
+          "date": "3 February 2017",
+          "catalogNumber": "SOL233",
+          "format": "Del Sol Music · 4-track digital remix release",
+          "roles": [
+            "Remixer"
+          ],
+          "summary": "Scott’s Voyager remix of SONEPAC’s Snostorm closes the four-track remix EP, alongside separate versions by AOD, Doctor Boom and Mariion Christiian.",
+          "gallery": [
+            {
+              "kind": "image",
+              "src": "/reference/release-artwork/snostorm-apple-source.jpg",
+              "alt": "Black Snostorm Remixes cover with a large white snowflake, Del Sol logo and the SOL233 release details.",
+              "caption": "Snostorm Remixes · original digital release artwork supplied to Apple Music."
+            }
+          ],
+          "credits": [
+            {
+              "title": "Snostorm (Voyager Remix)",
+              "scope": "Track 4 · 9:00",
+              "roles": [
+                "Remixer"
+              ],
+              "evidence": "The Apple Music track listing names Snostorm (Voyager Remix). Scott identified this as his remix in the supplied collection; the release artwork and linked edition sources retain the original artist and remixer billing."
+            }
+          ],
+          "historySections": [
+            {
+              "title": "Edition details",
+              "items": [
+                {
+                  "title": "Del Sol Music",
+                  "detail": "The original digital cover prints SOL233 and names Voyager among the remixers. Apple Music documents the four-track EP and its 3 February 2017 release."
+                }
+              ]
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Apple Music — Snostorm Remixes",
+              "href": "https://music.apple.com/us/album/1192455707",
+              "supports": "Original artist billing, exact Voyager remix title, track position and running time; ℗ 2017 Del Sol Music. Checked October 17, 2026."
+            }
+          ],
+          "relatedRecordIds": []
+        },
+        {
+          "id": "crystal-forms-voyager-remix",
+          "title": "Crystal Forms",
+          "artist": "Rick Tedesco & Mariion Christiian",
+          "date": "20 February 2017 — Apple Music edition",
+          "catalogNumber": "MORPH116",
+          "format": "Morphosis Records · 3-track digital remix release",
+          "roles": [
+            "Remixer"
+          ],
+          "summary": "Scott’s Voyager remix joins the original Crystal Forms and an Omauha remix on Rick Tedesco & Mariion Christiian’s three-track Morphosis Records release.",
+          "gallery": [
+            {
+              "kind": "image",
+              "src": "/reference/release-artwork/crystal-forms-apple-source.jpg",
+              "alt": "Morphosis Records Crystal Forms cover with blue and white lettering, MORPH116 and a blue spiked ring on a dark background.",
+              "caption": "Crystal Forms · original digital release artwork supplied to Apple Music."
+            }
+          ],
+          "credits": [
+            {
+              "title": "Crystal Forms (Voyager Remix)",
+              "scope": "Track 3 · 8:41",
+              "roles": [
+                "Remixer"
+              ],
+              "evidence": "The Apple Music track listing names Crystal Forms (Voyager Remix). Scott identified this as his remix in the supplied collection; the release artwork and linked edition sources retain the original artist and remixer billing."
+            }
+          ],
+          "historySections": [
+            {
+              "title": "Edition details",
+              "items": [
+                {
+                  "title": "Morphosis Records",
+                  "detail": "Apple Music dates its edition 20 February 2017; the label’s Bandcamp page is dated 21 February 2017. Both identify the same three-version package. The original cover prints MORPH116 and names Voyager and Omauha as remixers."
+                }
+              ]
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Apple Music — Crystal Forms",
+              "href": "https://music.apple.com/us/album/1198169850",
+              "supports": "Original artist billing, exact Voyager remix title, track position and running time; ℗ 2017 Morphosis Records. Checked October 17, 2026."
+            },
+            {
+              "label": "Morphosis Records — Crystal Forms",
+              "href": "https://morphosis.bandcamp.com/album/crystal-forms",
+              "supports": "Label-owned release page names the Voyager and Omauha remixes; dated 21 February 2017, one day later than the Apple Music edition."
+            }
+          ],
+          "relatedRecordIds": []
+        },
+        {
+          "id": "again-again-voyager-micke-remix",
+          "title": "Again & Again (Remixes)",
+          "artist": "Thomas Blondet featuring Leyla Chatti",
+          "date": "3 May 2019",
+          "catalogNumber": "Rhythm & Culture Music",
+          "format": "Rhythm & Culture Music · 3-track digital remix release",
+          "roles": [
+            "Co-remixer"
+          ],
+          "summary": "Scott, credited as Voyager, and Micke jointly remixed Thomas Blondet’s Again & Again featuring Leyla Chatti. Their version opens the three-track remix release on Rhythm & Culture Music.",
+          "gallery": [
+            {
+              "kind": "image",
+              "src": "/reference/release-artwork/again-again-apple-source.jpg",
+              "alt": "Thomas Blondet featuring Leyla Chatti Again and Again Remixes cover with overlapping pink and teal diamonds and white handwritten title.",
+              "caption": "Again & Again (Remixes) · original digital release artwork supplied to Apple Music."
+            }
+          ],
+          "credits": [
+            {
+              "title": "Again & Again (feat. Leyla Chatti) [Voyager & Micke Remix]",
+              "scope": "Track 1 · 7:21",
+              "roles": [
+                "Co-remixer"
+              ],
+              "evidence": "The Apple Music track listing names Again & Again (feat. Leyla Chatti) [Voyager & Micke Remix]. Scott identified this as his remix in the supplied collection; the release artwork and linked edition sources retain the original artist and remixer billing.",
+              "collaborators": "Micke — co-remixer; Thomas Blondet featuring Leyla Chatti — original artist billing"
+            }
+          ],
+          "historySections": [
+            {
+              "title": "Edition details",
+              "items": [
+                {
+                  "title": "Rhythm & Culture Music",
+                  "detail": "The release also includes separate Telepath and One Era remixes. The Voyager & Micke credit is a joint remix credit, distinct from Thomas Blondet and Leyla Chatti’s original artist billing."
+                }
+              ]
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Apple Music — Again & Again (Remixes)",
+              "href": "https://music.apple.com/us/album/1867323382",
+              "supports": "Original artist billing, exact Voyager remix title, track position and running time; ℗ 2019 Rhythm & Culture Music. Checked October 17, 2026."
+            },
+            {
+              "label": "Beatport — Voyager & Micke Remix",
+              "href": "https://www.beatport.com/track/again-again/11825111",
+              "supports": "Distributor credits Voyager & Micke as remixers, Thomas Blondet and Leyla Chatti as artists, Rhythm & Culture as label, 7:21 and 3 May 2019."
+            }
+          ],
+          "relatedRecordIds": []
+        },
+        {
+          "id": "life-voyager-micke-remix",
+          "title": "Life",
+          "artist": "Micke & Talia",
+          "date": "29 November 2019 — Beatport release; Apple Music: 13 December 2019",
+          "catalogNumber": "Stripped Recordings",
+          "format": "Stripped Recordings · 5-track digital remix release",
+          "roles": [
+            "Co-remixer"
+          ],
+          "summary": "Scott and Micke jointly remixed Life by Micke & Talia, with Scott billed as Justin Scott Dixon aka Voyager. Their version appears on the five-track Stripped Recordings release.",
+          "gallery": [
+            {
+              "kind": "image",
+              "src": "/reference/release-artwork/life-apple-source.jpg",
+              "alt": "Micke featuring Talia Life artwork showing a runner silhouetted on a beach at sunset, with the remix credits and Stripped Recordings logo.",
+              "caption": "Life · original digital release artwork supplied to Apple Music."
+            }
+          ],
+          "credits": [
+            {
+              "title": "Life (Justin Scott Dixon Aka Voyager & Micke Remix)",
+              "scope": "Track 4 · 10:17",
+              "roles": [
+                "Co-remixer"
+              ],
+              "evidence": "The Apple Music track listing names Life (Justin Scott Dixon Aka Voyager & Micke Remix). Scott identified this as his remix in the supplied collection; the release artwork and linked edition sources retain the original artist and remixer billing.",
+              "collaborators": "Micke — original artist and co-remixer; Talia — original artist"
+            }
+          ],
+          "historySections": [
+            {
+              "title": "Edition details",
+              "items": [
+                {
+                  "title": "Stripped Recordings",
+                  "detail": "Beatport dates the Voyager & Micke remix 29 November 2019; Apple Music dates its five-track edition 13 December 2019. The original artwork explicitly credits Justin Scott Dixon aka Voyager & Micke and names Clare Nash Photography for the image."
+                }
+              ]
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Apple Music — Life",
+              "href": "https://music.apple.com/us/album/1488194507",
+              "supports": "Original artist billing, exact Voyager remix title, track position and running time; ℗ 2019 Stripped Recordings. Checked October 17, 2026."
+            },
+            {
+              "label": "Beatport — Life remix",
+              "href": "https://www.beatport.com/track/life/12817598",
+              "supports": "Exact remix name identifies Justin Scott Dixon aka Voyager & Micke; Micke and Talia original artists; Stripped Recordings; 29 November 2019. Runtime is displayed there as 10:16, while Apple Music rounds to 10:17."
+            }
+          ],
+          "relatedRecordIds": []
+        },
+        {
+          "id": "tribe-n-trance-voyager-mix",
+          "title": "Tribe ’n’ Trance",
+          "artist": "Francesco Farfa",
+          "date": "1998 — UK vinyl edition; exact day unconfirmed",
+          "catalogNumber": "PFT018R",
+          "format": "Plastic Fantastic · 12-inch single",
+          "roles": [
+            "Remixer"
+          ],
+          "summary": "Scott remixed Francesco Farfa’s Tribe ’n’ Trance as Voyager. The Voyager Mix is the A-side of Plastic Fantastic’s PFT018R edition; Montalban (Aramis Mix) appears on the reverse.",
+          "gallery": [
+            {
+              "kind": "image",
+              "src": "/reference/release-artwork/francesco-farfa-tribe-n-trance-pft018r-label-source.jpg",
+              "alt": "Original black Plastic Fantastic PFT018R label for Francesco Farfa Tribe n Trance, listing the Voyager Mix and Montalban Aramis Mix, with printed Voyager remix credit.",
+              "caption": "Original PFT018R information-label photograph · Voyager remix credit and 1998 copyright notice."
+            }
+          ],
+          "credits": [
+            {
+              "title": "Tribe ’n’ Trance (Voyager Mix)",
+              "scope": "Side A",
+              "roles": [
+                "Remixer"
+              ],
+              "collaborators": "Francesco Farfa — original artist; Montalban (Aramis Mix) is a separate track on side B",
+              "evidence": "The photographed PFT018R label explicitly credits the Voyager remix to Scott, printing the surname as “Dickson” for Artistic Records U.S.A. The current archive uses Scott Dixon; the original printed spelling remains unchanged in the photograph."
+            }
+          ],
+          "listeningLinks": [
+            {
+              "videoId": "38NVfFhuuyc",
+              "label": "Listen to the Voyager Mix",
+              "title": "Tribe 'n' Trance (Voyager Mix)",
+              "channel": "Francesco Farfa — label-supplied audio",
+              "checkedOn": "2026-10-17",
+              "note": "Provided by Musiqware Ltd for Plastic Fantastic. The digital description dates the Part Two release 12 June 2000; this is kept separate from the 1998 vinyl edition."
+            }
+          ],
+          "historySections": [
+            {
+              "title": "Edition chronology",
+              "items": [
+                {
+                  "title": "PFT018R · 1998 vinyl edition",
+                  "detail": "The photographed label carries a 1998 Media Records copyright notice; the UK vinyl edition is catalogued as 1998. A precise release day is not established."
+                },
+                {
+                  "title": "Later digital listing",
+                  "detail": "The label-supplied digital audio is grouped under Tribe ’n’ Trance (Part Two) and dated 12 June 2000. This does not replace the original vinyl chronology.",
+                  "href": "https://www.youtube.com/watch?v=38NVfFhuuyc"
+                }
+              ]
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Original PFT018R printed label",
+              "href": "https://creators-images-production.fra1.cdn.digitaloceanspaces.com/releases/2250072745/img-c-9185298995.jpeg",
+              "supports": "Visually inspected artist/title, Voyager Mix on A, Montalban (Aramis Mix) on B, PFT018R, explicit Scott remix credit and 1998 Media Records copyright notice."
+            },
+            {
+              "label": "Discogs — UK vinyl edition",
+              "href": "https://www.discogs.com/release/88191",
+              "supports": "PFT018R UK 12-inch edition, 1998. Community catalogue metadata corroborated by the original label photograph."
+            },
+            {
+              "label": "Plastic Fantastic — label-supplied Voyager Mix",
+              "href": "https://www.youtube.com/watch?v=38NVfFhuuyc",
+              "supports": "Francesco Farfa, exact Voyager Mix name, supplied by Musiqware Ltd; digital Part Two date 12 June 2000 is distinct from vinyl chronology."
+            }
+          ],
+          "relatedRecordIds": []
+        },
+        {
+          "id": "the-search-voyager-remixes",
+          "title": "The Search (Remixes)",
+          "artist": "Francesco Farfa Meets The Pleasure Team",
+          "date": "25 February 2002 — remix edition",
+          "catalogNumber": "PFT031",
+          "format": "Plastic Fantastic · 12-inch remix single",
+          "roles": [
+            "Remixer"
+          ],
+          "summary": "Scott’s Voyager remix of The Search appears on the Plastic Fantastic PFT031 remix release, alongside a separate Weekend World remix.",
+          "gallery": [
+            {
+              "kind": "image",
+              "src": "/reference/release-artwork/francesco-farfa-the-search-pft031-label-source.jpg",
+              "alt": "Original Plastic Fantastic PFT031 label for Francesco Farfa Meets The Pleasure Team The Search Remixes, listing Weekend World Remix and Voyager Remix.",
+              "caption": "Original PFT031 information-label photograph · The Search remix edition, 2002."
+            }
+          ],
+          "credits": [
+            {
+              "title": "The Search (Voyager Remix)",
+              "scope": "Side B · PFT031 UK edition",
+              "roles": [
+                "Remixer"
+              ],
+              "collaborators": "Francesco Farfa Meets The Pleasure Team — original artists; Weekend World — separate remix on side A",
+              "evidence": "The original PFT031 label identifies the Voyager Remix and distinguishes it from the Weekend World Remix. Scott directly confirmed the Voyager remix as his work."
+            }
+          ],
+          "listeningLinks": [
+            {
+              "videoId": "XDMRYfoyLhc",
+              "label": "Listen to the Voyager Remix",
+              "title": "The Search (Voyager Remix)",
+              "channel": "Francesco Farfa — label-supplied audio",
+              "checkedOn": "2026-10-17",
+              "note": "Provided by Musiqware Ltd for Plastic Fantastic Recordings; release metadata gives 25 February 2002."
+            }
+          ],
+          "historySections": [
+            {
+              "title": "Remix editions",
+              "items": [
+                {
+                  "title": "PFT031 · Voyager Remix",
+                  "detail": "The photographed UK 12-inch lists Weekend World on side A and Voyager on side B. The Italian Fragile FRG 016 edition uses the same named remixes in reverse side order."
+                }
+              ]
+            },
+            {
+              "title": "Release chronology",
+              "items": [
+                {
+                  "title": "25 February 2002",
+                  "detail": "The label-supplied audio dates the remix edition 25 February 2002, agreeing with the PFT031 edition record. The original composition and earlier mixes predate this remix release.",
+                  "href": "https://www.youtube.com/watch?v=XDMRYfoyLhc"
+                }
+              ]
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Original PFT031 printed label",
+              "href": "https://i.discogs.com/ATLvxWJ5waemYxgGjbQOr25PggKCn2nEKSucUyVEbCM/rs:fit/g:sm/q:90/h:597/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTMxNDkw/LTExNTk0NjkyODgu/anBlZw.jpeg",
+              "supports": "Visually inspected original title/track-list photograph: The Search, PFT031, Weekend World Remix and Voyager Remix, with a 2002 Plastic Fantastic notice."
+            },
+            {
+              "label": "Discogs — The Search remix edition",
+              "href": "https://www.discogs.com/release/31490",
+              "supports": "UK Plastic Fantastic PFT031 remix edition, 25 February 2002; the two credited sides are Weekend World and Voyager."
+            },
+            {
+              "label": "Plastic Fantastic — label-supplied Voyager Remix",
+              "href": "https://www.youtube.com/watch?v=XDMRYfoyLhc",
+              "supports": "Current rights-holder supplied audio names The Search (Voyager Remix), Plastic Fantastic Recordings and 25 February 2002 release metadata."
+            }
+          ],
+          "relatedRecordIds": []
         }
       ],
       "publicSources": [
