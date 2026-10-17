@@ -1,6 +1,7 @@
 import { presentationArtwork } from './artwork-presentation-policy.mjs';
 import { normalizePresentationLinks } from './release-presentations.mjs';
 import { normalizeListeningLinks } from './release-listening.mjs';
+import { normalizeAudioClips } from './release-audio.mjs';
 
 const categories = new Set(['music', 'film', 'publication', 'product', 'podcast-audiobook', 'career']);
 const statuses = new Set(['released', 'published', 'archived', 'in-development', 'verification-pending']);
@@ -88,6 +89,7 @@ function childRecord(child, label) {
   if (child.publicSources !== undefined && !Array.isArray(child.publicSources)) throw new TypeError(`${label} sources must be an array`);
   if (child.historySections !== undefined && !Array.isArray(child.historySections)) throw new TypeError(`${label} history sections must be an array`);
   return {
+    audioClips: normalizeAudioClips(child.audioClips),
     listeningLinks: normalizeListeningLinks(child.listeningLinks),
     presentationLinks: normalizePresentationLinks(child.presentationLinks),
     relatedRecordIds: relatedIds(child.relatedRecordIds, label),

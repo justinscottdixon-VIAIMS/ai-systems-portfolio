@@ -1607,7 +1607,7 @@
             {
               "kind": "image",
               "src": "/reference/friction-spice/transformed-08-source-scan.jpg",
-              "alt": "Transformed — cd face",
+              "alt": "Transformed — CD face",
               "caption": "CD face. Original CD packaging scan; StreetBeat Records, 1999."
             }
           ],
@@ -2430,7 +2430,7 @@
           "roles": [
             "Contribution documented by edition"
           ],
-          "summary": "linked to the approved Cosmic 001 work; this is an additional licensed edition, not a new composition.",
+          "summary": "Linked to the approved Cosmic 001 work; this is an additional licensed edition, not a new composition.",
           "gallery": [
             {
               "kind": "image",
@@ -2491,6 +2491,182 @@
               "title": "M.A.D. - Free (Friction & Spice Bassline Mix)",
               "channel": "Probable Cauz Breaks/Jungle/DnB",
               "checkedOn": "2026-10-16"
+            }
+          ]
+        },
+        {
+          "id": "cosmic-duo-nu-energy",
+          "title": "Nu Energy / Friction’s Flavour",
+          "artist": "Cosmic Duo",
+          "date": "1997 — printed copyright year; exact release date unconfirmed",
+          "catalogNumber": "XSN 001",
+          "format": "Excession Recordings · 12-inch · printed label evidence",
+          "roles": [
+            "Writer",
+            "Arranger",
+            "Co-producer"
+          ],
+          "summary": "Scott wrote and arranged the Cosmic Duo release Nu Energy / Friction’s Flavour, and co-produced it with Jeff Alderson. The label identifies Friction & Spice’s Cosmic Studio in Orlando as the recording location.",
+          "gallery": [
+            {
+              "kind": "image",
+              "src": "/reference/release-artwork/cosmic-duo-xsn001-information-label.jpeg",
+              "alt": "Cosmic Duo — Nu Energy and Friction’s Flavour, original Excession XSN 001 information label with printed musician and studio credits.",
+              "caption": "Original XSN 001 information label · printed credits and 1997 copyright year; public photograph hosted by Discogs."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/release-artwork/cosmic-duo-xsn001-reverse-label.jpeg",
+              "alt": "Original reverse label of the Excession XSN 001 pressing with olive graphic design.",
+              "caption": "Original XSN 001 reverse label · public photograph hosted by Discogs."
+            }
+          ],
+          "credits": [
+            {
+              "title": "Nu Energy / Friction’s Flavour",
+              "scope": "A / B · release-level printed credits",
+              "roles": [
+                "Writer",
+                "Arranger",
+                "Co-producer"
+              ],
+              "collaborators": "Jeff Alderson — co-producer",
+              "evidence": "The original information label credits Justin Scott Dixon for writing and arrangement; production is jointly credited to Justin Scott Dixon and Jeff Alderson. Jeff is not assigned writing or arrangement by this label."
+            }
+          ],
+          "historySections": [
+            {
+              "title": "Printed edition details",
+              "items": [
+                {
+                  "title": "A / B",
+                  "detail": "A: Nu Energy · B: Friction’s Flavour."
+                },
+                {
+                  "title": "Recording location",
+                  "detail": "The printed label identifies Friction & Spice’s Cosmic Studio, Orlando, Florida, USA."
+                },
+                {
+                  "title": "Copyright year",
+                  "detail": "The label prints 1997 for Excession Recordings. This is retained as printed edition evidence; an exact release day has not been confirmed."
+                }
+              ]
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Cosmic Duo — XSN 001 original information label",
+              "href": "https://i.discogs.com/VgZLi-OMG7ZuGZuUwF_67_RXxJGdIxOK6Tuh-s-7q5U/rs:fit/g:sm/q:90/h:598/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTYxOTUz/LTE1NjY3MzgzNzkt/MjczNC5qcGVn.jpeg",
+              "supports": "Directly inspected printed label photograph: artist and A/B titles; writing/arrangement solely credited to Justin Scott Dixon; production jointly credited to Justin Scott Dixon and Jeff Alderson; Cosmic Studio location; Excession Recordings and 1997 copyright year."
+            },
+            {
+              "label": "Discogs — Cosmic Duo, Nu Energy (61953)",
+              "href": "https://www.discogs.com/release/61953-Cosmic-Duo-Nu-Energy",
+              "supports": "Public host for the original pressing photographs; catalogue record corroborates the 1997 edition. Specific musician roles above were read from the label image, not inferred from the database."
+            }
+          ],
+          "audioClips": [
+            {
+              "src": "/reference/release-audio/cosmic-duo-sasha-call.m4a",
+              "title": "Sasha call",
+              "note": "Audio recording supplied by Scott · 0:55."
+            }
+          ]
+        },
+        {
+          "id": "sasha-presents-excession-recordings",
+          "title": "Sasha Presents Excession Recordings",
+          "artist": "Various artists",
+          "date": "1998 — database edition year",
+          "catalogNumber": "XSN CD 001",
+          "format": "Excession · CD compilation · eight tracks",
+          "roles": [
+            "Writer",
+            "Arranger",
+            "Co-producer"
+          ],
+          "summary": "Cosmic Duo’s Nu Energy appears as track 5 on this Excession compilation presented by Sasha. Scott’s writing, arrangement and co-production contribution is to Nu Energy.",
+          "gallery": [
+            {
+              "kind": "image",
+              "src": "/reference/release-artwork/sasha-presents-excession-front-source.jpeg",
+              "alt": "Sasha Presents Excession Recordings, original front cover with black lettering and lime-green three-dimensional shapes on white.",
+              "caption": "Original Excession Recordings front-cover scan · public image hosted by Discogs."
+            },
+            {
+              "kind": "image",
+              "src": "/reference/release-artwork/sasha-presents-excession-rear-source.jpeg",
+              "alt": "Sasha Presents Excession Recordings rear inlay listing Cosmic Duo’s Nu Energy as track 5, with XSN CD 001 printed on the spines.",
+              "caption": "Original rear inlay and spines · track 5: Cosmic Duo — Nu Energy · XSN CD 001."
+            }
+          ],
+          "credits": [
+            {
+              "title": "Nu Energy",
+              "scope": "Track 5 · Cosmic Duo",
+              "roles": [
+                "Writer",
+                "Arranger",
+                "Co-producer"
+              ],
+              "collaborators": "Jeff Alderson — co-producer",
+              "evidence": "The CD’s rear inlay lists Cosmic Duo’s Nu Energy as track 5. Writing and arrangement by Justin Scott Dixon, and joint production with Jeff Alderson, are documented on the original XSN 001 vinyl label. These are track-specific credits, not production credits for the entire compilation."
+            }
+          ],
+          "historySections": [
+            {
+              "title": "CD tracklist",
+              "items": [
+                {
+                  "title": "01 · I'm Free (Leftfield Dub)",
+                  "detail": "Morgan King"
+                },
+                {
+                  "title": "02 · One (Boom Unit Remix)",
+                  "detail": "Aria"
+                },
+                {
+                  "title": "03 · Scream (True Grit Mix)",
+                  "detail": "Invisible (2)"
+                },
+                {
+                  "title": "04 · Ya Yae Ya Yo Yo Yo (The Light Mix)",
+                  "detail": "Voices Of Kwahn A.D."
+                },
+                {
+                  "title": "05 · Nu Energy",
+                  "detail": "Cosmic Duo"
+                },
+                {
+                  "title": "06 · I'm Free (William Orbit Mix)",
+                  "detail": "Morgan King"
+                },
+                {
+                  "title": "07 · Calm Your Mind (Darkness Before Dawn Mix)",
+                  "detail": "The Auranaut"
+                },
+                {
+                  "title": "08 · Ascension (Paul De Aragon's  Monochrome Remix)",
+                  "detail": "Aria"
+                }
+              ]
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Discogs — Sasha Presents Excession Recordings (143349)",
+              "href": "https://www.discogs.com/release/143349-Various-Sasha-Presents-Excession-Recordings",
+              "supports": "CD edition record: 1998, Excession, XSN CD 001, eight tracks. The exact release day is not specified."
+            },
+            {
+              "label": "Original CD rear inlay — tracklist and catalogue number",
+              "href": "https://i.discogs.com/y92gZiA6sUx8BgJp-18w3LNZPXBSP-16mBNVeHd1Z98/rs:fit/g:sm/q:90/h:468/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE0MzM0/OS0xNDg1OTU1NDYw/LTM4MTYuanBlZw.jpeg",
+              "supports": "Visually inspected packaging: Sasha Presents Excession Recordings, track 5 Cosmic Duo — Nu Energy, and XSN CD 001 on the spines."
+            },
+            {
+              "label": "Cosmic Duo — XSN 001 original information label",
+              "href": "https://i.discogs.com/VgZLi-OMG7ZuGZuUwF_67_RXxJGdIxOK6Tuh-s-7q5U/rs:fit/g:sm/q:90/h:598/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTYxOTUz/LTE1NjY3MzgzNzkt/MjczNC5qcGVn.jpeg",
+              "supports": "Original Nu Energy / Friction’s Flavour information label: writing and arrangement by Justin Scott Dixon; production by Justin Scott Dixon and Jeff Alderson."
             }
           ]
         }
@@ -2959,7 +3135,7 @@
         {
           "label": "Artwork source",
           "href": "https://www.primevideo.com/-/pt/detail/0TZTA6DG1P3D0WPKRUKQTMSG14",
-          "supports": "Artwork and packaging for the displayed edition; catalogue credits retain their existing qualifications."
+          "supports": "Film artwork from the linked Prime Video listing."
         }
       ],
       "public": true,
@@ -3115,7 +3291,7 @@
         {
           "label": "Unexpected film artwork",
           "href": "https://www.primevideo.com/-/pt/detail/0TZTA6DG1P3D0WPKRUKQTMSG14",
-          "supports": "Artwork and packaging for the displayed edition; catalogue credits retain their existing qualifications."
+          "supports": "Film artwork from the linked Prime Video listing."
         },
         {
           "label": "Stark Raving Mad front-cover scan and packaging",
@@ -3180,6 +3356,23 @@
               "detail": "The Mix rated Expeditions 7/10 in May 1999. Hi-Fi World covered it in April 1999; Orlando Weekly’s May review was critical overall."
             }
           ]
+        },
+        {
+          "title": "Contemporary magazine sources",
+          "items": [
+            {
+              "title": "Mezo — Superconscious",
+              "date": "November 2002 · Muzik, page 80",
+              "detail": "Pezz gave Mezo’s Superconscious four stars in Muzik’s Progressive column, naming Justin Scott Dixon (Voyager) and Chris Hand. This documents contemporary reception; it does not establish additional production roles or an exact release date.",
+              "href": "https://archive.org/details/muzik090_november_2002/page/n79/mode/1up"
+            },
+            {
+              "title": "Pure — Quad advertisement",
+              "date": "January 2002 · Muzik, scan leaf 73",
+              "detail": "A Quad advertisement promoted Pure as QC30, pairing the original 1998 mix with Voyager’s Six Speaker Remix and referring to Northern Exposure: Expeditions. This is advertising, rather than an editorial review; the issue month is not a release-date claim.",
+              "href": "https://archive.org/details/muzik080_january_2002/page/n73/mode/1up"
+            }
+          ]
         }
       ],
       "children": [],
@@ -3203,6 +3396,16 @@
           "label": "Orlando Weekly review",
           "href": "https://www.orlandoweekly.com/music/review-northern-exposure-3-expeditions-2314359/",
           "supports": "Critical contemporary review"
+        },
+        {
+          "label": "Muzik — Superconscious review, November 2002",
+          "href": "https://archive.org/details/muzik090_november_2002/page/n79/mode/1up",
+          "supports": "Printed page 80: review by Pezz, four stars, naming Justin Scott Dixon (Voyager) and Chris Hand."
+        },
+        {
+          "label": "Muzik — Pure advertisement, January 2002",
+          "href": "https://archive.org/details/muzik080_january_2002/page/n73/mode/1up",
+          "supports": "Quad advertisement: QC30, original 1998 mix and Voyager’s Six Speaker Remix. Scan leaf 73; printed folio is not visible."
         }
       ],
       "credentialsCollection": {
@@ -3602,12 +3805,12 @@
         {
           "label": "QVibe 40 Hz Focus thumbnail",
           "href": "https://www.youtube.com/watch?v=lxEgLzYjvEU",
-          "supports": "Artwork and packaging for the displayed edition; catalogue credits retain their existing qualifications."
+          "supports": "Thumbnail for the linked QVibe video."
         },
         {
           "label": "QVibe 639 Hz thumbnail",
           "href": "https://www.youtube.com/watch?v=lP1QgFEBQQA",
-          "supports": "Artwork and packaging for the displayed edition; catalogue credits retain their existing qualifications."
+          "supports": "Thumbnail for the linked QVibe video."
         }
       ]
     },
@@ -3708,7 +3911,7 @@
         {
           "label": "Unexpected film artwork",
           "href": "https://www.primevideo.com/-/pt/detail/0TZTA6DG1P3D0WPKRUKQTMSG14",
-          "supports": "Artwork and packaging for the displayed edition; catalogue credits retain their existing qualifications."
+          "supports": "Film artwork from the linked Prime Video listing."
         }
       ]
     },
@@ -4882,6 +5085,69 @@
             }
           ],
           "relatedRecordIds": []
+        },
+        {
+          "id": "pulse-voyager-remix",
+          "title": "Pulse — Voyager Remix",
+          "artist": "Micke",
+          "date": "2019 — label release record; exact release day unconfirmed",
+          "catalogNumber": "PBTM110",
+          "format": "Pro B Tech Music · three-track digital EP",
+          "roles": [
+            "Remixer"
+          ],
+          "summary": "Scott’s Voyager remix of Micke’s Pulse appears alongside the original and Charlie May remix on Pro B Tech Music’s PBTM110 release.",
+          "gallery": [
+            {
+              "kind": "image",
+              "src": "/reference/release-artwork/pulse-pbtm110-label-source.jpeg",
+              "alt": "Micke — Pulse, black Pro B Tech artwork with a yellow pulse line and PBTM110 catalogue number.",
+              "caption": "Original Pro B Tech Music artwork · PBTM110 · the label identifies Charlie May and Voyager as remixers."
+            }
+          ],
+          "credits": [
+            {
+              "title": "Pulse (Voyager Remix)",
+              "scope": "Track 3",
+              "roles": [
+                "Remixer"
+              ],
+              "collaborators": "Micke — original artist; Charlie May — separate remix on the same EP",
+              "evidence": "The label’s release page explicitly lists the Voyager Remix and identifies Justin Scott Dixon aka Voyager in its artist line. The original label artwork also names Voyager among the remixers."
+            }
+          ],
+          "historySections": [
+            {
+              "title": "Artist account",
+              "items": [
+                {
+                  "title": "Pulse",
+                  "detail": "A cinematic opening, then a heavier dance-floor section. Pulse let me express the compositional control I had been working toward."
+                }
+              ]
+            },
+            {
+              "title": "Edition and date",
+              "items": [
+                {
+                  "title": "PBTM110 · 2019",
+                  "detail": "The label identifies the three-track EP as a 2019 release. Retailer day-specific dates differ, so the archive retains the label’s year without choosing an unverified release day."
+                }
+              ]
+            }
+          ],
+          "publicSources": [
+            {
+              "label": "Pro B Tech Music — Pulse (PBTM110)",
+              "href": "https://probtechmusic.com/release/pulse/",
+              "supports": "Label-owned release record: 2019, PBTM110, original plus Charlie May and Voyager remixes, with Justin Scott Dixon aka Voyager explicitly identified on track 3."
+            },
+            {
+              "label": "Pro B Tech Music — original Pulse artwork",
+              "href": "https://probtechmusic.com/wp-content/uploads/2019/10/PULSE-MICKIE.jpeg",
+              "supports": "Visually inspected original 800 × 800 label artwork: Micke, Pulse, remixers Charlie May and Voyager, catalogue PBTM110."
+            }
+          ]
         }
       ],
       "publicSources": [
@@ -4904,6 +5170,16 @@
           "label": "Voyager — Motion",
           "href": "https://www.discogs.com/release/48568",
           "supports": "Coded edition and track credits"
+        }
+      ],
+      "credentialsIncludes": [
+        {
+          "recordId": "cosmic-records-history",
+          "childId": "cosmic-duo-nu-energy"
+        },
+        {
+          "recordId": "cosmic-records-history",
+          "childId": "sasha-presents-excession-recordings"
         }
       ]
     },
@@ -5706,7 +5982,7 @@
               "detail": "Voyager album recording; individual technical credits are not specified in the retained sources."
             }
           ],
-          "intro": "Sequence from the MusicBrainz release record; Apple Music confirms an eleven-track digital album."
+          "intro": ""
         },
         {
           "title": "Navigator — tracks 7–9",
@@ -5724,7 +6000,7 @@
               "detail": "Voyager album recording; individual technical credits are not specified in the retained sources."
             }
           ],
-          "intro": "Sequence from the MusicBrainz release record; Apple Music confirms an eleven-track digital album."
+          "intro": ""
         },
         {
           "title": "Navigator — tracks 10–11",
@@ -5738,7 +6014,7 @@
               "detail": "Continuous album mix; presented separately from the ten individual tracks."
             }
           ],
-          "intro": "Sequence from the MusicBrainz release record; Apple Music confirms an eleven-track digital album."
+          "intro": ""
         }
       ],
       "children": [],

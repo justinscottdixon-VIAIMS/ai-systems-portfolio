@@ -16,6 +16,7 @@ import DossierContext from './DossierContext.astro';
 import ReleaseHistory from './ReleaseHistory.astro';
 import ReleasePresentations from './ReleasePresentations.astro';
 import ReleaseListening from './ReleaseListening.astro';
+import ReleaseAudio from './ReleaseAudio.astro';
 import { archiveHref } from '../lib/archive-index.mjs';
 import '../styles/hybrid-media-engine.css';
 
@@ -109,6 +110,7 @@ const evidenceLabels = {
 								<p class="reference-stage__summary">{record.summary}</p>
                                 <ReleaseListening links={record.listeningLinks} />
 								<a href={archiveHref(record)} target="_blank" rel="noopener noreferrer">READ FULL RECORD ↗</a>
+                                {record.id === 'cosmic-records-history' && <p><a href={`${archiveHref(record)}#press-clippings`} target="_blank" rel="noopener noreferrer">ARTICLES &amp; INTERVIEWS ↗</a> · <a href={`${archiveHref(record)}#watch-listen`} target="_blank" rel="noopener noreferrer">YOUTUBE RESOURCES ↗</a></p>}
 								{Object.keys(record.catalog ?? {}).length > 0 && <div class="reference-stage__catalog">{Object.entries(record.catalog).map(([label, value]) => <span><b>{label.replaceAll(/([A-Z])/g, ' $1')}</b>{value}</span>)}</div>}
 									{['singles-remixes', 'cosmic-records-history'].includes(record.id) && <nav class="reference-stage__collection-index" aria-label="Browse music releases and context"><h3>Browse this collection</h3>{(record.id === 'cosmic-records-history' ? cosmicReleaseGroups(record.children) : musicReleaseGroups(record.children)).map(group => <section class="reference-stage__release-group" aria-label={group.title}>
                                       <h4>{group.title}</h4>
@@ -138,9 +140,10 @@ const evidenceLabels = {
                                       <dl><div><dt>CATALOG</dt><dd>{child.catalogNumber}</dd></div><div><dt>DATE</dt><dd>{child.date}</dd></div><div><dt>FORMAT</dt><dd>{child.format}</dd></div></dl>
                                       <p>{child.summary}</p><small>{child.roles.join(' · ')}</small>
                                       <ReleasePresentations links={child.presentationLinks} />
+      <ReleaseAudio clips={child.audioClips} />
       <ReleaseListening links={child.listeningLinks} />
                                       {child.credits.length > 0 && <details class="reference-stage__release-credits" data-release-credits><summary>Credits &amp; contribution</summary><TrackCredits credits={child.credits} /></details>}
-                                      {((child.historySections ?? []).length > 0 || (child.contextRecords ?? []).length > 0) && <details class="reference-stage__release-credits" data-release-history><summary>Release history &amp; sources</summary><ReleaseHistory sections={child.historySections} />{(child.contextRecords ?? []).map(context => <DossierContext record={context} />)}</details>}
+                                      {((child.historySections ?? []).length > 0 || (child.contextRecords ?? []).length > 0) && <details class="reference-stage__release-credits" data-release-history><summary>Release history &amp; sources</summary><ReleaseHistory sections={child.historySections} />{(child.contextRecords ?? []).map(context => <DossierContext record={context} release={child} />)}</details>}
                                       <p><a href={child.sourceArchiveHref ?? archiveHref(record, child)} target="_blank" rel="noopener noreferrer">FULL RELEASE RECORD ↗</a></p>
                                     </div>
                                   </article>

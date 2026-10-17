@@ -6,6 +6,7 @@ import DossierContext from '../../components/DossierContext.astro';
 import ReleaseHistory from '../../components/ReleaseHistory.astro';
 import ReleasePresentations from '../../components/ReleasePresentations.astro';
 import ReleaseListening from '../../components/ReleaseListening.astro';
+import ReleaseAudio from '../../components/ReleaseAudio.astro';
 import PressClippings from '../../components/PressClippings.astro';
 import DossierMedia from '../../components/DossierMedia.astro';
 import source from '../../data/portfolio-records.json';
@@ -57,14 +58,15 @@ const evidenceLabels = {
     <div class:list={{ 'archive-packaging': child.id === 'cosmic-018' }}>
       {(child.id === 'transformed' ? child.gallery.slice(0, 1) : child.gallery).map((item, index) => <figure class:list={['archive-art', { 'archive-art--spread': child.id === 'cosmic-018' && item.src?.includes('-spread-') }]} id={child.id === 'cosmic-018' ? `cosmic-018-artwork-${index + 1}` : undefined}>{item.kind === 'image' ? child.id === 'cosmic-018' ? <a href={item.src} target="_blank" rel="noopener noreferrer" aria-label={`Open full-size artwork: ${item.alt}`}><img src={item.src} alt={item.alt} loading="lazy" decoding="async" /></a> : <img src={item.src} alt={item.alt} loading="lazy" decoding="async" /> : <div class="art-pending">Presentation artwork forthcoming</div>}<figcaption>{item.caption}</figcaption></figure>)}
     </div>
-    <div><p class="eyebrow">{child.catalogNumber}</p><h2>{child.title}</h2><p class="artist">{child.artist}</p>
+    <div><p class="eyebrow">{child.catalogNumber}</p>{child.id !== 'cosmic-018' && <h2>{child.title}</h2>}<p class="artist">{child.artist}</p>
       <dl class="archive-facts"><div><dt>Date evidence</dt><dd>{child.date}</dd></div><div><dt>Format</dt><dd>{child.format}</dd></div>{child.roles.length > 0 && <div><dt>Contribution</dt><dd>{child.roles.join(' · ')}</dd></div>}</dl>
       <p>{child.summary}</p>
       <ReleasePresentations links={child.presentationLinks} />
+      <ReleaseAudio clips={child.audioClips} />
       <ReleaseListening links={child.listeningLinks} />
       {child.credits.length > 0 && <TrackCredits credits={child.credits} />}
       <ReleaseHistory sections={child.historySections} headingLevel={3} />
-      {(child.contextRecords ?? []).map(context => <DossierContext record={context} />)}
+      {(child.contextRecords ?? []).map(context => <DossierContext record={context} release={child} sourcesAlreadyShown />)}
       {child.publicSources.length > 0 && <div class="edition-sources"><h3>Edition sources</h3><ul>{child.publicSources.map(source => <li><a href={source.href} target="_blank" rel="noopener noreferrer">{source.label} ↗</a><p class="muted">{source.supports}</p></li>)}</ul></div>}
       {child.relatedRecordIds.length > 0 && <nav aria-label={`${child.title} related histories`}><h3>Related release histories</h3><ul>{child.relatedRecordIds.map(id => <li><a href={archiveHref(recordsById.get(id))}>{recordsById.get(id).title}</a></li>)}</ul></nav>}
       <a class="permalink" href={archiveHref(record, child)}>Link to this release ↗</a>

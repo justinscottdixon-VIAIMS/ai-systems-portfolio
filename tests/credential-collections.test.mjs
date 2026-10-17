@@ -129,7 +129,7 @@ test('rejects collisions with existing or flattened child IDs', () => {
   ]), /duplicate credential collection child id/);
 });
 
-test('actual catalogue groups into 9 roots and 97 release views while preserving canonical archives', async () => {
+test('actual catalogue groups into 9 roots and 102 release views while preserving canonical archives', async () => {
   const data = JSON.parse(await readFile(new URL('../src/data/portfolio-records.json', import.meta.url), 'utf8'));
   const canonical = toPortfolioRecords(data);
   const membershipKinds = new Map([
@@ -150,11 +150,11 @@ test('actual catalogue groups into 9 roots and 97 release views while preserving
   assert.deepEqual(output.map(item => item.id), input.filter(item => !membershipKinds.has(item.id)).map(item => item.id));
   const parent = output.find(item => item.id === 'singles-remixes');
   const originalParent = input.find(item => item.id === parent.id);
-  assert.equal(originalParent.children.length, 17);
-  assert.equal(parent.children.length, 49);
-  assert.equal(new Set(parent.children.map(item => item.id)).size, 49);
-  assert.equal(input.reduce((total, item) => total + item.children.length, 0), 91);
-  assert.equal(output.reduce((total, item) => total + item.children.length, 0), 97);
+  assert.equal(originalParent.children.length, 18);
+  assert.equal(parent.children.length, 52);
+  assert.equal(new Set(parent.children.map(item => item.id)).size, 52);
+  assert.equal(input.reduce((total, item) => total + item.children.length, 0), 94);
+  assert.equal(output.reduce((total, item) => total + item.children.length, 0), 102);
   assert.equal(parent.children.some(item => item.id === 'nc-09'), false);
   assert.deepEqual(parent.contextRecords.map(item => item.id), ['production-engineering-credits', 'compilation-appearances', 'chart-history']);
 
@@ -192,8 +192,9 @@ test('actual catalogue groups into 9 roots and 97 release views while preserving
   const creditsCount = records => records.reduce((total, item) => total + item.children.reduce((sum, edition) => sum + edition.credits.length, 0), 0);
   const cosmic = output.find(item => item.id === 'cosmic-records-history');
   const includedCredits = cosmic.children.filter(item => item.id.startsWith('singles-remixes-')).reduce((sum, child) => sum + child.credits.length, 0);
-  assert.equal(creditsCount(output), creditsCount(input) + includedCredits);
-  assert.equal(cosmic.children.length, 48);
+  const includedCosmicCredits = parent.children.filter(item => item.id.startsWith('cosmic-records-history-')).reduce((sum, child) => sum + child.credits.length, 0);
+  assert.equal(creditsCount(output), creditsCount(input) + includedCredits + includedCosmicCredits);
+  assert.equal(cosmic.children.length, 50);
   assert.equal(cosmic.children[18].id, 'transformed');
   assert.equal(cosmic.children.at(-5).id, 'groove-me-anniversary');
   assert.equal(cosmic.children.slice(-4).every(child => child.date === 'Edition date under review'), true);

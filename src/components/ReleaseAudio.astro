@@ -1,0 +1,51 @@
+---
+interface AudioClip { src: string; title: string; note?: string; }
+interface Props { clips?: AudioClip[]; }
+const { clips = [] } = Astro.props;
+---
+{clips.length > 0 && <section class="release-audio" aria-label="Audio preview">
+  {clips.map(clip => <div data-release-audio-clip>
+    <button type="button" data-release-audio-toggle data-audio-title={clip.title} aria-label={`Play ${clip.title}`} aria-description={clip.note} aria-pressed="false">
+      <span data-audio-icon aria-hidden="true">▶</span><span>{clip.title}</span>
+    </button>
+    <audio data-release-audio preload="none" src={clip.src}></audio>
+    <p data-release-audio-error hidden role="status">Recording unavailable. <a href={clip.src}>Open audio</a></p>
+    <noscript><a href={clip.src}>Listen to {clip.title}</a></noscript>
+  </div>)}
+</section>}
+<script>
+  import { bindReleaseAudio } from '../lib/release-audio.mjs';
+  bindReleaseAudio(document);
+  for (const container of document.querySelectorAll('[data-release-audio-clip]')) {
+    const audio = container.querySelector('audio');
+    const button = container.querySelector<HTMLButtonElement>('[data-release-audio-toggle]');
+    const icon = button.querySelector('[data-audio-icon]');
+    const failure = container.querySelector<HTMLElement>('[data-release-audio-error]');
+    const sync = () => {
+      const playing = !audio.paused && !audio.ended;
+      button.setAttribute('aria-pressed', String(playing));
+      button.setAttribute('aria-label', `${playing ? 'Pause' : 'Play'} ${button.dataset.audioTitle}`);
+      icon.textContent = playing ? 'Ⅱ' : '▶';
+    };
+    button.addEventListener('click', async () => {
+      failure.hidden = true;
+      if (!audio.paused) { audio.pause(); return; }
+      try { await audio.play(); }
+      catch (error) {
+        if (error.name !== 'AbortError') failure.hidden = false;
+        sync();
+      }
+    });
+    for (const event of ['play', 'pause', 'ended']) audio.addEventListener(event, sync);
+    audio.addEventListener('error', () => { failure.hidden = false; sync(); });
+  }
+</script>
+<style>
+  .release-audio { min-width: 0; max-width: 100%; margin-block: .35rem; text-transform: none; letter-spacing: normal; }
+  .release-audio button { display: inline-flex; align-items: center; gap: .55rem; min-height: 40px; max-width: 100%; padding: .25rem .3rem; border: 0; background: transparent; color: #b8ab95; font: inherit; font-size: .8rem; line-height: 1.4; text-align: left; cursor: pointer; }
+  .release-audio button:hover, .release-audio button[aria-pressed="true"] { color: #efd5a5; }
+  .release-audio button:focus-visible { outline: 2px solid #efd5a5; outline-offset: 3px; }
+  .release-audio [data-audio-icon] { width: .8rem; font-size: .7rem; }
+  .release-audio audio { display: none; }
+  .release-audio p { margin: .2rem 0 0; color: #bdaf97; font-size: .8rem; line-height: 1.5; }
+</style>

@@ -1,4 +1,5 @@
 ---
+import { contextDisplay } from '../lib/context-display.mjs';
 import { archiveHref as canonicalArchiveHref } from '../lib/archive-index.mjs';
 
 interface DossierRecord {
@@ -22,9 +23,12 @@ interface DossierRecord {
 interface Props {
 	record: DossierRecord;
 	showSummary?: boolean;
+	release?: { summary: string; date: string; format: string; roles: string[]; publicSources: { href: string; supports: string }[] };
+	sourcesAlreadyShown?: boolean;
 }
 
-const { record, showSummary = true } = Astro.props;
+const { record, release, showSummary, sourcesAlreadyShown = false } = Astro.props;
+const display = contextDisplay(record, { release, showSummary, sourcesAlreadyShown });
 const evidenceLabels: Record<string, string> = {
 	'primary-public': 'Primary public source',
 	'corroborated-public': 'Corroborated public record',
@@ -35,11 +39,11 @@ const catalogEntries = Object.entries(record.catalog ?? {});
 ---
 
 <div class="dossier-context" data-dossier-context>
-	{showSummary && <p class="dossier-context__summary">{record.summary}</p>}
+	{display.showSummary && <p class="dossier-context__summary">{record.summary}</p>}
 	<dl class="dossier-context__facts">
-		<div><dt>Date</dt><dd>{record.dateDisplay}</dd></div>
-		<div><dt>Format</dt><dd>{record.format}</dd></div>
-		<div><dt>Contribution</dt><dd>{record.roles.join(' · ')}</dd></div>
+		{display.showDate && <div><dt>Date</dt><dd>{record.dateDisplay}</dd></div>}
+		{display.showFormat && <div><dt>Format</dt><dd>{record.format}</dd></div>}
+		{display.showRoles && <div><dt>Contribution</dt><dd>{record.roles.join(' · ')}</dd></div>}
 		<div><dt>Source status</dt><dd>{evidenceLabels[record.evidenceLevel] ?? record.evidenceLevel}</dd></div>
 		<div><dt>Record status</dt><dd>{record.status.replaceAll('-', ' ')}</dd></div>
 	</dl>
@@ -66,11 +70,11 @@ const catalogEntries = Object.entries(record.catalog ?? {});
 			</ol>
 		</section>
 	))}
-	{record.publicSources.length > 0 && (
+	{display.sources.length > 0 && (
 		<section class="dossier-context__section">
 			<h4>Sources &amp; attribution</h4>
 			<ul class="dossier-context__sources">
-				{record.publicSources.map((source) => (
+				{display.sources.map((source) => (
 					<li>
 						<a href={source.href} target="_blank" rel="noopener noreferrer">{source.label} <span aria-hidden="true">↗</span><span class="dossier-context__sr-only"> (opens in a new tab)</span></a>
 						<p>{source.supports}</p>

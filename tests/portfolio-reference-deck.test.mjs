@@ -31,7 +31,7 @@ test('portfolio record model validates and chronologically sorts the public pilo
 test('expanded archive preserves the corrected Cosmic sequence and approved artwork', async () => {
   const source = JSON.parse(await readFile(recordsUrl, 'utf8'));
   const cosmic = source.records.find(record => record.id === 'cosmic-records-history');
-  assert.equal(cosmic.children.length, 46);
+  assert.equal(cosmic.children.length, 48);
   assert.equal(cosmic.children[17].id, 'cosmic-018');
   assert.equal(cosmic.children[18].id, 'transformed');
   assert.match(cosmic.children[18].catalogNumber, /StreetBeat/);
@@ -40,7 +40,7 @@ test('expanded archive preserves the corrected Cosmic sequence and approved artw
   assert.equal(cosmic.children[4].title, 'Trixta / Friction');
   assert.equal(cosmic.children[16].title, 'Time Travel E.P.');
   assert.equal(cosmic.children.slice(0, 4).every(child => child.gallery[0].kind === 'image'), true);
-  assert.equal(source.records.find(record => record.id === 'singles-remixes').children.length, 17);
+  assert.equal(source.records.find(record => record.id === 'singles-remixes').children.length, 18);
   const archive = await readFile(archiveUrl, 'utf8');
   assert.match(archive, /href="\/archive\/"/);
 });
