@@ -15,6 +15,7 @@ for (const provider of ['Cinema', 'Music', 'Media']) await fs.mkdir(path.join(ro
 await build({ entryPoints: ['scripts/local-media-publisher.mjs'], outfile: path.join(runtime, 'publisher.mjs'), bundle: true, platform: 'node', target: 'node24', format: 'esm',
   banner: { js: 'import { createRequire as createBundledRequire } from "node:module"; const require = createBundledRequire(import.meta.url);' },
 });
+await fs.cp('tools/playlist-manager', path.join(runtime, 'playlist-manager'), { recursive: true });
 const label = 'com.viaims.media-publisher';
 const args = [values.node, path.join(runtime, 'publisher.mjs'), '--root', root, '--env-file', path.resolve(values['env-file']), '--publish'];
 const plist = `<?xml version="1.0" encoding="UTF-8"?>\n<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">\n<plist version="1.0"><dict><key>Label</key><string>${label}</string><key>ProgramArguments</key><array>${args.map(arg => `<string>${xml(arg)}</string>`).join('')}</array><key>RunAtLoad</key><true/><key>KeepAlive</key><true/><key>ThrottleInterval</key><integer>30</integer><key>WorkingDirectory</key><string>${xml(runtime)}</string><key>EnvironmentVariables</key><dict><key>PATH</key><string>/opt/homebrew/bin:/usr/bin:/bin</string></dict><key>StandardOutPath</key><string>${xml(path.join(state, 'service.log'))}</string><key>StandardErrorPath</key><string>${xml(path.join(state, 'service-error.log'))}</string></dict></plist>\n`;

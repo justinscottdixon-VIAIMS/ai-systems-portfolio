@@ -15,7 +15,7 @@ The owner approved automatic publication of technically valid files on 16 Octobe
 
 Cinema and Media accept H.264 MP4/MOV with 8-bit 4:2:0 video, or VP8/VP9 WebM. Video audio uses AAC/MP3 or Opus/Vorbis as appropriate. Music accepts compatible video, MP3, AAC/M4A, FLAC, or 16/24-bit PCM WAV. Audio must be mono/stereo, 8–192 kHz. Files must be nonempty, at most 2 GiB and four hours long. Unsupported codecs, corruption, silence in audio-only files, draft/test names, changing sources, symlinks, title collisions and unmatched tagged Music visuals are held for review. These are delivery checks, not artistic/mastering certification. There is no automatic conversion or AI processing.
 
-Default titles come from filenames, using the existing Music formatting rules. An optional `Song.mp3.json` beside `Song.mp3` can contain `{"title":"Preferred title"}`. A metadata edit or source change triggers a new audit. A different recording with an already published title requires review instead of replacing it automatically. Playlist entries append in publication order; this version does not provide a reorder/unpublish interface. Images and PDF documents require a future presentation design.
+Default titles come from filenames, using the existing Music formatting rules. An optional `Song.mp3.json` beside `Song.mp3` can contain `{"title":"Preferred title"}`. A metadata edit or source change triggers a new audit. A different recording with an already published title requires review instead of replacing it automatically. Flat-folder additions append in publication order; Playlist Studio provides ordering, title edits and reversible removal. Images and PDF documents require a future presentation design.
 
 ## Architecture and recovery
 
@@ -63,3 +63,15 @@ Changes settle for 15 seconds before a conditional metadata-only registry update
 The public controls are Cinema, Music, YouTube, Credentials. Music has a playlist selector; Cinema has a series selector. Only populated groups appear online. Genre/series browsing preserves current media playback. The selected group limits rows and the Next/Previous queue. Credentials opens its directory in the theater; its duplicate lower playlist is removed. Media remains outside the four main controls.
 
 Provider folder controllers are implemented in `scripts/music-folder-layout.mjs` with a provider option, shared by Music and Cinema. Initialize folders through `initializeMusicFolders({root,registry,provider,moveLocalFiles})` only after saving the pre-migration registry and validating the target tree. Deploy schema support before enabling folder synchronization against production. Rollback must restore the saved registry without playlist metadata before rolling back to a server that rejects those fields.
+
+## Playlist Studio — current workflow, 17 October 2026
+
+The owner reviewed and approved the installed visual organizer on 17 October. Open `Open Playlist Studio.command` in the publishing folder, or visit `http://127.0.0.1:4350/` on this Mac. The existing login publisher runs it. Music, Music Videos and Cinema have separate groups, including empty groups that appear publicly once populated.
+
+Use the interface to edit titles, move recordings between compatible playlists, and reorder playlists or recordings with dragging or move buttons. Preview recordings before publishing. Drop a finished file into the selected playlist or use the file picker: complete format/decode inspection precedes automatic publication. Duplicates and questionable files remain visible for review. Replacement requires an inspected candidate and explicit confirmation. Remove hides an entry without deleting its media; Removed recordings provides Restore.
+
+Changes update the existing live catalogue automatically without a Git commit or site rebuild. Existing identities and hosted media are preserved. When Playlist Studio is enabled, the earlier numbered-folder controllers are disabled; use the organizer for subsequent title, membership and order changes. Original folders and files remain available locally.
+
+The interface listens only on this Mac. It uses a per-launch session and same-origin checks; cloud credentials stay in the local publisher process. Each catalogue edit saves a private recovery snapshot under `.viaims-publisher/manager/history`. Activation also saves the previous runtime, registry and configurations under `.viaims-publisher/manager-install-backups`. Do not put these private runtime directories or media copies into the public source repository.
+
+Implementation: `scripts/playlist-manager-{model,import,service,server}.mjs`, `tools/playlist-manager/` and `tests/playlist-manager.test.mjs`. `scripts/activate-playlist-manager.mjs` performs initial activation with backups; it is not needed for ordinary operation or a website redeployment. Keep the Mac awake, logged in and online for imports and edits.
